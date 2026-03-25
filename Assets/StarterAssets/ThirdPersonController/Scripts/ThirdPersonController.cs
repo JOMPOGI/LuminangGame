@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -104,7 +104,8 @@ namespace StarterAssets
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        private AudioSource _sfxAudioSource; // New dedicated SFX source
+        protected GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
 
@@ -125,20 +126,56 @@ namespace StarterAssets
 
         private void Awake()
         {
-            // get a reference to our main camera
-            if (_mainCamera == null)
+            RefreshCamera();
+        }
+
+        public void RefreshCamera()
+        {
+            // 1. Preference: Find MainCamera in the SAME scene as the player
+            if (gameObject.scene.IsValid())
             {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+                {
+                    Camera[] potential = root.GetComponentsInChildren<Camera>(true);
+                    foreach (Camera cam in potential)
+                    {
+                        if (cam.CompareTag("MainCamera"))
+                        {
+                            _mainCamera = cam.gameObject;
+                            Debug.Log($"[ThirdPersonController] Found Scene-Specific Camera: {_mainCamera.name} in {gameObject.scene.name}");
+                            return;
+                        }
+                    }
+                }
             }
+
+            // 2. Secondary: Find any MainCamera NOT in a Loading scene
+            GameObject[] allMainCams = GameObject.FindGameObjectsWithTag("MainCamera");
+            foreach (GameObject camObj in allMainCams)
+            {
+                if (!camObj.scene.name.ToLower().Contains("loading"))
+                {
+                    _mainCamera = camObj;
+                    Debug.Log($"[ThirdPersonController] Found Game Camera (Non-Loading): {_mainCamera.name} in {camObj.scene.name}");
+                    return;
+                }
+            }
+
+            // 3. Fallback: Standard Unity logic
+            _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            Debug.Log("[ThirdPersonController] Camera fallback to: " + (_mainCamera != null ? _mainCamera.name : "NULL"));
         }
 
         private void Start()
         {
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+            if (CinemachineCameraTarget != null)
+                _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _sfxAudioSource = GetComponent<AudioSource>(); // Get the AudioSource on the player
+            
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -376,7 +413,10 @@ namespace StarterAssets
                 if (FootstepAudioClips.Length > 0)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    if (_sfxAudioSource != null)
+                        _sfxAudioSource.PlayOneShot(FootstepAudioClips[index], FootstepAudioVolume);
+                    else
+                        AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
         }
@@ -385,7 +425,10 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                if (_sfxAudioSource != null)
+                    _sfxAudioSource.PlayOneShot(LandingAudioClip, FootstepAudioVolume);
+                else
+                    AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
     }

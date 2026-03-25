@@ -207,9 +207,9 @@ GameObject:
   - component: {fileID: 465004257}
   - component: {fileID: 465004256}
   - component: {fileID: 465004255}
-  - component: {fileID: 465004259}
-  - component: {fileID: 465004260}
   - component: {fileID: 465004261}
+  - component: {fileID: 465004262}
+  - component: {fileID: 465004263}
   m_Layer: 5
   m_Name: RevealCircle
   m_TagString: Untagged
@@ -317,30 +317,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465004253}
   m_CullTransparentMesh: 1
---- !u!114 &465004259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465004253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a8472089d02ea4cad6c9beb01884cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RevealCircleController
---- !u!114 &465004260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465004253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ec88defabe49745994eb7a832e9504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RevealFinish
 --- !u!114 &465004261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +332,57 @@ MonoBehaviour:
   crystal1: {fileID: 1295942806}
   crystal2: {fileID: 1084487741}
   crystal3: {fileID: 1864291758}
+  delayBetweenBounces: 0.15
+  bounceHeight: 19
+  bounceDuration: 0.5
+  pauseDuration: 0.25
+--- !u!114 &465004262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465004253}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f028cd3cb1232459dffee188bd1a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainLoading
+  loadingFill: {fileID: 0}
+  loadingText: {fileID: 0}
+  loadingCanvasGroup: {fileID: 0}
+  loadingAnimator: {fileID: 465004255}
+  introAnimation: LoadingReveal
+  outroAnimation: LoadingOutro
+  transitionTime: 1
+  crystalBounce: {fileID: 465004261}
+  sceneToLoad: SampleScene
+  scenesToPreload:
+  - LoadingScene
+  - LoginScene
+  - MainMenuScene
+  minimumLoadTime: 5
+  smoothSpeed: 3
+--- !u!114 &465004263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465004253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170ae6a1711ad884b9e9778a8c8e037e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadingSceneController
+  loadingFill: {fileID: 0}
+  loadingText: {fileID: 0}
+  loadingAnimator: {fileID: 465004255}
+  crystalBounce: {fileID: 465004261}
+  introAnimation: LoadingReveal
+  outroAnimation: LoadingOutro
+  transitionTime: 1
+  minimumLoadTime: 3
 --- !u!1 &594298223
 GameObject:
   m_ObjectHideFlags: 0

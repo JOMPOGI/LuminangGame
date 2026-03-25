@@ -240,7 +240,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 18668555}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 691555133}
+        m_TargetAssemblyTypeName: LoginManager, Assembly-CSharp
+        m_MethodName: OnLoginButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &18668555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,6 +1515,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654062028}
   m_CullTransparentMesh: 1
+--- !u!1 &691555132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691555134}
+  - component: {fileID: 691555133}
+  m_Layer: 0
+  m_Name: LoginManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &691555133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691555132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ed87cd778dfc7419d5448bc599cdca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoginManager
+  emailField: {fileID: 1103299159}
+  passwordField: {fileID: 577395917}
+  errorText: {fileID: 0}
+  transitionDelay: 0.2
+--- !u!4 &691555134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691555132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 424.15073, y: 198.79669, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &867423405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +2016,7 @@ GameObject:
   - component: {fileID: 1103299161}
   - component: {fileID: 1103299160}
   - component: {fileID: 1103299159}
+  - component: {fileID: 1103299162}
   m_Layer: 5
   m_Name: EmailField
   m_TagString: Untagged
@@ -2122,6 +2183,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103299157}
   m_CullTransparentMesh: 1
+--- !u!114 &1103299162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103299157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c807c9b14dfc6e54fbbbcb5315cd0ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileKeyboardOpener
 --- !u!1 &1200906567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,6 +2552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3a1ed4a4d385441a7d0262ddf0c95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoToSignupScene
+  transitionDelay: 0.2
 --- !u!1 &1561169416
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,3 +3466,4 @@ SceneRoots:
   - {fileID: 62935302}
   - {fileID: 1892255376}
   - {fileID: 921685281}
+  - {fileID: 691555134}

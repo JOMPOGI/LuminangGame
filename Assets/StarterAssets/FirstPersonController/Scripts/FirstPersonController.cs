@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -88,11 +88,44 @@ namespace StarterAssets
 
 		private void Awake()
 		{
-			// get a reference to our main camera
-			if (_mainCamera == null)
+			RefreshCamera();
+		}
+
+		public void RefreshCamera()
+		{
+			// 1. Preference: Find MainCamera in the SAME scene as the player
+			if (gameObject.scene.IsValid())
 			{
-				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+				foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+				{
+					Camera[] potential = root.GetComponentsInChildren<Camera>(true);
+					foreach (Camera cam in potential)
+					{
+						if (cam.CompareTag("MainCamera"))
+						{
+							_mainCamera = cam.gameObject;
+							Debug.Log($"[FirstPersonController] Found Scene-Specific Camera: {_mainCamera.name} in {gameObject.scene.name}");
+							return;
+						}
+					}
+				}
 			}
+
+			// 2. Secondary: Find any MainCamera NOT in a Loading scene
+			GameObject[] allMainCams = GameObject.FindGameObjectsWithTag("MainCamera");
+			foreach (GameObject camObj in allMainCams)
+			{
+				if (!camObj.scene.name.ToLower().Contains("loading"))
+				{
+					_mainCamera = camObj;
+					Debug.Log($"[FirstPersonController] Found Game Camera (Non-Loading): {camObj.name} in {camObj.scene.name}");
+					return;
+				}
+			}
+
+			// 3. Fallback: Standard Unity logic
+			_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+			Debug.Log("[FirstPersonController] Camera fallback to: " + (_mainCamera != null ? _mainCamera.name : "NULL"));
 		}
 
 		private void Start()

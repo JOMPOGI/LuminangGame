@@ -27,7 +27,14 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
 
     void DisableAutoSwitchControls()
     {
-        playerInput.neverAutoSwitchControlSchemes = true;
+        if (playerInput != null)
+        {
+            playerInput.neverAutoSwitchControlSchemes = true;
+        }
+        else
+        {
+            Debug.LogWarning("PlayerInput reference missing on " + gameObject.name + ". Please assign it in the Inspector.");
+        }
     }
 
 #endif

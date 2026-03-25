@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &116728858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116728860}
+  - component: {fileID: 116728859}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &116728859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116728858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4940a04d9f0fa942a8b0085e98c75c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  mainMixer: {fileID: 0}
+  musicVolume: 1
+  sfxVolume: 1
+--- !u!4 &116728860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116728858}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1408.774, y: 533.07666, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &374639417
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +939,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainLoading
   loadingFill: {fileID: 797421073}
   loadingText: {fileID: 595807537}
+  loadingCanvasGroup: {fileID: 0}
+  loadingAnimator: {fileID: 0}
+  introAnimation: LoadingReveal
+  outroAnimation: LoadingOutro
+  transitionTime: 1
+  crystalBounce: {fileID: 0}
   sceneToLoad: LoginScene
+  scenesToPreload:
+  - LoadingScene
+  - LoginScene
+  - MainMenuScene
   minimumLoadTime: 7
   smoothSpeed: 3
 --- !u!4 &1274152499
@@ -1377,3 +1434,4 @@ SceneRoots:
   - {fileID: 1850276935}
   - {fileID: 830699642}
   - {fileID: 1274152499}
+  - {fileID: 116728860}

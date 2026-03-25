@@ -33,38 +33,52 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
         }
     }
 
+    private int trackedPointerId = -1;
+    private bool isDragging = false;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        OnDrag(eventData);
+        if (!isDragging)
+        {
+            isDragging = true;
+            trackedPointerId = eventData.pointerId;
+            OnDrag(eventData);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRect, eventData.position, eventData.pressEventCamera, out Vector2 position);
-        
-        position = ApplySizeDelta(position);
-        
-        Vector2 clampedPosition = ClampValuesToMagnitude(position);
-
-        Vector2 outputPosition = ApplyInversionFilter(position);
-
-        OutputPointerEventValue(outputPosition * magnitudeMultiplier);
-
-        if(handleRect)
+        if (isDragging && eventData.pointerId == trackedPointerId)
         {
-            UpdateHandleRectPosition(clampedPosition * joystickRange);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRect, eventData.position, eventData.pressEventCamera, out Vector2 position);
+            
+            position = ApplySizeDelta(position);
+            
+            Vector2 clampedPosition = ClampValuesToMagnitude(position);
+
+            Vector2 outputPosition = ApplyInversionFilter(position);
+
+            OutputPointerEventValue(outputPosition * magnitudeMultiplier);
+
+            if(handleRect)
+            {
+                UpdateHandleRectPosition(clampedPosition * joystickRange);
+            }
         }
-        
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        OutputPointerEventValue(Vector2.zero);
-
-        if(handleRect)
+        if (isDragging && eventData.pointerId == trackedPointerId)
         {
-             UpdateHandleRectPosition(Vector2.zero);
+            isDragging = false;
+            trackedPointerId = -1;
+            OutputPointerEventValue(Vector2.zero);
+
+            if(handleRect)
+            {
+                 UpdateHandleRectPosition(Vector2.zero);
+            }
         }
     }
 

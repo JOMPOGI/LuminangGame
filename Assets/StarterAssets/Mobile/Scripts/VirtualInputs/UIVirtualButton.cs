@@ -13,14 +13,27 @@ public class UIVirtualButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public BoolEvent buttonStateOutputEvent;
     public Event buttonClickOutputEvent;
 
+    private int trackedPointerId = -1;
+    private bool isPressed = false;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        OutputButtonStateValue(true);
+        if (!isPressed)
+        {
+            isPressed = true;
+            trackedPointerId = eventData.pointerId;
+            OutputButtonStateValue(true);
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        OutputButtonStateValue(false);
+        if (isPressed && eventData.pointerId == trackedPointerId)
+        {
+            isPressed = false;
+            trackedPointerId = -1;
+            OutputButtonStateValue(false);
+        }
     }
     
     public void OnPointerClick(PointerEventData eventData)
