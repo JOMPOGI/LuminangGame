@@ -6,60 +6,60 @@ public class UITouchLookZone : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     [Header("Look Sensitivity")]
     [Tooltip("Adjust this to make the camera move faster or slower when swiping.")]
-    public float sensitivity = 0.05f;
+    public float sensitivity = 1.0f;
 
     [Header("Output")]
     public UnityEvent<Vector2> touchZoneOutputEvent;
 
-    private Vector2 lookDelta;
-    private bool isDragging;
-    private int activePointerId = -1;
+    private Vector2 _lookDelta;
+    private int _pointerId = -1;
+    private bool _isDragging;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isDragging) return; // Already being controlled by another finger
-
-        isDragging = true;
-        activePointerId = eventData.pointerId;
-        lookDelta = Vector2.zero;
+        if (!_isDragging)
+        {
+            _isDragging = true;
+            _pointerId = eventData.pointerId;
+            _lookDelta = Vector2.zero;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isDragging && eventData.pointerId == activePointerId)
+        if (_isDragging && eventData.pointerId == _pointerId)
         {
-            // Normalize delta relative to screen width (0.0 to 1.0 range)
-            // This makes sensitivity identical on all resolutions!
-            float normalizedX = eventData.delta.x / Screen.width;
-            float normalizedY = eventData.delta.y / Screen.height;
-            
-            // Re-scale by a factor to keep sensitivity values similar to what they were
-            // (1000 is a good baseline multiplier for normalized drag)
-            lookDelta = new Vector2(normalizedX, normalizedY) * sensitivity * 1000f;
+            // Normalize delta based on a reference resolution (e.g. 1080p height)
+            // This ensures it feels the same on 4K, 1080p, and 720p screens.
+            float referenceHeight = 1080f;
+            float deviceScale = referenceHeight / Screen.height;
+
+            // Capture the distance the finger moved, scaled for resolution independence
+            _lookDelta = eventData.delta * deviceScale * (sensitivity * 0.1f);
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (eventData.pointerId == activePointerId)
+        if (_isDragging && eventData.pointerId == _pointerId)
         {
-            isDragging = false;
-            activePointerId = -1;
-            lookDelta = Vector2.zero;
-            touchZoneOutputEvent.Invoke(Vector2.zero); // Stop looking
+            _isDragging = false;
+            _pointerId = -1;
+            _lookDelta = Vector2.zero;
+            touchZoneOutputEvent.Invoke(Vector2.zero); // Stop movement immediately
         }
     }
 
     private void Update()
     {
-        if (isDragging)
+        if (_isDragging)
         {
             // Output the continuous look delta to the Controller
-            touchZoneOutputEvent.Invoke(lookDelta);
+            touchZoneOutputEvent.Invoke(_lookDelta);
             
             // Immediately reset it. If the finger stays still, OnDrag won't update it,
-            // and lookDelta will stay zero, stopping the camera rotation.
-            lookDelta = Vector2.zero;
+            // and lookDelta will stay zero, preventing "drifting".
+            _lookDelta = Vector2.zero;
         }
     }
 }
