@@ -13,27 +13,41 @@ public class UITouchLookZone : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     private Vector2 lookDelta;
     private bool isDragging;
+    private int activePointerId = -1;
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (isDragging) return; // Already being controlled by another finger
+
         isDragging = true;
+        activePointerId = eventData.pointerId;
         lookDelta = Vector2.zero;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isDragging)
+        if (isDragging && eventData.pointerId == activePointerId)
         {
-            // Capture the distance the finger moved during this frame
-            lookDelta = eventData.delta * sensitivity;
+            // Normalize delta relative to screen width (0.0 to 1.0 range)
+            // This makes sensitivity identical on all resolutions!
+            float normalizedX = eventData.delta.x / Screen.width;
+            float normalizedY = eventData.delta.y / Screen.height;
+            
+            // Re-scale by a factor to keep sensitivity values similar to what they were
+            // (1000 is a good baseline multiplier for normalized drag)
+            lookDelta = new Vector2(normalizedX, normalizedY) * sensitivity * 1000f;
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isDragging = false;
-        lookDelta = Vector2.zero;
-        touchZoneOutputEvent.Invoke(Vector2.zero); // Stop looking
+        if (eventData.pointerId == activePointerId)
+        {
+            isDragging = false;
+            activePointerId = -1;
+            lookDelta = Vector2.zero;
+            touchZoneOutputEvent.Invoke(Vector2.zero); // Stop looking
+        }
     }
 
     private void Update()
