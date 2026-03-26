@@ -43,14 +43,14 @@ MonoBehaviour:
   m_ProbeVolumeSHBands: 1
   m_MainLightRenderingMode: 1
   m_MainLightShadowsSupported: 0
-  m_MainLightShadowmapResolution: 256
+  m_MainLightShadowmapResolution: 0
   m_AdditionalLightsRenderingMode: 0
   m_AdditionalLightsPerObjectLimit: 0
   m_AdditionalLightShadowsSupported: 0
-  m_AdditionalLightsShadowmapResolution: 512
-  m_AdditionalLightsShadowResolutionTierLow: 128
-  m_AdditionalLightsShadowResolutionTierMedium: 256
-  m_AdditionalLightsShadowResolutionTierHigh: 512
+  m_AdditionalLightsShadowmapResolution: 0
+  m_AdditionalLightsShadowResolutionTierLow: 0
+  m_AdditionalLightsShadowResolutionTierMedium: 0
+  m_AdditionalLightsShadowResolutionTierHigh: 0
   m_ReflectionProbeBlending: 0
   m_ReflectionProbeBoxProjection: 0
   m_ReflectionProbeAtlas: 0
