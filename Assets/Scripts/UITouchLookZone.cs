@@ -6,7 +6,7 @@ public class UITouchLookZone : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     [Header("Look Sensitivity")]
     [Tooltip("Adjust this to make the camera move faster or slower when swiping.")]
-    public float sensitivity = 1.0f;
+    public float sensitivity = 1.5f;
 
     [Header("Output")]
     public UnityEvent<Vector2> touchZoneOutputEvent;
@@ -35,7 +35,8 @@ public class UITouchLookZone : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             float deviceScale = referenceHeight / Screen.height;
 
             // Capture the distance the finger moved, scaled for resolution independence
-            _lookDelta = eventData.delta * deviceScale * (sensitivity * 0.1f);
+            // Increased the multiplier from 0.1 to 0.5 to make it snappier
+            _lookDelta = eventData.delta * deviceScale * (sensitivity * 0.5f);
         }
     }
 
