@@ -97,3 +97,15 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# ===========================
+# 🔐 SECRETS / SENSITIVE FILES
+# ===========================
+# If you ever move Supabase keys to a separate config file, add it here:
+Assets/Resources/SupabaseConfig.txt
+Assets/Resources/SupabaseConfig.txt.meta
+
+# Environment variable files
+.env
+.env.local
+.env.*

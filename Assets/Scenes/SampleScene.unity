@@ -13584,19 +13584,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4753359620310878892, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 558.7178
+      value: 866.9674
       objectReference: {fileID: 0}
     - target: {fileID: 4753359620310878892, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 368.6053
+      value: 462.8777
       objectReference: {fileID: 0}
     - target: {fileID: 4753359620310878892, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -434.40103
+      value: -560.0788
       objectReference: {fileID: 0}
     - target: {fileID: 4753359620310878892, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 434.06268
+      value: 423.14658
       objectReference: {fileID: 0}
     - target: {fileID: 4834724247039808215, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
       propertyPath: m_Layer
@@ -28765,6 +28765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UITouchLookZone
   sensitivity: 0.05
+  zoomSensitivity: 0.1
   touchZoneOutputEvent:
     m_PersistentCalls:
       m_Calls:
@@ -28772,6 +28773,21 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: StarterAssets.UICanvasControllerInput, Assembly-CSharp
         m_MethodName: VirtualLookInput
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  touchZoneZoomEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 625477583}
+        m_TargetAssemblyTypeName: StarterAssets.StarterAssetsInputs, Assembly-CSharp
+        m_MethodName: ZoomInput
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -12,6 +12,16 @@ public class OptionsManager : MonoBehaviour
     public Slider sfxSlider;
     public TextMeshProUGUI sfxPercentageText;
 
+    [Header("Mute Buttons")]
+    public Button musicMuteButton;
+    public Image musicMuteImage;
+    public Button sfxMuteButton;
+    public Image sfxMuteImage;
+
+    [Header("Volume Sprites")]
+    public Sprite volumeUpSprite;
+    public Sprite volumeOffSprite;
+
     [Header("Graphics Buttons")]
     public GameObject lowButtonObj;
     public GameObject medButtonObj;
@@ -63,14 +73,22 @@ public class OptionsManager : MonoBehaviour
         musicSlider.onValueChanged.AddListener(OnMusicSliderChanged);
         sfxSlider.onValueChanged.AddListener(OnSFXSliderChanged);
 
+        // 4. Auto-assign Images if Buttons are set
+        if (musicMuteButton != null && musicMuteImage == null) musicMuteImage = musicMuteButton.GetComponent<Image>();
+        if (sfxMuteButton != null && sfxMuteImage == null) sfxMuteImage = sfxMuteButton.GetComponent<Image>();
+
         // 4. Add Listeners for Graphics Buttons
         if (_lowButton != null) _lowButton.onClick.AddListener(() => OnGraphicsButtonClicked(0));
         if (_medButton != null) _medButton.onClick.AddListener(() => OnGraphicsButtonClicked(1));
         if (_highButton != null) _highButton.onClick.AddListener(() => OnGraphicsButtonClicked(2));
 
-        // Update Text initially
-        UpdateMusicText(musicSlider.value);
-        UpdateSFXText(sfxSlider.value);
+        // 5. Add Listeners for Mute Buttons
+        if (musicMuteButton != null) musicMuteButton.onClick.AddListener(ToggleMusicMute);
+        if (sfxMuteButton != null) sfxMuteButton.onClick.AddListener(ToggleSFXMute);
+
+        // Update Text & Icons initially
+        UpdateMusicUI(musicSlider.value);
+        UpdateSFXUI(sfxSlider.value);
     }
 
     private void OnMusicSliderChanged(float value)
@@ -78,7 +96,7 @@ public class OptionsManager : MonoBehaviour
         if (AudioManager.instance != null)
             AudioManager.instance.ApplyMusicVolume(value); // This now auto-saves
 
-        UpdateMusicText(value);
+        UpdateMusicUI(value);
     }
 
     private void OnSFXSliderChanged(float value)
@@ -86,7 +104,7 @@ public class OptionsManager : MonoBehaviour
         if (AudioManager.instance != null)
             AudioManager.instance.ApplySFXVolume(value); // This now auto-saves
 
-        UpdateSFXText(value);
+        UpdateSFXUI(value);
     }
 
     private void OnGraphicsButtonClicked(int index)
@@ -132,19 +150,53 @@ public class OptionsManager : MonoBehaviour
         if (_highButton != null) _highButton.targetGraphic.color = (selectedIndex == 2) ? selectedColor : unselectedColor;
     }
 
+    public void ToggleMusicMute()
+    {
+        float targetVolume = (musicSlider.value > 0) ? 0 : 1.0f;
+        musicSlider.value = targetVolume; // This triggers OnMusicSliderChanged
+    }
+
+    public void ToggleSFXMute()
+    {
+        float targetVolume = (sfxSlider.value > 0) ? 0 : 1.0f;
+        sfxSlider.value = targetVolume; // This triggers OnSFXSliderChanged
+    }
+
     // --- Helper methods (cleaned up) ---
 
-    [ContextMenu("Auto Find Graphics Buttons")]
+    [ContextMenu("Auto Find All UI Elements")]
     public void AutoFindButtons()
     {
-        GameObject content = transform.parent != null ? transform.parent.gameObject : gameObject;
-        Button[] buttons = content.GetComponentsInChildren<Button>(true);
+        // Find existing buttons in children
+        Button[] buttons = GetComponentsInChildren<Button>(true);
         foreach (var btn in buttons)
         {
-            if (btn.name.ToLower().Contains("low")) lowButtonObj = btn.gameObject;
-            if (btn.name.ToLower().Contains("med")) medButtonObj = btn.gameObject;
-            if (btn.name.ToLower().Contains("high")) highButtonObj = btn.gameObject;
+            string n = btn.name.ToLower();
+            if (n.Contains("low")) lowButtonObj = btn.gameObject;
+            if (n.Contains("med")) medButtonObj = btn.gameObject;
+            if (n.Contains("high")) highButtonObj = btn.gameObject;
+            
+            if (n.Contains("music") && n.Contains("mute")) musicMuteButton = btn;
+            if (n.Contains("soundeffects") && n.Contains("mute")) sfxMuteButton = btn;
+            
+            if (n.Contains("music") && n.Contains("slider")) musicSlider = btn.GetComponent<Slider>();
+            if (n.Contains("soundeffects") && n.Contains("slider")) sfxSlider = btn.GetComponent<Slider>();
         }
+
+        // Find TMP texts
+        TextMeshProUGUI[] texts = GetComponentsInChildren<TextMeshProUGUI>(true);
+        foreach (var t in texts)
+        {
+            string n = t.name.ToLower();
+            if (n.Contains("music") && n.Contains("percentage")) musicPercentageText = t;
+            if (n.Contains("soundeffects") && n.Contains("percentage")) sfxPercentageText = t;
+        }
+
+        // Assign Images
+        if (musicMuteButton != null) musicMuteImage = musicMuteButton.GetComponent<Image>();
+        if (sfxMuteButton != null) sfxMuteImage = sfxMuteButton.GetComponent<Image>();
+        
+        Debug.Log("<color=green>[OptionsManager] UI Elements AUTO-FOUND!</color>");
     }
 
     [ContextMenu("Reset All Settings to Factory Default")]
@@ -195,15 +247,21 @@ public class OptionsManager : MonoBehaviour
         yield break;
     }
 
-    private void UpdateMusicText(float value)
+    private void UpdateMusicUI(float value)
     {
         if (musicPercentageText != null)
             musicPercentageText.text = Mathf.RoundToInt(value * 100f).ToString() + "%";
+
+        if (musicMuteImage != null)
+            musicMuteImage.sprite = (value > 0) ? volumeUpSprite : volumeOffSprite;
     }
 
-    private void UpdateSFXText(float value)
+    private void UpdateSFXUI(float value)
     {
         if (sfxPercentageText != null)
             sfxPercentageText.text = Mathf.RoundToInt(value * 100f).ToString() + "%";
+
+        if (sfxMuteImage != null)
+            sfxMuteImage.sprite = (value > 0) ? volumeUpSprite : volumeOffSprite;
     }
 }

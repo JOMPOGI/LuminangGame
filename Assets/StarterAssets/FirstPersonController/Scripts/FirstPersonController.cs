@@ -51,6 +51,8 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+
+
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -71,6 +73,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private Camera _cameraComponent;
 
 		private const float _threshold = 0.01f;
 
@@ -104,6 +107,7 @@ namespace StarterAssets
 						if (cam.CompareTag("MainCamera"))
 						{
 							_mainCamera = cam.gameObject;
+							_cameraComponent = cam;
 							Debug.Log($"[FirstPersonController] Found Scene-Specific Camera: {_mainCamera.name} in {gameObject.scene.name}");
 							return;
 						}
@@ -118,6 +122,7 @@ namespace StarterAssets
 				if (!camObj.scene.name.ToLower().Contains("loading"))
 				{
 					_mainCamera = camObj;
+					_cameraComponent = camObj.GetComponent<Camera>();
 					Debug.Log($"[FirstPersonController] Found Game Camera (Non-Loading): {camObj.name} in {camObj.scene.name}");
 					return;
 				}
@@ -125,6 +130,12 @@ namespace StarterAssets
 
 			// 3. Fallback: Standard Unity logic
 			_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+			
+			if (_mainCamera != null)
+			{
+				_cameraComponent = _mainCamera.GetComponent<Camera>();
+			}
+
 			Debug.Log("[FirstPersonController] Camera fallback to: " + (_mainCamera != null ? _mainCamera.name : "NULL"));
 		}
 
@@ -155,6 +166,8 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
+
+
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
@@ -170,7 +183,7 @@ namespace StarterAssets
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 				
-				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
+				_cinemachineTargetPitch -= _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
 
 				// clamp our pitch rotation
