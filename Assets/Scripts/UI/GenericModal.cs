@@ -12,6 +12,7 @@ public class GenericModal : MonoBehaviour
     public GameObject modalPanel;
     public Image backgroundImage;
     public TextMeshProUGUI messageText;
+    public Image regionIconImage; // Added for region thumbnails
 
     [Header("Buttons")]
     public Button confirmButton;
@@ -68,18 +69,32 @@ public class GenericModal : MonoBehaviour
     /// <summary>
     /// Shows a modal with two buttons (Confirmation style)
     /// </summary>
-    public void ShowConfirm(string message, string confirmText, Action onConfirm, string cancelText, Action onCancel = null)
+    public void ShowConfirm(string message, string confirmText, Action onConfirm, string cancelText, Action onCancel = null, Sprite thumbnail = null)
     {
-        SetupModal(message, confirmText, onConfirm, cancelText, onCancel);
+        SetupModal(message, confirmText, onConfirm, cancelText, onCancel, thumbnail);
     }
 
-    private void SetupModal(string message, string confirmText, Action onConfirm, string cancelText, Action onCancel)
+    private void SetupModal(string message, string confirmText, Action onConfirm, string cancelText, Action onCancel, Sprite thumbnail = null)
     {
         if (modalPanel == null) return;
 
         messageText.text = message;
         onConfirmAction = onConfirm;
         onCancelAction = onCancel;
+
+        // Handle Thumbnail
+        if (regionIconImage != null)
+        {
+            if (thumbnail != null)
+            {
+                regionIconImage.gameObject.SetActive(true);
+                regionIconImage.sprite = thumbnail;
+            }
+            else
+            {
+                regionIconImage.gameObject.SetActive(false);
+            }
+        }
 
         // Reset listeners
         confirmButton.onClick.RemoveAllListeners();

@@ -1,0 +1,128 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class RegionSelectionManager : MonoBehaviour
+{
+    public static RegionSelectionManager Instance { get; private set; }
+
+    [Header("Responsive Zoom")]
+    public RectTransform mapContainer; 
+    public RegionInfoPanel infoPanel; // Your new custom panel!
+    [Tooltip("Offset from center (-0.5 to 0.5). -0.1666 matches exactly 1/3 from the left of the screen.")]
+    public float horizontalOffsetPercent = -0.1666f; 
+    public float zoomDuration = 0.5f;
+    public AnimationCurve zoomCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    
+    private Vector2 originalPos;
+    private Vector3 originalScale;
+    private bool isZoomed = false;
+    private Coroutine zoomCoroutine;
+    private RegionClickable currentRegion; // Track the selection
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+        
+        if (mapContainer != null)
+        {
+            originalPos = mapContainer.anchoredPosition;
+            originalScale = mapContainer.localScale;
+        }
+    }
+
+    public void SelectRegion(RegionClickable region)
+    {
+        if (isZoomed) return;
+        
+        isZoomed = true;
+        currentRegion = region;
+        currentRegion.SetSelected(true); // Show the glow!
+
+        if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
+        
+        // Responsive Math: Calculate exactly where the island should go (1/3 from left)
+        float canvasWidth = mapContainer.GetComponentInParent<Canvas>().GetComponent<RectTransform>().rect.width;
+        float xOffset = canvasWidth * horizontalOffsetPercent;
+
+        // Position the map so the island ends up at the desired screen coordinates
+        Vector2 regionPos = region.data.zoomPosition == Vector3.zero 
+            ? region.GetComponent<RectTransform>().anchoredPosition 
+            : (Vector2)region.data.zoomPosition;
+
+        Vector2 targetPos = new Vector2(xOffset, 0) 
+                          - (regionPos * region.data.zoomOrthographicSize) 
+                          + region.data.zoomOffsetOverride;
+        
+        zoomCoroutine = StartCoroutine(ZoomUI(targetPos, Vector3.one * region.data.zoomOrthographicSize));
+        
+        // Calculate the screen position of the clicked island
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, region.GetComponent<RectTransform>().position);
+        Vector2 localPoint;
+        
+        // Convert screen position to local position relative to the InfoPanel's parent
+        RectTransform parentRect = infoPanel.GetComponent<RectTransform>().parent as RectTransform;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, screenPoint, null, out localPoint);
+
+        // Calculate the responsive target position for the panel (beside the island)
+        // The island center is at 'horizontalOffsetPercent'. The right screen edge is at +0.5.
+        // Assuming your panel is anchored to the middle-Right (X=1, Y=0.5):
+        float panelTargetX = canvasWidth * (horizontalOffsetPercent / 2f - 0.25f); 
+        Vector2 targetPanelPos = new Vector2(panelTargetX, 0); // Y=0 centers it vertically
+
+        // Show your NEW Custom Panel with its starting position AND its dynamic target!
+        if (infoPanel != null) infoPanel.Show(region.data, localPoint, targetPanelPos);
+
+        // Slide the clouds back to create space for the panel!
+        if (MapTransitionManager.Instance != null) MapTransitionManager.Instance.SetPanelFocus(true);
+    }
+
+    public void ResetZoom()
+    {
+        if (!isZoomed) return;
+        
+        isZoomed = false;
+        if (currentRegion != null)
+        {
+            currentRegion.SetSelected(false); // Hide the glow!
+            currentRegion = null;
+        }
+
+        // Hide your Custom Panel!
+        if (infoPanel != null) infoPanel.Hide();
+
+        // Slide the clouds back in to the normal "Map View"!
+        if (MapTransitionManager.Instance != null) MapTransitionManager.Instance.SetPanelFocus(false);
+
+        if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
+        zoomCoroutine = StartCoroutine(ZoomUI(originalPos, originalScale));
+    }
+
+    private void OnStartRegion(RegionClickable region)
+    {
+        Debug.Log($"Starting region: {region.data.regionName}");
+        // Add your loading/transition code here!
+    }
+
+    private IEnumerator ZoomUI(Vector2 targetPos, Vector3 targetScale)
+    {
+        float elapsed = 0;
+        Vector2 startPos = mapContainer.anchoredPosition;
+        Vector3 startScale = mapContainer.localScale;
+
+        while (elapsed < zoomDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = zoomCurve.Evaluate(elapsed / zoomDuration);
+            
+            mapContainer.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
+            mapContainer.localScale = Vector3.Lerp(startScale, targetScale, t);
+            yield return null;
+        }
+        
+        mapContainer.anchoredPosition = targetPos;
+        mapContainer.localScale = targetScale;
+        zoomCoroutine = null;
+    }
+}
