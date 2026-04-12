@@ -22,14 +22,24 @@ public class LoginManager : MonoBehaviour
     {
         if (isBusy) return;
 
-        string username = usernameField.text.Trim();
+        string username = usernameField.text.Trim().ToLower();
         string password = passwordField.text;
+
 
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             GenericModal.Instance.ShowAlert("Please enter both username and password.", "Okay");
             return;
         }
+
+        // --- DEMO ACCOUNT BYPASS ---
+        if (username == "luminang" && password == "Luminang2026!")
+        {
+            Debug.Log("<color=green>[Login] Demo account logged in successfully! (Database bypassed)</color>");
+            SceneManager.LoadScene(mainMenuSceneName);
+            return;
+        }
+        // ---------------------------
 
         isBusy = true;
         LoadingOverlay.Instance?.Show();

@@ -25,7 +25,7 @@ public class SignupManager : MonoBehaviour
     {
         if (isBusy) return;
 
-        string username = usernameField.text.Trim();
+        string username = usernameField.text.Trim().ToLower();
         string email = emailField.text.Trim();
         string password = passwordField.text;
 
@@ -106,15 +106,15 @@ public class SignupManager : MonoBehaviour
 
     private bool IsValidUsername(string user)
     {
-        if (user.Length < 3 || user.Length > 15)
+        // Must match DB constraint: 3-16 chars, lowercase letters and numbers only
+        if (user.Length < 3 || user.Length > 16)
         {
-            GenericModal.Instance.ShowAlert("Username must be between 3 and 15 characters.", "Okay");
+            GenericModal.Instance.ShowAlert("Username must be between 3 and 16 characters.", "Okay");
             return false;
         }
-        // Allow alphanumeric + special characters
-        if (!Regex.IsMatch(user, @"^[a-zA-Z0-9!@#$%^&*()_+=-]+$"))
+        if (!Regex.IsMatch(user, @"^[a-z0-9]+$"))
         {
-            GenericModal.Instance.ShowAlert("Username contains invalid characters.", "Okay");
+            GenericModal.Instance.ShowAlert("Username can only contain lowercase letters and numbers (no spaces or special characters).", "Okay");
             return false;
         }
         return true;
