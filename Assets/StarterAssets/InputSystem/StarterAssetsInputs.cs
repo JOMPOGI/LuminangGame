@@ -53,6 +53,11 @@ namespace StarterAssets
 
 		public void LookInput(Vector2 newLookDirection)
 		{
+			// Read the saved option (0 = Standard, 1 = Inverted)
+			if (PlayerPrefs.GetInt("InvertLookY", 0) == 1)
+			{
+				newLookDirection.y = -newLookDirection.y;
+			}
 			look = newLookDirection;
 		}
 

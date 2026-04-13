@@ -4393,6 +4393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapTransitionManager
   transitionDuration: 2
   staggerStrength: 2
+  fadeDuration: 0.5
   transitionCurve:
     serializedVersion: 2
     m_Curve:
@@ -4419,6 +4420,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   closedStateScale: 1.25
   referenceResolution: {x: 1920, y: 1080}
+  isHandoffScene: 0
   closedState:
   - cloudName: Cloud1
     position: {x: -588, y: 771}

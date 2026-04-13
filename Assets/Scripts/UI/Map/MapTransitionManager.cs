@@ -21,12 +21,17 @@ public class MapTransitionManager : MonoBehaviour
     [Header("Transition Settings")]
     public float transitionDuration = 2.0f;
     public float staggerStrength = 1.0f; // Max delay for the furthest cloud
+    public float fadeDuration = 0.5f;    // Time for transparency changes
     public AnimationCurve transitionCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     
     [Header("Responsiveness")]
     [Tooltip("Extra scale applied to ALL clouds when CLOSED to ensure full coverage on any aspect ratio.")]
     public float closedStateScale = 1.25f;
     public Vector2 referenceResolution = new Vector2(1920, 1080);
+
+    [Header("Transitions & Handoff")]
+    [Tooltip("Check this if this is the SECOND scene in a transition (like Tutorial). It will start visible and fade out.")]
+    public bool isHandoffScene = false;
 
     [Header("Saved States")]
     public List<CloudState> closedState = new List<CloudState>();
@@ -41,16 +46,76 @@ public class MapTransitionManager : MonoBehaviour
     private List<RuntimeCloudData> runtimeClouds = new List<RuntimeCloudData>();
     private State currentState = State.Closed;
     private Coroutine transitionCoroutine;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
+
         InitializeRuntimeClouds();
         
         // Start with the map CLOSED
         SetToState(State.Closed);
+
+        // Prepare Transparency
+        if (isHandoffScene)
+        {
+            // Second scene: Start fully visible (Closed) and fade out
+            canvasGroup.alpha = 1f;
+        }
+        else
+        {
+            // First scene: Start hidden and fade in
+            canvasGroup.alpha = 0f;
+        }
+    }
+
+    private void Start()
+    {
+        if (isHandoffScene)
+        {
+            StartCoroutine(HandoffSequence());
+        }
+        else
+        {
+            StartCoroutine(EntranceSequence());
+        }
+    }
+
+    private IEnumerator EntranceSequence()
+    {
+        // 1. Fade In
+        yield return StartCoroutine(FadeAlpha(1f));
+        // 2. Part the clouds
+        OpenMap();
+    }
+
+    private IEnumerator HandoffSequence()
+    {
+        // 1. Ensure we are closed (already set in Awake)
+        // 2. Wait a split second for the scene to settle
+        yield return new WaitForSeconds(0.1f);
+        
+        // 3. Open the clouds AND Fade Out at the same time
+        OpenMap();
+        yield return StartCoroutine(FadeAlpha(0f));
+    }
+
+    private IEnumerator FadeAlpha(float target)
+    {
+        float start = canvasGroup.alpha;
+        float elapsed = 0;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(start, target, elapsed / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = target;
     }
 
     private void InitializeRuntimeClouds()

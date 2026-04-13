@@ -22,6 +22,7 @@ public class RegionInfoPanel : MonoBehaviour
     private RectTransform rectTransform;
     private Vector2 originalAnchoredPos;
     private bool hasCapturedPos = false;
+    private RegionClickable _currentRegion; 
 
     private void Awake()
     {
@@ -34,6 +35,16 @@ public class RegionInfoPanel : MonoBehaviour
         // Hide by default
         canvasGroup.alpha = 0;
         rectTransform.localScale = Vector3.zero;
+
+        // Hook up start button
+        if (startButton != null)
+        {
+            startButton.onClick.AddListener(() => 
+            {
+                if (_currentRegion != null && RegionSelectionManager.Instance != null)
+                    RegionSelectionManager.Instance.OnStartRegion(_currentRegion);
+            });
+        }
 
         // Hook up close button if assigned
         if (closeButton != null)
@@ -53,9 +64,11 @@ public class RegionInfoPanel : MonoBehaviour
         hasCapturedPos = true;
     }
 
-    public void Show(RegionData data, Vector2 startAnchoredPos, Vector2? targetAnchoredPos = null)
+    public void Show(RegionClickable region, Vector2 startAnchoredPos, Vector2? targetAnchoredPos = null)
     {
-        if (data == null) return;
+        if (region == null || region.data == null) return;
+        _currentRegion = region;
+        var data = region.data;
         CapturePosition(); 
         
         // Update Content

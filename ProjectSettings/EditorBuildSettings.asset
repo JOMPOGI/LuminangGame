@@ -33,6 +33,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading/LoadingScene.unity
     guid: dcd9979ad98207640b91b5717468aa55
   - enabled: 1
+    path: Assets/Scenes/MainMenu/TutorialScene.unity
+    guid: 5f08166a68c35214e9bd195fe349e889
+  - enabled: 1
+    path: Assets/Scenes/Hub/MapSelectionScene.unity
+    guid: c032e47d4662a7446a669934fe501092
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

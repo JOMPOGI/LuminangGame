@@ -27,7 +27,7 @@ public class SceneLoader : MonoBehaviour
 
         Debug.Log("[SceneLoader] LoadScene called for: " + sceneName);
         isSceneLoading = true;
-        if (useLoadingScreenForSampleScene && sceneName == "SampleScene")
+        if (useLoadingScreenForSampleScene && (sceneName == "SampleScene" || sceneName == "MapSelectionScene"))
         {
             Debug.Log("[SceneLoader] Using additive loading for LoadingScene");
             targetSceneForLoading = sceneName;

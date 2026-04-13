@@ -72,7 +72,7 @@ public class RegionSelectionManager : MonoBehaviour
         Vector2 targetPanelPos = new Vector2(panelTargetX, 0); // Y=0 centers it vertically
 
         // Show your NEW Custom Panel with its starting position AND its dynamic target!
-        if (infoPanel != null) infoPanel.Show(region.data, localPoint, targetPanelPos);
+        if (infoPanel != null) infoPanel.Show(region, localPoint, targetPanelPos);
 
         // Slide the clouds back to create space for the panel!
         if (MapTransitionManager.Instance != null) MapTransitionManager.Instance.SetPanelFocus(true);
@@ -99,10 +99,26 @@ public class RegionSelectionManager : MonoBehaviour
         zoomCoroutine = StartCoroutine(ZoomUI(originalPos, originalScale));
     }
 
-    private void OnStartRegion(RegionClickable region)
+    public void OnStartRegion(RegionClickable region)
     {
-        Debug.Log($"Starting region: {region.data.regionName}");
-        // Add your loading/transition code here!
+        Debug.Log($"[Map] Starting region: {region.data.regionName}");
+        StartCoroutine(TransitionToTutorial());
+    }
+
+    private IEnumerator TransitionToTutorial()
+    {
+        // 1. Close the Map (Gathers clouds)
+        if (MapTransitionManager.Instance != null)
+        {
+            MapTransitionManager.Instance.CloseMap();
+            // Wait for the clouds and the "stagger" effect to fully cover the screen
+            float totalWait = MapTransitionManager.Instance.transitionDuration + MapTransitionManager.Instance.staggerStrength;
+            yield return new WaitForSeconds(totalWait);
+        }
+
+        // 2. Head to the Tutorial
+        Debug.Log("[Map] Transitioning to TutorialScene...");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TutorialScene");
     }
 
     private IEnumerator ZoomUI(Vector2 targetPos, Vector3 targetScale)

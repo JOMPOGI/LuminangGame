@@ -2,9 +2,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Postgrest.Attributes;
 using Postgrest.Models;
 using System.Linq;
+using Supabase.Gotrue;
 
 public class LoginManager : MonoBehaviour
 {
@@ -13,10 +15,38 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField passwordField;
 
     [Header("Settings")]
-    public string mainMenuSceneName = "MainMenu";
+    public string mainMenuSceneName = "MainMenuScene";
 
     [Header("Status")]
     public bool isBusy = false;
+
+    private void Start()
+    {
+        Debug.Log("[Login] Manager started. Subscribing to Google Login event...");
+        if (SupabaseManager.Instance != null)
+        {
+            SupabaseManager.Instance.OnGoogleLoginComplete += HandleGoogleLoginComplete;
+            Debug.Log("[Login] Successfully subscribed to Supabase event.");
+        }
+        else
+        {
+            Debug.LogError("[Login] SupabaseManager Instance was null at Start! Searching in scene...");
+            var manager = FindFirstObjectByType<SupabaseManager>();
+            if (manager != null)
+            {
+                manager.OnGoogleLoginComplete += HandleGoogleLoginComplete;
+                Debug.Log("[Login] Found and subscribed to SupabaseManager manually.");
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (SupabaseManager.Instance != null)
+        {
+            SupabaseManager.Instance.OnGoogleLoginComplete -= HandleGoogleLoginComplete;
+        }
+    }
 
     public async void OnLoginButtonClicked()
     {
@@ -24,7 +54,6 @@ public class LoginManager : MonoBehaviour
 
         string username = usernameField.text.Trim().ToLower();
         string password = passwordField.text;
-
 
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
@@ -35,82 +64,42 @@ public class LoginManager : MonoBehaviour
         // --- DEMO ACCOUNT BYPASS ---
         if (username == "luminang" && password == "Luminang2026!")
         {
-            Debug.Log("<color=green>[Login] Demo account logged in successfully! (Database bypassed)</color>");
+            Debug.Log("<color=green>[Login] Demo account logged in successfully!</color>");
             SceneManager.LoadScene(mainMenuSceneName);
             return;
         }
-        // ---------------------------
 
         isBusy = true;
         LoadingOverlay.Instance?.Show();
 
         try
         {
-            // SAFETY CHECK: Is SupabaseManager ready?
             if (SupabaseManager.Instance == null || SupabaseManager.Instance.client == null)
             {
-                GenericModal.Instance.ShowAlert("Supabase is not initialized. Please make sure the 'SupabaseManager' object is in your scene.", "Okay");
+                GenericModal.Instance.ShowAlert("Supabase is not initialized.", "Okay");
                 LoadingOverlay.Instance?.Hide();
                 isBusy = false;
                 return;
             }
 
-            // 1. LOOKUP EMAIL BY USERNAME
             Debug.Log($"[Login] Looking up email for user: {username}");
-            
-            var profileResult = await SupabaseManager.Instance.client
-                .From<LoginProfileModel>()
-                .Filter("username", Postgrest.Constants.Operator.Equals, username)
-                .Get();
+            var parameters = new Dictionary<string, object> { { "target_username", username } };
+            var rpcResponse = await SupabaseManager.Instance.client.Rpc("get_email_from_username", parameters);
 
-            if (profileResult == null)
+            if (rpcResponse == null || string.IsNullOrEmpty(rpcResponse.Content) || rpcResponse.Content == "null")
             {
-                Debug.LogError("[Login] profileResult is NULL");
-                GenericModal.Instance.ShowAlert("No response from database.", "Okay");
+                GenericModal.Instance.ShowAlert($"The username '{username}' does not exist.", "Okay");
                 LoadingOverlay.Instance?.Hide();
                 isBusy = false;
                 return;
             }
 
-            if (profileResult.Models == null)
-            {
-                Debug.LogError("[Login] profileResult.Models is NULL");
-                GenericModal.Instance.ShowAlert("Database returned an empty response structure.", "Okay");
-                LoadingOverlay.Instance?.Hide();
-                isBusy = false;
-                return;
-            }
-
-            Debug.Log($"[Login] Query returned {profileResult.Models.Count} results.");
-
-            var profile = profileResult.Models.FirstOrDefault();
-
-            if (profile == null)
-            {
-                Debug.LogWarning($"[Login] No profile found for username: {username}");
-                GenericModal.Instance.ShowAlert($"The username '{username}' does not exist. Please check your spelling!", "Okay");
-                LoadingOverlay.Instance?.Hide();
-                isBusy = false;
-                return;
-            }
-
-            if (string.IsNullOrEmpty(profile.Email))
-            {
-                Debug.LogWarning($"[Login] Profile found but Email is NULL for: {username}");
-                GenericModal.Instance.ShowAlert("Your account exists, but your email is missing in the database. Please try signing up again.", "Okay");
-                LoadingOverlay.Instance?.Hide();
-                isBusy = false;
-                return;
-            }
-
-            Debug.Log($"[Login] Successfully found email: {profile.Email}. Authenticating...");
-
-            // 2. ATTEMPT SIGN IN WITH THE FOUND EMAIL
-            var response = await SupabaseManager.Instance.client.Auth.SignIn(profile.Email, password);
+            string foundEmail = rpcResponse.Content.Trim('\"');
+            var response = await SupabaseManager.Instance.client.Auth.SignIn(foundEmail, password);
 
             if (response != null && response.User != null)
             {
-                Debug.Log("<color=green>[Login] User Authenticated successfully!</color>");
+                Debug.Log("<color=green>[Login] Success!</color>");
                 LoadingOverlay.Instance?.Hide();
                 SceneManager.LoadScene(mainMenuSceneName);
             }
@@ -118,39 +107,99 @@ public class LoginManager : MonoBehaviour
         catch (System.Exception ex)
         {
             LoadingOverlay.Instance?.Hide();
-            // We keep the REAL error in the console for YOU (the dev) to see
             Debug.LogError($"[Login] Technical Error: {ex.Message}");
+            string friendlyMessage = "Oops! Something went wrong.";
+
+            if (ex.Message.Contains("Invalid login credentials")) friendlyMessage = "Incorrect username or password.";
+            else if (ex.Message.Contains("Email not confirmed")) friendlyMessage = "Please verify your email first!";
             
-            // But we show the PLAYER a friendly, safe message
-            string friendlyMessage = "Oops! Something went wrong. Please try again later.";
-
-            if (ex.Message.Contains("Invalid login credentials") || ex.Message.Contains("not found"))
-            {
-                friendlyMessage = "Incorrect username or password. Please try again!";
-            }
-            else if (ex.Message.Contains("Email not confirmed"))
-            {
-                friendlyMessage = "Your email isn't confirmed yet! Please check your inbox for the confirmation link.";
-            }
-            else if (ex.Message.Contains("network") || ex.Message.Contains("connection"))
-            {
-                friendlyMessage = "Connection error. Please check your internet and try again.";
-            }
-
             GenericModal.Instance.ShowAlert(friendlyMessage, "Okay");
+        }
+
+        isBusy = false;
+    }
+
+    public void OnContinueWithGoogleButtonClicked()
+    {
+        if (isBusy) return;
+
+        isBusy = true;
+        LoadingOverlay.Instance?.Show();
+
+        try
+        {
+            // 1. Tell the Listener to start (For Editor testing)
+#if UNITY_EDITOR
+            if (UnityRedirectListener.Instance != null)
+            {
+                UnityRedirectListener.Instance.StartEditorListener();
+            }
+#endif
+
+            // 2. Build the manual URL (Most reliable)
+            var redirectTo = "luminang://callback"; 
+#if UNITY_EDITOR
+            redirectTo = "http://localhost:54321/"; 
+#endif
+            string authUrl = $"{SupabaseManager.Instance.supabaseUrl}/auth/v1/authorize?provider=google&redirect_to={redirectTo}";
+            
+            Debug.Log($"[Login] Opening Google login in browser...");
+            Application.OpenURL(authUrl);
+
+            // Note: We don't hide the loading screen here. 
+            // We wait for HandleGoogleLoginComplete to be called.
+        }
+        catch (System.Exception ex)
+        {
+            LoadingOverlay.Instance?.Hide();
+            Debug.LogError($"[Login] Google Error: {ex.Message}");
+            GenericModal.Instance.ShowAlert("Google login failed.", "Okay");
+            isBusy = false;
+        }
+    }
+
+    private void HandleGoogleLoginComplete(bool success)
+    {
+        Debug.Log($"[Login] HandleGoogleLoginComplete called. Success: {success}");
+        
+        if (!success)
+        {
+            LoadingOverlay.Instance?.Hide();
+            GenericModal.Instance.ShowAlert("Google login was cancelled or failed. Please try again.", "Okay");
+            isBusy = false;
+            return;
+        }
+
+        try
+        {
+            var session = SupabaseManager.Instance.client.Auth.CurrentSession;
+            if (session != null && session.User != null)
+            {
+                Debug.Log($"[Login] Session verified. User ID: {session.User.Id}. Checking database for profile...");
+                
+                /* 
+                // NOTE: We have removed the 'No Account Found' shield. 
+                // Modern games allow 'Auto-Signup' via Google. 
+                // The database trigger will automatically create the profile.
+                */
+
+                Debug.Log("<color=green>[Login] Google login successful! Loading Main Menu...</color>");
+                LoadingOverlay.Instance?.Hide();
+                SceneManager.LoadScene(mainMenuSceneName);
+            }
+            else
+            {
+                Debug.LogError("[Login] Login succeeded but session is null!");
+                LoadingOverlay.Instance?.Hide();
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"[Login] Critical Error in HandleComplete: {ex.Message}");
+            LoadingOverlay.Instance?.Hide();
         }
 
         isBusy = false;
     }
 }
 
-// Model for lookup (needs email)
-[Table("profiles")]
-public class LoginProfileModel : BaseModel
-{
-    [Column("username")]
-    public string Username { get; set; }
-
-    [Column("email")]
-    public string Email { get; set; }
-}

@@ -6,10 +6,12 @@ public class OptionsManager : MonoBehaviour
 {
     [Header("Music Slider")]
     public Slider musicSlider;
+    public Image musicFillImage;
     public TextMeshProUGUI musicPercentageText;
 
     [Header("SFX Slider")]
     public Slider sfxSlider;
+    public Image sfxFillImage;
     public TextMeshProUGUI sfxPercentageText;
 
     [Header("Mute Buttons")]
@@ -252,6 +254,9 @@ public class OptionsManager : MonoBehaviour
         if (musicPercentageText != null)
             musicPercentageText.text = Mathf.RoundToInt(value * 100f).ToString() + "%";
 
+        if (musicFillImage != null)
+            musicFillImage.fillAmount = value;
+
         if (musicMuteImage != null)
             musicMuteImage.sprite = (value > 0) ? volumeUpSprite : volumeOffSprite;
     }
@@ -260,6 +265,9 @@ public class OptionsManager : MonoBehaviour
     {
         if (sfxPercentageText != null)
             sfxPercentageText.text = Mathf.RoundToInt(value * 100f).ToString() + "%";
+
+        if (sfxFillImage != null)
+            sfxFillImage.fillAmount = value;
 
         if (sfxMuteImage != null)
             sfxMuteImage.sprite = (value > 0) ? volumeUpSprite : volumeOffSprite;
