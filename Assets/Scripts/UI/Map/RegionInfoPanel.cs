@@ -10,7 +10,9 @@ public class RegionInfoPanel : MonoBehaviour
     public TextMeshProUGUI languageText;
     public TextMeshProUGUI descriptionText;
     public Button startButton;
+    public TextMeshProUGUI startButtonText;
     public Button closeButton; 
+    public Image crystalAnchorImage;
 
     [Header("Progress Bar")]
     public Slider progressSlider;
@@ -76,6 +78,13 @@ public class RegionInfoPanel : MonoBehaviour
         if (regionNameText != null) regionNameText.text = data.regionName;
         if (languageText != null) languageText.text = $"Language: {data.language}";
         if (descriptionText != null) descriptionText.text = data.description;
+        if (crystalAnchorImage != null && data.crystalAnchorSprite != null) crystalAnchorImage.sprite = data.crystalAnchorSprite;
+        
+        // Update Start Button Text based on progress
+        if (startButtonText != null)
+        {
+            startButtonText.text = data.completionProgress > 0 ? "CONTINUE" : "START";
+        }
         
         // Update Progress Bar
         if (progressSlider != null) progressSlider.value = data.completionProgress;

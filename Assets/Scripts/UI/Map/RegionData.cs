@@ -9,6 +9,7 @@ public class RegionData
     public string description;
     public Sprite thumbnail;
     public Sprite glowSprite;
+    public Sprite crystalAnchorSprite;
     
     [Header("Zoom Settings")]
     public Vector3 zoomPosition;

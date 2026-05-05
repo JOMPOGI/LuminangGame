@@ -13,6 +13,10 @@ public class CreateCharacterManager : MonoBehaviour
     [Header("Save Button")]
     public Button saveButton;
 
+    [Header("Portrait Setup")]
+    public PortraitBooth portraitBooth;
+
+
     [Header("Modal")]
     public GenericModal modal;
 
@@ -190,7 +194,17 @@ public class CreateCharacterManager : MonoBehaviour
             if (inventoryItems.Count > 0)
                 await client.From<InventoryModel>().Upsert(inventoryItems);
 
-            // 4. Success!
+            // 4. Capture and Upload Portrait
+            if (portraitBooth != null && AvatarManager.Instance != null)
+            {
+                Debug.Log("[CreateCharacter] Capturing character portrait...");
+                // Refresh the booth with current outfit before capturing
+                portraitBooth.SetupPortrait(equipped);
+                await AvatarManager.Instance.CaptureAndUpload(user.Id, portraitBooth.portraitTexture);
+            }
+
+            // 5. Success!
+
             modal.ShowAlert(
                 $"Character Created!\nWelcome, {username}!",
                 "Okay",

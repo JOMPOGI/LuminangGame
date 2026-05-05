@@ -128,6 +128,9 @@ public class ProfileModel : Postgrest.Models.BaseModel
     [Postgrest.Attributes.Column("equipped_outfit")]
     public object EquippedOutfit { get; set; } 
 
+    [Postgrest.Attributes.Column("avatar_url")]
+    public string AvatarUrl { get; set; }
+
     [Postgrest.Attributes.Column("has_created_character")]
     public bool HasCreatedCharacter { get; set; }
 
