@@ -55,9 +55,9 @@ public class MobilePerformance : MonoBehaviour
             case 0: // ── LOW ── Samsung A-series / weak phones
                 // Textures: quarter size (biggest memory/bandwidth saver)
                 QualitySettings.globalTextureMipmapLimit = 2;
-                // LOD: force cheapest mesh version to appear very close
-                QualitySettings.lodBias = 0.3f;
-                QualitySettings.maximumLODLevel = 2;
+                // LOD: force very aggressive mesh simplification
+                QualitySettings.lodBias = 0.2f;
+                QualitySettings.maximumLODLevel = 2; // Force LOD2 (10% poly count)
                 // Anisotropic filtering: completely off
                 QualitySettings.anisotropicFiltering = AnisotropicFiltering.Disable;
                 // Skin weights: 1 bone (fastest skinning, less accurate)
@@ -76,8 +76,8 @@ public class MobilePerformance : MonoBehaviour
                 // Textures: half size
                 QualitySettings.globalTextureMipmapLimit = 1;
                 // LOD: moderate
-                QualitySettings.lodBias = 0.6f;
-                QualitySettings.maximumLODLevel = 1;
+                QualitySettings.lodBias = 0.7f;
+                QualitySettings.maximumLODLevel = 1; // Force LOD1 (30% poly count)
                 // Anisotropic filtering: per-texture
                 QualitySettings.anisotropicFiltering = AnisotropicFiltering.Enable;
                 // Skin weights: 2 bones
@@ -96,8 +96,8 @@ public class MobilePerformance : MonoBehaviour
                 // Textures: full resolution
                 QualitySettings.globalTextureMipmapLimit = 0;
                 // LOD: full detail
-                QualitySettings.lodBias = 1.0f;
-                QualitySettings.maximumLODLevel = 0;
+                QualitySettings.lodBias = 2.0f;
+                QualitySettings.maximumLODLevel = 0; // Use LOD0 (Full poly count)
                 // Anisotropic filtering: force on for all textures
                 QualitySettings.anisotropicFiltering = AnisotropicFiltering.ForceEnable;
                 // Skin weights: 4 bones (most accurate)

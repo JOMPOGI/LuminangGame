@@ -27,27 +27,91 @@ public class SceneLoader : MonoBehaviour
 
         Debug.Log("[SceneLoader] LoadScene called for: " + sceneName);
         isSceneLoading = true;
-        if (useLoadingScreenForSampleScene && (sceneName == "SampleScene" || sceneName == "MapSelectionScene"))
+        
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // NEW RULE: Only use the loading screen if we are leaving the Main Menu 
+        // AND going to a "heavy" scene (Game, Map, Prologue, or Character Creation).
+        bool isHeavyScene = (sceneName == "SampleScene" || sceneName == "MapSelectionScene" || 
+                             sceneName == "PrologueScene" || sceneName == "CreateCharacterScene");
+        
+        bool shouldShowLoadingScreen = (currentScene == "MainMenuScene" && isHeavyScene);
+
+        if (shouldShowLoadingScreen && useLoadingScreenForSampleScene)
         {
-            Debug.Log("[SceneLoader] Using additive loading for LoadingScene");
+            Debug.Log("[SceneLoader] Using loading screen for transition from Main Menu to: " + sceneName);
             targetSceneForLoading = sceneName;
             
-            // Check if LoadingScene is already pre-loaded
             if (IsSceneLoaded(loadingSceneName))
             {
-                Debug.Log("[SceneLoader] LoadingScene is already pre-loaded. Activating it.");
                 ActivateScene(loadingSceneName);
             }
             else
             {
-                Debug.Log("[SceneLoader] LoadingScene not found in memory. Loading fresh.");
                 SceneManager.LoadScene(loadingSceneName, LoadSceneMode.Additive);
             }
         }
         else
         {
-            Debug.Log("[SceneLoader] Normal loading for: " + sceneName);
-            StartCoroutine(LoadSceneWithDelay(sceneName));
+            Debug.Log("[SceneLoader] Normal (Direct) loading for: " + sceneName);
+            StartCoroutine(LoadSceneWithFade(sceneName));
+        }
+    }
+
+    private IEnumerator LoadSceneWithFade(string sceneName)
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // CHECK: Are these "Sibling" scenes with the same background?
+        bool isCurrentSibling = (currentScene == "MainMenuScene" || currentScene == "OptionScene" || currentScene == "AboutScene");
+        bool isTargetSibling = (sceneName == "MainMenuScene" || sceneName == "OptionScene" || sceneName == "AboutScene");
+        bool isSiblingTransition = isCurrentSibling && isTargetSibling;
+
+        // 1. Only use the Visual Fade if it's NOT a sibling transition
+        if (!isSiblingTransition && SceneFader.Instance != null)
+        {
+            yield return SceneFader.Instance.FadeOutCoroutine();
+        }
+        else
+        {
+            // For siblings, we do a tiny "pause" to let the UI settle, but NO visual flash
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        // 2. Log previous scene
+        if (SceneManager.GetActiveScene().name != loadingSceneName)
+        {
+            previousScene = SceneManager.GetActiveScene().name;
+        }
+
+        // 3. SMART LOADING: Check if scene is already pre-loaded
+        isSceneLoading = false; 
+        Scene preloadedScene = SceneManager.GetSceneByName(sceneName);
+
+        if (preloadedScene.IsValid() && preloadedScene.isLoaded)
+        {
+            Debug.Log("[SceneLoader] Scene " + sceneName + " is already pre-loaded! Activating instantly...");
+            
+            // Turn on the root objects (MainLoading deactivates them)
+            foreach (GameObject obj in preloadedScene.GetRootGameObjects())
+            {
+                obj.SetActive(true);
+            }
+            
+            SceneManager.SetActiveScene(preloadedScene);
+            
+            // Unload the previous scene manually
+            string oldScene = previousScene;
+            if (!string.IsNullOrEmpty(oldScene) && oldScene != sceneName)
+            {
+                SceneManager.UnloadSceneAsync(oldScene);
+            }
+        }
+        else
+        {
+            Debug.Log("[SceneLoader] Scene " + sceneName + " not pre-loaded. Loading now...");
+            AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+            while (!op.isDone) yield return null;
         }
     }
 

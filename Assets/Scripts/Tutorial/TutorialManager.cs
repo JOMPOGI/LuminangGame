@@ -72,38 +72,30 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator TransitionToGame()
     {
-        // 1. Trigger the Loading Overlay
-        if (smallLoadingPrefab != null)
+        Debug.Log("[Tutorial] Finished! Updating progress...");
+
+        if (UserProfileManager.Instance != null)
         {
-            var overlay = smallLoadingPrefab.GetComponent<LoadingOverlay>();
-            if (overlay != null)
-            {
-                overlay.Show();
-            }
-            else
-            {
-                smallLoadingPrefab.SetActive(true);
-            }
+            // Wait for the task to finish before moving scenes
+            var task = UserProfileManager.Instance.SetTutorialCompleted(true);
+            yield return new WaitUntil(() => task.IsCompleted);
         }
 
-        // 2. Start loading in the background
-        AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneName);
+        Debug.Log("[Tutorial] Transitioning to Game via SceneLoader...");
+
+        // Find the SceneLoader in the scene and use it
+        var loader = Object.FindFirstObjectByType<SceneLoader>();
+        if (loader != null)
+        {
+            loader.LoadScene(nextSceneName);
+        }
+        else
+        {
+            // Fallback if no SceneLoader found
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneName);
+        }
         
-        // Don't let the scene switch automatically until we're ready
-        asyncLoad.allowSceneActivation = false;
-
-        // 3. Make sure the user sees the loading animation for at least 1.2 seconds
-        // (This makes the transition feel more premium than a "flicker")
-        yield return new WaitForSeconds(1.2f);
-
-        // 4. Wait for the actual load to finish if it's not done yet
-        while (asyncLoad.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        // 5. Finally, enter the game!
-        asyncLoad.allowSceneActivation = true;
+        yield break;
     }
 
     public void PreviousSlide()

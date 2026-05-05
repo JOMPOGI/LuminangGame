@@ -116,9 +116,29 @@ public class RegionSelectionManager : MonoBehaviour
             yield return new WaitForSeconds(totalWait);
         }
 
-        // 2. Head to the Tutorial
-        Debug.Log("[Map] Transitioning to TutorialScene...");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("TutorialScene");
+        // 2. Decide where to go based on progress
+        string sceneToLoad = "TutorialScene";
+        if (UserProfileManager.Instance != null && UserProfileManager.Instance.CurrentProfile != null)
+        {
+            if (UserProfileManager.Instance.CurrentProfile.HasCompletedTutorial)
+            {
+                sceneToLoad = "SampleScene"; // Skip to game!
+                Debug.Log("[Map] Tutorial already completed. Skipping to SampleScene...");
+            }
+        }
+
+        Debug.Log($"[Map] Transitioning to {sceneToLoad}...");
+        
+        // Find the SceneLoader in the scene and use it
+        var loader = FindFirstObjectByType<SceneLoader>();
+        if (loader != null)
+        {
+            loader.LoadScene(sceneToLoad);
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     private IEnumerator ZoomUI(Vector2 targetPos, Vector3 targetScale)

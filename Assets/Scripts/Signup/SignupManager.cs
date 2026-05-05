@@ -80,25 +80,25 @@ public class SignupManager : MonoBehaviour
         try
         {
             // 1. Check if Username is taken
+            Debug.Log("[Signup] Stage 1: Checking if username is available...");
             bool userExists = await CheckUsernameExists(username);
             if (userExists)
             {
                 GenericModal.Instance.ShowAlert($"The username '{username}' is already taken.", "Okay");
-                LoadingOverlay.Instance?.Hide();
-                isBusy = false;
                 return;
             }
 
-            // 2. Check if Email is already in use (by Google or Manual)
+            // 2. Check if Email is already in use
+            Debug.Log("[Signup] Stage 2: Checking if email is available...");
             bool emailExists = await CheckEmailExists(email);
             if (emailExists)
             {
                 GenericModal.Instance.ShowAlert("This email is already in use! If you used 'Continue with Google', please log in with that instead.", "Okay");
-                LoadingOverlay.Instance?.Hide();
-                isBusy = false;
                 return;
             }
 
+            // 3. Attempt Signup
+            Debug.Log("[Signup] Stage 3: Sending signup request to Supabase...");
             var signupOptions = new SignUpOptions
             {
                 Data = new Dictionary<string, object> { { "username", username } }
@@ -108,29 +108,50 @@ public class SignupManager : MonoBehaviour
             
             if (response != null && response.User != null)
             {
-                LoadingOverlay.Instance?.Hide();
-                GenericModal.Instance.ShowAlert(
-                    "Account created! Please verify your email before logging in.", 
-                    "Okay", 
-                    () => SceneManager.LoadScene(loginSceneName)
-                );
+                Debug.Log("<color=green>[Signup] Signup call completed successfully.</color>");
+                
+                // Check if we are already logged in (happens if 'Confirm Signup' is disabled in Supabase)
+                var session = SupabaseManager.Instance.client.Auth.CurrentSession;
+                if (session != null && session.User != null)
+                {
+                    Debug.Log("<color=green>[Signup] Auto-login detected! Transitioning to Main Menu...</color>");
+                    SceneManager.LoadScene(mainMenuSceneName);
+                }
+                else
+                {
+                    GenericModal.Instance.ShowAlert(
+                        "Account created! Please verify your email before logging in.", 
+                        "Okay", 
+                        () => SceneManager.LoadScene(loginSceneName)
+                    );
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[Signup] Signup response or user was null without throwing an exception.");
+                GenericModal.Instance.ShowAlert("Account creation failed. Please try again.", "Okay");
             }
         }
         catch (System.Exception ex)
         {
-            LoadingOverlay.Instance?.Hide();
-            Debug.LogError($"[Signup] Error: {ex.Message}");
+            Debug.LogError($"[Signup] Critical Error: {ex.Message}");
             
-            string friendlyMessage = "Could not create account.";
+            string friendlyMessage = "Could not create account (Network or Server Error).";
             if (ex.Message.Contains("already been registered")) 
-                friendlyMessage = "This email is already in use (possibly by a Google login)!";
+                friendlyMessage = "This email is already in use!";
             else if (ex.Message.Contains("Database error"))
                 friendlyMessage = "Database error. Please try a different username.";
+            else if (ex.Message.Contains("sending the request"))
+                friendlyMessage = "Network problem! Please check your internet connection and try again.";
 
             GenericModal.Instance.ShowAlert(friendlyMessage, "Okay");
         }
-
-        isBusy = false;
+        finally
+        {
+            Debug.Log("[Signup] Cleaning up signup state.");
+            LoadingOverlay.Instance?.Hide();
+            isBusy = false;
+        }
     }
 
     private bool IsValidUsername(string user)

@@ -21,7 +21,11 @@ public class MainLoading : MonoBehaviour
 
     [Header("Settings")]
     public string sceneToLoad = "SampleScene";
-    public string[] scenesToPreload = new string[] { "LoadingScene", "LoginScene", "MainMenuScene", "SampleScene" };
+    public string[] scenesToPreload = new string[] { 
+        "LoadingScene", "LoginScene", "SignupScene", "MainMenuScene", 
+        "AboutScene", "OptionScene", "CreateCharacterScene", "PrologueScene", 
+        "MapSelectionScene", "TutorialScene", "SampleScene", "hatdog"
+    };
     public float minimumLoadTime = 5f;
     public float smoothSpeed = 3f;
 
@@ -151,6 +155,8 @@ public class MainLoading : MonoBehaviour
 
                 Debug.Log("[MainLoading] Pre-loading: " + pScene);
                 AsyncOperation op = SceneManager.LoadSceneAsync(pScene, LoadSceneMode.Additive);
+                
+                // OPTIMIZATION: Don't just loop, give the CPU room to breathe
                 while (!op.isDone)
                 {
                     float stepProgress = currentTargetProgress + (op.progress * progressStep);
@@ -167,9 +173,8 @@ public class MainLoading : MonoBehaviour
                 }
                 currentTargetProgress += progressStep;
 
-                // BREATHING ROOM: Give the phone 0.2s of real time to catch its breath
-                // This prevents the crystals from lagging between scene loads.
-                yield return new WaitForSecondsRealtime(0.2f);
+                // MORE BREATHING ROOM: Help the phone/PC recover from the heavy IO
+                yield return new WaitForSecondsRealtime(0.3f);
             }
         }
 

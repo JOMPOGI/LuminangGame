@@ -49,6 +49,14 @@ public class SupabaseManager : MonoBehaviour
             {
                 gameObject.AddComponent<UnityRedirectListener>();
             }
+            if (GetComponent<UserProfileManager>() == null)
+            {
+                gameObject.AddComponent<UserProfileManager>();
+            }
+            if (GetComponent<SceneFader>() == null)
+            {
+                gameObject.AddComponent<SceneFader>();
+            }
 
             LoadCredentials();
             InitializeSupabase();
@@ -108,7 +116,7 @@ public class SupabaseManager : MonoBehaviour
 [Postgrest.Attributes.Table("profiles")]
 public class ProfileModel : Postgrest.Models.BaseModel
 {
-    [Postgrest.Attributes.Column("id")]
+    [Postgrest.Attributes.PrimaryKey("id", false)]
     public string Id { get; set; }
 
     [Postgrest.Attributes.Column("email")]
@@ -116,4 +124,30 @@ public class ProfileModel : Postgrest.Models.BaseModel
 
     [Postgrest.Attributes.Column("username")]
     public string Username { get; set; }
+
+    [Postgrest.Attributes.Column("equipped_outfit")]
+    public object EquippedOutfit { get; set; } 
+
+    [Postgrest.Attributes.Column("has_created_character")]
+    public bool HasCreatedCharacter { get; set; }
+
+    [Postgrest.Attributes.Column("has_completed_tutorial")]
+    public bool HasCompletedTutorial { get; set; }
+
+    [Postgrest.Attributes.Column("has_seen_prologue")]
+    public bool HasSeenPrologue { get; set; }
+}
+
+[Postgrest.Attributes.Table("user_inventory")]
+public class InventoryModel : Postgrest.Models.BaseModel
+{
+    // Remove ID property or use the correct type if we aren't providing it
+    [Postgrest.Attributes.Column("user_id")]
+    public string UserId { get; set; }
+
+    [Postgrest.Attributes.Column("item_name")]
+    public string ItemName { get; set; }
+
+    [Postgrest.Attributes.Column("slot")]
+    public string Slot { get; set; }
 }

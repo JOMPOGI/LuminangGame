@@ -99,7 +99,14 @@ public class LoginManager : MonoBehaviour
 
             if (response != null && response.User != null)
             {
-                Debug.Log("<color=green>[Login] Success!</color>");
+                Debug.Log("<color=green>[Login] Success! Fetching profile...</color>");
+                
+                // Fetch profile data before moving
+                if (UserProfileManager.Instance != null)
+                {
+                    await UserProfileManager.Instance.FetchProfile();
+                }
+
                 LoadingOverlay.Instance?.Hide();
                 SceneManager.LoadScene(mainMenuSceneName);
             }
@@ -158,7 +165,7 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    private void HandleGoogleLoginComplete(bool success)
+    private async void HandleGoogleLoginComplete(bool success)
     {
         Debug.Log($"[Login] HandleGoogleLoginComplete called. Success: {success}");
         
@@ -183,7 +190,14 @@ public class LoginManager : MonoBehaviour
                 // The database trigger will automatically create the profile.
                 */
 
-                Debug.Log("<color=green>[Login] Google login successful! Loading Main Menu...</color>");
+                Debug.Log("<color=green>[Login] Google login successful! Fetching profile...</color>");
+                
+                // Fetch profile data before moving
+                if (UserProfileManager.Instance != null)
+                {
+                    await UserProfileManager.Instance.FetchProfile();
+                }
+
                 LoadingOverlay.Instance?.Hide();
                 SceneManager.LoadScene(mainMenuSceneName);
             }
