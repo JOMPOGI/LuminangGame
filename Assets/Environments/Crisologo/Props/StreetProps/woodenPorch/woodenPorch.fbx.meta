@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7a4b9f125fa871246a6a450a9d829d3f
+guid: 504e9b9c3757f7a47b2616b162429103
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: tripo_mat_63c78fed
-    second: {fileID: 2100000, guid: f754daac90585de4c90cf920864e0e6a, type: 2}
+      name: woodenPorch_mat
+    second: {fileID: 2100000, guid: 0cdcd99ac83209449b2a85208fec2deb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -84,7 +84,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
