@@ -10,6 +10,7 @@ public class RegionSelectionManager : MonoBehaviour
     public RectTransform mapContainer; 
     public RegionInfoPanel infoPanel; // Your new custom panel!
     public PlayerInfoPanel playerInfoPanel; // The profile panel at the top-left
+    public HUDGroupManager hudGroupManager; // The settings/journal buttons at the right
 
     [Tooltip("Offset from center (-0.5 to 0.5). -0.1666 matches exactly 1/3 from the left of the screen.")]
     public float horizontalOffsetPercent = -0.1666f; 
@@ -79,8 +80,9 @@ public class RegionSelectionManager : MonoBehaviour
         // Slide the clouds back to create space for the panel!
         if (MapTransitionManager.Instance != null) MapTransitionManager.Instance.SetPanelFocus(true);
 
-        // Slide out the Player Info Panel!
+        // Slide out UI panels to clear space!
         if (playerInfoPanel != null) playerInfoPanel.Hide();
+        if (hudGroupManager != null) hudGroupManager.Hide();
 
     }
 
@@ -101,8 +103,9 @@ public class RegionSelectionManager : MonoBehaviour
         // Slide the clouds back in to the normal "Map View"!
         if (MapTransitionManager.Instance != null) MapTransitionManager.Instance.SetPanelFocus(false);
 
-        // Slide the Player Info Panel back in!
+        // Slide UI panels back in!
         if (playerInfoPanel != null) playerInfoPanel.Show();
+        if (hudGroupManager != null) hudGroupManager.Show();
 
 
         if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);

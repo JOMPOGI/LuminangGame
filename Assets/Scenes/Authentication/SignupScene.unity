@@ -3288,8 +3288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40da81439117a4f429e3c27a0a0b999e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SupabaseManager
-  supabaseUrl: https://vihcrujijnrmtilyudhn.supabase.co
-  supabaseKey: sb_publishable_hFdv8Np90RYBGqaqbOJ32g_7c9x1jbd
+  supabaseUrl: 
+  supabaseKey: 
 --- !u!4 &1126757632
 Transform:
   m_ObjectHideFlags: 0
