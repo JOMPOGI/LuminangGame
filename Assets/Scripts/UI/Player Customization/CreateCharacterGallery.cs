@@ -55,7 +55,10 @@ public class CreateCharacterGallery : MonoBehaviour
             frameObj.name = $"Item_{item.name}";
 
             // 6. Set Icon (from the Sprite you assigned)
-            Image iconImage = FindChildRecursive(frameObj.transform, "AssetIcon")?.GetComponent<Image>();
+            Transform iconTransform = FindChildRecursive(frameObj.transform, "AssetIcon");
+            if (iconTransform == null) iconTransform = FindChildRecursive(frameObj.transform, "ItemIcon");
+            
+            Image iconImage = iconTransform?.GetComponent<Image>();
             if (iconImage != null)
             {
                 if (item.icon != null)
@@ -111,7 +114,10 @@ public class CreateCharacterGallery : MonoBehaviour
         }
 
         // Set Icon to the "None" sprite
-        Image iconImage = FindChildRecursive(frameObj.transform, "AssetIcon")?.GetComponent<Image>();
+        Transform iconTransform = FindChildRecursive(frameObj.transform, "AssetIcon");
+        if (iconTransform == null) iconTransform = FindChildRecursive(frameObj.transform, "ItemIcon");
+        
+        Image iconImage = iconTransform?.GetComponent<Image>();
         if (iconImage != null)
         {
             if (noneIcon != null)

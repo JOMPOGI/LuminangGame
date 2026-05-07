@@ -153,4 +153,11 @@ public class PlayerInfoPanel : MonoBehaviour
         // Ensure it reaches the exact final position
         rectTransform.anchoredPosition = endPos;
     }
+    /// <summary>
+    /// Called when the user clicks on the player info panel.
+    /// </summary>
+    public void OnPanelClicked()
+    {
+        SceneNavigationManager.LoadCustomization();
+    }
 }
