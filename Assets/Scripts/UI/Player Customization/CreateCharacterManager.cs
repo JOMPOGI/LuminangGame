@@ -272,6 +272,21 @@ public class CreateCharacterManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Explicitly returns to the Main Menu. Use this for the Back button.
+    /// </summary>
+    public void GoToMainMenu()
+    {
+        if (sceneLoader != null)
+        {
+            sceneLoader.LoadScene("MainMenuScene");
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuScene");
+        }
+    }
+
     private string TranslateError(string technicalError)
     {
         string error = technicalError.ToLower();
