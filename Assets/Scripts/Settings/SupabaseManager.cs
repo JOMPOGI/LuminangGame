@@ -89,9 +89,21 @@ public class SupabaseManager : MonoBehaviour
         try
         {
             Debug.Log("[Supabase] Processing callback URL...");
+            Debug.Log($"[Supabase] URL contains 'access_token': {url.Contains("access_token")}");
+            Debug.Log($"[Supabase] URL contains 'code': {url.Contains("code=")}");
+            Debug.Log($"[Supabase] URL contains 'error': {url.Contains("error")}");
+
             // Standard library method to convert URL -> Session
             var session = await client.Auth.GetSessionFromUrl(new Uri(url), true);
             
+            Debug.Log($"[Supabase] GetSessionFromUrl returned. Session is null: {session == null}");
+            if (session != null)
+            {
+                Debug.Log($"[Supabase] Session.User is null: {session.User == null}");
+                if (session.User != null)
+                    Debug.Log($"[Supabase] User ID: {session.User.Id}, Email: {session.User.Email}");
+            }
+
             if (session != null && session.User != null)
             {
                 Debug.Log("<color=green>[Supabase] Session caught successfully!</color>");
@@ -99,12 +111,14 @@ public class SupabaseManager : MonoBehaviour
             }
             else
             {
+                Debug.LogWarning("[Supabase] Session or User was null after GetSessionFromUrl.");
                 OnGoogleLoginComplete?.Invoke(false);
             }
         }
         catch (Exception ex)
         {
             Debug.LogError($"[Supabase] Error processing callback: {ex.Message}");
+            Debug.LogError($"[Supabase] Stack trace: {ex.StackTrace}");
             OnGoogleLoginComplete?.Invoke(false);
         }
     }

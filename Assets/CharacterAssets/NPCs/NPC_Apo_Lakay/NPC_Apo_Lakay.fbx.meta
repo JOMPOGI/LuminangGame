@@ -3,7 +3,12 @@ guid: 635ceb5bee18ddf4882e8104d7185890
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ApoLakay_mat
+    second: {fileID: 2100000, guid: 00bab0ba3009f8e43892119544c5498d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -17,19 +22,145 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'apoLakay_turn' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'hip.L' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'hip.R' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'apoLakay_Idle' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine'
+      has scale animation that will be discarded.\n\nClip 'ApoLakay_HandGesture'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine'
+      has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: apoLakay_turn
+      takeName: apoLakay_turn
+      internalID: -7275915693102678560
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: apoLakay_ScrachHeadIdle
+      takeName: apoLakay_ScrachHeadIdle
+      internalID: -5324374666459013541
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: apoLakay_Idle
+      takeName: apoLakay_Idle
+      internalID: -6133394319820409577
+      firstFrame: 0
+      lastFrame: 34
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ApoLakay_HandGesture
+      takeName: ApoLakay_HandGesture
+      internalID: 5625830690217791041
+      firstFrame: 0
+      lastFrame: 42
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -82,8 +213,288 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: apoLakay_Armature
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperLeg.L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperLeg.R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerLeg.L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerLeg.R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: feet.L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: feet.R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hip
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder.L
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder.R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperArm.L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperArm.R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerArm.L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerArm.R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand.L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand.R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: chest
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: NPC_Apo_Lakay(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: apoLakay
+      parentName: NPC_Apo_Lakay(Clone)
+      position: {x: -0.014382628, y: 0.50465107, z: -0.04008859}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: apoLakay_Armature
+      parentName: NPC_Apo_Lakay(Clone)
+      position: {x: 0.010694429, y: 0, z: -0.10982369}
+      rotation: {x: 0.08133383, y: -0.6294707, z: -0.7673425, w: -0.09130698}
+      scale: {x: 100, y: 100, z: 100}
+    - name: hip
+      parentName: apoLakay_Armature
+      position: {x: -0.000026783928, y: 0.00022036779, z: 0.00444301}
+      rotation: {x: 0.7067488, y: -0.022500636, z: 0.022500621, w: 0.70674866}
+      scale: {x: 0.9999998, y: 0.99999976, z: 1}
+    - name: spine
+      parentName: hip
+      position: {x: 1.5793445e-11, y: 0.0006875396, z: -6.372278e-12}
+      rotation: {x: 0.034032345, y: -0.000042580068, z: -0.04459107, w: 0.9984255}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+    - name: chest
+      parentName: spine
+      position: {x: 3.6379786e-13, y: 0.0013810792, z: -3.2196112e-12}
+      rotation: {x: 0.030861188, y: 0.00032729842, z: 0.0024640157, w: 0.99952066}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: neck
+      parentName: chest
+      position: {x: 1.05774235e-11, y: 0.0011369614, z: 5.8021213e-11}
+      rotation: {x: -0.058880433, y: 0.0000045399647, z: 0.010306542, w: 0.99821186}
+      scale: {x: 0.9999999, y: 1, z: 1.0000001}
+    - name: head
+      parentName: neck
+      position: {x: -2.0918378e-12, y: 0.00038041986, z: 5.968559e-12}
+      rotation: {x: -0.012422759, y: 7.7170625e-10, z: -0.00002067315, w: 0.9999229}
+      scale: {x: 1, y: 0.99999976, z: 0.99999976}
+    - name: shoulder.L
+      parentName: chest
+      position: {x: 0.00043723028, y: 0.0010367155, z: 0.000014455193}
+      rotation: {x: 0.029442037, y: 0.008021319, z: -0.765094, w: 0.64319515}
+      scale: {x: 1.0000007, y: 1.0000001, z: 1}
+    - name: upperArm.L
+      parentName: shoulder.L
+      position: {x: -6.565824e-10, y: 0.0007541614, z: 6.519258e-11}
+      rotation: {x: 0.14366935, y: -0.09474949, z: -0.05512219, w: -0.9835361}
+      scale: {x: 1.0000007, y: 1.0000004, z: 1}
+    - name: lowerArm.L
+      parentName: upperArm.L
+      position: {x: 1.618173e-10, y: 0.0015771724, z: -4.6566128e-12}
+      rotation: {x: -0.03035063, y: 0.018145302, z: -0.0047739316, w: 0.99936324}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000001}
+    - name: hand.L
+      parentName: lowerArm.L
+      position: {x: -2.7939677e-11, y: 0.0010776778, z: 1.8626451e-11}
+      rotation: {x: 0.109811395, y: 0.000031867057, z: 0.015695613, w: 0.9938285}
+      scale: {x: 1.0000008, y: 1.0000006, z: 1.0000002}
+    - name: shoulder.R
+      parentName: chest
+      position: {x: -0.0002803333, y: 0.001030725, z: 0.000112664384}
+      rotation: {x: 0.17718379, y: 0.19938172, z: 0.72880137, w: 0.63063586}
+      scale: {x: 1.0000001, y: 0.99999964, z: 0.99999994}
+    - name: upperArm.R
+      parentName: shoulder.R
+      position: {x: 9.313225e-11, y: 0.0008333248, z: -5.5879353e-11}
+      rotation: {x: -0.15355812, y: -0.115952246, z: -0.04391841, w: 0.98032963}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1}
+    - name: lowerArm.R
+      parentName: upperArm.R
+      position: {x: -0, y: 0.0013990325, z: 3.7252902e-11}
+      rotation: {x: 0.007758287, y: -0.06409123, z: 0.0083914865, w: -0.9978787}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: hand.R
+      parentName: lowerArm.R
+      position: {x: -1.11758706e-10, y: 0.0011821949, z: -2.2351741e-10}
+      rotation: {x: -0.09139324, y: 0.0033599178, z: -0.02445273, w: 0.99550897}
+      scale: {x: 1.0000004, y: 0.9999994, z: 1.0000001}
+    - name: hip.L
+      parentName: apoLakay_Armature
+      position: {x: -0.000026783928, y: 0.00022036779, z: 0.0044213156}
+      rotation: {x: 0.07538206, y: -0.07131368, z: -0.6261956, w: 0.7727296}
+      scale: {x: 1, y: 1.0000002, z: 0.99999994}
+    - name: upperLeg.L
+      parentName: hip.L
+      position: {x: -3.259629e-11, y: 0.00064307166, z: -6.7520885e-11}
+      rotation: {x: 0.7540535, y: 0.12745552, z: -0.16058454, w: -0.623996}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+    - name: lowerLeg.L
+      parentName: upperLeg.L
+      position: {x: -2.3283063e-11, y: 0.0014832084, z: -3.259629e-11}
+      rotation: {x: -0.052547127, y: 0.009626709, z: -0.10670967, w: 0.99285406}
+      scale: {x: 0.99999994, y: 1.0000006, z: 1.0000005}
+    - name: feet.L
+      parentName: lowerLeg.L
+      position: {x: -0, y: 0.0025870495, z: -6.0535965e-11}
+      rotation: {x: -0.4373352, y: -0.061838537, z: -0.6008435, w: -0.666259}
+      scale: {x: 0.99999994, y: 1.0000005, z: 1}
+    - name: hip.R
+      parentName: apoLakay_Armature
+      position: {x: -0.000026783928, y: 0.00022036779, z: 0.00444301}
+      rotation: {x: 0.043355435, y: 0.047805756, z: 0.7730026, w: 0.6311116}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: upperLeg.R
+      parentName: hip.R
+      position: {x: -1.16415315e-11, y: 0.0005647001, z: 1.7927959e-10}
+      rotation: {x: 0.7408525, y: -0.13534516, z: 0.13668413, w: -0.6435346}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000006}
+    - name: lowerLeg.R
+      parentName: upperLeg.R
+      position: {x: -4.6566128e-12, y: 0.001398178, z: -3.1432135e-11}
+      rotation: {x: -0.019239038, y: -0.010080047, z: 0.085367456, w: 0.99611276}
+      scale: {x: 1, y: 1.0000005, z: 1}
+    - name: feet.R
+      parentName: lowerLeg.R
+      position: {x: -2.7939677e-11, y: 0.0025476413, z: -1.8626451e-11}
+      rotation: {x: -0.49457315, y: -0.09459792, z: 0.5271142, w: -0.68454313}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -94,13 +505,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

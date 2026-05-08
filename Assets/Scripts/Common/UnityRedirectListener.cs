@@ -94,12 +94,24 @@ public class UnityRedirectListener : MonoBehaviour
             context.Response.OutputStream.Close();
 
             // Check if we have the query (which was originally the fragment)
+            Debug.Log($"[RedirectListener] Request received. URL: {request.Url}");
+            Debug.Log($"[RedirectListener] Query string count: {request.QueryString.Count}");
+            foreach (string key in request.QueryString.AllKeys)
+            {
+                Debug.Log($"[RedirectListener] Query param: {key} = {(key == "access_token" || key == "refresh_token" ? "[HIDDEN]" : request.QueryString[key])}");
+            }
+
             if (request.QueryString.Count > 0)
             {
                 string fullUrl = request.Url.ToString();
+                Debug.Log($"[RedirectListener] Passing URL to ProcessResultUrl (token hidden for security)");
                 UnityMainThreadDispatcher.Enqueue(() => {
                     SupabaseManager.Instance.ProcessResultUrl(fullUrl);
                 });
+            }
+            else
+            {
+                Debug.Log("[RedirectListener] First request (fragment redirect). Waiting for second request with tokens...");
             }
         }
 #endif
