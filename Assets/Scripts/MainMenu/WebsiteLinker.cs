@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WebsiteLinker : MonoBehaviour
 {
-    private const string WebsiteUrl = "https://luminang.vercel.app/";
+    private const string WebsiteUrl = "https://www.luminang.com/";
 
     /// <summary>
     /// Opens the Luminang website in the system's default browser.
