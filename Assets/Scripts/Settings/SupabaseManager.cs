@@ -139,6 +139,9 @@ public class ProfileModel : Postgrest.Models.BaseModel
 
     [Postgrest.Attributes.Column("has_seen_prologue")]
     public bool HasSeenPrologue { get; set; }
+
+    [Postgrest.Attributes.Column("username_finalized_at")]
+    public DateTime? UsernameFinalizedAt { get; set; }
 }
 
 [Postgrest.Attributes.Table("user_inventory")]

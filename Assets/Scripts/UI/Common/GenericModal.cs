@@ -12,7 +12,8 @@ public class GenericModal : MonoBehaviour
     public GameObject modalPanel;
     public Image backgroundImage;
     public TextMeshProUGUI messageText;
-    public Image regionIconImage; // Added for region thumbnails
+    public Image regionIconImage;
+    public TMP_InputField inputField;
 
     [Header("Buttons")]
     public Button confirmButton;
@@ -56,6 +57,8 @@ public class GenericModal : MonoBehaviour
             modalPanel.transform.localScale = Vector3.zero;
             canvasGroup.alpha = 0;
         }
+
+        if (inputField != null) inputField.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -63,6 +66,7 @@ public class GenericModal : MonoBehaviour
     /// </summary>
     public void ShowAlert(string message, string buttonText = "Okay", Action onConfirm = null)
     {
+        if (inputField != null) inputField.gameObject.SetActive(false);
         SetupModal(message, buttonText, onConfirm, null, null);
     }
 
@@ -71,7 +75,30 @@ public class GenericModal : MonoBehaviour
     /// </summary>
     public void ShowConfirm(string message, string confirmText, Action onConfirm, string cancelText, Action onCancel = null, Sprite thumbnail = null)
     {
+        if (inputField != null) inputField.gameObject.SetActive(false);
         SetupModal(message, confirmText, onConfirm, cancelText, onCancel, thumbnail);
+    }
+
+    /// <summary>
+    /// Shows a modal with an input field
+    /// </summary>
+    public void ShowInput(string message, string confirmText, Action<string> onConfirm, string cancelText, Action onCancel = null)
+    {
+        if (inputField == null)
+        {
+            Debug.LogError("[GenericModal] No InputField assigned to GenericModal!");
+            return;
+        }
+
+        inputField.gameObject.SetActive(true);
+        inputField.text = ""; // Clear previous text
+        
+        // Wrap the confirm action to pass the input text
+        Action wrappedConfirm = () => {
+            onConfirm?.Invoke(inputField.text);
+        };
+
+        SetupModal(message, confirmText, wrappedConfirm, cancelText, onCancel, null);
     }
 
     private void SetupModal(string message, string confirmText, Action onConfirm, string cancelText, Action onCancel, Sprite thumbnail = null)

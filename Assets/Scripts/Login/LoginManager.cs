@@ -7,12 +7,17 @@ using Postgrest.Attributes;
 using Postgrest.Models;
 using System.Linq;
 using Supabase.Gotrue;
+using UnityEngine.UI;
 
 public class LoginManager : MonoBehaviour
 {
     [Header("UI Fields")]
     public TMP_InputField usernameField;
     public TMP_InputField passwordField;
+    public Button forgotPasswordButton;
+
+    [Header("Reset Password Settings")]
+    public string resetPasswordUrl = "https://www.luminang.com/auth/reset-password";
 
     [Header("Settings")]
     public string mainMenuSceneName = "MainMenuScene";
@@ -27,6 +32,11 @@ public class LoginManager : MonoBehaviour
         {
             SupabaseManager.Instance.OnGoogleLoginComplete += HandleGoogleLoginComplete;
             Debug.Log("[Login] Successfully subscribed to Supabase event.");
+        }
+
+        if (forgotPasswordButton != null)
+        {
+            forgotPasswordButton.onClick.AddListener(OnForgotPasswordClicked);
         }
         else
         {
@@ -82,19 +92,44 @@ public class LoginManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log($"[Login] Looking up email for user: {username}");
-            var parameters = new Dictionary<string, object> { { "target_username", username } };
-            var rpcResponse = await SupabaseManager.Instance.client.Rpc("get_email_from_username", parameters);
+            string foundEmail = "";
 
-            if (rpcResponse == null || string.IsNullOrEmpty(rpcResponse.Content) || rpcResponse.Content == "null")
+            // 1. Check if the user typed an email directly
+            if (username.Contains("@"))
             {
-                GenericModal.Instance.ShowAlert($"The username '{username}' does not exist.", "Okay");
-                LoadingOverlay.Instance?.Hide();
-                isBusy = false;
-                return;
+                Debug.Log("[Login] User entered an email directly. Verifying if it exists...");
+                
+                // NEW: Verify if this email exists before trying to log in
+                var emailParams = new Dictionary<string, object> { { "target_email", username.ToLower() } };
+                var emailCheck = await SupabaseManager.Instance.client.Rpc("check_email_exists", emailParams);
+                
+                if (emailCheck == null || emailCheck.Content.ToLower() != "true")
+                {
+                    GenericModal.Instance.ShowAlert($"No account found for '{username}'. Please sign up first!", "Okay");
+                    LoadingOverlay.Instance?.Hide();
+                    isBusy = false;
+                    return;
+                }
+
+                foundEmail = username;
+            }
+            else
+            {
+                // 2. Lookup email by username
+                Debug.Log($"[Login] Looking up email for username: {username}");
+                var parameters = new Dictionary<string, object> { { "target_username", username } };
+                var rpcResponse = await SupabaseManager.Instance.client.Rpc("get_email_from_username", parameters);
+
+                if (rpcResponse == null || string.IsNullOrEmpty(rpcResponse.Content) || rpcResponse.Content == "null")
+                {
+                    GenericModal.Instance.ShowAlert($"The username '{username}' does not exist.", "Okay");
+                    LoadingOverlay.Instance?.Hide();
+                    isBusy = false;
+                    return;
+                }
+                foundEmail = rpcResponse.Content.Trim('\"');
             }
 
-            string foundEmail = rpcResponse.Content.Trim('\"');
             var response = await SupabaseManager.Instance.client.Auth.SignIn(foundEmail, password);
 
             if (response != null && response.User != null)
@@ -214,6 +249,79 @@ public class LoginManager : MonoBehaviour
         }
 
         isBusy = false;
+    }
+
+    public void OnForgotPasswordClicked()
+    {
+        if (GenericModal.Instance == null) return;
+
+        string currentInput = usernameField.text.Trim();
+
+        // If they already typed an email in the box, just ask for confirmation
+        if (!string.IsNullOrEmpty(currentInput) && currentInput.Contains("@"))
+        {
+            GenericModal.Instance.ShowConfirm(
+                $"Send a password reset link to {currentInput}?",
+                "Send Link",
+                () => _ = SendPasswordReset(currentInput),
+                "Cancel"
+            );
+        }
+        else
+        {
+            // Otherwise, show the input modal so they can type it
+            GenericModal.Instance.ShowInput(
+                "Enter your email to receive a password reset link:",
+                "Send Link",
+                (email) => _ = SendPasswordReset(email),
+                "Cancel"
+            );
+        }
+    }
+
+    private async Task SendPasswordReset(string email)
+    {
+        if (string.IsNullOrEmpty(email) || !email.Contains("@"))
+        {
+            GenericModal.Instance.ShowAlert("Please enter a valid email address first!");
+            return;
+        }
+
+        LoadingOverlay.Instance?.Show();
+        try
+        {
+            // Fix for the specific Supabase version syntax
+            var options = new ResetPasswordForEmailOptions(email) { RedirectTo = resetPasswordUrl };
+            await SupabaseManager.Instance.client.Auth.ResetPasswordForEmail(options);
+
+            GenericModal.Instance.ShowAlert($"Success! Please check your email '{email}' for the reset link.");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("[Login] Reset Error: " + ex.Message);
+            string friendlyMessage = TranslateResetError(ex.Message);
+            GenericModal.Instance.ShowAlert(friendlyMessage);
+        }
+        finally
+        {
+            LoadingOverlay.Instance?.Hide();
+        }
+    }
+
+    private string TranslateResetError(string technicalError)
+    {
+        string error = technicalError.ToLower();
+
+        if (error.Contains("validation_failed") || error.Contains("requires an email"))
+            return "Please enter a valid email address.";
+
+        if (error.Contains("rate limit") || error.Contains("429"))
+            return "Too many requests. Please wait a few minutes before trying again.";
+
+        if (error.Contains("network") || error.Contains("timeout"))
+            return "Connection error. Please check your internet.";
+
+        return "Could not send reset link. Please double-check your email and try again.";
     }
 }
 

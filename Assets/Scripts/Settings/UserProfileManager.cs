@@ -65,6 +65,7 @@ public class UserProfileManager : MonoBehaviour
                     CurrentProfile.HasCreatedCharacter = updates.HasCreatedCharacter;
                     CurrentProfile.HasCompletedTutorial = updates.HasCompletedTutorial;
                     CurrentProfile.HasSeenPrologue = updates.HasSeenPrologue;
+                    CurrentProfile.UsernameFinalizedAt = updates.UsernameFinalizedAt;
                 }
             }
             Debug.Log("[UserProfile] Profile updated successfully.");

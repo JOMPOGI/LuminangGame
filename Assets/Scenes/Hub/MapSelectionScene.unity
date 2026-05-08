@@ -6156,6 +6156,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUDGroups
       objectReference: {fileID: 0}
+    - target: {fileID: 7235446892623657272, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235446892623657272, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235446892623657272, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235446892623657272, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117253400393965204, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117253400393965204, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117253400393965204, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117253400393965204, guid: a91bd461bde2ba340bbc3d8e147f2e56, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

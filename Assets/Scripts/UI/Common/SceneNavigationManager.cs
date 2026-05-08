@@ -21,6 +21,7 @@ public static class SceneNavigationManager
 
         // 3. Set the target for your existing LoadingScene system
         SceneLoader.targetSceneForLoading = "CharacterCustomizationScene";
+        SceneLoader.keepBackgroundPersistent = true; // NEW: Keep the video background visible!
         
         // 4. Load your LoadingScene ADDITIVELY (it will overlay on your current scene)
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);

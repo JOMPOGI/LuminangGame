@@ -7,6 +7,9 @@ public class CustomizationManager : MonoBehaviour
     [Header("Manager References")]
     public OutfitManager characterManager;
     public TMPro.TMP_InputField usernameField;
+    public TMPro.TextMeshProUGUI reminderText;
+    public Button changeButton;
+    public Image usernameIcon;
 
     [Header("Prefab Settings")]
     public GameObject itemFramePrefab;
@@ -41,10 +44,92 @@ public class CustomizationManager : MonoBehaviour
             await UserProfileManager.Instance.FetchProfile();
         }
 
-        // 2. Set the username from the database profile
+        // 2. Set the username and handle the 30-day cooldown
         if (usernameField != null && UserProfileManager.Instance != null && UserProfileManager.Instance.CurrentProfile != null)
         {
-            usernameField.text = UserProfileManager.Instance.CurrentProfile.Username;
+            var profile = UserProfileManager.Instance.CurrentProfile;
+            usernameField.text = profile.Username;
+            
+            // Check for 30-day cooldown
+            if (profile.UsernameFinalizedAt.HasValue)
+            {
+                System.TimeSpan timeSinceFinalized = System.DateTime.UtcNow - profile.UsernameFinalizedAt.Value;
+                int daysRemaining = 30 - timeSinceFinalized.Days;
+
+                if (daysRemaining > 0)
+                {
+                    usernameField.interactable = false;
+                    Debug.Log($"[Customization] Username cooldown active. {daysRemaining} days remaining.");
+                    
+                    if (reminderText != null)
+                    {
+                        reminderText.text = $"You can change your username again in <color=red>{daysRemaining} days</color>.";
+                    }
+
+                    // LOCK BUTTON AND ICON
+                    if (changeButton != null)
+                    {
+                        changeButton.interactable = false;
+                        Animator anim = changeButton.GetComponent<Animator>();
+                        if (anim != null) anim.enabled = false;
+
+                        // Gray out the button image itself
+                        Image btnImg = changeButton.GetComponent<Image>();
+                        if (btnImg != null) btnImg.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+                    }
+
+                    if (usernameIcon != null)
+                    {
+                        usernameIcon.color = new Color(0.5f, 0.5f, 0.5f, 0.5f); // Gray and semi-transparent
+                    }
+                }
+                else
+                {
+                    if (reminderText != null)
+                    {
+                        reminderText.text = "One change allowed every 30 days. Choose wisely!";
+                    }
+
+                    if (changeButton != null)
+                    {
+                        changeButton.interactable = true;
+                        Animator anim = changeButton.GetComponent<Animator>();
+                        if (anim != null) anim.enabled = true;
+
+                        Image btnImg = changeButton.GetComponent<Image>();
+                        if (btnImg != null) btnImg.color = Color.white;
+                    }
+
+                    if (usernameIcon != null)
+                    {
+                        usernameIcon.color = Color.white;
+                    }
+                }
+            }
+            else
+            {
+                // Never finalized? Show the policy reminder
+                if (reminderText != null)
+                {
+                    reminderText.text = "One change allowed every 30 days. Choose wisely!";
+                }
+
+                if (changeButton != null)
+                {
+                    changeButton.interactable = true;
+                    Animator anim = changeButton.GetComponent<Animator>();
+                    if (anim != null) anim.enabled = true;
+
+                    Image btnImg = changeButton.GetComponent<Image>();
+                    if (btnImg != null) btnImg.color = Color.white;
+                }
+
+                if (usernameIcon != null)
+                {
+                    usernameIcon.color = Color.white;
+                }
+            }
+            
             Debug.Log("[Customization] Set username to: " + usernameField.text);
         }
 

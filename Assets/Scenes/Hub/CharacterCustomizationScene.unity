@@ -396,6 +396,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomizationManager
   characterManager: {fileID: 1672617700}
   usernameField: {fileID: 1577600486}
+  reminderText: {fileID: 143662491}
+  changeButton: {fileID: 726704835}
+  usernameIcon: {fileID: 454299891}
   itemFramePrefab: {fileID: 1364662338555221084, guid: 69aae360caf99c9409529a4efa1e23de, type: 3}
   categories:
   - categoryName: Hair

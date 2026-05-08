@@ -8,6 +8,7 @@ public class SceneLoader : MonoBehaviour
     
     // The target scene that LoadingScene will eventually load
     public static string targetSceneForLoading;
+    public static bool keepBackgroundPersistent = false; // NEW: Set this to true to keep the previous scene visible
     private static bool isSceneLoading = false; // Prevents double-triggering the loading screen
 
     [Header("Transition Settings")]
@@ -41,6 +42,7 @@ public class SceneLoader : MonoBehaviour
         {
             Debug.Log("[SceneLoader] Using loading screen for transition from Main Menu to: " + sceneName);
             targetSceneForLoading = sceneName;
+            keepBackgroundPersistent = false; // Reset persistence for normal loads
             
             if (IsSceneLoaded(loadingSceneName))
             {
@@ -186,6 +188,7 @@ public class SceneLoader : MonoBehaviour
     public static void ResetLoadingFlag()
     {
         isSceneLoading = false;
-        Debug.Log("[SceneLoader] Loading flag reset.");
+        keepBackgroundPersistent = false; // Reset for the next load
+        Debug.Log("[SceneLoader] Loading flag and persistence reset.");
     }
 }

@@ -9,6 +9,7 @@ public class CreateCharacterManager : MonoBehaviour
 {
     [Header("Username")]
     public TMP_InputField usernameField;
+    public TextMeshProUGUI reminderText;
 
     [Header("Save Button")]
     public Button saveButton;
@@ -47,14 +48,53 @@ public class CreateCharacterManager : MonoBehaviour
             var user = SupabaseManager.Instance.client.Auth.CurrentUser;
             if (user == null) return;
 
-            var response = await SupabaseManager.Instance.client
-                .From<ProfileModel>()
-                .Where(x => x.Id == user.Id)
-                .Single();
-
-            if (response != null && !string.IsNullOrEmpty(response.Username))
+            // Use the cached profile if available, otherwise fetch it
+            ProfileModel profile = null;
+            if (UserProfileManager.Instance != null && UserProfileManager.Instance.CurrentProfile != null)
             {
-                usernameField.text = response.Username;
+                profile = UserProfileManager.Instance.CurrentProfile;
+            }
+            else
+            {
+                var response = await SupabaseManager.Instance.client
+                    .From<ProfileModel>()
+                    .Where(x => x.Id == user.Id)
+                    .Single();
+                profile = response;
+            }
+
+            if (profile != null)
+            {
+                if (!string.IsNullOrEmpty(profile.Username))
+                    usernameField.text = profile.Username;
+
+                // --- COOLDOWN LOGIC ---
+                bool isLocked = false;
+                if (profile.UsernameFinalizedAt.HasValue)
+                {
+                    var timeSinceFinalized = System.DateTime.UtcNow - profile.UsernameFinalizedAt.Value.ToUniversalTime();
+                    int daysRemaining = 30 - timeSinceFinalized.Days;
+
+                    if (daysRemaining > 0)
+                    {
+                        isLocked = true;
+                        usernameField.interactable = false;
+                        
+                        if (reminderText != null)
+                        {
+                            reminderText.text = $"You can change your username again in <color=red>{daysRemaining} days</color>.";
+                        }
+                    }
+                }
+
+                if (!isLocked)
+                {
+                    usernameField.interactable = true;
+                    if (reminderText != null)
+                    {
+                        reminderText.text = "One change allowed every 30 days. Choose wisely!";
+                    }
+                }
             }
         }
         catch (System.Exception ex)
@@ -155,7 +195,8 @@ public class CreateCharacterManager : MonoBehaviour
                 EquippedOutfit = equipped, 
                 HasCreatedCharacter = true,
                 HasSeenPrologue = false, 
-                HasCompletedTutorial = false
+                HasCompletedTutorial = false,
+                UsernameFinalizedAt = System.DateTime.UtcNow
             };
             
             Debug.Log($"[CreateCharacter] Attempting to save profile for {user.Id}...");

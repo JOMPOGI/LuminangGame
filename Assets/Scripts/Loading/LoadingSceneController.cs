@@ -32,6 +32,33 @@ public class LoadingSceneController : MonoBehaviour
 
         // Ensure target is set early
         if (string.IsNullOrEmpty(sceneToLoad)) sceneToLoad = SceneLoader.targetSceneForLoading;
+
+        // NEW: Background Persistence Logic
+        Debug.Log("[LoadingScene] Awake - Persistence Flag: " + SceneLoader.keepBackgroundPersistent);
+
+        if (SceneLoader.keepBackgroundPersistent)
+        {
+            foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+            {
+                // Disable all Cameras in the LoadingScene
+                foreach (Camera cam in root.GetComponentsInChildren<Camera>(true))
+                {
+                    cam.enabled = false;
+                }
+
+                // Disable all AudioListeners in the LoadingScene
+                foreach (AudioListener al in root.GetComponentsInChildren<AudioListener>(true))
+                {
+                    al.enabled = false;
+                }
+
+                // Disable all EventSystems in the LoadingScene
+                foreach (UnityEngine.EventSystems.EventSystem es in root.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>(true))
+                {
+                    es.enabled = false;
+                }
+            }
+        }
     }
 
     void Start()
@@ -83,6 +110,8 @@ public class LoadingSceneController : MonoBehaviour
         StartCoroutine(LoadProcess());
     }
 
+    // REMOVED GUARDIAN TO PREVENT DAMAGE - ONLY LOGGING NOW
+
     IEnumerator LoadProcess()
     {
         Debug.Log("[LoadingScene] Starting LoadProcess...");
@@ -97,6 +126,8 @@ public class LoadingSceneController : MonoBehaviour
             crystalBounce.StartBounce();
         }
 
+        // 1.5 INVESTIGATION: Check if we should be keeping the background
+        Debug.Log("[LoadingScene] keepBackgroundPersistent flag is: " + SceneLoader.keepBackgroundPersistent);
         // 2. Expand Animation (Intro)
         if (loadingAnimator != null)
         {
@@ -119,11 +150,17 @@ public class LoadingSceneController : MonoBehaviour
         if (uiOpt == null) uiOpt = gameObject.AddComponent<RaycastOptimization>();
         uiOpt.OptimizeHierarchy(gameObject);
 
-        // PREVENT CAMERA CONFLICTS: Untag the old cameras so the new scene doesn't find them
-        UntagCamerasInScene(callerScene);
-        
-        // PREVENT INPUT CONFLICTS: Disable old EventSystems
-        DisableEventSystemsInScene(callerScene);
+        // PREVENT CAMERA CONFLICTS: Only untag if we DON'T want the background visible
+        if (!SceneLoader.keepBackgroundPersistent)
+        {
+            UntagCamerasInScene(callerScene);
+            // PREVENT INPUT CONFLICTS: Disable old EventSystems
+            DisableEventSystemsInScene(callerScene);
+        }
+        else
+        {
+            Debug.Log("[LoadingScene] KEEPING BACKGROUND: Skipping camera untagging.");
+        }
 
         // 3. Load Target Scene in Background
         Debug.Log("[LoadingScene] Starting Async Load for: " + sceneToLoad);
@@ -201,8 +238,30 @@ public class LoadingSceneController : MonoBehaviour
         DisableOwnRedundantObjects();
 
         // UNLOAD PREVIOUS SCENE BEFORE THE FADE STARTS
-        // This ensures you never see the Main Menu "flicker"
-        if (!string.IsNullOrEmpty(callerScene) && callerScene != sceneToLoad && callerScene != gameObject.scene.name)
+        // NEW: If we want persistence, we keep the scene but HIDE the objects (except the camera)
+        if (SceneLoader.keepBackgroundPersistent)
+        {
+            Debug.Log("[LoadingScene] Persistence Active: Hiding map objects but keeping video camera alive.");
+            Scene s = SceneManager.GetSceneByName(callerScene);
+            if (s.IsValid() && s.isLoaded)
+            {
+                foreach (GameObject obj in s.GetRootGameObjects())
+                {
+                    // If it's NOT a camera, hide it!
+                    if (obj.GetComponentInChildren<Camera>() == null)
+                    {
+                        obj.SetActive(false);
+                    }
+                    else
+                    {
+                        // It IS a camera object, keep it but maybe disable its UI if it has any
+                        Canvas c = obj.GetComponentInChildren<Canvas>();
+                        if (c != null) c.enabled = false;
+                    }
+                }
+            }
+        }
+        else if (!string.IsNullOrEmpty(callerScene) && callerScene != sceneToLoad && callerScene != gameObject.scene.name)
         {
             Debug.Log("[LoadingScene] Unloading caller: " + callerScene);
             Scene s = SceneManager.GetSceneByName(callerScene);
@@ -235,6 +294,38 @@ public class LoadingSceneController : MonoBehaviour
         
         // Reset SceneLoader flag 
         SceneLoader.ResetLoadingFlag();
+
+        // NEW: Final Global Cleanup
+        CleanupGlobalConflicts();
+    }
+
+    private void CleanupGlobalConflicts()
+    {
+        Debug.Log("[LoadingScene] Performing Global Conflict Cleanup...");
+        
+        Scene activeScene = SceneManager.GetActiveScene();
+
+        // 1. Audio Listeners: Keep only the one in the active scene
+        AudioListener[] allListeners = Object.FindObjectsByType<AudioListener>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (var listener in allListeners)
+        {
+            if (listener.gameObject.scene != activeScene)
+            {
+                listener.enabled = false;
+                Debug.Log($"[LoadingScene] Disabled redundant AudioListener in scene: {listener.gameObject.scene.name}");
+            }
+        }
+
+        // 2. Event Systems: Keep only the one in the active scene
+        UnityEngine.EventSystems.EventSystem[] allES = Object.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (var es in allES)
+        {
+            if (es.gameObject.scene != activeScene)
+            {
+                es.enabled = false;
+                Debug.Log($"[LoadingScene] Disabled redundant EventSystem in scene: {es.gameObject.scene.name}");
+            }
+        }
     }
 
     private void UntagCamerasInScene(string sceneName)
@@ -299,10 +390,20 @@ public class LoadingSceneController : MonoBehaviour
         // Disable own camera so we see the target scene's environment immediately
         Camera ownCam = GetComponentInChildren<Camera>();
         if (ownCam == null) ownCam = Camera.main;
+        
         if (ownCam != null && ownCam.gameObject.scene == gameObject.scene)
         {
-            Debug.Log("[LoadingScene] Disabling own loading camera.");
-            ownCam.enabled = false;
+            if (SceneLoader.keepBackgroundPersistent)
+            {
+                // If we are keeping the background, make our camera "see through"
+                ownCam.clearFlags = CameraClearFlags.Depth;
+                Debug.Log("[LoadingScene] Configured loading camera to be transparent (Depth Only).");
+            }
+            else
+            {
+                Debug.Log("[LoadingScene] Disabling own loading camera.");
+                ownCam.enabled = false;
+            }
         }
 
         // Disable own EventSystem to resolve the "2 EventSystems" warning
