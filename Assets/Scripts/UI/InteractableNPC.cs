@@ -165,6 +165,18 @@ public class InteractableNPC : InteractableBase
         cam.rotation = targetRot;
     }
 
+    /// <summary>
+    /// Helper method to update the player's objective. 
+    /// Easily callable from UnityEvents (like OnDialogueEnd).
+    /// </summary>
+    public void SetNewObjective(string objective)
+    {
+        if (ObjectiveManager.Instance != null)
+        {
+            ObjectiveManager.Instance.SetObjective(objective);
+        }
+    }
+
     [Header("Custom Scene Events")]
     [Tooltip("Map event strings from Dialogue Nodes to Unity Events in the scene.")]
     public List<DialogueEventMapping> dialogueEvents = new List<DialogueEventMapping>();

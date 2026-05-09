@@ -22,24 +22,28 @@ public class QuestIndicator : MonoBehaviour
 
     void Update()
     {
-        // Hide if in dialogue
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue)
+        if (ObjectiveManager.Instance == null) return;
+
+        // 1. Determine if we should be visible
+        string cleanRequired = requiredObjective != null ? requiredObjective.Trim() : "";
+        bool isCorrectObjective = ObjectiveManager.Instance.CurrentObjective == cleanRequired;
+        bool isInDialogue = DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue;
+        bool shouldBeVisible = isCorrectObjective && !isInDialogue;
+
+        // 2. Apply visibility
+        if (_renderer != null && _renderer.enabled != shouldBeVisible)
         {
-            if (_renderer != null) _renderer.enabled = false;
-            return;
+            _renderer.enabled = shouldBeVisible;
         }
 
-        // Hover animation
-        if (_renderer != null && _renderer.enabled)
+        // 3. Hover animation (only if visible)
+        if (shouldBeVisible)
         {
             float newY = _startPos.y + Mathf.Sin(Time.time * hoverSpeed) * hoverAmount;
             transform.localPosition = new Vector3(_startPos.x, newY, _startPos.z);
         }
     }
 
-    void UpdateVisibility(string newObjective)
-    {
-        bool shouldShow = newObjective == requiredObjective;
-        if (_renderer != null) _renderer.enabled = shouldShow;
-    }
+    // This is still here for events, but Update handles the heavy lifting now
+    void UpdateVisibility(string newObjective) { /* Handled in Update */ }
 }
