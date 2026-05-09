@@ -25,11 +25,11 @@ public class InteractionManager : MonoBehaviour
 
     private Transform _playerTransform;
     
-    // Keeps track of all NPCs in the scene to avoid expensive FindObjects calls
-    private List<InteractableNPC> _allInteractables = new List<InteractableNPC>();
+    // Keeps track of all interactables in the scene to avoid expensive FindObjects calls
+    private List<InteractableBase> _allInteractables = new List<InteractableBase>();
     
-    // The NPC we are currently closest to
-    private InteractableNPC _currentNearestNPC = null;
+    // The interactable we are currently closest to
+    private InteractableBase _currentNearest = null;
 
     void Awake()
     {
@@ -58,7 +58,7 @@ public class InteractionManager : MonoBehaviour
         if (talkButton != null)
         {
             // Bind the button click to our central handler
-            talkButton.onClick.AddListener(OnTalkButtonClicked);
+            talkButton.onClick.AddListener(OnButtonClicked);
             talkButton.gameObject.SetActive(false); // Hide initially
         }
         else
@@ -71,46 +71,44 @@ public class InteractionManager : MonoBehaviour
     {
         if (_playerTransform == null || talkButton == null) return;
 
-        // Safety: If dialogue is currently showing, hide the proximity talk button
-        if (DialogueManager.Instance != null && 
-            DialogueManager.Instance.uiController != null && 
-            DialogueManager.Instance.uiController.dialoguePanel.activeInHierarchy)
+        // Hide button during dialogue
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue)
         {
             talkButton.gameObject.SetActive(false);
-            _currentNearestNPC = null; // Reset so it re-detects when dialogue ends
+            _currentNearest = null;
             return;
         }
 
-        InteractableNPC nearestNPC = null;
+        InteractableBase nearest = null;
         float shortestDistance = float.MaxValue;
 
-        // Find the closest interactable NPC
-        foreach (var npc in _allInteractables)
+        // Find the closest interactable
+        foreach (var interactable in _allInteractables)
         {
-            if (npc == null || !npc.isActiveAndEnabled) continue;
+            if (interactable == null || !interactable.isActiveAndEnabled || !interactable.interactionEnabled) continue;
 
-            float dist = Vector3.Distance(_playerTransform.position, npc.transform.position);
+            float dist = Vector3.Distance(_playerTransform.position, interactable.transform.position);
             
-            if (dist <= npc.interactionDistance && dist < shortestDistance)
+            if (dist <= interactable.interactionDistance && dist < shortestDistance)
             {
                 shortestDistance = dist;
-                nearestNPC = npc;
+                nearest = interactable;
             }
         }
 
-        // If the nearest NPC changed
-        if (nearestNPC != _currentNearestNPC)
+        // If the nearest interactable changed
+        if (nearest != _currentNearest)
         {
-            _currentNearestNPC = nearestNPC;
+            _currentNearest = nearest;
 
-            if (_currentNearestNPC != null)
+            if (_currentNearest != null)
             {
                 // We got near someone! Show button and update its text.
                 talkButton.gameObject.SetActive(true);
                 
                 if (buttonText != null)
                 {
-                    buttonText.text = _currentNearestNPC.promptText;
+                    buttonText.text = _currentNearest.promptText;
                 }
             }
             else
@@ -121,34 +119,34 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
-    private void OnTalkButtonClicked()
+    private void OnButtonClicked()
     {
-        if (_currentNearestNPC != null)
+        if (_currentNearest != null)
         {
             // Hide the button so they can't spam it during dialogue
             talkButton.gameObject.SetActive(false);
             
-            // Tell the NPC to do its thing
-            _currentNearestNPC.Interact();
+            // Tell the interactable to do its thing
+            _currentNearest.Interact();
             
-            // We temporarily clear nearest NPC so the button stays hidden 
+            // We temporarily clear nearest so the button stays hidden 
             // until ResetInteraction() is called or we walk away and come back.
-            _currentNearestNPC = null;
+            _currentNearest = null;
         }
     }
 
-    // ── Public API for NPCs ────────────────────────────────────────
+    // ── Public API for Interactables ────────────────────────────────────────
 
-    public void RegisterNPC(InteractableNPC npc)
+    public void RegisterInteractable(InteractableBase i)
     {
-        if (!_allInteractables.Contains(npc))
-            _allInteractables.Add(npc);
+        if (!_allInteractables.Contains(i))
+            _allInteractables.Add(i);
     }
 
-    public void UnregisterNPC(InteractableNPC npc)
+    public void UnregisterInteractable(InteractableBase i)
     {
-        if (_allInteractables.Contains(npc))
-            _allInteractables.Remove(npc);
+        if (_allInteractables.Contains(i))
+            _allInteractables.Remove(i);
     }
     
     /// <summary>
@@ -157,7 +155,7 @@ public class InteractionManager : MonoBehaviour
     /// </summary>
     public void ForceCheckProximity()
     {
-        // Forces the Update loop to re-evaluate nearest NPC next frame
-        _currentNearestNPC = null; 
+        // Forces the Update loop to re-evaluate nearest interactable next frame
+        _currentNearest = null; 
     }
 }

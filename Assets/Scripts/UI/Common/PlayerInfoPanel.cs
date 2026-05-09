@@ -113,16 +113,28 @@ public class PlayerInfoPanel : MonoBehaviour
     private IEnumerator DelayedShow()
     {
         yield return new WaitForSeconds(entranceDelay);
-        Show();
+        _hasDoneInitialShow = true;
+        
+        // If we happen to be in dialogue right when the delay ends, stay hidden
+        if (DialogueManager.Instance == null || !DialogueManager.Instance.IsInDialogue)
+        {
+            Show();
+        }
     }
+
+    private bool _isShowing = false; // Starts false since it begins off-screen
+    private bool _hasDoneInitialShow = false;
 
     /// <summary>
     /// Slides the panel in from the left.
     /// </summary>
     public void Show()
     {
+        if (_isShowing) return;
+        _isShowing = true;
+
         if (slideCoroutine != null) StopCoroutine(slideCoroutine);
-        slideCoroutine = StartCoroutine(SlideRoutine(hiddenPosition, targetPosition));
+        slideCoroutine = StartCoroutine(SlideRoutine(rectTransform.anchoredPosition, targetPosition));
     }
 
     /// <summary>
@@ -130,9 +142,27 @@ public class PlayerInfoPanel : MonoBehaviour
     /// </summary>
     public void Hide()
     {
+        if (!_isShowing) return;
+        _isShowing = false;
+
         if (slideCoroutine != null) StopCoroutine(slideCoroutine);
         slideCoroutine = StartCoroutine(SlideRoutine(rectTransform.anchoredPosition, hiddenPosition));
     }
+
+    private void Update()
+    {
+        if (!_hasDoneInitialShow) return; // Wait until initial start delay is over
+
+        // Auto-hide during dialogue
+        if (DialogueManager.Instance != null)
+        {
+            if (DialogueManager.Instance.IsInDialogue) 
+                Hide();
+            else 
+                Show();
+        }
+    }
+
 
     private IEnumerator SlideRoutine(Vector2 startPos, Vector2 endPos)
     {

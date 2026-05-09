@@ -1,0 +1,390 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7818926572894221130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7652548001163025531}
+  - component: {fileID: 5534205373290805767}
+  - component: {fileID: 6715885009540334412}
+  m_Layer: 0
+  m_Name: Quest_Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7652548001163025531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818926572894221130}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.94, z: 0}
+  m_LocalScale: {x: 0.056919377, y: 0.056919377, z: 0.056919377}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6554674576075368624}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &5534205373290805767
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818926572894221130}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 965d50425d104c446993d1d08076839e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!114 &6715885009540334412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818926572894221130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
+  requiredObjective: 'Objective: Talk to Kalaw'
+  hoverSpeed: 3
+  hoverAmount: 0.2
+--- !u!1001 &6736356659938774875
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4268916
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.42689154
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4268916
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 585.3106
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.596972
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 388.0154
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.50223005
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.014104871
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8645272
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.012600722
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.437
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -119.685
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.123
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_Name
+      value: Kalaw
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1a43b1bcef54d0840a8278d99211151d, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7652548001163025531}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3095093363761440072}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 100401991266804541}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8443646649292189996}
+  m_SourcePrefab: {fileID: 100100000, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+--- !u!95 &871109085070389962 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+  m_PrefabInstance: {fileID: 6736356659938774875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5889918179948491274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+  m_PrefabInstance: {fileID: 6736356659938774875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3095093363761440072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889918179948491274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fbb667ddfab464ab088faf8fa84ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KalawIdleTest
+  animator: {fileID: 871109085070389962}
+  minIdleStillTime: 4
+  maxIdleStillTime: 8
+  minSimpleIdleTime: 2
+  maxSimpleIdleTime: 4
+  minPointingTime: 2
+  maxPointingTime: 4
+--- !u!114 &100401991266804541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889918179948491274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2885189e36856e94a8c8a3a5c13e0a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KalawInteraction
+  kalawIdleTest: {fileID: 3095093363761440072}
+--- !u!114 &8443646649292189996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889918179948491274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2.5
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3095093363761440072}
+        m_TargetAssemblyTypeName: KalawIdleTest, Assembly-CSharp
+        m_MethodName: StopIdleSystem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 0
+  startingDialogueNode: {fileID: 11400000, guid: 56269e7c91865914cad6b4f61ae0f875, type: 2}
+  npcAnimator: {fileID: 871109085070389962}
+  disableAfterInteraction: 1
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 100401991266804541}
+        m_TargetAssemblyTypeName: KalawInteraction, Assembly-CSharp
+        m_MethodName: ResetInteraction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3095093363761440072}
+        m_TargetAssemblyTypeName: KalawIdleTest, Assembly-CSharp
+        m_MethodName: PlayWrongAnswerReaction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isWrongAnswerPlaying: 0
+  dialogueEvents:
+  - eventName: KalawTeleport
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8443646649292189996}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: TeleportTo
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8443646649292189996}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: ForcePlayerCameraToLookAtMe
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8443646649292189996}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: ShowPlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventName: KalawStart
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 8443646649292189996}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: HidePlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!4 &6554674576075368624 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37bf24859d155784398afddd52631dfb, type: 3}
+  m_PrefabInstance: {fileID: 6736356659938774875}
+  m_PrefabAsset: {fileID: 0}

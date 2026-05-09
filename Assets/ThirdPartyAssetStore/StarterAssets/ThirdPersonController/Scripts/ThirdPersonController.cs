@@ -259,6 +259,50 @@ namespace StarterAssets
                 _cinemachineTargetYaw, 0.0f);
         }
 
+        private Coroutine _cameraLerpCoroutine;
+
+        public void ForceCameraLookAt(Vector3 targetPosition, float duration = 0.5f)
+        {
+            if (CinemachineCameraTarget != null)
+            {
+                if (_cameraLerpCoroutine != null) StopCoroutine(_cameraLerpCoroutine);
+                _cameraLerpCoroutine = StartCoroutine(SmoothCameraLookAt(targetPosition, duration));
+            }
+        }
+
+        private System.Collections.IEnumerator SmoothCameraLookAt(Vector3 targetPosition, float duration)
+        {
+            Vector3 direction = (targetPosition - CinemachineCameraTarget.transform.position).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(direction);
+            
+            float targetYaw = lookRot.eulerAngles.y;
+            float targetPitch = lookRot.eulerAngles.x;
+            if (targetPitch > 180f) targetPitch -= 360f;
+            targetPitch = ClampAngle(targetPitch, BottomClamp, TopClamp);
+
+            float startYaw = _cinemachineTargetYaw;
+            float startPitch = _cinemachineTargetPitch;
+
+            // Handle wrap-around for Yaw so it takes the shortest path instead of spinning 360 degrees
+            targetYaw = startYaw + Mathf.DeltaAngle(startYaw, targetYaw);
+
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                // SmoothStep provides a nice ease-in-out curve
+                float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+                
+                _cinemachineTargetYaw = Mathf.Lerp(startYaw, targetYaw, t);
+                _cinemachineTargetPitch = Mathf.Lerp(startPitch, targetPitch, t);
+                
+                yield return null;
+            }
+
+            _cinemachineTargetYaw = targetYaw;
+            _cinemachineTargetPitch = targetPitch;
+        }
+
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed

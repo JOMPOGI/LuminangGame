@@ -15,6 +15,10 @@ public class DialogueNode : ScriptableObject
     [Tooltip("Trigger name to send to the NPC's Animator (e.g., 'DoPointing'). Leave empty for no animation.")]
     public string animationTrigger;
 
+    [Tooltip("An event string to broadcast to the NPC (e.g., 'TeleportKalaw'). The NPC can listen for this and trigger UnityEvents in the scene.")]
+    public string triggerEventName;
+
+
     [Header("Player Options")]
     [Tooltip("The choices the player has. If this list is empty, the conversation ends.")]
     public List<DialogueChoice> choices = new List<DialogueChoice>();

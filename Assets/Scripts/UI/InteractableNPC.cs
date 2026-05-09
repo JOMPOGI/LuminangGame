@@ -1,84 +1,196 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
-/// <summary>
-/// Attach this script to any NPC or object you want to interact with.
-/// It registers itself with the InteractionManager when the player is close.
-/// </summary>
-public class InteractableNPC : MonoBehaviour
+public class InteractableNPC : InteractableBase
 {
-    [Header("Interaction Settings")]
-    [Tooltip("How close the player must be to see the Talk button.")]
-    public float interactionDistance = 3f;
-
-    [Tooltip("What happens when the player clicks the Talk button?")]
-    public UnityEvent OnInteract;
-
-    [Header("UI Customization")]
-    [Tooltip("The text to display on the button when near this NPC (e.g., 'Talk', 'Inspect', 'Pick up')")]
-    public string promptText = "Talk";
-
-    [Header("Dialogue Settings (Optional)")]
-    [Tooltip("If assigned, clicking Talk will start a branching conversation using this node.")]
+    [Header("Dialogue Settings")]
     public DialogueNode startingDialogueNode;
-    
-    [Tooltip("The Animator of this NPC, used to play animations during dialogue (Optional).")]
     public Animator npcAnimator;
 
-    [Tooltip("Fires when the branching dialogue conversation completely finishes. Use this to resume idle animations!")]
-    public UnityEvent OnDialogueEnd;
+    [Header("One-Time Interaction")]
+    [Tooltip("If true, the interaction button will NEVER appear again after the first conversation ends.")]
+    public bool disableAfterInteraction = false;
 
-    [Tooltip("Fires when the player picks a wrong answer choice. Wire this to KalawIdleTest.PlayWrongAnswerReaction()!")]
+    [Header("Events")]
+    public UnityEvent OnDialogueEnd;
     public UnityEvent OnWrongAnswer;
 
-    /// <summary>
-    /// Set to true by KalawIdleTest while the wrong-answer animation is playing.
-    /// DialogueManager polls this to know when to re-show the question.
-    /// </summary>
     [HideInInspector] public bool isWrongAnswerPlaying = false;
 
-    /// <summary>
-    /// Called by the InteractionManager when the player clicks the button
-    /// while standing near this specific NPC.
-    /// </summary>
-    public void Interact()
+    public override void Interact()
     {
-        Debug.Log($"[InteractableNPC] Interacting with {gameObject.name}");
-        
-        // If a dialogue node is assigned, start the branching conversation
+        if (!interactionEnabled) return;
+
         if (startingDialogueNode != null && DialogueManager.Instance != null)
         {
             DialogueManager.Instance.StartDialogue(startingDialogueNode, npcAnimator, this);
         }
 
-        // Always fire the UnityEvent for backwards compatibility
         OnInteract?.Invoke();
     }
 
-    void OnEnable()
+    public void EnableInteraction() => interactionEnabled = true;
+    public void DisableInteraction() => interactionEnabled = false;
+
+    /// <summary>
+    /// Helper method to teleport the NPC. Easily callable from UnityEvents.
+    /// </summary>
+    public void TeleportTo(Transform targetTransform)
     {
-        if (InteractionManager.Instance != null)
-            InteractionManager.Instance.RegisterNPC(this);
+        if (targetTransform != null)
+        {
+            transform.position = targetTransform.position;
+            transform.rotation = targetTransform.rotation;
+        }
     }
 
-    void OnDisable()
+    /// <summary>
+    /// Forces the player's third-person camera to immediately snap and look at this NPC.
+    /// Easily callable from UnityEvents.
+    /// </summary>
+    public void ForcePlayerCameraToLookAtMe()
     {
-        if (InteractionManager.Instance != null)
-            InteractionManager.Instance.UnregisterNPC(this);
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            var tpc = player.GetComponent<StarterAssets.ThirdPersonController>();
+            if (tpc != null)
+            {
+                tpc.ForceCameraLookAt(transform.position);
+            }
+        }
     }
 
-    void Start()
+    /// <summary>
+    /// Safely hides the player's 3D model without breaking their physics or controller.
+    /// Useful for dialogue close-ups! Easily callable from UnityEvents.
+    /// </summary>
+    public void HidePlayer()
     {
-        // Fallback registration in case it enables before manager is awake
-        if (InteractionManager.Instance != null)
-            InteractionManager.Instance.RegisterNPC(this);
+        SetPlayerVisibility(false);
     }
 
-    void OnDrawGizmosSelected()
+    /// <summary>
+    /// Shows the player's 3D model again. Easily callable from UnityEvents.
+    /// </summary>
+    public void ShowPlayer()
     {
-        Gizmos.color = new Color(0f, 1f, 0.5f, 0.3f);
-        Gizmos.DrawSphere(transform.position, interactionDistance);
-        Gizmos.color = new Color(0f, 1f, 0.5f, 1f);
-        Gizmos.DrawWireSphere(transform.position, interactionDistance);
+        SetPlayerVisibility(true);
     }
+
+    private void SetPlayerVisibility(bool isVisible)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            // Find the child object that usually holds the armature/mesh in StarterAssets
+            // Usually we just disable all SkinnedMeshRenderers or MeshRenderers
+            var renderers = player.GetComponentsInChildren<Renderer>();
+            foreach (var r in renderers)
+            {
+                r.enabled = isVisible;
+            }
+        }
+    }
+
+    private Coroutine _cameraCoroutine;
+    private Vector3 _originalCamPos;
+    private Quaternion _originalCamRot;
+
+    /// <summary>
+    /// Foolproof method to smoothly transition the main camera to a specific close-up spot.
+    /// It automatically disables Cinemachine temporarily so you don't have to mess with priorities!
+    /// </summary>
+    public void EnterCloseUp(Transform closeUpSpot)
+    {
+        if (closeUpSpot == null) return;
+        
+        HidePlayer(); // Automatically hide the player
+        
+        GameObject mainCam = GameObject.FindWithTag("MainCamera");
+        if (mainCam != null)
+        {
+            // Support both Cinemachine 2 and 3 namespaces
+            Behaviour brain = mainCam.GetComponent("CinemachineBrain") as Behaviour;
+            if (brain != null) brain.enabled = false;
+
+            if (_cameraCoroutine != null) StopCoroutine(_cameraCoroutine);
+            _cameraCoroutine = StartCoroutine(LerpCamera(mainCam.transform, closeUpSpot.position, closeUpSpot.rotation, 1f));
+        }
+    }
+
+    /// <summary>
+    /// Smoothly transitions the camera back to normal gameplay.
+    /// </summary>
+    public void ExitCloseUp()
+    {
+        ShowPlayer(); // Bring player back
+        
+        GameObject mainCam = GameObject.FindWithTag("MainCamera");
+        if (mainCam != null)
+        {
+            Behaviour brain = mainCam.GetComponent("CinemachineBrain") as Behaviour;
+            if (brain != null) 
+            {
+                brain.enabled = true; // Cinemachine will automatically smooth-blend back!
+            }
+            else if (_originalCamPos != Vector3.zero) 
+            {
+                 mainCam.transform.position = _originalCamPos;
+                 mainCam.transform.rotation = _originalCamRot;
+            }
+        }
+    }
+
+    private System.Collections.IEnumerator LerpCamera(Transform cam, Vector3 targetPos, Quaternion targetRot, float duration)
+    {
+        _originalCamPos = cam.position;
+        _originalCamRot = cam.rotation;
+
+        Vector3 startPos = cam.position;
+        Quaternion startRot = cam.rotation;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            // Smooth ease in/out
+            float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+            cam.position = Vector3.Lerp(startPos, targetPos, t);
+            cam.rotation = Quaternion.Lerp(startRot, targetRot, t);
+            yield return null;
+        }
+        cam.position = targetPos;
+        cam.rotation = targetRot;
+    }
+
+    [Header("Custom Scene Events")]
+    [Tooltip("Map event strings from Dialogue Nodes to Unity Events in the scene.")]
+    public List<DialogueEventMapping> dialogueEvents = new List<DialogueEventMapping>();
+
+    public void HandleDialogueEvent(string eventName)
+    {
+        if (string.IsNullOrEmpty(eventName)) return;
+        
+        string cleanEventName = eventName.Trim();
+        Debug.Log($"[InteractableNPC] Received Dialogue Event: '{cleanEventName}' on NPC: {gameObject.name}");
+
+        foreach (var mapping in dialogueEvents)
+        {
+            if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+            {
+                Debug.Log($"[InteractableNPC] Match found! Firing UnityEvents for: '{cleanEventName}'");
+                mapping.onEventTriggered?.Invoke();
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public class DialogueEventMapping
+{
+    [Tooltip("The string defined in the Dialogue Node's 'Trigger Event Name' field.")]
+    public string eventName;
+    public UnityEvent onEventTriggered;
 }

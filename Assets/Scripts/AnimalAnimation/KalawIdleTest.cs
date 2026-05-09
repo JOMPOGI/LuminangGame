@@ -131,6 +131,24 @@ public class KalawIdleTest : MonoBehaviour
 
     // ── Public API ─────────────────────────────────────────────────
 
+    /// <summary>
+    /// Stops the idle system and triggers a continuous flying animation.
+    /// Use this for the correct answer in your dialogue.
+    /// </summary>
+    public void StartFlying()
+    {
+        _isActive = false;
+        
+        // Reset existing triggers to ensure clean transition
+        animator.ResetTrigger("DoIdleMove");
+        animator.ResetTrigger("DoPointing");
+        animator.ResetTrigger("ReturnToStill");
+        animator.ResetTrigger("ReturnFromPointing");
+
+        animator.SetTrigger("StartFlying");
+        Debug.Log("[KalawIdleTest] Continuous flying started.");
+    }
+
     public void StopIdleSystem()
     {
         _isActive = false;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Global manager that controls branching conversations.
@@ -8,12 +9,25 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
+    /// <summary>
+    /// True for the entire duration of a conversation.
+    /// InteractionManager and QuestIndicator use this to hide themselves.
+    /// </summary>
+    public bool IsInDialogue { get; private set; } = false;
+
     [Header("References")]
     [Tooltip("The script that handles the visual display of the dialogue box.")]
     public DialogueUIController uiController;
 
     private Animator _currentNPCAnimator;
     private InteractableNPC _currentNPC;
+
+    // ── History for Prev button ───────────────────────────────────
+    private readonly Stack<DialogueNode> _nodeHistory = new Stack<DialogueNode>();
+    private DialogueNode _activeNode;
+    private bool _navigatingBack = false;
+
+    public bool CanGoBack => _nodeHistory.Count > 0;
 
     void Awake()
     {
@@ -30,8 +44,9 @@ public class DialogueManager : MonoBehaviour
     {
         _currentNPCAnimator = npcAnimator;
         _currentNPC = npc;
+        IsInDialogue = true;
 
-        // Hide the proximity Talk button because we are now in conversation mode
+        // Hide the proximity Talk button
         if (InteractionManager.Instance != null && InteractionManager.Instance.talkButton != null)
         {
             InteractionManager.Instance.talkButton.gameObject.SetActive(false);
@@ -49,20 +64,39 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        // Track history (skip when navigating back to avoid double-pushing)
+        if (!_navigatingBack && _activeNode != null)
+            _nodeHistory.Push(_activeNode);
+        _navigatingBack = false;
+        _activeNode = node;
+
         // 1. Play Animation (if specified)
         if (!string.IsNullOrEmpty(node.animationTrigger) && _currentNPCAnimator != null)
-        {
-            // Reset all potential triggers to avoid animation queueing issues
-            // Usually, it's safer just to set the specific trigger
             _currentNPCAnimator.SetTrigger(node.animationTrigger);
+
+        // 1.5 Fire custom scene event (if specified)
+        if (!string.IsNullOrEmpty(node.triggerEventName) && _currentNPC != null)
+        {
+            _currentNPC.HandleDialogueEvent(node.triggerEventName);
         }
 
-        // 2. Display UI and Choices
+        // 2. Display UI and update nav buttons
         if (uiController != null)
         {
-            // We pass a callback method that the UI will call when a choice is clicked
             uiController.DisplayNode(node, OnChoiceSelected);
+            uiController.SetNavigation(canGoBack: _nodeHistory.Count > 0);
         }
+    }
+
+    /// <summary>
+    /// Called by the Prev button in DialogueUIController.
+    /// </summary>
+    public void GoToPreviousNode()
+    {
+        if (_nodeHistory.Count == 0) return;
+        _navigatingBack = true;
+        _activeNode = null;
+        ProcessNode(_nodeHistory.Pop());
     }
 
     /// <summary>
@@ -70,39 +104,36 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     private void OnChoiceSelected(DialogueChoice choice)
     {
+        if (choice == null)
+        {
+            EndDialogue();
+            return;
+        }
+
         if (choice.isWrong && _currentNPC != null)
         {
-            // Hide dialogue box, play reaction, then come back to the question
             StartCoroutine(HandleWrongAnswer(choice.nextNode));
             return;
         }
 
-        // Correct (or neutral) choice — advance normally
         ProcessNode(choice.nextNode);
     }
 
-    /// <summary>
-    /// Hides the dialogue box, waits for the wrong-answer animation to finish,
-    /// then re-processes the node (loops back to the question).
-    /// </summary>
     private System.Collections.IEnumerator HandleWrongAnswer(DialogueNode returnToNode)
     {
         Debug.Log($"[DialogueManager] Handling wrong answer. Returning to: {(returnToNode != null ? returnToNode.name : "NULL")}");
 
-        // 1. Hide the dialogue box immediately
+        // Only hide the dialogue UI visually — do NOT touch movementUI since we're still in dialogue
         if (uiController != null)
-            uiController.HideDialogue();
+            uiController.HideChoicesOnly();
 
-        // 2. Fire OnWrongAnswer — this calls KalawIdleTest.PlayWrongAnswerReaction()
+        // Trigger the NPC wrong-answer animation
         if (_currentNPC != null)
-        {
             _currentNPC.OnWrongAnswer?.Invoke();
-        }
 
-        // 3. Wait one frame for isWrongAnswerPlaying to be set
         yield return null;
 
-        // 4. Wait until the animation is done (KalawIdleTest sets flag to false when done)
+        // Wait for wrong-answer animation to finish (max 6 sec safety timeout)
         float elapsed = 0f;
         while (_currentNPC != null && _currentNPC.isWrongAnswerPlaying && elapsed < 6f)
         {
@@ -112,15 +143,15 @@ public class DialogueManager : MonoBehaviour
 
         if (elapsed >= 6f) Debug.LogWarning("[DialogueManager] Wrong answer animation timed out.");
 
-        // 5. Re-show the question node
         if (returnToNode != null)
         {
-            Debug.Log($"[DialogueManager] Resuming dialogue node: {returnToNode.name}");
+            // Clear history so Prev button doesn't show when we loop back to the start
+            _nodeHistory.Clear();
+            _activeNode = null;
             ProcessNode(returnToNode);
         }
         else
         {
-            Debug.LogError("[DialogueManager] Cannot resume: returnToNode is NULL.");
             EndDialogue();
         }
     }
@@ -128,14 +159,21 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         Debug.Log("[DialogueManager] Conversation ended.");
+        IsInDialogue = false;
+        _nodeHistory.Clear();
+        _activeNode = null;
         
         if (uiController != null)
             uiController.HideDialogue();
 
-        // Fire the end event so the NPC can resume its idle animation
-        if (_currentNPC != null && _currentNPC.OnDialogueEnd != null)
+        if (_currentNPC != null)
         {
-            _currentNPC.OnDialogueEnd.Invoke();
+            if (_currentNPC.OnDialogueEnd != null)
+                _currentNPC.OnDialogueEnd.Invoke();
+            
+            // Re-disable interaction if it's a one-time thing
+            if (_currentNPC.disableAfterInteraction)
+                _currentNPC.interactionEnabled = false;
         }
 
         if (InteractionManager.Instance != null)
@@ -147,3 +185,4 @@ public class DialogueManager : MonoBehaviour
         _currentNPC = null;
     }
 }
+
