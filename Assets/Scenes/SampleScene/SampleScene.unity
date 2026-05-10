@@ -53800,19 +53800,115 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Apo_Lakay
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9226d59ff352c9d4ea9ad0c847d4d81c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2553807149516344362}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 434578663}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 434578662}
   m_SourcePrefab: {fileID: 100100000, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
 --- !u!4 &434578659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
   m_PrefabInstance: {fileID: 434578658}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &434578660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+  m_PrefabInstance: {fileID: 434578658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &434578661 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+  m_PrefabInstance: {fileID: 434578658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &434578662
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434578660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.44527945
+  m_Height: 1.3161407
+  m_Direction: 1
+  m_Center: {x: 0.1390001, y: 0.6570237, z: 0.005116152}
+--- !u!114 &434578663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434578660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 3
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 434578661}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Wrong
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  startingDialogueNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
+  npcAnimator: {fileID: 434578661}
+  disableAfterInteraction: 0
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 434578661}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Wrong
+          m_BoolArgument: 0
+        m_CallState: 2
+  isWrongAnswerPlaying: 0
+  dialogueEvents: []
 --- !u!114 &435833960
 MonoBehaviour:
   m_ObjectHideFlags: 0
