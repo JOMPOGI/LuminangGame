@@ -50772,6 +50772,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8602194673477936083, guid: d59bfe2372a359646812d4127aee1154, type: 3}
   m_PrefabInstance: {fileID: 416628735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &417496787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5889918179948491274, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+  m_PrefabInstance: {fileID: 744614088212542335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &417892932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53801,10 +53806,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2553807149516344362}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1534425804}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
 --- !u!4 &434578659 stripped
 Transform:
@@ -88950,7 +88952,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
   m_PrefabInstance: {fileID: 744614088212542335}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 417496787}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
@@ -102955,7 +102957,7 @@ MonoBehaviour:
   OnTriggered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 798749205}
+      - m_Target: {fileID: 417496787}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -190500,26 +190502,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2563648020402818627, guid: b042955ef1e1c6d41a9aa4831e8e8844, type: 3}
   m_PrefabInstance: {fileID: 1532212782}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1534425802 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
-  m_PrefabInstance: {fileID: 434578658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1534425804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534425802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
-  requiredObjective: 'Objective: Talk to Apo Lakay'
-  hoverSpeed: 3
-  hoverAmount: 0.2
 --- !u!1001 &1535331926
 PrefabInstance:
   m_ObjectHideFlags: 0
