@@ -43,6 +43,13 @@ public class DialogueUIController : MonoBehaviour
     public float curtainDropDuration = 0.5f;
     public float curtainDelay        = 0.1f;
 
+    [Header("Portrait Settings")]
+    public Image speakerPortraitImage;
+    public float portraitSlideDuration = 0.4f;
+    public float portraitSlideDistance = 150f;
+    [Tooltip("If true, the portrait slides in from the left. Otherwise, from the right.")]
+    public bool slideFromLeft = true;
+
     [Header("Typewriter Effect")]
     [Tooltip("Seconds per character. Set to 0 to show instantly.")]
     public float typingSpeed = 0.02f;
@@ -60,6 +67,9 @@ public class DialogueUIController : MonoBehaviour
     private string                        _fullText  = "";
     private System.Action<DialogueChoice> _onChoiceSelected;
     private List<DialogueChoice>          _currentChoices = new List<DialogueChoice>();
+    private Vector2                       _portraitOriginalPos;
+    private Coroutine                     _portraitCoroutine;
+    private Sprite                        _lastPortrait;
 
     void Awake()
     {
@@ -70,6 +80,13 @@ public class DialogueUIController : MonoBehaviour
 
         if (prevButton != null)
             prevButton.onClick.AddListener(OnPrevClicked);
+
+        if (speakerPortraitImage != null)
+        {
+            _portraitOriginalPos = speakerPortraitImage.rectTransform.anchoredPosition;
+            // Start hidden
+            SetPortraitVisibility(false, true);
+        }
     }
 
     // ─────────────────────────────────────────────────────────────────
@@ -119,6 +136,16 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
+        // Update Portrait
+        if (speakerPortraitImage != null)
+        {
+            if (node.speakerPortrait != _lastPortrait)
+            {
+                UpdatePortrait(node.speakerPortrait);
+                _lastPortrait = node.speakerPortrait;
+            }
+        }
+
         // Show/hide Next button depending on choice count
         // If multiple choices exist, player must pick one — Next is hidden
         bool hasMultipleChoices = node.choices.Count > 1;
@@ -159,6 +186,10 @@ public class DialogueUIController : MonoBehaviour
                 choicesGroup.SetActive(false);
                 choicesGroup.transform.localScale = new Vector3(1, 0, 1);
             }
+
+            // Hide Portrait
+            SetPortraitVisibility(false, false);
+            _lastPortrait = null;
         }
 
         if (movementUI != null) movementUI.SetActive(!show);
@@ -325,6 +356,93 @@ public class DialogueUIController : MonoBehaviour
             yield return null;
         }
         choicesGroup.transform.localScale = end;
+    }
+
+    private void UpdatePortrait(Sprite newPortrait)
+    {
+        if (speakerPortraitImage == null) return;
+
+        if (_portraitCoroutine != null) StopCoroutine(_portraitCoroutine);
+        _portraitCoroutine = StartCoroutine(AnimatePortrait(newPortrait));
+    }
+
+    private void SetPortraitVisibility(bool visible, bool immediate)
+    {
+        if (speakerPortraitImage == null) return;
+
+        if (immediate)
+        {
+            if (_portraitCoroutine != null) StopCoroutine(_portraitCoroutine);
+            
+            float offset = slideFromLeft ? -portraitSlideDistance : portraitSlideDistance;
+            speakerPortraitImage.rectTransform.anchoredPosition = _portraitOriginalPos + new Vector2(offset, 0);
+            
+            var cg = speakerPortraitImage.GetComponent<CanvasGroup>();
+            if (cg != null) cg.alpha = visible ? 1f : 0f;
+            
+            speakerPortraitImage.gameObject.SetActive(visible);
+        }
+        else
+        {
+            // If hiding, we just slide it out
+            if (!visible)
+            {
+                if (_portraitCoroutine != null) StopCoroutine(_portraitCoroutine);
+                _portraitCoroutine = StartCoroutine(AnimatePortrait(null));
+            }
+        }
+    }
+
+    private IEnumerator AnimatePortrait(Sprite nextPortrait)
+    {
+        RectTransform rt = speakerPortraitImage.rectTransform;
+        CanvasGroup cg = speakerPortraitImage.GetComponent<CanvasGroup>();
+        if (cg == null) cg = speakerPortraitImage.gameObject.AddComponent<CanvasGroup>();
+
+        float offset = slideFromLeft ? -portraitSlideDistance : portraitSlideDistance;
+        Vector2 hiddenPos = _portraitOriginalPos + new Vector2(offset, 0);
+        
+        // If we are currently hidden and showing a new portrait
+        if (nextPortrait != null && !speakerPortraitImage.gameObject.activeSelf)
+        {
+            speakerPortraitImage.sprite = nextPortrait;
+            speakerPortraitImage.gameObject.SetActive(true);
+            rt.anchoredPosition = hiddenPos;
+            cg.alpha = 0f;
+        }
+
+        Vector2 startPos = rt.anchoredPosition;
+        Vector2 targetPos = (nextPortrait != null) ? _portraitOriginalPos : hiddenPos;
+        float startAlpha = cg.alpha;
+        float targetAlpha = (nextPortrait != null) ? 1f : 0f;
+
+        // If we are swapping portraits while already visible
+        if (nextPortrait != null && speakerPortraitImage.gameObject.activeSelf && speakerPortraitImage.sprite != nextPortrait)
+        {
+            // Quick fade out/in or just swap
+            // For now, let's just swap the sprite and keep animating to target
+            speakerPortraitImage.sprite = nextPortrait;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < portraitSlideDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / portraitSlideDuration);
+            float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out
+
+            rt.anchoredPosition = Vector2.Lerp(startPos, targetPos, eased);
+            cg.alpha = Mathf.Lerp(startAlpha, targetAlpha, eased);
+            yield return null;
+        }
+
+        rt.anchoredPosition = targetPos;
+        cg.alpha = targetAlpha;
+
+        if (nextPortrait == null)
+        {
+            speakerPortraitImage.gameObject.SetActive(false);
+        }
     }
 
     private IEnumerator ButtonPressAnim(Transform btn)

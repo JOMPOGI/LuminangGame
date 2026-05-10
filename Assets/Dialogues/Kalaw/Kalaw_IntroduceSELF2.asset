@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Kalaw_IntroduceSELF2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
+  speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: Saan ka nga taga ditoy.
   animationTrigger: StartFlying
+  triggerEventName: 
   choices:
   - choiceText: 
     nextNode: {fileID: 11400000, guid: 32e6467e574b17f4db12edf1ee045ae7, type: 2}

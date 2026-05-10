@@ -53797,8 +53797,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2553807149516344362}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1534425804}
   m_SourcePrefab: {fileID: 100100000, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
 --- !u!4 &434578659 stripped
 Transform:
@@ -57979,6 +57985,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   curtainDropDuration: 1
   curtainDelay: 0.2
+  speakerPortraitImage: {fileID: 1716410577}
+  portraitSlideDuration: 0.5
+  portraitSlideDistance: 150
+  slideFromLeft: 1
   typingSpeed: 0.03
   buttonPressScale: 0.85
   buttonAnimDuration: 0.12
@@ -90510,6 +90520,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1716410576}
   - {fileID: 1026459984}
   - {fileID: 1538982864}
   m_Father: {fileID: 4072154296723578129}
@@ -102884,6 +102895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798749206}
   - component: {fileID: 798749207}
+  - component: {fileID: 798749208}
   m_Layer: 3
   m_Name: KalawPosition2
   m_TagString: Untagged
@@ -102922,6 +102934,39 @@ MonoBehaviour:
   requiredObjective: 'Objective: Follow Kalaw'
   hoverSpeed: 3
   hoverAmount: 0.2
+--- !u!114 &798749208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798749205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503c5409463abbf48a5d96c14017ba66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProximityDisappear
+  triggerDistance: 2
+  playerTag: Player
+  dialogueToStart: {fileID: 11400000, guid: 4db65b13afdf8264083902eae92c1146, type: 2}
+  npcAnimator: {fileID: 0}
+  npcReference: {fileID: 0}
+  newObjective: 'Objective: Talk to Apo Lakay'
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798749205}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &799631555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172924,7 +172969,7 @@ Transform:
   m_GameObject: {fileID: 1395548813}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.26902276, z: -0, w: 0.9631338}
-  m_LocalPosition: {x: 0, y: 1.98, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 0.10375738, y: 0.10375738, z: 0.10375738}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -190455,6 +190500,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2563648020402818627, guid: b042955ef1e1c6d41a9aa4831e8e8844, type: 3}
   m_PrefabInstance: {fileID: 1532212782}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1534425802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+  m_PrefabInstance: {fileID: 434578658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1534425804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534425802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
+  requiredObjective: 'Objective: Talk to Apo Lakay'
+  hoverSpeed: 3
+  hoverAmount: 0.2
 --- !u!1001 &1535331926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214489,6 +214554,102 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1375052923765806555, guid: 8fb5fa14ea37a2a4f9cc05dcf371688d, type: 3}
+--- !u!1 &1716410575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1716410576}
+  - component: {fileID: 1716410578}
+  - component: {fileID: 1716410577}
+  - component: {fileID: 1716410579}
+  m_Layer: 0
+  m_Name: NPCimage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1716410576
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716410575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 715730110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -673, y: -14}
+  m_SizeDelta: {x: 600, y: 600}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1716410577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716410575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1716410578
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716410575}
+  m_CullTransparentMesh: 1
+--- !u!114 &1716410579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716410575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1001 &1716784115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272233,6 +272394,84 @@ Transform:
   - {fileID: 5524461992021515288}
   m_Father: {fileID: 734374722178767755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2553807149516344361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 434578659}
+    m_Modifications:
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3823068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3823068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3823068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.037
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.57427144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.818665
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -109.903
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986703779547906195, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: requiredObjective
+      value: 'Objective: Talk to Apo Lakay'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632068963178020290, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_Name
+      value: Quest_Indicator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+--- !u!4 &2553807149516344362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+  m_PrefabInstance: {fileID: 2553807149516344361}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2568582057483191279
 GameObject:
   m_ObjectHideFlags: 0

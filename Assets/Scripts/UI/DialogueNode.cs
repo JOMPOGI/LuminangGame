@@ -7,6 +7,9 @@ public class DialogueNode : ScriptableObject
     [Header("NPC Settings")]
     [Tooltip("The name of the NPC speaking (optional).")]
     public string speakerName;
+
+    [Tooltip("The portrait of the NPC to show during this dialogue. Leave empty for no portrait.")]
+    public Sprite speakerPortrait;
     
     [TextArea(3, 5)]
     [Tooltip("What the NPC says in the dialogue box.")]
