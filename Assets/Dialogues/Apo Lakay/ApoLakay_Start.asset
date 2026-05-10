@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: ApoLakay_Start
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
-  speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a bigat.
+  speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
+  dialogueText: 'Naimbag a bigat '
+  translatedText: Good day.
   animationTrigger: 
   triggerEventName: 
-  choices: []
+  choices:
+  - choiceText: Naimbag a bigat
+    nextNode: {fileID: 11400000, guid: 784c55519973de549b6ec3c350737921, type: 2}
+    isWrong: 0
+  - choiceText: Naimbag a malem
+    nextNode: {fileID: 11400000}
+    isWrong: 1
+  - choiceText: 'Naimbag a rabii '
+    nextNode: {fileID: 11400000}
+    isWrong: 1

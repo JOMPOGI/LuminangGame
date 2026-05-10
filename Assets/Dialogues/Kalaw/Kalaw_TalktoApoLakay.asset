@@ -16,6 +16,7 @@ MonoBehaviour:
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: Nalabit daytoy nga gayyem ti mangiparikna kenka iti panakapasangbay
     ditoy.
+  translatedText: Maybe this friend can help you feel welcome here.
   animationTrigger: 
   triggerEventName: 
   choices: []

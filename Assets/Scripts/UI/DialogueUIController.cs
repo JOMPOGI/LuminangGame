@@ -30,6 +30,8 @@ public class DialogueUIController : MonoBehaviour
     public Button nextButton;
     [Tooltip("The '<< Prev' button. Assign in Inspector.")]
     public Button prevButton;
+    [Tooltip("The 'Translate' button/icon. Assign in Inspector.")]
+    public Button translateButton;
 
     [Header("Panel Pop-in Animation")]
     public float panelPopDuration = 0.35f;
@@ -70,6 +72,8 @@ public class DialogueUIController : MonoBehaviour
     private Vector2                       _portraitOriginalPos;
     private Coroutine                     _portraitCoroutine;
     private Sprite                        _lastPortrait;
+    private string                        _translatedText = "";
+    private bool                          _isTranslatedShowing = false;
 
     void Awake()
     {
@@ -80,6 +84,9 @@ public class DialogueUIController : MonoBehaviour
 
         if (prevButton != null)
             prevButton.onClick.AddListener(OnPrevClicked);
+
+        if (translateButton != null)
+            translateButton.onClick.AddListener(OnTranslateClicked);
 
         if (speakerPortraitImage != null)
         {
@@ -101,7 +108,13 @@ public class DialogueUIController : MonoBehaviour
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
         _fullText         = node.dialogueText;
+        _translatedText   = node.translatedText;
+        _isTranslatedShowing = false;
         _skipTyping       = false;
+
+        // Show/Hide translate button
+        if (translateButton != null)
+            translateButton.gameObject.SetActive(!string.IsNullOrEmpty(_translatedText));
 
         if (speakerNameText != null)
             speakerNameText.text = string.IsNullOrEmpty(node.speakerName) ? "" : node.speakerName;
@@ -257,6 +270,23 @@ public class DialogueUIController : MonoBehaviour
         StartCoroutine(ButtonPressAnim(prevButton.transform));
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.GoToPreviousNode();
+    }
+
+    private void OnTranslateClicked()
+    {
+        if (string.IsNullOrEmpty(_translatedText)) return;
+
+        _isTranslatedShowing = !_isTranslatedShowing;
+        
+        // If we are still typing, skip to the end of the text
+        if (_isTyping) _skipTyping = true;
+
+        if (dialogueText != null)
+        {
+            dialogueText.text = _isTranslatedShowing ? _translatedText : _fullText;
+        }
+
+        StartCoroutine(ButtonPressAnim(translateButton.transform));
     }
 
     // ─────────────────────────────────────────────────────────────────

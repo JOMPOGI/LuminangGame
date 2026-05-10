@@ -15,6 +15,10 @@ public class DialogueNode : ScriptableObject
     [Tooltip("What the NPC says in the dialogue box.")]
     public string dialogueText;
 
+    [TextArea(3, 5)]
+    [Tooltip("The translation of the dialogue text (optional).")]
+    public string translatedText;
+
     [Tooltip("Trigger name to send to the NPC's Animator (e.g., 'DoPointing'). Leave empty for no animation.")]
     public string animationTrigger;
 
