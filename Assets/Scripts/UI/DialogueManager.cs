@@ -129,7 +129,7 @@ public class DialogueManager : MonoBehaviour
 
         // Trigger the NPC wrong-answer animation
         if (_currentNPC != null)
-            _currentNPC.OnWrongAnswer?.Invoke();
+            _currentNPC.TriggerWrongAnswerAnimation();
 
         yield return null;
 

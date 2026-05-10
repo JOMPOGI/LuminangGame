@@ -53770,7 +53770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.45155546
+      value: -0.28034535
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       propertyPath: m_LocalRotation.x
@@ -53778,7 +53778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.892243
+      value: 0.95989925
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       propertyPath: m_LocalRotation.z
@@ -53790,7 +53790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 126.313
+      value: 212.562
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -53877,6 +53877,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Turn
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 434578663}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -272616,7 +272628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.016
+      value: 0.014
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -272624,11 +272636,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.037
+      value: 0.043
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9895402
+      value: 0.5679934
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.x
@@ -272636,7 +272648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.14425717
+      value: -0.8230331
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.z
@@ -272648,7 +272660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -16.589
+      value: -110.779
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

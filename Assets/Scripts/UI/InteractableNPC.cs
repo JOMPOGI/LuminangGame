@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using System.Collections.Generic;
 
 public class InteractableNPC : InteractableBase
@@ -11,12 +12,11 @@ public class InteractableNPC : InteractableBase
     [Header("One-Time Interaction")]
     [Tooltip("If true, the interaction button will NEVER appear again after the first conversation ends.")]
     public bool disableAfterInteraction = false;
+    [HideInInspector] public bool isWrongAnswerPlaying = false;
 
     [Header("Events")]
     public UnityEvent OnDialogueEnd;
     public UnityEvent OnWrongAnswer;
-
-    [HideInInspector] public bool isWrongAnswerPlaying = false;
 
     public override void Interact()
     {
@@ -181,6 +181,44 @@ public class InteractableNPC : InteractableBase
     [Tooltip("Map event strings from Dialogue Nodes to Unity Events in the scene.")]
     public List<DialogueEventMapping> dialogueEvents = new List<DialogueEventMapping>();
 
+    public void TriggerWrongAnswerAnimation()
+    {
+        if (npcAnimator != null)
+        {
+            StartCoroutine(WrongAnswerRoutine());
+        }
+    }
+
+    private IEnumerator WrongAnswerRoutine()
+    {
+        isWrongAnswerPlaying = true;
+        
+        // Let the UnityEvent fire (which likely triggers the Animator)
+        OnWrongAnswer?.Invoke();
+
+        // Wait a moment for the animator to transition
+        yield return new WaitForSeconds(0.2f);
+
+        // Wait while the animator is in ANY state other than the base Idle
+        // This assumes the wrong answer animation is NOT the default state.
+        if (npcAnimator != null)
+        {
+            float elapsed = 0f;
+            while (elapsed < 5f) // Safety timeout
+            {
+                var state = npcAnimator.GetCurrentAnimatorStateInfo(0);
+                // If we've returned to the Idle state (assuming it's named "Idle" or contains "Idle")
+                if (state.IsName("apoLakay_Idle") || state.IsName("Idle")) 
+                    break;
+                
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        isWrongAnswerPlaying = false;
+    }
+
     public void HandleDialogueEvent(string eventName)
     {
         if (string.IsNullOrEmpty(eventName)) return;
@@ -195,6 +233,43 @@ public class InteractableNPC : InteractableBase
                 Debug.Log($"[InteractableNPC] Match found! Firing UnityEvents for: '{cleanEventName}'");
                 mapping.onEventTriggered?.Invoke();
             }
+        }
+    }
+
+    /// <summary>
+    /// Smoothly rotates the NPC to face the player.
+    /// Can be called from the OnInteract event.
+    /// </summary>
+    public void SmoothLookAtPlayer()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            StartCoroutine(LookAtRoutine(player.transform));
+        }
+    }
+
+    private IEnumerator LookAtRoutine(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0; // Keep the NPC upright
+        
+        if (direction.sqrMagnitude > 0.01f)
+        {
+            Quaternion startRot = transform.rotation;
+            Quaternion targetRot = Quaternion.LookRotation(direction);
+            
+            float elapsed = 0f;
+            float duration = 0.6f; // Time it takes to turn
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+                transform.rotation = Quaternion.Slerp(startRot, targetRot, t);
+                yield return null;
+            }
+            transform.rotation = targetRot;
         }
     }
 }
