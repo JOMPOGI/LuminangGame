@@ -97,10 +97,12 @@ public class HUDManager : MonoBehaviour
             objectiveText.SetActive(visible);
 
         // ONLY show the Dialogue Root if we are actually in a dialogue 
-        // AND not currently in a lesson.
+        // AND not currently in a lesson or minigame.
         bool isDialogueActive = (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue);
         bool isLessonActive = (lessonPanel != null && lessonPanel.activeInHierarchy);
-        bool showDialogueRoot = isDialogueActive && !isLessonActive;
+        bool isMinigameActive = (MinigameManager.Instance != null && MinigameManager.Instance.IsMinigameActive);
+        
+        bool showDialogueRoot = isDialogueActive && !isLessonActive && !isMinigameActive;
 
         if (dialogueRoot != null && dialogueRoot.activeSelf != showDialogueRoot)
             dialogueRoot.SetActive(showDialogueRoot);

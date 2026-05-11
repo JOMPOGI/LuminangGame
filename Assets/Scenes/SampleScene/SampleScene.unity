@@ -54451,7 +54451,23 @@ MonoBehaviour:
           m_StringArgument: Wrong
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: StartMinigame
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 434578663}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: StartMinigame
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3011457477992818941, guid: 54b389b9c597f69468c288a753008f68, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &435833960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58129,7 +58145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e4eb23854356b48a2b96b926b4705a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
-  minigameContainer: {fileID: 0}
+  minigameContainer: {fileID: 1793591899}
   onMinigameComplete:
     m_PersistentCalls:
       m_Calls: []
