@@ -22,6 +22,10 @@ public class LessonManager : MonoBehaviour
     [Tooltip("A dark semi-transparent image that covers the game world during lessons.")]
     public GameObject dimmerBackground;
     
+    [Header("Quest Integration")]
+    [Tooltip("Events to fire when the lesson is successfully closed.")]
+    public UnityEngine.Events.UnityEvent onLessonComplete;
+
     private CanvasGroup _dimmerCG;
     private bool _isLessonActive = false;
 
@@ -59,8 +63,6 @@ public class LessonManager : MonoBehaviour
         StopAllCoroutines();
         lessonPanel.SetActive(true); // THE TRIGGER FOR THE WATCHDOG
         StartCoroutine(FadeRoutine(true));
-
-        if (InteractionManager.Instance != null) InteractionManager.Instance.enabled = false;
     }
 
     public void HideLesson()
@@ -98,9 +100,9 @@ public class LessonManager : MonoBehaviour
         {
             lessonPanel.SetActive(false); // THE TRIGGER FOR THE WATCHDOG
 
-            // Re-enable the interaction system so we can talk to NPCs again!
-            if (InteractionManager.Instance != null) 
-                InteractionManager.Instance.enabled = true;
+            // Fire quest events!
+            if (onLessonComplete != null)
+                onLessonComplete.Invoke();
         }
     }
 }

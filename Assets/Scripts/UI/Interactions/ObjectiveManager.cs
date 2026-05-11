@@ -72,27 +72,40 @@ public class ObjectiveManager : MonoBehaviour
 
     public void SetObjective(string newObjective)
     {
+        string oldObjective = CurrentObjective;
         string cleanObjective = newObjective != null ? newObjective.Trim() : "";
-        Debug.Log($"[ObjectiveManager] Setting new objective: '{cleanObjective}'");
+
+        // Standard Redundancy Check
+        if (cleanObjective == oldObjective)
+        {
+            Debug.Log($"[ObjectiveManager] Update skipped. New objective matches current: '{cleanObjective}'");
+            return;
+        }
+
+        Debug.Log($"[ObjectiveManager] EVENT: Objective changing FROM '{oldObjective}' TO '{cleanObjective}'");
         
         CurrentObjective = cleanObjective;
-        if (objectiveText != null) objectiveText.text = cleanObjective;
+        if (objectiveText != null) 
+        {
+            objectiveText.text = cleanObjective;
+            Debug.Log($"[ObjectiveManager] UI Component '{objectiveText.name}' text property updated.");
+        }
+        else
+        {
+            Debug.LogError("[ObjectiveManager] FAILED: Objective Text component is missing or unassigned!");
+        }
         
-        // Force a visibility check immediately
         UpdateVisibility();
-        
         OnObjectiveChanged?.Invoke(cleanObjective);
     }
 
     private void UpdateVisibility()
     {
         bool hasObjective = !string.IsNullOrEmpty(CurrentObjective);
-        bool isInDialogue = DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue;
-
-        if (hasObjective && !isInDialogue)
-            Show();
-        else
-            Hide();
+        Debug.Log($"[ObjectiveManager] Visibility Check. Current: '{CurrentObjective}' (HasText: {hasObjective})");
+        
+        if (hasObjective) Show();
+        else Hide();
     }
 
     public void Hide()
@@ -164,8 +177,5 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        UpdateVisibility();
-    }
+    // Update loop removed to prevent fighting with HUDManager watchdog
 }

@@ -69,14 +69,30 @@ public class InteractionManager : MonoBehaviour
 
     void Update()
     {
-        if (_playerTransform == null || talkButton == null) return;
+        if (talkButton == null) return;
 
-        // Hide button during dialogue or if HUD is suppressed (Lessons, Mini-games, etc.)
-        bool isHUDSuppressed = HUDManager.Instance != null && !HUDManager.Instance.IsHUDAllowed;
-        
-        if ((DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue) || isHUDSuppressed)
+        // Professional Player Detection: Find the object with the CharacterController (the real mover)
+        if (_playerTransform == null || !_playerTransform.gameObject.activeInHierarchy)
         {
-            talkButton.gameObject.SetActive(false);
+            var controllers = GameObject.FindObjectsByType<CharacterController>(FindObjectsSortMode.None);
+            foreach (var cc in controllers)
+            {
+                if (cc.gameObject.CompareTag(playerTag) && cc.gameObject.activeInHierarchy)
+                {
+                    _playerTransform = cc.transform;
+                    break;
+                }
+            }
+            if (_playerTransform == null) return; 
+        }
+
+        // Hide button during dialogue or if HUD is suppressed
+        bool isHUDSuppressed = HUDManager.Instance != null && !HUDManager.Instance.IsHUDAllowed;
+        bool isInDialogue = DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue;
+        
+        if (isInDialogue || isHUDSuppressed)
+        {
+            if (talkButton.gameObject.activeSelf) talkButton.gameObject.SetActive(false);
             _currentNearest = null;
             return;
         }
@@ -84,7 +100,6 @@ public class InteractionManager : MonoBehaviour
         InteractableBase nearest = null;
         float shortestDistance = float.MaxValue;
 
-        // Find the closest interactable
         foreach (var interactable in _allInteractables)
         {
             if (interactable == null || !interactable.isActiveAndEnabled || !interactable.interactionEnabled) continue;
@@ -98,24 +113,27 @@ public class InteractionManager : MonoBehaviour
             }
         }
 
-        // If the nearest interactable changed
+        // Log distance to console to see what's happening
+        if (Time.frameCount % 120 == 0 && nearest != null)
+        {
+            Debug.Log($"[InteractionManager] Nearest: {nearest.gameObject.name}, Distance: {shortestDistance:F2}");
+        }
+
         if (nearest != _currentNearest)
         {
             _currentNearest = nearest;
+        }
 
-        // Final visibility decision
-        bool isNearInteractable = _currentNearest != null;
-        bool shouldShowButton = isNearInteractable && !isHUDSuppressed;
+        bool shouldShowButton = _currentNearest != null && !isHUDSuppressed;
 
         if (talkButton.gameObject.activeSelf != shouldShowButton)
         {
             talkButton.gameObject.SetActive(shouldShowButton);
             
-            if (shouldShowButton && buttonText != null)
+            if (shouldShowButton && buttonText != null && _currentNearest != null)
             {
                 buttonText.text = _currentNearest.promptText;
             }
-        }
         }
     }
 

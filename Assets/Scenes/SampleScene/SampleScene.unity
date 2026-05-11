@@ -716,6 +716,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 11400000, guid: 570c2625e7c2ed4439b65cc848dd2392, type: 2}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -34846,6 +34847,21 @@ MonoBehaviour:
   lessonCanvasGroup: {fileID: 1603644736}
   fadeDuration: 0.4
   dimmerBackground: {fileID: 1719723367}
+  onLessonComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2051801647}
+        m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
+        m_MethodName: SetObjective
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 'Objective: Talk to Apo Lakay'
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &286529834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50466,6 +50482,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -54414,6 +54431,8 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Objective: Talk to Apo Lakay'
     dialogueNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
+  requiredObjectivesToTalk:
+  - 'Objective: Talk to Apo Lakay'
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -74827,6 +74846,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -121541,6 +121561,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -135707,6 +135728,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -137774,6 +137796,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -207623,6 +207646,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -219237,6 +219261,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -267330,6 +267355,7 @@ MonoBehaviour:
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
   questDialogues: []
+  requiredObjectivesToTalk: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -274173,7 +274199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -274201,7 +274227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
@@ -274214,6 +274240,10 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -274252,6 +274282,10 @@ PrefabInstance:
       value: ExitCloseUp
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetNewObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: EnterCloseUp
       objectReference: {fileID: 0}
@@ -274279,6 +274313,10 @@ PrefabInstance:
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 798749206}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
+      value: 'Objective: Follow Kalaw'
+      objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 

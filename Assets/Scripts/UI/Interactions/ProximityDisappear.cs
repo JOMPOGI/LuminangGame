@@ -52,24 +52,26 @@ public class ProximityDisappear : MonoBehaviour
 
     void Update()
     {
-        // Don't check if already triggered or if player is missing
         if (_hasTriggered || _playerTransform == null) return;
 
-        // Check objective requirement if set
+        // Diagnostic Check
         if (!string.IsNullOrEmpty(requiredObjective) && ObjectiveManager.Instance != null)
         {
-            // Trim both to be safe against trailing spaces
-            string currentObj = ObjectiveManager.Instance.CurrentObjective.Trim();
-            string requiredObj = requiredObjective.Trim();
+            // Normalize strings by removing the common "Objective: " prefix if present
+            string currentObj = ObjectiveManager.Instance.CurrentObjective.Replace("Objective: ", "").Trim();
+            string reqObj = requiredObjective.Replace("Objective: ", "").Trim();
 
-            if (currentObj != requiredObj)
+            if (!currentObj.Equals(reqObj, System.StringComparison.OrdinalIgnoreCase))
+            {
                 return;
+            }
         }
 
         float distance = Vector3.Distance(transform.position, _playerTransform.position);
         
         if (distance <= triggerDistance)
         {
+            Debug.Log($"[ProximityDisappear] TRIGGER READY: Player distance {distance} <= {triggerDistance}");
             ExecuteTrigger();
         }
     }
