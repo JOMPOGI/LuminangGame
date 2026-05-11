@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
-  m_Name: AlingRosa_Default
+  m_Name: Neneng_No
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: Aling Rosa
-  speakerPortrait: {fileID: 21300000, guid: e185e0ec3efba60429a1f9e0680e9fe7, type: 3}
-  dialogueText: Ah, naimbag a bigat! Agsagsagana kami para iti pista. No mabannog
-    ka, adda met mainit nga makan ditoy.
-  translatedText: "Ah, good morning! We\u2019re preparing for the festival. If you
-    get tired, there\u2019s warm food here."
+  speakerName: Neneng
+  speakerPortrait: {fileID: 0}
+  dialogueText: "Awww\u2026 siguro inton sumaruno laeng."
+  translatedText: "Awww\u2026 maybe next time."
   animationTrigger: 
   triggerEventName: 
   endEventName: 

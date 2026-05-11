@@ -23,5 +23,5 @@ MonoBehaviour:
     is where you should go."
   animationTrigger: Pointing
   triggerEventName: 
-  endEventName: 
+  endEventName: GoToMarket
   choices: []

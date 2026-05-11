@@ -42,13 +42,21 @@ public class InteractableNPC : InteractableBase
         if (!interactionEnabled) return;
 
         DialogueNode nodeToPlay = GetCurrentDialogueNode();
-
-        if (nodeToPlay != null && DialogueManager.Instance != null)
-        {
-            DialogueManager.Instance.StartDialogue(nodeToPlay, npcAnimator, this);
-        }
+        ForceStartDialogue(nodeToPlay);
 
         OnInteract?.Invoke();
+    }
+
+    /// <summary>
+    /// Manually triggers a specific dialogue node on this NPC.
+    /// Great for location triggers or cutscenes!
+    /// </summary>
+    public void ForceStartDialogue(DialogueNode node)
+    {
+        if (node != null && DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.StartDialogue(node, npcAnimator, this);
+        }
     }
 
     private DialogueNode GetCurrentDialogueNode()
