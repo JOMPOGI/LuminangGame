@@ -54469,6 +54469,8 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: Talk to Apo Lakay
     dialogueNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
+  - requiredObjective: Return to Apo Lakay
+    dialogueNode: {fileID: 11400000, guid: 69f687eef69970040b28d05ad772d68d, type: 2}
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -54521,7 +54523,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Help Apo Lakay identify and greet all organizers properly
-              ; 6 ; Talk to Apo Lakay
+              ; 6 ; Return to Apo Lakay
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &435833960
@@ -274417,6 +274419,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 2.123
       objectReference: {fileID: 0}
+    - target: {fileID: 6715885009540334412, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: requiredObjective
+      value: Talk to Kalaw
+      objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.size
       value: 4
@@ -274595,7 +274601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Help Apo Lakay identify and greet all organizers properly ; 6 ; Talk
+      value: Help Apo Lakay identify and greet all organizers properly ; 6 ; Return
         to Apo Lakay
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
@@ -275386,7 +275392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5986703779547906195, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: requiredObjective
-      value: Talk to Apo Lakay
+      value: Return to Apo Lakay
       objectReference: {fileID: 0}
     - target: {fileID: 7632068963178020290, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_Name
