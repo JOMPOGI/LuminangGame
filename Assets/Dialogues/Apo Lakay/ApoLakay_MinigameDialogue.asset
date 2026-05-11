@@ -19,8 +19,8 @@ MonoBehaviour:
   translatedText: You are not very familiar with our local greetings. Would you like
     to learn and practice?
   animationTrigger: 
-  triggerEventName: StartMinigame
-  endEventName: 
+  triggerEventName: 
+  endEventName: StartMinigame
   choices:
   - choiceText: Yes
     nextNode: {fileID: 0}
