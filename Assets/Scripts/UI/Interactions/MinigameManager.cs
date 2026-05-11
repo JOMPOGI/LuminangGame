@@ -13,6 +13,9 @@ public class MinigameManager : MonoBehaviour
     [Tooltip("The container where minigame prefabs will be spawned (usually a Canvas).")]
     public Transform minigameContainer;
     
+    [Header("Events")]
+    public UnityEvent onMinigameComplete;
+    
     private GameObject _currentInstance;
     public bool IsMinigameActive => _currentInstance != null;
 
