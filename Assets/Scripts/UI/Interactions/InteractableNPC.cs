@@ -300,6 +300,20 @@ public class InteractableNPC : InteractableBase
         }
     }
 
+    /// <summary>
+    /// Helper to trigger a minigame. Drag a prefab into the UnityEvent slot!
+    /// </summary>
+    public void StartMinigame(GameObject minigamePrefab)
+    {
+        // Safety: ensure we exit any close-up cameras before showing the minigame
+        ExitCloseUp();
+
+        if (MinigameManager.Instance != null)
+        {
+            MinigameManager.Instance.StartMinigame(minigamePrefab);
+        }
+    }
+
     private IEnumerator LookAtRoutine(Transform target)
     {
         Vector3 direction = target.position - transform.position;

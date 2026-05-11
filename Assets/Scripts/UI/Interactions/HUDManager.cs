@@ -74,11 +74,12 @@ public class HUDManager : MonoBehaviour
     void Update()
     {
         // THE WATCHDOG LOGIC
-        // If the Lesson Panel is Active, or Dialogue is Active, we MUST hide the HUD.
+        // If the Lesson Panel, Minigame, or Dialogue is Active, we MUST hide the HUD.
         bool isLessonActive = (lessonPanel != null && lessonPanel.activeInHierarchy);
+        bool isMinigameActive = (MinigameManager.Instance != null && MinigameManager.Instance.IsMinigameActive);
         bool isDialogueActive = (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue);
 
-        bool shouldHideHUD = isLessonActive || isDialogueActive;
+        bool shouldHideHUD = isLessonActive || isMinigameActive || isDialogueActive;
         IsHUDAllowed = !shouldHideHUD;
 
         UpdateHUDVisibility(IsHUDAllowed);
