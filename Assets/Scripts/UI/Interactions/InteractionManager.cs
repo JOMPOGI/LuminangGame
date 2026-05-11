@@ -71,8 +71,10 @@ public class InteractionManager : MonoBehaviour
     {
         if (_playerTransform == null || talkButton == null) return;
 
-        // Hide button during dialogue
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue)
+        // Hide button during dialogue or if HUD is suppressed (Lessons, Mini-games, etc.)
+        bool isHUDSuppressed = HUDManager.Instance != null && !HUDManager.Instance.IsHUDAllowed;
+        
+        if ((DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue) || isHUDSuppressed)
         {
             talkButton.gameObject.SetActive(false);
             _currentNearest = null;
@@ -101,21 +103,19 @@ public class InteractionManager : MonoBehaviour
         {
             _currentNearest = nearest;
 
-            if (_currentNearest != null)
+        // Final visibility decision
+        bool isNearInteractable = _currentNearest != null;
+        bool shouldShowButton = isNearInteractable && !isHUDSuppressed;
+
+        if (talkButton.gameObject.activeSelf != shouldShowButton)
+        {
+            talkButton.gameObject.SetActive(shouldShowButton);
+            
+            if (shouldShowButton && buttonText != null)
             {
-                // We got near someone! Show button and update its text.
-                talkButton.gameObject.SetActive(true);
-                
-                if (buttonText != null)
-                {
-                    buttonText.text = _currentNearest.promptText;
-                }
+                buttonText.text = _currentNearest.promptText;
             }
-            else
-            {
-                // We walked away from everyone. Hide button.
-                talkButton.gameObject.SetActive(false);
-            }
+        }
         }
     }
 
