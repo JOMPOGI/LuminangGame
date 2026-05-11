@@ -26,6 +26,14 @@ public class CustomizationManager : MonoBehaviour
     public Sprite activeBackground;
     [Tooltip("Background sprite when item is not selected")]
     public Sprite inactiveBackground;
+    
+    [Header("Save Flow")]
+    public Button saveChangesButton;
+    public PortraitBooth portraitBooth;
+    public GameObject loadingOverlay;
+    public GenericModal modal;
+
+    private EquippedOutfitData originalOutfit;
 
     [System.Serializable]
     public class CategoryFolder
@@ -140,8 +148,12 @@ public class CustomizationManager : MonoBehaviour
             if (equippedData != null)
             {
                 characterManager.LoadOutfit(equippedData);
+                originalOutfit = equippedData;
             }
         }
+
+        if (saveChangesButton != null)
+            saveChangesButton.onClick.AddListener(OnSaveChangesClicked);
 
         // 3. Fetch inventory and build the UI
         await InitializeGallery();
@@ -335,4 +347,96 @@ public class CustomizationManager : MonoBehaviour
         }
         return null;
     }
+
+    #region Save Logic
+
+    private void OnSaveChangesClicked()
+    {
+        if (characterManager == null || modal == null) return;
+
+        EquippedOutfitData currentOutfit = characterManager.GetEquippedNames();
+
+        // Check if there are any changes
+        if (originalOutfit != null && currentOutfit.IsSameAs(originalOutfit))
+        {
+            modal.ShowAlert("You didn't change anything in your outfit.");
+            return;
+        }
+
+        // Ask for confirmation
+        modal.ShowConfirm(
+            "Are you sure you want to save these changes?",
+            "Yes",
+            () => _ = OnConfirmSave(currentOutfit),
+            "No",
+            null
+        );
+    }
+
+    private async System.Threading.Tasks.Task OnConfirmSave(EquippedOutfitData newOutfit)
+    {
+        if (loadingOverlay != null) loadingOverlay.SetActive(true);
+
+        try
+        {
+            var user = SupabaseManager.Instance.client.Auth.CurrentUser;
+            if (user == null) throw new System.Exception("User not logged in!");
+
+            // 1. Take snapshot and upload to Supabase Storage
+            if (portraitBooth != null && AvatarManager.Instance != null)
+            {
+                Debug.Log("[Customization] STEP 1: Triggering PortraitBooth setup...");
+                portraitBooth.SetupPortrait(newOutfit);
+                
+                if (portraitBooth.portraitTexture != null)
+                {
+                    Debug.Log($"[Customization] STEP 2: Uploading snapshot to Supabase (Texture: {portraitBooth.portraitTexture.name})...");
+                    string resultUrl = await AvatarManager.Instance.CaptureAndUpload(user.Id, portraitBooth.portraitTexture);
+                    
+                    if (string.IsNullOrEmpty(resultUrl))
+                    {
+                        Debug.LogError("[Customization] ERROR: CaptureAndUpload returned null or empty URL!");
+                    }
+                    else
+                    {
+                        Debug.Log($"[Customization] SUCCESS: Snapshot uploaded to {resultUrl}");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("[Customization] ERROR: portraitBooth.portraitTexture is NULL! Cannot take snapshot.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[Customization] SKIPPING Snapshot: portraitBooth={portraitBooth != null}, AvatarManager={AvatarManager.Instance != null}");
+            }
+
+            // 2. Update Equipped Outfit in Database
+            if (UserProfileManager.Instance != null)
+            {
+                Debug.Log("[Customization] STEP 3: Updating equipped_outfit in database...");
+                var profile = UserProfileManager.Instance.CurrentProfile;
+                profile.EquippedOutfit = newOutfit;
+                await UserProfileManager.Instance.UpdateProfile(profile);
+                Debug.Log("[Customization] SUCCESS: Database profile updated.");
+            }
+
+            // 3. Update local state
+            originalOutfit = newOutfit;
+
+            modal.ShowAlert("Changes saved successfully!");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("[Customization] Save error: " + ex.Message);
+            modal.ShowAlert("Something went wrong while saving: " + ex.Message);
+        }
+        finally
+        {
+            if (loadingOverlay != null) loadingOverlay.SetActive(false);
+        }
+    }
+
+    #endregion
 }

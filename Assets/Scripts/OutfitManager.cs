@@ -21,6 +21,16 @@ public class EquippedOutfitData
             { "Accessories", accessories }
         };
     }
+
+    public bool IsSameAs(EquippedOutfitData other)
+    {
+        if (other == null) return false;
+        return hair == other.hair &&
+               top == other.top &&
+               bottom == other.bottom &&
+               shoes == other.shoes &&
+               accessories == other.accessories;
+    }
 }
 
 public class OutfitManager : MonoBehaviour

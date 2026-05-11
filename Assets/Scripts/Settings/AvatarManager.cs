@@ -37,33 +37,43 @@ public class AvatarManager : MonoBehaviour
             RenderTexture.active = null;
 
             byte[] bytes = tex.EncodeToPNG();
+            Debug.Log($"[AvatarManager] Texture conversion complete. Byte count: {bytes.Length}");
             Destroy(tex); 
 
             // 2. Upload to Supabase Storage
             string fileName = $"{userId}.png";
             var storage = SupabaseManager.Instance.client.Storage.From(bucketName);
             
-            Debug.Log($"[AvatarManager] Attempting upload to bucket '{bucketName}' as '{fileName}'...");
-            await storage.Upload(bytes, fileName, new Supabase.Storage.FileOptions { Upsert = true });
+            Debug.Log($"[AvatarManager] Attempting upload to bucket '{bucketName}' as '{fileName}' (Upsert: True)...");
+            var uploadResponse = await storage.Upload(bytes, fileName, new Supabase.Storage.FileOptions { Upsert = true });
+            
+            if (uploadResponse == null)
+            {
+                Debug.LogError("[AvatarManager] FAILED: Storage.Upload returned a null response.");
+                return null;
+            }
             
             // 3. Get the Public URL
             string publicUrl = storage.GetPublicUrl(fileName);
-            Debug.Log($"[AvatarManager] UPLOAD SUCCESS! URL: {publicUrl}");
+            
+            // Add a timestamp to the URL to force clients (like Unity) to bypass their cache
+            string cacheBusterUrl = $"{publicUrl}?t={System.DateTime.Now.Ticks}";
+            Debug.Log($"[AvatarManager] UPLOAD SUCCESS! Public URL: {publicUrl}");
 
             // 4. Update the Profile table
             if (UserProfileManager.Instance != null && UserProfileManager.Instance.CurrentProfile != null)
             {
                 var profile = UserProfileManager.Instance.CurrentProfile;
-                profile.AvatarUrl = publicUrl;
+                profile.AvatarUrl = cacheBusterUrl; // Use the cache-buster URL
                 await UserProfileManager.Instance.UpdateProfile(profile);
-                Debug.Log("[AvatarManager] Database updated with new Avatar URL.");
+                Debug.Log($"[AvatarManager] Database updated with new Avatar URL (Cache-Busted: {cacheBusterUrl})");
             }
             else
             {
-                Debug.LogWarning("[AvatarManager] UserProfileManager.CurrentProfile is null. URL saved to storage but not to database profile.");
+                Debug.LogWarning("[AvatarManager] UserProfileManager.CurrentProfile is null. Profile table not updated.");
             }
 
-            return publicUrl;
+            return cacheBusterUrl;
         }
         catch (System.Exception ex)
         {
