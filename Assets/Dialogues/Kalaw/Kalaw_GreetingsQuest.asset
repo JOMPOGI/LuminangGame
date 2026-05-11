@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "No saanmo ida nga umiso a kablaawan\u2026 saandanto a makipartisipar."
-  translatedText: "\u201CIf you don\u2019t greet them properly\u2026 they won\u2019t
-    participate.\u201D"
+  dialogueText: Makisaritaka kadagiti umili ditoy ken ammuem no siasino ti agsagsagana
+    para iti pista.
+  translatedText: Speak with the townsfolk here and learn who is preparing for the
+    festival.
   animationTrigger: 
   triggerEventName: 
+  endEventName: 
   choices: []

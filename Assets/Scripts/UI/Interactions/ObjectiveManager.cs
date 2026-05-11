@@ -72,32 +72,76 @@ public class ObjectiveManager : MonoBehaviour
 
     public void SetObjective(string newObjective)
     {
+        _isCounterActive = false; // Disable any active counter when a new static objective is set
+        UpdateObjectiveInternal(newObjective);
+    }
+
+    private void UpdateObjectiveInternal(string newObjective)
+    {
         string oldObjective = CurrentObjective;
         string cleanObjective = newObjective != null ? newObjective.Trim() : "";
 
-        // Standard Redundancy Check
-        if (cleanObjective == oldObjective)
-        {
-            Debug.Log($"[ObjectiveManager] Update skipped. New objective matches current: '{cleanObjective}'");
-            return;
-        }
+        if (cleanObjective == oldObjective) return;
 
-        Debug.Log($"[ObjectiveManager] EVENT: Objective changing FROM '{oldObjective}' TO '{cleanObjective}'");
-        
         CurrentObjective = cleanObjective;
-        if (objectiveText != null) 
-        {
-            objectiveText.text = cleanObjective;
-            Debug.Log($"[ObjectiveManager] UI Component '{objectiveText.name}' text property updated.");
-        }
-        else
-        {
-            Debug.LogError("[ObjectiveManager] FAILED: Objective Text component is missing or unassigned!");
-        }
+        if (objectiveText != null) objectiveText.text = cleanObjective;
         
         UpdateVisibility();
         OnObjectiveChanged?.Invoke(cleanObjective);
     }
+
+    [Header("Counter Logic")]
+    public UnityEngine.Events.UnityEvent onCounterComplete;
+    private string _counterPrefix;
+    private string _completionText;
+    private int _currentCount;
+    private int _targetCount;
+    private bool _isCounterActive;
+
+    /// <summary>
+    /// Starts a multi-step objective with a counter.
+    /// Example: SetCounterObjective("Find Organizers", 6, "Talk to Apo Lakay");
+    /// </summary>
+    public void SetCounterObjective(string prefix, int target, string completionText = "")
+    {
+        _counterPrefix = prefix;
+        _targetCount = target;
+        _completionText = completionText;
+        _currentCount = 0;
+        _isCounterActive = true;
+        RefreshCounterUI();
+    }
+
+    /// <summary>
+    /// Increases the counter by 1. If target reached, transitions to completion text.
+    /// </summary>
+    public void AddProgress()
+    {
+        if (!_isCounterActive) return;
+        _currentCount++;
+        
+        if (_currentCount >= _targetCount)
+        {
+            _isCounterActive = false;
+            if (!string.IsNullOrEmpty(_completionText))
+            {
+                UpdateObjectiveInternal(_completionText);
+            }
+            onCounterComplete?.Invoke();
+        }
+        else
+        {
+            RefreshCounterUI();
+        }
+    }
+
+    private void RefreshCounterUI()
+    {
+        UpdateObjectiveInternal($"{_counterPrefix} ({_currentCount}/{_targetCount})");
+    }
+
+    public int GetCurrentCount() => _currentCount;
+    public int GetTargetCount() => _targetCount;
 
     private void UpdateVisibility()
     {

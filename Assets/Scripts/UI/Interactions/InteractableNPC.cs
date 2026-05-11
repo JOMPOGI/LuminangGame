@@ -9,6 +9,11 @@ public class InteractableNPC : InteractableBase
     [Tooltip("The casual dialogue used when the NPC has nothing specific to do with the current quest.")]
     public DialogueNode defaultDialogue;
 
+    [Header("Quest Integration")]
+    [Tooltip("Check this if this NPC is one of the targets for a scavenger hunt/greeting quest.")]
+    public bool isOrganizer = false;
+    private bool _hasBeenGreeted = false;
+
     [System.Serializable]
     public class QuestDialogue
     {
@@ -311,6 +316,22 @@ public class InteractableNPC : InteractableBase
         if (MinigameManager.Instance != null)
         {
             MinigameManager.Instance.StartMinigame(minigamePrefab);
+        }
+    }
+
+    /// <summary>
+    /// Call this via Dialogue Events to progress the 'Identify Organizers' quest.
+    /// Only works if 'isOrganizer' is checked and they haven't been greeted yet.
+    /// </summary>
+    public void GreetOrganizer()
+    {
+        if (isOrganizer && !_hasBeenGreeted)
+        {
+            _hasBeenGreeted = true;
+            if (ObjectiveManager.Instance != null)
+            {
+                ObjectiveManager.Instance.AddProgress();
+            }
         }
     }
 

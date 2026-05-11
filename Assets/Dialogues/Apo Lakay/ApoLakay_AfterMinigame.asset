@@ -18,4 +18,9 @@ MonoBehaviour:
   translatedText: Now you have learned how our greetings work.
   animationTrigger: 
   triggerEventName: 
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: a6de08ed07ad3a54a9e51b7a1146204a, type: 2}
+    isWrong: 0
+    choiceEvent: 
