@@ -29,7 +29,7 @@ public class HUDManager : MonoBehaviour
     [Header("Overlays to Watch")]
     [Tooltip("If this is Active, HUD will hide.")]
     public GameObject lessonPanel;
-
+    private bool _isHiding = false;
     private bool _isInitialized = false;
 
     /// <summary>
@@ -95,25 +95,42 @@ public class HUDManager : MonoBehaviour
         if (objectiveText != null && objectiveText.activeSelf != visible) 
             objectiveText.SetActive(visible);
 
+        // ONLY show the Dialogue Root if we are actually in a dialogue 
+        // AND not currently in a lesson.
+        bool isDialogueActive = (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue);
+        bool isLessonActive = (lessonPanel != null && lessonPanel.activeInHierarchy);
+        bool showDialogueRoot = isDialogueActive && !isLessonActive;
+
+        if (dialogueRoot != null && dialogueRoot.activeSelf != showDialogueRoot)
+            dialogueRoot.SetActive(showDialogueRoot);
+
         // If HUD is hidden, force talk button off. 
         // If HUD is allowed, let InteractionManager decide.
         if (!visible && talkButton != null && talkButton.activeSelf)
             talkButton.SetActive(false);
 
         // Sync Dimmer - ONLY show dimmer if the LESSON is active. 
-        // We don't want the dimmer for regular dialogues.
-        bool isLessonCurrentlyActive = (lessonPanel != null && lessonPanel.activeInHierarchy); 
-
-        if (isLessonCurrentlyActive && globalDimmer != null && !globalDimmer.activeSelf)
+        if (isLessonActive && globalDimmer != null && !globalDimmer.activeSelf)
+        {
             ShowDimmer(true);
-        else if (!isLessonCurrentlyActive && globalDimmer != null && globalDimmer.activeSelf)
+        }
+        else if (!isLessonActive && globalDimmer != null && globalDimmer.activeSelf && !_isHiding)
+        {
             ShowDimmer(false);
+        }
             
         // Sync Objective Manager
         if (ObjectiveManager.Instance != null)
         {
             if (visible) ObjectiveManager.Instance.Show();
             else ObjectiveManager.Instance.Hide();
+        }
+
+        // FORCE INPUT REFRESH (Fixes stuck camera joysticks on mobile)
+        if (visible)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
@@ -122,15 +139,20 @@ public class HUDManager : MonoBehaviour
         if (globalDimmer == null) return;
         
         StopAllCoroutines();
-        if (show) globalDimmer.SetActive(true);
         StartCoroutine(FadeDimmer(show, duration));
     }
 
     private IEnumerator FadeDimmer(bool show, float duration)
     {
+        if (_dimmerCG == null) yield break;
+        
+        if (!show) _isHiding = true;
+
         float target = show ? 1f : 0f;
         float start = _dimmerCG.alpha;
         float elapsed = 0f;
+
+        if (show) globalDimmer.SetActive(true);
 
         while (elapsed < duration)
         {
@@ -140,6 +162,10 @@ public class HUDManager : MonoBehaviour
         }
 
         _dimmerCG.alpha = target;
-        if (!show) globalDimmer.SetActive(false);
+        if (!show) 
+        {
+            globalDimmer.SetActive(false);
+            _isHiding = false;
+        }
     }
 }

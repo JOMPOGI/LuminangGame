@@ -97,6 +97,10 @@ public class LessonManager : MonoBehaviour
         if (!show)
         {
             lessonPanel.SetActive(false); // THE TRIGGER FOR THE WATCHDOG
+
+            // Re-enable the interaction system so we can talk to NPCs again!
+            if (InteractionManager.Instance != null) 
+                InteractionManager.Instance.enabled = true;
         }
     }
 }
