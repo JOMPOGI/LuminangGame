@@ -286,6 +286,20 @@ public class InteractableNPC : InteractableBase
         }
     }
 
+    /// <summary>
+    /// Helper to trigger the lesson panel. Can be called via Dialogue Events.
+    /// </summary>
+    public void StartLesson()
+    {
+        // Safety: ensure we exit any close-up cameras before showing the lesson
+        ExitCloseUp();
+
+        if (LessonManager.Instance != null)
+        {
+            LessonManager.Instance.ShowLesson();
+        }
+    }
+
     private IEnumerator LookAtRoutine(Transform target)
     {
         Vector3 direction = target.position - transform.position;

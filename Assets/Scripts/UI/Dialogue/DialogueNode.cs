@@ -22,8 +22,10 @@ public class DialogueNode : ScriptableObject
     [Tooltip("Trigger name to send to the NPC's Animator (e.g., 'DoPointing'). Leave empty for no animation.")]
     public string animationTrigger;
 
-    [Tooltip("An event string to broadcast to the NPC (e.g., 'TeleportKalaw'). The NPC can listen for this and trigger UnityEvents in the scene.")]
+    [Tooltip("Event fired instantly when this node starts (e.g., Camera Zoom).")]
     public string triggerEventName;
+    [Tooltip("Event fired only after this node is completed (e.g., Start Lesson).")]
+    public string endEventName;
 
 
     [Header("Player Options")]

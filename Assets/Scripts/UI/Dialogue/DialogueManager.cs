@@ -28,6 +28,7 @@ public class DialogueManager : MonoBehaviour
     private bool _navigatingBack = false;
 
     public bool CanGoBack => _nodeHistory.Count > 0;
+    private string _pendingEventName;
 
     void Awake()
     {
@@ -74,11 +75,14 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(node.animationTrigger) && _currentNPCAnimator != null)
             _currentNPCAnimator.SetTrigger(node.animationTrigger);
 
-        // 1.5 Fire custom scene event (if specified)
+        // 1.5 Fire Start Event (Immediate)
         if (!string.IsNullOrEmpty(node.triggerEventName) && _currentNPC != null)
         {
             _currentNPC.HandleDialogueEvent(node.triggerEventName);
         }
+
+        // 1.6 Store End Event to fire when this node is COMPLETED
+        _pendingEventName = node.endEventName;
 
         // 2. Display UI and update nav buttons
         if (uiController != null)
@@ -106,9 +110,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (choice == null)
         {
+            InteractableNPC npcToNotify = _currentNPC; // Cache the NPC before cleanup
             EndDialogue();
+            FirePendingEvent(npcToNotify); 
             return;
         }
+
+        FirePendingEvent(_currentNPC); 
 
         if (choice.isWrong && _currentNPC != null)
         {
@@ -183,6 +191,15 @@ public class DialogueManager : MonoBehaviour
 
         _currentNPCAnimator = null;
         _currentNPC = null;
+    }
+
+    private void FirePendingEvent(InteractableNPC npc)
+    {
+        if (!string.IsNullOrEmpty(_pendingEventName) && npc != null)
+        {
+            npc.HandleDialogueEvent(_pendingEventName);
+        }
+        _pendingEventName = null;
     }
 }
 

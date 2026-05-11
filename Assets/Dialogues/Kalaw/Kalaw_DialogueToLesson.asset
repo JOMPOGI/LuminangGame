@@ -18,4 +18,5 @@ MonoBehaviour:
   translatedText: But first, you should learn the basics.
   animationTrigger: 
   triggerEventName: 
+  endEventName: StartLesson
   choices: []

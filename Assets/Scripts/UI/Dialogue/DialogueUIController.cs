@@ -205,7 +205,25 @@ public class DialogueUIController : MonoBehaviour
             _lastPortrait = null;
         }
 
-        if (movementUI != null) movementUI.SetActive(!show);
+        if (movementUI != null)
+        {
+            if (show)
+            {
+                movementUI.SetActive(false);
+            }
+            else
+            {
+                // Only re-enable movement if a lesson IS NOT currently active
+                bool isLessonActive = LessonManager.Instance != null && 
+                                     LessonManager.Instance.lessonPanel != null && 
+                                     LessonManager.Instance.lessonPanel.activeInHierarchy;
+                                     
+                if (!isLessonActive)
+                {
+                    movementUI.SetActive(true);
+                }
+            }
+        }
     }
 
     public void HideDialogue()
