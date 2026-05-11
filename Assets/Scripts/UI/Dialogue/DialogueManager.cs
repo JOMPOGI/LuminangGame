@@ -118,6 +118,12 @@ public class DialogueManager : MonoBehaviour
 
         FirePendingEvent(_currentNPC); 
 
+        // ── Handle Choice-Specific Events ──
+        if (!string.IsNullOrEmpty(choice.choiceEvent) && _currentNPC != null)
+        {
+            _currentNPC.HandleDialogueEvent(choice.choiceEvent);
+        }
+
         if (choice.isWrong && _currentNPC != null)
         {
             StartCoroutine(HandleWrongAnswer(choice.nextNode));

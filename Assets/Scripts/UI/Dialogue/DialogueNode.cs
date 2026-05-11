@@ -44,4 +44,7 @@ public class DialogueChoice
 
     [Tooltip("Mark this true if this is a WRONG answer. The NPC's OnWrongAnswer event will fire before advancing to the next node.")]
     public bool isWrong;
+
+    [Tooltip("Event fired ONLY when this specific choice is selected (e.g., 'StartMinigame').")]
+    public string choiceEvent;
 }
