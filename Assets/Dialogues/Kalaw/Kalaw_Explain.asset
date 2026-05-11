@@ -21,4 +21,8 @@ MonoBehaviour:
     more welcoming."
   animationTrigger: 
   triggerEventName: 
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: 4f42c80fc24c17543aea3bbbf29c29e5, type: 2}
+    isWrong: 0
