@@ -718,8 +718,8 @@ MonoBehaviour:
   isOrganizer: 1
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 3e061d565bb85e241b2ebaf9fe34a120, type: 2}
-  npcAnimator: {fileID: 0}
+    dialogueNode: {fileID: 11400000, guid: 4a4ec42db90283e40904e195cda05229, type: 2}
+  npcAnimator: {fileID: 9125334}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   OnDialogueEnd:
@@ -727,7 +727,19 @@ MonoBehaviour:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9125334}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -745,6 +757,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &9125334 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e34bf874f1591b842b5ea33c1de43b01, type: 3}
+  m_PrefabInstance: {fileID: 1344493506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &11475984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13074,6 +13091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116389354}
   - component: {fileID: 116389355}
+  - component: {fileID: 116389356}
   m_Layer: 3
   m_Name: MarketSpot
   m_TagString: Untagged
@@ -13122,6 +13140,40 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 6b8c000f298b92e42b02fceb4216dc66, type: 2}
           m_ObjectArgumentAssemblyTypeName: DialogueNode, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &116389356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116389353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503c5409463abbf48a5d96c14017ba66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProximityDisappear
+  requiredObjective: Continue towards the market
+  triggerDistance: 3
+  playerTag: Player
+  dialogueToStart: {fileID: 0}
+  npcAnimator: {fileID: 0}
+  npcReference: {fileID: 0}
+  newObjective: 
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 116389353}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -50566,7 +50618,7 @@ MonoBehaviour:
   isOrganizer: 1
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 8651c1ea278fc4e4992ceef18104a52e, type: 2}
+    dialogueNode: {fileID: 11400000, guid: 02274ab562909d54788aabc709b40896, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -50575,7 +50627,19 @@ MonoBehaviour:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 410554194}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -50593,6 +50657,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &410554194 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e102eb629daf9a5409e126cdc8324420, type: 3}
+  m_PrefabInstance: {fileID: 410554191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &411289458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136028,8 +136097,8 @@ MonoBehaviour:
   isOrganizer: 1
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 23b1f2e1c1da4a4478cd8d9ec79201ec, type: 2}
-  npcAnimator: {fileID: 0}
+    dialogueNode: {fileID: 11400000, guid: cc06d2b0e306e6e4e99aaa0c08c734ca, type: 2}
+  npcAnimator: {fileID: 1067440871}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   OnDialogueEnd:
@@ -136037,7 +136106,19 @@ MonoBehaviour:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1067440871}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -136055,6 +136136,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1067440871 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d8a568f620480d044a765fb9fdad3571, type: 3}
+  m_PrefabInstance: {fileID: 370970961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1068734213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138117,8 +138203,8 @@ MonoBehaviour:
   isOrganizer: 1
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 8ce3c008ca694f5448e1b833e329548a, type: 2}
-  npcAnimator: {fileID: 0}
+    dialogueNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
+  npcAnimator: {fileID: 1079974222}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   OnDialogueEnd:
@@ -138126,7 +138212,19 @@ MonoBehaviour:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1079974222}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -138144,6 +138242,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1079974222 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
+  m_PrefabInstance: {fileID: 1079974219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1080167236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207985,8 +208088,8 @@ MonoBehaviour:
   isOrganizer: 1
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 8bd5270421160f74f92a0bfefa9102eb, type: 2}
-  npcAnimator: {fileID: 0}
+    dialogueNode: {fileID: 11400000, guid: 7754af0d1a645ed4aaee66fbd3175a2e, type: 2}
+  npcAnimator: {fileID: 1653427253}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   OnDialogueEnd:
@@ -207994,7 +208097,19 @@ MonoBehaviour:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1653427253}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -208012,6 +208127,11 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1653427253 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 6fb8df496115f024e891e49ec5cf8529, type: 3}
+  m_PrefabInstance: {fileID: 1653427249}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1653467932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267921,7 +268041,7 @@ MonoBehaviour:
   isOrganizer: 1
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: bdb5ae1cbd9a1e54fbd317afacd65bd4, type: 2}
+    dialogueNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
   npcAnimator: {fileID: 2094566722}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -267930,7 +268050,19 @@ MonoBehaviour:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2094566722}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:

@@ -17,7 +17,7 @@ MonoBehaviour:
   dialogueText: Kumusta. Ti nagan ko ket Mang Lance. Isaganaak ti lugar para iti
     pista.
   translatedText: Hello. My name is Mang Lance. I prepare the place for the festival.
-  animationTrigger: 
+  animationTrigger: Bow
   triggerEventName: 
   endEventName: GreetOrganizer
   choices: []

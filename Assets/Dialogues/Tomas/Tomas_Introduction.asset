@@ -16,7 +16,7 @@ MonoBehaviour:
   speakerPortrait: {fileID: 0}
   dialogueText: Naimbag nga aldaw met. Ti nagan ko ket Tomas. Iurnosko dagiti dekorasion.
   translatedText: Good day as well. My name is Tomas. I arrange the decorations.
-  animationTrigger: 
+  animationTrigger: StandingGreet
   triggerEventName: 
   endEventName: GreetOrganizer
   choices: []

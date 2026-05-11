@@ -10,13 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
-  m_Name: Tala_Introduction
+  m_Name: Tomas_Quest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: Tala
+  speakerName: Tomas
   speakerPortrait: {fileID: 0}
-  dialogueText: Ti nagan ko ket Tala. Agpraktisak iti musika para iti pista.
-  translatedText: "My name is Tala. I\u2019m practicing music for the festival."
+  dialogueText: Kumusta!
+  translatedText: "Hello!\t"
   animationTrigger: 
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: nasayaatak
+    nextNode: {fileID: 11400000}
+    isWrong: 1
+    choiceEvent: 
+  - choiceText: kumusta!
+    nextNode: {fileID: 11400000, guid: 8651c1ea278fc4e4992ceef18104a52e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+  - choiceText: pakada
+    nextNode: {fileID: 11400000}
+    isWrong: 1
+    choiceEvent: 

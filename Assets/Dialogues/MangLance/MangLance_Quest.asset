@@ -10,27 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
-  m_Name: Lito_Introduction
+  m_Name: MangLance_Quest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: Lito
-  speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: Naimbag a bigat met. Ti nagan ko ket Lito. Tumulongak iti pagsasagana
-    para iti pista. Masapulakon nga agawid itan, pakada!
-  translatedText: "Good morning to you too. My name is Lito. I\u2019m helping prepare
-    for the festival. I need to get going now, goodbye!"
-  animationTrigger: Waving
+  speakerName: Mang Lance
+  speakerPortrait: {fileID: 0}
+  dialogueText: Nalpasen ti bigat! Adu pay ti trabaho nga aramiden.
+  translatedText: It's already past morrning! There's so much work to do.
+  animationTrigger: 
   triggerEventName: 
-  endEventName: GreetOrganizer
+  endEventName: 
   choices:
-  - choiceText: naimbag a rabii
+  - choiceText: 'naimbag a rabii  '
     nextNode: {fileID: 11400000}
     isWrong: 1
     choiceEvent: 
-  - choiceText: naimbag a malem
+  - choiceText: nasayaatak
     nextNode: {fileID: 11400000}
     isWrong: 1
     choiceEvent: 
-  - choiceText: pakada
-    nextNode: {fileID: 0}
+  - choiceText: 'naimbag a malem '
+    nextNode: {fileID: 11400000, guid: 23b1f2e1c1da4a4478cd8d9ec79201ec, type: 2}
     isWrong: 0
     choiceEvent: 
