@@ -18,4 +18,5 @@ MonoBehaviour:
   translatedText: Good day as well. My name is Tomas. I arrange the decorations.
   animationTrigger: 
   triggerEventName: 
+  endEventName: GreetOrganizer
   choices: []

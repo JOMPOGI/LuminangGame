@@ -18,6 +18,7 @@ MonoBehaviour:
     pista.
   translatedText: "Good morning to you too. My name is Lito. I\u2019m one of the
     people helping with the festival."
-  animationTrigger: 
+  animationTrigger: Waving
   triggerEventName: 
+  endEventName: GreetOrganizer
   choices: []

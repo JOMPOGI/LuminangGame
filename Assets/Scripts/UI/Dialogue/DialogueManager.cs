@@ -110,9 +110,9 @@ public class DialogueManager : MonoBehaviour
     {
         if (choice == null)
         {
-            InteractableNPC npcToNotify = _currentNPC; // Cache the NPC before cleanup
+            // Fire the event BEFORE we clean up the NPC reference
+            FirePendingEvent(_currentNPC);
             EndDialogue();
-            FirePendingEvent(npcToNotify); 
             return;
         }
 
@@ -201,9 +201,13 @@ public class DialogueManager : MonoBehaviour
 
     private void FirePendingEvent(InteractableNPC npc)
     {
-        if (!string.IsNullOrEmpty(_pendingEventName) && npc != null)
+        if (!string.IsNullOrEmpty(_pendingEventName))
         {
-            npc.HandleDialogueEvent(_pendingEventName);
+            Debug.Log($"[DialogueManager] FirePendingEvent: Sending '{_pendingEventName}' to NPC: {(npc != null ? npc.name : "NULL")}");
+            if (npc != null)
+            {
+                npc.HandleDialogueEvent(_pendingEventName);
+            }
         }
         _pendingEventName = null;
     }

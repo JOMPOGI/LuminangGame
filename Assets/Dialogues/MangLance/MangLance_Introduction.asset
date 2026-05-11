@@ -19,4 +19,5 @@ MonoBehaviour:
   translatedText: Hello. My name is Mang Lance. I prepare the place for the festival.
   animationTrigger: 
   triggerEventName: 
+  endEventName: GreetOrganizer
   choices: []

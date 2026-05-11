@@ -20,5 +20,9 @@ MonoBehaviour:
     festival.
   animationTrigger: 
   triggerEventName: 
-  endEventName: 
-  choices: []
+  endEventName: StartScavengerHunt
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 0}
+    isWrong: 0
+    choiceEvent: 

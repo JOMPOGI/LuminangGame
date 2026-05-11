@@ -53,16 +53,14 @@ public class InteractableNPC : InteractableBase
 
     private DialogueNode GetCurrentDialogueNode()
     {
-        // 1. Check if we have any quest-specific dialogues active
-        if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(ObjectiveManager.Instance.CurrentObjective))
+        if (ObjectiveManager.Instance != null && questDialogues != null)
         {
-            string currentObj = ObjectiveManager.Instance.CurrentObjective.Trim();
-            
+            string currentObj = ObjectiveManager.Instance.CurrentObjective;
             foreach (var qd in questDialogues)
             {
-                if (qd.dialogueNode != null && qd.requiredObjective.Trim() == currentObj)
+                if (currentObj != null && currentObj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    Debug.Log($"[InteractableNPC] Found quest-matching dialogue for objective: '{currentObj}'");
+                    Debug.Log($"[{gameObject.name}] Match found! Using Quest Dialogue: {qd.dialogueNode.name}");
                     return qd.dialogueNode;
                 }
             }
@@ -325,9 +323,11 @@ public class InteractableNPC : InteractableBase
     /// </summary>
     public void GreetOrganizer()
     {
+        Debug.Log($"[{gameObject.name}] GreetOrganizer called! isOrganizer: {isOrganizer}, hasBeenGreeted: {_hasBeenGreeted}");
         if (isOrganizer && !_hasBeenGreeted)
         {
             _hasBeenGreeted = true;
+            Debug.Log($"[{gameObject.name}] Success! Adding progress to ObjectiveManager.");
             if (ObjectiveManager.Instance != null)
             {
                 ObjectiveManager.Instance.AddProgress();

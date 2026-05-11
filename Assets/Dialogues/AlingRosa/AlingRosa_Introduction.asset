@@ -20,4 +20,5 @@ MonoBehaviour:
     food for the festival."
   animationTrigger: 
   triggerEventName: 
+  endEventName: GreetOrganizer
   choices: []

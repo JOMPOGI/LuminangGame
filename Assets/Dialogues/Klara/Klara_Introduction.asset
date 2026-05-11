@@ -17,6 +17,7 @@ MonoBehaviour:
   dialogueText: Naimbag nga aldaw. Ti nagan ko ket Klara. Agaramidak kadagiti badbadong
     para iti pista.
   translatedText: Good day. My name is Klara. I make clothes for the festival.
-  animationTrigger: 
+  animationTrigger: Thankful
   triggerEventName: 
+  endEventName: GreetOrganizer
   choices: []

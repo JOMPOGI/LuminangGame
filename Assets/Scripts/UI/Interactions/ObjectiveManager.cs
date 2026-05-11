@@ -53,10 +53,18 @@ public class ObjectiveManager : MonoBehaviour
             else hiddenPos.y += slideDistance;
             _rectTransform.anchoredPosition = hiddenPos;
 
-            // Grab initial text if it exists
+            // Grab initial text and strip "Objective: " if it exists to keep the ID clean
             if (!string.IsNullOrEmpty(objectiveText.text))
             {
-                CurrentObjective = objectiveText.text.Trim();
+                string raw = objectiveText.text.Trim();
+                if (raw.StartsWith("Objective:", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    CurrentObjective = raw.Substring("Objective:".Length).Trim();
+                }
+                else
+                {
+                    CurrentObjective = raw;
+                }
             }
             
             objectiveText.gameObject.SetActive(false);
@@ -84,10 +92,15 @@ public class ObjectiveManager : MonoBehaviour
         if (cleanObjective == oldObjective) return;
 
         CurrentObjective = cleanObjective;
-        if (objectiveText != null) objectiveText.text = cleanObjective;
+        if (objectiveText != null) 
+        {
+            objectiveText.text = string.IsNullOrEmpty(cleanObjective) ? "" : "Objective: " + cleanObjective;
+        }
+        
+        // Force an instant event trigger so Indicators hide/show immediately
+        OnObjectiveChanged?.Invoke(cleanObjective);
         
         UpdateVisibility();
-        OnObjectiveChanged?.Invoke(cleanObjective);
     }
 
     [Header("Counter Logic")]
@@ -99,14 +112,27 @@ public class ObjectiveManager : MonoBehaviour
     private bool _isCounterActive;
 
     /// <summary>
-    /// Starts a multi-step objective with a counter.
-    /// Example: SetCounterObjective("Find Organizers", 6, "Talk to Apo Lakay");
+    /// Starts a multi-step objective using a single string for UnityEvent compatibility.
+    /// Format: "Prefix ; Target ; CompletionText"
+    /// Example: "Find Organizers ; 6 ; Talk to Apo Lakay"
     /// </summary>
-    public void SetCounterObjective(string prefix, int target, string completionText = "")
+    public void SetCounterObjective(string data)
     {
+        string[] parts = data.Split(';');
+        if (parts.Length < 2) 
+        {
+            Debug.LogError("[ObjectiveManager] Invalid Counter Data! Format must be 'Prefix;Target;Completion'");
+            return;
+        }
+
+        string prefix = parts[0].Trim();
+        int target = 0;
+        int.TryParse(parts[1].Trim(), out target);
+        string completion = parts.Length > 2 ? parts[2].Trim() : "";
+
         _counterPrefix = prefix;
         _targetCount = target;
-        _completionText = completionText;
+        _completionText = completion;
         _currentCount = 0;
         _isCounterActive = true;
         RefreshCounterUI();

@@ -715,7 +715,10 @@ MonoBehaviour:
         m_CallState: 2
   interactionEnabled: 1
   defaultDialogue: {fileID: 11400000, guid: 570c2625e7c2ed4439b65cc848dd2392, type: 2}
-  questDialogues: []
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 3e061d565bb85e241b2ebaf9fe34a120, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -725,7 +728,23 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9125333}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &11475984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50480,8 +50499,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
-  questDialogues: []
+  defaultDialogue: {fileID: 11400000, guid: 1a4d784b1de96514991d9913767dd50c, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 8651c1ea278fc4e4992ceef18104a52e, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -50491,7 +50513,23 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 410554193}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &411289458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54427,8 +54465,9 @@ MonoBehaviour:
         m_CallState: 2
   interactionEnabled: 1
   defaultDialogue: {fileID: 11400000, guid: bcf1bbaa5650521438f1d67e069d2078, type: 2}
+  isOrganizer: 0
   questDialogues:
-  - requiredObjective: 'Objective: Talk to Apo Lakay'
+  - requiredObjective: Talk to Apo Lakay
     dialogueNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
@@ -54466,6 +54505,23 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventName: StartScavengerHunt
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2051801647}
+          m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
+          m_MethodName: SetCounterObjective
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Help Apo Lakay identify and greet all organizers properly
+              ; 6 ; Talk to Apo Lakay
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &435833960
@@ -63885,7 +63941,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 'Objective: Talk to Kalaw'
+          m_StringArgument: Talk to Kalaw
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 708777761}
@@ -74906,6 +74962,7 @@ MonoBehaviour:
         m_CallState: 2
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
+  isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
@@ -103979,7 +104036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
-  requiredObjective: 'Objective: Follow Kalaw'
+  requiredObjective: Follow Kalaw
   hoverSpeed: 3
   hoverAmount: 0.2
 --- !u!114 &798749208
@@ -103994,13 +104051,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503c5409463abbf48a5d96c14017ba66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityDisappear
-  requiredObjective: 'Objective: Follow Kalaw'
+  requiredObjective: Follow Kalaw
   triggerDistance: 2
   playerTag: Player
   dialogueToStart: {fileID: 11400000, guid: 4db65b13afdf8264083902eae92c1146, type: 2}
   npcAnimator: {fileID: 0}
   npcReference: {fileID: 708777761}
-  newObjective: 'Objective: Talk to Apo Lakay'
+  newObjective: Talk to Apo Lakay
   OnTriggered:
     m_PersistentCalls:
       m_Calls:
@@ -121620,6 +121677,7 @@ MonoBehaviour:
         m_CallState: 2
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
+  isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
@@ -135785,8 +135843,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
-  questDialogues: []
+  defaultDialogue: {fileID: 11400000, guid: e28db96506d121843a483179ca4b2d67, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 23b1f2e1c1da4a4478cd8d9ec79201ec, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -135796,7 +135857,23 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1067440870}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1068734213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137852,8 +137929,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
-  questDialogues: []
+  defaultDialogue: {fileID: 11400000, guid: 3d2590cb9b17e0947819fbe55378c8de, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 8ce3c008ca694f5448e1b833e329548a, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -137863,7 +137943,23 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1079974221}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1080167236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207701,8 +207797,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
-  questDialogues: []
+  defaultDialogue: {fileID: 11400000, guid: 10f49dd76c508ef42b44015428e11b74, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 8bd5270421160f74f92a0bfefa9102eb, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -207712,7 +207811,23 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1653427252}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1653467932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219316,6 +219431,7 @@ MonoBehaviour:
         m_CallState: 2
   interactionEnabled: 1
   defaultDialogue: {fileID: 0}
+  isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
@@ -226118,6 +226234,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3723907990790689190, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3729949230029647038, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -226201,6 +226321,10 @@ PrefabInstance:
     - target: {fileID: 5275349528589722689, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275349528589722689, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00075486704
       objectReference: {fileID: 0}
     - target: {fileID: 5342835589975094289, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
@@ -262123,6 +262247,9 @@ MonoBehaviour:
   fadeDuration: 2
   slideDistance: 10000
   slideHorizontal: 1
+  onCounterComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2055230823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267443,9 +267570,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
-  questDialogues: []
-  npcAnimator: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: feb3fbad686cc7143a0a8fa41a4b5131, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: bdb5ae1cbd9a1e54fbd317afacd65bd4, type: 2}
+  npcAnimator: {fileID: 2094566722}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   OnDialogueEnd:
@@ -267454,7 +267584,28 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2094566721}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!95 &2094566722 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
+  m_PrefabInstance: {fileID: 1211836853}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2096570611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274268,7 +274419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.size
@@ -274279,12 +274430,16 @@ PrefabInstance:
       value: StartLesson
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].eventName
+      value: StartScavengerHunt
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].dialogueNode
       value: 
       objectReference: {fileID: 11400000, guid: 56269e7c91865914cad6b4f61ae0f875, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].requiredObjective
-      value: 'Objective: Talk to Kalaw'
+      value: Talk to Kalaw
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.size
@@ -274327,6 +274482,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -274343,6 +274502,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 708777761}
@@ -274355,11 +274518,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 708777761}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2051801647}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[2].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
@@ -274383,6 +274554,10 @@ PrefabInstance:
       value: StartLesson
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCounterObjective
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: InteractableNPC, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -274395,6 +274570,10 @@ PrefabInstance:
       value: InteractableNPC, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ObjectiveManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
       objectReference: {fileID: 0}
@@ -274404,7 +274583,7 @@ PrefabInstance:
       objectReference: {fileID: 798749206}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
-      value: 'Objective: Follow Kalaw'
+      value: Follow Kalaw
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -274415,11 +274594,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Help Apo Lakay identify and greet all organizers properly ; 6 ; Talk
+        to Apo Lakay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Transform, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[2].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -275158,7 +275346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.014
+      value: 0.0139701255
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -275166,11 +275354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.043
+      value: 0.04298596
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5679934
+      value: 0.64456385
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.x
@@ -275178,7 +275366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.8230331
+      value: -0.76455057
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalRotation.z
@@ -275190,7 +275378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -110.779
+      value: -99.734
       objectReference: {fileID: 0}
     - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -275198,7 +275386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5986703779547906195, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: requiredObjective
-      value: 'Objective: Talk to Apo Lakay'
+      value: Talk to Apo Lakay
       objectReference: {fileID: 0}
     - target: {fileID: 7632068963178020290, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_Name

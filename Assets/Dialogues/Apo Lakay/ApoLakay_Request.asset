@@ -22,4 +22,9 @@ MonoBehaviour:
     to walk around."
   animationTrigger: 
   triggerEventName: 
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: 0bd85297b43fd4e41a1822a7a921cf69, type: 2}
+    isWrong: 0
+    choiceEvent: 
