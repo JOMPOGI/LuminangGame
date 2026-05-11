@@ -54376,6 +54376,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2553807149516344362}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1699755503}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 635ceb5bee18ddf4882e8104d7185890, type: 3}
       insertIndex: -1
@@ -74963,9 +74966,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: a4b9e65b71ff6f444bd594d6619076fa, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 327508cf834650b40bf8c440e6f6c905, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -74975,7 +74980,23 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: GreetOrganizer
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 604076425}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: GreetOrganizer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &604815071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214025,6 +214046,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5309137134337085826, guid: eb4a8597acee4a34e8db7f442534aa02, type: 3}
   m_PrefabInstance: {fileID: 1698986946}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1699755502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 434578659}
+    m_Modifications:
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3823068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3823068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3823068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0139701255
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.189
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.04298596
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.21395989
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9768425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -204.709
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986703779547906195, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: requiredObjective
+      value: Return to Apo Lakay
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632068963178020290, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+      propertyPath: m_Name
+      value: Quest_Indicator (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+--- !u!4 &1699755503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4595638383928166423, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
+  m_PrefabInstance: {fileID: 1699755502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1700822246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275392,7 +275491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5986703779547906195, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: requiredObjective
-      value: Return to Apo Lakay
+      value: Talk to Apo Lakay
       objectReference: {fileID: 0}
     - target: {fileID: 7632068963178020290, guid: d87ff840f516b1d4dbc9289a46fe1c97, type: 3}
       propertyPath: m_Name
