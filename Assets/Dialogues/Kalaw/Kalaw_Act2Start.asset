@@ -17,6 +17,6 @@ MonoBehaviour:
   dialogueText: Kasla adda kayat nga ibaga dayta ubing.
   translatedText: "It seems like the child have something to say.\t"
   animationTrigger: 
-  triggerEventName: 
-  endEventName: StartGirlQuest
+  triggerEventName: StartGirlQuest
+  endEventName: 
   choices: []

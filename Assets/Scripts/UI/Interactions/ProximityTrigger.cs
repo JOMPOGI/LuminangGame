@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class ProximityTrigger : MonoBehaviour
 {
     [Header("Settings")]
+    public Transform detectionPoint;
     public float triggerDistance = 3f;
     public string requiredObjective;
     public bool triggerOnce = true;
@@ -35,7 +36,8 @@ public class ProximityTrigger : MonoBehaviour
         }
 
         // Check distance
-        float distance = Vector3.Distance(transform.position, _player.position);
+        Transform pointToMatch = detectionPoint != null ? detectionPoint : transform;
+        float distance = Vector3.Distance(pointToMatch.position, _player.position);
         if (distance <= triggerDistance)
         {
             ExecuteTrigger();

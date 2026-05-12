@@ -15,7 +15,7 @@ MonoBehaviour:
   speakerName: Mang Lance
   speakerPortrait: {fileID: 0}
   dialogueText: Nalpasen ti bigat! Adu pay ti trabaho nga aramiden.
-  translatedText: It's already past morrning! There's so much work to do.
+  translatedText: It's already past morning! There's so much work to do.
   animationTrigger: 
   triggerEventName: 
   endEventName: 

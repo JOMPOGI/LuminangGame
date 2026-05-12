@@ -13127,6 +13127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c82413e1d9124a4ab69c0ffa68a549e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityTrigger
+  detectionPoint: {fileID: 1723003309}
   triggerDistance: 3
   requiredObjective: Continue towards the market
   triggerOnce: 1
