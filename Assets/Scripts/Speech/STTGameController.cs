@@ -140,7 +140,7 @@ public class STTGameController : MonoBehaviour
         }
         else
         {
-            // Fallback to Best Match for English detection
+            // Fallback to Best Match — show the closest regional phrase even if below 80%
             var (bestEntry, bestLang, accuracy, isEnglish) = PhraseEvaluator.Instance.FindBestMatch(result);
             string transcript = $"Heard: \"{result}\"";
 
@@ -149,6 +149,15 @@ public class STTGameController : MonoBehaviour
                 statusText.text = "English Detected!";
                 accuracyText.text = "---";
                 feedbackText.text = $"{transcript}\nPlease try saying it in {bestLang.ToUpper()}!";
+                retryButton.gameObject.SetActive(true);
+            }
+            else if (bestEntry != null)
+            {
+                // Show the closest match even if below 80%, so the player gets useful feedback
+                string feedback = PhraseEvaluator.Instance.GetFeedback(accuracy);
+                statusText.text = $"{bestLang.ToUpper()} Detected";
+                accuracyText.text = $"{accuracy:F0}% Match";
+                feedbackText.text = $"{transcript}\n{feedback}";
                 retryButton.gameObject.SetActive(true);
             }
             else

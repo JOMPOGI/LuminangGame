@@ -29,7 +29,7 @@ public class PhraseEvaluator : MonoBehaviour
         string normalizedInput = NormalizeText(input);
         string normalizedTarget = NormalizeText(target);
 
-        // 1. Word-level similarity (Always prioritizes the Target)
+        // 1. Word-level similarity — F1-style (penalizes extra wrong words)
         string[] inputWords = normalizedInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         string[] targetWords = normalizedTarget.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -37,11 +37,42 @@ public class PhraseEvaluator : MonoBehaviour
         foreach (var tWord in targetWords)
         {
             if (inputWords.Any(iWord => IsWordMatch(iWord, tWord)))
-            {
                 matchCount++;
-            }
         }
-        float wordAccuracy = (targetWords.Length == 0) ? 0 : ((float)matchCount / targetWords.Length) * 100f;
+
+        // SPECIAL CASE: If all target words appear IN ORDER in the input
+        // ONLY applies for multi-word phrases (2+ words) to avoid false matches
+        // e.g. "Ti nagan ko ket Maria Clara Santos" → target "Ti nagan ko ket" → 100%
+        // But single word "mangan" inside "kaya't ko ti mangan iti taraon" → NOT 100%
+        if (targetWords.Length >= 2)
+        {
+            int cursor = 0;
+            bool inOrder = true;
+            foreach (var tWord in targetWords)
+            {
+                bool found = false;
+                while (cursor < inputWords.Length)
+                {
+                    if (IsWordMatch(inputWords[cursor], tWord)) { found = true; cursor++; break; }
+                    cursor++;
+                }
+                if (!found) { inOrder = false; break; }
+            }
+            if (inOrder && matchCount == targetWords.Length) return 100f;
+        }
+
+        // Recall: how many target words were found
+        float recall = (targetWords.Length == 0) ? 0 : ((float)matchCount / targetWords.Length);
+
+        // Precision: of all input words, how many were actually correct
+        // (penalizes random extra words like "arabi")
+        float precision = (inputWords.Length == 0) ? 0 : ((float)matchCount / inputWords.Length);
+
+        // F1 blend — but give names/extra words a slight pass (max 1 extra word allowed without penalty)
+        int extraWords = Mathf.Max(0, inputWords.Length - targetWords.Length - 1);
+        float penalizedPrecision = (extraWords > 0) ? precision : 1.0f * recall; // only penalize beyond 1 extra word
+
+        float wordAccuracy = ((recall + Mathf.Min(precision, penalizedPrecision)) / 2f) * 100f;
 
         // 2. Character-level similarity (Sub-string focused)
         // If input is longer, we check if the target matches any part of the input
@@ -186,9 +217,9 @@ public class PhraseEvaluator : MonoBehaviour
                 if (string.IsNullOrEmpty(target) || target == "___") continue;
 
                 float score = CalculateAccuracy(input, target);
-                
-                // If it's a strong match, add to list
-                if (score >= 80f) 
+
+                // Must score at least 65% to be considered a valid match
+                if (score >= 65f)
                 {
                     matches.Add((entry, lang, score));
                 }
