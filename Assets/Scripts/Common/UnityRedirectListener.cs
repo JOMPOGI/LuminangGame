@@ -78,15 +78,68 @@ public class UnityRedirectListener : MonoBehaviour
             // WE NEED JAVASCRIPT: Browsers don't send the '#fragment' to the server.
             // This script reloads the page once, moving the token into the '?query' so we can read it.
             string responseString = @"
-                <html><body>
-                <script>
-                    if (window.location.hash && !window.location.search) {
-                        window.location.search = window.location.hash.substring(1);
-                    } else {
-                        document.body.innerHTML = '<h2>Success! You can now return to Luminang.</h2>';
-                    }
-                </script>
-                </body></html>";
+                <html>
+                <head>
+                    <meta name='viewport' content='width=device-width, initial-scale=1'>
+                    <style>
+                        body {
+                            background: radial-gradient(circle at center, #0a1020 0%, #03050a 100%);
+                            color: #e0d0b0;
+                            font-family: 'Cormorant Garamond', 'Georgia', serif;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            margin: 0;
+                            overflow: hidden;
+                        }
+                        .container {
+                            text-align: center;
+                            padding: 40px;
+                            background: rgba(20, 25, 40, 0.6);
+                            border: 1px solid rgba(180, 150, 100, 0.3);
+                            border-radius: 20px;
+                            backdrop-filter: blur(10px);
+                            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(180, 150, 100, 0.1);
+                            max-width: 400px;
+                            animation: fadeIn 1.2s ease-out;
+                        }
+                        h1 {
+                            font-size: 2.5rem;
+                            letter-spacing: 4px;
+                            margin-bottom: 10px;
+                            color: #c0a060;
+                            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+                        }
+                        p {
+                            font-size: 1.1rem;
+                            opacity: 0.8;
+                            line-height: 1.6;
+                        }
+                        .icon {
+                            font-size: 50px;
+                            margin-bottom: 20px;
+                            color: #c0a060;
+                            display: block;
+                        }
+                        @keyframes fadeIn {
+                            from { opacity: 0; transform: translateY(20px); }
+                            to { opacity: 1; transform: translateY(0); }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <h1 style='font-size: 1.8rem; letter-spacing: 2px; color: #e0d0b0;'>Authentication Successful</h1>
+                        <p style='color: #c0a060; font-size: 1.3rem; margin-top: 20px; letter-spacing: 1px;'>You may now return to the game.</p>
+                    </div>
+                    <script>
+                        if (window.location.hash && !window.location.search) {
+                            window.location.search = window.location.hash.substring(1);
+                        }
+                    </script>
+                </body>
+                </html>";
 
             byte[] buffer = Encoding.UTF8.GetBytes(responseString);
             context.Response.ContentLength64 = buffer.Length;

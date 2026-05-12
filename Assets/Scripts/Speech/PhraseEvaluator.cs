@@ -1,14 +1,25 @@
 using System;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
+
+public enum RegionMode { Ilokano, Cebuano, Maranao, BossBattle }
 
 public class PhraseEvaluator : MonoBehaviour
 {
     public static PhraseEvaluator Instance { get; private set; }
+    public RegionMode CurrentRegion { get; private set; } = RegionMode.BossBattle;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    public void SetRegion(RegionMode mode)
+    {
+        CurrentRegion = mode;
+        Debug.Log($"Speech Region set to: {mode}");
     }
 
     public float CalculateAccuracy(string input, string target)
@@ -18,18 +29,95 @@ public class PhraseEvaluator : MonoBehaviour
         string normalizedInput = NormalizeText(input);
         string normalizedTarget = NormalizeText(target);
 
-        int distance = LevenshteinDistance(normalizedInput, normalizedTarget);
-        int maxLength = Math.Max(normalizedInput.Length, normalizedTarget.Length);
+        // 1. Word-level similarity (Always prioritizes the Target)
+        string[] inputWords = normalizedInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        string[] targetWords = normalizedTarget.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-        if (maxLength == 0) return 100f;
+        int matchCount = 0;
+        foreach (var tWord in targetWords)
+        {
+            if (inputWords.Any(iWord => IsWordMatch(iWord, tWord)))
+            {
+                matchCount++;
+            }
+        }
+        float wordAccuracy = (targetWords.Length == 0) ? 0 : ((float)matchCount / targetWords.Length) * 100f;
 
-        float accuracy = (1.0f - (float)distance / maxLength) * 100f;
-        return Mathf.Clamp(accuracy, 0f, 100f);
+        // 2. Character-level similarity (Sub-string focused)
+        // If input is longer, we check if the target matches any part of the input
+        float charAccuracy = 0;
+        if (normalizedInput.Contains(normalizedTarget))
+        {
+            charAccuracy = 100f;
+        }
+        else
+        {
+            // Fallback to Levenshtein but only penalize based on target length
+            int charDistance = LevenshteinDistance(normalizedInput, normalizedTarget);
+            int denominator = normalizedTarget.Length; // Use target length to avoid penalizing extra words
+            charAccuracy = (1.0f - (float)charDistance / Math.Max(denominator, normalizedInput.Length)) * 100f;
+            
+            // If the target is a significant part of the input, give a boost
+            if (normalizedInput.Length > normalizedTarget.Length && normalizedInput.StartsWith(normalizedTarget))
+            {
+                charAccuracy = Mathf.Max(charAccuracy, 85f); // Partial match boost
+            }
+        }
+
+        // Blend them: If word accuracy is 100%, we lean heavily on that
+        if (wordAccuracy >= 99f) return 100f; 
+
+        return Mathf.Clamp((wordAccuracy * 0.6f) + (charAccuracy * 0.4f), 0f, 100f);
+    }
+
+    private bool IsWordMatch(string inputWord, string targetWord)
+    {
+        if (inputWord == targetWord) return true;
+        
+        // Allow minor spelling errors in words (max 1-2 chars depending on length)
+        int distance = LevenshteinDistance(inputWord, targetWord);
+        int threshold = targetWord.Length <= 3 ? 0 : (targetWord.Length <= 6 ? 1 : 2);
+        return distance <= threshold;
     }
 
     private string NormalizeText(string text)
     {
-        return text.ToLower().Trim();
+        // Remove punctuation and lowercase
+        char[] punctuation = { '.', ',', '?', '!', '"', '\'', '(', ')', '-', '_' };
+        string clean = text.ToLower();
+        foreach (char p in punctuation) clean = clean.Replace(p.ToString(), "");
+        
+        // Phonetic Fixes: Handle common English auto-corrections from STT engines
+        clean = PhoneticNormalize(clean);
+        
+        return clean.Trim();
+    }
+
+    private string PhoneticNormalize(string text)
+    {
+        // Dictionary of common English words that STT uses instead of Regional words
+        string[,] fixes = {
+            { "when", "wen" },     // Ilokano: Yes
+            { "mega", "mga" },     // General: Plural marker
+            { "hand", "haan" },    // Ilokano: No
+            { "too", "tu" },       // Future marker
+            { "who", "hu" },       // Maranao/Cebuano sounds
+            { "eye", "ay" },       // Maranao emphasis
+            { "can", "kan" }       // Maranao suffix
+        };
+
+        string result = text;
+        for (int i = 0; i < fixes.GetLength(0); i++)
+        {
+            // Use regex or word boundaries to avoid replacing parts of words
+            result = System.Text.RegularExpressions.Regex.Replace(
+                result, 
+                @"\b" + fixes[i, 0] + @"\b", 
+                fixes[i, 1], 
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase
+            );
+        }
+        return result;
     }
 
     private int LevenshteinDistance(string s, string t)
@@ -59,9 +147,56 @@ public class PhraseEvaluator : MonoBehaviour
 
     public string GetFeedback(float accuracy)
     {
-        if (accuracy >= 90f) return "Excellent";
-        if (accuracy >= 75f) return "Good";
-        return "Needs Practice";
+        if (accuracy >= 90f) return "Perfect match! Well done!";
+        if (accuracy >= 80f) return "Excellent! You passed!";
+        if (accuracy >= 65f) return "Great! You're getting it.";
+        if (accuracy >= 45f) return "Good effort! Try again.";
+        if (accuracy >= 25f) return "Not quite, but you're close.";
+        return "Keep practicing!";
+    }
+
+    /// <summary>
+    /// Searches the dataset for ALL phrases present in the input.
+    /// Useful for counting or long sentences.
+    /// </summary>
+    public List<(PhraseEntry entry, string language, float score)> FindAllMatches(string input)
+    {
+        var allPhrases = DatasetManager.Instance.GetAllPhrases();
+        var matches = new List<(PhraseEntry entry, string language, float score)>();
+        
+        // Filter regional languages based on Map/Region
+        List<string> regionalLangs = new List<string>();
+        switch (CurrentRegion)
+        {
+            case RegionMode.Ilokano: regionalLangs.Add("ilokano"); break;
+            case RegionMode.Cebuano: regionalLangs.Add("cebuano"); break;
+            case RegionMode.Maranao: regionalLangs.Add("maranao"); break;
+            case RegionMode.BossBattle: 
+                regionalLangs.Add("ilokano"); 
+                regionalLangs.Add("cebuano"); 
+                regionalLangs.Add("maranao"); 
+                break;
+        }
+
+        foreach (var entry in allPhrases)
+        {
+            foreach (var lang in regionalLangs)
+            {
+                string target = entry.GetPhrase(lang);
+                if (string.IsNullOrEmpty(target) || target == "___") continue;
+
+                float score = CalculateAccuracy(input, target);
+                
+                // If it's a strong match, add to list
+                if (score >= 80f) 
+                {
+                    matches.Add((entry, lang, score));
+                }
+            }
+        }
+
+        // Sort by position in the original input string to maintain counting order
+        return matches.OrderBy(m => input.ToLower().IndexOf(m.entry.GetPhrase(m.language).ToLower())).ToList();
     }
 
     /// <summary>
@@ -74,10 +209,21 @@ public class PhraseEvaluator : MonoBehaviour
         PhraseEntry bestEntry = null;
         string bestLang = "";
         float maxScore = -1f;
-        bool matchedEnglish = false;
 
-        // 1. First, search for Regional Languages
-        string[] regionalLangs = { "ilokano", "cebuano", "maranao" };
+        // 1. Prioritize Regional Languages based on Map/Region
+        List<string> regionalLangs = new List<string>();
+        switch (CurrentRegion)
+        {
+            case RegionMode.Ilokano: regionalLangs.Add("ilokano"); break;
+            case RegionMode.Cebuano: regionalLangs.Add("cebuano"); break;
+            case RegionMode.Maranao: regionalLangs.Add("maranao"); break;
+            case RegionMode.BossBattle: 
+                regionalLangs.Add("ilokano"); 
+                regionalLangs.Add("cebuano"); 
+                regionalLangs.Add("maranao"); 
+                break;
+        }
+
         foreach (var entry in allPhrases)
         {
             foreach (var lang in regionalLangs)
@@ -91,25 +237,26 @@ public class PhraseEvaluator : MonoBehaviour
                     maxScore = score;
                     bestEntry = entry;
                     bestLang = lang;
-                    matchedEnglish = false;
                 }
             }
         }
 
-        // 2. If no strong regional match, check if they said the English version
-        if (maxScore < 75f) 
+        // 2. Check English ONLY to detect if they are speaking English instead of regional
+        bool matchedEnglish = false;
+        float bestEnglishScore = 0f;
+        foreach (var entry in allPhrases)
         {
-            foreach (var entry in allPhrases)
+            float englishScore = CalculateAccuracy(input, entry.english);
+            if (englishScore > bestEnglishScore)
             {
-                float englishScore = CalculateAccuracy(input, entry.english);
-                if (englishScore > 85f && englishScore > maxScore)
-                {
-                    maxScore = englishScore;
-                    bestEntry = entry;
-                    bestLang = "english";
-                    matchedEnglish = true;
-                }
+                bestEnglishScore = englishScore;
             }
+        }
+
+        // If English is a much better match than regional, flag it
+        if (bestEnglishScore > 85f && bestEnglishScore > (maxScore + 15f))
+        {
+            matchedEnglish = true;
         }
 
         return (bestEntry, bestLang, maxScore, matchedEnglish);
