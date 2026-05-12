@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
   m_Name: Rayo_Introduction
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: 
+  speakerName: Rayo
   speakerPortrait: {fileID: 0}
   dialogueText: "Hi! It\u2019s my first time visiting this place."
   translatedText: Kumusta! Umunaak a mapan ditoy.
   animationTrigger: 
   triggerEventName: 
+  endEventName: 
   choices: []

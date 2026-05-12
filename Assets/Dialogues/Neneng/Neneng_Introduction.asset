@@ -19,4 +19,8 @@ MonoBehaviour:
   animationTrigger: Thankful
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: d4b4ab96f9e976c42b251106de0f09a3, type: 2}
+    isWrong: 0
+    choiceEvent: 

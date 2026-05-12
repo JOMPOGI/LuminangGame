@@ -18,7 +18,7 @@ MonoBehaviour:
     para iti pista. Masapulakon nga agawid itan, pakada!
   translatedText: "Good morning to you too. My name is Lito. I\u2019m helping prepare
     for the festival. I need to get going now, goodbye!"
-  animationTrigger: Waving
+  animationTrigger: Salute
   triggerEventName: 
   endEventName: GreetOrganizer
   choices:

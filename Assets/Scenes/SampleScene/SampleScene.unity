@@ -50620,7 +50620,7 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 02274ab562909d54788aabc709b40896, type: 2}
-  npcAnimator: {fileID: 0}
+  npcAnimator: {fileID: 410554194}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   OnDialogueEnd:
@@ -137676,6 +137676,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1741770516}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1741770518}
   m_SourcePrefab: {fileID: 100100000, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
 --- !u!4 &1076194819 stripped
 Transform:
@@ -219878,6 +219881,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1741770518}
+        m_TargetAssemblyTypeName: QuestIdleManager, Assembly-CSharp
+        m_MethodName: StopQuestIdle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactionEnabled: 1
   defaultDialogue: {fileID: 11400000, guid: bafe0241ece4ebe49825b8732cfd95fd, type: 2}
   isOrganizer: 0
@@ -219905,12 +219920,45 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents: []
+  dialogueEvents:
+  - eventName: StartMinigame
+    onEventTriggered:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1741770516}
+          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+          m_MethodName: StartMinigame
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 3011457477992818941, guid: 54b389b9c597f69468c288a753008f68, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!95 &1741770517 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
   m_PrefabInstance: {fileID: 1076194818}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1741770518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741770514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c5df1ea4dea1e4da34d841b465d427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestIdleManager
+  requiredObjective: Continue towards the market
+  stopObjective: Talk to the little girl
+  animationTrigger: Waving
+  stopAnimationTrigger: StopWaving
+  targetAnimator: {fileID: 1741770517}
 --- !u!1001 &1741848368
 PrefabInstance:
   m_ObjectHideFlags: 0

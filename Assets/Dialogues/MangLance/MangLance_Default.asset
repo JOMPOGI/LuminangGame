@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
   m_Name: MangLance_Default
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: MangLance
+  speakerName: Mang Lance
   speakerPortrait: {fileID: 0}
   dialogueText: Uray no nalaka laeng ti aldaw, masapul latta nga ammo tayo ti aginana
     ken agsubli iti banag a mangparagsak kadatayo.
@@ -20,4 +20,5 @@ MonoBehaviour:
     to the things that make us happy.
   animationTrigger: 
   triggerEventName: 
+  endEventName: 
   choices: []

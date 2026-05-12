@@ -18,7 +18,7 @@ MonoBehaviour:
     para iti pista. Namnamaek a makitakanto idiay.
   translatedText: "Impressive. My name is Aling Rosa. I\u2019m preparing food for
     the festival. I hope to see you there."
-  animationTrigger: 
+  animationTrigger: Agree
   triggerEventName: 
   endEventName: GreetOrganizer
   choices: []
