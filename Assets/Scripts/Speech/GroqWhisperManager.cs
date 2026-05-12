@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Linq;
 
 public class GroqWhisperManager : MonoBehaviour
 {
@@ -49,8 +50,36 @@ public class GroqWhisperManager : MonoBehaviour
         
         WWWForm form = new WWWForm();
         form.AddBinaryData("file", audioData, "speech.wav", "audio/wav");
-        form.AddField("model", "whisper-large-v3"); // Groq's supported Whisper model
+        form.AddField("model", "whisper-large-v3"); 
         form.AddField("response_format", "json");
+
+        // Add a prompt to help Whisper with regional language vocabulary
+        // We filter based on the current Map/Region to maximize accuracy.
+        var phrases = DatasetManager.Instance.GetAllPhrases();
+        var region = PhraseEvaluator.Instance.CurrentRegion;
+        
+        System.Collections.Generic.List<string> promptWords = new System.Collections.Generic.List<string> { 
+            "mga", "po", "kabsat", "philippines"
+        };
+        
+        for (int i = 0; i < phrases.Count && promptWords.Count < 50; i++)
+        {
+            if (region == RegionMode.Ilokano || region == RegionMode.BossBattle)
+            {
+                if (!string.IsNullOrEmpty(phrases[i].ilokano) && phrases[i].ilokano != "___") promptWords.Add(phrases[i].ilokano);
+            }
+            if (region == RegionMode.Cebuano || region == RegionMode.BossBattle)
+            {
+                if (!string.IsNullOrEmpty(phrases[i].cebuano) && phrases[i].cebuano != "___") promptWords.Add(phrases[i].cebuano);
+            }
+            if (region == RegionMode.Maranao || region == RegionMode.BossBattle)
+            {
+                if (!string.IsNullOrEmpty(phrases[i].maranao) && phrases[i].maranao != "___") promptWords.Add(phrases[i].maranao);
+            }
+        }
+
+        string lexiconPrompt = string.Join(", ", promptWords.ToArray());
+        form.AddField("prompt", lexiconPrompt);
 
         using (UnityWebRequest request = UnityWebRequest.Post(GROQ_WHISPER_URL, form))
         {
