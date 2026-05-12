@@ -108,4 +108,5 @@ Assets/Resources/SupabaseConfig.txt.meta
 # Environment variable files
 .env
 .env.local
-.env.*
+.env.*
+Assets/Resources/GroqConfig.txt
