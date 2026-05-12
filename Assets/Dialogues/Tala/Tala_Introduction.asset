@@ -14,9 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tala
   speakerPortrait: {fileID: 0}
-  dialogueText: Ti nagan ko ket Tala. Agpraktisak iti musika para iti pista.
-  translatedText: "My name is Tala. I\u2019m practicing music for the festival."
+  dialogueText: Ti nagan ko ket Tala. Agpraktisak iti musika para iti pista. Baro
+    ka kadi ditoy nga lugar?
+  translatedText: "My name is Tala. I\u2019m practicing music for the festival. Are
+    you new in this area?"
   animationTrigger: Hello
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: Wen
+    nextNode: {fileID: 11400000, guid: e11adca33b8ad124da42bd02a4787e3d, type: 2}
+    isWrong: 0
+    choiceEvent: 
+  - choiceText: Agyamanak
+    nextNode: {fileID: 11400000}
+    isWrong: 1
+    choiceEvent: 
