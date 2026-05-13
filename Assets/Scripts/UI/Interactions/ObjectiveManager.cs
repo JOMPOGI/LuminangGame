@@ -74,7 +74,11 @@ public class ObjectiveManager : MonoBehaviour
     private IEnumerator Start()
     {
         // Wait a small moment for the scene to settle, then slide in
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
+        
+        // Broadcast the initial objective so all Indicators sync up
+        OnObjectiveChanged?.Invoke(CurrentObjective);
+        
         UpdateVisibility();
     }
 

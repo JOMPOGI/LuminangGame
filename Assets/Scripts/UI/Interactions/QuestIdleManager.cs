@@ -7,6 +7,7 @@ public class QuestIdleManager : MonoBehaviour
     public string stopObjective;
     public string animationTrigger = "Waving";
     public string stopAnimationTrigger = "StopWaving";
+    public bool loopAnimation = true;
     public Animator targetAnimator;
     
     private bool _isWaving = false;
@@ -59,6 +60,9 @@ public class QuestIdleManager : MonoBehaviour
         if (targetAnimator == null || string.IsNullOrEmpty(animationTrigger)) return;
         
         Debug.Log($"[{gameObject.name}] Brute Force Playing State: {animationTrigger}");
+        
+        // Tell the animator if we want to loop or not
+        targetAnimator.SetBool("LoopQuestIdle", loopAnimation);
         
         // This jumps directly to the state name, bypassing triggers and arrows
         targetAnimator.Play(animationTrigger);

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Sally_QuestComplete
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Sally
+  speakerPortrait: {fileID: 0}
+  dialogueText: Agyamankami unay iti panangtulongyo kaniak! No adda aniaman a matulongak
+    kenka, agwayawayaka a mangsaludsod kaniak.
+  translatedText: "Thank you very much for helping me! If there\u2019s anything I
+    can help you with, feel free to ask me. "
+  animationTrigger: Thankful
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: Ask about the family connected to the ilokano crystal
+    nextNode: {fileID: 11400000, guid: b5896c60bde07e248a2ef0750440a239, type: 2}
+    isWrong: 0
+    choiceEvent: 

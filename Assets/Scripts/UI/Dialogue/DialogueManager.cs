@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         ProcessNode(startNode);
     }
 
-    private void ProcessNode(DialogueNode node)
+    private void ProcessNode(DialogueNode node, bool skipAnimation = false)
     {
         if (node == null)
         {
@@ -71,9 +71,14 @@ public class DialogueManager : MonoBehaviour
         _navigatingBack = false;
         _activeNode = node;
 
-        // 1. Play Animation (if specified)
-        if (!string.IsNullOrEmpty(node.animationTrigger) && _currentNPCAnimator != null)
-            _currentNPCAnimator.SetTrigger(node.animationTrigger);
+        // 1. Play Animation (or reset to Idle if none specified)
+        if (_currentNPCAnimator != null)
+        {
+            if (!string.IsNullOrEmpty(node.animationTrigger))
+                _currentNPCAnimator.SetTrigger(node.animationTrigger);
+            else
+                _currentNPCAnimator.SetTrigger("Idle"); // Force back to idle if bubble is empty
+        }
 
         // 1.5 Fire Start Event (Immediate)
         if (!string.IsNullOrEmpty(node.triggerEventName) && _currentNPC != null)
@@ -87,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         // 2. Display UI and update nav buttons
         if (uiController != null)
         {
-            uiController.DisplayNode(node, OnChoiceSelected);
+            uiController.DisplayNode(node, OnChoiceSelected, skipAnimation);
             uiController.SetNavigation(canGoBack: _nodeHistory.Count > 0);
         }
     }
@@ -162,7 +167,7 @@ public class DialogueManager : MonoBehaviour
             // Clear history so Prev button doesn't show when we loop back to the start
             _nodeHistory.Clear();
             _activeNode = null;
-            ProcessNode(returnToNode);
+            ProcessNode(returnToNode, skipAnimation: true); // SKIP ANIMATION HERE
         }
         else
         {
@@ -182,6 +187,10 @@ public class DialogueManager : MonoBehaviour
 
         if (_currentNPC != null)
         {
+            // Force NPC back to Idle when dialogue ends
+            if (_currentNPCAnimator != null)
+                _currentNPCAnimator.SetTrigger("Idle");
+
             if (_currentNPC.OnDialogueEnd != null)
                 _currentNPC.OnDialogueEnd.Invoke();
             

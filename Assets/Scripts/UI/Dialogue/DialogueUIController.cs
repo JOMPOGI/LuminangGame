@@ -103,14 +103,14 @@ public class DialogueUIController : MonoBehaviour
     /// <summary>
     /// Displays a dialogue node. Called by DialogueManager.
     /// </summary>
-    public void DisplayNode(DialogueNode node, System.Action<DialogueChoice> onChoiceSelected)
+    public void DisplayNode(DialogueNode node, System.Action<DialogueChoice> onChoiceSelected, bool skipAnimation = false)
     {
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
         _fullText         = node.dialogueText;
         _translatedText   = node.translatedText;
         _isTranslatedShowing = false;
-        _skipTyping       = false;
+        _skipTyping       = skipAnimation; // If skipping, we force it here
 
         // Show/Hide translate button
         if (translateButton != null)
@@ -124,11 +124,15 @@ public class DialogueUIController : MonoBehaviour
 
         ClearChoices();
 
-        // Spawn choice buttons ONLY if there are multiple choices branching out
-        if (node.choices != null && node.choices.Count > 1)
+        // Spawn choice buttons if there are any choices with text
+        int visibleChoices = 0;
+        if (node.choices != null)
         {
             foreach (var choice in node.choices)
             {
+                if (string.IsNullOrEmpty(choice.choiceText)) continue;
+
+                visibleChoices++;
                 GameObject obj = Instantiate(choiceButtonPrefab, choicesContainer);
                 obj.SetActive(true);
                 _activeChoiceButtons.Add(obj);
@@ -159,13 +163,12 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
-        // Show/hide Next button depending on choice count
-        // If multiple choices exist, player must pick one — Next is hidden
-        bool hasMultipleChoices = node.choices.Count > 1;
+        // Show/hide Next button depending on VISIBLE choice count
+        // If any choice has text, player must pick one — Next is hidden
         if (nextButton != null)
-            nextButton.gameObject.SetActive(!hasMultipleChoices);
+            nextButton.gameObject.SetActive(visibleChoices == 0);
 
-        ShowDialogue(true);
+        ShowDialogue(true, skipAnimation);
     }
 
     /// <summary>
@@ -178,13 +181,13 @@ public class DialogueUIController : MonoBehaviour
             prevButton.gameObject.SetActive(canGoBack);
     }
 
-    public void ShowDialogue(bool show)
+    public void ShowDialogue(bool show, bool skipAnimation = false)
     {
         if (show)
         {
             if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
             bool isAlreadyOpen = dialoguePanel.activeSelf;
-            _showSequenceCoroutine = StartCoroutine(ShowSequence(isAlreadyOpen));
+            _showSequenceCoroutine = StartCoroutine(ShowSequence(isAlreadyOpen, skipAnimation));
         }
         else
         {
@@ -269,17 +272,16 @@ public class DialogueUIController : MonoBehaviour
         }
         else
         {
-            // Second click (or first if typing was instant):
-            // Auto-advance if there is 0 or 1 choice
+            // Auto-advance if there are 0 visible choices
             if (_currentChoices.Count == 0)
             {
                 _onChoiceSelected?.Invoke(null); // Ends dialogue
             }
-            else if (_currentChoices.Count == 1)
+            else
             {
+                // If there's a choice but it's hidden (empty text), pick the first one
                 _onChoiceSelected?.Invoke(_currentChoices[0]);
             }
-            // If multiple choices exist, Next is hidden so this won't fire
         }
     }
 
@@ -311,12 +313,13 @@ public class DialogueUIController : MonoBehaviour
     // Coroutines
     // ─────────────────────────────────────────────────────────────────
 
-    private IEnumerator ShowSequence(bool isAlreadyOpen)
+    private IEnumerator ShowSequence(bool isAlreadyOpen, bool skipAnimation)
     {
-        if (choicesGroup != null) choicesGroup.SetActive(false);
+        // Don't flicker the group if we're skipping
+        if (choicesGroup != null && !skipAnimation) choicesGroup.SetActive(false);
         dialoguePanel.SetActive(true);
 
-        if (!isAlreadyOpen)
+        if (!isAlreadyOpen && !skipAnimation)
             yield return StartCoroutine(PopInPanel());
         else
         {
@@ -325,7 +328,7 @@ public class DialogueUIController : MonoBehaviour
             if (cg != null) cg.alpha = 1f;
         }
 
-        if (typingSpeed > 0)
+        if (typingSpeed > 0 && !skipAnimation)
             yield return StartCoroutine(TypeText(_fullText));
         else
             if (dialogueText != null) dialogueText.text = _fullText;
@@ -334,7 +337,12 @@ public class DialogueUIController : MonoBehaviour
         if (_activeChoiceButtons.Count > 0 && choicesGroup != null)
         {
             choicesGroup.SetActive(true);
-            if (curtainDelay > 0) yield return new WaitForSeconds(curtainDelay);
+            
+            // Re-enforce scale BEFORE layout rebuild to prevent "squish"
+            choicesGroup.transform.localScale = new Vector3(1, 0, 1);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(choicesGroup.GetComponent<RectTransform>());
+
+            if (curtainDelay > 0 && !skipAnimation) yield return new WaitForSeconds(curtainDelay);
             yield return StartCoroutine(CurtainDrop());
         }
     }
@@ -351,7 +359,7 @@ public class DialogueUIController : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < panelPopDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t      = Mathf.Clamp01(elapsed / panelPopDuration);
             float curved = panelPopCurve.Evaluate(t);
             dialoguePanel.transform.localScale = Vector3.LerpUnclamped(startScale, Vector3.one, curved);
@@ -397,7 +405,7 @@ public class DialogueUIController : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < curtainDropDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime; // Use unscaled for buttery smoothness
             float t     = Mathf.Clamp01(elapsed / curtainDropDuration);
             float eased = 1f - Mathf.Pow(1f - t, 3f);
             choicesGroup.transform.localScale = Vector3.Lerp(start, end, eased);
@@ -475,7 +483,7 @@ public class DialogueUIController : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < portraitSlideDuration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / portraitSlideDuration);
             float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out
 
