@@ -16,7 +16,7 @@ MonoBehaviour:
   speakerPortrait: {fileID: 0}
   dialogueText: Ti nagan ko ket Tala. Agpraktisak iti musika para iti pista.
   translatedText: "My name is Tala. I\u2019m practicing music for the festival."
-  animationTrigger: Hello
+  animationTrigger: Hey
   triggerEventName: 
   endEventName: GreetOrganizer
   choices: []

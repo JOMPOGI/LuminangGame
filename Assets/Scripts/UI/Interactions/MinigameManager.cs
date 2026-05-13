@@ -18,10 +18,20 @@ public class MinigameManager : MonoBehaviour
     
     private GameObject _currentInstance;
     public bool IsMinigameActive => _currentInstance != null;
+    public string CurrentCategory { get; private set; }
 
     void Awake()
     {
         if (Instance == null) Instance = this;
+    }
+
+    /// <summary>
+    /// Starts a minigame and assigns it a specific category (useful for dynamic content).
+    /// </summary>
+    public void StartMinigameWithCategory(GameObject prefab, string category)
+    {
+        CurrentCategory = category;
+        StartMinigame(prefab);
     }
 
     /// <summary>
@@ -30,6 +40,9 @@ public class MinigameManager : MonoBehaviour
     public void StartMinigame(GameObject prefab)
     {
         if (prefab == null) return;
+        
+        // If no category was set via the helper, clear the old one
+        if (string.IsNullOrEmpty(CurrentCategory)) CurrentCategory = "";
         
         Debug.Log($"[MinigameManager] Starting Minigame: {prefab.name}");
         

@@ -298,16 +298,13 @@ public class InteractableNPC : InteractableBase
     }
 
     /// <summary>
-    /// Helper to trigger the lesson panel. Can be called via Dialogue Events.
+    /// Helper to trigger the lesson panel with a specific category.
     /// </summary>
-    public void StartLesson()
+    public void StartLessonWithCategory(string category)
     {
-        // Safety: ensure we exit any close-up cameras before showing the lesson
-        ExitCloseUp();
-
         if (LessonManager.Instance != null)
         {
-            LessonManager.Instance.ShowLesson();
+            LessonManager.Instance.ShowLessonWithCategory(category);
         }
     }
 
@@ -316,12 +313,18 @@ public class InteractableNPC : InteractableBase
     /// </summary>
     public void StartMinigame(GameObject minigamePrefab)
     {
-        // Safety: ensure we exit any close-up cameras before showing the minigame
-        ExitCloseUp();
+        StartMinigameWithCategory(minigamePrefab, "");
+    }
 
+    /// <summary>
+    /// Helper to trigger a minigame with a specific category tag.
+    /// Useful for dynamic minigames that load content based on the lesson.
+    /// </summary>
+    public void StartMinigameWithCategory(GameObject minigamePrefab, string category)
+    {
         if (MinigameManager.Instance != null)
         {
-            MinigameManager.Instance.StartMinigame(minigamePrefab);
+            MinigameManager.Instance.StartMinigameWithCategory(minigamePrefab, category);
         }
     }
 

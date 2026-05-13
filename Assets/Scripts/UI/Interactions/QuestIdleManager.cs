@@ -22,6 +22,7 @@ public class QuestIdleManager : MonoBehaviour
         // If the objective changed, reset our manual stop memory
         if (current != _lastObjective)
         {
+            Debug.Log($"[{gameObject.name}] Objective changed from '{_lastObjective}' to '{current}'. Resetting manual stop.");
             _manuallyStopped = false;
             _lastObjective = current;
         }
@@ -30,7 +31,11 @@ public class QuestIdleManager : MonoBehaviour
         if (!string.IsNullOrEmpty(stopObjective) && !string.IsNullOrEmpty(current) && 
             current.StartsWith(stopObjective, System.StringComparison.OrdinalIgnoreCase))
         {
-            if (_isWaving) StopQuestIdle();
+            if (_isWaving) 
+            {
+                Debug.Log($"[{gameObject.name}] Stop objective '{stopObjective}' detected. Stopping animation.");
+                StopQuestIdle();
+            }
             _manuallyStopped = true;
             return;
         }
@@ -39,20 +44,25 @@ public class QuestIdleManager : MonoBehaviour
 
         if (objectiveActive && !_isWaving && !_manuallyStopped)
         {
+            Debug.Log($"[{gameObject.name}] Conditions met! Starting Quest Idle. Objective: {current}");
             StartQuestIdle();
         }
         else if (!objectiveActive && _isWaving)
         {
+            Debug.Log($"[{gameObject.name}] Objective no longer active. Stopping Quest Idle.");
             StopQuestIdle();
         }
     }
 
     public void StartQuestIdle()
     {
-        if (targetAnimator == null) return;
+        if (targetAnimator == null || string.IsNullOrEmpty(animationTrigger)) return;
+        
+        Debug.Log($"[{gameObject.name}] Brute Force Playing State: {animationTrigger}");
+        
+        // This jumps directly to the state name, bypassing triggers and arrows
+        targetAnimator.Play(animationTrigger);
         _isWaving = true;
-        targetAnimator.SetTrigger(animationTrigger);
-        Debug.Log($"[{gameObject.name}] Starting Quest Idle: {animationTrigger}");
     }
 
     public void StopQuestIdle()
@@ -74,5 +84,16 @@ public class QuestIdleManager : MonoBehaviour
         
         // 3. Last resort: Direct Play
         targetAnimator.Play("Breathing_Idle");
+    }
+
+    public void StopAnimation()
+    {
+        if (targetAnimator != null && !string.IsNullOrEmpty(stopAnimationTrigger))
+        {
+            targetAnimator.SetTrigger(stopAnimationTrigger);
+        }
+        _isWaving = false;
+        _manuallyStopped = true;
+        Debug.Log($"[{gameObject.name}] Quest Idle Stopped Manually.");
     }
 }

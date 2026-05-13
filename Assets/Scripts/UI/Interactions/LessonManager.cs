@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using System.Collections;
 
 /// <summary>
@@ -12,6 +13,8 @@ public class LessonManager : MonoBehaviour
     [Header("References")]
     [Tooltip("The root object of the Lesson Panel prefab.")]
     public GameObject lessonPanel;
+    [Tooltip("The text component for the lesson category.")]
+    public TextMeshProUGUI categoryText;
     [Tooltip("The CanvasGroup for smooth fading (optional).")]
     public CanvasGroup lessonCanvasGroup;
     
@@ -53,11 +56,16 @@ public class LessonManager : MonoBehaviour
         }
     }
 
-    public void ShowLesson()
+    public void ShowLessonWithCategory(string category)
     {
         if (lessonPanel == null) return;
         
-        Debug.Log("[LessonManager] ShowLesson requested.");
+        if (categoryText != null && !string.IsNullOrEmpty(category))
+        {
+            categoryText.text = category;
+        }
+
+        Debug.Log($"[LessonManager] ShowLesson requested for category: {category}");
         _isLessonActive = true;
 
         StopAllCoroutines();

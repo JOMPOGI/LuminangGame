@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
-  m_Name: Kalaw_Act2Start
+  m_Name: Kalaw_Act3Start_Lesson
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: Nalabit daytoy nga gayyem ti mangiparikna kenka iti panakapasangbay
-    ditoy.
-  translatedText: Maybe this friend can help you feel welcome here.
+  dialogueText: "Ti \u2018pakawanen nak man\u2019 ket usaren iti nadumaduma a kasasaad,
+    kas iti panangdawat iti permiso, panangawag iti atensyon ti sabali a tao, wenno
+    panaglabas iti nadagsen a lugar."
+  translatedText: "Pakawanen nak man is what you say in various situations, such
+    as asking permission, getting someone\u2019s attention, or passing through a
+    crowded place."
   animationTrigger: 
   triggerEventName: 
+  endEventName: StartLesson_Gratitude
   choices:
   - choiceText: 
-    nextNode: {fileID: 11400000, guid: a73f998953613c7479a7f0c7f71bf508, type: 2}
+    nextNode: {fileID: 11400000, guid: 059ed11741ba67a4c863d2c7c64e9f51, type: 2}
     isWrong: 0
+    choiceEvent: 
