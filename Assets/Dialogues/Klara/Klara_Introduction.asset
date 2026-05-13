@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Klara_Introduction
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
   dialogueText: Ti nagan ko ket Klara. Agaramidak kadagiti pagan-anay para iti pista.
   translatedText: My name is Klara. I make clothes for the festival.
   animationTrigger: Thankful

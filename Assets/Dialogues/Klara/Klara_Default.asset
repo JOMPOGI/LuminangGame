@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Klara_Default
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
   dialogueText: "Ti panagabel ket saan laeng nga aramid\u2014dayta ket pannakaited
     ti kultura ken istoria iti tunggal hilo."
   translatedText: "Weaving is not just work\u2014it is the passing down of culture
     and history through every thread."
   animationTrigger: 
   triggerEventName: 
+  endEventName: 
   choices: []
