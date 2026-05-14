@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MangLance_Default
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
   dialogueText: Uray no nalaka laeng ti aldaw, masapul latta nga ammo tayo ti aginana
     ken agsubli iti banag a mangparagsak kadatayo.
   translatedText: Even on simple days, we should still know how to rest and return

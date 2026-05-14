@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomas_Introduction
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: Ti nagan ko ket Tomas. Iurnosko dagiti dekorasion.
   translatedText: My name is Tomas. I arrange the decorations.
   animationTrigger: StandingGreet

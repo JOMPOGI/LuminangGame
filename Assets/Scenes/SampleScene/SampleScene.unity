@@ -13336,7 +13336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityDisappear
   requiredObjective: Continue towards the market
-  triggerDistance: 2
+  triggerDistance: 1
   playerTag: Player
   dialogueToStart: {fileID: 11400000, guid: c8a29e1b4980e664f8cda47b443c8f4d, type: 2}
   npcAnimator: {fileID: 0}
@@ -26780,6 +26780,7 @@ Transform:
   - {fileID: 1076194819}
   - {fileID: 600636684}
   - {fileID: 431707853}
+  - {fileID: 486362057}
   m_Father: {fileID: 508127551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &215639006
@@ -59517,6 +59518,154 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2563648020402818627, guid: b042955ef1e1c6d41a9aa4831e8e8844, type: 3}
   m_PrefabInstance: {fileID: 486097631}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &486362056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 214088415}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.81437
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.81437
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.81437
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 578.0258
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.303
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 390.41397
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9257552
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.3781234
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -44.435
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_Name
+      value: LolaBebang_Rigged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 486362060}
+  m_SourcePrefab: {fileID: 100100000, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+--- !u!4 &486362057 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+  m_PrefabInstance: {fileID: 486362056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &486362058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+  m_PrefabInstance: {fileID: 486362056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &486362059 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
+  m_PrefabInstance: {fileID: 486362056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &486362060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486362058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 486362060}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 1b7828b623cf21246bdef5b8a9b585fd, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 04dedcb0cd84171418e7d0854a3e55db, type: 2}
+  npcAnimator: {fileID: 486362059}
+  disableAfterInteraction: 0
+  isWrongAnswerPlaying: 0
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 486362059}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: headShake
+          m_BoolArgument: 0
+        m_CallState: 2
+  dialogueEvents: []
 --- !u!1 &486833731
 GameObject:
   m_ObjectHideFlags: 0
@@ -122031,9 +122180,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionEnabled: 1
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 50b158e77da2a344c97d8ac6a73052e7, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 69c6c905bf088c84bb81558d922c8f20, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0

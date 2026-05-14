@@ -8,11 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ronnie_mat
-<<<<<<< HEAD
     second: {fileID: 2100000, guid: 58ee48f969560664cadf515e8a069a8c, type: 2}
-=======
-    second: {fileID: 2100000, guid: dabfaa44951c82249a3aa39ed65926ca, type: 2}
->>>>>>> dc486873173d39211ae6ffc599a436b9f4efc30f
   materials:
     materialImportMode: 2
     materialName: 0

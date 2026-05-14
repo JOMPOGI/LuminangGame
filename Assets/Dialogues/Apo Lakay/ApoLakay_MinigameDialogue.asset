@@ -22,11 +22,11 @@ MonoBehaviour:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Wen
+  - choiceText: Yes
     nextNode: {fileID: 11400000, guid: cd7cc2c1e6ecf43448b8356e88719b8e, type: 2}
     isWrong: 0
     choiceEvent: StartMinigame
-  - choiceText: Saan
+  - choiceText: No
     nextNode: {fileID: 11400000, guid: 49d614f63bfb8a84bb36f57c4cb35f05, type: 2}
     isWrong: 0
     choiceEvent: 
