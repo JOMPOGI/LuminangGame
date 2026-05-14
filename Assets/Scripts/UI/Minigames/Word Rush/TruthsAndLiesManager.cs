@@ -83,6 +83,36 @@ namespace Luminang.UI.Minigames
         private int currentLangId;
         private string currentCatId;
         private int correctGuesses = 0;
+        private Coroutine _helpCoroutine;
+
+        private async void OnEnable()
+        {
+            // If spawned dynamically by MinigameManager, fetch the real Category UUID!
+            if (MinigameManager.Instance != null && !string.IsNullOrEmpty(MinigameManager.Instance.CurrentCategory))
+            {
+                string catName = MinigameManager.Instance.CurrentCategory;
+                Debug.Log($"[2T1L] Spawned via MinigameManager! Fetching UUID for category: {catName}...");
+                
+                if (SupabaseManager.Instance == null || SupabaseManager.Instance.client == null) return;
+
+                var categoryResponse = await SupabaseManager.Instance.client
+                    .From<LessonCategoryModel>()
+                    .Filter("name", Postgrest.Constants.Operator.Equals, catName)
+                    .Get();
+
+                if (categoryResponse.Models.Count > 0)
+                {
+                    string catId = categoryResponse.Models[0].Id;
+                    Debug.Log($"[2T1L] Success! Found ID '{catId}' for '{catName}'. Starting game!");
+                    // 1 = Ilokano
+                    StartGame(1, catId);
+                }
+                else
+                {
+                    Debug.LogError($"[2T1L] Database Error: Category '{catName}' not found!");
+                }
+            }
+        }
 
         private void Start()
         {
@@ -95,19 +125,24 @@ namespace Luminang.UI.Minigames
 
         public void StartGame(int langId, string catId)
         {
+            StopAllCoroutines(); // Reset animations first!
             currentLangId = langId;
             currentCatId = catId;
             currentRound = 1;
             currentLives = maxLives;
             correctGuesses = 0;
             UpdateHeartsUI();
+
+            // Reset flags
+            isListening = false;
+
+            // DISABLE mic until we get to the speech practice round
+            if (micButton != null) micButton.interactable = false;
             
             if (resultBackgroundPanel != null) resultBackgroundPanel.SetActive(false);
             
-            StopAllCoroutines();
-
-            // Show help at the very beginning
-            if (helpBackgroundPanel != null) ToggleHelp(true);
+            // Show help at the very beginning (with animation to reset alpha)
+            ToggleHelp(true);
             
             StartCoroutine(InitializeGameFlow(langId, catId));
         }
@@ -430,8 +465,16 @@ namespace Luminang.UI.Minigames
         // Hook this to the "Back" button and the "Continue" button
         public void OnCloseGameClicked()
         {
-            if (mainGameContainer != null) mainGameContainer.SetActive(false);
             if (resultBackgroundPanel != null) resultBackgroundPanel.SetActive(false);
+            
+            if (MinigameManager.Instance != null)
+            {
+                MinigameManager.Instance.HideMinigame();
+            }
+            else if (mainGameContainer != null)
+            {
+                mainGameContainer.SetActive(false);
+            }
         }
 
         // Hook this to the "Try Again" button
@@ -445,10 +488,26 @@ namespace Luminang.UI.Minigames
 
         public void ToggleHelp(bool show)
         {
+            Debug.Log($"[2T1L] ToggleHelp called: {show}");
             if (helpBackgroundPanel != null)
             {
-                if (show) StartCoroutine(ShowHelpSequence());
-                else StartCoroutine(HideHelpSequence());
+                if (_helpCoroutine != null) StopCoroutine(_helpCoroutine);
+                
+                if (show) 
+                {
+                    _helpCoroutine = StartCoroutine(ShowHelpSequence());
+                }
+                else 
+                {
+                    // Instant close to avoid animation conflicts
+                    helpBackgroundPanel.SetActive(false);
+                    if (helpPanel != null) helpPanel.SetActive(false);
+                    Debug.Log("[2T1L] Help Panel forced closed.");
+                }
+            }
+            else
+            {
+                Debug.LogError("[2T1L] ToggleHelp failed: helpBackgroundPanel is not assigned!");
             }
         }
 

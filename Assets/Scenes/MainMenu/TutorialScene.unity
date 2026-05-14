@@ -278,6 +278,143 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 5, y: -8}
   m_UseGraphicAlpha: 1
+--- !u!1 &90011611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90011612}
+  - component: {fileID: 90011614}
+  - component: {fileID: 90011613}
+  m_Layer: 5
+  m_Name: ScreenTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &90011612
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90011611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1443878945}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.012375, y: -257.9662}
+  m_SizeDelta: {x: 1024.6, y: 60.6614}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &90011613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90011611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 5a6140b7224c96e43bf0caba9d240144, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281085229
+  m_fontColor: {r: 0.1764706, g: 0.1764706, b: 0.17254902, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 45
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &90011614
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90011611}
+  m_CullTransparentMesh: 1
 --- !u!1 &95368453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,21 +1351,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
   tutorialDisplayImage: {fileID: 1400621231}
+  tutorialDescriptionText: {fileID: 90011613}
   nextButton: {fileID: 287316192}
   previousButton: {fileID: 39782573}
   tutorialSlides:
-  - {fileID: 21300000, guid: 7f20a72093872854791195e8b5c8ce6a, type: 3}
-  - {fileID: 21300000, guid: a470984320c6cc14cb2b0c926606827b, type: 3}
-  - {fileID: 21300000, guid: 9226c77a89403bc499076305ae6feafa, type: 3}
-  - {fileID: 21300000, guid: ab0069eb95fcca14fafcf8a9e8bae064, type: 3}
-  - {fileID: 21300000, guid: 1d87888a9fc1a8f45be77324a0ff585b, type: 3}
-  - {fileID: 21300000, guid: 8dfd7e3712aaf454e98fc6edbe090f31, type: 3}
+  - image: {fileID: 21300000, guid: 5c60634fee9f73d42827c048dd065614, type: 3}
+    description: HOW TO WALK
+  - image: {fileID: 21300000, guid: 3e721e4f532251840ab8f74a6a1610b0, type: 3}
+    description: HOW TO JUMP
+  - image: {fileID: 21300000, guid: 6a7c2574f151f7744b83e6461256a6ea, type: 3}
+    description: HOW TO SPRINT
+  - image: {fileID: 21300000, guid: 0e9becfb5abd4ea4a92de368b8a135ed, type: 3}
+    description: HOW TO TALK / INTERACT
+  - image: {fileID: 21300000, guid: 6151907cb41072946bfa80e6e47428ce, type: 3}
+    description: CHARACTER CUSTOMIZATION
+  - image: {fileID: 21300000, guid: de2f8d4ec4bc2884fa82afedaedfc229, type: 3}
+    description: LOOK AROUND
+  - image: {fileID: 21300000, guid: 728c7c2f5df4b1d41a3ce7357f0c5855, type: 3}
+    description: YOU'RE READY!
   pageDots:
   - {fileID: 679947105}
   - {fileID: 95368456}
   - {fileID: 1862169057}
   - {fileID: 1674443686}
   - {fileID: 2023404536}
+  - {fileID: 739699551}
   - {fileID: 739699551}
   dotActiveSprite: {fileID: 21300000, guid: 47c0560987ed6574cb954b2c6303710c, type: 3}
   dotInactiveSprite: {fileID: 21300000, guid: 5964e95fbda81f84a9551a64b6f53ded, type: 3}
@@ -2761,6 +2908,7 @@ RectTransform:
   - {fileID: 1383807208}
   - {fileID: 39782571}
   - {fileID: 287316190}
+  - {fileID: 90011612}
   - {fileID: 605805839}
   - {fileID: 1716068736}
   - {fileID: 1109096471}

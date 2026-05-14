@@ -32,6 +32,10 @@ public class InteractableNPC : InteractableBase
     [Tooltip("If true, the interaction button will NEVER appear again after the first conversation ends.")]
     public bool disableAfterInteraction = false;
     [HideInInspector] public bool isWrongAnswerPlaying = false;
+    
+    [Header("Minigame Settings")]
+    [Tooltip("The category name (e.g. Greetings) to pass to the minigame when StartMinigame is called.")]
+    public string minigameCategory;
 
     [Header("Events")]
     public UnityEvent OnDialogueEnd;
@@ -310,10 +314,11 @@ public class InteractableNPC : InteractableBase
 
     /// <summary>
     /// Helper to trigger a minigame. Drag a prefab into the UnityEvent slot!
+    /// It will automatically use the 'minigameCategory' field set above.
     /// </summary>
     public void StartMinigame(GameObject minigamePrefab)
     {
-        StartMinigameWithCategory(minigamePrefab, "");
+        StartMinigameWithCategory(minigamePrefab, minigameCategory);
     }
 
     /// <summary>

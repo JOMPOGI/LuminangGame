@@ -72,10 +72,40 @@ namespace Luminang.UI.Minigames
         private bool _isRecording = false;
         private bool _isProcessing = false;
         private bool _isTransitioning = false;
+        private Coroutine _helpCoroutine;
 
         private void Awake()
         {
             if (transcriptionText != null) transcriptionText.text = placeholderText;
+        }
+
+        private async void OnEnable()
+        {
+            // If spawned dynamically by MinigameManager, fetch the real Category UUID!
+            if (MinigameManager.Instance != null && !string.IsNullOrEmpty(MinigameManager.Instance.CurrentCategory))
+            {
+                string catName = MinigameManager.Instance.CurrentCategory;
+                Debug.Log($"[WordRush] Spawned via MinigameManager! Fetching UUID for category: {catName}...");
+                
+                if (SupabaseManager.Instance == null || SupabaseManager.Instance.client == null) return;
+
+                var categoryResponse = await SupabaseManager.Instance.client
+                    .From<LessonCategoryModel>()
+                    .Filter("name", Postgrest.Constants.Operator.Equals, catName)
+                    .Get();
+
+                if (categoryResponse.Models.Count > 0)
+                {
+                    string catId = categoryResponse.Models[0].Id;
+                    Debug.Log($"[WordRush] Success! Found ID '{catId}' for '{catName}'. Starting game!");
+                    // 1 = Ilokano
+                    StartGame(1, catId);
+                }
+                else
+                {
+                    Debug.LogError($"[WordRush] Database Error: Category '{catName}' not found!");
+                }
+            }
         }
 
         private void Start()
@@ -89,12 +119,13 @@ namespace Luminang.UI.Minigames
 
         public void StartGame(int langId, string catId)
         {
+            StopAllCoroutines(); // Reset animations first!
             Debug.Log($"<color=cyan>[WordRush] Starting Game - Lang: {langId}, Cat: {catId}</color>");
             CurrentLanguageId = langId;
             CurrentCategoryId = catId;
 
-            // Show help at the very beginning
-            if (helpBackgroundPanel != null) helpBackgroundPanel.SetActive(true);
+            // Show help at the very beginning (with animation to ensure alpha is 1)
+            ToggleHelp(true);
 
             // Clear old visuals immediately
             if (imageChallenges != null) imageChallenges.sprite = null;
@@ -106,8 +137,15 @@ namespace Luminang.UI.Minigames
             currentPromptIndex = 0;
             correctCount = 0;
             UpdateHeartsUI();
-            
-            StopAllCoroutines();
+
+            // Reset internal state flags
+            _isRecording = false;
+            _isProcessing = false;
+            _isTransitioning = false;
+
+            // DISABLE mic until everything is downloaded and ready
+            if (micButton != null) micButton.interactable = false;
+
             StartCoroutine(InitializeGameFlow());
             ShowGamePanel();
         }
@@ -201,10 +239,18 @@ namespace Luminang.UI.Minigames
                 p.happyFeedback = model.HappyFeedback;
                 p.confusedFeedback = model.ConfusedFeedback;
 
-                // Download Sprites
-                yield return StartCoroutine(DownloadSprite(model.IdleImageUrl, s => p.idleSprite = s));
-                yield return StartCoroutine(DownloadSprite(model.HappyImageUrl, s => p.happySprite = s));
-                yield return StartCoroutine(DownloadSprite(model.ConfusedImageUrl, s => p.confusedSprite = s));
+                // Check Cache first, then fallback to Download
+                if (MinigameAssetCache.Instance != null)
+                {
+                    p.idleSprite = MinigameAssetCache.Instance.GetSprite(model.IdleImageUrl);
+                    p.happySprite = MinigameAssetCache.Instance.GetSprite(model.HappyImageUrl);
+                    p.confusedSprite = MinigameAssetCache.Instance.GetSprite(model.ConfusedImageUrl);
+                }
+
+                // Fallback: If cache is empty/missing, download them now
+                if (p.idleSprite == null) yield return StartCoroutine(DownloadSprite(model.IdleImageUrl, s => p.idleSprite = s));
+                if (p.happySprite == null) yield return StartCoroutine(DownloadSprite(model.HappyImageUrl, s => p.happySprite = s));
+                if (p.confusedSprite == null) yield return StartCoroutine(DownloadSprite(model.ConfusedImageUrl, s => p.confusedSprite = s));
 
                 downloadedPrompts.Add(p);
             }
@@ -236,6 +282,10 @@ namespace Luminang.UI.Minigames
                 activePrompts.Add(allPrompts[Random.Range(0, allPrompts.Count)]);
             
             activePrompts = activePrompts.OrderBy(x => Random.value).ToList();
+            
+            // NOW we can enable the mic!
+            if (micButton != null) micButton.interactable = true;
+
             UpdatePromptUI();
         }
 
@@ -411,18 +461,42 @@ namespace Luminang.UI.Minigames
             if (resultBackgroundPanel != null) resultBackgroundPanel.SetActive(false);
             if (helpBackgroundPanel != null) helpBackgroundPanel.SetActive(false);
             
-            // 3. Deactivate the main prefab container
-            if (wordRushPanel != null) wordRushPanel.SetActive(false);
+            // 3. Destroy the clone properly via the Manager
+            if (MinigameManager.Instance != null)
+            {
+                MinigameManager.Instance.HideMinigame();
+            }
+            else
+            {
+                // Fallback if no manager exists
+                if (wordRushPanel != null) wordRushPanel.SetActive(false);
+            }
             
             Debug.Log("[WordRush] Prefab closed and reset.");
         }
 
         public void ToggleHelp(bool show)
         {
+            Debug.Log($"[WordRush] ToggleHelp called: {show}");
             if (helpBackgroundPanel != null)
             {
-                if (show) StartCoroutine(ShowHelpSequence());
-                else StartCoroutine(HideHelpSequence());
+                if (_helpCoroutine != null) StopCoroutine(_helpCoroutine);
+                
+                if (show) 
+                {
+                    _helpCoroutine = StartCoroutine(ShowHelpSequence());
+                }
+                else 
+                {
+                    // Instant close to avoid animation conflicts
+                    helpBackgroundPanel.SetActive(false);
+                    if (helpPanel != null) helpPanel.SetActive(false);
+                    Debug.Log("[WordRush] Help Panel forced closed.");
+                }
+            }
+            else
+            {
+                Debug.LogError("[WordRush] ToggleHelp failed: helpBackgroundPanel is not assigned!");
             }
         }
 

@@ -724,16 +724,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 4a4ec42db90283e40904e195cda05229, type: 2}
-  npcAnimator: {fileID: 9125334}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9125334}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -762,11 +763,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &9125334 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e34bf874f1591b842b5ea33c1de43b01, type: 3}
-  m_PrefabInstance: {fileID: 1344493506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &11475984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5887,11 +5883,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
   m_PrefabInstance: {fileID: 61506370}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &61506373 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
-  m_PrefabInstance: {fileID: 61506370}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &61506374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5927,9 +5918,10 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: Collect all weaving materials
     dialogueNode: {fileID: 11400000, guid: 09585c92bcb94ab4cb8c6df872d97e00, type: 2}
-  npcAnimator: {fileID: 61506373}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls:
@@ -5960,7 +5952,7 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 61506373}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -35128,10 +35120,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LessonManager
   lessonPanel: {fileID: 1603644733}
-  categoryText: {fileID: 0}
+  categoryText: {fileID: 706542983}
+  categoryDescriptionText: {fileID: 400807257}
   lessonCanvasGroup: {fileID: 1603644736}
+  rowContainer: {fileID: 1808116216}
+  lessonRowPrefab: {fileID: 6357871703298690449, guid: a19fd9f6d72dbae4ea5f32113804776d, type: 3}
+  closeButton: {fileID: 630033354}
+  continueButton: {fileID: 1145176415}
   fadeDuration: 0.4
   dimmerBackground: {fileID: 1719723367}
+  smallLoading: {fileID: 625793392}
+  languageId: 1
   onLessonComplete:
     m_PersistentCalls:
       m_Calls:
@@ -36494,6 +36493,7 @@ Transform:
   - {fileID: 285769494}
   - {fileID: 655192145}
   - {fileID: 474151793}
+  - {fileID: 1374018995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &302159557
@@ -36576,7 +36576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &303315094 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
   m_PrefabInstance: {fileID: 1079974219}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &303572337
@@ -48695,6 +48695,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 397460059}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &397800180 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+  m_PrefabInstance: {fileID: 1971338157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &398033378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48894,6 +48899,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8859339169051939592, guid: fb63c43860a5e524e8552641f08029ec, type: 3}
   m_PrefabInstance: {fileID: 400335626}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &400807257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1390089588606495411, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+  m_PrefabInstance: {fileID: 1791749186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &400825992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50685,16 +50701,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 02274ab562909d54788aabc709b40896, type: 2}
-  npcAnimator: {fileID: 410554194}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 410554194}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -50723,11 +50740,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &410554194 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e102eb629daf9a5409e126cdc8324420, type: 3}
-  m_PrefabInstance: {fileID: 410554191}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &411289458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54223,11 +54235,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ced1deedb7d978d429d722ff71da5959, type: 3}
   m_PrefabInstance: {fileID: 431707852}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &431707854 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ced1deedb7d978d429d722ff71da5959, type: 3}
-  m_PrefabInstance: {fileID: 431707852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &431707855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54251,9 +54258,10 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: Collect all weaving materials
     dialogueNode: {fileID: 11400000, guid: 5f09409f2b98a8f439aa814a748ea4d9, type: 2}
-  npcAnimator: {fileID: 431707854}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls:
@@ -54272,7 +54280,7 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 431707854}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -54744,6 +54752,7 @@ MonoBehaviour:
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: Greetings
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -54772,7 +54781,7 @@ MonoBehaviour:
           m_MethodName: StartMinigame
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 3011457477992818941, guid: 54b389b9c597f69468c288a753008f68, type: 3}
+            m_ObjectArgument: {fileID: 3788261753784488389, guid: 1eb7adbf2a3ac934592d597bbac182b4, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -59608,11 +59617,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
   m_PrefabInstance: {fileID: 486362056}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &486362059 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d0dfb54b9bd266f498d949f6d29e82cc, type: 3}
-  m_PrefabInstance: {fileID: 486362056}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &486362060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59648,16 +59652,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 04dedcb0cd84171418e7d0854a3e55db, type: 2}
-  npcAnimator: {fileID: 486362059}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 486362059}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -74931,11 +74936,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5764a6edc742ed04b8f780ac5622e57c, type: 3}
   m_PrefabInstance: {fileID: 600636683}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &600636685 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5764a6edc742ed04b8f780ac5622e57c, type: 3}
-  m_PrefabInstance: {fileID: 600636683}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &600636686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74959,9 +74959,10 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: Collect all weaving materials
     dialogueNode: {fileID: 11400000, guid: 8fe175119d8ddf14c839174e321b9f2b, type: 2}
-  npcAnimator: {fileID: 600636685}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls:
@@ -74992,7 +74993,7 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 600636685}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -75009,7 +75010,7 @@ MonoBehaviour:
     onEventTriggered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 600636685}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -75478,6 +75479,7 @@ MonoBehaviour:
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -78330,6 +78332,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.007246093, y: 0.009980468, z: 0.007910157}
   m_Center: {x: -0.00000011920929, y: 0, z: 0.00000011920929}
+--- !u!1 &625793392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2185118385730040904, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+  m_PrefabInstance: {fileID: 756546988}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &625793394 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+  m_PrefabInstance: {fileID: 756546988}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &626373082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78553,6 +78565,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 629750131}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &630033354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4413830000909517664, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+  m_PrefabInstance: {fileID: 1791749186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &630603293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89726,6 +89749,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1202042651915640690, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
   m_PrefabInstance: {fileID: 706066348}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &706542983 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 788224751690901600, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+  m_PrefabInstance: {fileID: 1791749186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!4 &706896777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3416058713181227923, guid: 02b202fcf5b356942b7d9991418bcfe9, type: 3}
@@ -98236,6 +98270,107 @@ Transform:
   - {fileID: 991836572}
   m_Father: {fileID: 1566072188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &756546988
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4072154296723578129}
+    m_Modifications:
+    - target: {fileID: 2185118385730040904, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_Name
+      value: SmallLoading
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185118385730040904, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2020
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -878
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
 --- !u!1001 &756587712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109759,7 +109894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d35bbaac51080994b937c85b17db8aaf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a93f2d3c74bcf1641936bf48da61673c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -122192,6 +122327,7 @@ MonoBehaviour:
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -129107,6 +129243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vendorEllai_Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -136618,16 +136758,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: cc06d2b0e306e6e4e99aaa0c08c734ca, type: 2}
-  npcAnimator: {fileID: 1067440871}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1067440871}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -136656,11 +136797,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &1067440871 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d8a568f620480d044a765fb9fdad3571, type: 3}
-  m_PrefabInstance: {fileID: 370970961}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1068734213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138621,77 +138757,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 214088415}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.94170254
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.94170254
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.94170254
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 575.98
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.306
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 391.213
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-      propertyPath: m_Name
-      value: Tala_Rigged
-      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.94170254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.94170254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.94170254
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 575.98
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.306
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 391.213
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
+      propertyPath: m_Name
+      value: Tala_Rigged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1079974221}
-  m_SourcePrefab: {fileID: 100100000, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
 --- !u!4 &1079974220 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d65a7ac8d5888c5428e89ff3d3f4119e, type: 3}
   m_PrefabInstance: {fileID: 1079974219}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1079974221
@@ -138729,16 +138865,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
-  npcAnimator: {fileID: 1079974222}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1079974222}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -138767,11 +138904,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &1079974222 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
-  m_PrefabInstance: {fileID: 1079974219}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1080167236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145841,6 +145973,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f69c93bad68ac464a8100fa06ee06a36, type: 3}
   m_PrefabInstance: {fileID: 1144914105}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1145176415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 693871854282806258, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+  m_PrefabInstance: {fileID: 1791749186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1145999604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154350,77 +154493,77 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 214088415}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.87131685
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.87131685
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.87131685
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 573.87
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.426
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 392.83
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0999177
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.9949957
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -168.531
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-      propertyPath: m_Name
-      value: Klara_Rigged
-      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87131685
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.87131685
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.87131685
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 573.87
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.426
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 392.83
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0999177
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9949957
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -168.531
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
+      propertyPath: m_Name
+      value: Klara_Rigged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2094566721}
-  m_SourcePrefab: {fileID: 100100000, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
 --- !u!4 &1211836854 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
   m_PrefabInstance: {fileID: 1211836853}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1211988552
@@ -172365,6 +172508,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1202042651915640690, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
   m_PrefabInstance: {fileID: 1542339515}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1374018994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1374018995}
+  m_Layer: 0
+  m_Name: MiniGames_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1374018995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374018994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 397800180}
+  m_Father: {fileID: 300611999}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1375350183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209103,16 +209278,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 7754af0d1a645ed4aaee66fbd3175a2e, type: 2}
-  npcAnimator: {fileID: 1653427253}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1653427253}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -209141,11 +209317,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &1653427253 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 6fb8df496115f024e891e49ec5cf8529, type: 3}
-  m_PrefabInstance: {fileID: 1653427249}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1653467932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220917,16 +221088,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: Talk to the little girl
     dialogueNode: {fileID: 11400000, guid: 912e83f7b9d781f45bbd3bc72c88b20f, type: 2}
-  npcAnimator: {fileID: 1741770517}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1741770517}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -220955,11 +221127,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &1741770517 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
-  m_PrefabInstance: {fileID: 1076194818}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1741848368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228089,7 +228256,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6718894249559878085, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -231484,6 +231652,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1202042651915640690, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
   m_PrefabInstance: {fileID: 1807676151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1808116216 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5275349528589722689, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+  m_PrefabInstance: {fileID: 1791749186}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1808252159
 PrefabInstance:
@@ -238615,9 +238788,10 @@ MonoBehaviour:
     dialogueNode: {fileID: 11400000, guid: e9fd82ba682ace74a8ede2edb1b04013, type: 2}
   - requiredObjective: Return to Sally
     dialogueNode: {fileID: 11400000, guid: c9ac8db22a71cb745b7c40a38cce22ea, type: 2}
-  npcAnimator: {fileID: 1866386742}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
@@ -238641,11 +238815,6 @@ MonoBehaviour:
             m_StringArgument: Collect all weaving materials ; 4 ; Return to Sally
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &1866386742 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: dfe91ccff460c4a4a99760556510c447, type: 3}
-  m_PrefabInstance: {fileID: 1866386738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1866386743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238663,7 +238832,7 @@ MonoBehaviour:
   animationTrigger: Hey
   stopAnimationTrigger: StopHey
   loopAnimation: 1
-  targetAnimator: {fileID: 1866386742}
+  targetAnimator: {fileID: 0}
 --- !u!1001 &1866479265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253993,6 +254162,63 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13147244, y: 1, z: 0.1508323}
   m_Center: {x: 0.069241025, y: 0, z: 0.03907001}
+--- !u!1001 &1971338157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1374018995}
+    m_Modifications:
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 481.4624
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -124.28631
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -395.6777
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 397003208309573847, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770088086044757712, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
+      propertyPath: m_Name
+      value: WordRush_Managers
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15daa1e06a844d444b7181fbcb495594, type: 3}
 --- !u!1001 &1973170462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269344,7 +269570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2094566720 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 09b8dfc4ccd51f449b4cef78ed50638d, type: 3}
   m_PrefabInstance: {fileID: 1211836853}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2094566721
@@ -269382,16 +269608,17 @@ MonoBehaviour:
   questDialogues:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
-  npcAnimator: {fileID: 2094566722}
+  npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
+  minigameCategory: 
   OnDialogueEnd:
     m_PersistentCalls:
       m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2094566722}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
@@ -269420,11 +269647,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!95 &2094566722 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
-  m_PrefabInstance: {fileID: 1211836853}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2096570611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276391,6 +276613,10 @@ PrefabInstance:
       value: Talk to Kalaw
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: minigameCategory
+      value: Gratitude
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.size
       value: 7
       objectReference: {fileID: 0}
@@ -276670,7 +276896,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[6].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 3011457477992818941, guid: 54b389b9c597f69468c288a753008f68, type: 3}
+      objectReference: {fileID: 6729914668542835136, guid: 118332a7123142040970c9b1c2483e5e, type: 3}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[6].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Gratitude
@@ -278227,6 +278453,7 @@ RectTransform:
   - {fileID: 316936742}
   - {fileID: 1719723368}
   - {fileID: 1603644734}
+  - {fileID: 625793394}
   - {fileID: 1793591899}
   m_Father: {fileID: 1127642862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -278833,6 +279060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901182334643ba1438a25accc6bd0c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!1001 &5492159709671839508
 PrefabInstance:
   m_ObjectHideFlags: 0
