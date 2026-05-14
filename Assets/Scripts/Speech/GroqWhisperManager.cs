@@ -33,12 +33,12 @@ public class GroqWhisperManager : MonoBehaviour
         }
     }
 
-    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError)
+    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError, string promptOverride = "")
     {
-        StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError));
+        StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError, promptOverride));
     }
 
-    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError)
+    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError, string promptOverride)
     {
         if (string.IsNullOrEmpty(_apiKey) || _apiKey == "YOUR_GROQ_API_KEY_HERE")
         {
@@ -53,28 +53,40 @@ public class GroqWhisperManager : MonoBehaviour
         form.AddField("model", "whisper-large-v3"); 
         form.AddField("response_format", "json");
 
-        // Add a prompt to help Whisper with regional language vocabulary
-        // We filter based on the current Map/Region to maximize accuracy.
-        var phrases = DatasetManager.Instance.GetAllPhrases();
-        var region = PhraseEvaluator.Instance.CurrentRegion;
-        
-        System.Collections.Generic.List<string> promptWords = new System.Collections.Generic.List<string> { 
-            "mga", "po", "kabsat", "philippines"
-        };
-        
-        for (int i = 0; i < phrases.Count && promptWords.Count < 50; i++)
+        // Build the prompt hint
+        System.Collections.Generic.List<string> promptWords = new System.Collections.Generic.List<string>();
+
+        // Add the Direct Hint (target phrase) first for maximum priority
+        if (!string.IsNullOrEmpty(promptOverride))
         {
-            if (region == RegionMode.Ilokano || region == RegionMode.BossBattle)
+            promptWords.Add(promptOverride);
+        }
+
+        promptWords.Add("mga");
+        promptWords.Add("po");
+        promptWords.Add("kabsat");
+        promptWords.Add("philippines");
+
+        // Add regional dataset phrases
+        var phrases = (DatasetManager.Instance != null) ? DatasetManager.Instance.GetAllPhrases() : null;
+        var region = (PhraseEvaluator.Instance != null) ? PhraseEvaluator.Instance.CurrentRegion : RegionMode.Ilokano;
+        
+        if (phrases != null)
+        {
+            for (int i = 0; i < phrases.Count && promptWords.Count < 50; i++)
             {
-                if (!string.IsNullOrEmpty(phrases[i].ilokano) && phrases[i].ilokano != "___") promptWords.Add(phrases[i].ilokano);
-            }
-            if (region == RegionMode.Cebuano || region == RegionMode.BossBattle)
-            {
-                if (!string.IsNullOrEmpty(phrases[i].cebuano) && phrases[i].cebuano != "___") promptWords.Add(phrases[i].cebuano);
-            }
-            if (region == RegionMode.Maranao || region == RegionMode.BossBattle)
-            {
-                if (!string.IsNullOrEmpty(phrases[i].maranao) && phrases[i].maranao != "___") promptWords.Add(phrases[i].maranao);
+                if (region == RegionMode.Ilokano || region == RegionMode.BossBattle)
+                {
+                    if (!string.IsNullOrEmpty(phrases[i].ilokano) && phrases[i].ilokano != "___") promptWords.Add(phrases[i].ilokano);
+                }
+                if (region == RegionMode.Cebuano || region == RegionMode.BossBattle)
+                {
+                    if (!string.IsNullOrEmpty(phrases[i].cebuano) && phrases[i].cebuano != "___") promptWords.Add(phrases[i].cebuano);
+                }
+                if (region == RegionMode.Maranao || region == RegionMode.BossBattle)
+                {
+                    if (!string.IsNullOrEmpty(phrases[i].maranao) && phrases[i].maranao != "___") promptWords.Add(phrases[i].maranao);
+                }
             }
         }
 

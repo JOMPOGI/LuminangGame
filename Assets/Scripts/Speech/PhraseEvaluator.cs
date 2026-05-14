@@ -29,6 +29,13 @@ public class PhraseEvaluator : MonoBehaviour
         string normalizedInput = NormalizeText(input);
         string normalizedTarget = NormalizeText(target);
 
+        // --- SPACE-LESS IDENTITY CHECK ---
+        // Handles cases where STT accidentally splits a word (e.g., "na imbag" vs "naimbag")
+        if (normalizedInput.Replace(" ", "") == normalizedTarget.Replace(" ", ""))
+        {
+            return 100f;
+        }
+
         // 1. Word-level similarity — F1-style (penalizes extra wrong words)
         string[] inputWords = normalizedInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         string[] targetWords = normalizedTarget.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -105,7 +112,7 @@ public class PhraseEvaluator : MonoBehaviour
     {
         if (inputWord == targetWord) return true;
         
-        // Allow minor spelling errors in words (max 1-2 chars depending on length)
+        // Balanced tolerance for voice recognition
         int distance = LevenshteinDistance(inputWord, targetWord);
         int threshold = targetWord.Length <= 3 ? 0 : (targetWord.Length <= 6 ? 1 : 2);
         return distance <= threshold;
