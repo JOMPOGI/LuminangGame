@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< HEAD
---- !u!114 &-1450050574231318488
-=======
---- !u!114 &-6588219681534997944
->>>>>>> dc486873173d39211ae6ffc599a436b9f4efc30f
+--- !u!114 &-2529380298505242653
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ronnie_mat
+  m_Name: Cat_albedo
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -43,11 +39,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-<<<<<<< HEAD
-        m_Texture: {fileID: 2800000, guid: 42842d8cd91042b4796928ef42c80bda, type: 3}
-=======
-        m_Texture: {fileID: 2800000, guid: bb83b8d84d076a34ba58cf2362a5e5a4, type: 3}
->>>>>>> dc486873173d39211ae6ffc599a436b9f4efc30f
+        m_Texture: {fileID: 2800000, guid: 663c6e1dc45176c47ad5944379957548, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -71,11 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-<<<<<<< HEAD
-        m_Texture: {fileID: 2800000, guid: 42842d8cd91042b4796928ef42c80bda, type: 3}
-=======
-        m_Texture: {fileID: 2800000, guid: bb83b8d84d076a34ba58cf2362a5e5a4, type: 3}
->>>>>>> dc486873173d39211ae6ffc599a436b9f4efc30f
+        m_Texture: {fileID: 2800000, guid: 663c6e1dc45176c47ad5944379957548, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -124,7 +112,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -132,7 +120,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
