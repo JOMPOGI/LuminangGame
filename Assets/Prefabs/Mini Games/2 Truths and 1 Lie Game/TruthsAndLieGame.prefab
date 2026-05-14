@@ -981,7 +981,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 683100930363387557}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
         m_MethodName: OnMicClicked
         m_Mode: 1
@@ -3392,6 +3392,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 683100930363387557}
+        m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
+        m_MethodName: OnCloseGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
         m_MethodName: OnCloseGameClicked
@@ -4910,6 +4922,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 683100930363387557}
+        m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
+        m_MethodName: OnCloseGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
         m_MethodName: OnCloseGameClicked
@@ -5080,7 +5104,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8891290817491235076}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 683100930363387557}
+        m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
+        m_MethodName: OnCloseGameClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &3283329824296646259
 Animator:
   serializedVersion: 7
@@ -6937,7 +6973,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.85
+  m_fontSize: 50.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8532,7 +8568,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7970406547541765023}
   m_HandleRect: {fileID: 3857824074873436053}
   m_Direction: 2
-  m_Value: 1.0000001
+  m_Value: 1
   m_Size: 0.28203216
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8901,7 +8937,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 683100930363387557}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
         m_MethodName: ToggleHelp
         m_Mode: 6
@@ -9530,7 +9566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 683100930363387557}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
         m_MethodName: OnTryAgainClicked
         m_Mode: 1
@@ -10104,6 +10140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5963849104516986569}
+  - component: {fileID: 683100930363387557}
   m_Layer: 5
   m_Name: TruthsAndLieGame
   m_TagString: Untagged
@@ -10141,6 +10178,72 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -2020, y: -878}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &683100930363387557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6729914668542835136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95eeb18d758f109479134a3076b8a05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Luminang.UI.Minigames.TruthsAndLiesManager
+  choicesGroup: {fileID: 6668601423367781896}
+  speechPracticeGroup: {fileID: 8913872021265437309}
+  wordPhraseText: {fileID: 2523327765421065255}
+  questionFeedbackText: {fileID: 2092986431404628905}
+  tipText: {fileID: 7995252315125587069}
+  roundProgressText: {fileID: 449565330787473178}
+  choiceFrames:
+  - {fileID: 2602764807790443444}
+  - {fileID: 1633591802279844390}
+  - {fileID: 2065616430657033489}
+  choiceTexts:
+  - {fileID: 2178180323616067071}
+  - {fileID: 1164410456453872485}
+  - {fileID: 8215626259070185499}
+  checkOrWrongIcons:
+  - {fileID: 8294429797319666275}
+  - {fileID: 4683882952116296135}
+  - {fileID: 2209841642955400485}
+  checkmarkSprite: {fileID: 21300000, guid: e4e4baff6ed273447893d213543fb486, type: 3}
+  xMarkSprite: {fileID: 21300000, guid: b7bca32f293c6534aade2c9bcc5299a8, type: 3}
+  invisibleSprite: {fileID: 21300000, guid: 1a5ecaec7a5f8494084f2e0bc8f63841, type: 3}
+  micButton: {fileID: 2784831719006083328}
+  micButtonImage: {fileID: 5022017134689477002}
+  micOnSprite: {fileID: 21300000, guid: 52d5d377cff8da649b7758cc2cc81c42, type: 3}
+  micOffSprite: {fileID: 21300000, guid: 35335e74b7443ea4c8f23a582390ed8a, type: 3}
+  voiceVisualizers: []
+  transcriptionText: {fileID: 1044901713536588957}
+  accuracyScoreValue: {fileID: 3714972769344784660}
+  correctIndicator: {fileID: 4579537222915585603}
+  hearts:
+  - {fileID: 2979560451005296434}
+  - {fileID: 1713256610156982980}
+  - {fileID: 884346700356092065}
+  heartActive: {fileID: 21300000, guid: 8d76d6743d4bc96428f6e84eb8bb6ba9, type: 3}
+  heartInactive: {fileID: 21300000, guid: 74e93f34dbecc9d459a6daad8c638ac3, type: 3}
+  maxLives: 3
+  totalRounds: 10
+  feedbackDelay: 2
+  passThreshold: 0.75
+  resultBackgroundPanel: {fileID: 2625102533568479410}
+  youWinPanel: {fileID: 7275500276552270326}
+  youLosePanel: {fileID: 2094487350982942748}
+  winScoreText: {fileID: 5588445915706551601}
+  winWordsMatchText: {fileID: 6678998429010794259}
+  loseScoreText: {fileID: 479536788092441496}
+  loseWordsMatchText: {fileID: 2216656437051509179}
+  mainGameContainer: {fileID: 6729914668542835136}
+  helpBackgroundPanel: {fileID: 4208297365093930464}
+  helpPanel: {fileID: 3156856892654995101}
+  overlayFadeDuration: 0.4
+  panelScaleDuration: 0.35
+  testOnStart: 0
+  testLanguageId: 1
+  testCategoryId: 
 --- !u!1 &6744335594154820858
 GameObject:
   m_ObjectHideFlags: 0
@@ -11649,7 +11752,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 683100930363387557}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.TruthsAndLiesManager, Assembly-CSharp
         m_MethodName: ToggleHelp
         m_Mode: 6

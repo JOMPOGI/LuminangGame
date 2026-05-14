@@ -66,9 +66,9 @@ public class PlayerInfoPanel : MonoBehaviour
         if (usernameText != null) 
             usernameText.text = string.IsNullOrEmpty(profile.Username) ? "Unknown Player" : profile.Username;
 
-        // Set Progress (Dummy 20% for now as seen in your DB screenshot, we can make this dynamic later)
-        if (progressPercentageText != null) progressPercentageText.text = "20%"; 
-        if (progressSlider != null) progressSlider.value = 0.2f;
+        // Progress can be connected dynamically later
+        if (progressPercentageText != null) progressPercentageText.text = "0%"; 
+        if (progressSlider != null) progressSlider.value = 0f;
 
         // Handle Profile Picture
         HandleProfilePicture(profile);

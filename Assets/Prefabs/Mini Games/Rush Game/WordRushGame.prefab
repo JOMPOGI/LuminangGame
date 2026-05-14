@@ -1748,6 +1748,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7120438329032479950}
+        m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
+        m_MethodName: OnExitClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.MatchingGameManager, Assembly-CSharp
         m_MethodName: 
@@ -3147,7 +3159,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7120438329032479950}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
         m_MethodName: OnTryAgainClicked
         m_Mode: 1
@@ -4068,7 +4080,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4821048561540140232}
   m_HandleRect: {fileID: 5518716022225256029}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000001
   m_Size: 0.37563616
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4220,6 +4232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411431989308356883}
+  - component: {fileID: 7120438329032479950}
   m_Layer: 5
   m_Name: WordRushGame
   m_TagString: Untagged
@@ -4249,6 +4262,66 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -2018, y: -878}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7120438329032479950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3788261753784488389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d444f2f381ebb2479e08ffc4badfaf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Luminang.UI.Minigames.WordRushManager
+  autoStartForTesting: 0
+  testLanguageId: 0
+  testCategoryId: 
+  promptsPerGame: 15
+  maxLives: 3
+  passThreshold: 75
+  imageChallenges: {fileID: 4229629474615361913}
+  imageTextPrompt: {fileID: 1843356064775876395}
+  transcriptionText: {fileID: 2404370777697008356}
+  accuracyScoreText: {fileID: 8093565961016850913}
+  micButton: {fileID: 2761059768828202691}
+  micIdleSprite: {fileID: 21300000, guid: 35335e74b7443ea4c8f23a582390ed8a, type: 3}
+  micRecordingSprite: {fileID: 21300000, guid: 52d5d377cff8da649b7758cc2cc81c42, type: 3}
+  voiceVisualizers:
+  - {fileID: 84114959894042187}
+  - {fileID: 6057946748781238951}
+  - {fileID: 1061437127590382136}
+  - {fileID: 6596641286460446144}
+  - {fileID: 566888807670634993}
+  - {fileID: 5965026171424538618}
+  - {fileID: 8654019047555618702}
+  - {fileID: 8224814412693373775}
+  - {fileID: 2336251345412254854}
+  - {fileID: 4692418918158068171}
+  - {fileID: 152932479296064024}
+  - {fileID: 1880562114246178557}
+  - {fileID: 1114167294373848558}
+  - {fileID: 6435116028682748668}
+  hearts:
+  - {fileID: 111007197463516683}
+  - {fileID: 8516387467440218727}
+  - {fileID: 5338174920124273955}
+  activeHeartSprite: {fileID: 21300000, guid: 8d76d6743d4bc96428f6e84eb8bb6ba9, type: 3}
+  inactiveHeartSprite: {fileID: 21300000, guid: 74e93f34dbecc9d459a6daad8c638ac3, type: 3}
+  wordRushPanel: {fileID: 3788261753784488389}
+  resultBackgroundPanel: {fileID: 3243536538986179911}
+  youWinResult: {fileID: 2820309179410029888}
+  youLoseResult: {fileID: 4224741598567304957}
+  helpBackgroundPanel: {fileID: 6012576449676167380}
+  helpPanel: {fileID: 6973915242442431438}
+  helpButton: {fileID: 4864625936295888893}
+  overlayFadeDuration: 0.4
+  panelScaleDuration: 0.35
+  winScoreText: {fileID: 3062810683878099430}
+  winWordsMatchText: {fileID: 4898953497539900154}
+  loseScoreText: {fileID: 5207360582227897607}
+  loseWordsMatchText: {fileID: 5814884704696626662}
+  placeholderText: _____
 --- !u!1 &3899583617801428732
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,7 +4736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7572907548225568083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7120438329032479950}
+        m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
+        m_MethodName: OnExitClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &6027820564092113055
 Animator:
   serializedVersion: 7
@@ -4900,6 +4985,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7120438329032479950}
+        m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
+        m_MethodName: OnExitClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.MatchingGameManager, Assembly-CSharp
         m_MethodName: OnBackButtonClicked
@@ -6406,7 +6503,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7120438329032479950}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
         m_MethodName: ToggleHelp
         m_Mode: 6
@@ -6805,7 +6902,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7120438329032479950}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
         m_MethodName: ToggleHelp
         m_Mode: 6
@@ -9835,7 +9932,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7120438329032479950}
         m_TargetAssemblyTypeName: Luminang.UI.Minigames.WordRushManager, Assembly-CSharp
         m_MethodName: OnMicButtonClicked
         m_Mode: 1

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: bfb26f383e5485c4eb4f93bc581d74c3
+guid: 38efb4eb919974743a7101a3d85ddac6
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: craftSupplies_mat
-    second: {fileID: 2100000, guid: 60c9e580df9fb374fb7f94a2c67d1021, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

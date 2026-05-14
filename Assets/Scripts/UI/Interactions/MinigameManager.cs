@@ -50,6 +50,7 @@ public class MinigameManager : MonoBehaviour
         if (_currentInstance != null) Destroy(_currentInstance);
 
         _currentInstance = Instantiate(prefab, minigameContainer);
+        _currentInstance.SetActive(true); // Ensure it's visible even if the prefab was disabled
 
         // Professional Fail-safe: Reset UI position and scale so it doesn't spawn 'into the void'
         RectTransform rt = _currentInstance.GetComponent<RectTransform>();
@@ -58,10 +59,6 @@ public class MinigameManager : MonoBehaviour
             rt.localPosition = Vector3.zero;
             rt.localRotation = Quaternion.identity;
             rt.localScale = Vector3.one;
-            
-            // Ensure it stretches to fill the container
-            rt.anchoredPosition = Vector2.zero;
-            rt.sizeDelta = Vector2.zero;
         }
     }
 

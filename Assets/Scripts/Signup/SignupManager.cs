@@ -200,11 +200,16 @@ public class SignupManager : MonoBehaviour
         return result.Models.Count > 0;
     }
 
+    private bool _waitingForGoogleLogin = false;
+
+    private Coroutine _googleLoginTimeoutCoroutine;
+
     public void OnContinueWithGoogleButtonClicked()
     {
         if (isBusy) return;
 
         isBusy = true;
+        _waitingForGoogleLogin = true;
         LoadingOverlay.Instance?.Show();
 
         try
@@ -224,6 +229,10 @@ public class SignupManager : MonoBehaviour
             
             Debug.Log($"[Signup] Opening Google signup in browser...");
             Application.OpenURL(authUrl);
+
+            // Start a hard 60-second timeout just in case focus detection fails
+            if (_googleLoginTimeoutCoroutine != null) StopCoroutine(_googleLoginTimeoutCoroutine);
+            _googleLoginTimeoutCoroutine = StartCoroutine(GoogleLoginTimeout());
         }
         catch (System.Exception ex)
         {
@@ -231,11 +240,53 @@ public class SignupManager : MonoBehaviour
             Debug.LogError($"[Signup] Google Error: {ex.Message}");
             GenericModal.Instance.ShowAlert("Google signup failed.", "Okay");
             isBusy = false;
+            _waitingForGoogleLogin = false;
+        }
+    }
+
+    private System.Collections.IEnumerator GoogleLoginTimeout()
+    {
+        yield return new WaitForSeconds(15f);
+        if (_waitingForGoogleLogin)
+        {
+            Debug.Log("[Signup] Google signup timed out after 15 seconds.");
+            CancelGoogleLogin();
+        }
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus && _waitingForGoogleLogin)
+        {
+            // Give the deep link a short moment to arrive
+            StartCoroutine(CheckGoogleLoginCancelled());
+        }
+    }
+
+    private System.Collections.IEnumerator CheckGoogleLoginCancelled()
+    {
+        yield return new WaitForSeconds(2f);
+        if (_waitingForGoogleLogin)
+        {
+            Debug.Log("[Signup] User returned but no deep link received. Cancelling loading.");
+            CancelGoogleLogin();
+        }
+    }
+
+    private void CancelGoogleLogin()
+    {
+        _waitingForGoogleLogin = false;
+        if (isBusy)
+        {
+            isBusy = false;
+            LoadingOverlay.Instance?.Hide();
+            GenericModal.Instance.ShowAlert("Signup cancelled or timed out. Please try again.", "Okay");
         }
     }
 
     private void HandleGoogleSignupComplete(bool success)
     {
+        _waitingForGoogleLogin = false;
         Debug.Log($"[Signup] HandleGoogleSignupComplete called. Success: {success}");
 
         if (!success)

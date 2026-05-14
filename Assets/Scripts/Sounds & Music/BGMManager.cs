@@ -1,18 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class BGMManager : MonoBehaviour
 {
-    private static BGMManager instance;
+    public static BGMManager Instance { get; private set; }
     private AudioSource audioSource;
 
     private void Awake()
     {
         // Singleton pattern: Ensure only one instance of BGMManager exists
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
             
             audioSource = GetComponent<AudioSource>();
@@ -65,10 +66,36 @@ public class BGMManager : MonoBehaviour
     private void OnDestroy()
     {
         // Clean up event listener when destroyed
-        if (instance == this)
+        if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
             AudioManager.onMusicVolumeChange -= UpdateVolume;
         }
+    }
+
+    /// <summary>
+    /// Smoothly fades the BGM volume to a target value.
+    /// </summary>
+    public void FadeVolume(float targetVolume, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeCoroutine(targetVolume, duration));
+    }
+
+    private IEnumerator FadeCoroutine(float targetVolume, float duration)
+    {
+        if (audioSource == null) yield break;
+
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, elapsed / duration);
+            yield return null;
+        }
+
+        audioSource.volume = targetVolume;
     }
 }
