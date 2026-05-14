@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1468477293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eff059592c2bacd459bed73665b36511, type: 3}
+  m_Script: {fileID: 11500000, guid: 786db46815b450e4aa28156c88c9473e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Luminang.UI.Minigames.MinigameAssetCache
 --- !u!4 &1468477295

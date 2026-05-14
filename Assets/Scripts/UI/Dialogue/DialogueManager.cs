@@ -76,6 +76,8 @@ public class DialogueManager : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(node.animationTrigger))
                 _currentNPCAnimator.SetTrigger(node.animationTrigger);
+            else
+                _currentNPCAnimator.SetTrigger("Idle"); // Force back to idle if bubble is empty
         }
 
         // 1.5 Fire Start Event (Immediate)

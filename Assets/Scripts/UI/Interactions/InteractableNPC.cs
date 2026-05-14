@@ -36,6 +36,8 @@ public class InteractableNPC : InteractableBase
     [Header("Minigame Settings")]
     [Tooltip("The category name (e.g. Greetings) to pass to the minigame when StartMinigame is called.")]
     public string minigameCategory;
+    [Tooltip("The language ID (1=Ilokano, 2=Cebuano, etc.) to pass to the minigame.")]
+    public int minigameLanguageId = 1;
 
     [Header("Events")]
     public UnityEvent OnDialogueEnd;
@@ -318,18 +320,18 @@ public class InteractableNPC : InteractableBase
     /// </summary>
     public void StartMinigame(GameObject minigamePrefab)
     {
-        StartMinigameWithCategory(minigamePrefab, minigameCategory);
+        StartMinigameWithCategory(minigamePrefab, minigameCategory, minigameLanguageId);
     }
 
     /// <summary>
     /// Helper to trigger a minigame with a specific category tag.
     /// Useful for dynamic minigames that load content based on the lesson.
     /// </summary>
-    public void StartMinigameWithCategory(GameObject minigamePrefab, string category)
+    public void StartMinigameWithCategory(GameObject minigamePrefab, string category, int languageId)
     {
         if (MinigameManager.Instance != null)
         {
-            MinigameManager.Instance.StartMinigameWithCategory(minigamePrefab, category);
+            MinigameManager.Instance.StartMinigameWithCategory(minigamePrefab, category, languageId);
         }
     }
 

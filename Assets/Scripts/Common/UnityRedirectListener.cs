@@ -131,18 +131,11 @@ public class UnityRedirectListener : MonoBehaviour
                 <body>
                     <div class='container'>
                         <h1 style='font-size: 1.8rem; letter-spacing: 2px; color: #e0d0b0;'>Authentication Successful</h1>
-                        <p id='status' style='color: #c0a060; font-size: 1.3rem; margin-top: 20px; letter-spacing: 1px;'>Sending login data to the game...</p>
+                        <p style='color: #c0a060; font-size: 1.3rem; margin-top: 20px; letter-spacing: 1px;'>You may now return to the game.</p>
                     </div>
                     <script>
                         if (window.location.hash && !window.location.search) {
-                            var targetUrl = 'http://localhost:54321/?' + window.location.hash.substring(1);
-                            fetch(targetUrl).then(function() {
-                                document.getElementById('status').innerText = 'Done! You may now return to the game.';
-                            }).catch(function(err) {
-                                document.getElementById('status').innerText = 'Connection error. Try logging in again.';
-                            });
-                        } else if (window.location.search) {
-                            document.getElementById('status').innerText = 'Done! You may now return to the game.';
+                            window.location.search = window.location.hash.substring(1);
                         }
                     </script>
                 </body>

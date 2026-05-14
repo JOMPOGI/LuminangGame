@@ -91,7 +91,9 @@ namespace Luminang.UI.Minigames
             if (MinigameManager.Instance != null && !string.IsNullOrEmpty(MinigameManager.Instance.CurrentCategory))
             {
                 string catName = MinigameManager.Instance.CurrentCategory;
-                Debug.Log($"[2T1L] Spawned via MinigameManager! Fetching UUID for category: {catName}...");
+                int langId = MinigameManager.Instance.CurrentLanguageId;
+                
+                Debug.Log($"[2T1L] Spawned via MinigameManager! Fetching UUID for category: {catName} (Lang: {langId})...");
                 
                 if (SupabaseManager.Instance == null || SupabaseManager.Instance.client == null) return;
 
@@ -103,9 +105,8 @@ namespace Luminang.UI.Minigames
                 if (categoryResponse.Models.Count > 0)
                 {
                     string catId = categoryResponse.Models[0].Id;
-                    Debug.Log($"[2T1L] Success! Found ID '{catId}' for '{catName}'. Starting game!");
-                    // 1 = Ilokano
-                    StartGame(1, catId);
+                    Debug.Log($"[2T1L] Success! Found ID '{catId}' for '{catName}'. Starting game with Language {langId}!");
+                    StartGame(langId, catId);
                 }
                 else
                 {
