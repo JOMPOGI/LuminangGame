@@ -17,6 +17,13 @@ public class PrologueController : MonoBehaviour
 
     private IEnumerator StartPrologueSequence()
     {
+        // 1. Fade out BGM (if it exists) so we can hear the video audio
+        if (BGMManager.Instance != null)
+        {
+            Debug.Log("[Prologue] Fading out BGM...");
+            BGMManager.Instance.FadeVolume(0f, 1.5f);
+        }
+
         if (videoPlayer != null)
         {
             Debug.Log("[Prologue] Waiting for Video Player...");
@@ -46,6 +53,13 @@ public class PrologueController : MonoBehaviour
             yield return new WaitForSeconds(fallbackWaitTime);
         }
         
+        // 2. Fade BGM back in before leaving
+        if (BGMManager.Instance != null && AudioManager.instance != null)
+        {
+            Debug.Log("[Prologue] Fading BGM back in...");
+            BGMManager.Instance.FadeVolume(AudioManager.instance.musicVolume, 2.0f);
+        }
+
         Debug.Log("[Prologue] Sequence finished. Updating progress and loading next scene.");
         
         if (UserProfileManager.Instance != null)
