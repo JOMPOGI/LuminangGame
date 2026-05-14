@@ -13,8 +13,8 @@ public class ObjectiveManager : MonoBehaviour
 
     [Header("Animation Settings")]
     public float fadeDuration = 0.4f;
-    [Tooltip("How far it slides from the left (e.g., 100 pixels)")]
-    public float slideDistance = 150f;
+    [Tooltip("How much of its own size it slides (1.0 = full width/height)")]
+    public float slideFactor = 0.5f;
     [Tooltip("Check this if the panel should slide left/right instead of up/down")]
     public bool slideHorizontal = true;
 
@@ -48,9 +48,12 @@ public class ObjectiveManager : MonoBehaviour
             _isShowing = false;
             
             // Snap to the hidden position immediately
+            float size = slideHorizontal ? _rectTransform.rect.width : _rectTransform.rect.height;
+            float pixelOffset = size * slideFactor;
+
             Vector2 hiddenPos = _originalAnchoredPos;
-            if (slideHorizontal) hiddenPos.x -= slideDistance;
-            else hiddenPos.y += slideDistance;
+            if (slideHorizontal) hiddenPos.x -= pixelOffset;
+            else hiddenPos.y += pixelOffset;
             _rectTransform.anchoredPosition = hiddenPos;
 
             // Grab initial text and strip "Objective: " if it exists to keep the ID clean
@@ -221,9 +224,12 @@ public class ObjectiveManager : MonoBehaviour
         float startAlpha = _canvasGroup.alpha;
         float targetAlpha = show ? 1f : 0f;
 
+        float size = slideHorizontal ? _rectTransform.rect.width : _rectTransform.rect.height;
+        float pixelOffset = size * slideFactor;
+
         Vector2 hiddenPos = _originalAnchoredPos;
-        if (slideHorizontal) hiddenPos.x -= slideDistance;
-        else hiddenPos.y += slideDistance;
+        if (slideHorizontal) hiddenPos.x -= pixelOffset;
+        else hiddenPos.y += pixelOffset;
 
         Vector2 startPos = _rectTransform.anchoredPosition;
         Vector2 targetPos = show ? _originalAnchoredPos : hiddenPos;

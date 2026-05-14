@@ -48,7 +48,8 @@ public class DialogueUIController : MonoBehaviour
     [Header("Portrait Settings")]
     public Image speakerPortraitImage;
     public float portraitSlideDuration = 0.4f;
-    public float portraitSlideDistance = 150f;
+    [Tooltip("How much of its own width the portrait slides (1.0 = full width).")]
+    public float portraitSlideFactor = 0.5f; 
     [Tooltip("If true, the portrait slides in from the left. Otherwise, from the right.")]
     public bool slideFromLeft = true;
 
@@ -70,6 +71,7 @@ public class DialogueUIController : MonoBehaviour
     private System.Action<DialogueChoice> _onChoiceSelected;
     private List<DialogueChoice>          _currentChoices = new List<DialogueChoice>();
     private Vector2                       _portraitOriginalPos;
+    private bool                          _isPortraitPosCaptured = false;
     private Coroutine                     _portraitCoroutine;
     private Sprite                        _lastPortrait;
     private string                        _translatedText = "";
@@ -90,8 +92,7 @@ public class DialogueUIController : MonoBehaviour
 
         if (speakerPortraitImage != null)
         {
-            _portraitOriginalPos = speakerPortraitImage.rectTransform.anchoredPosition;
-            // Start hidden
+            // Start hidden - original pos will be captured when first needed
             SetPortraitVisibility(false, true);
         }
     }
@@ -315,6 +316,8 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator ShowSequence(bool isAlreadyOpen, bool skipAnimation)
     {
+        if (dialoguePanel == null) yield break; // Safety Check
+
         // Don't flicker the group if we're skipping
         if (choicesGroup != null && !skipAnimation) choicesGroup.SetActive(false);
         dialoguePanel.SetActive(true);
@@ -340,7 +343,9 @@ public class DialogueUIController : MonoBehaviour
             
             // Re-enforce scale BEFORE layout rebuild to prevent "squish"
             choicesGroup.transform.localScale = new Vector3(1, 0, 1);
-            LayoutRebuilder.ForceRebuildLayoutImmediate(choicesGroup.GetComponent<RectTransform>());
+            
+            RectTransform choicesRT = choicesGroup.GetComponent<RectTransform>();
+            if (choicesRT != null) LayoutRebuilder.ForceRebuildLayoutImmediate(choicesRT);
 
             if (curtainDelay > 0 && !skipAnimation) yield return new WaitForSeconds(curtainDelay);
             yield return StartCoroutine(CurtainDrop());
@@ -398,6 +403,8 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator CurtainDrop()
     {
+        if (choicesGroup == null) yield break; // Safety Check
+
         Vector3 start = new Vector3(1f, 0f, 1f);
         Vector3 end   = Vector3.one;
         choicesGroup.transform.localScale = start;
@@ -405,13 +412,15 @@ public class DialogueUIController : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < curtainDropDuration)
         {
-            elapsed += Time.unscaledDeltaTime; // Use unscaled for buttery smoothness
+            if (choicesGroup == null) yield break; // Safety Check mid-loop
+
+            elapsed += Time.unscaledDeltaTime;
             float t     = Mathf.Clamp01(elapsed / curtainDropDuration);
             float eased = 1f - Mathf.Pow(1f - t, 3f);
             choicesGroup.transform.localScale = Vector3.Lerp(start, end, eased);
             yield return null;
         }
-        choicesGroup.transform.localScale = end;
+        if (choicesGroup != null) choicesGroup.transform.localScale = end;
     }
 
     private void UpdatePortrait(Sprite newPortrait)
@@ -426,11 +435,19 @@ public class DialogueUIController : MonoBehaviour
     {
         if (speakerPortraitImage == null) return;
 
+        // LAZY CAPTURE: Wait until the screen resolution is settled to grab the home position
+        if (!_isPortraitPosCaptured && !immediate)
+        {
+            _portraitOriginalPos = speakerPortraitImage.rectTransform.anchoredPosition;
+            _isPortraitPosCaptured = true;
+        }
+
         if (immediate)
         {
             if (_portraitCoroutine != null) StopCoroutine(_portraitCoroutine);
             
-            float offset = slideFromLeft ? -portraitSlideDistance : portraitSlideDistance;
+            float width = speakerPortraitImage.rectTransform.rect.width;
+            float offset = slideFromLeft ? -width * portraitSlideFactor : width * portraitSlideFactor;
             speakerPortraitImage.rectTransform.anchoredPosition = _portraitOriginalPos + new Vector2(offset, 0);
             
             var cg = speakerPortraitImage.GetComponent<CanvasGroup>();
@@ -451,11 +468,21 @@ public class DialogueUIController : MonoBehaviour
 
     private IEnumerator AnimatePortrait(Sprite nextPortrait)
     {
+        if (speakerPortraitImage == null) yield break;
+
+        // LAZY CAPTURE: Wait until the screen resolution is settled to grab the home position
+        if (!_isPortraitPosCaptured)
+        {
+            _portraitOriginalPos = speakerPortraitImage.rectTransform.anchoredPosition;
+            _isPortraitPosCaptured = true;
+        }
+
         RectTransform rt = speakerPortraitImage.rectTransform;
         CanvasGroup cg = speakerPortraitImage.GetComponent<CanvasGroup>();
         if (cg == null) cg = speakerPortraitImage.gameObject.AddComponent<CanvasGroup>();
 
-        float offset = slideFromLeft ? -portraitSlideDistance : portraitSlideDistance;
+        float width = rt.rect.width;
+        float offset = slideFromLeft ? -width * portraitSlideFactor : width * portraitSlideFactor;
         Vector2 hiddenPos = _portraitOriginalPos + new Vector2(offset, 0);
         
         // If we are currently hidden and showing a new portrait
@@ -483,6 +510,8 @@ public class DialogueUIController : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < portraitSlideDuration)
         {
+            if (speakerPortraitImage == null) yield break;
+
             elapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsed / portraitSlideDuration);
             float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out
@@ -492,12 +521,15 @@ public class DialogueUIController : MonoBehaviour
             yield return null;
         }
 
-        rt.anchoredPosition = targetPos;
-        cg.alpha = targetAlpha;
-
-        if (nextPortrait == null)
+        if (speakerPortraitImage != null)
         {
-            speakerPortraitImage.gameObject.SetActive(false);
+            rt.anchoredPosition = targetPos;
+            cg.alpha = targetAlpha;
+
+            if (nextPortrait == null)
+            {
+                speakerPortraitImage.gameObject.SetActive(false);
+            }
         }
     }
 
