@@ -15,6 +15,7 @@ MonoBehaviour:
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: Saan ka nga taga ditoy.
+  translatedText: You are not from here.
   animationTrigger: StartFlying
   triggerEventName: 
   choices:

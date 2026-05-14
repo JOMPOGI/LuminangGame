@@ -15,6 +15,7 @@ MonoBehaviour:
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: 'Intedmo kaniak dayta makan ko? '
+  translatedText: Will you give me that food?
   animationTrigger: DoPointing
   triggerEventName: KalawStart
   choices:
