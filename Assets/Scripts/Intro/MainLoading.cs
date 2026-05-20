@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 using TMPro;
 using System.Collections;
+using Luminang.UI.Minigames;
 
 public class MainLoading : MonoBehaviour
 {
@@ -45,27 +47,7 @@ public class MainLoading : MonoBehaviour
 
         if (SceneLoader.keepBackgroundPersistent)
         {
-            
-            foreach (GameObject root in gameObject.scene.GetRootGameObjects())
-            {
-                // Disable all Cameras in the LoadingScene
-                foreach (Camera cam in root.GetComponentsInChildren<Camera>(true))
-                {
-                    cam.enabled = false;
-                }
-
-                // Disable all AudioListeners in the LoadingScene
-                foreach (AudioListener al in root.GetComponentsInChildren<AudioListener>(true))
-                {
-                    al.enabled = false;
-                }
-
-                // Disable all EventSystems in the LoadingScene
-                foreach (UnityEngine.EventSystems.EventSystem es in root.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>(true))
-                {
-                    es.enabled = false;
-                }
-            }
+            Debug.Log("[MainLoading] Background persistence active.");
         }
     }
 
@@ -204,7 +186,25 @@ public class MainLoading : MonoBehaviour
         if (string.IsNullOrEmpty(sceneToLoad)) sceneToLoad = SceneLoader.targetSceneForLoading;
         if (string.IsNullOrEmpty(sceneToLoad)) yield break; 
 
-        // 3. Preload all background scenes
+        // 3. NEW: Preload Minigame Assets into Memory
+        if (MinigameAssetCache.Instance != null)
+        {
+            Debug.Log("[MainLoading] Starting Minigame Asset Cache Preload...");
+            loadingText.text = "Caching Minigame Assets...";
+            MinigameAssetCache.Instance.StartPreload();
+            
+            // Wait for cache to be ready
+            while (!MinigameAssetCache.Instance.IsReady)
+            {
+                // We show the specific cache progress on the bar (from 0% to 100%)
+                float cacheProgress = MinigameAssetCache.Instance.PreloadProgress;
+                UpdateProgressUI(cacheProgress * 0.5f); // Use first 50% of bar for assets
+                yield return null;
+            }
+            Debug.Log("[MainLoading] Minigame Assets Cached Successfully!");
+        }
+
+        // 4. Preload all background scenes
         float totalSteps = (scenesToPreload != null ? scenesToPreload.Length : 0) + 1; // +1 for the target scene
         float progressStep = 1f / totalSteps;
         float currentTargetProgress = 0f;
@@ -287,6 +287,28 @@ public class MainLoading : MonoBehaviour
             SceneManager.SetActiveScene(targetScene);
             Debug.Log("[MainLoading] " + sceneToLoad + " is now active. Enabling roots...");
             
+            // 5.5 NEW: Wait for VideoPlayers in the new scene to prepare
+            // This prevents the "flash" of empty background in scenes like the Prologue.
+            VideoPlayer[] vps = Object.FindObjectsByType<VideoPlayer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (var vp in vps)
+            {
+                if (vp.gameObject.scene == targetScene && vp.playOnAwake)
+                {
+                    Debug.Log("[MainLoading] Waiting for VideoPlayer in target scene: " + vp.name);
+                    loadingText.text = "Initializing Video Content...";
+                    
+                    if (!vp.isPrepared) vp.Prepare();
+                    
+                    float timeout = 5f;
+                    while (!vp.isPrepared && timeout > 0)
+                    {
+                        timeout -= Time.deltaTime;
+                        yield return null;
+                    }
+                    Debug.Log("[MainLoading] VideoPlayer ready or timed out.");
+                }
+            }
+
             // CRITICAL FIX: Ensure all objects in the new scene are turned ON
             foreach (GameObject obj in targetScene.GetRootGameObjects())
             {

@@ -20,6 +20,9 @@ public class RegionClickable : MonoBehaviour, IPointerClickHandler, IPointerEnte
     private Color originalColor;
     private Image img;
 
+    [Header("Region Availability")]
+    public bool isAvailable = true;
+
     private void Start()
     {
         img = GetComponent<Image>();
@@ -97,7 +100,7 @@ public class RegionClickable : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isSelected) return; // Already selected
+        if (isSelected) return; 
         
         if (RegionSelectionManager.Instance != null)
         {
@@ -107,11 +110,13 @@ public class RegionClickable : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!isAvailable) return;
         if (img != null) img.color = hoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!isAvailable) return;
         if (img != null) img.color = originalColor;
     }
 }

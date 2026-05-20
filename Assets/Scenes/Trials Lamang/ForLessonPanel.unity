@@ -588,6 +588,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1171260510601680631, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1310631598378545793, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -971,6 +975,10 @@ PrefabInstance:
     - target: {fileID: 8385296738106757245, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_Name
       value: LessonPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8385296738106757245, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8637835364137646192, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y

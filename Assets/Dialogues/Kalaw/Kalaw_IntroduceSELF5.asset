@@ -15,6 +15,7 @@ MonoBehaviour:
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: "\u2026malukatan mo ti dalan."
+  translatedText: ...the path will open
   animationTrigger: StartFlying
   triggerEventName: KalawTeleport
   choices: []
