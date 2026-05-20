@@ -1,14 +1,17 @@
 using System;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.Networking;
+using System.Collections;
 using System.Collections.Generic;
 
-public enum RegionMode { Ilokano, Cebuano, Maranao, BossBattle }
+public enum RegionMode { Ilokano, Cebuano, BossBattle }
 
 public class PhraseEvaluator : MonoBehaviour
 {
     public static PhraseEvaluator Instance { get; private set; }
     public RegionMode CurrentRegion { get; private set; } = RegionMode.BossBattle;
+
+    private const string BACKEND_URL = "https://luminang-nlp-service.onrender.com";
 
     private void Awake()
     {
@@ -24,163 +27,8 @@ public class PhraseEvaluator : MonoBehaviour
 
     public float CalculateAccuracy(string input, string target)
     {
-        if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(target)) return 0;
-
-        string normalizedInput = NormalizeText(input);
-        string normalizedTarget = NormalizeText(target);
-
-        // --- SPACE-LESS IDENTITY CHECK ---
-        // Handles cases where STT accidentally splits a word (e.g., "na imbag" vs "naimbag")
-        if (normalizedInput.Replace(" ", "") == normalizedTarget.Replace(" ", ""))
-        {
-            return 100f;
-        }
-
-        // 1. Word-level similarity — F1-style (penalizes extra wrong words)
-        string[] inputWords = normalizedInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        string[] targetWords = normalizedTarget.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-        int matchCount = 0;
-        foreach (var tWord in targetWords)
-        {
-            if (inputWords.Any(iWord => IsWordMatch(iWord, tWord)))
-                matchCount++;
-        }
-
-        // SPECIAL CASE: If all target words appear IN ORDER in the input
-        // ONLY applies for multi-word phrases (2+ words) to avoid false matches
-        // e.g. "Ti nagan ko ket Maria Clara Santos" → target "Ti nagan ko ket" → 100%
-        // But single word "mangan" inside "kaya't ko ti mangan iti taraon" → NOT 100%
-        if (targetWords.Length >= 2)
-        {
-            int cursor = 0;
-            bool inOrder = true;
-            foreach (var tWord in targetWords)
-            {
-                bool found = false;
-                while (cursor < inputWords.Length)
-                {
-                    if (IsWordMatch(inputWords[cursor], tWord)) { found = true; cursor++; break; }
-                    cursor++;
-                }
-                if (!found) { inOrder = false; break; }
-            }
-            if (inOrder && matchCount == targetWords.Length) return 100f;
-        }
-
-        // Recall: how many target words were found
-        float recall = (targetWords.Length == 0) ? 0 : ((float)matchCount / targetWords.Length);
-
-        // Precision: of all input words, how many were actually correct
-        // (penalizes random extra words like "arabi")
-        float precision = (inputWords.Length == 0) ? 0 : ((float)matchCount / inputWords.Length);
-
-        // F1 blend — but give names/extra words a slight pass (max 1 extra word allowed without penalty)
-        int extraWords = Mathf.Max(0, inputWords.Length - targetWords.Length - 1);
-        float penalizedPrecision = (extraWords > 0) ? precision : 1.0f * recall; // only penalize beyond 1 extra word
-
-        float wordAccuracy = ((recall + Mathf.Min(precision, penalizedPrecision)) / 2f) * 100f;
-
-        // 2. Character-level similarity (Sub-string focused)
-        // If input is longer, we check if the target matches any part of the input
-        float charAccuracy = 0;
-        if (normalizedInput.Contains(normalizedTarget))
-        {
-            charAccuracy = 100f;
-        }
-        else
-        {
-            // Fallback to Levenshtein but only penalize based on target length
-            int charDistance = LevenshteinDistance(normalizedInput, normalizedTarget);
-            int denominator = normalizedTarget.Length; // Use target length to avoid penalizing extra words
-            charAccuracy = (1.0f - (float)charDistance / Math.Max(denominator, normalizedInput.Length)) * 100f;
-            
-            // If the target is a significant part of the input, give a boost
-            if (normalizedInput.Length > normalizedTarget.Length && normalizedInput.StartsWith(normalizedTarget))
-            {
-                charAccuracy = Mathf.Max(charAccuracy, 85f); // Partial match boost
-            }
-        }
-
-        // Blend them: If word accuracy is 100%, we lean heavily on that
-        if (wordAccuracy >= 99f) return 100f; 
-
-        return Mathf.Clamp((wordAccuracy * 0.6f) + (charAccuracy * 0.4f), 0f, 100f);
-    }
-
-    private bool IsWordMatch(string inputWord, string targetWord)
-    {
-        if (inputWord == targetWord) return true;
-        
-        // Balanced tolerance for voice recognition
-        int distance = LevenshteinDistance(inputWord, targetWord);
-        int threshold = targetWord.Length <= 3 ? 0 : (targetWord.Length <= 6 ? 1 : 2);
-        return distance <= threshold;
-    }
-
-    private string NormalizeText(string text)
-    {
-        // Remove punctuation and lowercase
-        char[] punctuation = { '.', ',', '?', '!', '"', '\'', '(', ')', '-', '_' };
-        string clean = text.ToLower();
-        foreach (char p in punctuation) clean = clean.Replace(p.ToString(), "");
-        
-        // Phonetic Fixes: Handle common English auto-corrections from STT engines
-        clean = PhoneticNormalize(clean);
-        
-        return clean.Trim();
-    }
-
-    private string PhoneticNormalize(string text)
-    {
-        // Dictionary of common English words that STT uses instead of Regional words
-        string[,] fixes = {
-            { "when", "wen" },     // Ilokano: Yes
-            { "mega", "mga" },     // General: Plural marker
-            { "hand", "haan" },    // Ilokano: No
-            { "too", "tu" },       // Future marker
-            { "who", "hu" },       // Maranao/Cebuano sounds
-            { "eye", "ay" },       // Maranao emphasis
-            { "can", "kan" }       // Maranao suffix
-        };
-
-        string result = text;
-        for (int i = 0; i < fixes.GetLength(0); i++)
-        {
-            // Use regex or word boundaries to avoid replacing parts of words
-            result = System.Text.RegularExpressions.Regex.Replace(
-                result, 
-                @"\b" + fixes[i, 0] + @"\b", 
-                fixes[i, 1], 
-                System.Text.RegularExpressions.RegexOptions.IgnoreCase
-            );
-        }
-        return result;
-    }
-
-    private int LevenshteinDistance(string s, string t)
-    {
-        int n = s.Length;
-        int m = t.Length;
-        int[,] d = new int[n + 1, m + 1];
-
-        if (n == 0) return m;
-        if (m == 0) return n;
-
-        for (int i = 0; i <= n; d[i, 0] = i++) ;
-        for (int j = 0; j <= m; d[0, j] = j++) ;
-
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 1; j <= m; j++)
-            {
-                int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
-                d[i, j] = Math.Min(
-                    Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
-                    d[i - 1, j - 1] + cost);
-            }
-        }
-        return d[n, m];
+        Debug.LogWarning("CalculateAccuracy is deprecated. Use EvaluateSpeech instead.");
+        return 0f;
     }
 
     public string GetFeedback(float accuracy)
@@ -193,110 +41,149 @@ public class PhraseEvaluator : MonoBehaviour
         return "Keep practicing!";
     }
 
-    /// <summary>
-    /// Searches the dataset for ALL phrases present in the input.
-    /// Useful for counting or long sentences.
-    /// </summary>
-    public List<(PhraseEntry entry, string language, float score)> FindAllMatches(string input)
+    // New Async/Coroutine evaluations
+
+    public void EvaluateSpeech(string expectedPhrase, string transcribedText, Action<string, float, string> callback)
     {
-        var allPhrases = DatasetManager.Instance.GetAllPhrases();
-        var matches = new List<(PhraseEntry entry, string language, float score)>();
-        
-        // Filter regional languages based on Map/Region
-        List<string> regionalLangs = new List<string>();
-        switch (CurrentRegion)
-        {
-            case RegionMode.Ilokano: regionalLangs.Add("ilokano"); break;
-            case RegionMode.Cebuano: regionalLangs.Add("cebuano"); break;
-            case RegionMode.Maranao: regionalLangs.Add("maranao"); break;
-            case RegionMode.BossBattle: 
-                regionalLangs.Add("ilokano"); 
-                regionalLangs.Add("cebuano"); 
-                regionalLangs.Add("maranao"); 
-                break;
-        }
-
-        foreach (var entry in allPhrases)
-        {
-            foreach (var lang in regionalLangs)
-            {
-                string target = entry.GetPhrase(lang);
-                if (string.IsNullOrEmpty(target) || target == "___") continue;
-
-                float score = CalculateAccuracy(input, target);
-
-                // Must score at least 65% to be considered a valid match
-                if (score >= 65f)
-                {
-                    matches.Add((entry, lang, score));
-                }
-            }
-        }
-
-        // Sort by position in the original input string to maintain counting order
-        return matches.OrderBy(m => input.ToLower().IndexOf(m.entry.GetPhrase(m.language).ToLower())).ToList();
+        StartCoroutine(EvaluateSpeechCoroutine(expectedPhrase, transcribedText, callback));
     }
 
-    /// <summary>
-    /// Searches the dataset for the closest matching phrase.
-    /// Returns the matched entry and the accuracy score.
-    /// </summary>
-    public (PhraseEntry entry, string language, float score, bool isEnglish) FindBestMatch(string input)
+    private IEnumerator EvaluateSpeechCoroutine(string expectedPhrase, string transcribedText, Action<string, float, string> callback)
     {
-        var allPhrases = DatasetManager.Instance.GetAllPhrases();
-        PhraseEntry bestEntry = null;
-        string bestLang = "";
-        float maxScore = -1f;
+        WWWForm form = new WWWForm();
+        form.AddField("expected_phrase", expectedPhrase);
+        form.AddField("transcribed_text", transcribedText);
 
-        // 1. Prioritize Regional Languages based on Map/Region
-        List<string> regionalLangs = new List<string>();
-        switch (CurrentRegion)
+        using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/evaluate", form))
         {
-            case RegionMode.Ilokano: regionalLangs.Add("ilokano"); break;
-            case RegionMode.Cebuano: regionalLangs.Add("cebuano"); break;
-            case RegionMode.Maranao: regionalLangs.Add("maranao"); break;
-            case RegionMode.BossBattle: 
-                regionalLangs.Add("ilokano"); 
-                regionalLangs.Add("cebuano"); 
-                regionalLangs.Add("maranao"); 
-                break;
-        }
+            yield return request.SendWebRequest();
 
-        foreach (var entry in allPhrases)
-        {
-            foreach (var lang in regionalLangs)
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                string target = entry.GetPhrase(lang);
-                if (string.IsNullOrEmpty(target) || target == "___") continue;
+                var response = JsonUtility.FromJson<EvaluateResponse>(request.downloadHandler.text);
+                callback?.Invoke(response.transcript, response.score * 100.0f, response.result); // Scale to 0-100%
+            }
+            else
+            {
+                Debug.LogError($"Evaluation API Error: {request.error}\n{request.downloadHandler.text}");
+                callback?.Invoke(transcribedText, 0f, "try_again");
+            }
+        }
+    }
 
-                float score = CalculateAccuracy(input, target);
-                if (score > maxScore)
+    public void FindBestMatch(string transcribedText, Action<PhraseEntry, string, float, bool> callback)
+    {
+        StartCoroutine(FindBestMatchCoroutine(transcribedText, callback));
+    }
+
+    private IEnumerator FindBestMatchCoroutine(string transcribedText, Action<PhraseEntry, string, float, bool> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("region", CurrentRegion.ToString());
+        form.AddField("transcribed_text", transcribedText);
+
+        using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/find_best_match", form))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string json = request.downloadHandler.text;
+                var response = JsonUtility.FromJson<BestMatchResponse>(json);
+                if (response.best_entry != null)
                 {
-                    maxScore = score;
-                    bestEntry = entry;
-                    bestLang = lang;
+                    PhraseEntry entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == response.best_entry.english);
+                    if (entry == null) entry = response.best_entry;
+                    callback?.Invoke(entry, response.language, response.score * 100.0f, response.is_english);
+                }
+                else
+                {
+                    callback?.Invoke(null, "", 0f, false);
                 }
             }
-        }
-
-        // 2. Check English ONLY to detect if they are speaking English instead of regional
-        bool matchedEnglish = false;
-        float bestEnglishScore = 0f;
-        foreach (var entry in allPhrases)
-        {
-            float englishScore = CalculateAccuracy(input, entry.english);
-            if (englishScore > bestEnglishScore)
+            else
             {
-                bestEnglishScore = englishScore;
+                Debug.LogError($"FindBestMatch API Error: {request.error}\n{request.downloadHandler.text}");
+                callback?.Invoke(null, "", 0f, false);
             }
         }
+    }
 
-        // If English is a much better match than regional, flag it
-        if (bestEnglishScore > 85f && bestEnglishScore > (maxScore + 15f))
+    public void FindAllMatches(string transcribedText, Action<List<(PhraseEntry entry, string language, float score)>> callback)
+    {
+        StartCoroutine(FindAllMatchesCoroutine(transcribedText, callback));
+    }
+
+    private IEnumerator FindAllMatchesCoroutine(string transcribedText, Action<List<(PhraseEntry entry, string language, float score)>> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("region", CurrentRegion.ToString());
+        form.AddField("transcribed_text", transcribedText);
+
+        using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/find_all_matches", form))
         {
-            matchedEnglish = true;
-        }
+            yield return request.SendWebRequest();
 
-        return (bestEntry, bestLang, maxScore, matchedEnglish);
+            var matches = new List<(PhraseEntry entry, string language, float score)>();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string json = request.downloadHandler.text;
+                var response = JsonUtility.FromJson<AllMatchesResponse>(json);
+                if (response.matches != null)
+                {
+                    foreach (var item in response.matches)
+                    {
+                        if (item.entry != null)
+                        {
+                            PhraseEntry entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == item.entry.english);
+                            if (entry == null) entry = item.entry;
+                            matches.Add((entry, item.language, item.score)); // Python already scales score for find_all_matches
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError($"FindAllMatches API Error: {request.error}\n{request.downloadHandler.text}");
+            }
+
+            callback?.Invoke(matches);
+        }
+    }
+
+    // Helper classes for JSON Deserialization
+
+    [Serializable]
+    private class EvaluateResponse
+    {
+        public string transcript;
+        public float score;
+        public string result;
+    }
+
+    [Serializable]
+    private class BestMatchResponse
+    {
+        public string transcript;
+        public PhraseEntry best_entry;
+        public string language;
+        public float score;
+        public bool is_english;
+    }
+
+    [Serializable]
+    private class MatchItem
+    {
+        public PhraseEntry entry;
+        public string language;
+        public float score;
+    }
+
+    [Serializable]
+    private class AllMatchesResponse
+    {
+        public string transcript;
+        public List<MatchItem> matches;
     }
 }

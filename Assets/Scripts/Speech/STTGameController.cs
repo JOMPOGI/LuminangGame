@@ -89,13 +89,6 @@ public class STTGameController : MonoBehaviour
         ResetUIResults();
     }
 
-    public void SelectMaranao() 
-    {
-        PhraseEvaluator.Instance.SetRegion(RegionMode.Maranao);
-        statusText.text = "Region: MARANAO Ready";
-        ResetUIResults();
-    }
-
     public void SelectBossBattle() 
     {
         PhraseEvaluator.Instance.SetRegion(RegionMode.BossBattle);
@@ -112,36 +105,10 @@ public class STTGameController : MonoBehaviour
 
     private void OnTranscriptionSuccess(string result)
     {
-        // 1. Lenient Validation
-        if (!LexiconValidator.Instance.ValidateText(result))
-        {
-            Debug.Log("Some words not in lexicon, but proceeding with fuzzy match.");
-        }
-
-        // 2. Multi-Phrase Discovery
         statusText.text = "Processing Results...";
-        var matches = PhraseEvaluator.Instance.FindAllMatches(result);
 
-        if (matches.Count > 0) 
+        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish) =>
         {
-            string transcript = $"Heard: \"{result}\"";
-            
-            // Build a list of all detected regional phrases
-            string detectedLangs = string.Join(", ", matches.Select(m => m.language.ToUpper()).Distinct());
-            string detectedPhrases = string.Join(", ", matches.Select(m => m.entry.GetPhrase(m.language)));
-            float averageScore = matches.Average(m => m.score);
-
-            statusText.text = $"{detectedLangs} Detected";
-            accuracyText.text = $"{averageScore:F0}% Avg Match";
-            feedbackText.text = $"{transcript}\nDetected: <color=yellow>{detectedPhrases}</color>";
-            
-            // Show retry button unless it's a passing score (80%+)
-            retryButton.gameObject.SetActive(averageScore < 80f);
-        }
-        else
-        {
-            // Fallback to Best Match — show the closest regional phrase even if below 80%
-            var (bestEntry, bestLang, accuracy, isEnglish) = PhraseEvaluator.Instance.FindBestMatch(result);
             string transcript = $"Heard: \"{result}\"";
 
             if (bestEntry != null && isEnglish)
@@ -153,12 +120,12 @@ public class STTGameController : MonoBehaviour
             }
             else if (bestEntry != null)
             {
-                // Show the closest match even if below 80%, so the player gets useful feedback
                 string feedback = PhraseEvaluator.Instance.GetFeedback(accuracy);
                 statusText.text = $"{bestLang.ToUpper()} Detected";
                 accuracyText.text = $"{accuracy:F0}% Match";
+                
                 feedbackText.text = $"{transcript}\n{feedback}";
-                retryButton.gameObject.SetActive(true);
+                retryButton.gameObject.SetActive(accuracy < 80f);
             }
             else
             {
@@ -167,7 +134,7 @@ public class STTGameController : MonoBehaviour
                 feedbackText.text = $"{transcript}\nPlease try again!";
                 retryButton.gameObject.SetActive(true);
             }
-        }
+        });
 
         // Clear separate transcript text to prevent overlap
         transcriptText.text = ""; 
