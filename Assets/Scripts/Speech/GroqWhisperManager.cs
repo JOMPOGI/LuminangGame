@@ -18,12 +18,12 @@ public class GroqWhisperManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError)
+    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = null)
     {
-        StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError));
+        StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError, prompt));
     }
 
-    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError)
+    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = null)
     {
         if (!File.Exists(filePath))
         {
@@ -35,6 +35,10 @@ public class GroqWhisperManager : MonoBehaviour
         
         WWWForm form = new WWWForm();
         form.AddBinaryData("audio", audioData, "speech.wav", "audio/wav");
+        if (!string.IsNullOrEmpty(prompt))
+        {
+            form.AddField("prompt", prompt);
+        }
 
         using (UnityWebRequest request = UnityWebRequest.Post(GROQ_WHISPER_URL, form))
         {

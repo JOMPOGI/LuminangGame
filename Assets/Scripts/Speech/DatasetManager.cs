@@ -10,6 +10,7 @@ public class PhraseEntry
     public string english;
     public string ilokano;
     public string cebuano;
+    public string maranao;
 
     public string GetPhrase(string language)
     {
@@ -18,6 +19,7 @@ public class PhraseEntry
             case "english": return english;
             case "ilokano": return ilokano;
             case "cebuano": return cebuano;
+            case "maranao": return maranao;
             default: return english;
         }
     }
@@ -35,6 +37,7 @@ public class DatasetManager : MonoBehaviour
 
     [SerializeField] private TextAsset datasetJson;
     private PhraseDataset dataset;
+    private HashSet<string> lexicon;
 
     private void Awake()
     {
@@ -65,6 +68,7 @@ public class DatasetManager : MonoBehaviour
             try 
             {
                 dataset = JsonUtility.FromJson<PhraseDataset>(jsonText);
+                BuildLexicon();
                 Debug.Log($"Dataset successfully loaded with {dataset.phrases.Count} phrases.");
             }
             catch (Exception e)
@@ -77,6 +81,41 @@ public class DatasetManager : MonoBehaviour
         {
             Debug.LogError("LuminangPhrases.json not found in Resources!");
         }
+    }
+
+    private void BuildLexicon()
+    {
+        lexicon = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (dataset == null || dataset.phrases == null) return;
+        foreach (var entry in dataset.phrases)
+        {
+            AddPhraseToLexicon(entry.english);
+            AddPhraseToLexicon(entry.ilokano);
+            AddPhraseToLexicon(entry.cebuano);
+            AddPhraseToLexicon(entry.maranao);
+        }
+    }
+
+    private void AddPhraseToLexicon(string phrase)
+    {
+        if (string.IsNullOrEmpty(phrase)) return;
+
+        // Split by whitespace and remove special characters like ?, !, /
+        string[] words = phrase.Split(new[] { ' ', '/', '?' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var word in words)
+        {
+            string cleanWord = word.Trim().ToLower();
+            if (cleanWord != "___")
+            {
+                lexicon.Add(cleanWord);
+            }
+        }
+    }
+
+    public bool IsWordInLexicon(string word)
+    {
+        if (lexicon == null) BuildLexicon();
+        return lexicon != null && lexicon.Contains(word.ToLower().Trim());
     }
 
 

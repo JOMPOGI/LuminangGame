@@ -15,7 +15,7 @@ MonoBehaviour:
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
   dialogueText: Naadalmon itan no kasano dagiti panangablaawmi.
-  translatedText: Now you have learned how our greetings work.
+  translatedText: Now you have discovered how our language and greetings work.
   animationTrigger: 
   triggerEventName: 
   endEventName: 

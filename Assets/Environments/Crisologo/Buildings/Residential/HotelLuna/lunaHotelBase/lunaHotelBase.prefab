@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2419518691599726242
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.47826716
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6169272
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.500739
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 578.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 497.97
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99892443
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.046368796
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5.315
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      propertyPath: m_Name
+      value: lunaHotelBase
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -5606575068929545441, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6468317014221465154}
+  m_SourcePrefab: {fileID: 100100000, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+--- !u!1 &1414880975864503741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5606575068929545441, guid: 67e316e208f32c94083787ee63e03755, type: 3}
+  m_PrefabInstance: {fileID: 2419518691599726242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6468317014221465154
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414880975864503741}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.009414528, y: 0.003691406, z: 0.009414374}
+  m_Center: {x: 0.000074639545, y: -5.271136e-10, z: 0.000033771936}
