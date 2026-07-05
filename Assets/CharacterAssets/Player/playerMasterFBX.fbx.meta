@@ -3,7 +3,192 @@ guid: 7dec9aba355dd2c48bb358e98aabf78d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: advPoloShirt_mat
+    second: {fileID: 2100000, guid: af086bcfa610e9f429e35a10431429aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: baro'tSaya1_mat
+    second: {fileID: 2100000, guid: c55d9a22d8030164abc3af8b2f108f44, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: barong_mat
+    second: {fileID: 2100000, guid: c80579cdfe4686840b0b60ba4d48ec52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: basemodel_mat
+    second: {fileID: 2100000, guid: fe03c244cec401542a1a9553d9eb2262, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beigeHighHeel_mat
+    second: {fileID: 2100000, guid: e7455b153d1917e46a19356b536abe0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beigeTrouser_mat
+    second: {fileID: 2100000, guid: 260fcb576d9041547b6c119a0d0b772e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blackShoe_mat
+    second: {fileID: 2100000, guid: 360d232804ed8384a99b534697bc5a1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blackSneakers_mat
+    second: {fileID: 2100000, guid: 4996f6251929fca4ba74906cb5d55cfe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blackTrouser_mat
+    second: {fileID: 2100000, guid: 96ec58441d9ed054685b05ac7aeb037f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blondHair_mat
+    second: {fileID: 2100000, guid: 0dfbcc2ee03ea534f88ec5d9ae404f7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brownBoots_mat
+    second: {fileID: 2100000, guid: fa203fb130853c344aa977e3391bdd7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brownShoe_mat
+    second: {fileID: 2100000, guid: a221b8d482cfc9642b127633dbe77f35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bunnyShirt_mat
+    second: {fileID: 2100000, guid: 66fe4edf2c48e3f4aa0b6927ba8a76ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cargoShorts_mat
+    second: {fileID: 2100000, guid: 9aefc1d54863fb24594389671d196b3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: denimJeans_mat
+    second: {fileID: 2100000, guid: 0948267c5f2336948b8a34af9a6d9ae8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fantasyPants_mat
+    second: {fileID: 2100000, guid: 869eb091d575903449f467f0b6bf53d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flatSandals_mat
+    second: {fileID: 2100000, guid: e97f45e9d038a8744b471dfeab57b7b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: guayaberaShirt_mat
+    second: {fileID: 2100000, guid: cf935d7484abc5c4589513fc0fbeac27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lacedBrownBoots_mat
+    second: {fileID: 2100000, guid: 1e998721f22f6b74eb120e1a955c94ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: longBlackHair_mat
+    second: {fileID: 2100000, guid: 641e788f518a88d4b9fbbbef33acb98f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pinkBow_mat
+    second: {fileID: 2100000, guid: 7d5e4d583f2bcd04a8c1efb567c62a9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pinkHair_mat
+    second: {fileID: 2100000, guid: 93e9cd787220bfe48906f34497886d25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pinkSkirt_mat
+    second: {fileID: 2100000, guid: a230ea78c67cb4641823c7900e510fc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: purpleBlackShortHair_mat
+    second: {fileID: 2100000, guid: 0b9844df001f6ff41b0a22eb2a46d349, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: purpleDress_mat
+    second: {fileID: 2100000, guid: 56fe0f3ab0a6f0149a5ac81f7ce2b32a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: redFantasyDress_mat
+    second: {fileID: 2100000, guid: 3f99656e3533d3a428704899aa1af76b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sayaDress_mat
+    second: {fileID: 2100000, guid: f8b88d39b853bae43aba9376b1bcabd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shortBlackHair_mat
+    second: {fileID: 2100000, guid: 84189ccdbde32b74b82d9a434b1b53ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shortBlackHair_mat.001
+    second: {fileID: 2100000, guid: 36c9284de33fc284ea3804a4ecdf088f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shortBrownHair_mat
+    second: {fileID: 2100000, guid: 6c93b09c5bce5004f9336261e98547a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shortMochaHair_mat
+    second: {fileID: 2100000, guid: 3a5f031dce73fd74fb2aca237aec3803, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: spikyBlonde_mat
+    second: {fileID: 2100000, guid: a7ee3a92d9e1ace449ed5f48f95e4c1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strawHat_mat
+    second: {fileID: 2100000, guid: dffee6e27f74f9847a27ce01da4ce2fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tripo_node_bb0c93d3-6a0d-4cfc-a399-a67fc0ad9972_material.001
+    second: {fileID: 2100000, guid: 558fe4318b6df364ea24e0c22d1bb95c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tripo_node_bb0c93d3-6a0d-4cfc-a399-a67fc0ad9972_material.002
+    second: {fileID: 2100000, guid: 8bd6649726a2e724a9ca22211fd95718, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tuckedShirt_mat
+    second: {fileID: 2100000, guid: e9f69dbadf877f74e932232589df7d19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: whiteShirt_mat
+    second: {fileID: 2100000, guid: 00ad422d0ca43ca41927adaac9dde97d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -82,8 +267,467 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: hip
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperLeg.L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperLeg.R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerLeg.L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerLeg.R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: feet.L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: feet.R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder.L
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulder.R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperArm.L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: upperArm.R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerArm.L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: lowerArm.R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand.L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hand.R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: playerMasterFBX(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: AdvShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.025419248, y: 1.5691495, z: -0.020253832}
+      rotation: {x: 0.5062587, y: -0.49366194, z: 0.4936649, w: 0.50625587}
+      scale: {x: 1.0722582, y: 1.0298572, z: 1}
+    - name: Armature
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0017644378, y: 1.2662847, z: 0.009971318}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: hip
+      parentName: Armature
+      position: {x: -0.000008155575, y: 0.0000060519387, z: -0.0025923229}
+      rotation: {x: -0.00000028002367, y: -0.6537164, z: -0.7567397, w: -0.00000021711645}
+      scale: {x: 1, y: 0.9999991, z: 0.9999991}
+    - name: spine
+      parentName: hip
+      position: {x: -1.0154833e-12, y: 0.0019494579, z: -7.368785e-12}
+      rotation: {x: 0.079992294, y: 1.6197532e-10, z: -0.000000019060991, w: 0.99679554}
+      scale: {x: 1, y: 0.9999968, z: 0.9999968}
+    - name: chest
+      parentName: spine
+      position: {x: 8.901324e-14, y: 0.002894279, z: 1.5914279e-11}
+      rotation: {x: 0.0972493, y: -0.000000123448, z: -0.000000034240063, w: 0.99526006}
+      scale: {x: 1, y: 1.0000005, z: 1.0000005}
+    - name: neck
+      parentName: chest
+      position: {x: -1.9025669e-13, y: 0.0026854335, z: -1.473757e-11}
+      rotation: {x: -0.1902335, y: 0.00000023886815, z: 0.000000045270006, w: 0.9817389}
+      scale: {x: 1, y: 1.0000031, z: 1.0000031}
+    - name: head
+      parentName: neck
+      position: {x: -5.8168894e-13, y: 0.0015193305, z: -3.7252902e-11}
+      rotation: {x: 0.06484914, y: 3.0368593e-11, z: 3.2756016e-12, w: 0.9978951}
+      scale: {x: 1, y: 0.99999696, z: 0.99999696}
+    - name: shoulder.L
+      parentName: chest
+      position: {x: -1.9025669e-13, y: 0.0026854335, z: -1.473757e-11}
+      rotation: {x: 0.012502477, y: -0.011266681, z: -0.7605608, w: 0.6490485}
+      scale: {x: 1.0000087, y: 1.0000055, z: 1.0000037}
+    - name: upperArm.L
+      parentName: shoulder.L
+      position: {x: -5.061156e-10, y: 0.0020672542, z: 0}
+      rotation: {x: 0.009495164, y: -0.00215796, z: 0.048721883, w: 0.9987649}
+      scale: {x: 1.0000079, y: 1.0000062, z: 0.9999974}
+    - name: lowerArm.L
+      parentName: upperArm.L
+      position: {x: 1.5250406e-10, y: 0.002844271, z: 3.7252902e-11}
+      rotation: {x: -0.063542046, y: 0.0034054203, z: 0.04744418, w: 0.996845}
+      scale: {x: 1.0000079, y: 1.0000001, z: 1.0000039}
+    - name: hand.L
+      parentName: lowerArm.L
+      position: {x: -1.11758706e-10, y: 0.002730772, z: -8.614734e-11}
+      rotation: {x: 0.00261379, y: -0.00017770774, z: -0.026512928, w: 0.99964505}
+      scale: {x: 1.0000088, y: 1.0000132, z: 0.9999999}
+    - name: shoulder.R
+      parentName: chest
+      position: {x: -1.9025669e-13, y: 0.0026854335, z: -1.473757e-11}
+      rotation: {x: 0.012889577, y: 0.011652876, z: 0.7622206, w: 0.64708406}
+      scale: {x: 1.0000073, y: 1.0000045, z: 0.9999992}
+    - name: upperArm.R
+      parentName: shoulder.R
+      position: {x: 2.7677743e-10, y: 0.00199705, z: 1.3969838e-11}
+      rotation: {x: -0.003670659, y: 0.0005758339, z: -0.043578833, w: 0.9990431}
+      scale: {x: 1.0000112, y: 1.0000049, z: 1.0000018}
+    - name: lowerArm.R
+      parentName: upperArm.R
+      position: {x: 1.7695129e-10, y: 0.0025464233, z: 6.519258e-11}
+      rotation: {x: -0.043904904, y: -0.0021392223, z: -0.048683923, w: 0.99784654}
+      scale: {x: 1.000016, y: 1.0000088, z: 0.99999976}
+    - name: hand.R
+      parentName: lowerArm.R
+      position: {x: 1.3038516e-10, y: 0.0031503441, z: -8.731149e-11}
+      rotation: {x: 0.016524108, y: 0.00077310606, z: 0.012820185, w: 0.999781}
+      scale: {x: 1.0000083, y: 1.0000044, z: 1.0000033}
+    - name: upperLeg.L
+      parentName: hip
+      position: {x: 0.0012592897, y: 0.0003805736, z: -0.00041917205}
+      rotation: {x: 0.7029578, y: -0.033377174, z: 0.7095682, w: -0.0353468}
+      scale: {x: 1.0000013, y: 1.0000103, z: 1.0000271}
+    - name: lowerLeg.L
+      parentName: upperLeg.L
+      position: {x: -2.2118911e-11, y: 0.004358066, z: -6.722985e-11}
+      rotation: {x: -0.016418872, y: 0.00086600456, z: -0.032835122, w: 0.9993255}
+      scale: {x: 1.0000048, y: 1.0000058, z: 1.0000044}
+    - name: feet.L
+      parentName: lowerLeg.L
+      position: {x: -1.2805685e-11, y: 0.0051238122, z: -2.2118911e-11}
+      rotation: {x: 0.0026386557, y: -0.0071619595, z: 0.6509133, w: 0.7591138}
+      scale: {x: 1.0000075, y: 1.000002, z: 1.0000043}
+    - name: upperLeg.R
+      parentName: hip
+      position: {x: -0.0012967736, y: 0.0003805779, z: -0.0004191685}
+      rotation: {x: 0.7029351, y: -0.03650698, z: 0.70959544, w: -0.0319974}
+      scale: {x: 1.0000056, y: 1.0000178, z: 1.0000335}
+    - name: lowerLeg.R
+      parentName: upperLeg.R
+      position: {x: -0, y: 0.0043342584, z: -1.3096723e-11}
+      rotation: {x: 0.010522379, y: 0.0016295323, z: -0.032161914, w: 0.99942595}
+      scale: {x: 1.0000056, y: 1.0000187, z: 1.0000103}
+    - name: feet.R
+      parentName: lowerLeg.R
+      position: {x: 1.4086253e-10, y: 0.0051457346, z: -3.4924596e-12}
+      rotation: {x: -0.006419665, y: 0.026598644, z: 0.65049094, w: 0.75902104}
+      scale: {x: 1.0000182, y: 1.0000062, z: 1.0000056}
+    - name: SayaDress
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.001068795, y: 0.99951184, z: 0.029433262}
+      rotation: {x: 0.5, y: -0.5, z: 0.49999997, w: 0.50000006}
+      scale: {x: 1.7316751, y: 1.7316751, z: 1.7316751}
+    - name: arms
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.007355248, y: 1.6815455, z: 0.03875604}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: baro'tSaya1
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.11978867, y: 1.1522539, z: -0.14579569}
+      rotation: {x: 0.5062582, y: -0.49366248, z: 0.4936643, w: 0.5062564}
+      scale: {x: 1.4623705, y: 1.4623705, z: 1.4623704}
+    - name: barong
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0042700293, y: 1.384477, z: 0.026912779}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1.6223809, y: 1.5642481, z: 1.5642481}
+    - name: beigeHighHeel
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.007058285, y: 0.08273888, z: -0.0039267275}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 0.4531165, y: 0.4531165, z: 0.50807625}
+    - name: beigeTrouser
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0, y: 0.69723445, z: 0}
+      rotation: {x: -0.50827926, y: 0.5082824, z: -0.49157828, w: -0.49158123}
+      scale: {x: 1.210428, y: 1.224257, z: 1.1039563}
+    - name: blackHairShort
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0143273445, y: 2.1613479, z: -0.026558105}
+      rotation: {x: 0.5062588, y: -0.4936619, z: 0.49366492, w: 0.5062558}
+      scale: {x: 0.723559, y: 0.64441854, z: 0.8352222}
+    - name: blackShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.00542777, y: 1.6018515, z: 0.039937712}
+      rotation: {x: -0.5163265, y: 0.51632696, z: -0.48312163, w: -0.48312208}
+      scale: {x: 1, y: 1, z: 1}
+    - name: blackShoe
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0010064845, y: 0.070197344, z: -0.051528376}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 0.3997344, y: 0.3997344, z: 0.3997344}
+    - name: blackSneakers
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0019656543, y: 0.063064456, z: -0.05524081}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 0.41986647, y: 0.41986647, z: 0.41986647}
+    - name: blackTrouser
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.001125393, y: 0.92841786, z: -0.0035679059}
+      rotation: {x: -0.5029652, y: 0.5029734, z: -0.49700895, w: -0.49701697}
+      scale: {x: 1.1591648, y: 1.1800038, z: 1.1304301}
+    - name: blondHair
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0032227992, y: 2.1114142, z: 0.12000925}
+      rotation: {x: 0.52078265, y: -0.5085713, z: 0.47831467, w: 0.49127972}
+      scale: {x: 0.9874446, y: 0.96309984, z: 1.04996}
+    - name: brownBoots
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.0025512099, y: 0.20470642, z: -0.00070748385}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: brownShoe
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0060587707, y: 0.068487525, z: -0.042900775}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 0.37834775, y: 0.3949259, z: 0.3949259}
+    - name: bunnyShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.0041675316, y: 1.5857006, z: 0.056603525}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: cargoShorts
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0021949664, y: 1.097586, z: 0.006608348}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 0.7542854, y: 0.57411426, z: 0.57411426}
+    - name: denimJeans
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.0010897762, y: 0.7403633, z: -0.004338297}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1.1544021, y: 1.1826103, z: 1.2001661}
+    - name: face
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0039727413, y: 2.1061914, z: 0.012221065}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: fantasyPants
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.042645283, y: 0.7551538, z: -0.007542168}
+      rotation: {x: 0.5095099, y: -0.4968354, z: 0.4904707, w: 0.5029838}
+      scale: {x: 1, y: 1, z: 1}
+    - name: feet
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.036053404, y: 0.031979084, z: -0.1149463}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: flatSandalsBrown
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0042758854, y: 0.11509073, z: -0.075645596}
+      rotation: {x: -0.0011275654, y: 0.70710605, z: -0.7071058, w: -0.0011275656}
+      scale: {x: 0.44453785, y: 0.44453785, z: 0.44453788}
+    - name: guayaberaShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0043382975, y: 1.5508281, z: -0.019193288}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 0.90548825}
+    - name: hands
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0043656346, y: 1.6677574, z: 0.040608462}
+      rotation: {x: -0.7423913, y: 0, z: 0, w: 0.6699665}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hips
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0033669786, y: 1.0657806, z: -0.013336831}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: lacedBrownBoots
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0054300586, y: 0.09304619, z: -0.034259327}
+      rotation: {x: -0.49872488, y: 0.50127196, z: -0.5012627, w: -0.498734}
+      scale: {x: 0.42691317, y: 0.42691317, z: 0.42691314}
+    - name: legs
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.003880868, y: 0.5551344, z: 0.02221468}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: longBlackHair
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.00027629753, y: 2.095624, z: 0.09064604}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pinkHair
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.0058045452, y: 1.7934905, z: 0.015873099}
+      rotation: {x: 0.5062588, y: -0.4936619, z: 0.49366492, w: 0.5062558}
+      scale: {x: 1, y: 1, z: 1.026778}
+    - name: pinkSkirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.09080577, y: 1.0313379, z: -0.044058695}
+      rotation: {x: -0.3583938, y: 0.66464335, z: -0.6460224, w: -0.1116166}
+      scale: {x: 0.09070177, y: 0.09070177, z: 0.090701774}
+    - name: purpBlackHairShort
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0076495525, y: 2.1923378, z: 0.027789835}
+      rotation: {x: -0.5212998, y: 0.5212999, z: -0.4777514, w: -0.47775155}
+      scale: {x: 0.6993517, y: 0.7958695, z: 0.7943896}
+    - name: purpleCatShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.001254225, y: 1.5683944, z: 0.029795276}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: purpleDress
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.0016912431, y: 1.4562505, z: 0.015433275}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: redFantasyDress
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.009614724, y: 1.3478445, z: 0.021542586}
+      rotation: {x: -0.000000015647782, y: -0.6981455, z: -0.00000001525852, w: 0.7159559}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shortBlackHair
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.009067295, y: 2.1664853, z: 0.0031816028}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 0.78044236, y: 0.8515275, z: 0.8223856}
+    - name: shortBrownHair
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.0013390135, y: 2.1353848, z: -0.02439452}
+      rotation: {x: -0.49366367, y: -0.5062571, z: 0.5062575, w: -0.49366316}
+      scale: {x: 0.910853, y: 0.910853, z: 0.949279}
+    - name: shortMochaHair
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.012541368, y: 2.1976237, z: -0.032459732}
+      rotation: {x: 0.5008023, y: -0.49919653, z: 0.4992074, w: 0.5007913}
+      scale: {x: 0.7271473, y: 0.71329105, z: 0.76012206}
+    - name: spikyBlonde
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.022225767, y: 2.2076607, z: 0.020830687}
+      rotation: {x: -0.5900362, y: 0.5900363, z: -0.3896886, w: -0.38968864}
+      scale: {x: 0.74719334, y: 0.70696354, z: 0.7825006}
+    - name: strawHat
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.013891434, y: 2.3166835, z: 0.031021137}
+      rotation: {x: 0.7834651, y: -0.0034297826, z: -0.0027203988, w: 0.62142044}
+      scale: {x: 0.99153376, y: 1.1194243, z: 0.7195986}
+    - name: torso
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.002257921, y: 1.5546767, z: 0.007795682}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: tuckedShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: 0.0057332246, y: 1.5169345, z: -0.0038321202}
+      rotation: {x: 0.48938057, y: -0.4893803, z: 0.51039886, w: 0.5103985}
+      scale: {x: 1.698184, y: 1.6980251, z: 1.7854017}
+    - name: whiteShirt
+      parentName: playerMasterFBX(Clone)
+      position: {x: -0.010633102, y: 1.5855731, z: 0.0314339}
+      rotation: {x: 0.5, y: -0.49999997, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
