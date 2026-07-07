@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: AntingAnting_mat
+    second: {fileID: 2100000, guid: 3cd797beaccdb37428581e498b6e1f4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: advPoloShirt_mat
     second: {fileID: 2100000, guid: af086bcfa610e9f429e35a10431429aa, type: 2}
   - first:
