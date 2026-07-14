@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: Ngem umuna, masapul nga ammoem dagiti batayan.
-  translatedText: But first, you should learn the basics.
+  dialogueText: First, you should learn the basics.
+  translatedText: Ngem umuna, masapul nga ammoem dagiti batayan.
   animationTrigger: 
   triggerEventName: 
   endEventName: StartLesson_Greetings

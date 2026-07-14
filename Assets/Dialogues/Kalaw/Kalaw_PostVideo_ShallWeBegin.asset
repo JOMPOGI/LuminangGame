@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "By learning our language... You can rekindle the crystal. And help ensure our voices continue to be heard by future generations. So... Shall we begin?"
+  dialogueText: By learning our language... You can rekindle the crystal. And help
+    ensure our voices continue to be heard by future generations. So... Shall we
+    begin?
   translatedText: 
-  animationTrigger: DoPointing
+  animationTrigger: StartFlying
   triggerEventName: 
-  endEventName: StartLesson_Greetings
-  choices: []
-
+  endEventName: 
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: a73f998953613c7479a7f0c7f71bf508, type: 2}
+    isWrong: 0
+    choiceEvent: 
