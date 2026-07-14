@@ -121,7 +121,17 @@ public class SampleIntro : MonoBehaviour
         if (!sceneLoading && iconGroup.alpha <= 0f && nameGroup.alpha <= 0f)
         {
             sceneLoading = true;
-            SceneManager.LoadScene("Unity_LoadingScene");
+            
+            // If the TransitionOverlay exists, use its smooth fade
+            if (TransitionOverlay.Instance != null)
+            {
+                TransitionOverlay.Instance.StartTransition("MainLoadingScene");
+            }
+            else
+            {
+                // Fallback if no overlay is in the scene
+                SceneManager.LoadScene("MainLoadingScene");
+            }
         }
     }
 }

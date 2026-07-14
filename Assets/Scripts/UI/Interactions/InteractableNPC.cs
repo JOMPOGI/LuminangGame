@@ -32,6 +32,12 @@ public class InteractableNPC : InteractableBase
     [Tooltip("If true, the interaction button will NEVER appear again after the first conversation ends.")]
     public bool disableAfterInteraction = false;
     [HideInInspector] public bool isWrongAnswerPlaying = false;
+    
+    [Header("Minigame Settings")]
+    [Tooltip("The category name (e.g. Greetings) to pass to the minigame when StartMinigame is called.")]
+    public string minigameCategory;
+    [Tooltip("The language ID (1=Ilokano, 2=Cebuano, etc.) to pass to the minigame.")]
+    public int minigameLanguageId = 1;
 
     [Header("Events")]
     public UnityEvent OnDialogueEnd;
@@ -299,10 +305,15 @@ public class InteractableNPC : InteractableBase
 
     /// <summary>
     /// Helper to trigger the lesson panel with a specific category.
+    /// Redirects to the LessonIntroPanel first if available.
     /// </summary>
     public void StartLessonWithCategory(string category)
     {
-        if (LessonManager.Instance != null)
+        if (LessonIntroPanel.Instance != null)
+        {
+            LessonIntroPanel.Instance.ShowForCategory(category);
+        }
+        else if (LessonManager.Instance != null)
         {
             LessonManager.Instance.ShowLessonWithCategory(category);
         }
@@ -310,21 +321,22 @@ public class InteractableNPC : InteractableBase
 
     /// <summary>
     /// Helper to trigger a minigame. Drag a prefab into the UnityEvent slot!
+    /// It will automatically use the 'minigameCategory' field set above.
     /// </summary>
     public void StartMinigame(GameObject minigamePrefab)
     {
-        StartMinigameWithCategory(minigamePrefab, "");
+        StartMinigameWithCategory(minigamePrefab, minigameCategory, minigameLanguageId);
     }
 
     /// <summary>
     /// Helper to trigger a minigame with a specific category tag.
     /// Useful for dynamic minigames that load content based on the lesson.
     /// </summary>
-    public void StartMinigameWithCategory(GameObject minigamePrefab, string category)
+    public void StartMinigameWithCategory(GameObject minigamePrefab, string category, int languageId)
     {
         if (MinigameManager.Instance != null)
         {
-            MinigameManager.Instance.StartMinigameWithCategory(minigamePrefab, category);
+            MinigameManager.Instance.StartMinigameWithCategory(minigamePrefab, category, languageId);
         }
     }
 

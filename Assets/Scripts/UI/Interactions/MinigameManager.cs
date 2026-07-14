@@ -19,6 +19,7 @@ public class MinigameManager : MonoBehaviour
     private GameObject _currentInstance;
     public bool IsMinigameActive => _currentInstance != null;
     public string CurrentCategory { get; private set; }
+    public int CurrentLanguageId { get; private set; }
 
     void Awake()
     {
@@ -26,11 +27,12 @@ public class MinigameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts a minigame and assigns it a specific category (useful for dynamic content).
+    /// Starts a minigame and assigns it a specific category and language.
     /// </summary>
-    public void StartMinigameWithCategory(GameObject prefab, string category)
+    public void StartMinigameWithCategory(GameObject prefab, string category, int languageId)
     {
         CurrentCategory = category;
+        CurrentLanguageId = languageId;
         StartMinigame(prefab);
     }
 
@@ -41,8 +43,13 @@ public class MinigameManager : MonoBehaviour
     {
         if (prefab == null) return;
         
-        // If no category was set via the helper, clear the old one
+        // If no category/language was set via the helper, fallback to defaults
         if (string.IsNullOrEmpty(CurrentCategory)) CurrentCategory = "";
+        if (CurrentLanguageId <= 0) 
+        {
+            if (LessonManager.Instance != null) CurrentLanguageId = LessonManager.Instance.languageId;
+            else CurrentLanguageId = 1; // Default to Ilokano
+        }
         
         Debug.Log($"[MinigameManager] Starting Minigame: {prefab.name}");
         
@@ -50,6 +57,7 @@ public class MinigameManager : MonoBehaviour
         if (_currentInstance != null) Destroy(_currentInstance);
 
         _currentInstance = Instantiate(prefab, minigameContainer);
+        _currentInstance.SetActive(true); // Ensure it's visible even if the prefab was disabled
 
         // Professional Fail-safe: Reset UI position and scale so it doesn't spawn 'into the void'
         RectTransform rt = _currentInstance.GetComponent<RectTransform>();
@@ -58,10 +66,6 @@ public class MinigameManager : MonoBehaviour
             rt.localPosition = Vector3.zero;
             rt.localRotation = Quaternion.identity;
             rt.localScale = Vector3.one;
-            
-            // Ensure it stretches to fill the container
-            rt.anchoredPosition = Vector2.zero;
-            rt.sizeDelta = Vector2.zero;
         }
     }
 

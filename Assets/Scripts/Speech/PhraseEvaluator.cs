@@ -1,9 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using System.Collections.Generic;
+
+// Duplicate RegionMode removed – use the definition in RegionFlowController.cs
 
 public class PhraseEvaluator : MonoBehaviour
 {
     public static PhraseEvaluator Instance { get; private set; }
+    public RegionMode CurrentRegion { get; private set; } = RegionMode.BossBattle;
+
+    private const string BACKEND_URL = "https://luminang-nlp-service.onrender.com";
 
     private void Awake()
     {
@@ -11,107 +19,171 @@ public class PhraseEvaluator : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    public void SetRegion(RegionMode mode)
+    {
+        CurrentRegion = mode;
+        Debug.Log($"Speech Region set to: {mode}");
+    }
+
     public float CalculateAccuracy(string input, string target)
     {
-        if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(target)) return 0;
-
-        string normalizedInput = NormalizeText(input);
-        string normalizedTarget = NormalizeText(target);
-
-        int distance = LevenshteinDistance(normalizedInput, normalizedTarget);
-        int maxLength = Math.Max(normalizedInput.Length, normalizedTarget.Length);
-
-        if (maxLength == 0) return 100f;
-
-        float accuracy = (1.0f - (float)distance / maxLength) * 100f;
-        return Mathf.Clamp(accuracy, 0f, 100f);
-    }
-
-    private string NormalizeText(string text)
-    {
-        return text.ToLower().Trim();
-    }
-
-    private int LevenshteinDistance(string s, string t)
-    {
-        int n = s.Length;
-        int m = t.Length;
-        int[,] d = new int[n + 1, m + 1];
-
-        if (n == 0) return m;
-        if (m == 0) return n;
-
-        for (int i = 0; i <= n; d[i, 0] = i++) ;
-        for (int j = 0; j <= m; d[0, j] = j++) ;
-
-        for (int i = 1; i <= n; i++)
-        {
-            for (int j = 1; j <= m; j++)
-            {
-                int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
-                d[i, j] = Math.Min(
-                    Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
-                    d[i - 1, j - 1] + cost);
-            }
-        }
-        return d[n, m];
+        Debug.LogWarning("CalculateAccuracy is deprecated. Use EvaluateSpeech instead.");
+        return 0f;
     }
 
     public string GetFeedback(float accuracy)
     {
-        if (accuracy >= 90f) return "Excellent";
-        if (accuracy >= 75f) return "Good";
-        return "Needs Practice";
+        if (accuracy >= 90f) return "Perfect match! Well done!";
+        if (accuracy >= 80f) return "Excellent! You passed!";
+        if (accuracy >= 65f) return "Great! You're getting it.";
+        if (accuracy >= 45f) return "Good effort! Try again.";
+        if (accuracy >= 25f) return "Not quite, but you're close.";
+        return "Keep practicing!";
     }
 
-    /// <summary>
-    /// Searches the dataset for the closest matching phrase.
-    /// Returns the matched entry and the accuracy score.
-    /// </summary>
-    public (PhraseEntry entry, string language, float score, bool isEnglish) FindBestMatch(string input)
+    // New Async/Coroutine evaluations
+
+    public void EvaluateSpeech(string expectedPhrase, string transcribedText, Action<string, float, string> callback)
     {
-        var allPhrases = DatasetManager.Instance.GetAllPhrases();
-        PhraseEntry bestEntry = null;
-        string bestLang = "";
-        float maxScore = -1f;
-        bool matchedEnglish = false;
+        StartCoroutine(EvaluateSpeechCoroutine(expectedPhrase, transcribedText, callback));
+    }
 
-        // 1. First, search for Regional Languages
-        string[] regionalLangs = { "ilokano", "cebuano", "maranao" };
-        foreach (var entry in allPhrases)
+    private IEnumerator EvaluateSpeechCoroutine(string expectedPhrase, string transcribedText, Action<string, float, string> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("expected_phrase", expectedPhrase);
+        form.AddField("transcribed_text", transcribedText);
+
+        using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/evaluate", form))
         {
-            foreach (var lang in regionalLangs)
-            {
-                string target = entry.GetPhrase(lang);
-                if (string.IsNullOrEmpty(target) || target == "___") continue;
+            yield return request.SendWebRequest();
 
-                float score = CalculateAccuracy(input, target);
-                if (score > maxScore)
-                {
-                    maxScore = score;
-                    bestEntry = entry;
-                    bestLang = lang;
-                    matchedEnglish = false;
-                }
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                var response = JsonUtility.FromJson<EvaluateResponse>(request.downloadHandler.text);
+                callback?.Invoke(response.transcript, response.score * 100.0f, response.result); // Scale to 0-100%
+            }
+            else
+            {
+                Debug.LogError($"Evaluation API Error: {request.error}\n{request.downloadHandler.text}");
+                callback?.Invoke(transcribedText, 0f, "try_again");
             }
         }
+    }
 
-        // 2. If no strong regional match, check if they said the English version
-        if (maxScore < 75f) 
+    public void FindBestMatch(string transcribedText, Action<PhraseEntry, string, float, bool> callback)
+    {
+        StartCoroutine(FindBestMatchCoroutine(transcribedText, callback));
+    }
+
+    private IEnumerator FindBestMatchCoroutine(string transcribedText, Action<PhraseEntry, string, float, bool> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("region", CurrentRegion.ToString());
+        form.AddField("transcribed_text", transcribedText);
+
+        using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/find_best_match", form))
         {
-            foreach (var entry in allPhrases)
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                float englishScore = CalculateAccuracy(input, entry.english);
-                if (englishScore > 85f && englishScore > maxScore)
+                string json = request.downloadHandler.text;
+                var response = JsonUtility.FromJson<BestMatchResponse>(json);
+                if (response.best_entry != null)
                 {
-                    maxScore = englishScore;
-                    bestEntry = entry;
-                    bestLang = "english";
-                    matchedEnglish = true;
+                    PhraseEntry entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == response.best_entry.english);
+                    if (entry == null) entry = response.best_entry;
+                    callback?.Invoke(entry, response.language, response.score * 100.0f, response.is_english);
+                }
+                else
+                {
+                    callback?.Invoke(null, "", 0f, false);
                 }
             }
+            else
+            {
+                Debug.LogError($"FindBestMatch API Error: {request.error}\n{request.downloadHandler.text}");
+                callback?.Invoke(null, "", 0f, false);
+            }
         }
+    }
 
-        return (bestEntry, bestLang, maxScore, matchedEnglish);
+    public void FindAllMatches(string transcribedText, Action<List<(PhraseEntry entry, string language, float score)>> callback)
+    {
+        StartCoroutine(FindAllMatchesCoroutine(transcribedText, callback));
+    }
+
+    private IEnumerator FindAllMatchesCoroutine(string transcribedText, Action<List<(PhraseEntry entry, string language, float score)>> callback)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("region", CurrentRegion.ToString());
+        form.AddField("transcribed_text", transcribedText);
+
+        using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/find_all_matches", form))
+        {
+            yield return request.SendWebRequest();
+
+            var matches = new List<(PhraseEntry entry, string language, float score)>();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                string json = request.downloadHandler.text;
+                var response = JsonUtility.FromJson<AllMatchesResponse>(json);
+                if (response.matches != null)
+                {
+                    foreach (var item in response.matches)
+                    {
+                        if (item.entry != null)
+                        {
+                            PhraseEntry entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == item.entry.english);
+                            if (entry == null) entry = item.entry;
+                            matches.Add((entry, item.language, item.score)); // Python already scales score for find_all_matches
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError($"FindAllMatches API Error: {request.error}\n{request.downloadHandler.text}");
+            }
+
+            callback?.Invoke(matches);
+        }
+    }
+
+    // Helper classes for JSON Deserialization
+
+    [Serializable]
+    private class EvaluateResponse
+    {
+        public string transcript;
+        public float score;
+        public string result;
+    }
+
+    [Serializable]
+    private class BestMatchResponse
+    {
+        public string transcript;
+        public PhraseEntry best_entry;
+        public string language;
+        public float score;
+        public bool is_english;
+    }
+
+    [Serializable]
+    private class MatchItem
+    {
+        public PhraseEntry entry;
+        public string language;
+        public float score;
+    }
+
+    [Serializable]
+    private class AllMatchesResponse
+    {
+        public string transcript;
+        public List<MatchItem> matches;
     }
 }

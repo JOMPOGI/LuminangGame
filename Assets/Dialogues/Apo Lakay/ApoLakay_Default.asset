@@ -15,7 +15,16 @@ MonoBehaviour:
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
   dialogueText: 'Naimbag a bigat.  '
-  translatedText: Good Morning
+  translatedText: Good Morning. Would you like to learn and practice?
   animationTrigger: 
   triggerEventName: 
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: Yes
+    nextNode: {fileID: 0}
+    isWrong: 0
+    choiceEvent: 
+  - choiceText: No
+    nextNode: {fileID: 0}
+    isWrong: 0
+    choiceEvent: 

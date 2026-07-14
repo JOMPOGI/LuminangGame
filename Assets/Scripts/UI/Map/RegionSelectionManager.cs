@@ -135,8 +135,27 @@ public class RegionSelectionManager : MonoBehaviour
         {
             if (UserProfileManager.Instance.CurrentProfile.HasCompletedTutorial)
             {
-                sceneToLoad = "SampleScene"; // Skip to game!
-                Debug.Log("[Map] Tutorial already completed. Skipping to SampleScene...");
+                if (currentRegion != null && currentRegion.data != null)
+                {
+                    string region = currentRegion.data.regionName.ToLower();
+                    if (region.Contains("ilocos") || region.Contains("crisologo"))
+                    {
+                        sceneToLoad = "Calle_Crisologo";
+                    }
+                    else if (region.Contains("cebu") || region.Contains("magellan"))
+                    {
+                        sceneToLoad = "Magellan's_Cross";
+                    }
+                    else
+                    {
+                        sceneToLoad = "Calle_Crisologo";
+                    }
+                }
+                else
+                {
+                    sceneToLoad = "Calle_Crisologo";
+                }
+                Debug.Log($"[Map] Tutorial already completed. Skipping to {sceneToLoad}...");
             }
         }
 

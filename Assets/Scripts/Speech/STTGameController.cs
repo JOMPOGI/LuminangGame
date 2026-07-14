@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+using System;
 
 public class STTGameController : MonoBehaviour
 {
+    public static Action<bool, string> OnSTTEvaluationComplete;
     public static STTGameController Instance { get; private set; }
 
     [Header("UI References")]
@@ -74,53 +77,71 @@ public class STTGameController : MonoBehaviour
         GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError);
     }
 
+    public void SelectIlokano() 
+    {
+        PhraseEvaluator.Instance.SetRegion(RegionMode.Ilokano);
+        statusText.text = "Region: ILOKANO Ready";
+        ResetUIResults();
+    }
+
+    public void SelectCebuano() 
+    {
+        PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);
+        statusText.text = "Region: CEBUANO Ready";
+        ResetUIResults();
+    }
+
+    public void SelectBossBattle() 
+    {
+        PhraseEvaluator.Instance.SetRegion(RegionMode.BossBattle);
+        statusText.text = "BOSS BATTLE: All Languages Active";
+        ResetUIResults();
+    }
+
+    private void ResetUIResults()
+    {
+        accuracyText.text = "";
+        feedbackText.text = "";
+        transcriptText.text = "";
+    }
+
     private void OnTranscriptionSuccess(string result)
     {
-        transcriptText.text = $"Heard: \"{result}\"";
-        
-        // 1. Strict Validation (User-friendly message)
-        if (!LexiconValidator.Instance.ValidateText(result))
-        {
-            statusText.text = "Keep trying!";
-            accuracyText.text = "---";
-            feedbackText.text = "That word doesn't sound familiar.";
-            retryButton.gameObject.SetActive(true);
-            return;
-        }
+        statusText.text = "Processing Results...";
 
-        // 2. Auto-Discovery
-        statusText.text = "Checking...";
-        var (bestEntry, bestLang, accuracy, isEnglish) = PhraseEvaluator.Instance.FindBestMatch(result);
-
-        if (bestEntry != null && accuracy >= 60f) 
+        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish) =>
         {
-            if (isEnglish)
+            string transcript = $"Heard: \"{result}\"";
+
+            if (bestEntry != null && isEnglish)
             {
-                statusText.text = "That's English!";
+                statusText.text = "English Detected!";
                 accuracyText.text = "---";
-                feedbackText.text = "Try again!";
+                feedbackText.text = $"{transcript}\nPlease try saying it in {bestLang.ToUpper()}!";
                 retryButton.gameObject.SetActive(true);
+            }
+            else if (bestEntry != null)
+            {
+                string feedback = PhraseEvaluator.Instance.GetFeedback(accuracy);
+                statusText.text = $"{bestLang.ToUpper()} Detected";
+                accuracyText.text = $"{accuracy:F0}% Match";
+                
+                feedbackText.text = $"{transcript}\n{feedback}";
+                retryButton.gameObject.SetActive(accuracy < 80f);
+                OnSTTEvaluationComplete?.Invoke(accuracy >= 80f, bestEntry.GetPhrase(bestLang));
             }
             else
             {
-                string matchedText = bestEntry.GetPhrase(bestLang);
-                string feedback = PhraseEvaluator.Instance.GetFeedback(accuracy);
-
-                statusText.text = $"Detected: {bestLang.ToUpper()}";
-                accuracyText.text = $"{accuracy:F0}% Match";
-                feedbackText.text = $"{feedback}!";
-                
-                // Hide retry button only on high accuracy
-                retryButton.gameObject.SetActive(accuracy < 85f);
+                statusText.text = "No Match Found";
+                accuracyText.text = "---";
+                feedbackText.text = $"{transcript}\nPlease try again!";
+                retryButton.gameObject.SetActive(true);
+                OnSTTEvaluationComplete?.Invoke(false, result);
             }
-        }
-        else
-        {
-            statusText.text = "Didn't catch that!";
-            accuracyText.text = "---";
-            feedbackText.text = "Let's try that again!";
-            retryButton.gameObject.SetActive(true);
-        }
+        });
+
+        // Clear separate transcript text to prevent overlap
+        transcriptText.text = ""; 
     }
 
     private void OnTranscriptionError(string error)

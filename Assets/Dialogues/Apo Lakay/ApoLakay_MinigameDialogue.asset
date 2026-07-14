@@ -16,8 +16,8 @@ MonoBehaviour:
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
   dialogueText: Kasla saan ka pay a pamilyar kadagiti pagsasao mi ditoy. Kayat mo
     kadi a sumursuro ken agpraktis?
-  translatedText: You are not very familiar with our local greetings. Would you like
-    to learn and practice?
+  translatedText: "You are not very familiar with our local greetings. I am Apo Lakay,
+    one of the \u2018Guro\u2019 in this area. Would you like to learn and practice?"
   animationTrigger: Pointing
   triggerEventName: 
   endEventName: 

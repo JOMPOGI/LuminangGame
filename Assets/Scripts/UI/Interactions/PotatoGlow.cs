@@ -20,6 +20,12 @@ public class PotatoGlow : MonoBehaviour
     public float streakWidthBase  = 0.15f; // Width at the bottom
     public float streakWidthTip   = 0f;    // Width at the top (tapers to point)
 
+    [Header("URP Materials/Shaders")]
+    [Tooltip("Optional custom Material to use for the light streak. If assigned, this is used directly.")]
+    public Material streakMaterial;
+    [Tooltip("Optional Shader to use when creating the streak material dynamically (e.g. Universal Render Pipeline/Unlit).")]
+    public Shader unlitShader;
+
     private Renderer    _renderer;
     private Material    _mat;
     private LineRenderer _line;
@@ -62,27 +68,47 @@ public class PotatoGlow : MonoBehaviour
         _line.startWidth = streakWidthBase;
         _line.endWidth   = streakWidthTip;
 
-        // URP Unlit material — guaranteed to work
-        Shader urpUnlit = Shader.Find("Universal Render Pipeline/Unlit");
-        if (urpUnlit != null)
+        if (streakMaterial != null)
         {
-            _lineMat = new Material(urpUnlit);
+            _lineMat = new Material(streakMaterial);
         }
         else
         {
-            // Fallback
-            _lineMat = new Material(Shader.Find("Unlit/Color"));
+            Shader targetShader = unlitShader;
+            if (targetShader == null)
+            {
+                targetShader = Shader.Find("Universal Render Pipeline/Unlit");
+            }
+            if (targetShader == null)
+            {
+                targetShader = Shader.Find("Unlit/Color");
+            }
+
+            if (targetShader != null)
+            {
+                _lineMat = new Material(targetShader);
+            }
+            else
+            {
+                Debug.LogError("[PotatoGlow] No material or shader assigned for streak, and fallback shaders could not be found!");
+            }
         }
 
-        // Set to transparent/additive so it looks like light
-        _lineMat.SetFloat("_Surface",  1);   // Transparent
-        _lineMat.SetFloat("_Blend",    3);   // Additive
-        _lineMat.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        _lineMat.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.One);
-        _lineMat.SetColor("_BaseColor", new Color(1f, 0.95f, 0.3f, 0.8f));
-        _lineMat.renderQueue = 3000;
+        if (_lineMat != null)
+        {
+            if (streakMaterial == null)
+            {
+                // Set to transparent/additive so it looks like light
+                _lineMat.SetFloat("_Surface",  1);   // Transparent
+                _lineMat.SetFloat("_Blend",    3);   // Additive
+                _lineMat.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                _lineMat.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.One);
+                _lineMat.SetColor("_BaseColor", new Color(1f, 0.95f, 0.3f, 0.8f));
+                _lineMat.renderQueue = 3000;
+            }
 
-        _line.material = _lineMat;
+            _line.material = _lineMat;
+        }
     }
 
     void Update()

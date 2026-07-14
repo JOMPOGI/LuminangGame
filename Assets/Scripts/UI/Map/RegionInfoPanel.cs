@@ -80,10 +80,22 @@ public class RegionInfoPanel : MonoBehaviour
         if (descriptionText != null) descriptionText.text = data.description;
         if (crystalAnchorImage != null && data.crystalAnchorSprite != null) crystalAnchorImage.sprite = data.crystalAnchorSprite;
         
-        // Update Start Button Text based on progress
-        if (startButtonText != null)
+        // Update Start Button Text based on progress or availability
+        if (startButton != null)
         {
-            startButtonText.text = data.completionProgress > 0 ? "CONTINUE" : "START";
+            startButton.interactable = region.isAvailable;
+            
+            if (startButtonText != null)
+            {
+                if (!region.isAvailable)
+                {
+                    startButtonText.text = "COMING SOON";
+                }
+                else
+                {
+                    startButtonText.text = data.completionProgress > 0 ? "CONTINUE" : "START";
+                }
+            }
         }
         
         // Update Progress Bar

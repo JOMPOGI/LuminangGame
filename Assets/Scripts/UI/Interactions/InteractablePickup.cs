@@ -17,23 +17,35 @@ public class InteractablePickup : InteractableBase
     public float pulseSpeed = 3f;
     public float streakHeight = 1.5f;
 
+    [Header("URP Materials/Shaders")]
+    [Tooltip("Optional custom Material to use for the light streak. If assigned, this is used directly.")]
+    public Material streakMaterial;
+    [Tooltip("Optional Shader to use when creating the streak material dynamically (e.g. Universal Render Pipeline/Unlit).")]
+    public Shader unlitShader;
+
     private Renderer _renderer;
     private Material _mat;
     private LineRenderer _line;
+    private Material _lineMat;
     private bool _matchesObjective = false;
-    private bool _isInitialized = false;
 
     protected virtual void Awake()
     {
         SetupVisuals();
-        _isInitialized = true;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         ObjectiveManager.OnObjectiveChanged += HandleObjectiveChanged;
-        if (ObjectiveManager.Instance != null) HandleObjectiveChanged(ObjectiveManager.Instance.CurrentObjective);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        // Sync with the current objective AFTER Awake() has run SetupVisuals()
+        if (ObjectiveManager.Instance != null)
+            HandleObjectiveChanged(ObjectiveManager.Instance.CurrentObjective);
     }
 
     protected override void OnDisable()
@@ -44,7 +56,7 @@ public class InteractablePickup : InteractableBase
 
     private void HandleObjectiveChanged(string newObjective)
     {
-        if (!_isInitialized) return;
+        if (_line == null) return; // Not yet initialized by Awake
 
         _matchesObjective = !string.IsNullOrEmpty(newObjective) && 
                             newObjective.StartsWith(requiredObjective.Trim(), System.StringComparison.OrdinalIgnoreCase);
@@ -110,13 +122,49 @@ public class InteractablePickup : InteractableBase
         _line.SetPosition(1, Vector3.up * streakHeight);
         _line.endWidth = 0f;
 
-        Shader urpUnlit = Shader.Find("Universal Render Pipeline/Unlit");
-        Material lineMat = new Material(urpUnlit != null ? urpUnlit : Shader.Find("Unlit/Color"));
-        lineMat.SetFloat("_Surface", 1);
-        lineMat.SetFloat("_Blend", 3);
-        lineMat.SetColor("_BaseColor", glowColor);
-        _line.material = lineMat;
+        if (streakMaterial != null)
+        {
+            _lineMat = new Material(streakMaterial);
+        }
+        else
+        {
+            Shader targetShader = unlitShader;
+            if (targetShader == null)
+            {
+                targetShader = Shader.Find("Universal Render Pipeline/Unlit");
+            }
+            if (targetShader == null)
+            {
+                targetShader = Shader.Find("Unlit/Color");
+            }
+
+            if (targetShader != null)
+            {
+                _lineMat = new Material(targetShader);
+            }
+            else
+            {
+                Debug.LogError("[InteractablePickup] No material or shader assigned for streak, and fallback shaders could not be found!");
+            }
+        }
+
+        if (_lineMat != null)
+        {
+            if (streakMaterial == null)
+            {
+                _lineMat.SetFloat("_Surface", 1);
+                _lineMat.SetFloat("_Blend", 3);
+                _lineMat.SetColor("_BaseColor", glowColor);
+            }
+            _line.material = _lineMat;
+        }
         
         streakGO.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (_mat != null) Destroy(_mat);
+        if (_lineMat != null) Destroy(_lineMat);
     }
 }

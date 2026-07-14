@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: tripo_mat_782d344c
-    second: {fileID: 2100000, guid: 873b4238de9250f40b8595a766afce2c, type: 2}
+      name: woodenBuilding_mat
+    second: {fileID: 2100000, guid: db38b0835f2d99f4c86b8191a0fd91b0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

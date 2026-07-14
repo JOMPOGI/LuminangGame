@@ -96,6 +96,12 @@ public class ObjectiveManager : MonoBehaviour
         string oldObjective = CurrentObjective;
         string cleanObjective = newObjective != null ? newObjective.Trim() : "";
 
+        // Strip "Objective: " if it was passed in so we don't double up
+        if (cleanObjective.StartsWith("Objective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            cleanObjective = cleanObjective.Substring("Objective:".Length).Trim();
+        }
+
         if (cleanObjective == oldObjective) return;
 
         CurrentObjective = cleanObjective;

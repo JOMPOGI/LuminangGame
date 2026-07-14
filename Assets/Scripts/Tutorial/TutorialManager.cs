@@ -1,17 +1,27 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
     [Header("UI Elements")]
     public Image tutorialDisplayImage; // The picture that changes
+    public TextMeshProUGUI tutorialDescriptionText; // The text that changes
     public Button nextButton;
     public Button previousButton;
     
     [Header("Tutorial Slides")]
-    [Tooltip("Drag all your tutorial pictures here in order")]
-    public Sprite[] tutorialSlides;
+    [Tooltip("Drag all your tutorial slides here in order")]
+    public TutorialSlide[] tutorialSlides;
+    
+    [System.Serializable]
+    public class TutorialSlide
+    {
+        public Sprite image;
+        [TextArea(3, 10)]
+        public string description;
+    }
     
     [Header("Pagination Indicator")]
     [Tooltip("Drag the Images acting as dots here, in order from left to right")]
@@ -30,7 +40,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Transitions")]
     public GameObject smallLoadingPrefab;
-    public string nextSceneName = "SampleScene";
+    public string nextSceneName = "Calle_Crisologo";
 
     private int _currentIndex = 0;
     private Coroutine _fadeCoroutine;
@@ -119,7 +129,9 @@ public class TutorialManager : MonoBehaviour
             }
             else
             {
-                tutorialDisplayImage.sprite = tutorialSlides[_currentIndex];
+                tutorialDisplayImage.sprite = tutorialSlides[_currentIndex].image;
+                if (tutorialDescriptionText != null) tutorialDescriptionText.text = tutorialSlides[_currentIndex].description;
+                
                 Color c = tutorialDisplayImage.color;
                 c.a = 1f;
                 tutorialDisplayImage.color = c;
@@ -165,8 +177,9 @@ public class TutorialManager : MonoBehaviour
             yield return null;
         }
 
-        // Swap Sprite when fully transparent
-        tutorialDisplayImage.sprite = tutorialSlides[newIndex];
+        // Swap Sprite and Text when fully transparent
+        tutorialDisplayImage.sprite = tutorialSlides[newIndex].image;
+        if (tutorialDescriptionText != null) tutorialDescriptionText.text = tutorialSlides[newIndex].description;
 
         // Fade In the new image
         elapsed = 0f;

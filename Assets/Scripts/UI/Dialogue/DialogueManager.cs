@@ -194,9 +194,11 @@ public class DialogueManager : MonoBehaviour
             if (_currentNPC.OnDialogueEnd != null)
                 _currentNPC.OnDialogueEnd.Invoke();
             
-            // Re-disable interaction if it's a one-time thing
+            // Re-disable interaction if it's a one-time thing, or if we are launching a lesson/tutorial flow
             if (_currentNPC.disableAfterInteraction)
+            {
                 _currentNPC.interactionEnabled = false;
+            }
         }
 
         if (InteractionManager.Instance != null)
@@ -219,6 +221,28 @@ public class DialogueManager : MonoBehaviour
             }
         }
         _pendingEventName = null;
+    }
+
+    /// <summary>
+    /// Programmatically advances the dialogue by choosing the first choice
+    /// (or ending dialogue if there are no choices). Used by STT adapter.
+    /// </summary>
+    public void AdvanceDialogue()
+    {
+        if (_activeNode != null)
+        {
+            if (_activeNode.choices != null && _activeNode.choices.Count > 0)
+            {
+                // Select the first non-wrong choice if possible, or just the first choice
+                DialogueChoice choice = _activeNode.choices.Find(c => !c.isWrong);
+                if (choice == null) choice = _activeNode.choices[0];
+                OnChoiceSelected(choice);
+            }
+            else
+            {
+                OnChoiceSelected(null);
+            }
+        }
     }
 }
 

@@ -79,13 +79,14 @@ public class DatasetManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("LuminangDataset.json not found in Resources!");
+            Debug.LogError("LuminangPhrases.json not found in Resources!");
         }
     }
 
     private void BuildLexicon()
     {
         lexicon = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        if (dataset == null || dataset.phrases == null) return;
         foreach (var entry in dataset.phrases)
         {
             AddPhraseToLexicon(entry.english);
@@ -113,8 +114,10 @@ public class DatasetManager : MonoBehaviour
 
     public bool IsWordInLexicon(string word)
     {
-        return lexicon.Contains(word.ToLower().Trim());
+        if (lexicon == null) BuildLexicon();
+        return lexicon != null && lexicon.Contains(word.ToLower().Trim());
     }
+
 
     public List<PhraseEntry> GetAllPhrases() => dataset.phrases;
     

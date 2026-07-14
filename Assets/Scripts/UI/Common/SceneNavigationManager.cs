@@ -27,6 +27,16 @@ public static class SceneNavigationManager
         SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
     }
 
+    public static void LoadSTTTest()
+    {
+        // 1. Remember where we are (MapSelectionScene)
+        lastSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("[SceneNavigator] Saving scene: " + lastSceneName);
+
+        // 2. Load the test scene
+        SceneManager.LoadScene("STT_TestScene");
+    }
+
     /// <summary>
     /// Returns to the scene we were in before customization.
     /// Uses the smooth Navy/Purple fade.

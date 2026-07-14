@@ -1,4 +1,4 @@
-﻿//Cristian Pop - https://boxophobic.com/
+//Cristian Pop - https://boxophobic.com/
 
 using UnityEngine;
 using UnityEditor;
