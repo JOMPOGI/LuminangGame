@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "And what keeps those communities alive... ...is their language. My name is Kalaw. I'll be your guide throughout your journey here in Ilocos."
+  dialogueText: And what keeps those communities alive... ...is their language. My
+    name is Kalaw. I'll be your guide throughout your journey here in Ilocos.
   translatedText: 
-  animationTrigger: DoPointing
+  animationTrigger: StartFlying
   triggerEventName: 
   endEventName: 
   choices:
   - choiceText: 
     nextNode: {fileID: 11400000, guid: 97fda29f52f941e593d2f9eb0baf99a7, type: 2}
     isWrong: 0
+    choiceEvent: 
