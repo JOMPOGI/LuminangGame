@@ -113,3 +113,8 @@ This document provides a comprehensive guide to all scripts and systems relating
 ### 📄 [HorseEating.cs](file:///c:/Users/dejes/Luminang/Assets/Scripts/AnimalAnimation/HorseEating.cs)
 * **What it does**: Loops eating clips.
 * **Purpose**: Automates feeding animations with customizable rest pauses.
+
+### 📄 [WheelRotator.cs](file:///c:/Users/dejes/Luminang/Assets/Scripts/AnimalAnimation/WheelRotator.cs)
+* **What it does**: Rotates wagon/kalesa wheels dynamically.
+* **Purpose**: Simulates wheel rolling forward or backward depending on the movement distance and direction of the parent wagon.
+
