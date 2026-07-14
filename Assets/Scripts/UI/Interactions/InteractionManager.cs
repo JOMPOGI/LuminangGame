@@ -71,6 +71,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (talkButton == null) return;
 
+
         // Professional Player Detection: Find the object with the CharacterController (the real mover)
         if (_playerTransform == null || !_playerTransform.gameObject.activeInHierarchy)
         {

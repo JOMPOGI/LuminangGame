@@ -217,12 +217,16 @@ public class DialogueUIController : MonoBehaviour
             }
             else
             {
-                // Only re-enable movement if a lesson IS NOT currently active
+                // Only re-enable movement if a lesson or intro panel IS NOT currently active
                 bool isLessonActive = LessonManager.Instance != null && 
                                      LessonManager.Instance.lessonPanel != null && 
                                      LessonManager.Instance.lessonPanel.activeInHierarchy;
+                
+                bool isIntroPanelActive = LessonIntroPanel.Instance != null &&
+                                          LessonIntroPanel.Instance.panelRoot != null &&
+                                          LessonIntroPanel.Instance.panelRoot.activeInHierarchy;
                                      
-                if (!isLessonActive)
+                if (!isLessonActive && !isIntroPanelActive)
                 {
                     movementUI.SetActive(true);
                 }

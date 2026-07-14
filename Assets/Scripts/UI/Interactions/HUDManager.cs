@@ -74,12 +74,13 @@ public class HUDManager : MonoBehaviour
     void Update()
     {
         // THE WATCHDOG LOGIC
-        // If the Lesson Panel, Minigame, or Dialogue is Active, we MUST hide the HUD.
+        // If the Lesson Panel, Lesson Intro Panel, Minigame, or Dialogue is Active, we MUST hide the HUD.
         bool isLessonActive = (lessonPanel != null && lessonPanel.activeInHierarchy);
+        bool isIntroActive = (LessonIntroPanel.Instance != null && LessonIntroPanel.Instance.panelRoot != null && LessonIntroPanel.Instance.panelRoot.activeInHierarchy);
         bool isMinigameActive = (MinigameManager.Instance != null && MinigameManager.Instance.IsMinigameActive);
         bool isDialogueActive = (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue);
 
-        bool shouldHideHUD = isLessonActive || isMinigameActive || isDialogueActive;
+        bool shouldHideHUD = isLessonActive || isIntroActive || isMinigameActive || isDialogueActive;
         IsHUDAllowed = !shouldHideHUD;
 
         UpdateHUDVisibility(IsHUDAllowed);
@@ -97,12 +98,13 @@ public class HUDManager : MonoBehaviour
             objectiveText.SetActive(visible);
 
         // ONLY show the Dialogue Root if we are actually in a dialogue 
-        // AND not currently in a lesson or minigame.
+        // AND not currently in a lesson, lesson intro, or minigame.
         bool isDialogueActive = (DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue);
         bool isLessonActive = (lessonPanel != null && lessonPanel.activeInHierarchy);
+        bool isIntroActive = (LessonIntroPanel.Instance != null && LessonIntroPanel.Instance.panelRoot != null && LessonIntroPanel.Instance.panelRoot.activeInHierarchy);
         bool isMinigameActive = (MinigameManager.Instance != null && MinigameManager.Instance.IsMinigameActive);
         
-        bool showDialogueRoot = isDialogueActive && !isLessonActive && !isMinigameActive;
+        bool showDialogueRoot = isDialogueActive && !isLessonActive && !isIntroActive && !isMinigameActive;
 
         if (dialogueRoot != null && dialogueRoot.activeSelf != showDialogueRoot)
             dialogueRoot.SetActive(showDialogueRoot);
@@ -112,12 +114,13 @@ public class HUDManager : MonoBehaviour
         if (!visible && talkButton != null && talkButton.activeSelf)
             talkButton.SetActive(false);
 
-        // Sync Dimmer - ONLY show dimmer if the LESSON is active. 
-        if (isLessonActive && globalDimmer != null && !globalDimmer.activeSelf)
+        // Sync Dimmer - show dimmer if the LESSON or LESSON INTRO is active. 
+        bool showDimmerValue = isLessonActive || isIntroActive;
+        if (showDimmerValue && globalDimmer != null && !globalDimmer.activeSelf)
         {
             ShowDimmer(true);
         }
-        else if (!isLessonActive && globalDimmer != null && globalDimmer.activeSelf && !_isHiding)
+        else if (!showDimmerValue && globalDimmer != null && globalDimmer.activeSelf && !_isHiding)
         {
             ShowDimmer(false);
         }

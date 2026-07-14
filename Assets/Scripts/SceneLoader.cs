@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
     public float transitionDelay = 0.4f;
     
     [Header("Loading Screen Setup")]
-    public bool useLoadingScreenForSampleScene = true;
+    public bool useLoadingScreenForGameScene = true;
     public string loadingSceneName = "LoadingScene";
 
     public void LoadScene(string sceneName)
@@ -33,12 +33,13 @@ public class SceneLoader : MonoBehaviour
 
         // NEW RULE: Only use the loading screen if we are leaving the Main Menu 
         // AND going to a "heavy" scene (Game, Map, Prologue, or Character Creation).
-        bool isHeavyScene = (sceneName == "SampleScene" || sceneName == "MapSelectionScene" || 
-                             sceneName == "PrologueScene" || sceneName == "CreateCharacterScene");
+        bool isHeavyScene = (sceneName == "Calle_Crisologo" || sceneName == "Magellan's_Cross" || 
+                             sceneName == "MapSelectionScene" || sceneName == "PrologueScene" || 
+                             sceneName == "CreateCharacterScene");
         
         bool shouldShowLoadingScreen = (currentScene == "MainMenuScene" && isHeavyScene);
 
-        if (shouldShowLoadingScreen && useLoadingScreenForSampleScene)
+        if (shouldShowLoadingScreen && useLoadingScreenForGameScene)
         {
             Debug.Log("[SceneLoader] Using loading screen for transition from Main Menu to: " + sceneName);
             targetSceneForLoading = sceneName;

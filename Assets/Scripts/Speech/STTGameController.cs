@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using System;
 
 public class STTGameController : MonoBehaviour
 {
+    public static Action<bool, string> OnSTTEvaluationComplete;
     public static STTGameController Instance { get; private set; }
 
     [Header("UI References")]
@@ -126,6 +128,7 @@ public class STTGameController : MonoBehaviour
                 
                 feedbackText.text = $"{transcript}\n{feedback}";
                 retryButton.gameObject.SetActive(accuracy < 80f);
+                OnSTTEvaluationComplete?.Invoke(accuracy >= 80f, bestEntry.GetPhrase(bestLang));
             }
             else
             {
@@ -133,6 +136,7 @@ public class STTGameController : MonoBehaviour
                 accuracyText.text = "---";
                 feedbackText.text = $"{transcript}\nPlease try again!";
                 retryButton.gameObject.SetActive(true);
+                OnSTTEvaluationComplete?.Invoke(false, result);
             }
         });
 

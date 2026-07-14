@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "\u2026malukatan mo ti dalan."
-  translatedText: ...the path will open
+  dialogueText: "And every story begins with the people who call this place home. Come. Before we continue... Take a moment to see why this place is worth remembering."
+  translatedText: "[Placeholder Ilokano translation]"
   animationTrigger: StartFlying
-  triggerEventName: KalawTeleport
+  triggerEventName: 
+  endEventName: PlayRegionalIntro
   choices: []

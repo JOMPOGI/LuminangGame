@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum RegionMode { Ilokano, Cebuano, BossBattle }
+// Duplicate RegionMode removed – use the definition in RegionFlowController.cs
 
 public class PhraseEvaluator : MonoBehaviour
 {

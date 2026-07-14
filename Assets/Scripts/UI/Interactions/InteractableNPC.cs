@@ -305,10 +305,15 @@ public class InteractableNPC : InteractableBase
 
     /// <summary>
     /// Helper to trigger the lesson panel with a specific category.
+    /// Redirects to the LessonIntroPanel first if available.
     /// </summary>
     public void StartLessonWithCategory(string category)
     {
-        if (LessonManager.Instance != null)
+        if (LessonIntroPanel.Instance != null)
+        {
+            LessonIntroPanel.Instance.ShowForCategory(category);
+        }
+        else if (LessonManager.Instance != null)
         {
             LessonManager.Instance.ShowLessonWithCategory(category);
         }

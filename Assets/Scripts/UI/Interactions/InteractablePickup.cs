@@ -28,19 +28,24 @@ public class InteractablePickup : InteractableBase
     private LineRenderer _line;
     private Material _lineMat;
     private bool _matchesObjective = false;
-    private bool _isInitialized = false;
 
     protected virtual void Awake()
     {
         SetupVisuals();
-        _isInitialized = true;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         ObjectiveManager.OnObjectiveChanged += HandleObjectiveChanged;
-        if (ObjectiveManager.Instance != null) HandleObjectiveChanged(ObjectiveManager.Instance.CurrentObjective);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        // Sync with the current objective AFTER Awake() has run SetupVisuals()
+        if (ObjectiveManager.Instance != null)
+            HandleObjectiveChanged(ObjectiveManager.Instance.CurrentObjective);
     }
 
     protected override void OnDisable()
@@ -51,7 +56,7 @@ public class InteractablePickup : InteractableBase
 
     private void HandleObjectiveChanged(string newObjective)
     {
-        if (!_isInitialized) return;
+        if (_line == null) return; // Not yet initialized by Awake
 
         _matchesObjective = !string.IsNullOrEmpty(newObjective) && 
                             newObjective.StartsWith(requiredObjective.Trim(), System.StringComparison.OrdinalIgnoreCase);

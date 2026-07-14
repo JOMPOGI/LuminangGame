@@ -40,7 +40,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Transitions")]
     public GameObject smallLoadingPrefab;
-    public string nextSceneName = "SampleScene";
+    public string nextSceneName = "Calle_Crisologo";
 
     private int _currentIndex = 0;
     private Coroutine _fadeCoroutine;

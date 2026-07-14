@@ -22,11 +22,11 @@ public class MainLoading : MonoBehaviour
     public StartCrystalBounce crystalBounce;
 
     [Header("Settings")]
-    public string sceneToLoad = "SampleScene";
+    public string sceneToLoad = "Calle_Crisologo";
     public string[] scenesToPreload = new string[] { 
         "LoadingScene", "LoginScene", "SignupScene", "MainMenuScene", 
         "AboutScene", "OptionScene", "CreateCharacterScene", "PrologueScene", 
-        "MapSelectionScene", "TutorialScene", "SampleScene", "hatdog"
+        "MapSelectionScene", "TutorialScene", "Calle_Crisologo", "Magellan's_Cross", "hatdog"
     };
     public float minimumLoadTime = 5f;
     public float smoothSpeed = 3f;
