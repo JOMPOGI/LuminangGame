@@ -19,6 +19,11 @@ public class PhraseEvaluator : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
     public void SetRegion(RegionMode mode)
     {
         CurrentRegion = mode;

@@ -2,6 +2,9 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using System;
+#if UNITY_ANDROID
+using UnityEngine.Android;
+#endif
 
 public class SpeechRecorder : MonoBehaviour
 {
@@ -19,6 +22,31 @@ public class SpeechRecorder : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
+        // Don't initialize microphone here; do it in Start or when needed
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
+    private void Start()
+    {
+        RequestPermissions();
+    }
+
+    private void RequestPermissions()
+    {
+#if UNITY_ANDROID
+        if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+        {
+            Permission.RequestUserPermission(Permission.Microphone);
+        }
+#endif
+    }
+
+    private void InitializeMicrophone()
+    {
         if (Microphone.devices.Length > 0)
         {
             _deviceName = Microphone.devices[0];
@@ -31,7 +59,16 @@ public class SpeechRecorder : MonoBehaviour
 
     public void StartRecording()
     {
-        if (_deviceName == null) return;
+        if (string.IsNullOrEmpty(_deviceName))
+        {
+            InitializeMicrophone();
+        }
+
+        if (string.IsNullOrEmpty(_deviceName))
+        {
+            Debug.LogError("Cannot start recording: No microphone device found.");
+            return;
+        }
         
         _recording = Microphone.Start(_deviceName, false, 10, 16000); // 16kHz is good for Whisper
         _isRecording = true;

@@ -1,0 +1,274 @@
+{
+  "players": [
+    {
+      "username": "Alex",
+      "picture": null,
+      "ilokano_lessons_completed": 12,
+      "cebuano_lessons_completed": 11,
+      "coins": 12500,
+      "last_active": "2026-07-13 21:30:15",
+      "is_current_player": false
+    },
+    {
+      "username": "Irah",
+      "picture": null,
+      "ilokano_lessons_completed": 11,
+      "cebuano_lessons_completed": 11,
+      "coins": 10920,
+      "last_active": "2026-07-13 23:15:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Jay",
+      "picture": null,
+      "ilokano_lessons_completed": 11,
+      "cebuano_lessons_completed": 10,
+      "coins": 9850,
+      "last_active": "2026-07-13 18:45:22",
+      "is_current_player": false
+    },
+    {
+      "username": "Mika",
+      "picture": null,
+      "ilokano_lessons_completed": 10,
+      "cebuano_lessons_completed": 10,
+      "coins": 8400,
+      "last_active": "2026-07-13 22:10:05",
+      "is_current_player": false
+    },
+    {
+      "username": "Zara",
+      "picture": null,
+      "ilokano_lessons_completed": 9,
+      "cebuano_lessons_completed": 10,
+      "coins": 7630,
+      "last_active": "2026-07-13 12:05:40",
+      "is_current_player": false
+    },
+    {
+      "username": "Renzo",
+      "picture": null,
+      "ilokano_lessons_completed": 10,
+      "cebuano_lessons_completed": 8,
+      "coins": 6550,
+      "last_active": "2026-07-13 15:55:12",
+      "is_current_player": false
+    },
+    {
+      "username": "Lianna",
+      "picture": null,
+      "ilokano_lessons_completed": 9,
+      "cebuano_lessons_completed": 8,
+      "coins": 5980,
+      "last_active": "2026-07-13 23:45:55",
+      "is_current_player": false
+    },
+    {
+      "username": "Kenji",
+      "picture": null,
+      "ilokano_lessons_completed": 8,
+      "cebuano_lessons_completed": 8,
+      "coins": 5320,
+      "last_active": "2026-07-13 19:30:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Sofia",
+      "picture": null,
+      "ilokano_lessons_completed": 7,
+      "cebuano_lessons_completed": 8,
+      "coins": 4750,
+      "last_active": "2026-07-13 21:00:10",
+      "is_current_player": false
+    },
+    {
+      "username": "Miguel",
+      "picture": null,
+      "ilokano_lessons_completed": 7,
+      "cebuano_lessons_completed": 7,
+      "coins": 4250,
+      "last_active": "2026-07-13 14:15:30",
+      "is_current_player": false
+    },
+    {
+      "username": "Yuki",
+      "picture": null,
+      "ilokano_lessons_completed": 6,
+      "cebuano_lessons_completed": 8,
+      "coins": 3900,
+      "last_active": "2026-07-13 09:30:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Carlos",
+      "picture": null,
+      "ilokano_lessons_completed": 7,
+      "cebuano_lessons_completed": 6,
+      "coins": 3750,
+      "last_active": "2026-07-13 11:20:15",
+      "is_current_player": false
+    },
+    {
+      "username": "Diego",
+      "picture": null,
+      "ilokano_lessons_completed": 6,
+      "cebuano_lessons_completed": 7,
+      "coins": 3500,
+      "last_active": "2026-07-13 17:40:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Chloe",
+      "picture": null,
+      "ilokano_lessons_completed": 6,
+      "cebuano_lessons_completed": 6,
+      "coins": 3300,
+      "last_active": "2026-07-13 16:15:45",
+      "is_current_player": false
+    },
+    {
+      "username": "Ethan",
+      "picture": null,
+      "ilokano_lessons_completed": 5,
+      "cebuano_lessons_completed": 7,
+      "coins": 3100,
+      "last_active": "2026-07-13 13:05:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Fiona",
+      "picture": null,
+      "ilokano_lessons_completed": 5,
+      "cebuano_lessons_completed": 6,
+      "coins": 2950,
+      "last_active": "2026-07-13 10:55:12",
+      "is_current_player": false
+    },
+    {
+      "username": "Gavin",
+      "picture": null,
+      "ilokano_lessons_completed": 6,
+      "cebuano_lessons_completed": 5,
+      "coins": 2800,
+      "last_active": "2026-07-13 08:45:30",
+      "is_current_player": false
+    },
+    {
+      "username": "Hannah",
+      "picture": null,
+      "ilokano_lessons_completed": 4,
+      "cebuano_lessons_completed": 7,
+      "coins": 2650,
+      "last_active": "2026-07-13 15:30:22",
+      "is_current_player": false
+    },
+    {
+      "username": "Ian",
+      "picture": null,
+      "ilokano_lessons_completed": 5,
+      "cebuano_lessons_completed": 5,
+      "coins": 2500,
+      "last_active": "2026-07-13 19:10:15",
+      "is_current_player": false
+    },
+    {
+      "username": "Julia",
+      "picture": null,
+      "ilokano_lessons_completed": 4,
+      "cebuano_lessons_completed": 6,
+      "coins": 2400,
+      "last_active": "2026-07-13 14:50:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Kevin",
+      "picture": null,
+      "ilokano_lessons_completed": 6,
+      "cebuano_lessons_completed": 4,
+      "coins": 2300,
+      "last_active": "2026-07-13 12:40:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Luna",
+      "picture": null,
+      "ilokano_lessons_completed": 3,
+      "cebuano_lessons_completed": 6,
+      "coins": 2200,
+      "last_active": "2026-07-13 11:15:30",
+      "is_current_player": false
+    },
+    {
+      "username": "Mason",
+      "picture": null,
+      "ilokano_lessons_completed": 5,
+      "cebuano_lessons_completed": 4,
+      "coins": 2100,
+      "last_active": "2026-07-13 09:00:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Nora",
+      "picture": null,
+      "ilokano_lessons_completed": 4,
+      "cebuano_lessons_completed": 5,
+      "coins": 1950,
+      "last_active": "2026-07-13 07:55:12",
+      "is_current_player": false
+    },
+    {
+      "username": "Luminang",
+      "picture": null,
+      "ilokano_lessons_completed": 4,
+      "cebuano_lessons_completed": 3,
+      "coins": 1800,
+      "last_active": "2026-07-13 23:55:00",
+      "is_current_player": true
+    },
+    {
+      "username": "Owen",
+      "picture": null,
+      "ilokano_lessons_completed": 3,
+      "cebuano_lessons_completed": 4,
+      "coins": 1650,
+      "last_active": "2026-07-13 10:20:00",
+      "is_current_player": false
+    },
+    {
+      "username": "Paige",
+      "picture": null,
+      "ilokano_lessons_completed": 2,
+      "cebuano_lessons_completed": 5,
+      "coins": 1500,
+      "last_active": "2026-07-13 18:30:15",
+      "is_current_player": false
+    },
+    {
+      "username": "Quinn",
+      "picture": null,
+      "ilokano_lessons_completed": 4,
+      "cebuano_lessons_completed": 2,
+      "coins": 1350,
+      "last_active": "2026-07-13 14:05:40",
+      "is_current_player": false
+    },
+    {
+      "username": "Ryan",
+      "picture": null,
+      "ilokano_lessons_completed": 3,
+      "cebuano_lessons_completed": 3,
+      "coins": 1200,
+      "last_active": "2026-07-13 16:45:22",
+      "is_current_player": false
+    },
+    {
+      "username": "Sara",
+      "picture": null,
+      "ilokano_lessons_completed": 2,
+      "cebuano_lessons_completed": 4,
+      "coins": 1050,
+      "last_active": "2026-07-13 08:30:00",
+      "is_current_player": false
+    }
+  ]
+}

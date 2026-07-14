@@ -47,6 +47,11 @@ public class DatasetManager : MonoBehaviour
         LoadDataset();
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
     private void LoadDataset()
     {
         if (datasetJson == null)
@@ -100,12 +105,13 @@ public class DatasetManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(phrase)) return;
 
-        // Split by whitespace and remove special characters like ?, !, /
-        string[] words = phrase.Split(new[] { ' ', '/', '?' }, StringSplitOptions.RemoveEmptyEntries);
+        // Split by whitespace and remove punctuation/special characters
+        char[] delimiters = new[] { ' ', '.', ',', '?', '!', '"', '\'', '/', ';', ':' };
+        string[] words = phrase.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
         foreach (var word in words)
         {
             string cleanWord = word.Trim().ToLower();
-            if (cleanWord != "___")
+            if (cleanWord != "___" && !string.IsNullOrEmpty(cleanWord))
             {
                 lexicon.Add(cleanWord);
             }
@@ -115,7 +121,7 @@ public class DatasetManager : MonoBehaviour
     public bool IsWordInLexicon(string word)
     {
         if (lexicon == null) BuildLexicon();
-        return lexicon != null && lexicon.Contains(word.ToLower().Trim());
+        return lexicon != null && lexicon.Contains(word.Trim());
     }
 
 

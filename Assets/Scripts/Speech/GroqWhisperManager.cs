@@ -18,12 +18,17 @@ public class GroqWhisperManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = null)
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
+    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = "")
     {
         StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError, prompt));
     }
 
-    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = null)
+    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = "")
     {
         if (!File.Exists(filePath))
         {
@@ -42,6 +47,14 @@ public class GroqWhisperManager : MonoBehaviour
 
         using (UnityWebRequest request = UnityWebRequest.Post(GROQ_WHISPER_URL, form))
         {
+            request.timeout = 30; // 30 seconds timeout for mobile data
+
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                onError?.Invoke("No internet connection. Please check your data or Wi-Fi.");
+                yield break;
+            }
+
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
@@ -51,8 +64,18 @@ public class GroqWhisperManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError($"Whisper Backend Error: {request.error}\n{request.downloadHandler.text}");
-                onError?.Invoke(request.error);
+                string errorMessage = request.error;
+                if (request.result == UnityWebRequest.Result.ConnectionError)
+                {
+                    errorMessage = "Network error. Please check your connection.";
+                }
+                else if (request.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    errorMessage = "API error. Please try again later.";
+                }
+
+                Debug.LogError($"Whisper Backend Error: {errorMessage}\n{request.downloadHandler.text}");
+                onError?.Invoke(errorMessage);
             }
         }
     }

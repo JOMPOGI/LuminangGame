@@ -26,6 +26,11 @@ public class STTGameController : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
+    }
+
     private void Start()
     {
         micButton.onClick.AddListener(OnMicButtonClicked);
