@@ -3,7 +3,12 @@ guid: d46ccefd3e71207429dd7aaa0060610f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TindahanNiLola_mat
+    second: {fileID: 2100000, guid: de74b5a4f27c28441aad28d536cc32bf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
