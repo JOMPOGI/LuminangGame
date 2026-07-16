@@ -88,7 +88,7 @@ public class SupabaseManager : MonoBehaviour
     {
         try
         {
-            Debug.Log("[Supabase] Processing callback URL...");
+            Debug.Log($"<color=cyan>[Supabase] Processing callback URL: {url}</color>");
             Debug.Log($"[Supabase] URL contains 'access_token': {url.Contains("access_token")}");
             Debug.Log($"[Supabase] URL contains 'code': {url.Contains("code=")}");
             Debug.Log($"[Supabase] URL contains 'error': {url.Contains("error")}");

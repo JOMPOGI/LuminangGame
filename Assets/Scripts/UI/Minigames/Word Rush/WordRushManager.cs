@@ -77,6 +77,32 @@ namespace Luminang.UI.Minigames
         private void Awake()
         {
             if (transcriptionText != null) transcriptionText.text = placeholderText;
+            EnsureDependencies();
+        }
+
+        /// <summary>
+        /// Auto-creates required singleton managers if they don't exist in the scene.
+        /// This lets WordRush work in any scene without manual setup.
+        /// </summary>
+        private void EnsureDependencies()
+        {
+            if (SpeechRecorder.Instance == null && FindObjectOfType<SpeechRecorder>() == null)
+            {
+                Debug.Log("<color=yellow>[WordRush] SpeechRecorder not found — creating one.</color>");
+                new GameObject("SpeechRecorder").AddComponent<SpeechRecorder>();
+            }
+
+            if (GroqWhisperManager.Instance == null && FindObjectOfType<GroqWhisperManager>() == null)
+            {
+                Debug.Log("<color=yellow>[WordRush] GroqWhisperManager not found — creating one.</color>");
+                new GameObject("GroqWhisperManager").AddComponent<GroqWhisperManager>();
+            }
+
+            if (PhraseEvaluator.Instance == null && FindObjectOfType<PhraseEvaluator>() == null)
+            {
+                Debug.Log("<color=yellow>[WordRush] PhraseEvaluator not found — creating one.</color>");
+                new GameObject("PhraseEvaluator").AddComponent<PhraseEvaluator>();
+            }
         }
 
         private async void OnEnable()
@@ -322,6 +348,13 @@ namespace Luminang.UI.Minigames
                 return;
             }
 
+            if (SpeechRecorder.Instance == null)
+            {
+                Debug.LogError("[WordRush] SpeechRecorder.Instance is null! Cannot record.");
+                if (transcriptionText != null) transcriptionText.text = "Error: Recorder not found!";
+                return;
+            }
+
             if (!_isRecording)
             {
                 Debug.Log("[WordRush] Starting Recording...");
@@ -357,6 +390,14 @@ namespace Luminang.UI.Minigames
 
         private void ProcessSpeech(string path)
         {
+            if (GroqWhisperManager.Instance == null)
+            {
+                Debug.LogError("[WordRush] GroqWhisperManager.Instance is null! Cannot transcribe.");
+                if (transcriptionText != null) transcriptionText.text = "Error: Transcriber not found!";
+                if (micButton != null) micButton.interactable = true;
+                return;
+            }
+
             _isProcessing = true;
             if (micButton != null) micButton.interactable = false; // Disable to prevent spam
             if (transcriptionText != null) transcriptionText.text = "Processing...";
@@ -373,15 +414,35 @@ namespace Luminang.UI.Minigames
             if (transcriptionText != null) transcriptionText.text = result;
             
             string target = activePrompts[currentPromptIndex].targetPhrase;
-            float accuracy = PhraseEvaluator.Instance.CalculateAccuracy(result, target);
-            if (accuracyScoreText != null) accuracyScoreText.text = $"{accuracy:F0}%";
 
-            if (accuracy >= passThreshold) 
+            if (PhraseEvaluator.Instance != null)
             {
-                correctCount++; // +1 for the final score
-                StartCoroutine(HandleSuccess());
+                // Use the proper async backend evaluation instead of deprecated CalculateAccuracy
+                if (accuracyScoreText != null) accuracyScoreText.text = "Evaluating...";
+                if (micButton != null) micButton.interactable = false;
+
+                PhraseEvaluator.Instance.EvaluateSpeech(target, result, (transcript, accuracy, evalResult) =>
+                {
+                    Debug.Log($"<color=white>[WordRush] Evaluation: accuracy={accuracy:F0}%, result={evalResult}</color>");
+                    if (accuracyScoreText != null) accuracyScoreText.text = $"{accuracy:F0}%";
+
+                    if (accuracy >= passThreshold)
+                    {
+                        correctCount++;
+                        StartCoroutine(HandleSuccess());
+                    }
+                    else
+                    {
+                        StartCoroutine(HandleFailure());
+                    }
+                });
             }
-            else StartCoroutine(HandleFailure());
+            else
+            {
+                Debug.LogError("[WordRush] PhraseEvaluator.Instance is null! Cannot evaluate.");
+                if (accuracyScoreText != null) accuracyScoreText.text = "Error";
+                if (micButton != null) micButton.interactable = true;
+            }
         }
 
         private void OnTranscriptionError(string err)

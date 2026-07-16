@@ -57,7 +57,7 @@ def startup_event():
     print(f"Successfully loaded {len(dataset.phrases)} phrases from dataset.")
     print("Startup complete! Server is running in Serverless API mode.")
 
-def transcribe_audio_file(audio_bytes: bytes) -> str:
+def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None) -> str:
     if not GROQ_API_KEY:
         raise HTTPException(
             status_code=500, 
@@ -83,6 +83,8 @@ def transcribe_audio_file(audio_bytes: bytes) -> str:
                 "model": "whisper-large-v3",
                 "response_format": "json"
             }
+            if prompt:
+                data["prompt"] = prompt
             response = requests.post(url, headers=headers, files=files, data=data)
             
         if response.status_code != 200:
@@ -134,7 +136,7 @@ async def evaluate(
     transcript = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes)
+        transcript = transcribe_audio_file(audio_bytes, expected_phrase)
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -359,12 +361,12 @@ async def find_all_matches(
     }
 
 @app.post("/transcribe")
-async def transcribe(audio: UploadFile = File(...)):
+async def transcribe(audio: UploadFile = File(...), prompt: Optional[str] = Form(None)):
     """
     Transcribes uploaded audio file and returns transcription.
     """
     audio_bytes = await audio.read()
-    transcript = transcribe_audio_file(audio_bytes)
+    transcript = transcribe_audio_file(audio_bytes, prompt)
     return {"text": transcript}
 
 if __name__ == "__main__":
