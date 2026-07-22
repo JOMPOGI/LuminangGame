@@ -14,23 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Rosa
   speakerPortrait: {fileID: 21300000, guid: e185e0ec3efba60429a1f9e0680e9fe7, type: 3}
-  dialogueText: "Ay, kasla ammo mo metten dagiti pagsasaomi ditoy. Ammo mo kadi no
-    ania ti ibagami iti \u2018good night\u2019?"
-  translatedText: Oh, it seems you already know the way we speak here. Do you know
-    what we say at night?
-  animationTrigger: 
+  dialogueText: "Tomas sent you? Naimbag! I am preparing food for the festival. Everything the community does together keeps our traditions alive."
+  translatedText: "Tomas sent you? Good! I am preparing food for the festival."
+  animationTrigger: triggerEventName:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'naimbag a rabii  '
+  - choiceText: ""
     nextNode: {fileID: 11400000, guid: 8bd5270421160f74f92a0bfefa9102eb, type: 2}
     isWrong: 0
-    choiceEvent: 
-  - choiceText: 'naimbag a malem  '
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: 'Naimbag nga aldaw  '
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
+    choiceEvent: ""

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: Wen?
-  translatedText: Yes?
+  dialogueText: "Thanks! Meet Sally and Neneng near the landmarks to learn about our history."
+  translatedText: "Thanks! Meet Sally and Neneng..."
   animationTrigger: 
   triggerEventName: 
   endEventName: 

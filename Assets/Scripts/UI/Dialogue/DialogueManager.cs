@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void StartDialogue(DialogueNode startNode, Animator npcAnimator, InteractableNPC npc)
     {
+        Debug.Log($"[DialogueManager] StartDialogue called with node: {(startNode == null ? "NULL" : startNode.name)}");
         _currentNPCAnimator = npcAnimator;
         _currentNPC = npc;
         IsInDialogue = true;
@@ -75,9 +76,13 @@ public class DialogueManager : MonoBehaviour
         if (_currentNPCAnimator != null)
         {
             if (!string.IsNullOrEmpty(node.animationTrigger))
-                _currentNPCAnimator.SetTrigger(node.animationTrigger);
+            {
+                SafeSetTrigger(_currentNPCAnimator, node.animationTrigger);
+            }
             else
-                _currentNPCAnimator.SetTrigger("Idle"); // Force back to idle if bubble is empty
+            {
+                SafeSetTrigger(_currentNPCAnimator, "Idle"); // Force back to idle if bubble is empty
+            }
         }
 
         // 1.5 Fire Start Event (Immediate)
@@ -89,13 +94,38 @@ public class DialogueManager : MonoBehaviour
         // 1.6 Store End Event to fire when this node is COMPLETED
         _pendingEventName = node.endEventName;
 
+        // Check if the node has an STT choice and assign PendingSTTChoice immediately so the UI controller knows.
+        PendingSTTChoice = null;
+        if (node.choices != null)
+        {
+            foreach (var choice in node.choices)
+            {
+                if (choice.choiceEvent != null && choice.choiceEvent.Trim().Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    PendingSTTChoice = choice;
+                    break;
+                }
+            }
+        }
+
         // 2. Display UI and update nav buttons
         if (uiController != null)
         {
+            if (!string.IsNullOrEmpty(_injectedPrefix))
+            {
+                uiController.injectedPrefixText = _injectedPrefix;
+                _injectedPrefix = "";
+            }
             uiController.DisplayNode(node, OnChoiceSelected, skipAnimation);
             uiController.SetNavigation(canGoBack: _nodeHistory.Count > 0);
         }
+        else
+        {
+            Debug.LogError("[DialogueManager] uiController is NULL! The dialogue panel cannot be shown!");
+        }
     }
+
+    public DialogueChoice PendingSTTChoice { get; set; }
 
     /// <summary>
     /// Called by the Prev button in DialogueUIController.
@@ -127,6 +157,17 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(choice.choiceEvent) && _currentNPC != null)
         {
             _currentNPC.HandleDialogueEvent(choice.choiceEvent);
+            
+            // If this choice triggers STT, pause dialogue advancement
+            if (choice.choiceEvent.Trim().Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase))
+            {
+                PendingSTTChoice = choice;
+                if (uiController != null) 
+                {
+                    uiController.ToggleSTTRecording(choice);
+                }
+                return; // PAUSE here. STTDialogueAdapter will call CompleteSTT later.
+            }
         }
 
         if (choice.isWrong && _currentNPC != null)
@@ -136,6 +177,31 @@ public class DialogueManager : MonoBehaviour
         }
 
         ProcessNode(choice.nextNode);
+    }
+
+    private string _injectedPrefix = "";
+
+    public void CompleteSTT(bool success, string prefixText = "")
+    {
+        if (PendingSTTChoice != null)
+        {
+            DialogueChoice choice = PendingSTTChoice;
+            PendingSTTChoice = null;
+            
+            if (success)
+            {
+                if (!string.IsNullOrEmpty(prefixText))
+                {
+                    _injectedPrefix = prefixText;
+                }
+                ProcessNode(choice.nextNode);
+            }
+            else
+            {
+                if (_currentNPC != null)
+                    StartCoroutine(HandleWrongAnswer(choice.nextNode)); // or keep them on same node
+            }
+        }
     }
 
     private System.Collections.IEnumerator HandleWrongAnswer(DialogueNode returnToNode)
@@ -189,7 +255,10 @@ public class DialogueManager : MonoBehaviour
         {
             // Force NPC back to Idle when dialogue ends
             if (_currentNPCAnimator != null)
-                _currentNPCAnimator.SetTrigger("Idle");
+            {
+                SafeSetTrigger(_currentNPCAnimator, "Idle");
+            } // Automatically exit close up to restore camera state
+            _currentNPC.ExitCloseUp();
 
             if (_currentNPC.OnDialogueEnd != null)
                 _currentNPC.OnDialogueEnd.Invoke();
@@ -215,12 +284,43 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(_pendingEventName))
         {
             Debug.Log($"[DialogueManager] FirePendingEvent: Sending '{_pendingEventName}' to NPC: {(npc != null ? npc.name : "NULL")}");
+            
+            if (_pendingEventName.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string objText = _pendingEventName.Substring("SetObjective_".Length);
+                if (ObjectiveManager.Instance != null)
+                {
+                    ObjectiveManager.Instance.SetObjective(objText);
+                    Debug.Log($"[DialogueManager] Dynamically set objective to: '{objText}'");
+                }
+            }
+            
             if (npc != null)
             {
                 npc.HandleDialogueEvent(_pendingEventName);
             }
         }
+        
+        if (npc != null)
+        {
+            npc.isWrongAnswerPlaying = false;
+        }
+        
         _pendingEventName = null;
+    }
+
+    private void SafeSetTrigger(Animator animator, string triggerName)
+    {
+        if (animator == null || string.IsNullOrEmpty(triggerName)) return;
+        
+        foreach (AnimatorControllerParameter param in animator.parameters)
+        {
+            if (param.type == AnimatorControllerParameterType.Trigger && param.name == triggerName)
+            {
+                animator.SetTrigger(triggerName);
+                return;
+            }
+        }
     }
 
     /// <summary>

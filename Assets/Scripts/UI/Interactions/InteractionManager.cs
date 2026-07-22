@@ -140,6 +140,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnButtonClicked()
     {
+        Debug.Log($"[InteractionManager] OnButtonClicked! _currentNearest is {(_currentNearest != null ? _currentNearest.gameObject.name : "NULL")}");
         if (_currentNearest != null)
         {
             // Hide the button so they can't spam it during dialogue

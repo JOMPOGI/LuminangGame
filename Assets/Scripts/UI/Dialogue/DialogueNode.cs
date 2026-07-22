@@ -47,4 +47,7 @@ public class DialogueChoice
 
     [Tooltip("Event fired ONLY when this specific choice is selected (e.g., 'StartMinigame').")]
     public string choiceEvent;
+
+    [Tooltip("If this choice triggers STT (e.g., choiceEvent = 'StartSTT'), this is the exact phrase STT must recognize to advance to nextNode.")]
+    public string expectedSTTWord;
 }

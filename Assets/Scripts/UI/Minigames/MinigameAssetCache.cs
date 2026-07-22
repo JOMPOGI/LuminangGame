@@ -27,7 +27,8 @@ namespace Luminang.UI.Minigames
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                transform.SetParent(null);
+            DontDestroyOnLoad(gameObject);
             }
             else
             {

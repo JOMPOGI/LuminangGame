@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: Naadalmon itan no kasano dagiti panangablaawmi.
-  translatedText: Now you have discovered how our language and greetings work.
-  animationTrigger: 
+  dialogueText: "Beautiful. One last thing. Thank me for this journey. Say: Agyamanak unay."
+  translatedText: "One last thing. Thank me. Say: Thank you very much."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: StartSTT
   choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: a6de08ed07ad3a54a9e51b7a1146204a, type: 2}
+  - choiceText: "Agyamanak unay"
+    nextNode: {fileID: 11400000, guid: 69f687eef69970040b28d05ad772d68d, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""
+  - choiceText: "Naimbag"
+    nextNode: {fileID: 11400000, guid: cd7cc2c1e6ecf43448b8356e88719b8e, type: 2}
+    isWrong: 1
+    choiceEvent: ""

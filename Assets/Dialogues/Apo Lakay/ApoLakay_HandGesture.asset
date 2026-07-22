@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: "Makita ko ti anting-anting mo\u2026 ammok dayta a kristal a birbirokem.
-    Saan a bassit ti kaipapananna. Adda pamilya a nakikadua iti dayta idi\u2014agsasapulda
-    iti merkado. No kayat mo a maammoan pay, sadiay ka a mapan."
-  translatedText: "I can see your amulet\u2026 I know that it is the crystal you
-    are searching for. It is not something small. There was a family once connected
-    to it\u2014they used to trade in the market. If you want to learn more, that
-    is where you should go."
+  dialogueText: "Nasayaat! Now, tell me your name. Say: Ti nagan ko ket..."
+  translatedText: "Good! Tell me your name."
   animationTrigger: Pointing
   triggerEventName: 
-  endEventName: GoToMarket
-  choices: []
+  endEventName: StartSTT
+  choices:
+  - choiceText: "Ti nagan ko ket traveler"
+    nextNode: {fileID: 11400000, guid: cd7cc2c1e6ecf43448b8356e88719b8e, type: 2}
+    isWrong: 0
+    choiceEvent: ""
+  - choiceText: "Saan"
+    nextNode: {fileID: 0}
+    isWrong: 1
+    choiceEvent: ""

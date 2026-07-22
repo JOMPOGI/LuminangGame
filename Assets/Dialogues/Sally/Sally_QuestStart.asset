@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Sally
   speakerPortrait: {fileID: 0}
-  dialogueText: pakawanen nak man
-  translatedText: excuse me
-  animationTrigger: 
+  dialogueText: "This old church is napintas (beautiful). In Ilokano, we use words like napintas, naimbag (good), and dakkel (big) to describe things."
+  translatedText: "This church is beautiful. We use napintas, naimbag, dakkel to describe things."
+  animationTrigger: triggerEventName:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 
+  - choiceText: ""
     nextNode: {fileID: 11400000, guid: d9e91bbd81b30124abcdca0b8d4041ce, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""

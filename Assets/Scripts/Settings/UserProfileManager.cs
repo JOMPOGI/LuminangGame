@@ -7,13 +7,22 @@ public class UserProfileManager : MonoBehaviour
 {
     public static UserProfileManager Instance { get; private set; }
 
-    public ProfileModel CurrentProfile { get; private set; }
+    public ProfileModel CurrentProfile { get; private set; } = new ProfileModel
+    {
+        Id = "guest-123",
+        Username = "Guest Player",
+        Email = "guest@example.com",
+        HasCreatedCharacter = true,
+        HasCompletedTutorial = true,
+        HasSeenPrologue = true
+    };
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
         else

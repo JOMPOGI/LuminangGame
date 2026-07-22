@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: Ti nagan ko ket Klara. Agaramidak kadagiti pagan-anay para iti pista.
-  translatedText: My name is Klara. I make clothes for the festival.
+  dialogueText: "Welcome to my workshop! I am weaving abel cloth. In Ilokano, to weave is agabel. To walk is magna. To eat is mangan. These words describe what we do every day."
+  translatedText: "I am weaving. To weave is agabel. To walk is magna. To eat is mangan."
   animationTrigger: Thankful
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: ""
+    nextNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
+    isWrong: 0
+    choiceEvent: ""

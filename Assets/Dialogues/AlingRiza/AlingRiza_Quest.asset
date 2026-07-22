@@ -14,13 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Wen? Ania dayta?
-  translatedText: Yes? What is it?
-  animationTrigger: 
+  dialogueText: "Nasayaat! Now take these counted spools to Tala and Lito at the market. They need maysa, dua, tallo (one, two, three) bundles. Agyamanak iti tulong mo!"
+  translatedText: "Great! Take these to Tala and Lito. They need one, two, three bundles."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Help Tala count spools
   choices:
-  - choiceText: Ask about the weaving materials
-    nextNode: {fileID: 11400000, guid: 6fd4964f558553843badd46d4afb5226, type: 2}
-    isWrong: 0
-    choiceEvent: 

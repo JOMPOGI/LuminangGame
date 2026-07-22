@@ -14,21 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: Naimbag nga aldaw
-  translatedText: Good day
-  animationTrigger: 
+  dialogueText: "Tell me: what will you do after this? Say: Magna ak (I will go). Then visit Ronnie next door, he is carving wood."
+  translatedText: "Say: I will go. Then visit Ronnie."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Play Word Game with Ronnie
   choices:
-  - choiceText: Naimbag nga aldaw
-    nextNode: {fileID: 11400000, guid: bdb5ae1cbd9a1e54fbd317afacd65bd4, type: 2}
+  - choiceText: "Magna ak"
+    nextNode: {fileID: 11400000}
     isWrong: 0
-    choiceEvent: 
-  - choiceText: nasayaatak
-    nextNode: {fileID: 11400000}
+    choiceEvent: ""
+  - choiceText: "Saan"
+    nextNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
     isWrong: 1
-    choiceEvent: 
-  - choiceText: pakada
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
+    choiceEvent: ""

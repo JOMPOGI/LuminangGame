@@ -14,21 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tala
   speakerPortrait: {fileID: 21300000, guid: 0c019a51009268f43a5d4f67570f27cb, type: 3}
-  dialogueText: kumusta ka?
-  translatedText: how are you?
-  animationTrigger: 
+  dialogueText: "Say the numbers: maysa, dua, tallo, uppat, lima!"
+  translatedText: "Say: one, two, three, four, five!"
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: StartSTT
   choices:
-  - choiceText: nasayaatak
-    nextNode: {fileID: 11400000, guid: 8ce3c008ca694f5448e1b833e329548a, type: 2}
+  - choiceText: "Maysa dua tallo uppat lima"
+    nextNode: {fileID: 11400000, guid: 3e061d565bb85e241b2ebaf9fe34a120, type: 2}
     isWrong: 0
-    choiceEvent: 
-  - choiceText: Naimbag a malem
-    nextNode: {fileID: 11400000}
+    choiceEvent: ""
+  - choiceText: "Saan ko ammo"
+    nextNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
     isWrong: 1
-    choiceEvent: 
-  - choiceText: 'Naimbag nga aldaw  '
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
+    choiceEvent: ""

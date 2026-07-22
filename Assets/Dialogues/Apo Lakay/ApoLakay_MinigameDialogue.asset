@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: Kasla saan ka pay a pamilyar kadagiti pagsasao mi ditoy. Kayat mo
-    kadi a sumursuro ken agpraktis?
-  translatedText: "You are not very familiar with our local greetings. I am Apo Lakay,
-    one of the \u2018Guro\u2019 in this area. Would you like to learn and practice?"
+  dialogueText: "Umuna: Greet me properly. How do you say Good evening in Ilokano?"
+  translatedText: "First: How do you say Good evening?"
   animationTrigger: Pointing
   triggerEventName: 
-  endEventName: 
+  endEventName: StartSTT
   choices:
-  - choiceText: Yes
-    nextNode: {fileID: 11400000, guid: cd7cc2c1e6ecf43448b8356e88719b8e, type: 2}
+  - choiceText: "Naimbag a rabii"
+    nextNode: {fileID: 0}
     isWrong: 0
-    choiceEvent: StartMinigame
-  - choiceText: No
-    nextNode: {fileID: 11400000, guid: 49d614f63bfb8a84bb36f57c4cb35f05, type: 2}
-    isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""
+  - choiceText: "Naimbag a bigat"
+    nextNode: {fileID: 11400000, guid: 4f42c80fc24c17543aea3bbbf29c29e5, type: 2}
+    isWrong: 1
+    choiceEvent: ""
