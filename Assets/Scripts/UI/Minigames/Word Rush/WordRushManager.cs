@@ -86,19 +86,19 @@ namespace Luminang.UI.Minigames
         /// </summary>
         private void EnsureDependencies()
         {
-            if (SpeechRecorder.Instance == null && FindObjectOfType<SpeechRecorder>() == null)
+            if (SpeechRecorder.Instance == null && FindFirstObjectByType<SpeechRecorder>() == null)
             {
                 Debug.Log("<color=yellow>[WordRush] SpeechRecorder not found — creating one.</color>");
                 new GameObject("SpeechRecorder").AddComponent<SpeechRecorder>();
             }
 
-            if (GroqWhisperManager.Instance == null && FindObjectOfType<GroqWhisperManager>() == null)
+            if (GroqWhisperManager.Instance == null && FindFirstObjectByType<GroqWhisperManager>() == null)
             {
                 Debug.Log("<color=yellow>[WordRush] GroqWhisperManager not found — creating one.</color>");
                 new GameObject("GroqWhisperManager").AddComponent<GroqWhisperManager>();
             }
 
-            if (PhraseEvaluator.Instance == null && FindObjectOfType<PhraseEvaluator>() == null)
+            if (PhraseEvaluator.Instance == null && FindFirstObjectByType<PhraseEvaluator>() == null)
             {
                 Debug.Log("<color=yellow>[WordRush] PhraseEvaluator not found — creating one.</color>");
                 new GameObject("PhraseEvaluator").AddComponent<PhraseEvaluator>();

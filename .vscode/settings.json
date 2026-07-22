@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Luminang.slnx"
+    "dotnet.defaultSolution": "LuminangGame.slnx"
 }

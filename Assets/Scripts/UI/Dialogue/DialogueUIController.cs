@@ -65,6 +65,7 @@ public class DialogueUIController : MonoBehaviour
     // ── Private State ────────────────────────────────────────────────
     private List<GameObject>              _activeChoiceButtons = new List<GameObject>();
     private Coroutine                     _showSequenceCoroutine;
+    private Coroutine                     _typeTextCoroutine;
     private bool                          _isTyping  = false;
     private bool                          _skipTyping = false;
     private string                        _fullText  = "";
@@ -101,6 +102,8 @@ public class DialogueUIController : MonoBehaviour
     // Public API
     // ─────────────────────────────────────────────────────────────────
 
+    public string injectedPrefixText = "";
+
     /// <summary>
     /// Displays a dialogue node. Called by DialogueManager.
     /// </summary>
@@ -108,8 +111,12 @@ public class DialogueUIController : MonoBehaviour
     {
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
-        _fullText         = node.dialogueText;
+        _fullText         = injectedPrefixText + node.dialogueText;
         _translatedText   = node.translatedText;
+        
+        // Reset prefix after consuming
+        injectedPrefixText = "";
+        
         _isTranslatedShowing = false;
         _skipTyping       = skipAnimation; // If skipping, we force it here
 
@@ -147,10 +154,27 @@ public class DialogueUIController : MonoBehaviour
                     DialogueChoice cached = choice;
                     btn.onClick.AddListener(() =>
                     {
-                        StartCoroutine(ButtonPressAnim(btn.transform));
+                        if (gameObject.activeInHierarchy)
+                        {
+                            StartCoroutine(ButtonPressAnim(btn.transform));
+                        }
                         _onChoiceSelected?.Invoke(cached);
                     });
                 }
+            }
+        }
+        
+        // Show the Mic button if one is injected AND this node requires STT
+        STTVoiceVisualizerAdapter micAdapter = GetComponentInChildren<STTVoiceVisualizerAdapter>(true);
+        if (micAdapter != null)
+        {
+            if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
+            {
+                micAdapter.ShowAndPrepare();
+            }
+            else
+            {
+                micAdapter.gameObject.SetActive(false);
             }
         }
 
@@ -164,12 +188,60 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
-        // Show/hide Next button depending on VISIBLE choice count
-        // If any choice has text, player must pick one — Next is hidden
+        // If any choice has text, player must pick one — Next is hidden.
+        // ALSO if this is an STT node, they must speak — Next is hidden.
         if (nextButton != null)
-            nextButton.gameObject.SetActive(visibleChoices == 0);
+        {
+            bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
+            nextButton.gameObject.SetActive(visibleChoices == 0 && !requiresSTT);
+        }
 
         ShowDialogue(true, skipAnimation);
+    }
+
+    /// <summary>
+    /// Forces the microphone to start recording programmatically, e.g. when a choice with "StartSTT" is clicked.
+    /// </summary>
+    public void ToggleSTTRecording(DialogueChoice choice)
+    {
+        STTVoiceVisualizerAdapter micAdapter = GetComponentInChildren<STTVoiceVisualizerAdapter>(true);
+        if (micAdapter == null)
+        {
+            micAdapter = gameObject.AddComponent<STTVoiceVisualizerAdapter>();
+        }
+        
+        if (micAdapter != null)
+        {
+            micAdapter.ShowAndPrepare();
+            micAdapter.OnMicClicked();
+            
+            if (micAdapter.isRecording)
+            {
+                SetChoiceButtonText(choice, "Done Speaking");
+            }
+            else
+            {
+                HideChoicesOnly();
+            }
+        }
+    }
+
+    public void SetChoiceButtonText(DialogueChoice choice, string text)
+    {
+        foreach (var obj in _activeChoiceButtons)
+        {
+            var btnText = obj.GetComponentInChildren<TextMeshProUGUI>();
+            if (btnText != null)
+            {
+                // Match by exact text or if it's the STT button
+                if (btnText.text.Trim() == choice.choiceText.Trim() || choice.choiceEvent == "StartSTT")
+                {
+                    btnText.text = text;
+                    choice.choiceText = text; // update it so we don't lose track
+                    break;
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -182,18 +254,30 @@ public class DialogueUIController : MonoBehaviour
             prevButton.gameObject.SetActive(canGoBack);
     }
 
+    public void UpdateSTTStatus(string statusMarkup)
+    {
+        if (dialogueText != null)
+        {
+            // Remove previous status if it exists by splitting at the first newline after the main text, or simply just re-assigning fullText + status
+            dialogueText.text = _fullText + "\n\n" + statusMarkup;
+        }
+    }
+
     public void ShowDialogue(bool show, bool skipAnimation = false)
     {
         if (show)
         {
             if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
+            if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
             bool isAlreadyOpen = dialoguePanel.activeSelf;
             _showSequenceCoroutine = StartCoroutine(ShowSequence(isAlreadyOpen, skipAnimation));
         }
         else
         {
             if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
+            if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
             _showSequenceCoroutine = null;
+            _typeTextCoroutine = null;
             _isTyping   = false;
             _skipTyping = false;
 
@@ -336,7 +420,11 @@ public class DialogueUIController : MonoBehaviour
         }
 
         if (typingSpeed > 0 && !skipAnimation)
-            yield return StartCoroutine(TypeText(_fullText));
+        {
+            if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
+            _typeTextCoroutine = StartCoroutine(TypeText(_fullText));
+            yield return _typeTextCoroutine;
+        }
         else
             if (dialogueText != null) dialogueText.text = _fullText;
 

@@ -97,7 +97,11 @@ public class PhraseEvaluator : MonoBehaviour
                 var response = JsonUtility.FromJson<BestMatchResponse>(json);
                 if (response.best_entry != null)
                 {
-                    PhraseEntry entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == response.best_entry.english);
+                    PhraseEntry entry = null;
+                    if (DatasetManager.Instance != null)
+                    {
+                        entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == response.best_entry.english);
+                    }
                     if (entry == null) entry = response.best_entry;
                     callback?.Invoke(entry, response.language, response.score * 100.0f, response.is_english);
                 }

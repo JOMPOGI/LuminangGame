@@ -141,9 +141,11 @@ public class STTIntegrationTool : EditorWindow
         }
 
         // 8. Clean up and unload
-        EditorSceneManager.UnloadSceneAsync(testScene);
-        EditorSceneManager.MarkSceneDirty(activeScene);
+        EditorSceneManager.CloseScene(testScene, true);
 
+        EditorUtility.SetDirty(managersRoot);
+        EditorUtility.SetDirty(sttCanvasClone);
+        EditorSceneManager.MarkSceneDirty(activeScene);
         EditorUtility.DisplayDialog("Success", "STT Integration completed successfully!\n\n1. [STT_System] added under Managers\n2. STT_UI_Canvas added to hierarchy\n3. STTDialogueAdapter attached to DialogueManager\n\nDon't forget to save your scene (Ctrl + S).", "OK");
     }
 }

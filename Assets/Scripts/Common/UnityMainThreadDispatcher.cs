@@ -19,6 +19,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
     }
