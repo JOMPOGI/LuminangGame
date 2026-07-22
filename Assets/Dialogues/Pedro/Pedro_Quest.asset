@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Pedro
   speakerPortrait: {fileID: 0}
-  dialogueText: Awan ti problema. Kabusor a rag-o ti nasarakan ko anyway. Masapul
-    mo kadi? Mabalin mo nga alaen. Ngem masapul nga agay-ayam ka kadakami iti sumaruno
-    a panawen!
-  translatedText: It's okay. It's a random toy I found anyway. Do you need it? You
-    can take it. But you have to play with us next time!
-  animationTrigger: 
+  dialogueText: "Nasayaat! Sika (you) have a kind heart. My friend Mang Lance needs help with directions. He is the kalesa driver near the plaza. Go help him!"
+  translatedText: "Excellent! You have a kind heart. My friend Mang Lance needs help with directions."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
-  choices: []
+  endEventName: SetObjective_Collect all weaving materials: Help Mang Lance
+  choices:

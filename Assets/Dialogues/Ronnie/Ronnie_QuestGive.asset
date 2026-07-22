@@ -14,22 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: Ay! Panagkunak, maysa kadagiti sinulid ti nagtulid ditoy. Ania ti
-    papanam!
-  translatedText: Oh! I think one of the yarns rolled over here. Here you go!
-  animationTrigger: 
+  dialogueText: "Nasayaat! Sally and Neneng are by the old church. They know all about the landmarks here. Go talk to them!"
+  translatedText: "Great! Go talk to Sally and Neneng by the old church."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Find Sally at the landmarks
   choices:
-  - choiceText: ladingitek
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: Agyamanak
-    nextNode: {fileID: 0}
-    isWrong: 0
-    choiceEvent: 
-  - choiceText: Naimbag nga aldaw
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 

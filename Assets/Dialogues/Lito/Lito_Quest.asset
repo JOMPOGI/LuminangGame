@@ -14,21 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: ...
-  translatedText: ...
-  animationTrigger: 
+  dialogueText: "Nasayaat! Take some empanadas to Tomas near the plaza. He is setting up decorations for the Viva Vigan festival."
+  translatedText: "Great! Take some empanadas to Tomas near the plaza."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Greet Tomas
   choices:
-  - choiceText: Naimbag a rabii
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: Naimbag a bigat
-    nextNode: {fileID: 11400000, guid: 3e061d565bb85e241b2ebaf9fe34a120, type: 2}
-    isWrong: 0
-    choiceEvent: 
-  - choiceText: Naimbag a malem
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 

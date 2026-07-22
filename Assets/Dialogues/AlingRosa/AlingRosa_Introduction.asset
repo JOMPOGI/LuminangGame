@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Rosa
   speakerPortrait: {fileID: 21300000, guid: e185e0ec3efba60429a1f9e0680e9fe7, type: 3}
-  dialogueText: Naimbag! Ti nagan ko ket Aling Rosa. Agsagsaganaak kadagiti makan
-    para iti pista. Namnamaek a makitakanto idiay.
-  translatedText: "Impressive. My name is Aling Rosa. I\u2019m preparing food for
-    the festival. I hope to see you there."
+  dialogueText: "When someone helps you, always say Agyamanak unay. It shows deep respect. Now go help Klara at the weaving workshop!"
+  translatedText: "Always say thank you very much. Now go help Klara!"
   animationTrigger: Clap
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: SetObjective_Collect all weaving materials: Help Klara weave
+  choices:

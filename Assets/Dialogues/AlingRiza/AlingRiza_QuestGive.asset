@@ -14,23 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Ay, kayatmo a sawen dayta bola ti sinulid? Nasayaat ta naisalaknibko
-    dayta. Alaem.
-  translatedText: Oh, you mean that ball of yarn? Good thing i kept it safe. Here
-    you go.
-  animationTrigger: 
+  dialogueText: "Salamat! Help me sort these spools by matching the colors. Let me show you..."
+  translatedText: "Thank you! Help me sort these spools."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: AfterDialogueAnimation
+  endEventName: 
   choices:
-  - choiceText: Agyamanak iti tulong mo
-    nextNode: {fileID: 0}
+  - choiceText: "Start Sorting Game"
+    nextNode: {fileID: 11400000, guid: 8a7906bc175f0034fbec19d6b447ff50, type: 2}
     isWrong: 0
-    choiceEvent: 
-  - choiceText: Nasayaat ak
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: Naimbag a malem
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
+    choiceEvent: "StartMinigame"
+  - choiceText: "Continue Journey"
+    nextNode: {fileID: 11400000, guid: 8a7906bc175f0034fbec19d6b447ff50, type: 2}
+    isWrong: 0
+    choiceEvent: ""

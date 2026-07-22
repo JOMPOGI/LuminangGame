@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: Ti nagan ko ket Neneng
-  translatedText: My name is Neneng.
+  dialogueText: "Sally told me about you! I sell souvenirs here. Naimbag daytoy (this is good), dakkel dayta (that is big). See how our words connect things?"
+  translatedText: "This is good, that is big. See how our words connect things?"
   animationTrigger: Thankful
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: d4b4ab96f9e976c42b251106de0f09a3, type: 2}
+  - choiceText: ""
+    nextNode: {fileID: 11400000, guid: 912e83f7b9d781f45bbd3bc72c88b20f, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""

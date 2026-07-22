@@ -14,13 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: So... What did you think? Beautiful, isn't it?
-  translatedText: 
+  dialogueText: "This is Calle Crisologo! Go meet Pedro over there and introduce yourself using your microphone."
+  translatedText: "This is Calle Crisologo! Go meet Pedro..."
   animationTrigger: StartFlying
   triggerEventName: 
-  endEventName: 
-  choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: 3fc5652ca0394b5bbf54c0cb6aae61a5, type: 2}
-    isWrong: 0
-    choiceEvent: 
+  endEventName: ""
+  choices: []

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "I've been watching over this place for a long time. And judging by the way you're looking around..."
-  translatedText: "[Placeholder Ilokano translation]"
+  dialogueText: "I see you carry an anting-anting... Within it rests an ancient Language Crystal. It preserves the memories of our language."
+  translatedText: "I see you carry an anting-anting..."
   animationTrigger: StartFlying
   triggerEventName: 
+  endEventName: 
   choices:
-  - choiceText: 
+  - choiceText: ""
     nextNode: {fileID: 11400000, guid: 32e6467e574b17f4db12edf1ee045ae7, type: 2}
     isWrong: 0
+    choiceEvent: ""

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "Thank you, traveler. That was very kind of you."
-  translatedText: "[Placeholder Ilokano translation]"
+  dialogueText: "Thank you, traveler! That was very kind of you. My name is Kalaw, and I'll be your companion on this journey."
+  translatedText: "Thank you, traveler! That was very kind of you."
   animationTrigger: StartFlying
   triggerEventName: 
+  endEventName: 
   choices:
-  - choiceText: 
+  - choiceText: ""
     nextNode: {fileID: 11400000, guid: 49e350e503cfe404ca8d2b957dd49978, type: 2}
     isWrong: 0
+    choiceEvent: ""

@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "...but I think it's better if you experience it for yourself first. Every street... Every tradition... Every familiar greeting... ...carries a story."
-  translatedText: "[Placeholder Ilokano translation]"
+  dialogueText: "By learning and speaking our language with the people here, you can rekindle the crystal. Shall we begin?"
+  translatedText: "By learning and speaking our language..."
   animationTrigger: StartFlying
   triggerEventName: 
+  endEventName: 
   choices:
-  - choiceText: 
+  - choiceText: "Yes, lets begin!"
     nextNode: {fileID: 11400000, guid: bedd7dd6e8b346246a5f57cc48cbe879, type: 2}
     isWrong: 0
+    choiceEvent: ""
+  - choiceText: "Tell me more"
+    nextNode: {fileID: 11400000, guid: 784c55519973de549b6ec3c350737921, type: 2}
+    isWrong: 0
+    choiceEvent: ""

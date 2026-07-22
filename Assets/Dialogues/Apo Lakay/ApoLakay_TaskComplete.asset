@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: Naimbag ti aramid mo.
-  translatedText: You did well.
-  animationTrigger: 
+  dialogueText: "The Language Crystal is glowing brightly now! You have rekindled the memories of our Ilokano language. The words, the stories, the songs... they live on because of you. Agyamanak unay, traveler. Our language lives once again."
+  translatedText: "The crystal glows! You have rekindled our language. Thank you, traveler."
+  animationTrigger: triggerEventName:
   triggerEventName: 
+  endEventName: CrystalRekindled
   choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: b8ed029122ab4f041b9751af742a81ad, type: 2}
-    isWrong: 0

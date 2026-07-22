@@ -14,15 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: Makisaritaka kadagiti umili ditoy ken ammuem no siasino ti agsagsagana
-    para iti pista.
-  translatedText: Speak with the townsfolk here and learn who is preparing for the
-    festival.
-  animationTrigger: 
+  dialogueText: "Go talk to Pedro. Tell him: Ti nagan ko ket... (My name is...)"
+  translatedText: "Go talk to Pedro and introduce yourself."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: StartScavengerHunt
+  endEventName: 
   choices:
-  - choiceText: 
-    nextNode: {fileID: 0}
-    isWrong: 0
-    choiceEvent: 

@@ -14,11 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
   speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
-  dialogueText: Naimbag a bigat. Ti nagan ko ket Mang Lance. Isagsaganaak daytoy
-    a lugar para iti pista. Sika kadi ti baro a tumulong?
-  translatedText: Hello. My name is Mang Lance. I prepare the place for the festival.
-    Are you the new helper?
+  dialogueText: "Naimbag a bigat! Mabalin kadi a tulunganak? I need to find the weaving shop. Sadino ti tindaan? Which way should I go?"
+  translatedText: "Good morning! Can you help me? Where is the shop?"
   animationTrigger: Bow
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: StartSTT
+  choices:
+  - choiceText: "Agdiretso ka man"
+    nextNode: {fileID: 11400000, guid: cc06d2b0e306e6e4e99aaa0c08c734ca, type: 2}
+    isWrong: 0
+    choiceEvent: ""
+  - choiceText: "Saan ko ammo"
+    nextNode: {fileID: 11400000, guid: 23b1f2e1c1da4a4478cd8d9ec79201ec, type: 2}
+    isWrong: 1
+    choiceEvent: ""

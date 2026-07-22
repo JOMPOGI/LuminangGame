@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
   m_Name: AlingRiza_QuestStart
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: 
+  speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 
-  translatedText: 
-  animationTrigger: 
+  dialogueText: "Ah, Mang Lance sent you? Mabalin kadi a tulunganak? I need help sorting these abel threads before the festival. Can you say: Tulunganak man?"
+  translatedText: "Can you help me? I need help sorting threads. Say: Please help me."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: StartSTT
   choices:
-  - choiceText: Naimbag a rabii
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: Dumalanak man
-    nextNode: {fileID: 11400000, guid: 8a7906bc175f0034fbec19d6b447ff50, type: 2}
+  - choiceText: "Tulunganak man"
+    nextNode: {fileID: 11400000, guid: 6fd4964f558553843badd46d4afb5226, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""
+  - choiceText: "Saan"
+    nextNode: {fileID: 11400000, guid: 8fe175119d8ddf14c839174e321b9f2b, type: 2}
+    isWrong: 1
+    choiceEvent: ""

@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Pedro
   speakerPortrait: {fileID: 0}
-  dialogueText: Ah! Agay-ayam ti pusang dayta!
-  translatedText: 'Hey! The cat was playing with that. '
+  dialogueText: "Naimbag a bigat! Kumusta ka? Ania ti nagan mo?"
+  translatedText: "Good morning! How are you? What is your name?"
   animationTrigger: Angry
   triggerEventName: 
-  endEventName: 
+  endEventName: StartSTT
   choices:
-  - choiceText: agyamanak iti tulong mo
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: pakawanen nak
+  - choiceText: "Ti nagan ko ket traveler"
     nextNode: {fileID: 11400000, guid: 3424430704e612e41bb625d66cd0442b, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""
+  - choiceText: "Agyamanak"
+    nextNode: {fileID: 11400000, guid: 5f09409f2b98a8f439aa814a748ea4d9, type: 2}
+    isWrong: 1
+    choiceEvent: ""
