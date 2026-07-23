@@ -72,10 +72,21 @@ public class BookSelectionManager : MonoBehaviour
     [Tooltip("Assign the HUDGroupManager if you want it hidden during transitions.")]
     public HUDGroupManager hudGroupManager;
 
+    [Header("Language Select Specific")]
+    [Tooltip("Assign the LanguageCardManager so the book knows how to close the LevelsGroup when switching tabs.")]
+    public LanguageCardManager languageCardManager;
+
+    [Header("Sub Pages (Non-Bookmarks)")]
+    [Tooltip("Drag the LevelsGroup GameObject here.")]
+    public GameObject levelsGroupPanel;
+
     // Private States
     private int _currentTabIndex = 0;
     private bool _isTransitioning = false;
     private CanvasGroup[] _tabCanvasGroups;
+    private CanvasGroup _levelsCanvasGroup;
+    private bool _isLevelsGroupOpen = false;
+    private CanvasGroup _currentActiveCanvas;
 
     private void Awake()
     {
@@ -132,24 +143,69 @@ public class BookSelectionManager : MonoBehaviour
             }
         }
 
+        if (levelsGroupPanel != null)
+        {
+            levelsGroupPanel.SetActive(true); // Ensure it's active so CanvasGroup fading works
+            
+            _levelsCanvasGroup = levelsGroupPanel.GetComponent<CanvasGroup>();
+            if (_levelsCanvasGroup == null) _levelsCanvasGroup = levelsGroupPanel.AddComponent<CanvasGroup>();
+            
+            _levelsCanvasGroup.alpha = 0f;
+            _levelsCanvasGroup.interactable = false;
+            _levelsCanvasGroup.blocksRaycasts = false;
+        }
+
         UpdateTabButtonColors(0);
         _currentTabIndex = 0;
+        _currentActiveCanvas = _tabCanvasGroups != null && _tabCanvasGroups.Length > 0 ? _tabCanvasGroups[0] : null;
+        _isLevelsGroupOpen = false;
+    }
+
+    public void OpenLevelsGroup()
+    {
+        if (_isTransitioning || _isLevelsGroupOpen || _levelsCanvasGroup == null) return;
+        
+        _isLevelsGroupOpen = true;
+        CanvasGroup oldCanvas = _currentActiveCanvas;
+        _currentActiveCanvas = _levelsCanvasGroup;
+
+        // Flip forward from LanguagesGroup to LevelsGroup
+        StartCoroutine(FlipAndSwapCanvas(oldCanvas, _levelsCanvasGroup, true, _currentTabIndex));
     }
 
     public void SwitchToTab(int targetIndex)
     {
         if (_isTransitioning) return;
-        if (targetIndex == _currentTabIndex) return;
+
+        if (targetIndex == _currentTabIndex)
+        {
+            // If clicking LanguageSelect bookmark while inside LevelsGroup -> Flip back
+            if (_isLevelsGroupOpen && targetIndex == 0)
+            {
+                _isLevelsGroupOpen = false;
+                CanvasGroup canvasToClose = _currentActiveCanvas;
+                _currentActiveCanvas = _tabCanvasGroups[0];
+
+                UpdateTabButtonColors(0);
+                // Flip reverse from LevelsGroup back to LanguagesGroup
+                StartCoroutine(FlipAndSwapCanvas(canvasToClose, _currentActiveCanvas, false, 0));
+            }
+            return;
+        }
+
+        // Switching to a totally different tab (e.g. from LevelsGroup to Journal)
+        _isLevelsGroupOpen = false;
+        CanvasGroup oldCanvas = _currentActiveCanvas;
+        CanvasGroup newCanvas = _tabCanvasGroups[targetIndex];
+        _currentActiveCanvas = newCanvas;
 
         bool forward = targetIndex > _currentTabIndex;
-        StartCoroutine(FlipAndSwapTab(targetIndex, forward));
+        StartCoroutine(FlipAndSwapCanvas(oldCanvas, newCanvas, forward, targetIndex));
     }
 
-    private IEnumerator FlipAndSwapTab(int targetIndex, bool forward)
+    private IEnumerator FlipAndSwapCanvas(CanvasGroup oldGroup, CanvasGroup newGroup, bool forward, int targetBookmarkIndex)
     {
         _isTransitioning = true;
-
-        int oldIndex = _currentTabIndex;
 
         if (bookImage != null && flipSprites != null && flipSprites.Length > 0)
         {
@@ -167,7 +223,7 @@ public class BookSelectionManager : MonoBehaviour
                     bookImage.sprite = flipSprites[i];
                     fadeOutElapsed += timePerFrame;
                     float t = Mathf.Clamp01(fadeOutElapsed / fadeOutTotal);
-                    SetTabGroupAlpha(oldIndex, 1f - t); // fade out
+                    SetCanvasGroupAlpha(oldGroup, 1f - t); // fade out
                     yield return new WaitForSeconds(timePerFrame);
                 }
             }
@@ -178,20 +234,20 @@ public class BookSelectionManager : MonoBehaviour
                     bookImage.sprite = flipSprites[i];
                     fadeOutElapsed += timePerFrame;
                     float t = Mathf.Clamp01(fadeOutElapsed / fadeOutTotal);
-                    SetTabGroupAlpha(oldIndex, 1f - t); // fade out
+                    SetCanvasGroupAlpha(oldGroup, 1f - t); // fade out
                     yield return new WaitForSeconds(timePerFrame);
                 }
             }
 
             // 2. Midpoint: fully hide old, prepare new at alpha 0
-            SetTabGroupAlpha(oldIndex, 0f);
-            SetTabGroupVisible(oldIndex, false);
-            SetTabGroupAlpha(targetIndex, 0f);
-            SetTabGroupVisible(targetIndex, true);
+            SetCanvasGroupAlpha(oldGroup, 0f);
+            SetCanvasGroupVisible(oldGroup, false);
+            SetCanvasGroupAlpha(newGroup, 0f);
+            SetCanvasGroupVisible(newGroup, true);
 
             // 3. Update tab state
-            UpdateTabButtonColors(targetIndex);
-            _currentTabIndex = targetIndex;
+            UpdateTabButtonColors(targetBookmarkIndex);
+            _currentTabIndex = targetBookmarkIndex;
 
             // 4. Second half: play flip frames + fade IN new tab group
             float fadeInElapsed = 0f;
@@ -204,7 +260,7 @@ public class BookSelectionManager : MonoBehaviour
                     bookImage.sprite = flipSprites[i];
                     fadeInElapsed += timePerFrame;
                     float t = Mathf.Clamp01(fadeInElapsed / fadeInTotal);
-                    SetTabGroupAlpha(targetIndex, t); // fade in
+                    SetCanvasGroupAlpha(newGroup, t); // fade in
                     yield return new WaitForSeconds(timePerFrame);
                 }
             }
@@ -215,67 +271,60 @@ public class BookSelectionManager : MonoBehaviour
                     bookImage.sprite = flipSprites[i];
                     fadeInElapsed += timePerFrame;
                     float t = Mathf.Clamp01(fadeInElapsed / fadeInTotal);
-                    SetTabGroupAlpha(targetIndex, t); // fade in
+                    SetCanvasGroupAlpha(newGroup, t); // fade in
                     yield return new WaitForSeconds(timePerFrame);
                 }
             }
 
             // 5. Snap to fully visible and return book to idle
-            SetTabGroupAlpha(targetIndex, 1f);
+            SetCanvasGroupAlpha(newGroup, 1f);
             if (idleBookSprite != null)
                 bookImage.sprite = idleBookSprite;
         }
         else
         {
-            // Fallback: smooth crossfade with no flip sprites (uses tabFadeOut/InDuration)
+            // Fallback: smooth crossfade with no flip sprites
             float fadeElapsed = 0f;
 
-            // Fade out old group
             while (fadeElapsed < tabFadeOutDuration)
             {
                 fadeElapsed += Time.deltaTime;
-                SetTabGroupAlpha(oldIndex, 1f - Mathf.Clamp01(fadeElapsed / tabFadeOutDuration));
+                SetCanvasGroupAlpha(oldGroup, 1f - Mathf.Clamp01(fadeElapsed / tabFadeOutDuration));
                 yield return null;
             }
-            SetTabGroupAlpha(oldIndex, 0f);
-            SetTabGroupVisible(oldIndex, false);
+            SetCanvasGroupAlpha(oldGroup, 0f);
+            SetCanvasGroupVisible(oldGroup, false);
 
-            // Swap
-            UpdateTabButtonColors(targetIndex);
-            _currentTabIndex = targetIndex;
-            SetTabGroupAlpha(targetIndex, 0f);
-            SetTabGroupVisible(targetIndex, true);
+            UpdateTabButtonColors(targetBookmarkIndex);
+            _currentTabIndex = targetBookmarkIndex;
+            
+            SetCanvasGroupAlpha(newGroup, 0f);
+            SetCanvasGroupVisible(newGroup, true);
 
-            // Fade in new group
             fadeElapsed = 0f;
             while (fadeElapsed < tabFadeInDuration)
             {
                 fadeElapsed += Time.deltaTime;
-                SetTabGroupAlpha(targetIndex, Mathf.Clamp01(fadeElapsed / tabFadeInDuration));
+                SetCanvasGroupAlpha(newGroup, Mathf.Clamp01(fadeElapsed / tabFadeInDuration));
                 yield return null;
             }
-            SetTabGroupAlpha(targetIndex, 1f);
+            SetCanvasGroupAlpha(newGroup, 1f);
         }
 
         _isTransitioning = false;
     }
 
-    /// <summary>Sets a tab group's alpha and blocks/unblocks its raycasts.</summary>
-    private void SetTabGroupAlpha(int index, float alpha)
+    private void SetCanvasGroupAlpha(CanvasGroup cg, float alpha)
     {
-        if (_tabCanvasGroups == null || index < 0 || index >= _tabCanvasGroups.Length) return;
-        if (_tabCanvasGroups[index] != null)
-            _tabCanvasGroups[index].alpha = alpha;
+        if (cg != null) cg.alpha = alpha;
     }
 
-    /// <summary>Enables or disables interactability and raycasts for a tab group.</summary>
-    private void SetTabGroupVisible(int index, bool visible)
+    private void SetCanvasGroupVisible(CanvasGroup cg, bool visible)
     {
-        if (_tabCanvasGroups == null || index < 0 || index >= _tabCanvasGroups.Length) return;
-        if (_tabCanvasGroups[index] != null)
+        if (cg != null)
         {
-            _tabCanvasGroups[index].interactable = visible;
-            _tabCanvasGroups[index].blocksRaycasts = visible;
+            cg.interactable = visible;
+            cg.blocksRaycasts = visible;
         }
     }
 
