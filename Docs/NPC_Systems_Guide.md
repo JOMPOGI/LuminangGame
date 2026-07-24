@@ -118,3 +118,44 @@ This document provides a comprehensive guide to all scripts and systems relating
 * **What it does**: Rotates wagon/kalesa wheels dynamically.
 * **Purpose**: Simulates wheel rolling forward or backward depending on the movement distance and direction of the parent wagon.
 
+---
+
+## 7. Quest Path Tracker & Navigation System (Genshin Style)
+
+### 📄 [QuestPathTracker.cs](file:///c:/Users/dejes/Luminang/Assets/Scripts/UI/Interactions/QuestPathTracker.cs)
+* **What it does**: Renders a Genshin Impact-style navigation corridor of glowing golden sparkles floating at ground level directly from the player's feet to active quest objectives.
+* **Where to attach**: Add to a central manager GameObject in any scene (e.g. `GenshinQuestPathTracker`).
+* **Key Features & Optimizations**:
+  * **Ground Feet Anchoring (`groundYOffset = 0.05f`)**: Automatically raycasts down to the floor at the player's feet so the path begins cleanly on the ground plane instead of at chest/head height.
+  * **Stationary Hovering & Unsynced Phase Offsets**: Sparkles hover in place along the path and pulse/bob independently at different times, creating an organic twinkling effect.
+  * **Scattered Trail Corridor (`pathScatterWidth = 0.6f`)**: Sparkles are randomly scattered across a path width corridor following straight/NavMesh direction (no artificial wave patterns).
+  * **NavMesh Ground Pathing**: Calculates ground paths using Unity's `NavMesh.CalculatePath` to navigate realistically around walls, buildings, and terrain obstacles.
+  * **Mobile (APK) Optimization**: Throttles path recalculation to every `0.25s` (4 times/sec) or when the player moves > 0.5m. Zero runtime GC allocations and capped particle limits (30–50 max) guarantee 60 FPS on Android mobile hardware.
+  * **Smart Dialogue & Proximity Hiding**: Automatically hides when in dialogue (`DialogueManager.Instance.IsInDialogue`) or when the player gets within proximity of the target (`stopDistance = 3m`).
+
+### 📄 [QuestTargetMarker.cs](file:///c:/Users/dejes/Luminang/Assets/Scripts/UI/Interactions/QuestTargetMarker.cs)
+* **What it does**: Target registration component placed on NPCs, pickup items, or location triggers.
+* **Purpose**: Registers world positions with `QuestPathTracker`. When its `requiredObjective` matches `ObjectiveManager.Instance.CurrentObjective`, the tracker draws a sparkle path to this target. Works independently across both environment scenes.
+
+### 📄 [QuestPathTrackerSetup.cs](file:///c:/Users/dejes/Luminang/Assets/Scripts/Editor/QuestPathTrackerSetup.cs)
+* **What it does**: Unity Editor helper script adding automated menu items under **`Luminang > Quest System`**.
+* **Purpose**: Allows single-click creation of tracker GameObjects in scenes and quick attachment of `QuestTargetMarker` components to selected NPCs/objects.
+
+---
+
+### 🚀 Quick Setup Instructions for Scenes
+
+1. **Add Tracker to Scene**:
+   * Open an environment scene in Unity.
+   * Go to top menu: **`Luminang > Quest System > Add Genshin Quest Path Tracker to Scene`**.
+   * A GameObject named `GenshinQuestPathTracker` will automatically be created and pre-configured with LineRenderer & Particle System.
+
+2. **Mark Quest Objectives**:
+   * Select your target NPC or Objective Trigger in the hierarchy.
+   * Go to top menu: **`Luminang > Quest System > Attach QuestTargetMarker to Selected GameObject`**.
+   * In the Inspector, set `requiredObjective` to match your quest ID (e.g. `"Talk to Kalaw"`).
+
+3. **Multi-Scene Usage**:
+   * Follow steps 1 & 2 for both environment scenes. The tracker system works standalone in each scene and automatically syncs with active objectives.
+
+
