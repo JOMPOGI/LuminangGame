@@ -8,28 +8,45 @@ public class STTDialogueAdapter : MonoBehaviour
 {
     private void OnEnable()
     {
-        STTGameController.OnSTTEvaluationComplete += HandleSTTResult;
+        STTVoiceVisualizerAdapter.OnSTTEvaluationComplete += HandleSTTResult;
     }
 
     private void OnDisable()
     {
-        STTGameController.OnSTTEvaluationComplete -= HandleSTTResult;
+        STTVoiceVisualizerAdapter.OnSTTEvaluationComplete -= HandleSTTResult;
     }
 
-    private void HandleSTTResult(bool success, string spokenPhrase)
+    private void HandleSTTResult(bool success, string spokenPhrase, string prefixText)
     {
-        if (DialogueManager.Instance != null)
+        if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
         {
+            var choice = DialogueManager.Instance.PendingSTTChoice;
+            string expectedWord = choice.expectedSTTWord;
+
+            bool isMatch = false;
+
             if (success)
             {
-                Debug.Log($"[STTDialogueAdapter] STT Success for phrase: {spokenPhrase}. Advancing Dialogue.");
-                DialogueManager.Instance.AdvanceDialogue();
+                if (string.IsNullOrEmpty(expectedWord))
+                {
+                    isMatch = true; // No specific word expected, any success is fine.
+                }
+                else
+                {
+                    // Check if the spoken phrase contains or matches the expected word
+                    isMatch = spokenPhrase.Trim().Equals(expectedWord.Trim(), System.StringComparison.OrdinalIgnoreCase);
+                }
+            }
+
+            if (isMatch)
+            {
+                Debug.Log($"[STTDialogueAdapter] STT Success for expected phrase: {expectedWord}. Advancing Dialogue.");
+                DialogueManager.Instance.CompleteSTT(true, prefixText);
             }
             else
             {
-                Debug.Log($"[STTDialogueAdapter] STT Failed. Firing OnWrongAnswer.");
-                // Here we could trigger a specific fail node, or let the player retry.
-                // DialogueManager.Instance.HandleWrongAnswer();
+                Debug.Log($"[STTDialogueAdapter] STT Failed or word did not match expected: '{expectedWord}'. Heard: '{spokenPhrase}'. Firing OnWrongAnswer.");
+                DialogueManager.Instance.CompleteSTT(false, prefixText);
             }
         }
     }

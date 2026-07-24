@@ -14,21 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
   speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
-  dialogueText: Nalpasen ti bigat! Adu pay ti trabaho nga aramiden.
-  translatedText: It's already past morning! There's so much work to do.
-  animationTrigger: 
+  dialogueText: "Agyamanak unay! Go straight ahead, you will find Aling Riza at the weaving shop. She needs help too. Tell her Mang Lance sent you!"
+  translatedText: "Thank you very much! Go find Aling Riza at the weaving shop."
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Find Aling Riza
   choices:
-  - choiceText: 'naimbag a rabii  '
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: nasayaatak
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: 'naimbag a malem '
-    nextNode: {fileID: 11400000, guid: 23b1f2e1c1da4a4478cd8d9ec79201ec, type: 2}
-    isWrong: 0
-    choiceEvent: 

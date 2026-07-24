@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a bigat! Nabiag ti merkado a kas idi. Siak ni Lola Bebang.
-    Addaak iti dalan nga agturong iti merkado!
-  translatedText: Good morning! The market is as lively as ever. I'm Lola Bebang.
-    I'm on my way to the market!
-  animationTrigger: 
+  dialogueText: "Ah, you want to find the elder? First, let me hear you ask properly. Ask me: Sadino ti ayan ni Apo Lakay?"
+  translatedText: "Ask properly using Ilokano question words. Say: Where is Apo Lakay?"
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Greet Lola Nida
   choices:
-  - choiceText: Naimbag a bigat!
-    nextNode: {fileID: 0}
+  - choiceText: "Sadino ti ayan ni Apo Lakay"
+    nextNode: {fileID: 11400000}
     isWrong: 0
-    choiceEvent: 
-  - choiceText: Nasayaat ak
-    nextNode: {fileID: 0}
+    choiceEvent: ""
+  - choiceText: "Saan ko ammo"
+    nextNode: {fileID: 11400000, guid: 04dedcb0cd84171418e7d0854a3e55db, type: 2}
     isWrong: 1
-    choiceEvent: 
+    choiceEvent: ""

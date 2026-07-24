@@ -39,6 +39,7 @@ public class SupabaseManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
 
             // 1. Setup Infrastructure

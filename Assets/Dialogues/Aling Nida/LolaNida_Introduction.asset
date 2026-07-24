@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: Kumusta, mapanak idiay tiangge.
-  translatedText: "Hi, I\u2019m on my way to the market."
-  animationTrigger: 
+  dialogueText: "Kumusta ka, traveler? Lola Bebang told me you are looking for Apo Lakay. He is just ahead, past the old lamp post. Agdiretso ka man, then agliko ka iti kannawan. Mapan ka!"
+  translatedText: "How are you? He is ahead. Go straight, then turn right. Go!"
+  animationTrigger: triggerEventName:
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: SetObjective_Collect all weaving materials: Greet Rayo
+  choices:

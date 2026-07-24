@@ -14,21 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Sally
   speakerPortrait: {fileID: 0}
-  dialogueText: Siak ni Sally, maysa a lokal nga abel. Aksidente a natinnagko ti
-    basketko nga abel ket ita masapul a sapulek amin a materialesko nga abel. Mabalin
-    kadi a kiddawek kenka a tulongandak?
-  translatedText: 'I''m Sally, a local weaver. I accidentally dropped my weaving
-    basket and now I need to find all my weaving materials. Can I ask you to help
-    me? '
+  dialogueText: "Try describing this street! Say: Napintas daytoy kalsada (This street is beautiful). Then go find Neneng nearby."
+  translatedText: "Say: This street is beautiful. Then find Neneng."
   animationTrigger: Thankful
   triggerEventName: 
-  endEventName: 
+  endEventName: SetObjective_Collect all weaving materials: Ask Lola Bebang
   choices:
-  - choiceText: Help Sally
-    nextNode: {fileID: 0}
+  - choiceText: "Napintas daytoy kalsada"
+    nextNode: {fileID: 11400000}
     isWrong: 0
-    choiceEvent: StartCollectMaterials
-  - choiceText: Politely Decline
-    nextNode: {fileID: 0}
-    isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""
+  - choiceText: "Saan"
+    nextNode: {fileID: 11400000, guid: d9e91bbd81b30124abcdca0b8d4041ce, type: 2}
+    isWrong: 1
+    choiceEvent: ""

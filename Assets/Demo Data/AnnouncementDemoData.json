@@ -1,0 +1,36 @@
+{
+  "announcements": [
+    {
+      "Id": "a1",
+      "Type": 0,
+      "Title": "Welcome to Luminang!",
+      "Details": "Thank you for joining our community. Enjoy your journey learning new languages.",
+      "DateString": "2026-07-02T08:30:00Z",
+      "State": 1
+    },
+    {
+      "Id": "a2",
+      "Type": 1,
+      "Title": "Version 1.2 Patch Notes",
+      "Details": "We have added new word lists and fixed a few bugs in the Word Rush minigame.",
+      "DateString": "2026-07-15T14:45:00Z",
+      "State": 0
+    },
+    {
+      "Id": "a3",
+      "Type": 2,
+      "Title": "Scheduled Server Maintenance",
+      "Details": "The servers will be down for 2 hours on Friday night for routine upgrades.",
+      "DateString": "2026-07-18T22:00:00Z",
+      "State": 0
+    },
+    {
+      "Id": "a4",
+      "Type": 0,
+      "Title": "Weekly Leaderboard Reset",
+      "Details": "The weekly leaderboards have been reset. Good luck this week!",
+      "DateString": "2026-07-01T00:00:00Z",
+      "State": 2
+    }
+  ]
+}

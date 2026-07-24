@@ -265,7 +265,7 @@ public class CategoryDropdown : MonoBehaviour
         tmp.color               = color;
         tmp.fontStyle           = style;
         tmp.alignment           = TextAlignmentOptions.MidlineLeft;
-        tmp.enableWordWrapping  = true;          // wrap instead of truncate
+        tmp.textWrappingMode    = TMPro.TextWrappingModes.Normal; // wrap instead of truncate
         tmp.overflowMode        = TextOverflowModes.Overflow;
         tmp.raycastTarget       = false; // let the parent Button handle clicks
 

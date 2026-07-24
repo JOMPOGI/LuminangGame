@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "Apo Lakay binati naka iti Ilokano. Naimbag a bigat ket kasla \u2018Good
-    morning.\u2019 No ammo dagiti sao da, nalaklaka nga aginnawat ti lugar kenka."
-  translatedText: "Apo Lakay greeted you in Ilokano. Naimbag a bigat is like saying
-    \u2018Good morning.\u2019 When you understand their words, the place becomes
-    more welcoming."
-  animationTrigger: 
+  dialogueText: "Each region has its own crystal. As you genuinely learn the language, the crystal quietly resonates. It is not about saving the world, but about meaningful connections."
+  translatedText: "Each region has its own crystal..."
+  animationTrigger: triggerEventName:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: 4f42c80fc24c17543aea3bbbf29c29e5, type: 2}
+  - choiceText: "I understand. Lets go!"
+    nextNode: {fileID: 11400000, guid: bedd7dd6e8b346246a5f57cc48cbe879, type: 2}
     isWrong: 0
+    choiceEvent: ""

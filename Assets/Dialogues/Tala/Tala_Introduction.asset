@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tala
   speakerPortrait: {fileID: 21300000, guid: 0c019a51009268f43a5d4f67570f27cb, type: 3}
-  dialogueText: Ti nagan ko ket Tala. Agpraktisak iti musika para iti pista.
-  translatedText: "My name is Tala. I\u2019m practicing music for the festival."
+  dialogueText: "Aling Riza sent you? Let me count what you brought. Maysa... dua... tallo! Can you count with me?"
+  translatedText: "Let me count. One... two... three!"
   animationTrigger: Hey
   triggerEventName: 
-  endEventName: GreetOrganizer
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: ""
+    nextNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
+    isWrong: 0
+    choiceEvent: ""

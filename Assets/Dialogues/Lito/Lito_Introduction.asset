@@ -14,23 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: Naimbag a bigat met. Ti nagan ko ket Lito. Tumulongak iti pagsasagana
-    para iti pista. Masapulakon nga agawid itan, pakada!
-  translatedText: "Good morning to you too. My name is Lito. I\u2019m helping prepare
-    for the festival. I need to get going now, goodbye!"
+  dialogueText: "Tala told me you can count! Mano daytoy? How many empanadas do I have here? Count them!"
+  translatedText: "How many empanadas? Count them!"
   animationTrigger: Salute
   triggerEventName: 
-  endEventName: GreetOrganizer
+  endEventName: 
   choices:
-  - choiceText: naimbag a rabii
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: naimbag a malem
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
-  - choiceText: pakada
-    nextNode: {fileID: 0}
+  - choiceText: ""
+    nextNode: {fileID: 11400000, guid: 4a4ec42db90283e40904e195cda05229, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "I'm guessing this is your first time here. I could tell you all about this place..."
-  translatedText: "[Placeholder Ilokano translation]"
+  dialogueText: "The Great Fading is spreading... our Ilokano language and the memories it carries are slowly disappearing."
+  translatedText: "The Great Fading is spreading..."
   animationTrigger: StartFlying
   triggerEventName: 
+  endEventName: 
   choices:
-  - choiceText: 
+  - choiceText: ""
     nextNode: {fileID: 11400000, guid: 50fc3a32f866c9e459c07a9a1ab8c3d8, type: 2}
     isWrong: 0
+    choiceEvent: ""

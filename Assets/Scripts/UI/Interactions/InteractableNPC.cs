@@ -45,9 +45,15 @@ public class InteractableNPC : InteractableBase
 
     public override void Interact()
     {
-        if (!interactionEnabled) return;
+        Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
+        if (!interactionEnabled || npcAnimator == null) 
+        {
+            if (npcAnimator == null) Debug.LogWarning($"[InteractableNPC] {gameObject.name} blocked from interaction because it has no Animator (T-pose/static constraint).");
+            return;
+        }
 
         DialogueNode nodeToPlay = GetCurrentDialogueNode();
+        Debug.Log($"[InteractableNPC] nodeToPlay is {(nodeToPlay == null ? "NULL!" : nodeToPlay.name)}");
         ForceStartDialogue(nodeToPlay);
 
         OnInteract?.Invoke();
@@ -84,8 +90,78 @@ public class InteractableNPC : InteractableBase
         return defaultDialogue;
     }
 
-    public void EnableInteraction() => interactionEnabled = true;
+    public void EnableInteraction() 
+    {
+        if (npcAnimator != null) interactionEnabled = true;
+    }
     public void DisableInteraction() => interactionEnabled = false;
+
+    protected override void Start()
+    {
+        base.Start();
+        if (npcAnimator == null)
+        {
+            interactionEnabled = false; // Disable if no animator on start
+        }
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        ObjectiveManager.OnObjectiveChanged += HandleObjective;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        ObjectiveManager.OnObjectiveChanged -= HandleObjective;
+    }
+
+    private void HandleObjective(string obj)
+    {
+        if (string.IsNullOrEmpty(obj)) return;
+
+        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw"
+        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
+            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string targetName = obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) 
+                ? obj.Substring("Talk to ".Length).Trim() 
+                : obj.Substring("Return to ".Length).Trim();
+            
+            // Remove spaces and underscores from both for a bulletproof comparison (e.g. "Apo Lakay" vs "NPC_Apo_Lakay")
+            string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
+            
+            // Clean the gameobject name to get the base NPC name (e.g. "NPC_Apo_Lakay" -> "apolakay")
+            string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
+                                              .Replace("rigged", "")
+                                              .Replace("vendor", "")
+                                              .Replace("npc", "");
+
+            // Check if the objective starts with the NPC name (e.g. "apolakay".StartsWith("apolakay") == true)
+            if (cleanTarget.StartsWith(cleanName))
+            {
+                if (npcAnimator != null)
+                {
+                    interactionEnabled = true;
+                }
+                else
+                {
+                    interactionEnabled = false; // Block if missing animator
+                }
+                
+                // Also automatically show the interact prompt if the player is already close
+                if (InteractionManager.Instance != null)
+                {
+                    InteractionManager.Instance.ForceCheckProximity();
+                }
+            }
+            else
+            {
+                interactionEnabled = false; // Disable everyone else!
+            }
+        }
+    }
 
     /// <summary>
     /// Helper method to teleport the NPC. Easily callable from UnityEvents.

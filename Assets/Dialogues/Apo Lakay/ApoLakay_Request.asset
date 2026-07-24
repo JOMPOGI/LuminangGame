@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: Mabalin kadi a tumulongka a mangibilang kadagiti tattao ditoy? Masapulko
-    nga ammoan no asino dagiti makipartisipar iti panagsagsagana para iti festival,
-    ngem nabannogakon unay tapno agliklikmut pay.
-  translatedText: "Can you help me keep track of the people here? I need to know
-    who will participate in the festival preparations, but I\u2019m already too tired
-    to walk around."
-  animationTrigger: 
+  dialogueText: "One final challenge remains. The Crystal Resonance Trial. I will ask you questions using everything you have learned. Speak naturally and let the crystal resonate. Are you ready?"
+  translatedText: "One final challenge. The Crystal Resonance Trial. Are you ready?"
+  animationTrigger: triggerEventName:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: 0bd85297b43fd4e41a1822a7a921cf69, type: 2}
+  - choiceText: "Wen, siaan!"
+    nextNode: {fileID: 11400000, guid: 4f42c80fc24c17543aea3bbbf29c29e5, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ""
+  - choiceText: "Saan pay"
+    nextNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
+    isWrong: 1
+    choiceEvent: ""

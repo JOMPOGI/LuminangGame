@@ -25,6 +25,7 @@ public class UnityRedirectListener : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             
             // On Mobile, we listen for Deep Links

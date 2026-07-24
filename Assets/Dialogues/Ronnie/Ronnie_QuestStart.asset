@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: Okupado nga aldaw ita nga aldaw
-  translatedText: Today is a busy day
-  animationTrigger: 
+  dialogueText: "Klara said you are learning fast! I carve wood for the festival. Agobra means to work. Let me test you with a quick game!"
+  translatedText: "I carve wood. Agobra means to work. Let me test you!"
+  animationTrigger: triggerEventName:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Dumalanak man
-    nextNode: {fileID: 11400000, guid: eda012db1d1511f4a86edd5a44f67d42, type: 2}
+  - choiceText: "Start Word Game"
+    nextNode: {fileID: 11400000, guid: b7ffa4bb0e07cd3418f02f68706dccd0, type: 2}
     isWrong: 0
-    choiceEvent: 
-  - choiceText: Agyamanak
-    nextNode: {fileID: 11400000}
-    isWrong: 1
-    choiceEvent: 
+    choiceEvent: "StartMinigame"
+  - choiceText: "Continue Journey"
+    nextNode: {fileID: 11400000, guid: b7ffa4bb0e07cd3418f02f68706dccd0, type: 2}
+    isWrong: 0
+    choiceEvent: ""

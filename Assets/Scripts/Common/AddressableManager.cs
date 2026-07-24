@@ -16,7 +16,8 @@ namespace Luminang.Common
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
+                transform.SetParent(null);
+            DontDestroyOnLoad(gameObject);
             }
             else
             {

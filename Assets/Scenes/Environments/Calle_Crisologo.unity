@@ -819,25 +819,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9125333}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 570c2625e7c2ed4439b65cc848dd2392, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 204211fdf07c47e1a838b65341ace161, type: 2}
   isOrganizer: 1
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 4a4ec42db90283e40904e195cda05229, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 9125334}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -861,23 +847,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: GreetOrganizer
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 9125333}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: GreetOrganizer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &9125334 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e34bf874f1591b842b5ea33c1de43b01, type: 3}
@@ -6344,6 +6314,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 47885807}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &48056247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48056250}
+  - component: {fileID: 48056249}
+  - component: {fileID: 48056248}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &48056248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48056247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &48056249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48056247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &48056250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48056247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &49034285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1202042651915640690, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
@@ -8114,25 +8163,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 61506374}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 29f14c2215a4d1f45bae5d6d4d109c52, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 7ef43b042f3e4b34a47e38797e5b6de3, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: Collect all weaving materials
-    dialogueNode: {fileID: 11400000, guid: 09585c92bcb94ab4cb8c6df872d97e00, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 61506373}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -8140,31 +8175,7 @@ MonoBehaviour:
   minigameLanguageId: 1
   OnDialogueEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2088035700}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2051801647}
-        m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
-        m_MethodName: AddProgress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
@@ -30722,7 +30733,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 100.7, y: -30}
-  m_SizeDelta: {x: 101.399994, y: 44.69}
+  m_SizeDelta: {x: 0, y: 44.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201167318
 MonoBehaviour:
@@ -44821,6 +44832,7 @@ Transform:
   - {fileID: 285769494}
   - {fileID: 655192145}
   - {fileID: 474151793}
+  - {fileID: 962619581}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &302159557
@@ -61111,25 +61123,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 410554193}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 1a4d784b1de96514991d9913767dd50c, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: a5a7870eb1fd4c839b4a56530c0dd4bd, type: 2}
   isOrganizer: 1
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 02274ab562909d54788aabc709b40896, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 410554194}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -61153,23 +61151,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: GreetOrganizer
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 410554193}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: GreetOrganizer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &410554194 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e102eb629daf9a5409e126cdc8324420, type: 3}
@@ -66295,12 +66277,10 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 71aa7a864d134dd438112b8eec7425b9, type: 2}
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: cc2fe078c48346a89142b0d461bfba1a, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: Collect all weaving materials
-    dialogueNode: {fileID: 11400000, guid: 5f09409f2b98a8f439aa814a748ea4d9, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 431707854}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -66308,19 +66288,7 @@ MonoBehaviour:
   minigameLanguageId: 1
   OnDialogueEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2051801647}
-        m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
-        m_MethodName: AddProgress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
@@ -66899,39 +66867,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434578661}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Turn
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 434578663}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Turn
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: bcf1bbaa5650521438f1d67e069d2078, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 0c3850df4abd469caa4c634a8542430a, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: Talk to Apo Lakay
-    dialogueNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
-  - requiredObjective: Return to Apo Lakay
-    dialogueNode: {fileID: 11400000, guid: 69f687eef69970040b28d05ad772d68d, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -66955,56 +66895,7 @@ MonoBehaviour:
           m_StringArgument: Wrong
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: StartMinigame
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 434578663}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: StartMinigame
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 3788261753784488389, guid: 1eb7adbf2a3ac934592d597bbac182b4, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventName: StartScavengerHunt
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2051801647}
-          m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
-          m_MethodName: SetCounterObjective
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Help Apo Lakay identify and greet all organizers properly
-              ; 6 ; Return to Apo Lakay
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventName: GoToMarket
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2051801647}
-          m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
-          m_MethodName: SetObjective
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Continue towards the market
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!114 &435833960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72280,6 +72171,7 @@ MonoBehaviour:
   typingSpeed: 0.03
   buttonPressScale: 0.85
   buttonAnimDuration: 0.12
+  injectedPrefixText: 
 --- !u!1001 &479373905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73114,25 +73006,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 486362060}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 1b7828b623cf21246bdef5b8a9b585fd, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 04c856c4db984bc495f580d076fb806d, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 04dedcb0cd84171418e7d0854a3e55db, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 486362059}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -90745,12 +90623,10 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 611116a27443a214dae21e53ece5b5c5, type: 2}
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 34ca9b882f3047f0b0f03c3b1c1c7a13, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: Collect all weaving materials
-    dialogueNode: {fileID: 11400000, guid: 8fe175119d8ddf14c839174e321b9f2b, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 600636685}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -90758,31 +90634,7 @@ MonoBehaviour:
   minigameLanguageId: 1
   OnDialogueEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1897620607}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2051801647}
-        m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
-        m_MethodName: AddProgress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls:
@@ -90798,45 +90650,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: AfterDialogueAnimation
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 600636685}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Agree
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!64 &600636687
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3950241}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  dialogueEvents: []
 --- !u!1001 &601179442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91194,6 +91008,125 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3936963, y: 0.23244642, z: 0.38849834}
   m_Center: {x: -0.014343797, y: 0.11622321, z: 0.010337188}
+--- !u!1001 &604076422
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 214088415}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87419
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.87419
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.87419
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 541.292
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.394
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 394.727
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.04078267
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.99916804
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -175.325
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_Name
+      value: LolaNida_Rigged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 604076425}
+  m_SourcePrefab: {fileID: 100100000, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+--- !u!4 &604076423 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+  m_PrefabInstance: {fileID: 604076422}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &604076424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b9fd804d756037e4099d4bb69ddb4699, type: 3}
+  m_PrefabInstance: {fileID: 604076422}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &604076425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604076424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: b5c1f99f180b44d3a65662bf61e461be, type: 2}
+  isOrganizer: 0
+  questDialogues: []
+  npcAnimator: {fileID: 0}
+  disableAfterInteraction: 1
+  isWrongAnswerPlaying: 0
+  minigameCategory: 
+  minigameLanguageId: 1
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogueEvents: []
 --- !u!1001 &604815071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -125765,7 +125698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
-  requiredObjective: Follow Kalaw
+  requiredObjective: Collect all weaving materials
   hoverSpeed: 3
   hoverAmount: 0.2
   visualRoot: {fileID: 0}
@@ -125781,7 +125714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503c5409463abbf48a5d96c14017ba66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityDisappear
-  requiredObjective: Follow Kalaw
+  requiredObjective: Collect all weaving materials
   triggerDistance: 2
   playerTag: Player
   dialogueToStart: {fileID: 11400000, guid: 4db65b13afdf8264083902eae92c1146, type: 2}
@@ -146676,25 +146609,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 949543551}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 50b158e77da2a344c97d8ac6a73052e7, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 5294d7b9d4164ab7852bdd682693692a, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 69c6c905bf088c84bb81558d922c8f20, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -148232,6 +148151,123 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b7b1a1fb0aa0b174185ff93026d72c08, type: 3}
   m_PrefabInstance: {fileID: 962469239}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &962619580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962619581}
+  - component: {fileID: 962619587}
+  - component: {fileID: 962619586}
+  - component: {fileID: 962619585}
+  - component: {fileID: 962619584}
+  - component: {fileID: 962619583}
+  - component: {fileID: 962619582}
+  m_Layer: 0
+  m_Name: '[STT_System]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962619581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -584.41455, y: -5.97571, z: -395.6777}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 300611999}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &962619582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753fa25f136f2804b893f9273efbcc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::STTGameController
+  micButton: {fileID: 0}
+  statusText: {fileID: 0}
+  accuracyText: {fileID: 0}
+  feedbackText: {fileID: 0}
+  transcriptText: {fileID: 0}
+  listeningIndicator: {fileID: 0}
+  retryButton: {fileID: 0}
+--- !u!114 &962619583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9260474707e8cc541b2c12b20ed89b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroqWhisperManager
+--- !u!114 &962619584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd51cab9a17576b498d83f65ed24cf87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeechRecorder
+--- !u!114 &962619585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a35ef48e99a1ea4e980bf94a6264080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhraseEvaluator
+--- !u!114 &962619586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553f54934149528419a2e0243a08f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LexiconValidator
+--- !u!114 &962619587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962619580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7e857ad5e250f469c853fc001f2428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DatasetManager
+  datasetJson: {fileID: 4900000, guid: c8c11071e6ba74b4ca653098864c98a0, type: 3}
 --- !u!1001 &962809032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164869,25 +164905,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1067440870}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: e28db96506d121843a483179ca4b2d67, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 1374d768b7ef4181992d6cf9286f9081, type: 2}
   isOrganizer: 1
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: cc06d2b0e306e6e4e99aaa0c08c734ca, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 1067440871}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -164911,23 +164933,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: GreetOrganizer
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1067440870}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: GreetOrganizer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &1067440871 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d8a568f620480d044a765fb9fdad3571, type: 3}
@@ -167547,25 +167553,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1079974221}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 3d2590cb9b17e0947819fbe55378c8de, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 555ab52b61b049f6b73df224d664fb04, type: 2}
   isOrganizer: 1
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 1079974222}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -167589,23 +167581,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: GreetOrganizer
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1079974221}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: GreetOrganizer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &1079974222 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
@@ -173059,7 +173035,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4072154296723578129}
-  - {fileID: 6858111991801140045}
   - {fileID: 978497597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -251094,25 +251069,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1653427252}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 10f49dd76c508ef42b44015428e11b74, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 84c92190b6cf411b837baa573390f47b, type: 2}
   isOrganizer: 1
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 7754af0d1a645ed4aaee66fbd3175a2e, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 1653427253}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -251136,23 +251097,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: GreetOrganizer
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1653427252}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: GreetOrganizer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &1653427253 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 6fb8df496115f024e891e49ec5cf8529, type: 3}
@@ -265640,59 +265585,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1202042651915640690, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
   m_PrefabInstance: {fileID: 1736160695}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1737255135
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1737255137}
-  - component: {fileID: 1737255136}
-  m_Layer: 0
-  m_Name: RegionalCutsceneController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1737255136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737255135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c2d3e4f5a6b1c2d3e4f5a6b1c20001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RegionalCutsceneController
-  introVideoClip: {fileID: 0}
-  videoPlayer: {fileID: 0}
-  fallbackWaitTime: 8
-  videoPanelRoot: {fileID: 0}
-  videoPanelCanvasGroup: {fileID: 0}
-  fadeInDuration: 0.8
-  fadeOutDuration: 0.8
-  postVideoDialogueNode: {fileID: 11400000, guid: 82a7c999d5ec473b92d3b589c285a5cc, type: 2}
-  kalawNPC: {fileID: 708777761}
---- !u!4 &1737255137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737255135}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 676.5253, y: 3.46482, z: 481.9095}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1737484177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266237,37 +266129,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1741770516}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: QuestIdleManager, Assembly-CSharp
-        m_MethodName: StopQuestIdle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: bafe0241ece4ebe49825b8732cfd95fd, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: ce522a1f337b428b900240093beb457c, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: Talk to the little girl
-    dialogueNode: {fileID: 11400000, guid: 912e83f7b9d781f45bbd3bc72c88b20f, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 1741770517}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -266291,23 +266157,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: StartMinigame
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1741770516}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: StartMinigame
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 3011457477992818941, guid: 54b389b9c597f69468c288a753008f68, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &1741770517 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
@@ -287160,39 +287010,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1866386743}
-        m_TargetAssemblyTypeName: QuestIdleManager, Assembly-CSharp
-        m_MethodName: StopAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1866386741}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 523761d603f2ba045845b8a916ffbf99, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 72360416194e4eb1930ae8c0cfe2c542, type: 2}
   isOrganizer: 0
-  questDialogues:
-  - requiredObjective: Talk to the woman
-    dialogueNode: {fileID: 11400000, guid: e9fd82ba682ace74a8ede2edb1b04013, type: 2}
-  - requiredObjective: Return to Sally
-    dialogueNode: {fileID: 11400000, guid: c9ac8db22a71cb745b7c40a38cce22ea, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 1866386742}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -287204,23 +287026,7 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
-  dialogueEvents:
-  - eventName: StartCollectMaterials
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2051801647}
-          m_TargetAssemblyTypeName: ObjectiveManager, Assembly-CSharp
-          m_MethodName: SetCounterObjective
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Collect all weaving materials ; 4 ; Return to Sally
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &1866386742 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: dfe91ccff460c4a4a99760556510c447, type: 3}
@@ -293205,6 +293011,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13147244, y: 1, z: 0.1508323}
   m_Center: {x: 0.069241025, y: 0, z: 0.03907001}
+--- !u!1 &1900831350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900831352}
+  - component: {fileID: 1900831351}
+  m_Layer: 0
+  m_Name: FruitPickupCutsceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1900831351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900831350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9ea82033de34d088acb11517328a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FruitPickupCutsceneFlow
+--- !u!4 &1900831352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900831350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1901374622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324122,25 +323972,11 @@ MonoBehaviour:
   promptText: Talk
   OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2094566721}
-        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-        m_MethodName: SmoothLookAtPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: feb3fbad686cc7143a0a8fa41a4b5131, type: 2}
+      m_Calls: []
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: d136ee7e294742b2bb41e608096fda09, type: 2}
   isOrganizer: 1
-  questDialogues:
-  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
-    dialogueNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
+  questDialogues: []
   npcAnimator: {fileID: 2094566722}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -324164,23 +324000,7 @@ MonoBehaviour:
           m_StringArgument: headShake
           m_BoolArgument: 0
         m_CallState: 2
-  dialogueEvents:
-  - eventName: GreetOrganizer
-    onEventTriggered:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2094566721}
-          m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
-          m_MethodName: GreetOrganizer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  dialogueEvents: []
 --- !u!95 &2094566722 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 2d3d4a1e75113a74abf42c0d128bb61a, type: 3}
@@ -332420,8 +332240,16 @@ PrefabInstance:
       value: Talk to Kalaw
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: defaultDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: cedb1d2b5820466fabd71bfaf0a99bfd, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameCategory
       value: Gratitude
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: interactionEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameLanguageId
@@ -332433,11 +332261,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.size
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.size
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].eventName
+      value: SetObjective_Talk to Ellai
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[2].eventName
@@ -332466,14 +332298,114 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].dialogueNode
       value: 
-      objectReference: {fileID: 11400000, guid: 56269e7c91865914cad6b4f61ae0f875, type: 2}
+      objectReference: {fileID: 11400000, guid: 6a3642b756c54ad6a3f30963d630f9cc, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[1].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 0cd3d04b47eb45fb813d5f12549eea7b, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[2].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: e15ecb34b23440e88e7d13621f465a6c, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[3].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 6019fc7661534c8cafb43a4e7f9f8e35, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[4].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a5c8ee4801e402fb8b9a526fdac7e6f, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[5].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f5d90292b704fbdababcca54f76566d, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[6].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 452fc8196523418286616ec3e25f421f, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[7].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 31d97b5557194ed084af638a891b5474, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[8].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 751375617a9b4bd4b2cc701781b208da, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[9].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: e649fcfe93364c74980ddf1670301d07, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[10].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bcab43b9e9c4c33bcc006b557cd3205, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[11].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f757242f04c44f182c5058e2a7af252, type: 2}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[12].dialogueNode
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f34e1a53ec74f2785377bee6605cd8d, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].requiredObjective
-      value: Talk to Kalaw
+      value: Return to Kalaw 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[1].requiredObjective
+      value: Return to Kalaw 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[2].requiredObjective
+      value: Return to Kalaw 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[3].requiredObjective
+      value: Return to Kalaw 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[4].requiredObjective
+      value: Return to Kalaw 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[5].requiredObjective
+      value: Return to Kalaw 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[6].requiredObjective
+      value: Return to Kalaw 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[7].requiredObjective
+      value: Return to Kalaw 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[8].requiredObjective
+      value: Return to Kalaw 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[9].requiredObjective
+      value: Return to Kalaw 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[10].requiredObjective
+      value: Return to Kalaw 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[11].requiredObjective
+      value: Return to Kalaw 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.data[12].requiredObjective
+      value: Crystal Rekindled
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -332497,11 +332429,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: 'Objective: Follow Kalaw'
+      value: 'Objective: Collect all weaving materials'
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
@@ -332529,6 +332461,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
@@ -332568,6 +332504,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9125333}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 708777761}
@@ -332598,7 +332538,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1737255136}
+      objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -332630,6 +332570,10 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableInteraction
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -332706,10 +332650,10 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 798749206}
+      objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
-      value: Follow Kalaw
+      value: Collect all weaving materials
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -332750,6 +332694,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
@@ -334071,24 +334019,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &3128949090058504163
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6858111991801140045}
-  - component: {fileID: 8626894248183081411}
-  - component: {fileID: 4768998528923115906}
-  m_Layer: 0
-  m_Name: UI_EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &3140089513120803975
 GameObject:
   m_ObjectHideFlags: 0
@@ -334162,7 +334092,7 @@ Transform:
   m_GameObject: {fileID: 3203261901548822633}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90.627235, y: 0.66625696, z: -70.581406}
+  m_LocalPosition: {x: -90.62725, y: 0.66625696, z: -70.5814}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -335385,37 +335315,6 @@ RectTransform:
   m_AnchoredPosition: {x: 506.38702, y: 146.38454}
   m_SizeDelta: {x: 644.1202, y: 498.7095}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4768998528923115906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3128949090058504163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
-  m_ScrollDeltaPerTick: 6
 --- !u!1 &4834724247623341337
 GameObject:
   m_ObjectHideFlags: 0
@@ -335804,7 +335703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901182334643ba1438a25accc6bd0c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 0}
 --- !u!1001 &5492159709671839508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -335906,7 +335804,7 @@ Transform:
   m_GameObject: {fileID: 5542111180197857980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.19560799, z: 0, w: 0.9806822}
-  m_LocalPosition: {x: -90.627235, y: 0.66625696, z: -70.581406}
+  m_LocalPosition: {x: -90.62725, y: 0.66625696, z: -70.5814}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -336968,21 +336866,6 @@ Transform:
   m_Children:
   - {fileID: 2767680518947575028}
   m_Father: {fileID: 5989554103703343109}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &6858111991801140045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3128949090058504163}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 107.03546, y: 0.19429016, z: 62.72229}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1127642862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6894246352340590303
 GameObject:
@@ -338126,21 +338009,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8626894248183081411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3128949090058504163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!4 &8663434507060303067
 Transform:
   m_ObjectHideFlags: 0
@@ -338356,4 +338224,5 @@ SceneRoots:
   - {fileID: 560605814}
   - {fileID: 300611999}
   - {fileID: 1127642862}
-  - {fileID: 1737255137}
+  - {fileID: 1900831352}
+  - {fileID: 48056250}

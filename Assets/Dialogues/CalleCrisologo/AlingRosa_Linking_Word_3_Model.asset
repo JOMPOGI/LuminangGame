@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: AlingRosa_Linking_Word_3_Model
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: "Aling Rosa"
+  speakerPortrait: {fileID: 0}
+  dialogueText: "To describe history like 'this street was a river port', the phrase connecting past states is 'ket idi' or 'na'!"
+  translatedText: ""
+  animationTrigger: 
+  triggerEventName: ""
+  endEventName: ""
+  choices:
+  - choiceText: ""
+    nextNode: {fileID: 11400000, guid: a9a3eda2dcaf4a66bce155effe0aef6f, type: 2}
+    isWrong: 0
+    choiceEvent: ""

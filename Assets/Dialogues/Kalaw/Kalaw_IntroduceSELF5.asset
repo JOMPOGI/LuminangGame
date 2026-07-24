@@ -14,14 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: And every story begins with the people who call this place home.
-    Come. Before we continue... Take a moment to see why this place is worth remembering.
-  translatedText: '[Placeholder Ilokano translation]'
+  dialogueText: "Welcome to Calle Crisologo! To communicate here, you will need to learn basic Ilokano. Let me teach you some greetings first."
+  translatedText: "Welcome to Calle Crisologo!"
   animationTrigger: StartFlying
   triggerEventName: 
-  endEventName: PlayRegionalIntro
+  endEventName: SetObjective_Collect all weaving materials: Talk to Pedro
   choices:
-  - choiceText: 
-    nextNode: {fileID: 11400000, guid: 82a7c999d5ec473b92d3b589c285a5cc, type: 2}
-    isWrong: 0
-    choiceEvent: 

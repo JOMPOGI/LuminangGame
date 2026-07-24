@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             LoadSettings();
         }

@@ -21,6 +21,7 @@ public class QuestIndicator : MonoBehaviour
     private Vector3 _startPos;
     private bool _isInitialized = false;
     private bool _matchesObjective = false;
+    private InteractableNPC _parentNPC;
 
     void Awake()
     {
@@ -37,6 +38,8 @@ public class QuestIndicator : MonoBehaviour
                 visualRoot = _myRenderer.gameObject;
             }
         }
+        
+        _parentNPC = GetComponentInParent<InteractableNPC>();
         _isInitialized = true;
     }
 
@@ -67,6 +70,12 @@ public class QuestIndicator : MonoBehaviour
     void Update()
     {
         if (!_isInitialized) return;
+
+        // If attached to an NPC, perfectly sync with its interaction state!
+        if (_parentNPC != null)
+        {
+            _matchesObjective = _parentNPC.interactionEnabled;
+        }
 
         // 1. Check if we are in a dialogue right now (Reliable every-frame check)
         bool isInDialogue = DialogueManager.Instance != null && DialogueManager.Instance.IsInDialogue;

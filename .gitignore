@@ -110,3 +110,4 @@ Assets/Resources/SupabaseConfig.txt.meta
 .env.local
 .env.*
 Assets/Resources/GroqConfig.txt
+.DS_Store
