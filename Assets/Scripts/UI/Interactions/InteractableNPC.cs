@@ -121,7 +121,21 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(obj)) return;
 
-        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw"
+        // First check if any questDialogue matches this objective directly
+        if (questDialogues != null)
+        {
+            foreach (var qd in questDialogues)
+            {
+                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    if (npcAnimator != null) interactionEnabled = true;
+                    if (InteractionManager.Instance != null) InteractionManager.Instance.ForceCheckProximity();
+                    return;
+                }
+            }
+        }
+
+        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
         if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
             obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
         {
@@ -129,17 +143,23 @@ public class InteractableNPC : InteractableBase
                 ? obj.Substring("Talk to ".Length).Trim() 
                 : obj.Substring("Return to ".Length).Trim();
             
-            // Remove spaces and underscores from both for a bulletproof comparison (e.g. "Apo Lakay" vs "NPC_Apo_Lakay")
             string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
-            
-            // Clean the gameobject name to get the base NPC name (e.g. "NPC_Apo_Lakay" -> "apolakay")
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
                                               .Replace("rigged", "")
                                               .Replace("vendor", "")
                                               .Replace("npc", "");
 
-            // Check if the objective starts with the NPC name (e.g. "apolakay".StartsWith("apolakay") == true)
-            if (cleanTarget.StartsWith(cleanName))
+            bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
+            
+            // Check Tiptip <-> flowerpecker alias
+            if (!isMatch)
+            {
+                bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
+                bool isTiptipName = cleanName.Contains("tiptip") || cleanName.Contains("flowerpecker");
+                if (isTiptipTarget && isTiptipName) isMatch = true;
+            }
+
+            if (isMatch)
             {
                 if (npcAnimator != null)
                 {
@@ -150,7 +170,6 @@ public class InteractableNPC : InteractableBase
                     interactionEnabled = false; // Block if missing animator
                 }
                 
-                // Also automatically show the interact prompt if the player is already close
                 if (InteractionManager.Instance != null)
                 {
                     InteractionManager.Instance.ForceCheckProximity();
@@ -158,7 +177,11 @@ public class InteractableNPC : InteractableBase
             }
             else
             {
-                interactionEnabled = false; // Disable everyone else!
+                // Only disable if we don't have defaultDialogue enabled
+                if (defaultDialogue == null)
+                {
+                    interactionEnabled = false;
+                }
             }
         }
     }
@@ -355,6 +378,30 @@ public class InteractableNPC : InteractableBase
         
         string cleanEventName = eventName.Trim();
         Debug.Log($"[InteractableNPC] Received Dialogue Event: '{cleanEventName}' on NPC: {gameObject.name}");
+
+        // Automatic system handler for TeachingOverlayPanel events
+        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+            }
+        }
+        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.Hide();
+            }
+        }
+        else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+            }
+        }
 
         foreach (var mapping in dialogueEvents)
         {
