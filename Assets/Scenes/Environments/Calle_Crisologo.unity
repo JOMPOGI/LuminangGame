@@ -821,9 +821,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 204211fdf07c47e1a838b65341ace161, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: c8fc9d1de7654dd8ade42823f02a9338, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Lito for Directions
+    dialogueNode: {fileID: 11400000, guid: 48957e00206849359b2ed707f08816bd, type: 2}
   npcAnimator: {fileID: 9125334}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -8053,15 +8055,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 564.0484
+      value: 564.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.408
+      value: 5.412
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 393.3115
+      value: 393.156
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8101,7 +8103,13 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 558485104}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 894441627}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8113db97e27482d479f2cbdbdb53be55, type: 3}
       insertIndex: -1
@@ -8140,9 +8148,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 7ef43b042f3e4b34a47e38797e5b6de3, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: d5a6d485b7be4d1c9e608b91a05af981, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Ronnie again
+    dialogueNode: {fileID: 11400000, guid: 4ac438148b0b40cdab92c44ede758d36, type: 2}
   npcAnimator: {fileID: 61506373}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -21504,6 +21514,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1375052923765806555, guid: 8fb5fa14ea37a2a4f9cc05dcf371688d, type: 3}
+--- !u!1 &141694857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
+  m_PrefabInstance: {fileID: 1913505684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &141922921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30686,7 +30701,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 100.7, y: -30}
-  m_SizeDelta: {x: 0, y: 44.69}
+  m_SizeDelta: {x: 101.4, y: 44.69}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201167318
 MonoBehaviour:
@@ -33289,7 +33304,7 @@ Transform:
   m_GameObject: {fileID: 214088414}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -912.32, y: -11.124, z: -535.99}
+  m_LocalPosition: {x: -912.32, y: -11.124, z: -536.5}
   m_LocalScale: {x: 2.8413856, y: 2.523209, z: 2.882514}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46023,6 +46038,11 @@ Transform:
   - {fileID: 304985842}
   m_Father: {fileID: 353770304}
   m_LocalEulerAnglesHint: {x: 0, y: 6.512, z: 0}
+--- !u!1 &314265968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
+  m_PrefabInstance: {fileID: 1314448085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &314787826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61072,7 +61092,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: a5a7870eb1fd4c839b4a56530c0dd4bd, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 92ab31c0a6bd4cd9a5652102a54d8d01, type: 2}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 410554194}
@@ -66200,7 +66220,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: cc2fe078c48346a89142b0d461bfba1a, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 9fdf11868c5a42bca1836e671f02b568, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 431707854}
@@ -66769,7 +66789,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 0c3850df4abd469caa4c634a8542430a, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: ce129c50169540a09f0297c29f0d9bc0, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 434578661}
@@ -72905,9 +72925,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 04c856c4db984bc495f580d076fb806d, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 665156cedde54880924d38aeb1b2e6bf, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Lola Bebang for Interrogatives
+    dialogueNode: {fileID: 11400000, guid: 120487afd8314a5ebf53954f9332ce1c, type: 2}
   npcAnimator: {fileID: 486362059}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -79936,6 +79958,97 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1127704384073877644, guid: a1d0eee59e8fc1740ae9ad80096b853d, type: 3}
   m_PrefabInstance: {fileID: 530925909}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &530943776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530943777}
+  - component: {fileID: 530943778}
+  m_Layer: 0
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &530943777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530943776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.026762199, y: -0.6600041, z: 0.024524951, w: 0.75038457}
+  m_LocalPosition: {x: -5.11045, y: 1.0127707, z: 2.2167377}
+  m_LocalScale: {x: 0.026932392, y: 0.026933428, z: 0.026937144}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 894441627}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &530943778
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530943776}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 965d50425d104c446993d1d08076839e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6, y: 8.89}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1001 &531231652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84790,6 +84903,55 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13147244, y: 1, z: 0.1508323}
   m_Center: {x: 0.069241025, y: 0, z: 0.03907001}
+--- !u!1 &558485103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558485104}
+  - component: {fileID: 558485105}
+  m_Layer: 0
+  m_Name: Quest_Indicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &558485104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558485103}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.061, y: 0.151, z: -2.319}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 662611197}
+  m_Father: {fileID: 61506371}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &558485105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558485103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
+  requiredObjective: Return to Ronnie
+  hoverSpeed: 3
+  hoverAmount: 0.2
+  visualRoot: {fileID: 1621821020}
 --- !u!1001 &559032828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90496,9 +90658,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 34ca9b882f3047f0b0f03c3b1c1c7a13, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 365425c2b04c401681c55d55760e5179, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Aling Riza for Pronouns
+    dialogueNode: {fileID: 11400000, guid: 769016cf902140f7a727617ee7db1b06, type: 2}
   npcAnimator: {fileID: 600636685}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -90983,12 +91147,12 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: b5c1f99f180b44d3a65662bf61e461be, type: 2}
+  interactionEnabled: 0
+  defaultDialogue: {fileID: 11400000, guid: 389b32e32e8d40de8261184f52b5e522, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
-  disableAfterInteraction: 1
+  disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
   minigameCategory: 
   minigameLanguageId: 1
@@ -100204,6 +100368,97 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
+--- !u!1 &662611196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662611197}
+  - component: {fileID: 662611198}
+  m_Layer: 0
+  m_Name: Visual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662611197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662611196}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.026762199, y: -0.6600041, z: 0.024524951, w: 0.75038457}
+  m_LocalPosition: {x: -5.11045, y: 1.0127707, z: 2.2167377}
+  m_LocalScale: {x: 0.026932392, y: 0.026933428, z: 0.026937144}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558485104}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &662611198
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662611196}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 965d50425d104c446993d1d08076839e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 6, y: 8.89}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1001 &663544616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140892,6 +141147,55 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.00916016, y: 0.009980469, z: 0.008769534}
   m_Center: {x: -0.000000029802322, y: 0, z: 0}
+--- !u!1 &894441626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 894441627}
+  - component: {fileID: 894441628}
+  m_Layer: 0
+  m_Name: Quest_Indicator (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &894441627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894441626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.061, y: 0.151, z: -2.319}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 530943777}
+  m_Father: {fileID: 61506371}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &894441628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894441626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40785a6898a62f44fb4b7855c0ba6603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestIndicator
+  requiredObjective: Talk to Ronnie
+  hoverSpeed: 3
+  hoverAmount: 0.2
+  visualRoot: {fileID: 1621821020}
 --- !u!1 &894743735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0dfd3ae5a70108e4db5f8eb43a1f86f7, type: 3}
@@ -146480,7 +146784,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 5294d7b9d4164ab7852bdd682693692a, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 0c7ad9fe0ffb430c99fb605525128f57, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
@@ -155673,14 +155977,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 324895728789236583, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.709
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
       propertyPath: m_Name
       value: vendorEllai_Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1493874654}
   m_SourcePrefab: {fileID: 100100000, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
 --- !u!4 &1011848350 stripped
 Transform:
@@ -164684,9 +164999,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 1374d768b7ef4181992d6cf9286f9081, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: e16021031c3d4d09a8643ddec8270c59, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Mang Lance for Verbs
+    dialogueNode: {fileID: 11400000, guid: cf5b9cdb5e714d0fa5a4e7221327fb00, type: 2}
   npcAnimator: {fileID: 1067440871}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -167304,7 +167621,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 555ab52b61b049f6b73df224d664fb04, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 56bc012ca7484ad9924e88af6ee3e090, type: 2}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1079974222}
@@ -170516,6 +170833,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ddb670162ab8f04eb99c7e7ffca3f76, type: 3}
   m_PrefabInstance: {fileID: 1106315966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1106344528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
+  m_PrefabInstance: {fileID: 1577654837}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1106811790
 PrefabInstance:
@@ -197284,16 +197606,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: vendorIrah_Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1314448088}
   m_SourcePrefab: {fileID: 100100000, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
 --- !u!4 &1314448086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
   m_PrefabInstance: {fileID: 1314448085}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1314448087 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
+  m_PrefabInstance: {fileID: 1314448085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1314448088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314265968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2.5
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 0}
+  isOrganizer: 0
+  questDialogues: []
+  npcAnimator: {fileID: 1314448087}
+  disableAfterInteraction: 0
+  isWrongAnswerPlaying: 0
+  minigameCategory: 
+  minigameLanguageId: 1
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogueEvents: []
 --- !u!1001 &1315157751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226403,6 +226770,49 @@ Transform:
   - {fileID: 609996124}
   m_Father: {fileID: 353770304}
   m_LocalEulerAnglesHint: {x: -0.637, y: 3.937, z: 0.727}
+--- !u!1 &1493874652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
+  m_PrefabInstance: {fileID: 1011848349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1493874653 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
+  m_PrefabInstance: {fileID: 1011848349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1493874654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493874652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2.5
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 0}
+  isOrganizer: 0
+  questDialogues: []
+  npcAnimator: {fileID: 1493874653}
+  disableAfterInteraction: 0
+  isWrongAnswerPlaying: 0
+  minigameCategory: 
+  minigameLanguageId: 1
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogueEvents: []
 --- !u!1001 &1494117776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -239977,16 +240387,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: vendorKyros_Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1577654840}
   m_SourcePrefab: {fileID: 100100000, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
 --- !u!4 &1577654838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
   m_PrefabInstance: {fileID: 1577654837}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1577654839 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
+  m_PrefabInstance: {fileID: 1577654837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1577654840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106344528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2.5
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 0}
+  isOrganizer: 0
+  questDialogues: []
+  npcAnimator: {fileID: 1577654839}
+  disableAfterInteraction: 0
+  isWrongAnswerPlaying: 0
+  minigameCategory: 
+  minigameLanguageId: 1
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogueEvents: []
 --- !u!1001 &1577861239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -250652,9 +251107,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 84c92190b6cf411b837baa573390f47b, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: c572e9eae5154c5dace8038e02cebd38, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Aling Rosa for Linking Verbs
+    dialogueNode: {fileID: 11400000, guid: 1f8438afbc41436fbece361def55ee8c, type: 2}
   npcAnimator: {fileID: 1653427253}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -265712,7 +266169,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: ce522a1f337b428b900240093beb457c, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: edd4ebdb43de4a1b9eeaa2906af66400, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1741770517}
@@ -286568,9 +287025,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 72360416194e4eb1930ae8c0cfe2c542, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 76f2b7cc654b443e9626434568b425ce, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Sally for Requests
+    dialogueNode: {fileID: 11400000, guid: d06976bff0704a908a2aaf74e667853e, type: 2}
   npcAnimator: {fileID: 1866386742}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -294578,16 +295037,61 @@ PrefabInstance:
       propertyPath: m_Name
       value: vendorJom_Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 55f18c93d754f7440bef824a415f891f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1913505687}
   m_SourcePrefab: {fileID: 100100000, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
 --- !u!4 &1913505685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
   m_PrefabInstance: {fileID: 1913505684}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1913505686 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
+  m_PrefabInstance: {fileID: 1913505684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1913505687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141694857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e88734628d794d449b772ee0d541506e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableNPC
+  interactionDistance: 2.5
+  promptText: Talk
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 0}
+  isOrganizer: 0
+  questDialogues: []
+  npcAnimator: {fileID: 1913505686}
+  disableAfterInteraction: 0
+  isWrongAnswerPlaying: 0
+  minigameCategory: 
+  minigameLanguageId: 1
+  OnDialogueEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWrongAnswer:
+    m_PersistentCalls:
+      m_Calls: []
+  dialogueEvents: []
 --- !u!1001 &1913862858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323269,9 +323773,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: d136ee7e294742b2bb41e608096fda09, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 2de50bb1023f4a21a700567fb3d6a441, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Talk to Klara for Counting
+    dialogueNode: {fileID: 11400000, guid: d2f593965ab2433b9d5e74b00823106b, type: 2}
   npcAnimator: {fileID: 2094566722}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -331515,7 +332021,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: defaultDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: cedb1d2b5820466fabd71bfaf0a99bfd, type: 2}
+      objectReference: {fileID: 11400000, guid: 570e79d6f4254b20937cf9b2733028c6, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameCategory
       value: Gratitude
@@ -331538,7 +332044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].eventName
@@ -331571,7 +332077,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].dialogueNode
       value: 
-      objectReference: {fileID: 11400000, guid: 6a3642b756c54ad6a3f30963d630f9cc, type: 2}
+      objectReference: {fileID: 11400000, guid: 1758c850955147d2aaa0686d231d00a7, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[1].dialogueNode
       value: 
@@ -331622,7 +332128,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5f34e1a53ec74f2785377bee6605cd8d, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].requiredObjective
-      value: Return to Kalaw 1
+      value: Return to Kalaw for Final Test
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[1].requiredObjective
@@ -333365,7 +333871,7 @@ Transform:
   m_GameObject: {fileID: 3203261901548822633}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -90.62725, y: 0.66625696, z: -70.5814}
+  m_LocalPosition: {x: -90.627235, y: 0.66625696, z: -70.581406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -334972,6 +335478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901182334643ba1438a25accc6bd0c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!1001 &5492159709671839508
 PrefabInstance:
   m_ObjectHideFlags: 0
