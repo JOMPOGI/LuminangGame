@@ -1,15 +1,26 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the left-side chapter/lesson list inside LevelsGroup.
+///
+/// Data sources (two separate JSON files):
+///   - lessonsData      (LessonsData.json)      → chapter titles, lesson titles, level numbers
+///   - chaptersJsonData (ChaptersDemoData.json)  → isCompleted, isExpanded  (simulates DB)
+///
+/// Both are matched by categoryKey.
+/// </summary>
 public class CategoryListManager : MonoBehaviour
 {
     [Header("List Settings")]
     public Transform contentParent;
-    
+
     [Header("Data")]
+    [Tooltip("Drag LessonsData.json (Assets/Data). Provides chapter/lesson titles.")]
+    public TextAsset lessonsData;
+    [Tooltip("Drag ChaptersDemoData.json (Assets/Demo Data). Provides isCompleted / isExpanded (simulates DB).")]
     public TextAsset chaptersJsonData;
 
     [Header("Prefabs")]
@@ -44,84 +55,413 @@ public class CategoryListManager : MonoBehaviour
     [Header("Callbacks")]
     public UnityEngine.Events.UnityEvent<string> onCategorySelected;
 
-    private string _selectedCategory = "Greetings"; // Default to first lesson category
-
-    private enum Language { Ilokano, Cebuano }
-    private Language _activeLanguage = Language.Ilokano;
-
     [Header("Expand Animation")]
     [Tooltip("How fast the chapter rows slide open/close (seconds).")]
     public float expandDuration = 0.2f;
     [Tooltip("The height (in pixels) of each lesson row. Set this to match your LessonRowPrefab's height.")]
     public float rowHeight = 60f;
 
+    // ──────────────────────────────────────────────────
+    // Internal Models — LessonsData.json
+    // ──────────────────────────────────────────────────
+
     [System.Serializable]
-    private class ChapterInfo
+    private class LessonEntry
     {
-        public string title;
-        public List<LessonInfo> lessons;
-        public bool isExpanded;
+        public int levelNumber;
+        public string categoryKey;
+        public string lessonTitle;
     }
 
     [System.Serializable]
-    private class LessonInfo
+    private class ChapterEntry
     {
-        public string title;
-        public string categoryName;
+        public int chapterIndex;
+        public string chapterTitle;
+        public List<LessonEntry> lessons;
+    }
+
+    [System.Serializable]
+    private class LanguageEntry
+    {
+        public string languageKey;  // "ilokano" | "cebuano"
+        public List<ChapterEntry> chapters;
+    }
+
+    [System.Serializable]
+    private class LessonsDataWrapper
+    {
+        public List<LanguageEntry> languages;
+    }
+
+    // ──────────────────────────────────────────────────
+    // Internal Models — ChaptersDemoData.json  (DB mock)
+    // ──────────────────────────────────────────────────
+
+    [System.Serializable]
+    private class DbLessonEntry
+    {
+        public string categoryKey;
         public bool isCompleted;
     }
 
     [System.Serializable]
-    private class ChaptersDataWrapper
+    private class DbChapterEntry
     {
-        public List<ChapterInfo> ilokanoChapters;
-        public List<ChapterInfo> cebuanoChapters;
+        public bool isExpanded;
+        public List<DbLessonEntry> lessons;
     }
 
-    private ChaptersDataWrapper _chaptersData;
-    private List<ChapterInfo> _chapters = new List<ChapterInfo>();
+    [System.Serializable]
+    private class DbChaptersWrapper
+    {
+        public List<DbChapterEntry> ilokanoChapters;
+        public List<DbChapterEntry> cebuanoChapters;
+    }
 
-    // Tracks spawned lesson row GameObjects per chapter so we can animate them
+    // ──────────────────────────────────────────────────
+    // Merged Runtime Model
+    // ──────────────────────────────────────────────────
+
+    private class MergedLesson
+    {
+        public int levelNumber;
+        public string categoryKey;
+        public string lessonTitle;
+        public bool isCompleted;
+        public bool isLocked;
+    }
+
+    private class MergedChapter
+    {
+        public int chapterIndex;
+        public string chapterTitle;
+        public bool isExpanded;
+        public List<MergedLesson> lessons;
+    }
+
+    // ──────────────────────────────────────────────────
+    // Private State
+    // ──────────────────────────────────────────────────
+
+    private LessonsDataWrapper _lessonsData;
+    private DbChaptersWrapper _dbData;
+    private List<MergedChapter> _chapters = new List<MergedChapter>();
+
+    private string _selectedCategory = "Greetings";
+
+    private enum Language { Ilokano, Cebuano }
+    private Language _activeLanguage = Language.Ilokano;
+
     private Dictionary<int, List<GameObject>> _chapterLessonRows = new Dictionary<int, List<GameObject>>();
     private Dictionary<int, Coroutine> _chapterAnimCoroutines = new Dictionary<int, Coroutine>();
-    private bool _isRebuilding = false;
+
+    // ──────────────────────────────────────────────────
+    // Unity Lifecycle
+    // ──────────────────────────────────────────────────
 
     private void Awake()
     {
-        InitializeChapters();
+        ParseJsonFiles();
+        MergeData();
     }
 
     private void Start()
     {
         BuildCategoryList();
         StartCoroutine(ForceLayoutRebuild());
+        // Delay by one frame so all other Start() methods (e.g. LevelDetailPanel) finish first
+        StartCoroutine(FireInitialSelection());
     }
 
-    private void InitializeChapters()
+    private IEnumerator FireInitialSelection()
     {
+        yield return null; // wait one frame
+        if (!string.IsNullOrEmpty(_selectedCategory))
+            SelectCategory(_selectedCategory);
+    }
+
+    // ──────────────────────────────────────────────────
+    // Data Loading
+    // ──────────────────────────────────────────────────
+
+    private void ParseJsonFiles()
+    {
+        // Parse LessonsData.json
+        if (lessonsData != null)
+            _lessonsData = JsonUtility.FromJson<LessonsDataWrapper>(lessonsData.text);
+
+        if (_lessonsData == null)
+        {
+            Debug.LogError("[CategoryListManager] Failed to parse LessonsData.json. Is the file assigned?");
+            _lessonsData = new LessonsDataWrapper { languages = new List<LanguageEntry>() };
+        }
+
+        // Parse ChaptersDemoData.json (DB mock)
         if (chaptersJsonData != null)
-        {
-            _chaptersData = JsonUtility.FromJson<ChaptersDataWrapper>(chaptersJsonData.text);
-        }
-        
-        if (_chaptersData == null)
-        {
-            Debug.LogError("Failed to parse Chapters JSON data.");
-            _chaptersData = new ChaptersDataWrapper();
-            _chaptersData.ilokanoChapters = new List<ChapterInfo>();
-            _chaptersData.cebuanoChapters = new List<ChapterInfo>();
-        }
+            _dbData = JsonUtility.FromJson<DbChaptersWrapper>(chaptersJsonData.text);
 
-        LoadActiveLanguageChapters();
+        if (_dbData == null)
+        {
+            Debug.LogWarning("[CategoryListManager] Failed to parse ChaptersDemoData.json. isCompleted will default to false.");
+            _dbData = new DbChaptersWrapper
+            {
+                ilokanoChapters = new List<DbChapterEntry>(),
+                cebuanoChapters = new List<DbChapterEntry>()
+            };
+        }
     }
 
-    private void LoadActiveLanguageChapters()
+    /// <summary>
+    /// Builds the merged chapter list for the active language by:
+    /// 1. Taking chapter + lesson structure from LessonsData
+    /// 2. Overlaying isCompleted + isExpanded from ChaptersDemoData (matched by categoryKey + chapter order)
+    /// </summary>
+    private void MergeData()
     {
-        if (_chaptersData == null) return;
-        
-        _chapters = _activeLanguage == Language.Ilokano ? _chaptersData.ilokanoChapters : _chaptersData.cebuanoChapters;
-        if (_chapters == null) _chapters = new List<ChapterInfo>();
+        _chapters.Clear();
+
+        string langKey = _activeLanguage == Language.Ilokano ? "ilokano" : "cebuano";
+
+        // Find the matching language block in LessonsData
+        LanguageEntry langEntry = _lessonsData.languages?.Find(
+            l => string.Equals(l.languageKey, langKey, System.StringComparison.OrdinalIgnoreCase)
+        );
+
+        if (langEntry == null || langEntry.chapters == null)
+        {
+            Debug.LogWarning($"[CategoryListManager] No LessonsData found for language: {langKey}");
+            return;
+        }
+
+        // Get the DB chapter list for this language
+        List<DbChapterEntry> dbChapters = _activeLanguage == Language.Ilokano
+            ? _dbData.ilokanoChapters
+            : _dbData.cebuanoChapters;
+
+        // Build lookup: categoryKey → isCompleted  (flat across all DB chapters)
+        Dictionary<string, bool> completionLookup = BuildCompletionLookup(dbChapters);
+
+        // Track when we hit the first incomplete lesson to lock everything after it
+        bool foundFirstIncomplete = false;
+
+        for (int ci = 0; ci < langEntry.chapters.Count; ci++)
+        {
+            ChapterEntry chapter = langEntry.chapters[ci];
+
+            // Grab isExpanded from DB by chapter index (positional match)
+            bool isExpanded = false;
+            if (dbChapters != null && ci < dbChapters.Count)
+                isExpanded = dbChapters[ci].isExpanded;
+
+            MergedChapter merged = new MergedChapter
+            {
+                chapterIndex = chapter.chapterIndex,
+                chapterTitle = chapter.chapterTitle,
+                isExpanded = isExpanded,
+                lessons = new List<MergedLesson>()
+            };
+
+            if (chapter.lessons != null)
+            {
+                foreach (var lesson in chapter.lessons)
+                {
+                    bool isCompleted = completionLookup.ContainsKey(lesson.categoryKey)
+                        && completionLookup[lesson.categoryKey];
+
+                    bool isLocked = false;
+                    if (!isCompleted)
+                    {
+                        if (foundFirstIncomplete)
+                        {
+                            // We already found an incomplete lesson earlier, so this one is locked
+                            isLocked = true;
+                        }
+                        else
+                        {
+                            // This is the first incomplete lesson, so it is unlocked (ready to play)
+                            foundFirstIncomplete = true;
+                        }
+                    }
+
+                    merged.lessons.Add(new MergedLesson
+                    {
+                        levelNumber = lesson.levelNumber,
+                        categoryKey = lesson.categoryKey,
+                        lessonTitle = lesson.lessonTitle,
+                        isCompleted = isCompleted,
+                        isLocked = isLocked
+                    });
+                }
+            }
+
+            _chapters.Add(merged);
+        }
     }
+
+    private Dictionary<string, bool> BuildCompletionLookup(List<DbChapterEntry> dbChapters)
+    {
+        var lookup = new Dictionary<string, bool>(System.StringComparer.OrdinalIgnoreCase);
+        if (dbChapters == null) return lookup;
+
+        foreach (var ch in dbChapters)
+        {
+            if (ch.lessons == null) continue;
+            foreach (var lesson in ch.lessons)
+            {
+                if (!string.IsNullOrEmpty(lesson.categoryKey))
+                    lookup[lesson.categoryKey] = lesson.isCompleted;
+            }
+        }
+        return lookup;
+    }
+
+    // ──────────────────────────────────────────────────
+    // List Building
+    // ──────────────────────────────────────────────────
+
+    public void BuildCategoryList()
+    {
+        if (contentParent == null || chapterHeaderPrefab == null || lessonRowPrefab == null) return;
+
+        // Clear everything
+        foreach (Transform child in contentParent)
+            Destroy(child.gameObject);
+
+        _chapterLessonRows.Clear();
+        _chapterAnimCoroutines.Clear();
+
+        Color selectedBg = GetSelectedBgColor();
+        int chapterNum = 1;
+
+        foreach (var chapter in _chapters)
+        {
+            // ── Chapter Header ──
+            GameObject headerObj = Instantiate(chapterHeaderPrefab, contentParent, false);
+            ChapterHeaderUI headerUI = headerObj.GetComponent<ChapterHeaderUI>();
+            if (headerUI != null)
+            {
+                int completedCount = chapter.lessons.FindAll(l => l.isCompleted).Count;
+                string progressStr = $"{completedCount}/{chapter.lessons.Count}";
+
+                int spriteIdx = chapterNum - 1;
+                Sprite numBg = (chapterNumberBgSprites != null && spriteIdx < chapterNumberBgSprites.Length)
+                    ? chapterNumberBgSprites[spriteIdx] : null;
+                Sprite icon = (chapterIconSprites != null && spriteIdx < chapterIconSprites.Length)
+                    ? chapterIconSprites[spriteIdx] : null;
+                Color? headerColor = (chapterHeaderColors != null && spriteIdx < chapterHeaderColors.Length)
+                    ? chapterHeaderColors[spriteIdx] : (Color?)null;
+
+                headerUI.Setup(chapterNum, chapter.chapterTitle, progressStr, chapter.isExpanded, this, numBg, icon, headerColor);
+            }
+
+            // ── Lesson Rows ──
+            List<GameObject> lessonRows = new List<GameObject>();
+
+            foreach (var lesson in chapter.lessons)
+            {
+                GameObject lessonObj = Instantiate(lessonRowPrefab, contentParent, false);
+                LessonRowUI lessonUI = lessonObj.GetComponent<LessonRowUI>();
+
+                if (lessonUI != null)
+                {
+                    bool isSelected = (lesson.categoryKey == _selectedCategory);
+                    lessonUI.selectedBgColor = selectedBg;
+                    lessonUI.normalBgColor = normalBgColor;
+
+                    // Use chapterNum - 1 as sprite index so all lessons in the same chapter share the same sprite/color
+                    int spriteIdx = chapterNum - 1;
+
+                    Sprite rowNumBg = (lessonNumberBgSprites != null && spriteIdx < lessonNumberBgSprites.Length)
+                        ? lessonNumberBgSprites[spriteIdx] : null;
+
+                    Sprite rowCheckBg = lesson.isCompleted
+                        ? ((lessonCompletedBgSprites != null && spriteIdx < lessonCompletedBgSprites.Length)
+                            ? lessonCompletedBgSprites[spriteIdx] : null)
+                        : lessonIncompleteBgSprite;
+
+                    Color rowCheckColor = lesson.isCompleted ? lessonCompletedBgColor : lessonIncompleteBgColor;
+
+                    lessonUI.Setup(
+                        lesson.levelNumber, // global level number (continues across chapters)
+                        lesson.lessonTitle,
+                        lesson.categoryKey,
+                        lesson.isCompleted,
+                        isSelected,
+                        SelectCategory,
+                        rowNumBg,
+                        rowCheckBg,
+                        rowCheckColor
+                    );
+                }
+
+                lessonObj.SetActive(chapter.isExpanded);
+                lessonRows.Add(lessonObj);
+            }
+
+            _chapterLessonRows[chapterNum] = lessonRows;
+            chapterNum++;
+        }
+    }
+
+    // ──────────────────────────────────────────────────
+    // Public API
+    // ──────────────────────────────────────────────────
+
+    public void GetLessonState(string categoryKey, out bool isCompleted, out bool isLocked)
+    {
+        isCompleted = false;
+        isLocked = false;
+        foreach (var ch in _chapters)
+        {
+            foreach (var l in ch.lessons)
+            {
+                if (l.categoryKey == categoryKey)
+                {
+                    isCompleted = l.isCompleted;
+                    isLocked = l.isLocked;
+                    return;
+                }
+            }
+        }
+    }
+
+    public void SelectCategory(string categoryKey)
+    {
+        _selectedCategory = categoryKey;
+        onCategorySelected?.Invoke(_selectedCategory);
+        RefreshLessonSelectionVisuals();
+    }
+
+    /// <summary>Called from LanguageCardManager when Ilokano or Cebuano is selected.</summary>
+    public void SetActiveLanguage(string languageName)
+    {
+        if (languageName.Equals("Ilokano", System.StringComparison.OrdinalIgnoreCase))
+            _activeLanguage = Language.Ilokano;
+        else if (languageName.Equals("Cebuano", System.StringComparison.OrdinalIgnoreCase))
+            _activeLanguage = Language.Cebuano;
+        else
+            _activeLanguage = Language.Ilokano;
+
+        // MergeData first so _chapters reflects the new language
+        MergeData();
+
+        // Now pick the first lesson of the new language
+        _selectedCategory = "";
+        if (_chapters.Count > 0 && _chapters[0].lessons.Count > 0)
+            _selectedCategory = _chapters[0].lessons[0].categoryKey;
+
+        BuildCategoryList();
+        StartCoroutine(ForceLayoutRebuild());
+
+        // Fire so the right panel updates immediately
+        if (!string.IsNullOrEmpty(_selectedCategory))
+            SelectCategory(_selectedCategory);
+    }
+
+    // ──────────────────────────────────────────────────
+    // Chapter Expand / Collapse
+    // ──────────────────────────────────────────────────
 
     public void ToggleChapter(int chapterIndex)
     {
@@ -131,7 +471,6 @@ public class CategoryListManager : MonoBehaviour
         _chapters[listIndex].isExpanded = !_chapters[listIndex].isExpanded;
         bool expand = _chapters[listIndex].isExpanded;
 
-        // Update the header chevron
         ChapterHeaderUI header = GetChapterHeader(chapterIndex);
         if (header != null) header.UpdateChevron(expand);
 
@@ -139,7 +478,6 @@ public class CategoryListManager : MonoBehaviour
 
         List<GameObject> rows = _chapterLessonRows[chapterIndex];
 
-        // Stop any running anim for this chapter
         if (_chapterAnimCoroutines.ContainsKey(chapterIndex) && _chapterAnimCoroutines[chapterIndex] != null)
             StopCoroutine(_chapterAnimCoroutines[chapterIndex]);
 
@@ -148,7 +486,6 @@ public class CategoryListManager : MonoBehaviour
 
     private ChapterHeaderUI GetChapterHeader(int chapterIndex)
     {
-        // Headers are the ChapterHeaderUI children of contentParent
         int headerCount = 0;
         foreach (Transform child in contentParent)
         {
@@ -162,13 +499,15 @@ public class CategoryListManager : MonoBehaviour
         return null;
     }
 
+    // ──────────────────────────────────────────────────
+    // Animation
+    // ──────────────────────────────────────────────────
+
     private IEnumerator AnimateRows(List<GameObject> rows, bool expand)
     {
-        // Get natural height from first row
-        float targetHeight = expand ? GetNaturalRowHeight(rows) : 0f;
-        float startHeight = expand ? 0f : GetNaturalRowHeight(rows);
+        float targetHeight = expand ? rowHeight : 0f;
+        float startHeight  = expand ? 0f : rowHeight;
 
-        // Make rows visible before animating open
         if (expand)
         {
             foreach (var row in rows)
@@ -198,7 +537,6 @@ public class CategoryListManager : MonoBehaviour
             yield return null;
         }
 
-        // Final state
         foreach (var row in rows)
         {
             if (!expand)
@@ -209,7 +547,6 @@ public class CategoryListManager : MonoBehaviour
             }
             else
             {
-                // Keep the height locked at rowHeight so the layout doesn't snap back
                 var le = GetOrAddLayoutElement(row);
                 le.preferredHeight = rowHeight;
                 le.minHeight = 0f;
@@ -219,9 +556,27 @@ public class CategoryListManager : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentParent as RectTransform);
     }
 
-    private float GetNaturalRowHeight(List<GameObject> rows)
+    // ──────────────────────────────────────────────────
+    // Helpers
+    // ──────────────────────────────────────────────────
+
+    private void RefreshLessonSelectionVisuals()
     {
-        return rowHeight;
+        Color selectedBg = GetSelectedBgColor();
+        foreach (Transform child in contentParent)
+        {
+            LessonRowUI lessonUI = child.GetComponent<LessonRowUI>();
+            if (lessonUI != null)
+            {
+                lessonUI.selectedBgColor = selectedBg;
+                lessonUI.SetSelected(lessonUI.CategoryName == _selectedCategory);
+            }
+        }
+    }
+
+    private Color GetSelectedBgColor()
+    {
+        return _activeLanguage == Language.Ilokano ? ilokanoSelectedBgColor : cebuanoSelectedBgColor;
     }
 
     private LayoutElement GetOrAddLayoutElement(GameObject go)
@@ -236,120 +591,5 @@ public class CategoryListManager : MonoBehaviour
         yield return null;
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentParent as RectTransform);
-    }
-
-    public void BuildCategoryList()
-    {
-        if (contentParent == null || chapterHeaderPrefab == null || lessonRowPrefab == null) return;
-
-        // Clear everything
-        foreach (Transform child in contentParent)
-            Destroy(child.gameObject);
-
-        _chapterLessonRows.Clear();
-        _chapterAnimCoroutines.Clear();
-
-        Color selectedBg = GetSelectedBgColor();
-        int chapterNum = 1;
-
-        foreach (var chapter in _chapters)
-        {
-            // Spawn Chapter Header
-            GameObject headerObj = Instantiate(chapterHeaderPrefab, contentParent, false);
-            ChapterHeaderUI headerUI = headerObj.GetComponent<ChapterHeaderUI>();
-            if (headerUI != null)
-            {
-                int completedCount = chapter.lessons.FindAll(l => l.isCompleted).Count;
-                string progressStr = $"{completedCount}/{chapter.lessons.Count}";
-
-                // Get per-chapter sprites (index = chapterNum - 1)
-                int spriteIdx = chapterNum - 1;
-                Sprite numBg = (chapterNumberBgSprites != null && spriteIdx < chapterNumberBgSprites.Length)
-                    ? chapterNumberBgSprites[spriteIdx] : null;
-                Sprite icon = (chapterIconSprites != null && spriteIdx < chapterIconSprites.Length)
-                    ? chapterIconSprites[spriteIdx] : null;
-                Color? headerColor = (chapterHeaderColors != null && spriteIdx < chapterHeaderColors.Length)
-                    ? chapterHeaderColors[spriteIdx] : (Color?)null;
-
-                headerUI.Setup(chapterNum, chapter.title, progressStr, chapter.isExpanded, this, numBg, icon, headerColor);
-            }
-
-            // Always spawn ALL lesson rows (even for collapsed chapters)
-            // Collapsed rows start hidden via SetActive(false)
-            List<GameObject> lessonRows = new List<GameObject>();
-            int lessonNum = 1;
-            foreach (var lesson in chapter.lessons)
-            {
-                GameObject lessonObj = Instantiate(lessonRowPrefab, contentParent, false);
-                LessonRowUI lessonUI = lessonObj.GetComponent<LessonRowUI>();
-                if (lessonUI != null)
-                {
-                    bool isSelected = (lesson.categoryName == _selectedCategory);
-                    lessonUI.selectedBgColor = selectedBg;
-                    lessonUI.normalBgColor = normalBgColor;
-
-                    int spriteIdx = chapterNum - 1;
-                    Sprite rowNumBg = (lessonNumberBgSprites != null && spriteIdx < lessonNumberBgSprites.Length)
-                        ? lessonNumberBgSprites[spriteIdx] : null;
-                    
-                    Sprite rowCheckBg = lesson.isCompleted 
-                        ? ((lessonCompletedBgSprites != null && spriteIdx < lessonCompletedBgSprites.Length) ? lessonCompletedBgSprites[spriteIdx] : null)
-                        : lessonIncompleteBgSprite;
-                    
-                    Color rowCheckColor = lesson.isCompleted ? lessonCompletedBgColor : lessonIncompleteBgColor;
-
-                    lessonUI.Setup(lessonNum, lesson.title, lesson.categoryName, lesson.isCompleted, isSelected, SelectCategory, rowNumBg, rowCheckBg, rowCheckColor);
-                }
-
-                // Collapsed chapters start hidden
-                lessonObj.SetActive(chapter.isExpanded);
-                lessonRows.Add(lessonObj);
-                lessonNum++;
-            }
-
-            _chapterLessonRows[chapterNum] = lessonRows;
-            chapterNum++;
-        }
-    }
-
-    public void SelectCategory(string categoryName)
-    {
-        _selectedCategory = categoryName;
-        onCategorySelected?.Invoke(_selectedCategory);
-        RefreshLessonSelectionVisuals();
-    }
-
-    // Call this from the language card buttons (Ilokano / Cebuano)
-    public void SetActiveLanguage(string languageName)
-    {
-        if (languageName.Equals("Ilokano", System.StringComparison.OrdinalIgnoreCase))
-            _activeLanguage = Language.Ilokano;
-        else if (languageName.Equals("Cebuano", System.StringComparison.OrdinalIgnoreCase))
-            _activeLanguage = Language.Cebuano;
-        else
-            _activeLanguage = Language.Ilokano;
-
-        LoadActiveLanguageChapters();
-        BuildCategoryList();
-        StartCoroutine(ForceLayoutRebuild());
-    }
-
-    private Color GetSelectedBgColor()
-    {
-        return _activeLanguage == Language.Ilokano ? ilokanoSelectedBgColor : cebuanoSelectedBgColor;
-    }
-
-    private void RefreshLessonSelectionVisuals()
-    {
-        Color selectedBg = GetSelectedBgColor();
-        foreach (Transform child in contentParent)
-        {
-            LessonRowUI lessonUI = child.GetComponent<LessonRowUI>();
-            if (lessonUI != null)
-            {
-                lessonUI.selectedBgColor = selectedBg;
-                lessonUI.SetSelected(lessonUI.CategoryName == _selectedCategory);
-            }
-        }
     }
 }
