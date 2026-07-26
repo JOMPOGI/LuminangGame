@@ -230,7 +230,7 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("<color=red>[DialogueManager] STT FAILED!</color>");
                 if (_currentNPC != null)
-                    StartCoroutine(HandleWrongAnswer(choice.nextNode));
+                    StartCoroutine(HandleWrongAnswer(_activeNode));
             }
         }
         else

@@ -130,8 +130,19 @@ public class TeachingOverlayPanel : MonoBehaviour
         HideMovementControls(true);
 
         gameObject.SetActive(true);
-        StopAllCoroutines();
-        StartCoroutine(FadeIn());
+
+        // If panel is ALREADY fully open, keep alpha at 1.0f directly to prevent flickering!
+        if (canvasGroup != null && canvasGroup.alpha >= 0.95f)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(FadeIn());
+        }
     }
 
     public void Hide()
@@ -248,7 +259,7 @@ public class TeachingOverlayPanel : MonoBehaviour
         }
         else if (PhraseEvaluator.Instance != null)
         {
-            PhraseEvaluator.Instance.FindBestMatch(transcribedText, (bestEntry, bestLang, accuracy, isEnglish) =>
+            PhraseEvaluator.Instance.FindBestMatch(transcribedText, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
             {
                 bool success = accuracy >= 80f && !isEnglish;
                 if (success)
@@ -341,11 +352,12 @@ public class TeachingOverlayPanel : MonoBehaviour
         if (canvasGroup == null) yield break;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
+        float startAlpha = canvasGroup.alpha;
         float elapsed = 0f;
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, 1f, elapsed / fadeDuration);
             yield return null;
         }
         canvasGroup.alpha = 1f;
