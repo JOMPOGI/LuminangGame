@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ellai_Word_afterLesson_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ellai
-  speakerPortrait: {fileID: 21300000, guid: b96d8c4f1b10b3e49acce404fb9d0f4c, type: 3}
+  speakerPortrait: {fileID: 21300000, guid: 0cff92c0be6bf29429ea128e6aaf38aa, type: 3}
   dialogueText: Until then, keep practicing your Cebuano and enjoy connecting with
     the wonderful people of Cebu. Paalam, and see you again soon!
   translatedText: 

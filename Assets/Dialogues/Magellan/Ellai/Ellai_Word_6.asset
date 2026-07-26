@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ellai_Word_6
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ellai
-  speakerPortrait: {fileID: 21300000, guid: b96d8c4f1b10b3e49acce404fb9d0f4c, type: 3}
+  speakerPortrait: {fileID: 21300000, guid: e0eb872fb28ba424f909f04b2cf1a3c0, type: 3}
   dialogueText: 'Now if you want to start a friendly conversation ask ''how are you''
     in cebuano, we say "Kumusta ka?" '
   translatedText: 
