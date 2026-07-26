@@ -24,6 +24,8 @@ public class LanguageCardManager : MonoBehaviour
     public CategoryListManager categoryListManager;
     [Tooltip("Drag WordsListManager here so the word list updates when a card is selected.")]
     public WordsListManager wordsListManager;
+    [Tooltip("Drag LevelDetailPanel here so its phrase preview updates when a language card is selected.")]
+    public LevelDetailPanel levelDetailPanel;
 
     private void Start()
     {
@@ -38,6 +40,7 @@ public class LanguageCardManager : MonoBehaviour
     {
         if (categoryListManager != null) categoryListManager.SetActiveLanguage(languageName);
         if (wordsListManager != null) wordsListManager.SetLanguage(languageName);
+        if (levelDetailPanel != null) levelDetailPanel.SetLanguage(languageName);
 
         if (BookSelectionManager.Instance != null)
         {
