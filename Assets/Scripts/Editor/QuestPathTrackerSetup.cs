@@ -8,7 +8,7 @@ public static class QuestPathTrackerSetup
     [MenuItem("Luminang/Quest System/Add Genshin Quest Path Tracker to Scene")]
     public static void AddTrackerToScene()
     {
-        QuestPathTracker existing = Object.FindFirstObjectByType<QuestPathTracker>();
+        QuestPathTracker existing = Object.FindObjectOfType<QuestPathTracker>();
         if (existing != null)
         {
             Selection.activeGameObject = existing.gameObject;
