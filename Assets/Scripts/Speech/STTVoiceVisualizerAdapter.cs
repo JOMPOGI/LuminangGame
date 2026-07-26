@@ -154,7 +154,7 @@ public class STTVoiceVisualizerAdapter : MonoBehaviour
         else
         {
             // Fallback to dataset search if no specific expected word was defined
-            PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish) =>
+            PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
             {
                 if (bestEntry != null && isEnglish)
                 {
