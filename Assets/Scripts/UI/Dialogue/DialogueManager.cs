@@ -39,6 +39,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Called by UnityEvents or cutscenes with just a DialogueNode.
+    /// </summary>
+    public void StartDialogue(DialogueNode startNode)
+    {
+        StartDialogue(startNode, null, null);
+    }
+
+    /// <summary>
     /// Called by InteractableNPC when the player clicks the Talk button.
     /// </summary>
     public void StartDialogue(DialogueNode startNode, Animator npcAnimator, InteractableNPC npc)
@@ -62,9 +70,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (node == null)
         {
+            Debug.Log("<color=red>[DialogueManager] ProcessNode received NULL node! Ending dialogue.</color>");
             EndDialogue();
             return;
         }
+
+        Debug.Log($"<color=yellow>[DialogueManager] ProcessNode -> Loading Node: '{node.name}', Dialogue Text: '{node.dialogueText}'</color>");
 
         // Track history (skip when navigating back to avoid double-pushing)
         if (!_navigatingBack && _activeNode != null)
@@ -86,9 +97,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         // 1.5 Fire Start Event (Immediate)
-        if (!string.IsNullOrEmpty(node.triggerEventName) && _currentNPC != null)
+        if (!string.IsNullOrEmpty(node.triggerEventName))
         {
-            _currentNPC.HandleDialogueEvent(node.triggerEventName);
+            HandleGlobalDialogueEvent(node.triggerEventName);
         }
 
         // 1.6 Store End Event to fire when this node is COMPLETED
@@ -100,12 +111,21 @@ public class DialogueManager : MonoBehaviour
         {
             foreach (var choice in node.choices)
             {
-                if (choice.choiceEvent != null && choice.choiceEvent.Trim().Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase))
+                bool isSTTChoice = !string.IsNullOrEmpty(choice.expectedSTTWord) ||
+                                  (choice.choiceEvent != null && choice.choiceEvent.Trim().Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase));
+
+                if (isSTTChoice)
                 {
                     PendingSTTChoice = choice;
                     break;
                 }
             }
+        }
+
+        // Automatically show TeachingOverlayPanel if this is an STT node
+        if (PendingSTTChoice != null && TeachingOverlayPanel.Instance != null)
+        {
+            TeachingOverlayPanel.Instance.ShowForPendingSTT(node.triggerEventName);
         }
 
         // 2. Display UI and update nav buttons
@@ -183,9 +203,17 @@ public class DialogueManager : MonoBehaviour
 
     public void CompleteSTT(bool success, string prefixText = "")
     {
-        if (PendingSTTChoice != null)
+        Debug.Log($"<color=cyan>[DialogueManager] CompleteSTT called with success={success}. PendingSTTChoice: {(PendingSTTChoice != null ? PendingSTTChoice.expectedSTTWord : "NULL")}</color>");
+
+        DialogueChoice choice = PendingSTTChoice;
+        if (choice == null && _activeNode != null && _activeNode.choices != null && _activeNode.choices.Count > 0)
         {
-            DialogueChoice choice = PendingSTTChoice;
+            choice = _activeNode.choices[0];
+            Debug.Log($"<color=cyan>[DialogueManager] Used activeNode.choices[0] fallback. Target nextNode: {(choice != null && choice.nextNode != null ? choice.nextNode.name : "NULL")}</color>");
+        }
+
+        if (choice != null)
+        {
             PendingSTTChoice = null;
             
             if (success)
@@ -194,13 +222,20 @@ public class DialogueManager : MonoBehaviour
                 {
                     _injectedPrefix = prefixText;
                 }
+
+                Debug.Log($"<color=green>[DialogueManager] STT SUCCESS! Loading nextNode: {(choice.nextNode != null ? choice.nextNode.name : "NULL (Ends Dialogue)")}</color>");
                 ProcessNode(choice.nextNode);
             }
             else
             {
+                Debug.Log("<color=red>[DialogueManager] STT FAILED!</color>");
                 if (_currentNPC != null)
-                    StartCoroutine(HandleWrongAnswer(choice.nextNode)); // or keep them on same node
+                    StartCoroutine(HandleWrongAnswer(choice.nextNode));
             }
+        }
+        else
+        {
+            Debug.LogWarning("[DialogueManager] CompleteSTT called but no choice or activeNode choice could be found!");
         }
     }
 
@@ -270,6 +305,12 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        // Hide TeachingOverlayPanel if active
+        if (TeachingOverlayPanel.Instance != null)
+        {
+            TeachingOverlayPanel.Instance.Hide();
+        }
+
         if (InteractionManager.Instance != null)
         {
             InteractionManager.Instance.ForceCheckProximity();
@@ -284,21 +325,7 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(_pendingEventName))
         {
             Debug.Log($"[DialogueManager] FirePendingEvent: Sending '{_pendingEventName}' to NPC: {(npc != null ? npc.name : "NULL")}");
-            
-            if (_pendingEventName.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
-            {
-                string objText = _pendingEventName.Substring("SetObjective_".Length);
-                if (ObjectiveManager.Instance != null)
-                {
-                    ObjectiveManager.Instance.SetObjective(objText);
-                    Debug.Log($"[DialogueManager] Dynamically set objective to: '{objText}'");
-                }
-            }
-            
-            if (npc != null)
-            {
-                npc.HandleDialogueEvent(_pendingEventName);
-            }
+            HandleGlobalDialogueEvent(_pendingEventName);
         }
         
         if (npc != null)
@@ -307,6 +334,65 @@ public class DialogueManager : MonoBehaviour
         }
         
         _pendingEventName = null;
+    }
+
+    /// <summary>
+    /// Handles dialogue events globally (SetObjective, TeachingOverlayPanel, and custom NPC events).
+    /// Works even if _currentNPC is null!
+    /// </summary>
+    private void HandleGlobalDialogueEvent(string eventName)
+    {
+        if (string.IsNullOrEmpty(eventName)) return;
+
+        string cleanEventName = eventName.Trim();
+        Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
+
+        // 1. Handle SetObjective: or SetObjective_
+        if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+                Debug.Log($"[DialogueManager] Objective set to: '{newObjText}'");
+            }
+        }
+        else if (cleanEventName.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective_".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+                Debug.Log($"[DialogueManager] Objective set to: '{newObjText}'");
+            }
+        }
+
+        // 2. Handle TeachingOverlayPanel events
+        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+            }
+        }
+        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.Hide();
+            }
+        }
+        else if (TeachingOverlayPanel.Instance != null && PendingSTTChoice != null)
+        {
+            // Fallback: if triggerEventName is just a background name (e.g. "maayongBuntag" or "bg_morning"), pass it to TeachingOverlayPanel
+            TeachingOverlayPanel.Instance.ShowForPendingSTT(cleanEventName);
+        }
+
+        // 3. Forward to current NPC if available
+        if (_currentNPC != null)
+        {
+            _currentNPC.HandleDialogueEvent(cleanEventName);
+        }
     }
 
     private void SafeSetTrigger(Animator animator, string triggerName)

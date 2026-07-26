@@ -109,6 +109,7 @@ public class DialogueUIController : MonoBehaviour
     /// </summary>
     public void DisplayNode(DialogueNode node, System.Action<DialogueChoice> onChoiceSelected, bool skipAnimation = false)
     {
+        Debug.Log($"<color=magenta>[DialogueUIController] DisplayNode -> Displaying Node: '{(node != null ? node.name : "NULL")}', Text: '{(node != null ? node.dialogueText : "")}'</color>");
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
         _fullText         = injectedPrefixText + node.dialogueText;
