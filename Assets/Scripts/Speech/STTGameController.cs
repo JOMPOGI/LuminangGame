@@ -79,7 +79,14 @@ public class STTGameController : MonoBehaviour
     private void ProcessSpeech(string filePath)
     {
         if (statusText != null) statusText.text = "Processing...";
-        GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError);
+        
+        string langCode = "";
+        if (PhraseEvaluator.Instance.CurrentRegion == RegionMode.Ilokano)
+            langCode = "tl"; // Tagalog/Filipino as fallback for regional languages
+        else if (PhraseEvaluator.Instance.CurrentRegion == RegionMode.Cebuano)
+            langCode = "ceb"; // Cebuano
+        
+        GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError, "", langCode);
     }
 
     public void SelectIlokano() 
@@ -114,7 +121,7 @@ public class STTGameController : MonoBehaviour
     {
         if (statusText != null) statusText.text = "Processing Results...";
 
-        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish) =>
+        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
         {
             string transcript = $"Heard: \"{result}\"";
 
@@ -127,13 +134,25 @@ public class STTGameController : MonoBehaviour
             }
             else if (bestEntry != null)
             {
-                string feedback = PhraseEvaluator.Instance.GetFeedback(accuracy);
-                if (statusText != null) statusText.text = $"{bestLang.ToUpper()} Detected";
-                if (accuracyText != null) accuracyText.text = $"{accuracy:F0}% Match";
-                
-                if (feedbackText != null) feedbackText.text = $"{transcript}\n{feedback}";
-                if (retryButton != null) retryButton.gameObject.SetActive(accuracy < 80f);
-                OnSTTEvaluationComplete?.Invoke(accuracy >= 80f, bestEntry.GetPhrase(bestLang));
+                if (matchResult == "uncertain")
+                {
+                    if (statusText != null) statusText.text = "Unclear Speech";
+                    if (accuracyText != null) accuracyText.text = $"{accuracy:F0}% Match";
+                    if (feedbackText != null) feedbackText.text = $"{transcript}\nI couldn't quite catch that. Please speak a bit more clearly.";
+                    if (retryButton != null) retryButton.gameObject.SetActive(true);
+                    // Do not invoke OnSTTEvaluationComplete so quest doesn't fail immediately
+                }
+                else
+                {
+                    string feedback = PhraseEvaluator.Instance.GetFeedback(accuracy);
+                    if (statusText != null) statusText.text = $"{bestLang.ToUpper()} Detected";
+                    if (accuracyText != null) accuracyText.text = $"{accuracy:F0}% Match";
+                    
+                    if (feedbackText != null) feedbackText.text = $"{transcript}\n{feedback}";
+                    bool passed = matchResult == "pass" || matchResult == "correct" || accuracy >= 80f;
+                    if (retryButton != null) retryButton.gameObject.SetActive(!passed);
+                    OnSTTEvaluationComplete?.Invoke(passed, bestEntry.GetPhrase(bestLang));
+                }
             }
             else
             {

@@ -230,7 +230,7 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("<color=red>[DialogueManager] STT FAILED!</color>");
                 if (_currentNPC != null)
-                    StartCoroutine(HandleWrongAnswer(_activeNode)); // Return to the SAME word-challenge node, not the success node
+                    StartCoroutine(HandleWrongAnswer(_activeNode));
             }
         }
         else
