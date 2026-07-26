@@ -23,12 +23,12 @@ public class GroqWhisperManager : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
-    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = "")
+    public void Transcribe(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = "", string language = "")
     {
-        StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError, prompt));
+        StartCoroutine(TranscribeCoroutine(filePath, onSuccess, onError, prompt, language));
     }
 
-    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = "")
+    private IEnumerator TranscribeCoroutine(string filePath, Action<string> onSuccess, Action<string> onError, string prompt = "", string language = "")
     {
         if (!File.Exists(filePath))
         {
@@ -43,6 +43,10 @@ public class GroqWhisperManager : MonoBehaviour
         if (!string.IsNullOrEmpty(prompt))
         {
             form.AddField("prompt", prompt);
+        }
+        if (!string.IsNullOrEmpty(language))
+        {
+            form.AddField("language", language);
         }
 
         using (UnityWebRequest request = UnityWebRequest.Post(GROQ_WHISPER_URL, form))

@@ -34,20 +34,24 @@ class ControlledDataset:
         """
         targets = []
         for entry in self.phrases:
+            is_template = entry.get('type') == 'template'
+            
             if region_mode == "Ilokano":
-                targets.append((entry, "ilokano", entry.get("ilokano", "")))
+                val = entry.get('ilokano_target') if is_template else entry.get("ilokano", "")
+                targets.append((entry, "ilokano", val))
             elif region_mode == "Cebuano":
-                targets.append((entry, "cebuano", entry.get("cebuano", "")))
+                val = entry.get('cebuano_target') if is_template else entry.get("cebuano", "")
+                targets.append((entry, "cebuano", val))
             elif region_mode == "BossBattle":
                 # In Boss Battle, all regional languages are active
                 for lang in ["ilokano", "cebuano"]:
-                    val = entry.get(lang, "")
+                    val = entry.get(f'{lang}_target') if is_template else entry.get(lang, "")
                     if val and val != "___":
                         targets.append((entry, lang, val))
             else:
                 # Default, include regional
                 for lang in ["ilokano", "cebuano"]:
-                    val = entry.get(lang, "")
+                    val = entry.get(f'{lang}_target') if is_template else entry.get(lang, "")
                     if val and val != "___":
                         targets.append((entry, lang, val))
         return targets
