@@ -110,7 +110,7 @@ public class TeachingOverlayPanel : MonoBehaviour
         if (backgroundImage != null && !string.IsNullOrEmpty(backgroundName))
         {
             Sprite found = FindBackground(backgroundName);
-            if (found != null) backgroundImage.sprite = found;
+            if (found != null) ChangeBackground(found);
         }
 
         ResetPromptText();
@@ -396,5 +396,58 @@ public class TeachingOverlayPanel : MonoBehaviour
                 if (!inDialogue) movementControls.SetActive(true);
             }
         }
+    }
+
+    private Coroutine _bgFadeCoroutine;
+
+    private void ChangeBackground(Sprite newSprite)
+    {
+        if (backgroundImage == null || newSprite == null) return;
+        if (backgroundImage.sprite == newSprite) return; // Same background, no swap needed
+
+        if (_bgFadeCoroutine != null) StopCoroutine(_bgFadeCoroutine);
+
+        // If the overlay panel is already open & visible, smoothly cross-fade the background image!
+        if (gameObject.activeInHierarchy && canvasGroup != null && canvasGroup.alpha > 0.5f)
+        {
+            _bgFadeCoroutine = StartCoroutine(FadeBackgroundRoutine(newSprite));
+        }
+        else
+        {
+            backgroundImage.sprite = newSprite;
+            backgroundImage.color = Color.white;
+        }
+    }
+
+    private IEnumerator FadeBackgroundRoutine(Sprite newSprite)
+    {
+        float duration = 0.2f;
+        float elapsed = 0f;
+        Color initialColor = backgroundImage.color;
+
+        // 1. Fade out current background image
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float a = Mathf.Lerp(initialColor.a, 0f, elapsed / duration);
+            backgroundImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, a);
+            yield return null;
+        }
+
+        // 2. Swap background sprite
+        backgroundImage.sprite = newSprite;
+
+        // 3. Fade new background image back in
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float a = Mathf.Lerp(0f, 1f, elapsed / duration);
+            backgroundImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, a);
+            yield return null;
+        }
+
+        backgroundImage.color = Color.white;
+        _bgFadeCoroutine = null;
     }
 }

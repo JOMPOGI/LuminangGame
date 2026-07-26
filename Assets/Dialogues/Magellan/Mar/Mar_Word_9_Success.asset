@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mar
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Salamat! Good manners make every community stronger and everyone
-    feel  '
+  dialogueText: 'Salamat! Good manners make every community stronger! '
   translatedText: 
   animationTrigger: 
   triggerEventName: 
@@ -25,4 +24,4 @@ MonoBehaviour:
     nextNode: {fileID: 0}
     isWrong: 0
     choiceEvent: 
-    expectedSTTWord: salamat
+    expectedSTTWord: 
