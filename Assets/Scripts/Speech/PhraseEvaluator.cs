@@ -201,15 +201,15 @@ public class PhraseEvaluator : MonoBehaviour
     [Serializable]
     private class MatchItem
     {
-        public PhraseEntry entry;
-        public string language;
-        public float score;
+        public PhraseEntry entry = default;
+        public string language = default;
+        public float score = default;
     }
 
     [Serializable]
     private class AllMatchesResponse
     {
-        public string transcript;
-        public List<MatchItem> matches;
+        public string transcript = default;
+        public List<MatchItem> matches = default;
     }
 }

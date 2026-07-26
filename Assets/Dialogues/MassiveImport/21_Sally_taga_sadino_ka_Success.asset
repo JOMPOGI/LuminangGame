@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: 21_Sally_taga_sadino_ka_Success
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Sally
+  speakerPortrait: {fileID: 0}
+  dialogueText: Taga sadino ka? That's how you ask where someone comes from!
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: Next
+    nextNode: {fileID: 11400000, guid: 7ef2822bbd56157458f3054d1ee29917, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

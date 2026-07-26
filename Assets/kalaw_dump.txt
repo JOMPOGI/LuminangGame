@@ -1,0 +1,6 @@
+DUMP START
+Kalaw GameObject: Kalaw
+interactionEnabled: True
+defaultDialogue: 01_Kalaw_Teach
+questDialogues count: 1
+  - Obj: Find Fruit, Node: 84_Kalaw_Eval_Phase1

@@ -1,0 +1,652 @@
+{
+    "words": [
+        {
+            "id": 1,
+            "title": "HELLO \u2192 KUMUSTA",
+            "speaker": "Kalaw",
+            "teachText": "Let's start with a simple word you'll use often when meeting someone.\nIn Ilokano, 'kumusta' means 'hello.'\nIt is a friendly greeting you can use when you meet someone or begin a conversation.\nListen carefully: kumusta.\nNow, try saying 'kumusta' yourself.",
+            "expectedSTT": "kumusta",
+            "successText": "Kumusta! Nailed it! That's a great way to greet someone!"
+        },
+        {
+            "id": 2,
+            "title": "HOW ARE YOU? \u2192 KUMUSTA KA?",
+            "speaker": "Kalaw",
+            "teachText": "Once you've greeted someone, you can show more warmth by asking how they are.\nIn Ilokano, 'kumusta ka?' means 'how are you?'\nYou can use it when checking on a friend, neighbor, or someone you've just met.\nListen carefully: kumusta ka?\nNow, try saying 'kumusta ka?' yourself.",
+            "expectedSTT": "kumusta ka?",
+            "successText": "Kumusta ka! Ah, see that smile? You're making friends already!"
+        },
+        {
+            "id": 3,
+            "title": "I'M FINE \u2192 NASAYAAT AK",
+            "speaker": "Kalaw",
+            "teachText": "When someone asks you 'kumusta ka?', you can tell them how you're doing.\nIn Ilokano, 'nasayaat ak' means 'I'm fine' or 'I'm doing well.'\nFor example, if someone asks how your journey is going, you can answer: 'Nasayaat ak.'\nListen carefully: nasayaat ak.\nNow, try saying 'nasayaat ak' yourself.",
+            "expectedSTT": "nasayaat ak",
+            "successText": "Nasayaat ak! That's the spirit! Keep that energy up!"
+        },
+        {
+            "id": 4,
+            "title": "GOOD MORNING \u2192 NAIMBAG A BIGAT",
+            "speaker": "Kalaw",
+            "teachText": "Look at the morning sun shining over the tiled roofs of Calle Crisologo.\nIn Ilokano, 'naimbag a bigat' means 'good morning.'\nYou can use it when greeting someone earlier in the day.\nFor example, you can use it when greeting vendors as they begin their morning.\nListen carefully: naimbag a bigat.\nNow, try saying 'naimbag a bigat' yourself.",
+            "expectedSTT": "naimbag a bigat",
+            "successText": "Naimbag a bigat! You've got the morning greeting down!\nFly over to Vendor Kyros's souvenir stall. He'll teach you how to greet people at other times of the day.\n\n2. VENDOR KYROS \u2014 SOUVENIR VENDOR"
+        },
+        {
+            "id": 5,
+            "title": "GOOD AFTERNOON \u2192 NAIMBAG A MALEM",
+            "speaker": "Kyros",
+            "teachText": "Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was exploring Vigan.\nWhen the morning has passed and the afternoon arrives, Ilocanos can greet someone by saying 'naimbag a malem.'\nIt means 'good afternoon.'\nYou can use it when greeting someone during the afternoon.\nListen carefully: naimbag a malem.\nNow, try saying 'naimbag a malem' yourself.",
+            "expectedSTT": "naimbag a malem",
+            "successText": "Naimbag a malem! Welcome to my shop, friend!"
+        },
+        {
+            "id": 6,
+            "title": "GOOD EVENING \u2192 NAIMBAG A RABII",
+            "speaker": "Kyros",
+            "teachText": "As the sun sets and the streetlamps begin to glow, the greeting changes with the time of day.\nIn Ilokano, 'naimbag a rabii' means 'good evening.'\nUse it when greeting someone in the evening.\nListen carefully: naimbag a rabii.\nNow, try saying 'naimbag a rabii' yourself.",
+            "expectedSTT": "naimbag a rabii",
+            "successText": "Naimbag a rabii! Look at your pendant glow!"
+        },
+        {
+            "id": 7,
+            "title": "GOOD DAY \u2192 NAIMBAG NGA ALDAW",
+            "speaker": "Kyros",
+            "teachText": "Sometimes you want to give someone a general greeting without focusing on morning, afternoon, or evening.\nIn Ilokano, 'naimbag nga aldaw' means 'good day.'\nIt is a general greeting that can be used to wish someone a pleasant day.\nListen carefully: naimbag nga aldaw.\nNow, try saying 'naimbag nga aldaw' yourself.",
+            "expectedSTT": "naimbag nga aldaw",
+            "successText": "Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!"
+        },
+        {
+            "id": 8,
+            "title": "GOODBYE \u2192 AGPAKADA AKON",
+            "speaker": "Kyros",
+            "teachText": "Every journey eventually continues to another place.\nWhen leaving someone, you can say 'agpakada akon' to say 'goodbye.'\nUse it when ending a conversation or parting ways.\nListen carefully: agpakada akon.\nNow, try saying 'agpakada akon' yourself.",
+            "expectedSTT": "agpakada akon",
+            "successText": "Agpakada akon! \u2728 GREETINGS MILESTONE UNLOCKED! \u2728\nGo meet Vendor Irah at the weaving loom. She has something important to teach you about showing gratitude.\n\nQUEST 2: GRATITUDE\nWords 9\u201313\n3. VENDOR IRAH \u2014 INABEL WEAVER"
+        },
+        {
+            "id": 9,
+            "title": "THANK YOU \u2192 AGYAMANAK",
+            "speaker": "Irah",
+            "teachText": "Clack-clack-clack goes the loom! Welcome, traveler!\nWhen someone helps you, gives you something, or does something kind for you, it is important to show appreciation.\nIn Ilokano, 'agyamanak' means 'thank you.'\nYou can use it whenever you want to express gratitude.\nListen carefully: agyamanak.\nNow, try saying 'agyamanak' yourself.",
+            "expectedSTT": "agyamanak",
+            "successText": "Agyamanak! Showing gratitude helps keep our community close-knit!"
+        },
+        {
+            "id": 10,
+            "title": "THANK YOU VERY MUCH \u2192 AGYAMANAK UNAY",
+            "speaker": "Irah",
+            "teachText": "Sometimes a simple thank you isn't enough to express how grateful you feel.\nIn Ilokano, 'agyamanak unay' means 'thank you very much.'\nYou can use it when someone does something especially kind or generous for you.\nListen carefully: agyamanak unay.\nNow, try saying 'agyamanak unay' yourself.",
+            "expectedSTT": "agyamanak unay",
+            "successText": "Agyamanak unay! May your journey be smooth and bright!"
+        },
+        {
+            "id": 11,
+            "title": "THANK YOU FOR YOUR HELP \u2192 AGYAMANAK ITI TULONG MO",
+            "speaker": "Irah",
+            "teachText": "When someone gives you a helping hand, you can thank them specifically for their assistance.\nIn Ilokano, 'agyamanak iti tulong mo' means 'thank you for your help.'\nYou can use it when someone helps you complete a task or solve a problem.\nListen carefully: agyamanak iti tulong mo.\nNow, try saying 'agyamanak iti tulong mo' yourself.",
+            "expectedSTT": "agyamanak iti tulong mo",
+            "successText": "Agyamanak iti tulong mo! We Ilocanos love helping one another!"
+        },
+        {
+            "id": 12,
+            "title": "I AM SORRY \u2192 PAKAWANEN NAK",
+            "speaker": "Irah",
+            "teachText": "Oops! Be careful around these delicate threads.\nIf you accidentally bump into someone or make a mistake, you can apologize.\nIn Ilokano, 'pakawanen nak' means 'I am sorry.'\nUse it when you want to apologize for something you've done.\nListen carefully: pakawanen nak.\nNow, try saying 'pakawanen nak' yourself.",
+            "expectedSTT": "pakawanen nak",
+            "successText": "Pakawanen nak... No harm done!\nPop over to Vendor Jom's empanada stall for the last gratitude phrase!\n\n4. VENDOR JOM \u2014 EMPANADA VENDOR"
+        },
+        {
+            "id": 13,
+            "title": "EXCUSE ME \u2192 DISPENSAREN NAK",
+            "speaker": "Jom",
+            "teachText": "Smell that sizzling longganisa? My counter is getting crowded!\nWhen you need to politely get someone's attention or pass through a crowded space, you can say 'dispensaren nak.'\nIt means 'excuse me.'\nListen carefully: dispensaren nak.\nNow, try saying 'dispensaren nak' yourself.",
+            "expectedSTT": "dispensaren nak",
+            "successText": "Dispensaren nak! Sharp manners!\n\u2728 GRATITUDE MILESTONE UNLOCKED! \u2728\nStick around for the Response trials!\n\nQUEST 3: RESPONSES\nWords 14\u201318\nWords 14\u201318 \u2014 JOM"
+        },
+        {
+            "id": 14,
+            "title": "YES \u2192 WEN",
+            "speaker": "Jom",
+            "teachText": "Let's practice a simple response.\nWhen someone asks you a question and you want to agree or answer 'yes,' Ilokano uses the word 'wen.'\nListen carefully: wen.\nNow, try saying 'wen' yourself.",
+            "expectedSTT": "wen",
+            "successText": "Wen! That's what I like to hear! Sizzling away!"
+        },
+        {
+            "id": 15,
+            "title": "NO \u2192 SAAN",
+            "speaker": "Jom",
+            "teachText": "Of course, sometimes you need to politely disagree or say 'no.'\nIn Ilokano, 'saan' means 'no.'\nYou can use it when you want to give a negative response.\nListen carefully: saan.\nNow, try saying 'saan' yourself.",
+            "expectedSTT": "saan",
+            "successText": "Saan! Got it! I'll keep that garlic vinegar ready for another time!"
+        },
+        {
+            "id": 16,
+            "title": "OKAY \u2192 OKAY",
+            "speaker": "Jom",
+            "teachText": "Sometimes you simply want to show that you agree or understand.\nIn Ilokano, 'okay' can also be used to say 'okay.'\nIt is a simple response used to acknowledge something or show agreement.\nListen carefully: okay.\nNow, try saying 'okay' yourself.",
+            "expectedSTT": "okay",
+            "successText": "Okay! Easy enough! You're picking this up quickly!"
+        },
+        {
+            "id": 17,
+            "title": "I UNDERSTAND \u2192 MAWATAN KO",
+            "speaker": "Jom",
+            "teachText": "When someone explains something and you want to tell them that you understand, you can use 'maawatan ko.'\nIt means 'I understand.'\nListen carefully: maawatan ko.\nNow, try saying 'maawatan ko' yourself.",
+            "expectedSTT": "maawatan ko",
+            "successText": "Maawatan ko! Excellent! You're understanding more and more!"
+        },
+        {
+            "id": 18,
+            "title": "I DON'T UNDERSTAND \u2192 DIAK MAWATAN",
+            "speaker": "Jom",
+            "teachText": "If someone says something you don't understand, it's useful to let them know.\nIn Ilokano, 'diak maawatan' means 'I don't understand.'\nYou can use it when you need someone to explain something again.\nListen carefully: diak maawatan.\nNow, try saying 'diak maawatan' yourself.",
+            "expectedSTT": "diak maawatan",
+            "successText": "Diak maawatan! No worries\u2014learning takes practice!\n\u2728 RESPONSES MILESTONE UNLOCKED! \u2728\n\nQUEST 4: IDENTITY\nWords 19\u201322\n5. RONNIE \u2014 LOCAL RESIDENT"
+        },
+        {
+            "id": 19,
+            "title": "WHAT IS YOUR NAME? \u2192 ANIA TI NAGAN MO",
+            "speaker": "Ronnie",
+            "teachText": "When meeting someone new, one of the first things you may want to know is their name.\nIn Ilokano, 'ania ti nagan mo?' means 'what is your name?'\nYou can use this phrase when introducing yourself to someone or asking for their name.\nListen carefully: ania ti nagan mo?\nNow, try saying 'ania ti nagan mo?' yourself.",
+            "expectedSTT": "ania ti nagan mo",
+            "successText": "Ania ti nagan mo? That's a great question to ask when meeting someone new!"
+        },
+        {
+            "id": 20,
+            "title": "MY NAME IS ___ \u2192 TI NAGAN KO KET ___",
+            "speaker": "Ronnie",
+            "teachText": "Now it's your turn to introduce yourself.\nIn Ilokano, 'ti nagan ko ket...' means 'my name is...'\nThe words 'ti nagan ko ket' form the fixed part of the phrase. You then add your own name.\nFor example: 'Ti nagan ko ket Jom.'\nListen carefully: ti nagan ko ket Jom.\nNow, try introducing yourself using 'ti nagan ko ket...' and your own name.",
+            "expectedSTT": "ti nagan ko ket [Player Name]",
+            "successText": "Awesome to meet you! You just introduced yourself in Ilokano!\nGo meet Sally near the brick arch to complete Level I!\n\n6. SALLY \u2014 LOCAL RESIDENT"
+        },
+        {
+            "id": 21,
+            "title": "WHERE ARE YOU FROM? \u2192 TAGA SADINO KA",
+            "speaker": "Sally",
+            "teachText": "When meeting someone new, you may also want to learn where they come from.\nIn Ilokano, 'taga sadino ka?' means 'where are you from?'\nUse it when asking someone about their hometown or place of origin.\nListen carefully: taga sadino ka?\nNow, try saying 'taga sadino ka?' yourself.",
+            "expectedSTT": "taga sadino ka",
+            "successText": "Taga sadino ka? That's how you ask where someone comes from!"
+        },
+        {
+            "id": 22,
+            "title": "I AM FROM ___ \u2192 TAGA ___ AK",
+            "speaker": "Sally",
+            "teachText": "Now you can answer that question yourself.\nIn Ilokano, 'taga ___ ak' means 'I am from ___.'\nThe phrase 'taga' introduces the place you come from, while the location changes depending on your answer.\nFor example: 'taga Vigan ak.'\nListen carefully: taga Vigan ak.\nNow, try saying 'taga' followed by your hometown.",
+            "expectedSTT": "taga [Player Town] ak",
+            "successText": "Excellent! You just told me where you're from!\n\ud83c\udfc6 LEVEL I: CONVERSATIONAL & SOCIAL COMPLETE! \ud83c\udfc6\nYou've learned how to greet people, express gratitude, respond to others, and introduce yourself.\nYour journey now takes you deeper into everyday communication.\nWelcome to Level II: Functional & Navigational!\n\nLEVEL II: FUNCTIONAL & NAVIGATIONAL\nQUEST 5: REQUESTS\nWords 23\u201327"
+        },
+        {
+            "id": 23,
+            "title": "HELP ME \u2192 TULONGANNAK",
+            "speaker": "Sally",
+            "teachText": "If you are in trouble or need assistance, you need a direct way to ask for help.\nIn Ilokano, 'tulunganak' means 'help me.'\nUse it when you urgently need someone to assist you.\nListen carefully: tulunganak.\nNow, try saying 'tulunganak' yourself.",
+            "expectedSTT": "tulunganak",
+            "successText": "Tulunganak! Don't worry\u2014you're never alone!"
+        },
+        {
+            "id": 24,
+            "title": "CAN YOU HELP ME \u2192 MABALIN KADI A TULONGANNAK",
+            "speaker": "Sally",
+            "teachText": "Sometimes you want to ask for help more politely.\nIn Ilokano, 'mabalin kadi a tulunganak?' means 'can you help me?'\nThis is useful when politely requesting someone's assistance.\nListen carefully: mabalin kadi a tulunganak?\nNow, try saying 'mabalin kadi a tulunganak?' yourself.",
+            "expectedSTT": "mabalin kadi a tulunganak",
+            "successText": "Mabalin kadi a tulunganak! Perfect!\nFind Tour Guide Lito for the rest of these requests!\n\n7. LITO \u2014 TOUR GUIDE"
+        },
+        {
+            "id": 25,
+            "title": "PLEASE WAIT \u2192 URAYENNAK",
+            "speaker": "Lito",
+            "teachText": "Look out! A horse carriage is passing through!\nWhen you need someone to pause and wait for you, you can say 'urayennak.'\nIt means 'please wait' or 'wait for me.'\nListen carefully: urayennak.\nNow, try saying 'urayennak' yourself.",
+            "expectedSTT": "urayennak",
+            "successText": "Urayennak! Safety first on these narrow streets!"
+        },
+        {
+            "id": 26,
+            "title": "GIVE ME ___ \u2192 IKANMO MAN ___",
+            "speaker": "Lito",
+            "teachText": "When asking someone to hand you an object, you can use 'ikanmo man...'\nIt means 'give me...' and you add the item you want afterward.\nFor example: 'ikanmo man map' \u2014 'give me the map.'\nListen carefully: ikanmo man map.\nNow, try saying 'ikanmo man' followed by an object you want.",
+            "expectedSTT": "ikanmo man [object]",
+            "successText": "Ikanmo man! Well done! Here is your map of Vigan!"
+        },
+        {
+            "id": 27,
+            "title": "CAN I ASK \u2192 MABALIN KADI AGSALUDSOD",
+            "speaker": "Lito",
+            "teachText": "Before asking someone a question, it's polite to ask for permission.\nIn Ilokano, 'mabalin kadi agsaludsod?' means 'can I ask?'\nYou can use it before asking someone for information.\nListen carefully: mabalin kadi agsaludsod?\nNow, try saying 'mabalin kadi agsaludsod?' yourself.",
+            "expectedSTT": "mabalin kadi agsaludsod",
+            "successText": "Mabalin kadi agsaludsod! Ask away!\n\u2728 REQUESTS MILESTONE UNLOCKED! \u2728\n\nQUEST 6: DIRECTIONS\nWords 28\u201337"
+        },
+        {
+            "id": 28,
+            "title": "GO STRAIGHT \u2192 AGDIRETSO",
+            "speaker": "Lito",
+            "teachText": "You're heading toward Plaza Salcedo and don't want to make any turns.\nIn Ilokano, 'agdiretso' means 'go straight.'\nYou can use it when giving directions or telling someone to continue forward.\nListen carefully: agdiretso.\nNow, try saying 'agdiretso' yourself.",
+            "expectedSTT": "agdiretso",
+            "successText": "Agdiretso! Straight ahead!\nGo find Apo Lakay by the stone well for more pathfinding!\n\n8. APO LAKAY \u2014 COMMUNITY ELDER"
+        },
+        {
+            "id": 29,
+            "title": "TURN LEFT \u2192 AGLIKO ITI KANNIGID",
+            "speaker": "Apo Lakay",
+            "teachText": "To reach the Burnay pottery yard, you need to tell someone which direction to take.\nIn Ilokano, 'agliko iti kannigid' means 'turn left.'\nUse it when directing someone to turn toward the left side.\nListen carefully: agliko iti kannigid.\nNow, try saying 'agliko iti kannigid' yourself.",
+            "expectedSTT": "agliko iti kannigid",
+            "successText": "Agliko iti kannigid! Turn left\u2014the clay kilns are right there!"
+        },
+        {
+            "id": 30,
+            "title": "TURN RIGHT \u2192 AGLIKO ITI KANNAWAN",
+            "speaker": "Apo Lakay",
+            "teachText": "If you want someone to take the opposite direction, you can tell them to turn right.\nIn Ilokano, 'agliko iti kannawan' means 'turn right.'\nListen carefully: agliko iti kannawan.\nNow, try saying 'agliko iti kannawan' yourself.",
+            "expectedSTT": "agliko iti kannawan",
+            "successText": "Agliko iti kannawan! Turn right at the corner!"
+        },
+        {
+            "id": 31,
+            "title": "GO UP \u2192 UMULI ITI NGATO",
+            "speaker": "Apo Lakay",
+            "teachText": "To reach the top of the tower and see the province below, you need to tell someone to move upward.\nIn Ilokano, 'umuli iti ngato' means 'go up.'\nUse it when directing someone toward a higher place.\nListen carefully: umuli iti ngato.\nNow, try saying 'umuli iti ngato' yourself.",
+            "expectedSTT": "umuli iti ngato",
+            "successText": "Umuli iti ngato! Climb up to the top!"
+        },
+        {
+            "id": 32,
+            "title": "GO DOWN \u2192 BUMABA",
+            "speaker": "Apo Lakay",
+            "teachText": "After enjoying the view, you'll need to return to the ground.\nIn Ilokano, 'bumaba' means 'go down.'\nUse it when telling someone to move toward a lower place.\nListen carefully: bumaba.\nNow, try saying 'bumaba' yourself.",
+            "expectedSTT": "bumaba",
+            "successText": "Bumaba! Mind your step!\nGo see Tomas at the pottery yard!\n\n9. TOMAS \u2014 POTTERY MAKER"
+        },
+        {
+            "id": 33,
+            "title": "STOP HERE \u2192 AGSARDENG DITOY",
+            "speaker": "Tomas",
+            "teachText": "Welcome to the clay yard!\nIf you want someone to stop at the place where they are standing, you can say 'agsardeng ditoy.'\nIt means 'stop here.'\nListen carefully: agsardeng ditoy.\nNow, try saying 'agsardeng ditoy' yourself.",
+            "expectedSTT": "agsardeng ditoy",
+            "successText": "Agsardeng ditoy! Perfect landing spot!"
+        },
+        {
+            "id": 34,
+            "title": "COME HERE \u2192 UMAY DITOY",
+            "speaker": "Tomas",
+            "teachText": "Sometimes you need to call someone toward you.\nIn Ilokano, 'umay ditoy' means 'come here.'\nUse it when asking someone to move toward your location.\nListen carefully: umay ditoy.\nNow, try saying 'umay ditoy' yourself.",
+            "expectedSTT": "umay ditoy",
+            "successText": "Umay ditoy! Come take a look at this pottery!"
+        },
+        {
+            "id": 35,
+            "title": "GO THERE \u2192 MAPAN IDIAY",
+            "speaker": "Tomas",
+            "teachText": "If you want someone to move toward another location, you can direct them away from where you are.\nIn Ilokano, 'mapan idiay' means 'go there.'\nListen carefully: mapan idiay.\nNow, try saying 'mapan idiay' yourself.",
+            "expectedSTT": "mapan idiay",
+            "successText": "Mapan idiay! Cool shade is much safer!"
+        },
+        {
+            "id": 36,
+            "title": "FOLLOW ME \u2192 SUROTENNAK",
+            "speaker": "Tomas",
+            "teachText": "When you want someone to come along with you, you can tell them to follow.\nIn Ilokano, 'surotennak' means 'follow me.'\nUse it when leading someone to another place.\nListen carefully: surotennak.\nNow, try saying 'surotennak' yourself.",
+            "expectedSTT": "surotennak",
+            "successText": "Surotennak! Follow me to the jar drying racks!\n\n10. KLARA \u2014 ANTIQUE SHOP OWNER"
+        },
+        {
+            "id": 37,
+            "title": "WAIT HERE \u2192 URAY DITOY",
+            "speaker": "Klara",
+            "teachText": "If you need someone to stay in their current location while you do something else, you can tell them to wait.\nIn Ilokano, 'uray ditoy' means 'wait here.'\nListen carefully: uray ditoy.\nNow, try saying 'uray ditoy' yourself.",
+            "expectedSTT": "uray ditoy",
+            "successText": "Uray ditoy!\n\u2728 DIRECTIONS MILESTONE UNLOCKED! \u2728\nTalk to me again for the Counting lessons!\n\nQUEST 7: COUNT\nWords 38\u201347\n10. KLARA \u2014 ANTIQUE SHOP OWNER"
+        },
+        {
+            "id": 38,
+            "title": "ONE \u2192 MAYSA",
+            "speaker": "Klara",
+            "teachText": "Let's begin counting in Ilokano.\nThe word 'maysa' means 'one.'\nYou use it when counting a single person or object.\nFor example, if you see one chest, you can say 'maysa.'\nListen carefully: maysa.\nNow, try saying 'maysa' yourself.",
+            "expectedSTT": "maysa",
+            "successText": "Maysa! Just one rare chest!"
+        },
+        {
+            "id": 39,
+            "title": "TWO \u2192 DUA",
+            "speaker": "Klara",
+            "teachText": "When you count two objects, people, or things, Ilokano uses 'dua.'\nIt means 'two.'\nListen carefully: dua.\nNow, try saying 'dua' yourself.",
+            "expectedSTT": "dua",
+            "successText": "Dua! Two matching chairs!"
+        },
+        {
+            "id": 40,
+            "title": "THREE \u2192 TALLO",
+            "speaker": "Klara",
+            "teachText": "The next number is 'tallo.'\nIn Ilokano, 'tallo' means 'three.'\nFor example, you can use it when counting three objects.\nListen carefully: tallo.\nNow, try saying 'tallo' yourself.",
+            "expectedSTT": "tallo",
+            "successText": "Tallo! Three oil lamps!\nHead over to Tala the Bagnet seller for more numbers!\n\n11. TALA \u2014 BAGNET SELLER"
+        },
+        {
+            "id": 41,
+            "title": "FOUR \u2192 UPPAT",
+            "speaker": "Tala",
+            "teachText": "Let's keep counting.\nIn Ilokano, 'uppat' means 'four.'\nYou can use it when counting four objects, such as four pieces of Bagnet.\nListen carefully: uppat.\nNow, try saying 'uppat' yourself.",
+            "expectedSTT": "uppat",
+            "successText": "Uppat! Four crispy slabs!"
+        },
+        {
+            "id": 42,
+            "title": "FIVE \u2192 LIMA",
+            "speaker": "Tala",
+            "teachText": "The next number is 'lima.'\nIn Ilokano, 'lima' means 'five.'\nListen carefully: lima.\nNow, try saying 'lima' yourself.",
+            "expectedSTT": "lima",
+            "successText": "Lima! Five kilos of delicious Bagnet!"
+        },
+        {
+            "id": 43,
+            "title": "SIX \u2192 INNEM",
+            "speaker": "Tala",
+            "teachText": "In Ilokano, the number 'six' is 'innem.'\nListen carefully: innem.\nNow, try saying 'innem' yourself.",
+            "expectedSTT": "innem",
+            "successText": "Innem! Six family recipes!"
+        },
+        {
+            "id": 44,
+            "title": "SEVEN \u2192 PITO",
+            "speaker": "Tala",
+            "teachText": "The Ilokano word for 'seven' is 'pito.'\nListen carefully: pito.\nNow, try saying 'pito' yourself.",
+            "expectedSTT": "pito",
+            "successText": "Pito! Seven!\nRun to Mang Lance the Kalesa driver to finish counting!\n\n12. MANG LANCE \u2014 KUTSERO / KALESA DRIVER\nQuest Objective\nSetObjective_Find Wheel Pin\nIntro Script\nWhoa, hold on! My carriage wheel pin popped out!\nPlease find the wheel pin so my horse Barnaby and I can ride safely!\nPlayer finds pin and returns it \u2192 Quest Completed"
+        },
+        {
+            "id": 45,
+            "title": "EIGHT \u2192 WALO",
+            "speaker": "Mang Lance",
+            "teachText": "Whew! Thanks for fixing my wheel!\nLet's continue counting.\nIn Ilokano, 'walo' means 'eight.'\nListen carefully: walo.\nNow, try saying 'walo' yourself.",
+            "expectedSTT": "walo",
+            "successText": "Walo! Eight treats for Barnaby!"
+        },
+        {
+            "id": 46,
+            "title": "NINE \u2192 SIAM",
+            "speaker": "Mang Lance",
+            "teachText": "The next number is 'siam.'\nIn Ilokano, 'siam' means 'nine.'\nListen carefully: siam.\nNow, try saying 'siam' yourself.",
+            "expectedSTT": "siam",
+            "successText": "Siam! Nine! You're almost at the end of the count!"
+        },
+        {
+            "id": 47,
+            "title": "TEN \u2192 SANGAPULO",
+            "speaker": "Mang Lance",
+            "teachText": "And now, we've reached ten!\nIn Ilokano, 'sangapulo' means 'ten.'\nListen carefully: sangapulo.\nNow, try saying 'sangapulo' yourself.",
+            "expectedSTT": "sangapulo",
+            "successText": "Sangapulo! You made it to ten!\n\ud83c\udfc6 LEVEL II: FUNCTIONAL & NAVIGATIONAL COMPLETE! \ud83c\udfc6\nYou've learned how to ask for help, navigate the streets, give directions, and use numbers in everyday situations.\nNow let's explore how Ilokano describes actions, people, and ideas.\nWelcome to Level III: Grammatical Foundations!\n\nLEVEL III: GRAMMATICAL FOUNDATIONS\nQUEST 8: ACTION VERBS\nWords 48\u201355\n13. RAYO \u2014 PHOTOGRAPHER"
+        },
+        {
+            "id": 48,
+            "title": "EAT \u2192 MANGAN",
+            "speaker": "Mang Lance",
+            "teachText": "After all that walking, you'll probably be hungry!\nIn Ilokano, 'mangan' means 'eat.'\nIt is an action verb used when talking about the act of eating.\nFor example, when it's time for lunch, you can say 'mangan.'\nListen carefully: mangan.\nNow, try saying 'mangan' yourself.",
+            "expectedSTT": "mangan",
+            "successText": "Mangan! Now you're making me hungry!\nGo see Rayo the photographer for more action verbs!\n\n13. RAYO \u2014 PHOTOGRAPHER"
+        },
+        {
+            "id": 49,
+            "title": "DRINK \u2192 UMINOM",
+            "speaker": "Rayo",
+            "teachText": "Click! Great pose!\nIt's warm today, and you might want something refreshing.\nIn Ilokano, 'uminom' means 'drink.'\nIt is an action verb used when talking about drinking something.\nListen carefully: uminom.\nNow, try saying 'uminom' yourself.",
+            "expectedSTT": "uminom",
+            "successText": "Uminom! Refreshing!"
+        },
+        {
+            "id": 50,
+            "title": "GO \u2192 MAPAN",
+            "speaker": "Rayo",
+            "teachText": "When you want to talk about moving from one place to another, you can use the verb 'mapan.'\nIt means 'go.'\nFor example, if you're heading toward a scenic photo spot, you can say 'mapan.'\nListen carefully: mapan.\nNow, try saying 'mapan' yourself.",
+            "expectedSTT": "mapan",
+            "successText": "Mapan! Let's head over to the arch!"
+        },
+        {
+            "id": 51,
+            "title": "COME \u2192 UMAY",
+            "speaker": "Rayo",
+            "teachText": "Now let's learn the opposite direction.\nIn Ilokano, 'umay' means 'come.'\nYou can use it when asking someone to move toward you or toward a particular place.\nListen carefully: umay.\nNow, try saying 'umay' yourself.",
+            "expectedSTT": "umay",
+            "successText": "Umay! Come stand right by the window!"
+        },
+        {
+            "id": 52,
+            "title": "SLEEP \u2192 MATUROG",
+            "speaker": "Rayo",
+            "teachText": "After exploring all day, everyone needs time to rest.\nIn Ilokano, 'maturog' means 'sleep.'\nIt is the action of resting while asleep.\nListen carefully: maturog.\nNow, try saying 'maturog' yourself.",
+            "expectedSTT": "maturog",
+            "successText": "Maturog well!\nCatch up with Aling Rosa to wrap up Action Verbs!\n\n14. ALING ROSA \u2014 SOUVENIR AUNTIE\nQuest Objective\nSetObjective_Find Thread\nIntro Script\nAy, my thread broke!\nPlease find some thread so I can finish weaving these colorful souvenirs!\nPlayer finds thread and returns it \u2192 Quest Completed"
+        },
+        {
+            "id": 53,
+            "title": "SEE \u2192 MAKITA",
+            "speaker": "Aling Rosa",
+            "teachText": "Aww, thank you!\nWhen you look at something or notice something with your eyes, the Ilokano verb 'makita' means 'see.'\nFor example, you can use it when looking at these bright textiles.\nListen carefully: makita.\nNow, try saying 'makita' yourself.",
+            "expectedSTT": "makita",
+            "successText": "Makita! Look at these lovely patterns!"
+        },
+        {
+            "id": 54,
+            "title": "HEAR \u2192 MANGNGEG",
+            "speaker": "Aling Rosa",
+            "teachText": "Listen closely. Can you hear the horse hooves clattering down Calle Crisologo?\nIn Ilokano, 'mangngeg' means 'hear.'\nListen carefully: mangngeg.\nNow, try saying 'mangngeg' yourself.",
+            "expectedSTT": "mangngeg",
+            "successText": "Mangngeg! You can hear the kalesas coming!"
+        },
+        {
+            "id": 55,
+            "title": "SPEAK \u2192 AGSAO",
+            "speaker": "Aling Rosa",
+            "teachText": "You're doing something very important right now\u2014you are using your voice.\nIn Ilokano, 'agsao' means 'speak.'\nYou can use it when talking about speaking with another person or practicing a language.\nListen carefully: agsao.\nNow, try saying 'agsao' yourself.",
+            "expectedSTT": "agsao",
+            "successText": "Agsao!\n\u2728 ACTION VERBS MILESTONE UNLOCKED! \u2728\nStay here for Linking Verbs!\n\nQUEST 9: LINKING VERBS & CONNECTORS\nWords 56\u201365"
+        },
+        {
+            "id": 56,
+            "title": "AM / SUBJECT CONNECTOR \u2192 KET",
+            "speaker": "Aling Rosa",
+            "teachText": "Now we're moving into a more advanced part of Ilokano.\nIn a sentence such as 'Siak ket weaver,' the word 'ket' connects the subject with the information that describes it.\nThink of 'ket' as a connector that helps link the two parts of the sentence.\nListen carefully: ket.\nNow, try saying 'ket' yourself.",
+            "expectedSTT": "ket",
+            "successText": "Ket! Spot on!\nGo see Lola Nida for more connector words!\n\n15. LOLA NIDA \u2014 ELDERLY RESIDENT"
+        },
+        {
+            "id": 57,
+            "title": "IS / SPECIFIC MARKER \u2192 ISU TI",
+            "speaker": "Lola Nida",
+            "teachText": "When identifying or describing something specific, Ilokano can use 'isu ti' as part of the sentence structure.\nFor example, it can help express an idea similar to 'is the' in English.\nListen carefully: isu ti.\nNow, try saying 'isu ti' yourself.",
+            "expectedSTT": "isu ti",
+            "successText": "Isu ti! You're learning how Ilokano connects ideas!"
+        },
+        {
+            "id": 58,
+            "title": "PLURAL SUBJECT MARKER \u2192 DA",
+            "speaker": "Lola Nida",
+            "teachText": "When talking about a group of people, Ilokano can use 'da' as a plural marker.\nFor example, when referring to a group such as the weavers, 'da' can help indicate that you're talking about more than one person.\nListen carefully: da.\nNow, try saying 'da' yourself.",
+            "expectedSTT": "da",
+            "successText": "Da! You're learning how Ilokano expresses groups!"
+        },
+        {
+            "id": 59,
+            "title": "WAS / PAST STATE \u2192 KET IDI",
+            "speaker": "Lola Nida",
+            "teachText": "When talking about something that existed or was true in the past, you can use 'ket idi' in a historical context.\nFor example, when describing how a place was in the past, this phrase can help connect the subject with its former state.\nListen carefully: ket idi.\nNow, try saying 'ket idi' yourself.",
+            "expectedSTT": "ket idi",
+            "successText": "Ket idi! You're connecting language with the history of Ilocos!"
+        },
+        {
+            "id": 60,
+            "title": "WERE / PLURAL PAST STATE \u2192 KET IDI",
+            "speaker": "Lola Nida",
+            "teachText": "The same past expression can also appear when talking about a group in a historical context.\nFor example, when describing what people were like in the past, 'ket idi' can be part of the sentence structure.\nListen carefully: ket idi.\nNow, try saying 'ket idi' yourself.",
+            "expectedSTT": "ket idi",
+            "successText": "Ket idi! The past lives on through the stories we tell!\n\n16. NENENG \u2014 STUDENT"
+        },
+        {
+            "id": 61,
+            "title": "BECOME \u2192 AGBALIN",
+            "speaker": "Neneng",
+            "teachText": "Hey! Here's an interesting one.\nIn Ilokano, 'agbalin' means 'become.'\nIt describes a change from one state or condition into another.\nFor example, with practice, you can become more confident in speaking Ilokano.\nListen carefully: agbalin.\nNow, try saying 'agbalin' yourself.",
+            "expectedSTT": "agbalin",
+            "successText": "Agbalin! With practice, you can become a confident Ilokano speaker!"
+        },
+        {
+            "id": 62,
+            "title": "SEEM / LIKE \u2192 KASLA",
+            "speaker": "Neneng",
+            "teachText": "Sometimes we want to describe how something appears or feels to us.\nIn Ilokano, 'kasla' can express the idea of 'seem' or 'like.'\nFor example, you might say something seems like a journey through time.\nListen carefully: kasla.\nNow, try saying 'kasla' yourself.",
+            "expectedSTT": "kasla",
+            "successText": "Kasla! It really does feel like traveling back through history!"
+        },
+        {
+            "id": 63,
+            "title": "REMAIN \u2192 AGTALINAED",
+            "speaker": "Neneng",
+            "teachText": "Some things change, but others continue to stay strong.\nIn Ilokano, 'agtalinaed' means 'remain.'\nYou can use it when talking about something continuing to exist or stay in a certain state.\nListen carefully: agtalinaed.\nNow, try saying 'agtalinaed' yourself.",
+            "expectedSTT": "agtalinaed",
+            "successText": "Agtalinaed! May our culture remain strong for generations!"
+        },
+        {
+            "id": 64,
+            "title": "STAY / RESIDE \u2192 AGYAN",
+            "speaker": "Neneng",
+            "teachText": "When talking about staying or residing in a place, Ilokano uses 'agyan.'\nYou can use it when talking about where someone stays or lives.\nListen carefully: agyan.\nNow, try saying 'agyan' yourself.",
+            "expectedSTT": "agyan",
+            "successText": "Agyan! I hope you stay in Vigan a little longer!\nGo see Aling Riza at the restaurant!\n\n17. ALING RIZA \u2014 RESTAURANT OWNER"
+        },
+        {
+            "id": 65,
+            "title": "FEEL / PERCEIVE \u2192 MARIKNA",
+            "speaker": "Aling Riza",
+            "teachText": "Language is more than words. Sometimes, it is about what you experience.\nIn Ilokano, 'marikna' means 'feel' or 'perceive.'\nYou can use it when talking about experiencing something through your senses or emotions.\nListen carefully: marikna.\nNow, try saying 'marikna' yourself.",
+            "expectedSTT": "marikna",
+            "successText": "Marikna!\n\u2728 LINKING VERBS MILESTONE UNLOCKED! \u2728\nTalk to me again for Pronouns!\n\nQUEST 10: PRONOUNS\nWords 66\u201374\nWords 66\u201374 \u2014 ALING RIZA"
+        },
+        {
+            "id": 66,
+            "title": "I \u2192 SIAK",
+            "speaker": "Aling Riza",
+            "teachText": "Let's learn words that help us talk about people.\nIn Ilokano, 'siak' means 'I.'\nYou use it when referring to yourself.\nListen carefully: siak.\nNow, try saying 'siak' yourself.",
+            "expectedSTT": "siak",
+            "successText": "Siak! That's you!"
+        },
+        {
+            "id": 67,
+            "title": "YOU \u2192 SIKA",
+            "speaker": "Aling Riza",
+            "teachText": "When speaking directly to another person, Ilokano uses 'sika' for 'you.'\nListen carefully: sika.\nNow, try saying 'sika' yourself.",
+            "expectedSTT": "sika",
+            "successText": "Sika! That's the word for the person you're speaking to!"
+        },
+        {
+            "id": 68,
+            "title": "HE \u2192 ISUNA",
+            "speaker": "Aling Riza",
+            "teachText": "When talking about a male person who is not the speaker or listener, Ilokano uses 'isuna' for 'he.'\nListen carefully: isuna.\nNow, try saying 'isuna' yourself.",
+            "expectedSTT": "isuna",
+            "successText": "Isuna! You're talking about someone else!"
+        },
+        {
+            "id": 69,
+            "title": "SHE \u2192 ISUNA",
+            "speaker": "Aling Riza",
+            "teachText": "Interestingly, the same Ilokano pronoun 'isuna' can refer to 'she' as well.\nThe meaning depends on the person you're talking about and the context.\nListen carefully: isuna.\nNow, try saying 'isuna' yourself.",
+            "expectedSTT": "isuna",
+            "successText": "Isuna! Context helps us understand who we're talking about!"
+        },
+        {
+            "id": 70,
+            "title": "WE \u2192 DAKKAMI",
+            "speaker": "Aling Riza",
+            "teachText": "When talking about yourself together with other people, you can use 'dakkami' for 'we' in the context taught here.\nListen carefully: dakkami.\nNow, try saying 'dakkami' yourself.",
+            "expectedSTT": "dakkami",
+            "successText": "Dakkami! Now you're speaking as part of a group!"
+        },
+        {
+            "id": 71,
+            "title": "THEY \u2192 ISUDA",
+            "speaker": "Aling Riza",
+            "teachText": "When talking about a group of other people, Ilokano uses 'isuda' for 'they.'\nListen carefully: isuda.\nNow, try saying 'isuda' yourself.",
+            "expectedSTT": "isuda",
+            "successText": "Isuda! You're talking about them!"
+        },
+        {
+            "id": 72,
+            "title": "ME \u2192 SIAK",
+            "speaker": "Aling Riza",
+            "teachText": "Ilokano can use 'siak' when referring to 'me' as well, depending on the sentence structure.\nListen carefully: siak.\nNow, try saying 'siak' yourself.",
+            "expectedSTT": "siak",
+            "successText": "Siak! You're getting comfortable with these pronouns!"
+        },
+        {
+            "id": 73,
+            "title": "US \u2192 DAKKAMI",
+            "speaker": "Aling Riza",
+            "teachText": "When referring to yourself together with others, 'dakkami' can represent 'us' in the context we're learning.\nListen carefully: dakkami.\nNow, try saying 'dakkami' yourself.",
+            "expectedSTT": "dakkami",
+            "successText": "Dakkami! Language helps us describe who belongs together!"
+        },
+        {
+            "id": 74,
+            "title": "THEM \u2192 ISUDA",
+            "speaker": "Aling Riza",
+            "teachText": "When referring to other people as the object of an action, 'isuda' is used in the context we're learning for 'them.'\nListen carefully: isuda.\nNow, try saying 'isuda' yourself.",
+            "expectedSTT": "isuda",
+            "successText": "Isuda! You've learned how Ilokano can talk about different people!\n\nQUEST 11: INTERROGATIVES\nWords 75\u201381\n18. LOLA BEBANG \u2014 ELDERLY RESIDENT"
+        },
+        {
+            "id": 75,
+            "title": "WHAT \u2192 ANIA",
+            "speaker": "Lola Bebang",
+            "teachText": "Questions help us learn about the world around us.\nIn Ilokano, 'ania' means 'what.'\nUse it when asking about an object, thing, or information.\nListen carefully: ania.\nNow, try saying 'ania' yourself.",
+            "expectedSTT": "ania",
+            "successText": "Ania! You're ready to ask questions!"
+        },
+        {
+            "id": 76,
+            "title": "WHO \u2192 ASINO",
+            "speaker": "Lola Bebang",
+            "teachText": "When you want to know which person you are talking about, use 'asino.'\nIt means 'who.'\nListen carefully: asino.\nNow, try saying 'asino' yourself.",
+            "expectedSTT": "asino",
+            "successText": "Asino! Now you can ask who someone is!"
+        },
+        {
+            "id": 77,
+            "title": "WHERE \u2192 SADINO",
+            "speaker": "Lola Bebang",
+            "teachText": "When you need to find a place or location, you can ask 'where?'\nIn Ilokano, 'sadino' means 'where.'\nListen carefully: sadino.\nNow, try saying 'sadino' yourself.",
+            "expectedSTT": "sadino",
+            "successText": "Sadino! Now you can ask where something is!"
+        },
+        {
+            "id": 78,
+            "title": "WHEN \u2192 KAANO",
+            "speaker": "Lola Bebang",
+            "teachText": "When asking about time, you can use 'kaano.'\nIt means 'when.'\nListen carefully: kaano.\nNow, try saying 'kaano' yourself.",
+            "expectedSTT": "kaano",
+            "successText": "Kaano! Now you can ask about when something happened!"
+        },
+        {
+            "id": 79,
+            "title": "WHY \u2192 APAY",
+            "speaker": "Lola Bebang",
+            "teachText": "Sometimes we want to understand the reason behind something.\nIn Ilokano, 'apay' means 'why.'\nUse it when asking for a reason or explanation.\nListen carefully: apay.\nNow, try saying 'apay' yourself.",
+            "expectedSTT": "apay",
+            "successText": "Apay! Now you can ask why!"
+        },
+        {
+            "id": 80,
+            "title": "HOW \u2192 KASANO",
+            "speaker": "Lola Bebang",
+            "teachText": "When you want to ask about the way something is done, use 'kasano.'\nIt means 'how.'\nListen carefully: kasano.\nNow, try saying 'kasano' yourself.",
+            "expectedSTT": "kasano",
+            "successText": "Kasano! Look how far you've come!"
+        },
+        {
+            "id": 81,
+            "title": "HOW MANY \u2192 MANO",
+            "speaker": "Lola Bebang",
+            "teachText": "And now, you've reached another important question.\nWhen you want to ask about quantity, Ilokano uses 'mano' for 'how many.'\nYou can use it when asking about the number of people or objects.\nListen carefully: mano.\nNow, try saying 'mano' yourself.",
+            "expectedSTT": "mano",
+            "successText": "Mano! Now you can ask about quantity and numbers.\nYou've learned how to communicate in many everyday situations throughout your journey.\nBut learning doesn't end with repeating what you've heard.\nHead back to Kalaw at the plaza.\nYour final challenge awaits."
+        }
+    ]
+}

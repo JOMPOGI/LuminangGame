@@ -248,7 +248,7 @@ public class TeachingOverlayPanel : MonoBehaviour
         }
         else if (PhraseEvaluator.Instance != null)
         {
-            PhraseEvaluator.Instance.FindBestMatch(transcribedText, (bestEntry, bestLang, accuracy, isEnglish) =>
+            PhraseEvaluator.Instance.FindBestMatch(transcribedText, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
             {
                 bool success = accuracy >= 80f && !isEnglish;
                 if (success)

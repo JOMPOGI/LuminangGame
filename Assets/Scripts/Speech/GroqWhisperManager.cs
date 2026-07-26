@@ -88,6 +88,6 @@ public class GroqWhisperManager : MonoBehaviour
     [Serializable]
     private class WhisperResponse
     {
-        public string text;
+        public string text = default;
     }
 }

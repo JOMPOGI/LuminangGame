@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: 08_Kyros_agpakada_akon_Success
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Kyros
+  speakerPortrait: {fileID: 0}
+  dialogueText: "Agpakada akon! \u2728 GREETINGS MILESTONE UNLOCKED! \u2728\nGo meet
+    Vendor Irah at the weaving loom. She has something important to teach you about
+    showing gratitude.\n\nQUEST 2: GRATITUDE\nWords 9\u201313\n3. VENDOR IRAH \u2014
+    INABEL WEAVER"
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices: []

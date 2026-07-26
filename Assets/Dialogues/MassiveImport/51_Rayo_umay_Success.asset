@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: 51_Rayo_umay_Success
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Rayo
+  speakerPortrait: {fileID: 0}
+  dialogueText: Umay! Come stand right by the window!
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: Next
+    nextNode: {fileID: 11400000, guid: cd008602ae4d8b44a8f09486c853f83d, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

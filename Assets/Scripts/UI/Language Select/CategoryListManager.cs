@@ -58,17 +58,17 @@ public class CategoryListManager : MonoBehaviour
     [System.Serializable]
     private class ChapterInfo
     {
-        public string title;
-        public List<LessonInfo> lessons;
-        public bool isExpanded;
+        public string title = default;
+        public List<LessonInfo> lessons = default;
+        public bool isExpanded = default;
     }
 
     [System.Serializable]
     private class LessonInfo
     {
-        public string title;
-        public string categoryName;
-        public bool isCompleted;
+        public string title = default;
+        public string categoryName = default;
+        public bool isCompleted = default;
     }
 
     [System.Serializable]
@@ -84,7 +84,6 @@ public class CategoryListManager : MonoBehaviour
     // Tracks spawned lesson row GameObjects per chapter so we can animate them
     private Dictionary<int, List<GameObject>> _chapterLessonRows = new Dictionary<int, List<GameObject>>();
     private Dictionary<int, Coroutine> _chapterAnimCoroutines = new Dictionary<int, Coroutine>();
-    private bool _isRebuilding = false;
 
     private void Awake()
     {

@@ -45,6 +45,12 @@ public class InteractableNPC : InteractableBase
 
     public override void Interact()
     {
+        if (npcAnimator == null)
+        {
+            npcAnimator = GetComponent<Animator>();
+            if (npcAnimator == null) npcAnimator = GetComponentInChildren<Animator>();
+        }
+        
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
         if (!interactionEnabled || npcAnimator == null) 
         {

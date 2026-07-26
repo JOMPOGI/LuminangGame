@@ -1,0 +1,22 @@
+NPCs in Scene:
+LolaBebang_Rigged
+vendorEllai_Rigged
+AlingRosa_Rigged
+Pedro_Rigged
+vendorKyros_Rigged
+Kalaw
+Tala_Rigged
+vendorIrah_Rigged
+cat
+Tomas_Rigged
+Klara_Rigged
+LolaNida_Rigged
+NPC_Apo_Lakay
+Ronnie_Rigged
+Sally_Rigged
+vendorJom_Rigged
+Lito_Rigged
+Neneng_Rigged
+MangLance_Rigged
+Rayo_Rigged
+AlingRiza_Rigged

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: 63_Neneng_Teach
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Neneng
+  speakerPortrait: {fileID: 0}
+  dialogueText: 'Some things change, but others continue to stay strong.
+
+    In
+    Ilokano, ''agtalinaed'' means ''remain.''
+
+    You can use it when talking about
+    something continuing to exist or stay in a certain state.
+
+    Listen carefully:
+    agtalinaed.
+
+    Now, try saying ''agtalinaed'' yourself.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: Speak
+    nextNode: {fileID: 11400000, guid: 34e7a02918b37b54fa9ac6ed9c201f31, type: 2}
+    isWrong: 0
+    choiceEvent: StartSTT
+    expectedSTTWord: agtalinaed

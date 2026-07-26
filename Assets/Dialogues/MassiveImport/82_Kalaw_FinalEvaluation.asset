@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: 82_Kalaw_FinalEvaluation
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: Kalaw
+  speakerPortrait: {fileID: 0}
+  dialogueText: 'SQUAWK!
+
+
+    YOUR VOICE HAS BEEN HEARD!
+
+
+    Look at how far you''ve
+    come, traveler.
+
+
+    You didn''t just memorize words.
+
+
+    You learned to understand.
+    You learned to respond. You learned to build your own sentences.
+
+
+    You learned
+    to ask for help, navigate the streets, introduce yourself, and communicate with
+    the people of Ilocos.
+
+
+    More importantly, you discovered that language lives
+    through the people who speak it.
+
+
+    Every word you learned came from someone.
+    Every phrase carried a meaning. Every conversation connected you to the people
+    and culture of this place.
+
+
+    The language you practiced here is not simply
+    something to collect.
+
+
+    It is something living.
+
+
+    Something carried by
+    families, communities, traditions, and stories.
+
+
+    Your journey through Vigan
+    may be complete, but your journey with Ilokano does not have to end here.
+
+
+    The
+    more you listen, the more you speak. The more you speak, the more you understand.
+
+
+    And
+    the more you understand, the closer you become to the people and culture that
+    keep this language alive.
+
+
+    Great job, traveler.
+
+
+    You''ve taken another
+    step in restoring the voices of the regions.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 'SetObjective: Ilocos Chapter Complete'
+  choices: []
