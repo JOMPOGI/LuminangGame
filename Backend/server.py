@@ -57,7 +57,7 @@ def startup_event():
     print(f"Successfully loaded {len(dataset.phrases)} phrases from dataset.")
     print("Startup complete! Server is running in Serverless API mode.")
 
-def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None) -> str:
+def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None, language: Optional[str] = None) -> str:
     if not GROQ_API_KEY:
         raise HTTPException(
             status_code=500, 
@@ -85,6 +85,8 @@ def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None) -> s
             }
             if prompt:
                 data["prompt"] = prompt
+            if language:
+                data["language"] = language
             response = requests.post(url, headers=headers, files=files, data=data)
             
         if response.status_code != 200:
@@ -127,6 +129,7 @@ def get_similarities_batch(source_text: str, target_texts: List[str]) -> List[fl
 async def evaluate(
     expected_phrase: str = Form(...),
     transcribed_text: Optional[str] = Form(None),
+    language: Optional[str] = Form(None),
     audio: Optional[UploadFile] = File(None)
 ):
     """
@@ -136,7 +139,7 @@ async def evaluate(
     transcript = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes, expected_phrase)
+        transcript = transcribe_audio_file(audio_bytes, prompt=expected_phrase, language=language)
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -221,6 +224,7 @@ async def evaluate(
 async def find_best_match(
     region: str = Form(...),
     transcribed_text: Optional[str] = Form(None),
+    language: Optional[str] = Form(None),
     audio: Optional[UploadFile] = File(None)
 ):
     """
@@ -229,7 +233,7 @@ async def find_best_match(
     transcript = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes)
+        transcript = transcribe_audio_file(audio_bytes, language=language)
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -301,6 +305,7 @@ async def find_best_match(
 async def find_all_matches(
     region: str = Form(...),
     transcribed_text: Optional[str] = Form(None),
+    language: Optional[str] = Form(None),
     audio: Optional[UploadFile] = File(None)
 ):
     """
@@ -309,7 +314,7 @@ async def find_all_matches(
     transcript = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes)
+        transcript = transcribe_audio_file(audio_bytes, language=language)
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -361,12 +366,12 @@ async def find_all_matches(
     }
 
 @app.post("/transcribe")
-async def transcribe(audio: UploadFile = File(...), prompt: Optional[str] = Form(None)):
+async def transcribe(audio: UploadFile = File(...), prompt: Optional[str] = Form(None), language: Optional[str] = Form(None)):
     """
     Transcribes uploaded audio file and returns transcription.
     """
     audio_bytes = await audio.read()
-    transcript = transcribe_audio_file(audio_bytes, prompt)
+    transcript = transcribe_audio_file(audio_bytes, prompt=prompt, language=language)
     return {"text": transcript}
 
 if __name__ == "__main__":

@@ -135,7 +135,7 @@ public class STTVoiceVisualizerAdapter : MonoBehaviour
 
     private void OnTranscriptionSuccess(string result)
     {
-        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish) =>
+        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
         {
             if (bestEntry != null && isEnglish)
             {
