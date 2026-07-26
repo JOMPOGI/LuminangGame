@@ -3346,6 +3346,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -316241234579621517, guid: 7dec9aba355dd2c48bb358e98aabf78d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -296747675805807712, guid: 7dec9aba355dd2c48bb358e98aabf78d, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -5128,7 +5132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
   transitionDelay: 0.4
-  useLoadingScreenForSampleScene: 1
+  useLoadingScreenForGameScene: 1
   loadingSceneName: LoadingScene
 --- !u!4 &1329236794
 Transform:

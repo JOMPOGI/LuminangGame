@@ -24,14 +24,7 @@ public class OptionsManager : MonoBehaviour
     public Sprite volumeUpSprite;
     public Sprite volumeOffSprite;
 
-    [Header("Graphics Buttons")]
-    public GameObject lowButtonObj;
-    public GameObject medButtonObj;
-    public GameObject highButtonObj;
 
-    private Button _lowButton;
-    private Button _medButton;
-    private Button _highButton;
 
     [Header("Panels (Disabled)")]
     public GameObject confirmSavePanel; // Keep for inspector safety, but not used
@@ -54,18 +47,7 @@ public class OptionsManager : MonoBehaviour
             AudioManager.instance.ApplySFXVolume(savedSFX);
         }
 
-        // 2. Load & Set Graphics Quality - Default to High (2) if no save exists
-        int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
-        savedQuality = Mathf.Clamp(savedQuality, 0, 2);
-        
-        // Get button components
-        if (lowButtonObj != null) _lowButton = lowButtonObj.GetComponent<Button>();
-        if (medButtonObj != null) _medButton = medButtonObj.GetComponent<Button>();
-        if (highButtonObj != null) _highButton = highButtonObj.GetComponent<Button>();
 
-        // Apply immediately
-        ApplyQuality(savedQuality);
-        UpdateGraphicsUI(savedQuality);
 
         // Hide panels if they exist (even though not used anymore)
         if (confirmSavePanel != null) confirmSavePanel.SetActive(false);
@@ -79,10 +61,7 @@ public class OptionsManager : MonoBehaviour
         if (musicMuteButton != null && musicMuteImage == null) musicMuteImage = musicMuteButton.GetComponent<Image>();
         if (sfxMuteButton != null && sfxMuteImage == null) sfxMuteImage = sfxMuteButton.GetComponent<Image>();
 
-        // 4. Add Listeners for Graphics Buttons
-        if (_lowButton != null) _lowButton.onClick.AddListener(() => OnGraphicsButtonClicked(0));
-        if (_medButton != null) _medButton.onClick.AddListener(() => OnGraphicsButtonClicked(1));
-        if (_highButton != null) _highButton.onClick.AddListener(() => OnGraphicsButtonClicked(2));
+
 
         // 5. Add Listeners for Mute Buttons
         if (musicMuteButton != null) musicMuteButton.onClick.AddListener(ToggleMusicMute);
@@ -109,48 +88,7 @@ public class OptionsManager : MonoBehaviour
         UpdateSFXUI(value);
     }
 
-    private void OnGraphicsButtonClicked(int index)
-    {
-        // Find the button object
-        GameObject btnObj = null;
-        if (index == 0) btnObj = lowButtonObj;
-        if (index == 1) btnObj = medButtonObj;
-        if (index == 2) btnObj = highButtonObj;
 
-        // No more scale animation (stay bright, only dim the others)
-        ApplyQuality(index);
-        UpdateGraphicsUI(index);
-        Debug.Log($"[OptionsManager] User clicked: {index}");
-    }
-
-    private void ApplyQuality(int index)
-    {
-        // 1. Unity Built-in Quality Level
-        QualitySettings.SetQualityLevel(index, true);
-
-        // 2. Save for next session
-        PlayerPrefs.SetInt("GraphicsQuality", index);
-        PlayerPrefs.Save();
-
-        // 3. Apply custom Mobile Optimization (Resolution/Shadows)
-        if (MobilePerformance.Instance != null)
-        {
-            MobilePerformance.Instance.ApplyQualitySettings(index);
-        }
-    }
-
-    private void UpdateGraphicsUI(int selectedIndex)
-    {
-        // Log the current selection to the console so we can see it
-        Debug.Log($"[OptionsManager] Setting UI selection to: {selectedIndex}");
-
-        Color selectedColor = Color.white; // Full brightness for active
-        Color unselectedColor = new Color(0.6f, 0.6f, 0.6f, 1f); // Dimmed for inactive
-
-        if (_lowButton != null) _lowButton.targetGraphic.color = (selectedIndex == 0) ? selectedColor : unselectedColor;
-        if (_medButton != null) _medButton.targetGraphic.color = (selectedIndex == 1) ? selectedColor : unselectedColor;
-        if (_highButton != null) _highButton.targetGraphic.color = (selectedIndex == 2) ? selectedColor : unselectedColor;
-    }
 
     public void ToggleMusicMute()
     {
@@ -174,9 +112,7 @@ public class OptionsManager : MonoBehaviour
         foreach (var btn in buttons)
         {
             string n = btn.name.ToLower();
-            if (n.Contains("low")) lowButtonObj = btn.gameObject;
-            if (n.Contains("med")) medButtonObj = btn.gameObject;
-            if (n.Contains("high")) highButtonObj = btn.gameObject;
+
             
             if (n.Contains("music") && n.Contains("mute")) musicMuteButton = btn;
             if (n.Contains("soundeffects") && n.Contains("mute")) sfxMuteButton = btn;

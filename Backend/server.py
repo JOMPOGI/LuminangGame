@@ -8,6 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional, List, Dict, Any
 import difflib
 from huggingface_hub import InferenceClient
+from phonetic import get_phonetic_similarity
+
 
 # Import controlled dataset helpers
 from dataset import dataset
@@ -28,18 +30,7 @@ GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 HF_API_TOKEN = os.environ.get("HF_API_TOKEN", "")
 MODEL_NAME = "intfloat/multilingual-e5-small"
 
-# Compiled Regex for cleaning text
-import re
-re_sub_punc = re.compile(r'[.,?!:;"\'()\-_\/]')
-re_sub_space = re.compile(r'\s+')
-
-def clean_text(text: str) -> str:
-    if not text:
-        return ""
-    cleaned = text.lower()
-    cleaned = re_sub_punc.sub(" ", cleaned)
-    cleaned = re_sub_space.sub(" ", cleaned).strip()
-    return cleaned
+from evaluator import evaluate_phrase, clean_text
 
 @app.on_event("startup")
 def startup_event():
@@ -57,7 +48,17 @@ def startup_event():
     print(f"Successfully loaded {len(dataset.phrases)} phrases from dataset.")
     print("Startup complete! Server is running in Serverless API mode.")
 
-def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None) -> str:
+def is_valid_language(detected_lang: str, region: str) -> bool:
+    """
+    Returns True if the Whisper detected language aligns with the expected regional context.
+    """
+    if region == "English":
+        return detected_lang == "english"
+        
+    valid_regional_langs = {"cebuano", "tagalog", "filipino"}
+    return detected_lang in valid_regional_langs
+
+def transcribe_audio_file(audio_bytes: bytes, region: str = None) -> Dict[str, str]:
     if not GROQ_API_KEY:
         raise HTTPException(
             status_code=500, 
@@ -81,10 +82,11 @@ def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None) -> s
             }
             data = {
                 "model": "whisper-large-v3",
-                "response_format": "json"
+                "response_format": "verbose_json"
             }
-            if prompt:
-                data["prompt"] = prompt
+            if region:
+                # Add prompt hint for better ASR
+                data["prompt"] = f"This is speech in {region} language."
             response = requests.post(url, headers=headers, files=files, data=data)
             
         if response.status_code != 200:
@@ -92,7 +94,10 @@ def transcribe_audio_file(audio_bytes: bytes, prompt: Optional[str] = None) -> s
             raise HTTPException(status_code=502, detail="Failed to transcribe audio via Groq API.")
             
         result = response.json()
-        return result.get("text", "").strip()
+        return {
+            "text": result.get("text", "").strip(),
+            "language": result.get("language", "").lower()
+        }
     finally:
         if os.path.exists(temp_file_path):
             os.remove(temp_file_path)
@@ -127,16 +132,36 @@ def get_similarities_batch(source_text: str, target_texts: List[str]) -> List[fl
 async def evaluate(
     expected_phrase: str = Form(...),
     transcribed_text: Optional[str] = Form(None),
-    audio: Optional[UploadFile] = File(None)
+    audio: Optional[UploadFile] = File(None),
+    region: str = Form("Default"),
+    category: Optional[str] = Form(None)
 ):
     """
     Evaluates player's speech input against the expected phrase.
     Supports either pre-transcribed text or direct audio upload.
     """
     transcript = ""
+    detected_lang = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes, expected_phrase)
+        res = transcribe_audio_file(audio_bytes)
+        transcript = res["text"]
+        detected_lang = res["language"]
+        
+        if not is_valid_language(detected_lang, region):
+            print(f"Warning: Rejected audio because Whisper detected '{detected_lang}' (expected {region})")
+            return {
+                "transcript": transcript,
+                "score": 0.0,
+                "result": "try_again",
+                "exact_score": 0.0,
+                "lexical_score": 0.0,
+                "phonetic_score": 0.0,
+                "semantic_score": 0.0,
+                "template_score": 0.0,
+                "final_confidence": 0.0,
+                "code_switched": False
+            }
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -144,77 +169,103 @@ async def evaluate(
 
     print(f"Expected: '{expected_phrase}' | Heard: '{transcript}'")
 
-    # 1. Preprocess texts
     expected_clean = clean_text(expected_phrase)
     transcript_clean = clean_text(transcript)
 
-    # Find the expected entry in the dataset
+    # 1. Gather all potential targets to find expected entry and for cross-referencing
+    all_targets = dataset.get_all_targets("BossBattle") # All languages
+    
     expected_entry = None
-    for entry in dataset.phrases:
-        phrases_list = [
-            clean_text(entry.get("english")),
-            clean_text(entry.get("ilokano")),
-            clean_text(entry.get("cebuano"))
-        ]
-        if expected_clean in phrases_list:
+    expected_lang = ""
+    for entry, lang, phrase in all_targets:
+        # Check against template structures too
+        if clean_text(phrase) == expected_clean or ( "{" in phrase and expected_clean.startswith(clean_text(phrase.split("{")[0])) ):
             expected_entry = entry
+            expected_lang = lang
+            expected_phrase = phrase # use the exact template from dataset
             break
-
+            
     if expected_entry is None:
         print(f"Warning: Expected phrase '{expected_phrase}' is not in the controlled dataset!")
         return {
             "transcript": transcript,
             "score": 0.0,
-            "result": "try_again"
+            "result": "try_again",
+            "exact_score": 0.0,
+            "lexical_score": 0.0,
+            "phonetic_score": 0.0,
+            "semantic_score": 0.0,
+            "template_score": 0.0,
+            "final_confidence": 0.0,
         }
 
-    # Cross-reference check: We compile every valid phrase in the dataset
-    phrase_targets = []  # List of tuples: (entry, lang, phrase)
-    for entry in dataset.phrases:
-        for lang in ["english", "ilokano", "cebuano"]:
-            phrase = entry.get(lang)
-            if phrase and phrase != "___":
-                phrase_targets.append((entry, lang, phrase))
-
-    # Send a single batch request to Hugging Face API
-    target_phrases = [item[2] for item in phrase_targets]
+    # 2. Get dataset targets (filtered by region/category if specified)
+    context_targets = dataset.get_all_targets(region, category)
+    if not context_targets:
+        context_targets = all_targets
+        
+    target_phrases = [item[2] for item in context_targets]
+    
+    # 3. Get Semantic Similarities
     scores = get_similarities_batch(transcript_clean, target_phrases)
 
-    # Find the expected score and the overall best matching phrase
-    score = 0.0
-    best_score = -1.0
-    best_entry = None
+    # 4. Evaluate each target
+    best_match_eval = None
+    expected_eval = None
 
-    for (entry, lang, phrase), sim_score in zip(phrase_targets, scores):
+    for (entry, lang, phrase), sim_score in zip(context_targets, scores):
         sim_score = max(0.0, min(1.0, sim_score))
         
-        # Anti-Hallucination Filter: Penalize if lexical overlap is extremely low
-        lexical_score = difflib.SequenceMatcher(None, transcript_clean, clean_text(phrase)).ratio()
-        if lexical_score < 0.35:
-            sim_score = max(0.0, sim_score - 0.15)
+        eval_result = evaluate_phrase(
+            transcript=transcript_clean,
+            target_phrase=phrase,
+            category=entry.get("category", ""),
+            lang=lang,
+            semantic_score=sim_score
+        )
+        
+        if phrase == expected_phrase:
+            expected_eval = eval_result
             
-        # If this is our expected phrase, record the score
-        if clean_text(phrase) == expected_clean:
-            score = sim_score
-            
-        if sim_score > best_score:
-            best_score = sim_score
-            best_entry = entry
+        if not best_match_eval or eval_result["final_confidence"] > best_match_eval["final_confidence"]:
+            best_match_eval = eval_result
 
-    # 4. Apply threshold scoring
+    # If the expected phrase wasn't in context targets, evaluate it explicitly
+    if not expected_eval:
+        sim_scores = get_similarities_batch(transcript_clean, [expected_phrase])
+        expected_eval = evaluate_phrase(
+            transcript=transcript_clean,
+            target_phrase=expected_phrase,
+            category=expected_entry.get("category", ""),
+            lang=expected_lang,
+            semantic_score=max(0.0, min(1.0, sim_scores[0])) if sim_scores else 0.0
+        )
+
+    # 5. Determine Result
+    final_conf = expected_eval["final_confidence"]
     result = "try_again"
-    if score >= 0.80:
-        if best_entry == expected_entry or (best_score - score < 0.05):
-            result = "correct"
+    
+    if final_conf >= 0.80:
+        if best_match_eval and (best_match_eval["final_confidence"] - final_conf > 0.15):
+            print(f"Rejected: player said '{transcript}' matching another phrase better than expected '{expected_phrase}'")
         else:
-            print(f"Rejected greeting mismatch: player said '{transcript}', which matches '{best_entry.get('english')}' (score {best_score:.4f}) better than expected '{expected_phrase}' (score {score:.4f})")
-
-    print(f"Evaluation: score = {score:.4f}, result = {result}")
+            result = "correct"
+    elif final_conf >= 0.50:
+        result = "uncertain"
+        
+    print(f"Evaluation: conf = {final_conf:.4f}, result = {result}")
 
     return {
         "transcript": transcript,
-        "score": round(score, 4),
-        "result": result
+        "score": round(final_conf, 4), # for backwards compatibility
+        "result": result,
+        "exact_score": round(expected_eval["exact_score"], 4),
+        "lexical_score": round(expected_eval["lexical_score"], 4),
+        "phonetic_score": round(expected_eval["phonetic_score"], 4),
+        "semantic_score": round(expected_eval["semantic_score"], 4),
+        "template_score": round(expected_eval["template_score"], 4),
+        "final_confidence": round(final_conf, 4),
+        "code_switched": expected_eval.get("code_switched", False)
     }
 
 @app.post("/find_best_match")
@@ -227,9 +278,22 @@ async def find_best_match(
     Searches the controlled dataset for the closest matching phrase.
     """
     transcript = ""
+    detected_lang = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes)
+        res = transcribe_audio_file(audio_bytes)
+        transcript = res["text"]
+        detected_lang = res["language"]
+        
+        if not is_valid_language(detected_lang, region):
+            print(f"Warning: Rejected audio because Whisper detected '{detected_lang}' (expected {region})")
+            return {
+                "transcript": transcript,
+                "best_entry": None,
+                "language": detected_lang,
+                "score": 0.0,
+                "is_english": True
+            }
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -266,23 +330,25 @@ async def find_best_match(
     
     for (entry, lang, phrase), sim_score in zip(all_targets, scores):
         sim_score = max(0.0, min(1.0, sim_score))
+        phonetic_score = get_phonetic_similarity(transcript_clean, clean_text(phrase))
+        combined_score = 0.8 * sim_score + 0.2 * phonetic_score
         
         # Anti-Hallucination Filter: Penalize if lexical overlap is extremely low
         lexical_score = difflib.SequenceMatcher(None, transcript_clean, clean_text(phrase)).ratio()
         if lexical_score < 0.35:
-            sim_score = max(0.0, sim_score - 0.15)
+            combined_score = max(0.0, combined_score - 0.15)
             
         # If it is part of the regional targets
         if lang != "english" or (entry, lang, phrase) in regional_targets:
-            if sim_score > max_score:
-                max_score = sim_score
+            if combined_score > max_score:
+                max_score = combined_score
                 best_entry = entry
                 best_lang = lang
                 
         # If it is part of the English targets
         if lang == "english":
-            if sim_score > best_english_score:
-                best_english_score = sim_score
+            if combined_score > best_english_score:
+                best_english_score = combined_score
                 
     # If English is a much better match than regional, flag it
     matched_english = False
@@ -307,9 +373,19 @@ async def find_all_matches(
     Searches the dataset for all matching phrases above a similarity threshold.
     """
     transcript = ""
+    detected_lang = ""
     if audio:
         audio_bytes = await audio.read()
-        transcript = transcribe_audio_file(audio_bytes)
+        res = transcribe_audio_file(audio_bytes)
+        transcript = res["text"]
+        detected_lang = res["language"]
+        
+        if not is_valid_language(detected_lang, region):
+            print(f"Warning: Rejected audio because Whisper detected '{detected_lang}' (expected {region})")
+            return {
+                "transcript": transcript,
+                "matches": []
+            }
     elif transcribed_text:
         transcript = transcribed_text
     else:
@@ -334,17 +410,19 @@ async def find_all_matches(
     matches = []
     for (entry, lang, phrase), sim_score in zip(regional_targets, scores):
         sim_score = max(0.0, min(1.0, sim_score))
+        phonetic_score = get_phonetic_similarity(transcript_clean, clean_text(phrase))
+        combined_score = 0.8 * sim_score + 0.2 * phonetic_score
         
         # Anti-Hallucination Filter: Penalize if lexical overlap is extremely low
         lexical_score = difflib.SequenceMatcher(None, transcript_clean, clean_text(phrase)).ratio()
         if lexical_score < 0.35:
-            sim_score = max(0.0, sim_score - 0.15)
+            combined_score = max(0.0, combined_score - 0.15)
             
-        if sim_score >= 0.80:
+        if combined_score >= 0.80:
             matches.append({
                 "entry": entry,
                 "language": lang,
-                "score": round(sim_score * 100.0, 2)  # C# expects 0-100 scale
+                "score": round(combined_score * 100.0, 2)  # C# expects 0-100 scale
             })
             
     # Sort matches by score descending
@@ -361,13 +439,13 @@ async def find_all_matches(
     }
 
 @app.post("/transcribe")
-async def transcribe(audio: UploadFile = File(...), prompt: Optional[str] = Form(None)):
+async def transcribe(audio: UploadFile = File(...)):
     """
     Transcribes uploaded audio file and returns transcription.
     """
     audio_bytes = await audio.read()
-    transcript = transcribe_audio_file(audio_bytes, prompt)
-    return {"text": transcript}
+    res = transcribe_audio_file(audio_bytes)
+    return {"text": res["text"], "language": res["language"]}
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=False)

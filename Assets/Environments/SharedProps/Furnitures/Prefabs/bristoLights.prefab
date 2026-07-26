@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2161923978090987839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 362.6172
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 481.88068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.215776
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 623.45953
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000003774895
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000029802315
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -8.881782e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}
+      propertyPath: m_Name
+      value: bristoLights
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f97de36ac3a7fa49aebd2ddbccc5fda, type: 3}

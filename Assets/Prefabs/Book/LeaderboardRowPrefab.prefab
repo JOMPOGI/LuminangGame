@@ -161,13 +161,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LeaderboardRowItem
   rankText: {fileID: 1426279998283365204}
   badgeImage: {fileID: 5757083042569443383}
-  rowBackground: {fileID: 4003667260226629575}
   avatarImage: {fileID: 6961590820054692577}
   usernameText: {fileID: 1910941733028565237}
   progressText: {fileID: 5718834587071111348}
   rowButton: {fileID: 8500839394937225543}
-  selectedBackgroundColor: {r: 0.8235294, g: 0.76862746, b: 0.42352942, a: 1}
-  normalBackgroundColor: {r: 0.94509804, g: 0.8235294, b: 0.59607846, a: 0}
   goldBadge: {fileID: 21300000, guid: f26d9e416fca73c41bbccaeb867cc515, type: 3}
   silverBadge: {fileID: 21300000, guid: 111339546b382a5458c7866d174a7bbd, type: 3}
   bronzeBadge: {fileID: 21300000, guid: b78eb7d436b7254448ae9fa6712d5bb5, type: 3}
@@ -528,8 +525,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 72%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
+  m_sharedMaterial: {fileID: 9194849470857495647, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
