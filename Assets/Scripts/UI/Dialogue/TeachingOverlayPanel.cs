@@ -23,6 +23,13 @@ public class TeachingOverlayPanel : MonoBehaviour
     public TextMeshProUGUI promptText;
     public TextMeshProUGUI tapToStopText;
 
+    [Header("Text Outline")]
+    [Tooltip("Width of the white outline drawn around both prompt texts (0 = none, 0.25 recommended).")]
+    [Range(0f, 0.5f)]
+    public float textOutlineWidth = 0.25f;
+    [Tooltip("Color of the text outline.")]
+    public Color textOutlineColor = Color.white;
+
     [Header("Mic Button")]
     public Button micButton;
     public Image micButtonImage;
@@ -50,7 +57,24 @@ public class TeachingOverlayPanel : MonoBehaviour
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
         }
+
+        ApplyTextOutlines();
+
         gameObject.SetActive(false);
+    }
+
+    private void ApplyTextOutlines()
+    {
+        if (promptText != null)
+        {
+            promptText.outlineWidth = textOutlineWidth;
+            promptText.outlineColor = textOutlineColor;
+        }
+        if (tapToStopText != null)
+        {
+            tapToStopText.outlineWidth = textOutlineWidth;
+            tapToStopText.outlineColor = textOutlineColor;
+        }
     }
 
     private void OnDestroy()
@@ -286,16 +310,23 @@ public class TeachingOverlayPanel : MonoBehaviour
 
     private void HandleFailure()
     {
-        // Clean failure message — reshow prompt with retry warning
+        // Show clean retry message on overlay — player taps mic again immediately
         if (promptText != null)
             promptText.text = $"<color=#FF7777><b>Not quite! Try again.</b></color>\nTap and speak the word <b>\"{_targetWord}\"</b> into the mic";
 
-        if (DialogueManager.Instance != null)
+        // Re-enable mic button so player can attempt again right away
+        if (micButton != null)
         {
-            DialogueManager.Instance.CompleteSTT(false);
+            micButton.gameObject.SetActive(true);
+            micButton.onClick.RemoveAllListeners();
+            micButton.onClick.AddListener(OnMicButtonTapped);
         }
 
         SetMicState(false);
+
+        // NOTE: Do NOT call CompleteSTT(false) here. The overlay stays open.
+        // The player simply taps the mic again to retry — no dialogue node re-load needed.
+        Debug.Log("[TeachingOverlayPanel] Failure handled. Player can retry immediately.");
     }
 
     private void OnTranscriptionError(string error)

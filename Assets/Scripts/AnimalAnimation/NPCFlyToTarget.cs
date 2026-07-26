@@ -4,8 +4,8 @@ using UnityEngine.Events;
 
 /// <summary>
 /// Smoothly moves a flying NPC (like Flowerpecker / Tiptip) from its initial starting position (Pos A)
-/// to a target position (Pos B) when triggered.
-/// Perfect for cutscenes, arrival events, and quest area triggers.
+/// to a target position (Pos B) when triggered, with a gentle arc and rotation.
+/// Compatible with HoverAnimation - pauses bobbing during flight.
 /// </summary>
 public class NPCFlyToTarget : MonoBehaviour
 {
@@ -16,10 +16,13 @@ public class NPCFlyToTarget : MonoBehaviour
     [Tooltip("Duration of the flight in seconds.")]
     public float flyDuration = 2.0f;
 
-    [Tooltip("Smooth easing curve for the flight path.")]
+    [Tooltip("How high the arc peaks above the straight-line path (0 = no arc).")]
+    public float arcHeight = 1.5f;
+
+    [Tooltip("Smooth easing curve for the flight path. Default: ease in-out.")]
     public AnimationCurve flightCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
-    [Tooltip("If true, rotates the NPC toward the target while flying.")]
+    [Tooltip("If true, smoothly rotates the NPC toward the target while flying.")]
     public bool rotateTowardFlightDirection = true;
 
     [Tooltip("If true, rotates the NPC to face the player after landing.")]
@@ -31,9 +34,11 @@ public class NPCFlyToTarget : MonoBehaviour
 
     private bool _isFlying = false;
 
+    public bool IsFlying => _isFlying;
+
     /// <summary>
-    /// Call this method to start the smooth fly-down sequence.
-    /// Can be hooked up directly in ProximityTrigger's OnTriggered event.
+    /// Call this to start the smooth fly sequence.
+    /// Can be hooked up directly in a ProximityTrigger's OnTriggered event.
     /// </summary>
     public void FlyToTarget()
     {
@@ -51,10 +56,14 @@ public class NPCFlyToTarget : MonoBehaviour
     private IEnumerator FlyRoutine()
     {
         _isFlying = true;
+
+        // Pause HoverAnimation so it doesn't fight the fly path
+        HoverAnimation hover = GetComponent<HoverAnimation>();
+        if (hover != null) hover.enableHover = false;
+
         Vector3 startPos = transform.position;
         Quaternion startRot = transform.rotation;
         Vector3 endPos = targetPoint.position;
-        Quaternion endRot = targetPoint.rotation;
 
         float elapsed = 0f;
 
@@ -64,15 +73,29 @@ public class NPCFlyToTarget : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / flyDuration);
             float curveT = flightCurve.Evaluate(t);
 
-            // Interpolate position
-            transform.position = Vector3.Lerp(startPos, endPos, curveT);
+            // Quadratic arc: straight-line lerp + sine-based upward arc peak
+            Vector3 straightPos = Vector3.Lerp(startPos, endPos, curveT);
+            float arcOffset = Mathf.Sin(t * Mathf.PI) * arcHeight;
+            Vector3 arcedPos = new Vector3(straightPos.x, straightPos.y + arcOffset, straightPos.z);
 
-            // Rotate toward direction of flight
+            transform.position = arcedPos;
+
+            // Smooth rotation toward direction of flight
             if (rotateTowardFlightDirection && (endPos - startPos).sqrMagnitude > 0.01f)
             {
-                Vector3 moveDir = (endPos - startPos).normalized;
-                Quaternion lookDir = Quaternion.LookRotation(moveDir, Vector3.up);
-                transform.rotation = Quaternion.Slerp(startRot, lookDir, t * 2f);
+                // Direction of the arced path tangent (next frame estimate)
+                float tNext = Mathf.Clamp01((elapsed + 0.05f) / flyDuration);
+                float curveNext = flightCurve.Evaluate(tNext);
+                Vector3 nextStraight = Vector3.Lerp(startPos, endPos, curveNext);
+                float nextArc = Mathf.Sin(tNext * Mathf.PI) * arcHeight;
+                Vector3 nextPos = new Vector3(nextStraight.x, nextStraight.y + nextArc, nextStraight.z);
+
+                Vector3 flyDir = (nextPos - arcedPos);
+                if (flyDir.sqrMagnitude > 0.0001f)
+                {
+                    Quaternion targetRot = Quaternion.LookRotation(flyDir.normalized, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 10f);
+                }
             }
 
             yield return null;
@@ -81,6 +104,13 @@ public class NPCFlyToTarget : MonoBehaviour
         // Snap to exact end position
         transform.position = endPos;
 
+        // Resume hover bobbing at the new landing position
+        if (hover != null)
+        {
+            hover.SetBasePosition(endPos);
+            hover.enableHover = true;
+        }
+
         // Face player if requested
         if (facePlayerOnArrival)
         {
@@ -88,17 +118,17 @@ public class NPCFlyToTarget : MonoBehaviour
             if (player != null)
             {
                 Vector3 lookAtPos = player.transform.position;
-                lookAtPos.y = transform.position.y; // Keep level horizon
+                lookAtPos.y = transform.position.y;
                 transform.rotation = Quaternion.LookRotation((lookAtPos - transform.position).normalized, Vector3.up);
             }
             else
             {
-                transform.rotation = endRot;
+                transform.rotation = targetPoint.rotation;
             }
         }
         else
         {
-            transform.rotation = endRot;
+            transform.rotation = targetPoint.rotation;
         }
 
         _isFlying = false;
