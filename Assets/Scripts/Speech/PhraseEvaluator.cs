@@ -9,7 +9,8 @@ using System.Collections.Generic;
 public class PhraseEvaluator : MonoBehaviour
 {
     public static PhraseEvaluator Instance { get; private set; }
-    public RegionMode CurrentRegion { get; private set; } = RegionMode.BossBattle;
+    public RegionMode CurrentRegion { get; private set; } = RegionMode.Ilokano;
+    public string CurrentCategory { get; set; } = "";
 
     private const string BACKEND_URL = "https://luminang-nlp-service.onrender.com";
 
@@ -58,6 +59,7 @@ public class PhraseEvaluator : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("expected_phrase", expectedPhrase);
         form.AddField("transcribed_text", transcribedText);
+        if (!string.IsNullOrEmpty(CurrentCategory)) form.AddField("category", CurrentCategory);
 
         using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/evaluate", form))
         {
@@ -76,16 +78,17 @@ public class PhraseEvaluator : MonoBehaviour
         }
     }
 
-    public void FindBestMatch(string transcribedText, Action<PhraseEntry, string, float, bool> callback)
+    public void FindBestMatch(string transcribedText, Action<PhraseEntry, string, float, bool, string> callback)
     {
         StartCoroutine(FindBestMatchCoroutine(transcribedText, callback));
     }
 
-    private IEnumerator FindBestMatchCoroutine(string transcribedText, Action<PhraseEntry, string, float, bool> callback)
+    private IEnumerator FindBestMatchCoroutine(string transcribedText, Action<PhraseEntry, string, float, bool, string> callback)
     {
         WWWForm form = new WWWForm();
         form.AddField("region", CurrentRegion.ToString());
         form.AddField("transcribed_text", transcribedText);
+        if (!string.IsNullOrEmpty(CurrentCategory)) form.AddField("category", CurrentCategory);
 
         using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/find_best_match", form))
         {
@@ -103,17 +106,17 @@ public class PhraseEvaluator : MonoBehaviour
                         entry = DatasetManager.Instance.GetAllPhrases().Find(p => p.english == response.best_entry.english);
                     }
                     if (entry == null) entry = response.best_entry;
-                    callback?.Invoke(entry, response.language, response.score * 100.0f, response.is_english);
+                    callback?.Invoke(entry, response.language, response.score * 100.0f, response.is_english, response.result);
                 }
                 else
                 {
-                    callback?.Invoke(null, "", 0f, false);
+                    callback?.Invoke(null, "", 0f, false, "fail");
                 }
             }
             else
             {
                 Debug.LogError($"FindBestMatch API Error: {request.error}\n{request.downloadHandler.text}");
-                callback?.Invoke(null, "", 0f, false);
+                callback?.Invoke(null, "", 0f, false, "fail");
             }
         }
     }
@@ -128,6 +131,7 @@ public class PhraseEvaluator : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("region", CurrentRegion.ToString());
         form.AddField("transcribed_text", transcribedText);
+        if (!string.IsNullOrEmpty(CurrentCategory)) form.AddField("category", CurrentCategory);
 
         using (UnityWebRequest request = UnityWebRequest.Post($"{BACKEND_URL}/find_all_matches", form))
         {
@@ -164,21 +168,34 @@ public class PhraseEvaluator : MonoBehaviour
     // Helper classes for JSON Deserialization
 
     [Serializable]
-    private class EvaluateResponse
+    public class EvaluateResponse
     {
         public string transcript;
         public float score;
         public string result;
+        public float exact_score;
+        public float lexical_score;
+        public float phonetic_score;
+        public float semantic_score;
+        public float template_score;
+        public float final_confidence;
     }
 
     [Serializable]
-    private class BestMatchResponse
+    public class BestMatchResponse
     {
         public string transcript;
         public PhraseEntry best_entry;
         public string language;
         public float score;
         public bool is_english;
+        public string result;
+        public float exact_score;
+        public float lexical_score;
+        public float phonetic_score;
+        public float semantic_score;
+        public float template_score;
+        public float final_confidence;
     }
 
     [Serializable]
