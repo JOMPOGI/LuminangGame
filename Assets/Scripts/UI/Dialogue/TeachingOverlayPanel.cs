@@ -131,6 +131,10 @@ public class TeachingOverlayPanel : MonoBehaviour
 
         EnsureSpeechEngineDependencies();
 
+        // Match STT_TestScene behavior: always set region to Cebuano for Magellan scene lessons
+        if (PhraseEvaluator.Instance != null)
+            PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);
+
         if (backgroundImage != null && !string.IsNullOrEmpty(backgroundName))
         {
             Sprite found = FindBackground(backgroundName);
@@ -139,16 +143,26 @@ public class TeachingOverlayPanel : MonoBehaviour
 
         ResetPromptText();
 
+        // Apply white outline to prompt and tap-to-stop texts
+        ApplyTextOutline(promptText);
+        ApplyTextOutline(tapToStopText);
+
         if (tapToStopText != null)
             tapToStopText.gameObject.SetActive(false);
 
         SetMicState(false);
 
+        // Hide mic entirely if there is no target word to speak
+        bool hasSttWord = !string.IsNullOrEmpty(_targetWord);
         if (micButton != null)
         {
-            micButton.gameObject.SetActive(true);
-            micButton.onClick.RemoveAllListeners();
-            micButton.onClick.AddListener(OnMicButtonTapped);
+            micButton.gameObject.SetActive(hasSttWord);
+            if (hasSttWord)
+            {
+                micButton.interactable = true;
+                micButton.onClick.RemoveAllListeners();
+                micButton.onClick.AddListener(OnMicButtonTapped);
+            }
         }
 
         HideMovementControls(true);
@@ -229,6 +243,9 @@ public class TeachingOverlayPanel : MonoBehaviour
         _isRecording = false;
         SetMicState(false);
 
+        // Disable mic while processing so player cannot spam-tap
+        if (micButton != null) micButton.interactable = false;
+
         if (tapToStopText != null)
             tapToStopText.gameObject.SetActive(false);
 
@@ -245,7 +262,13 @@ public class TeachingOverlayPanel : MonoBehaviour
 
         if (!string.IsNullOrEmpty(filePath))
         {
-            GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError);
+            string langCode = "";
+            if (PhraseEvaluator.Instance != null && PhraseEvaluator.Instance.CurrentRegion == RegionMode.Cebuano)
+                langCode = "ceb";
+            else if (PhraseEvaluator.Instance != null && PhraseEvaluator.Instance.CurrentRegion == RegionMode.Ilokano)
+                langCode = "tl";
+
+            GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError, "", langCode);
         }
         else
         {
@@ -298,7 +321,7 @@ public class TeachingOverlayPanel : MonoBehaviour
         }
     }
 
-    private void HandleSuccess(string transcribedText)
+    public void HandleSuccess(string transcribedText)
     {
         Debug.Log($"<color=green>[TeachingOverlayPanel] HandleSuccess called for speech: '{transcribedText}'. Firing CompleteSTT(true)...</color>");
 
@@ -321,9 +344,9 @@ public class TeachingOverlayPanel : MonoBehaviour
 
     private void HandleFailure()
     {
-        // Show clean retry message on overlay — player taps mic again immediately
+        // Display only 'Not quite!' message without doubling the prompt text
         if (promptText != null)
-            promptText.text = $"<color=#FF7777><b>Not quite! Try again.</b></color>\nTap and speak the word <b>\"{_targetWord}\"</b> into the mic";
+            promptText.text = "<color=#FF7777><b>Not quite! Try again.</b></color>";
 
         // Re-enable mic button so player can attempt again right away
         if (micButton != null)
@@ -333,6 +356,8 @@ public class TeachingOverlayPanel : MonoBehaviour
             micButton.onClick.AddListener(OnMicButtonTapped);
         }
 
+        // Keep mic disabled while 'Not quite!' is active
+        if (micButton != null) micButton.interactable = false;
         SetMicState(false);
 
         // NOTE: Do NOT call CompleteSTT(false) here. The overlay stays open.
@@ -344,8 +369,9 @@ public class TeachingOverlayPanel : MonoBehaviour
     {
         Debug.LogError($"[TeachingOverlayPanel] Transcription Error: {error}");
         if (promptText != null)
-            promptText.text = $"<color=#FF7777>Error: {error}</color>\nTap to try again.";
+            promptText.text = $"<color=#FF7777>Error: {error}</color>";
 
+        if (micButton != null) micButton.interactable = false;
         SetMicState(false);
     }
 
@@ -353,6 +379,16 @@ public class TeachingOverlayPanel : MonoBehaviour
     {
         if (micButtonImage == null) return;
         micButtonImage.sprite = active ? micActiveSprite : micInactiveSprite;
+    }
+
+    /// <summary>
+    /// Applies a white outline to a TextMeshProUGUI for legibility over busy backgrounds.
+    /// </summary>
+    private void ApplyTextOutline(TextMeshProUGUI tmp)
+    {
+        if (tmp == null) return;
+        tmp.outlineWidth = 0.2f;
+        tmp.outlineColor = new UnityEngine.Color32(255, 255, 255, 255);
     }
 
     private void EnsureSpeechEngineDependencies()

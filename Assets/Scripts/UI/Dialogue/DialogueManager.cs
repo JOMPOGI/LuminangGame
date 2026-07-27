@@ -30,6 +30,9 @@ public class DialogueManager : MonoBehaviour
     public bool CanGoBack => _nodeHistory.Count > 0;
     private string _pendingEventName;
 
+    // The next node to advance to after a minigame completes (stored separately so it survives clone destruction)
+    private DialogueNode _pendingMinigameNextNode;
+
     void Awake()
     {
         if (Instance == null)
@@ -146,6 +149,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public DialogueChoice PendingSTTChoice { get; set; }
+    public DialogueChoice PendingMinigameChoice { get; set; }
 
     /// <summary>
     /// Called by the Prev button in DialogueUIController.
@@ -174,30 +178,75 @@ public class DialogueManager : MonoBehaviour
         FirePendingEvent(_currentNPC); 
 
         // ── Handle Choice-Specific Events ──
-        if (!string.IsNullOrEmpty(choice.choiceEvent) && _currentNPC != null)
+        if (!string.IsNullOrEmpty(choice.choiceEvent))
         {
-            _currentNPC.HandleDialogueEvent(choice.choiceEvent);
-            
-            // If this choice triggers STT, pause dialogue advancement
-            if (choice.choiceEvent.Trim().Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase))
+            string choiceEventTrimmed = choice.choiceEvent.Trim();
+
+            // ── STT: pause until STTDialogueAdapter calls CompleteSTT ──
+            if (choiceEventTrimmed.Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase))
             {
                 PendingSTTChoice = choice;
-                if (uiController != null) 
-                {
+                if (_currentNPC != null) _currentNPC.HandleDialogueEvent(choiceEventTrimmed);
+                if (uiController != null)
                     uiController.ToggleSTTRecording(choice);
-                }
                 return; // PAUSE here. STTDialogueAdapter will call CompleteSTT later.
             }
+
+            // ── Minigame: pause until MinigameManager calls CompleteMinigame ──
+            if (choiceEventTrimmed.StartsWith("StartMinigame", System.StringComparison.OrdinalIgnoreCase))
+            {
+                PendingMinigameChoice = choice;
+                _pendingMinigameNextNode = choice.nextNode; // Store nextNode NOW before any clone destroys the choice reference
+                if (uiController != null) uiController.HideChoicesOnly();
+                // Broadcast to ALL NPCs — the one with this event mapped will respond
+                BroadcastDialogueEvent(choiceEventTrimmed);
+                Debug.Log($"<color=cyan>[DialogueManager] StartMinigame event fired ('{choiceEventTrimmed}'). Next node: '{(choice.nextNode != null ? choice.nextNode.name : "NULL")}'. Dialogue PAUSED until CompleteMinigame() is called.</color>");
+                return; // PAUSE here. MinigameManager.HideMinigame -> CompleteMinigame() resumes dialogue.
+            }
+
+            // All other events: broadcast to ALL NPCs in case speaker changed mid-conversation
+            BroadcastDialogueEvent(choiceEventTrimmed);
         }
 
-        if (choice.isWrong && _currentNPC != null)
+        if (choice.isWrong)
         {
-            StartCoroutine(HandleWrongAnswer(choice.nextNode));
+            InteractableNPC talkingNPC = GetActiveNPC();
+            DialogueNode returnNode = choice.nextNode != null ? choice.nextNode : _activeNode;
+            StartCoroutine(HandleWrongAnswer(returnNode));
             return;
         }
 
         ProcessNode(choice.nextNode);
     }
+
+    /// <summary>
+    /// Call this from MinigameManager.onMinigameComplete (or HideMinigame) to resume the dialogue
+    /// after a minigame that was started via a StartMinigame choiceEvent.
+    /// </summary>
+    public void CompleteMinigame()
+    {
+        Debug.Log("<color=green>[DialogueManager] CompleteMinigame called – resuming dialogue.</color>");
+        DialogueChoice choice = PendingMinigameChoice;
+        PendingMinigameChoice = null;
+        DialogueNode next = _pendingMinigameNextNode;
+        _pendingMinigameNextNode = null;
+
+        if (next != null)
+        {
+            Debug.Log($"<color=green>[DialogueManager] CompleteMinigame -> ProcessNode({next.name})</color>");
+            ProcessNode(next);
+        }
+        else if (choice != null && choice.nextNode != null)
+        {
+            Debug.Log($"<color=green>[DialogueManager] CompleteMinigame (choice fallback) -> ProcessNode({choice.nextNode.name})</color>");
+            ProcessNode(choice.nextNode);
+        }
+        else
+        {
+            Debug.LogWarning("[DialogueManager] CompleteMinigame: No next node to advance to! (PendingMinigameChoice and _pendingMinigameNextNode were both null)");
+        }
+    }
+
 
     private string _injectedPrefix = "";
 
@@ -229,14 +278,47 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 Debug.Log("<color=red>[DialogueManager] STT FAILED!</color>");
-                if (_currentNPC != null)
-                    StartCoroutine(HandleWrongAnswer(_activeNode));
+                GetActiveNPC();
+                StartCoroutine(HandleWrongAnswer(_activeNode));
             }
         }
         else
         {
             Debug.LogWarning("[DialogueManager] CompleteSTT called but no choice or activeNode choice could be found!");
         }
+    }
+
+    public InteractableNPC GetActiveNPC()
+    {
+        if (_currentNPC != null) return _currentNPC;
+
+        if (_activeNode != null && !string.IsNullOrEmpty(_activeNode.speakerName))
+        {
+            string speaker = _activeNode.speakerName.Trim();
+            var allNPCs = FindObjectsByType<InteractableNPC>(FindObjectsSortMode.None);
+            foreach (var npc in allNPCs)
+            {
+                if (npc.gameObject.name.IndexOf(speaker, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    _currentNPC = npc;
+                    Debug.Log($"<color=cyan>[DialogueManager] Matched speaker '{speaker}' to NPC GameObject '{npc.name}'!</color>");
+                    return _currentNPC;
+                }
+            }
+
+            foreach (var npc in allNPCs)
+            {
+                if (npc.defaultDialogue == _activeNode || (npc.questDialogues != null && npc.questDialogues.Exists(q => q.dialogueNode == _activeNode)))
+                {
+                    _currentNPC = npc;
+                    Debug.Log($"<color=cyan>[DialogueManager] Matched dialogue node '{_activeNode.name}' to NPC GameObject '{npc.name}'!</color>");
+                    return _currentNPC;
+                }
+            }
+        }
+
+        _currentNPC = FindFirstObjectByType<InteractableNPC>();
+        return _currentNPC;
     }
 
     private System.Collections.IEnumerator HandleWrongAnswer(DialogueNode returnToNode)
@@ -247,9 +329,13 @@ public class DialogueManager : MonoBehaviour
         if (uiController != null)
             uiController.HideChoicesOnly();
 
-        // Trigger the NPC wrong-answer animation
-        if (_currentNPC != null)
-            _currentNPC.TriggerWrongAnswerAnimation();
+        // Trigger the NPC wrong-answer animation on the active speaker NPC
+        InteractableNPC npcToAnimate = GetActiveNPC();
+        if (npcToAnimate != null)
+        {
+            Debug.Log($"<color=orange>[DialogueManager] Triggering TriggerWrongAnswerAnimation on '{npcToAnimate.name}'...</color>");
+            npcToAnimate.TriggerWrongAnswerAnimation();
+        }
 
         yield return null;
 
@@ -388,11 +474,22 @@ public class DialogueManager : MonoBehaviour
             TeachingOverlayPanel.Instance.ShowForPendingSTT(cleanEventName);
         }
 
-        // 3. Forward to current NPC if available
-        if (_currentNPC != null)
-        {
-            _currentNPC.HandleDialogueEvent(cleanEventName);
-        }
+        // 3. Forward to ALL NPCs — the one with the event mapping will handle it
+        BroadcastDialogueEvent(cleanEventName);
+    }
+
+    /// <summary>
+    /// Sends a dialogue event to EVERY InteractableNPC in the scene.
+    /// Each NPC only reacts if it has a matching entry in its Dialogue Events list.
+    /// This solves the problem where _currentNPC changes mid-conversation but the 
+    /// event mapping lives on a different NPC (e.g. flowerPecker vs Mishang_Rrrigged).
+    /// </summary>
+    private void BroadcastDialogueEvent(string eventName)
+    {
+        if (string.IsNullOrEmpty(eventName)) return;
+        var allNPCs = FindObjectsByType<InteractableNPC>(FindObjectsSortMode.None);
+        foreach (var npc in allNPCs)
+            npc.HandleDialogueEvent(eventName);
     }
 
     private void SafeSetTrigger(Animator animator, string triggerName)

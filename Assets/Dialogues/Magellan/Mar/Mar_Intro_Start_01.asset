@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mar_Intro_Start_01
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mar
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 2e5c6d5b3cf6cb843b38c59528bb5268, type: 3}
   dialogueText: I can give you taho for free but you need to learn and show gratitude
     the cebuano way in exchange. Are you up for it?
   translatedText: 

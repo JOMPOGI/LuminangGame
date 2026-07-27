@@ -336,32 +336,62 @@ public class InteractableNPC : InteractableBase
 
     public void TriggerWrongAnswerAnimation()
     {
-        if (npcAnimator != null)
+        if (npcAnimator == null)
         {
-            StartCoroutine(WrongAnswerRoutine());
+            npcAnimator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>();
         }
+        
+        Debug.Log($"<color=orange>[InteractableNPC] TriggerWrongAnswerAnimation called on '{gameObject.name}' (Animator: {(npcAnimator != null ? npcAnimator.name : "NULL")})</color>");
+        StopCoroutine("WrongAnswerRoutine");
+        StartCoroutine(WrongAnswerRoutine());
     }
 
     private IEnumerator WrongAnswerRoutine()
     {
         isWrongAnswerPlaying = true;
         
-        // Let the UnityEvent fire (which likely triggers the Animator)
+        // 1. Invoke Inspector UnityEvent (OnWrongAnswer)
+        Debug.Log($"[InteractableNPC] Invoking OnWrongAnswer UnityEvent for '{gameObject.name}'...");
         OnWrongAnswer?.Invoke();
 
-        // Wait a moment for the animator to transition
-        yield return new WaitForSeconds(0.2f);
+        // 2. Direct Fallback: Try playing headShake state/trigger directly on Animator if defined
+        if (npcAnimator != null)
+        {
+            bool played = false;
+            foreach (var param in npcAnimator.parameters)
+            {
+                if (param.name.Equals("headShake", System.StringComparison.OrdinalIgnoreCase) ||
+                    param.name.Equals("wrongAnswer", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    if (param.type == AnimatorControllerParameterType.Trigger)
+                    {
+                        npcAnimator.SetTrigger(param.name);
+                        played = true;
+                    }
+                    else if (param.type == AnimatorControllerParameterType.Bool)
+                    {
+                        npcAnimator.SetBool(param.name, true);
+                        played = true;
+                    }
+                }
+            }
 
-        // Wait while the animator is in ANY state other than the base Idle
-        // This assumes the wrong answer animation is NOT the default state.
+            if (!played)
+            {
+                try { npcAnimator.Play("headShake", 0, 0f); } catch {}
+            }
+        }
+
+        // Wait a moment for the animator to transition
+        yield return new WaitForSeconds(0.3f);
+
         if (npcAnimator != null)
         {
             float elapsed = 0f;
-            while (elapsed < 5f) // Safety timeout
+            while (elapsed < 3f) // Safety timeout
             {
                 var state = npcAnimator.GetCurrentAnimatorStateInfo(0);
-                // If we've returned to the Idle state (assuming it's named "Idle" or contains "Idle")
-                if (state.IsName("apoLakay_Idle") || state.IsName("Idle")) 
+                if (state.IsName("Idle") || state.IsName("apoLakay_Idle") || state.normalizedTime >= 0.95f) 
                     break;
                 
                 elapsed += Time.deltaTime;
@@ -370,6 +400,7 @@ public class InteractableNPC : InteractableBase
         }
 
         isWrongAnswerPlaying = false;
+        Debug.Log($"[InteractableNPC] WrongAnswerRoutine finished for '{gameObject.name}'.");
     }
 
     public void HandleDialogueEvent(string eventName)
@@ -377,7 +408,8 @@ public class InteractableNPC : InteractableBase
         if (string.IsNullOrEmpty(eventName)) return;
         
         string cleanEventName = eventName.Trim();
-        Debug.Log($"[InteractableNPC] Received Dialogue Event: '{cleanEventName}' on NPC: {gameObject.name}");
+        // NOTE: Logging is intentionally placed inside the match block below to avoid
+        // console spam — this method is called on ALL NPCs via the broadcast pattern.
 
         // Automatic system handler for TeachingOverlayPanel events
         if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
@@ -407,7 +439,7 @@ public class InteractableNPC : InteractableBase
         {
             if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
             {
-                Debug.Log($"[InteractableNPC] Match found! Firing UnityEvents for: '{cleanEventName}'");
+                Debug.Log($"[InteractableNPC] '{gameObject.name}' matched event '{cleanEventName}' — firing UnityEvent.");
                 mapping.onEventTriggered?.Invoke();
             }
         }
