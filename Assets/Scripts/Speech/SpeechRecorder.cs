@@ -49,31 +49,31 @@ public class SpeechRecorder : MonoBehaviour
     {
         if (Microphone.devices.Length > 0)
         {
+            // Pick first non-empty device
             _deviceName = Microphone.devices[0];
+            Debug.Log($"[SpeechRecorder] Microphone initialized: '{_deviceName}' (Total available devices: {Microphone.devices.Length})");
         }
         else
         {
-            Debug.LogError("No microphone detected!");
+            Debug.LogError("[SpeechRecorder] No microphone device detected on this system!");
+            _deviceName = null;
         }
     }
 
     public void StartRecording()
     {
-        if (string.IsNullOrEmpty(_deviceName))
-        {
-            InitializeMicrophone();
-        }
+        InitializeMicrophone();
 
         if (string.IsNullOrEmpty(_deviceName))
         {
-            Debug.LogError("Cannot start recording: No microphone device found.");
+            Debug.LogError("[SpeechRecorder] Cannot start recording: No microphone device found.");
             return;
         }
         
-        _recording = Microphone.Start(_deviceName, false, 10, 16000); // 16kHz is good for Whisper
+        _recording = Microphone.Start(_deviceName, false, 10, 16000); // 16kHz for Whisper
         _isRecording = true;
         _startTime = Time.time;
-        Debug.Log("Recording started...");
+        Debug.Log($"[SpeechRecorder] Recording started on '{_deviceName}'...");
     }
 
     public string StopRecording()
@@ -84,7 +84,21 @@ public class SpeechRecorder : MonoBehaviour
         Microphone.End(_deviceName);
         _isRecording = false;
 
-        if (position == 0) return null;
+        Debug.Log($"[SpeechRecorder] StopRecording called. Position: {position}, Device: '{_deviceName}'");
+
+        if (position <= 0)
+        {
+            if (_recording != null && _recording.samples > 0)
+            {
+                position = Mathf.Min(_recording.samples, (int)(16000 * (Time.time - _startTime)));
+            }
+        }
+
+        if (position <= 0)
+        {
+            Debug.LogWarning("[SpeechRecorder] Failed to capture microphone audio: Position was 0. Check microphone permissions or input device settings.");
+            return null;
+        }
 
         // Trim the clip to actual recorded length
         AudioClip trimmedClip = AudioClip.Create("TrimmedClip", position, _recording.channels, _recording.frequency, false);
@@ -95,7 +109,7 @@ public class SpeechRecorder : MonoBehaviour
         string filePath = Path.Combine(Application.persistentDataPath, "speech.wav");
         SaveAsWav(trimmedClip, filePath);
         
-        Debug.Log($"Recording saved to {filePath}");
+        Debug.Log($"[SpeechRecorder] Recording saved successfully to {filePath}");
         return filePath;
     }
 

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Mar_Word_10
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mar
-  speakerPortrait: {fileID: 0}
-  dialogueText: 'Starting with the simplest word of appreciation. "Salamat" is the
-    most common way to say thank you. '
+  speakerPortrait: {fileID: 21300000, guid: 895f5c5a9b906fd4383424cc05310823, type: 3}
+  dialogueText: 'If someone goes above and beyond for you or you just want to show
+    your deepest gratitude. "Daghang salamat" is the right phrase! '
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: daghangSalamat
   endEventName: 
   choices:
   - choiceText: 
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: b2ac768ac86b85c40a03a852cd8b20d0, type: 2}
     isWrong: 0
     choiceEvent: 
-    expectedSTTWord: salamat
+    expectedSTTWord: daghang salamat

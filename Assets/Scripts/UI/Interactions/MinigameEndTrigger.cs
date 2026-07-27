@@ -16,13 +16,24 @@ public class MinigameEndTrigger : MonoBehaviour
 
     public void EndMinigame()
     {
+        Debug.Log("[MinigameEndTrigger] Ending minigame/lesson and resuming dialogue...");
+
+        // 1. Hide Lesson if LessonManager is active
+        if (LessonManager.Instance != null)
+        {
+            LessonManager.Instance.HideLesson();
+        }
+
+        // 2. Hide Minigame via MinigameManager
         if (MinigameManager.Instance != null)
         {
             MinigameManager.Instance.HideMinigame();
         }
-        else
+
+        // 3. Fail-safe: Direct resume check for DialogueManager if any paused minigame choice remains
+        if (DialogueManager.Instance != null && DialogueManager.Instance.PendingMinigameChoice != null)
         {
-            Debug.LogWarning("[MinigameEndTrigger] Could not find MinigameManager instance!");
+            DialogueManager.Instance.CompleteMinigame();
         }
     }
 }
