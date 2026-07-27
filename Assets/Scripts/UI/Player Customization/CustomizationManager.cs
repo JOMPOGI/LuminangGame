@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CustomizationManager : MonoBehaviour
 {
@@ -32,6 +33,14 @@ public class CustomizationManager : MonoBehaviour
     public PortraitBooth portraitBooth;
     public GameObject loadingOverlay;
     public GenericModal modal;
+
+    [Header("Detail Panel (Shop)")]
+    public CustomizationDetailPanel detailPanel;
+    public Color ownedColor = Color.white;
+    public Color equippedColor = Color.green;
+
+    [HideInInspector]
+    public List<string> ownedItems = new List<string>();
 
     private EquippedOutfitData originalOutfit;
 
@@ -164,7 +173,7 @@ public class CustomizationManager : MonoBehaviour
         if (characterManager == null || itemFramePrefab == null) return;
 
         // Fetch owned items from database
-        List<string> ownedItems = await FetchOwnedInventory();
+        ownedItems = await FetchOwnedInventory();
 
         foreach (var category in categories)
         {
@@ -223,8 +232,8 @@ public class CustomizationManager : MonoBehaviour
 
         foreach (var item in allItems)
         {
-            // ONLY show items that the player actually OWNS in their inventory
-            if (item.slot == category.slot && ownedItems.Contains(item.name))
+            // Show ALL items now (so they can buy unowned ones)
+            if (item.slot == category.slot)
             {
                 Toggle t = CreateItem(category, item.name, item.icon, null, item, group);
                 if (item.name == equippedName)
@@ -244,12 +253,11 @@ public class CustomizationManager : MonoBehaviour
         GameObject frameObj = Instantiate(itemFramePrefab, category.contentParent);
         frameObj.name = itemName;
 
-        // ============================================================
-        // FIX: Remove rogue Toggle components on child objects.
-        // The prefab has a Toggle on the Checkmark child that fights
-        // with the root Toggle. Destroy all Toggles except the root one.
-        // But first, grab the SelectedSprite from it (that's the active background).
-        // ============================================================
+        // Add UI Helper
+        CustomizationFrameUI frameUI = frameObj.AddComponent<CustomizationFrameUI>();
+        frameUI.Init(item, this);
+
+        // Clean up rogue toggles
         Toggle rootToggle = frameObj.GetComponent<Toggle>();
         Toggle[] allToggles = frameObj.GetComponentsInChildren<Toggle>(true);
         
@@ -260,7 +268,6 @@ public class CustomizationManager : MonoBehaviour
         {
             if (t != rootToggle)
             {
-                // Grab the active background sprite from the rogue toggle before destroying it
                 if (activeBg == null && t.spriteState.selectedSprite != null)
                     activeBg = t.spriteState.selectedSprite;
                 Destroy(t);
@@ -268,26 +275,17 @@ public class CustomizationManager : MonoBehaviour
         }
 
         rootToggle.group = group;
-        rootToggle.isOn = false; // Start all OFF, we select the right one later
+        rootToggle.isOn = false;
 
-        // Find child references
+        // Background
         Transform bgTransform = frameObj.transform.Find("Background");
         Image bgImage = bgTransform != null ? bgTransform.GetComponent<Image>() : null;
-
-        // Auto-detect inactive background sprite from the Background Image's current sprite
-        if (inactiveBg == null && bgImage != null)
-            inactiveBg = bgImage.sprite;
-
-        Transform checkTransform = FindChildRecursive(frameObj.transform, "Checkmark");
-        GameObject checkObj = checkTransform != null ? checkTransform.gameObject : null;
-
-        Transform iconTransform = FindChildRecursive(frameObj.transform, "ItemIcon");
-        if (iconTransform == null) iconTransform = FindChildRecursive(frameObj.transform, "AssetIcon");
-
-        // Set background sprite for "None" button
+        if (inactiveBg == null && bgImage != null) inactiveBg = bgImage.sprite;
         if (bg != null && bgImage != null) bgImage.sprite = bg;
 
-        // Set icon
+        // Icon
+        Transform iconTransform = FindChildRecursive(frameObj.transform, "ItemIcon");
+        if (iconTransform == null) iconTransform = FindChildRecursive(frameObj.transform, "AssetIcon");
         if (iconTransform != null)
         {
             Image iconImg = iconTransform.GetComponent<Image>();
@@ -298,30 +296,54 @@ public class CustomizationManager : MonoBehaviour
             }
         }
 
-        // Start with checkmark hidden
+        Transform checkTransform = FindChildRecursive(frameObj.transform, "Checkmark");
+        GameObject checkObj = checkTransform != null ? checkTransform.gameObject : null;
         if (checkObj != null) checkObj.SetActive(false);
 
-        // Handle selection changes - this controls EVERYTHING visually
+        // Set up "None" button specifics
+        if (item == null)
+        {
+            HideChild(frameObj.transform, "CoinIcon");
+            HideChild(frameObj.transform, "Price");
+            HideChild(frameObj.transform, "PriceGroup");
+            HideChild(frameObj.transform, "Ownership");
+        }
+
+        // Toggle Listener
         rootToggle.onValueChanged.AddListener((isOn) => {
-            // Checkmark
             if (checkObj != null) checkObj.SetActive(isOn);
 
-            // Background sprite
             if (bgImage != null)
             {
                 if (isOn && activeBg != null) bgImage.sprite = activeBg;
                 else if (!isOn && inactiveBg != null) bgImage.sprite = inactiveBg;
             }
 
-            // Equip/Unequip
             if (isOn)
             {
-                if (item == null) characterManager.Unequip(category.slot);
-                else characterManager.Equip(item);
+                if (item == null) 
+                {
+                    characterManager.Unequip(category.slot);
+                    if (detailPanel != null) detailPanel.HidePanel();
+                    RefreshAllFrames();
+                }
+                else 
+                {
+                    if (detailPanel != null) detailPanel.ShowItem(item);
+                }
             }
         });
 
         return rootToggle;
+    }
+
+    public void RefreshAllFrames()
+    {
+        CustomizationFrameUI[] allFrames = GetComponentsInChildren<CustomizationFrameUI>(true);
+        foreach (var frame in allFrames)
+        {
+            frame.RefreshVisuals();
+        }
     }
 
     private string GetEquippedNameForSlot(EquippedOutfitData data, OutfitItem.Slot slot)
@@ -337,7 +359,7 @@ public class CustomizationManager : MonoBehaviour
         }
     }
 
-    private Transform FindChildRecursive(Transform parent, string name)
+    public Transform FindChildRecursive(Transform parent, string name)
     {
         foreach (Transform child in parent)
         {
@@ -346,6 +368,12 @@ public class CustomizationManager : MonoBehaviour
             if (found != null) return found;
         }
         return null;
+    }
+
+    private void HideChild(Transform parent, string name)
+    {
+        Transform child = FindChildRecursive(parent, name);
+        if (child != null) child.gameObject.SetActive(false);
     }
 
     #region Save Logic
@@ -439,4 +467,107 @@ public class CustomizationManager : MonoBehaviour
     }
 
     #endregion
+}
+
+/// <summary>
+/// Small helper attached dynamically to frames to handle turning their internal UI on/off
+/// </summary>
+public class CustomizationFrameUI : MonoBehaviour
+{
+    private OutfitItem myItem;
+    private CustomizationManager myManager;
+    
+    private TMPro.TextMeshProUGUI nameLabel;
+    private TMPro.TextMeshProUGUI priceLabel;
+    private TMPro.TextMeshProUGUI ownershipLabel;
+    private GameObject coinIcon;
+    private GameObject priceGroup;
+
+    public void Init(OutfitItem item, CustomizationManager manager)
+    {
+        myItem = item;
+        myManager = manager;
+
+        if (myItem == null) return;
+
+        // Cache references
+        Transform nameTrans = myManager.FindChildRecursive(transform, "ItemName");
+        if (nameTrans != null) nameLabel = nameTrans.GetComponent<TMPro.TextMeshProUGUI>();
+
+        Transform priceTrans = myManager.FindChildRecursive(transform, "Price");
+        if (priceTrans != null) priceLabel = priceTrans.GetComponent<TMPro.TextMeshProUGUI>();
+
+        Transform ownerTrans = myManager.FindChildRecursive(transform, "Ownership");
+        if (ownerTrans != null) ownershipLabel = ownerTrans.GetComponent<TMPro.TextMeshProUGUI>();
+
+        Transform coinTrans = myManager.FindChildRecursive(transform, "CoinIcon");
+        if (coinTrans != null) coinIcon = coinTrans.gameObject;
+        
+        Transform groupTrans = myManager.FindChildRecursive(transform, "PriceGroup");
+        if (groupTrans != null) priceGroup = groupTrans.gameObject;
+
+        // Set static data
+        if (nameLabel != null) nameLabel.text = string.IsNullOrEmpty(item.itemName) ? item.name : item.itemName;
+        if (priceLabel != null) priceLabel.text = item.price.ToString();
+    }
+
+    public void RefreshVisuals()
+    {
+        if (myItem == null) return;
+
+        bool isOwned = myManager.ownedItems.Contains(myItem.name) || myItem.price <= 0;
+        bool isEquipped = IsItemEquipped();
+
+        if (isOwned)
+        {
+            // Hide Price & Coin
+            if (coinIcon != null) coinIcon.SetActive(false);
+            if (priceLabel != null) priceLabel.gameObject.SetActive(false);
+            if (priceGroup != null) priceGroup.SetActive(false);
+
+            // Show Ownership
+            if (ownershipLabel != null)
+            {
+                ownershipLabel.gameObject.SetActive(true);
+                
+                if (isEquipped)
+                {
+                    ownershipLabel.text = "Equipped";
+                    ownershipLabel.color = myManager.equippedColor;
+                }
+                else
+                {
+                    ownershipLabel.text = "Owned";
+                    ownershipLabel.color = myManager.ownedColor;
+                }
+            }
+        }
+        else
+        {
+            // Show Price & Coin
+            if (coinIcon != null) coinIcon.SetActive(true);
+            if (priceLabel != null) priceLabel.gameObject.SetActive(true);
+            if (priceGroup != null) priceGroup.SetActive(true);
+
+            // Hide Ownership
+            if (ownershipLabel != null) ownershipLabel.gameObject.SetActive(false);
+        }
+    }
+
+    private bool IsItemEquipped()
+    {
+        if (myManager == null || myManager.characterManager == null) return false;
+        
+        var equipped = myManager.characterManager.GetEquippedNames();
+        string equippedName = myItem.slot switch
+        {
+            OutfitItem.Slot.Hair        => equipped.hair,
+            OutfitItem.Slot.Top         => equipped.top,
+            OutfitItem.Slot.Bottom      => equipped.bottom,
+            OutfitItem.Slot.Shoes       => equipped.shoes,
+            OutfitItem.Slot.Accessories => equipped.accessories,
+            _                           => null
+        };
+        return equippedName == myItem.gameObject.name;
+    }
 }

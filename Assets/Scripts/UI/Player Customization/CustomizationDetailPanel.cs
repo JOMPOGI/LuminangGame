@@ -1,0 +1,279 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+
+/// <summary>
+/// Controls the pop-up animation of the DescriptionPanel in the Shop/Customization scene.
+/// </summary>
+public class CustomizationDetailPanel : MonoBehaviour
+{
+    [Header("Panel to Animate")]
+    public RectTransform descriptionPanel;
+
+    [Header("Animation Settings")]
+    [Tooltip("Seconds for the pop-up animation")]
+    public float animDuration = 0.2f;
+
+    [Header("Description Panel Content")]
+    public TextMeshProUGUI itemNameText;
+    public TextMeshProUGUI itemDescText;
+    public TextMeshProUGUI priceText;
+    public Image itemIconImage;
+    public Button actionButton; // Buy, Equip, or Unequip
+    public TextMeshProUGUI actionButtonLabel;
+
+    [Header("Character")]
+    public OutfitManager outfitManager;
+
+    [Header("Colors")]
+    public Color affordableColor = Color.white;
+    public Color tooExpensiveColor = Color.red;
+
+    // ---- private state ----
+    private OutfitItem currentItem;
+    private bool isPanelOpen = false;
+    private Coroutine animCoroutine;
+
+    // TODO: Connect this to your real PlayerPrefs/Coin Manager or Supabase later
+    private int TempPlayerCoins
+    {
+        get => PlayerPrefs.GetInt("TempCoins", 500); // Give player 500 starting coins for testing
+        set => PlayerPrefs.SetInt("TempCoins", value);
+    }
+
+    void Awake()
+    {
+        if (descriptionPanel != null)
+        {
+            // Start hidden
+            descriptionPanel.gameObject.SetActive(false);
+            descriptionPanel.localScale = Vector3.zero;
+        }
+
+        // Wire up action button
+        if (actionButton != null)
+            actionButton.onClick.AddListener(OnActionButtonClicked);
+    }
+
+    public void ShowItem(OutfitItem item)
+    {
+        currentItem = item;
+
+        // Fill text fields
+        if (itemNameText != null)
+            itemNameText.text = string.IsNullOrEmpty(item.itemName) ? item.name : item.itemName;
+
+        if (itemDescText != null)
+            itemDescText.text = item.itemDescription;
+
+        if (priceText != null)
+        {
+            priceText.text = item.price.ToString();
+            priceText.color = TempPlayerCoins >= item.price ? affordableColor : tooExpensiveColor;
+        }
+
+        // Set Icon
+        if (itemIconImage != null)
+        {
+            if (item.icon != null)
+            {
+                itemIconImage.sprite = item.icon;
+                itemIconImage.color = Color.white;
+            }
+            else
+            {
+                itemIconImage.color = new Color(0, 0, 0, 0); // Hide if no icon
+            }
+        }
+
+        RefreshButtonState();
+
+        // Pop open
+        if (!isPanelOpen)
+            PopOpen();
+    }
+
+    public void HidePanel()
+    {
+        currentItem = null;
+        if (isPanelOpen)
+            PopClose();
+    }
+
+    // ------------------------------------------------
+    // Logic
+    // ------------------------------------------------
+
+    private void OnActionButtonClicked()
+    {
+        if (currentItem == null || outfitManager == null) return;
+
+        bool isOwned = IsItemOwned(currentItem);
+        bool isEquipped = IsCurrentItemEquipped();
+
+        if (!isOwned)
+        {
+            // BUY Logic
+            if (TempPlayerCoins >= currentItem.price)
+            {
+                // Spend coins
+                TempPlayerCoins -= currentItem.price;
+                Debug.Log($"Bought {currentItem.itemName} for {currentItem.price} coins. Remaining: {TempPlayerCoins}");
+                
+                // Save ownership
+                SetItemOwned(currentItem, true);
+                
+                // Immediately update all frames (so the coin icon disappears on the frame)
+                CustomizationManager manager = Object.FindFirstObjectByType<CustomizationManager>();
+                if (manager != null) manager.RefreshAllFrames();
+            }
+            else
+            {
+                Debug.LogWarning("Not enough coins to buy this item!");
+                return; // Do nothing if too expensive
+            }
+        }
+        else if (isEquipped)
+        {
+            // UNEQUIP Logic
+            outfitManager.Unequip(currentItem.slot);
+        }
+        else
+        {
+            // EQUIP Logic
+            outfitManager.Equip(currentItem);
+        }
+
+        RefreshButtonState();
+    }
+
+    private void RefreshButtonState()
+    {
+        if (currentItem == null || actionButtonLabel == null) return;
+
+        bool isOwned = IsItemOwned(currentItem);
+        bool isEquipped = IsCurrentItemEquipped();
+
+        if (!isOwned)
+        {
+            actionButtonLabel.text = "Buy";
+            
+            // Disable button if too expensive
+            if (actionButton != null)
+                actionButton.interactable = (TempPlayerCoins >= currentItem.price);
+        }
+        else
+        {
+            if (actionButton != null)
+                actionButton.interactable = true; // Always interactable if owned
+
+            if (isEquipped)
+            {
+                actionButtonLabel.text = "Unequip";
+            }
+            else
+            {
+                actionButtonLabel.text = "Equip";
+            }
+        }
+    }
+
+    // --- Placeholders for Supabase / Inventory System ---
+    
+    public static bool IsItemOwned(OutfitItem item)
+    {
+        if (item.price <= 0) return true;
+
+        CustomizationManager manager = Object.FindFirstObjectByType<CustomizationManager>();
+        if (manager != null)
+        {
+            return manager.ownedItems.Contains(item.name);
+        }
+        return false;
+    }
+
+    private void SetItemOwned(OutfitItem item, bool owned)
+    {
+        CustomizationManager manager = Object.FindFirstObjectByType<CustomizationManager>();
+        if (manager != null)
+        {
+            if (owned && !manager.ownedItems.Contains(item.name))
+            {
+                manager.ownedItems.Add(item.name);
+                // TODO: Replace with actual Supabase INSERT into user_inventory
+            }
+            else if (!owned)
+            {
+                manager.ownedItems.Remove(item.name);
+            }
+        }
+    }
+
+    private bool IsCurrentItemEquipped()
+    {
+        if (currentItem == null || outfitManager == null) return false;
+
+        var equipped = outfitManager.GetEquippedNames();
+        string equippedName = currentItem.slot switch
+        {
+            OutfitItem.Slot.Hair        => equipped.hair,
+            OutfitItem.Slot.Top         => equipped.top,
+            OutfitItem.Slot.Bottom      => equipped.bottom,
+            OutfitItem.Slot.Shoes       => equipped.shoes,
+            OutfitItem.Slot.Accessories => equipped.accessories,
+            _                           => null
+        };
+
+        return equippedName == currentItem.gameObject.name;
+    }
+
+    // ------------------------------------------------
+    // Pop Animation
+    // ------------------------------------------------
+
+    private void PopOpen()
+    {
+        isPanelOpen = true;
+        if (descriptionPanel != null)
+        {
+            descriptionPanel.gameObject.SetActive(true);
+            if (animCoroutine != null) StopCoroutine(animCoroutine);
+            animCoroutine = StartCoroutine(ScalePanel(Vector3.zero, Vector3.one));
+        }
+    }
+
+    private void PopClose()
+    {
+        isPanelOpen = false;
+        if (descriptionPanel != null)
+        {
+            if (animCoroutine != null) StopCoroutine(animCoroutine);
+            animCoroutine = StartCoroutine(ScalePanel(descriptionPanel.localScale, Vector3.zero, hideOnComplete: true));
+        }
+    }
+
+    private IEnumerator ScalePanel(Vector3 fromScale, Vector3 toScale, bool hideOnComplete = false)
+    {
+        float elapsed = 0f;
+        while (elapsed < animDuration)
+        {
+            elapsed += Time.deltaTime;
+            
+            // Simple ease-out curve
+            float t = elapsed / animDuration;
+            float easeT = 1f - (1f - t) * (1f - t); 
+            
+            descriptionPanel.localScale = Vector3.Lerp(fromScale, toScale, easeT);
+            yield return null;
+        }
+
+        descriptionPanel.localScale = toScale;
+
+        if (hideOnComplete)
+        {
+            descriptionPanel.gameObject.SetActive(false);
+        }
+    }
+}
