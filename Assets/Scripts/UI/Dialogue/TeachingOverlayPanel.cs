@@ -352,12 +352,11 @@ public class TeachingOverlayPanel : MonoBehaviour
         if (micButton != null)
         {
             micButton.gameObject.SetActive(true);
+            micButton.interactable = true;
             micButton.onClick.RemoveAllListeners();
             micButton.onClick.AddListener(OnMicButtonTapped);
         }
 
-        // Keep mic disabled while 'Not quite!' is active
-        if (micButton != null) micButton.interactable = false;
         SetMicState(false);
 
         // NOTE: Do NOT call CompleteSTT(false) here. The overlay stays open.
@@ -371,7 +370,11 @@ public class TeachingOverlayPanel : MonoBehaviour
         if (promptText != null)
             promptText.text = $"<color=#FF7777>Error: {error}</color>";
 
-        if (micButton != null) micButton.interactable = false;
+        if (micButton != null)
+        {
+            micButton.gameObject.SetActive(true);
+            micButton.interactable = true;
+        }
         SetMicState(false);
     }
 
