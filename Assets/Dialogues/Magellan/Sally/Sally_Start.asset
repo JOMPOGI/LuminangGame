@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Sally
   speakerPortrait: {fileID: 0}
-  dialogueText: 
+  dialogueText: 'Kumusta! I don''t think we''ve met before. '
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: b9e3eb5c564d7bc48aaeb5b250b906bd, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

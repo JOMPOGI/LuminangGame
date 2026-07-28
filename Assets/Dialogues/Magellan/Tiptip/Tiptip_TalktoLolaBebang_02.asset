@@ -17,8 +17,8 @@ MonoBehaviour:
   dialogueText: 'Help her remember the right words to greet her fellow cebuanos! '
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Talk to Lola Bebang
-  endEventName: SetObjective:Talk to Lola Bebang
+  triggerEventName: SetObjective:Help Lola Bebang
+  endEventName: SetObjective:Help Lola Bebang
   choices:
   - choiceText: 
     nextNode: {fileID: 0}

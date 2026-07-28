@@ -116,6 +116,27 @@ public class TeachingOverlayPanel : MonoBehaviour
         Show(finalWord, bgName);
     }
 
+    public void ShowCustomText(string text)
+    {
+        gameObject.SetActive(true);
+
+        if (backgroundImage != null) backgroundImage.gameObject.SetActive(false); // Hide bird
+        if (micButton != null) micButton.gameObject.SetActive(false); // Hide mic
+        if (tapToStopText != null) tapToStopText.gameObject.SetActive(false);
+
+        if (promptText != null)
+        {
+            promptText.gameObject.SetActive(true);
+            promptText.text = $"<color=#55FF55><b>{text}</b></color>";
+        }
+
+        if (canvasGroup != null && canvasGroup.alpha < 0.95f)
+        {
+            StopAllCoroutines();
+            StartCoroutine(FadeIn());
+        }
+    }
+
     public void ShowForPendingSTT(string backgroundName = "")
     {
         string word = "";
@@ -135,10 +156,25 @@ public class TeachingOverlayPanel : MonoBehaviour
         if (PhraseEvaluator.Instance != null)
             PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);
 
-        if (backgroundImage != null && !string.IsNullOrEmpty(backgroundName))
+        if (backgroundImage != null)
         {
-            Sprite found = FindBackground(backgroundName);
-            if (found != null) ChangeBackground(found);
+            if (!string.IsNullOrEmpty(backgroundName))
+            {
+                Sprite found = FindBackground(backgroundName);
+                if (found != null) 
+                {
+                    backgroundImage.gameObject.SetActive(true);
+                    ChangeBackground(found);
+                }
+                else
+                {
+                    backgroundImage.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                backgroundImage.gameObject.SetActive(false);
+            }
         }
 
         ResetPromptText();
@@ -194,6 +230,7 @@ public class TeachingOverlayPanel : MonoBehaviour
     {
         if (promptText != null)
         {
+            promptText.gameObject.SetActive(true);
             promptText.text = string.IsNullOrEmpty(_targetWord)
                 ? "Tap the mic and speak!"
                 : $"Tap and speak the word <b>\"{_targetWord}\"</b> into the mic";

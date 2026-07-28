@@ -18,6 +18,6 @@ MonoBehaviour:
     know about cebuano gratitude and polite expressions!
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Talk to Mar
-  endEventName: SetObjective:Talk to Mar
+  triggerEventName: SetObjective:Go meet Mar
+  endEventName: SetObjective:Go meet Mar
   choices: []

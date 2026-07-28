@@ -21,4 +21,9 @@ MonoBehaviour:
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: ae6643500b984384e8f57674864fbed9, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

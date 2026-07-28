@@ -18,6 +18,6 @@ MonoBehaviour:
     should know.
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Talk to Jom
-  endEventName: SetObjective:Talk to Jom
+  triggerEventName: SetObjective:Find Jom and learn the Cebuano responses
+  endEventName: SetObjective:Find Jom and learn the Cebuano responses
   choices: []
