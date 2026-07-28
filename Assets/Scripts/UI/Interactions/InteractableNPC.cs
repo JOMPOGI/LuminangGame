@@ -121,7 +121,21 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(obj)) return;
 
-        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw"
+        // First check if any questDialogue matches this objective directly
+        if (questDialogues != null)
+        {
+            foreach (var qd in questDialogues)
+            {
+                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    if (npcAnimator != null) interactionEnabled = true;
+                    if (InteractionManager.Instance != null) InteractionManager.Instance.ForceCheckProximity();
+                    return;
+                }
+            }
+        }
+
+        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
         if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
             obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
         {
@@ -129,17 +143,23 @@ public class InteractableNPC : InteractableBase
                 ? obj.Substring("Talk to ".Length).Trim() 
                 : obj.Substring("Return to ".Length).Trim();
             
-            // Remove spaces and underscores from both for a bulletproof comparison (e.g. "Apo Lakay" vs "NPC_Apo_Lakay")
             string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
-            
-            // Clean the gameobject name to get the base NPC name (e.g. "NPC_Apo_Lakay" -> "apolakay")
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
                                               .Replace("rigged", "")
                                               .Replace("vendor", "")
                                               .Replace("npc", "");
 
-            // Check if the objective starts with the NPC name (e.g. "apolakay".StartsWith("apolakay") == true)
-            if (cleanTarget.StartsWith(cleanName))
+            bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
+            
+            // Check Tiptip <-> flowerpecker alias
+            if (!isMatch)
+            {
+                bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
+                bool isTiptipName = cleanName.Contains("tiptip") || cleanName.Contains("flowerpecker");
+                if (isTiptipTarget && isTiptipName) isMatch = true;
+            }
+
+            if (isMatch)
             {
                 if (npcAnimator != null)
                 {
@@ -150,7 +170,6 @@ public class InteractableNPC : InteractableBase
                     interactionEnabled = false; // Block if missing animator
                 }
                 
-                // Also automatically show the interact prompt if the player is already close
                 if (InteractionManager.Instance != null)
                 {
                     InteractionManager.Instance.ForceCheckProximity();
@@ -158,7 +177,11 @@ public class InteractableNPC : InteractableBase
             }
             else
             {
-                interactionEnabled = false; // Disable everyone else!
+                // Only disable if we don't have defaultDialogue enabled
+                if (defaultDialogue == null)
+                {
+                    interactionEnabled = false;
+                }
             }
         }
     }
@@ -313,32 +336,62 @@ public class InteractableNPC : InteractableBase
 
     public void TriggerWrongAnswerAnimation()
     {
-        if (npcAnimator != null)
+        if (npcAnimator == null)
         {
-            StartCoroutine(WrongAnswerRoutine());
+            npcAnimator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>();
         }
+        
+        Debug.Log($"<color=orange>[InteractableNPC] TriggerWrongAnswerAnimation called on '{gameObject.name}' (Animator: {(npcAnimator != null ? npcAnimator.name : "NULL")})</color>");
+        StopCoroutine("WrongAnswerRoutine");
+        StartCoroutine(WrongAnswerRoutine());
     }
 
     private IEnumerator WrongAnswerRoutine()
     {
         isWrongAnswerPlaying = true;
         
-        // Let the UnityEvent fire (which likely triggers the Animator)
+        // 1. Invoke Inspector UnityEvent (OnWrongAnswer)
+        Debug.Log($"[InteractableNPC] Invoking OnWrongAnswer UnityEvent for '{gameObject.name}'...");
         OnWrongAnswer?.Invoke();
 
-        // Wait a moment for the animator to transition
-        yield return new WaitForSeconds(0.2f);
+        // 2. Direct Fallback: Try playing headShake state/trigger directly on Animator if defined
+        if (npcAnimator != null)
+        {
+            bool played = false;
+            foreach (var param in npcAnimator.parameters)
+            {
+                if (param.name.Equals("headShake", System.StringComparison.OrdinalIgnoreCase) ||
+                    param.name.Equals("wrongAnswer", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    if (param.type == AnimatorControllerParameterType.Trigger)
+                    {
+                        npcAnimator.SetTrigger(param.name);
+                        played = true;
+                    }
+                    else if (param.type == AnimatorControllerParameterType.Bool)
+                    {
+                        npcAnimator.SetBool(param.name, true);
+                        played = true;
+                    }
+                }
+            }
 
-        // Wait while the animator is in ANY state other than the base Idle
-        // This assumes the wrong answer animation is NOT the default state.
+            if (!played)
+            {
+                try { npcAnimator.Play("headShake", 0, 0f); } catch {}
+            }
+        }
+
+        // Wait a moment for the animator to transition
+        yield return new WaitForSeconds(0.3f);
+
         if (npcAnimator != null)
         {
             float elapsed = 0f;
-            while (elapsed < 5f) // Safety timeout
+            while (elapsed < 3f) // Safety timeout
             {
                 var state = npcAnimator.GetCurrentAnimatorStateInfo(0);
-                // If we've returned to the Idle state (assuming it's named "Idle" or contains "Idle")
-                if (state.IsName("apoLakay_Idle") || state.IsName("Idle")) 
+                if (state.IsName("Idle") || state.IsName("apoLakay_Idle") || state.normalizedTime >= 0.95f) 
                     break;
                 
                 elapsed += Time.deltaTime;
@@ -347,6 +400,7 @@ public class InteractableNPC : InteractableBase
         }
 
         isWrongAnswerPlaying = false;
+        Debug.Log($"[InteractableNPC] WrongAnswerRoutine finished for '{gameObject.name}'.");
     }
 
     public void HandleDialogueEvent(string eventName)
@@ -354,13 +408,38 @@ public class InteractableNPC : InteractableBase
         if (string.IsNullOrEmpty(eventName)) return;
         
         string cleanEventName = eventName.Trim();
-        Debug.Log($"[InteractableNPC] Received Dialogue Event: '{cleanEventName}' on NPC: {gameObject.name}");
+        // NOTE: Logging is intentionally placed inside the match block below to avoid
+        // console spam — this method is called on ALL NPCs via the broadcast pattern.
+
+        // Automatic system handler for TeachingOverlayPanel events
+        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+            }
+        }
+        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.Hide();
+            }
+        }
+        else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+            }
+        }
 
         foreach (var mapping in dialogueEvents)
         {
             if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
             {
-                Debug.Log($"[InteractableNPC] Match found! Firing UnityEvents for: '{cleanEventName}'");
+                Debug.Log($"[InteractableNPC] '{gameObject.name}' matched event '{cleanEventName}' — firing UnityEvent.");
                 mapping.onEventTriggered?.Invoke();
             }
         }
