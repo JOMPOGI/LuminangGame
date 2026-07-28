@@ -450,6 +450,29 @@ public class InteractableNPC : InteractableBase
                 ObjectiveManager.Instance.SetObjective(newObjText);
             }
         }
+        else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.StartInSceneLesson(camName);
+            }
+        }
+        else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+            }
+        }
+        else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.EndInSceneLesson();
+            }
+        }
 
         foreach (var mapping in dialogueEvents)
         {

@@ -18,6 +18,6 @@ MonoBehaviour:
     these polite expression, why don''t you help a tourist who don''t?  '
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Talk to Wayne
-  endEventName: SetObjective:Talk to Wayne
+  triggerEventName: SetObjective:Teach Wayne polite Cebuano expressions
+  endEventName: SetObjective:Teach Wayne polite Cebuano expressions
   choices: []

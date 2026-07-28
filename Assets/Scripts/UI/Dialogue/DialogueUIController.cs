@@ -165,11 +165,12 @@ public class DialogueUIController : MonoBehaviour
             }
         }
         
-        // Show the Mic button if one is injected AND this node requires STT
+        // Show the Mic button if one is injected AND this node requires STT (and not handled by InSceneLessonController)
         STTVoiceVisualizerAdapter micAdapter = GetComponentInChildren<STTVoiceVisualizerAdapter>(true);
         if (micAdapter != null)
         {
-            if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
+            if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null &&
+                (InSceneLessonController.Instance == null || !InSceneLessonController.Instance.IsLessonActive))
             {
                 micAdapter.ShowAndPrepare();
             }

@@ -23,7 +23,7 @@ MonoBehaviour:
   - choiceText: Yes
     nextNode: {fileID: 11400000, guid: 58e1be5ad4e117a4197949fb309fec82, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: ShowPopup:welcome_level1
     expectedSTTWord: 
   - choiceText: No
     nextNode: {fileID: 11400000, guid: 1a6d0769ea7b4a54ba623527a6516277, type: 2}

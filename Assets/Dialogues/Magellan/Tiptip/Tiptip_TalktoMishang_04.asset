@@ -19,6 +19,6 @@ MonoBehaviour:
     teach it to someone else!
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Talk to Mishang
-  endEventName: SetObjective:Talk to Mishang
+  triggerEventName: SetObjective:Find Mishang and help her
+  endEventName: SetObjective:Find Mishang and help her
   choices: []

@@ -26,9 +26,13 @@ public class DialogueManager : MonoBehaviour
     private readonly Stack<DialogueNode> _nodeHistory = new Stack<DialogueNode>();
     private DialogueNode _activeNode;
     private bool _navigatingBack = false;
+    private bool _keepOverlayForOneNode = false;
 
     public bool CanGoBack => _nodeHistory.Count > 0;
     private string _pendingEventName;
+
+    /// <summary>Returns the currently active dialogue node.</summary>
+    public DialogueNode GetActiveNode() => _activeNode;
 
     // The next node to advance to after a minigame completes (stored separately so it survives clone destruction)
     private DialogueNode _pendingMinigameNextNode;
@@ -103,6 +107,14 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(node.triggerEventName))
         {
             HandleGlobalDialogueEvent(node.triggerEventName);
+
+            // If the trigger event synchronously loaded a different node (e.g., a routing script jumped to a new branch),
+            // abort processing this current node so we don't display it.
+            if (_activeNode != node)
+            {
+                Debug.Log($"<color=cyan>[DialogueManager] Trigger event redirected dialogue to '{_activeNode.name}'. Skipping display of '{node.name}'.</color>");
+                return;
+            }
         }
 
         // 1.6 Store End Event to fire when this node is COMPLETED
@@ -125,10 +137,37 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Automatically show TeachingOverlayPanel if this is an STT node
-        if (PendingSTTChoice != null && TeachingOverlayPanel.Instance != null)
+        // Automatically show InSceneLessonController or TeachingOverlayPanel if this is an STT node
+        if (PendingSTTChoice != null)
         {
-            TeachingOverlayPanel.Instance.ShowForPendingSTT(node.triggerEventName);
+            if (InSceneLessonController.Instance != null && InSceneLessonController.Instance.IsLessonActive)
+            {
+                InSceneLessonController.Instance.ShowInSceneMic(PendingSTTChoice.expectedSTTWord);
+            }
+            else if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.ShowForPendingSTT(node.triggerEventName);
+            }
+        }
+        else
+        {
+            if (_keepOverlayForOneNode)
+            {
+                // Let the overlay stay visible for this success node!
+                _keepOverlayForOneNode = false; 
+            }
+            else
+            {
+                // Clear prompt text, "Great job!", and "Tap to stop" when moving to a non-STT dialogue node
+                if (InSceneLessonController.Instance != null && InSceneLessonController.Instance.IsLessonActive)
+                {
+                    InSceneLessonController.Instance.ClearPromptAndFeedbackUI();
+                }
+                if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.Hide();
+                }
+            }
         }
 
         // 2. Display UI and update nav buttons
@@ -167,15 +206,34 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     private void OnChoiceSelected(DialogueChoice choice)
     {
+        DialogueNode nodeBeforeEvent = _activeNode;
+
         if (choice == null)
         {
             // Fire the event BEFORE we clean up the NPC reference
             FirePendingEvent(_currentNPC);
+
+            // If FirePendingEvent caused a redirect (e.g., Evaluate → JumpToNode),
+            // the dialogue is already on a new node. Don't EndDialogue.
+            if (_activeNode != nodeBeforeEvent)
+            {
+                Debug.Log($"<color=cyan>[DialogueManager] FirePendingEvent redirected dialogue (null choice). Skipping EndDialogue.</color>");
+                return;
+            }
+
             EndDialogue();
             return;
         }
 
         FirePendingEvent(_currentNPC); 
+
+        // If FirePendingEvent caused a redirect (e.g., Evaluate → JumpToNode),
+        // the dialogue is already on a new node. Don't continue processing.
+        if (_activeNode != nodeBeforeEvent)
+        {
+            Debug.Log($"<color=cyan>[DialogueManager] FirePendingEvent redirected dialogue. Aborting choice processing.</color>");
+            return;
+        }
 
         // ── Handle Choice-Specific Events ──
         if (!string.IsNullOrEmpty(choice.choiceEvent))
@@ -202,6 +260,42 @@ public class DialogueManager : MonoBehaviour
                 BroadcastDialogueEvent(choiceEventTrimmed);
                 Debug.Log($"<color=cyan>[DialogueManager] StartMinigame event fired ('{choiceEventTrimmed}'). Next node: '{(choice.nextNode != null ? choice.nextNode.name : "NULL")}'. Dialogue PAUSED until CompleteMinigame() is called.</color>");
                 return; // PAUSE here. MinigameManager.HideMinigame -> CompleteMinigame() resumes dialogue.
+            }
+
+            // ── Popup: pause until PopupManager finishes showing queued popups ──
+            if (choiceEventTrimmed.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string popupNames = choiceEventTrimmed.Substring("ShowPopup:".Length);
+                if (uiController != null) uiController.HideDialogue();
+                
+                // Hide floating text/overlay if it was active
+                if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.Hide();
+                }
+
+                if (PopupManager.Instance != null)
+                {
+                    PopupManager.Instance.ShowPopups(popupNames, () => 
+                    {
+                        // Resume dialogue after popups are dismissed
+                        if (choice.isWrong)
+                        {
+                            InteractableNPC talkingNPC = GetActiveNPC();
+                            DialogueNode returnNode = choice.nextNode != null ? choice.nextNode : _activeNode;
+                            StartCoroutine(HandleWrongAnswer(returnNode));
+                        }
+                        else
+                        {
+                            ProcessNode(choice.nextNode);
+                        }
+                    });
+                    return; // PAUSE here.
+                }
+                else
+                {
+                    Debug.LogWarning("[DialogueManager] ShowPopup event triggered, but PopupManager.Instance is null! Skipping popups.");
+                }
             }
 
             // All other events: broadcast to ALL NPCs in case speaker changed mid-conversation
@@ -273,6 +367,7 @@ public class DialogueManager : MonoBehaviour
                 }
 
                 Debug.Log($"<color=green>[DialogueManager] STT SUCCESS! Loading nextNode: {(choice.nextNode != null ? choice.nextNode.name : "NULL (Ends Dialogue)")}</color>");
+                _keepOverlayForOneNode = true;
                 ProcessNode(choice.nextNode);
             }
             else
@@ -410,8 +505,15 @@ public class DialogueManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(_pendingEventName))
         {
-            Debug.Log($"[DialogueManager] FirePendingEvent: Sending '{_pendingEventName}' to NPC: {(npc != null ? npc.name : "NULL")}");
-            HandleGlobalDialogueEvent(_pendingEventName);
+            // Support comma-separated events (e.g., "ConversationTest_Correct,ConversationTest_Evaluate")
+            string[] events = _pendingEventName.Split(',');
+            foreach (string evt in events)
+            {
+                string trimmed = evt.Trim();
+                if (string.IsNullOrEmpty(trimmed)) continue;
+                Debug.Log($"[DialogueManager] FirePendingEvent: Sending '{trimmed}' to NPC: {(npc != null ? npc.name : "NULL")}");
+                HandleGlobalDialogueEvent(trimmed);
+            }
         }
         
         if (npc != null)
@@ -468,13 +570,51 @@ public class DialogueManager : MonoBehaviour
                 TeachingOverlayPanel.Instance.Hide();
             }
         }
+        else if (cleanEventName.StartsWith("ShowFloatingText:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string customText = cleanEventName.Substring("ShowFloatingText:".Length).Trim();
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.ShowCustomText(customText);
+                _keepOverlayForOneNode = true; // Prevent ProcessNode from immediately hiding it
+            }
+        }
+        else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.StartInSceneLesson(camName);
+            }
+        }
+        else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.EndInSceneLesson();
+            }
+        }
         else if (TeachingOverlayPanel.Instance != null && PendingSTTChoice != null)
         {
             // Fallback: if triggerEventName is just a background name (e.g. "maayongBuntag" or "bg_morning"), pass it to TeachingOverlayPanel
             TeachingOverlayPanel.Instance.ShowForPendingSTT(cleanEventName);
         }
 
-        // 3. Forward to ALL NPCs — the one with the event mapping will handle it
+        // 3. Handle ConversationTest_ events — route to ConversationTestManager
+        if (cleanEventName.StartsWith("ConversationTest_", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (ConversationTestManager.Instance != null)
+            {
+                ConversationTestManager.Instance.HandleEvent(cleanEventName);
+                Debug.Log($"[DialogueManager] ConversationTest event forwarded: '{cleanEventName}'");
+            }
+            else
+            {
+                Debug.LogWarning($"[DialogueManager] ConversationTest event '{cleanEventName}' fired but ConversationTestManager.Instance is null. Make sure a ConversationTestManager GameObject is in the scene.");
+            }
+        }
+
+        // 4. Forward to ALL NPCs — the one with the event mapping will handle it
         BroadcastDialogueEvent(cleanEventName);
     }
 
@@ -504,6 +644,18 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    /// <summary>
+    /// Allows external scripts (e.g., ConversationTestManager) to redirect the
+    /// active dialogue to a specific node. Called during a trigger event, it causes
+    /// the _activeNode redirect check to skip displaying the current (empty) node.
+    /// </summary>
+    public void JumpToNode(DialogueNode node)
+    {
+        if (node == null) return;
+        Debug.Log($"<color=green>[DialogueManager] JumpToNode → '{node.name}'</color>");
+        ProcessNode(node);
     }
 
     /// <summary>

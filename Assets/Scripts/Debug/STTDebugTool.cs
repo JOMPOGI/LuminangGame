@@ -448,7 +448,13 @@ public class STTDebugTool : MonoBehaviour
     {
         Debug.Log($"<color=cyan>[STTDebugTool] Simulating STT Recognition for word: '{spokenWord}'...</color>");
 
-        if (TeachingOverlayPanel.Instance != null && TeachingOverlayPanel.Instance.gameObject.activeInHierarchy)
+        // If an in-scene lesson is active, route through InSceneLessonController so
+        // "Great job!", agree animation, and all lesson hooks fire correctly.
+        if (InSceneLessonController.Instance != null && InSceneLessonController.Instance.IsLessonActive)
+        {
+            InSceneLessonController.Instance.SimulateSuccess(spokenWord);
+        }
+        else if (TeachingOverlayPanel.Instance != null && TeachingOverlayPanel.Instance.gameObject.activeInHierarchy)
         {
             TeachingOverlayPanel.Instance.HandleSuccess(spokenWord);
         }
@@ -458,7 +464,7 @@ public class STTDebugTool : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[STTDebugTool] Could not pass STT challenge: DialogueManager / TeachingOverlayPanel is null.");
+            Debug.LogWarning("[STTDebugTool] Could not pass STT challenge: no active handler found.");
         }
     }
 }

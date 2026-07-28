@@ -17,6 +17,6 @@ MonoBehaviour:
   dialogueText: Now go visit Ellai at the Market Cafe to continue your learning journey!
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Talk to Ellai
+  triggerEventName: HideTeachingPanel
   endEventName: SetObjective:Talk to Ellai
   choices: []
