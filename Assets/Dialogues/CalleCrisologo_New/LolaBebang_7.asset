@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: LolaBebang_7
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: LOLA BEBANG
+  speakerPortrait: {fileID: 0}
+  dialogueText: '"And now, you''ve reached another important question.
+
+    When
+    you want to ask about quantity, Ilokano uses ''mano'' for ''how many.''
+
+    You
+    can use it when asking about the number of people or objects.
+
+    Listen carefully:
+    mano.
+
+    Now, try saying ''mano'' yourself."
+
+'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: "Say: \"how many \u2192 mano\""
+    nextNode: {fileID: 11400000, guid: 54a5028c9b05ad24a99a99553fc89b0e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

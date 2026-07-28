@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: LolaBebang_Node_6
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: LOLA BEBANG
+  speakerPortrait: {fileID: 0}
+  dialogueText: 'When you want to ask about the way something is done, use ''kasano.''
+
+
+    It
+    means ''how.''
+
+
+    Listen carefully: kasano.
+
+
+    Now, try saying ''kasano''
+    yourself.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: 'Say: "kasano"'
+    nextNode: {fileID: 11400000, guid: fa279c49c73cb504fb4b9240a50b3a97, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

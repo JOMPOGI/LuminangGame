@@ -1,3 +1,4 @@
+#pragma warning disable 0649
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ public class CategoryListManager : MonoBehaviour
     {
         public int levelNumber;
         public string categoryKey;
-        public string lessonTitle;
+        public string lessonTitle = null;
     }
 
     [System.Serializable]

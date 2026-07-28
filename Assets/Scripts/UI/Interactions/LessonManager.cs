@@ -55,7 +55,9 @@ public class LessonManager : MonoBehaviour
     public UnityEngine.Events.UnityEvent onLessonComplete;
 
     private CanvasGroup _dimmerCG;
+#pragma warning disable 0414
     private bool _isLessonActive = false;
+#pragma warning restore 0414
     private List<GameObject> _spawnedRows = new List<GameObject>();
 
     void Awake()

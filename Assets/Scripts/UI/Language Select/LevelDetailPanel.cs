@@ -1,3 +1,4 @@
+#pragma warning disable 0649
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -113,7 +114,7 @@ public class LevelDetailPanel : MonoBehaviour
     private class LanguageEntry
     {
         public string languageKey;
-        public List<ChapterEntry> chapters;
+        public List<ChapterEntry> chapters = null;
     }
 
     [System.Serializable]

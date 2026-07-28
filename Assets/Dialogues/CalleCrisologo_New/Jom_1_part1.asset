@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Jom_1_part1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: VENDOR JOM
+  speakerPortrait: {fileID: 0}
+  dialogueText: 'My counter is getting crowded!
+
+    When you need to politely get
+    someone''s attention or pass through a crowded space, you can say ''dispensaren
+    nak.''
+
+    It means ''excuse me.''
+
+    Listen carefully: dispensaren nak.
+
+    Now,
+    try saying ''dispensaren nak'' yourself."
+
+'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: "Say: \"excuse me \u2192 dispensaren nak\""
+    nextNode: {fileID: 11400000, guid: f0baa0854c5e78b4983bd29e15a33dff, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

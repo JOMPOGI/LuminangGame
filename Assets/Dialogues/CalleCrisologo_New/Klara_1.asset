@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Klara_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: KLARA
+  speakerPortrait: {fileID: 0}
+  dialogueText: '"Let''s begin counting in Ilokano.
+
+    The word ''maysa'' means
+    ''one.''
+
+    You use it when counting a single person or object.
+
+    For example,
+    if you see one chest, you can say ''maysa.''
+
+    Listen carefully: maysa.
+
+    Now,
+    try saying ''maysa'' yourself."
+
+'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: "Say: \"one \u2192 maysa\""
+    nextNode: {fileID: 11400000, guid: 5ec288f48974ddd468cb5dc2a1c65fe3, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

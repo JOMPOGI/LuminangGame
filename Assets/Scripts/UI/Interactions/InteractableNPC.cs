@@ -43,6 +43,22 @@ public class InteractableNPC : InteractableBase
     public UnityEvent OnDialogueEnd;
     public UnityEvent OnWrongAnswer;
 
+        #if UNITY_EDITOR
+    protected virtual void Awake()
+    {
+        if (defaultDialogue == null)
+        {
+            string cleanName = gameObject.name.Replace("_Rigged", "");
+            string assetPath = $"Assets/Dialogues/CalleCrisologo_New/{cleanName}_Node_0.asset";
+            defaultDialogue = UnityEditor.AssetDatabase.LoadAssetAtPath<DialogueNode>(assetPath);
+            if (defaultDialogue != null) 
+            {
+                Debug.Log($"[InteractableNPC] Successfully loaded fallback dialogue for {cleanName} via AssetDatabase!");
+            }
+        }
+    }
+    #endif
+
     public override void Interact()
     {
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
@@ -545,3 +561,4 @@ public class DialogueEventMapping
     public string eventName;
     public UnityEvent onEventTriggered;
 }
+

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Kalaw_Node_4
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: KALAW
+  speakerPortrait: {fileID: 0}
+  dialogueText: 'Look at the morning sun shining over the tiled roofs of Calle Crisologo.
+
+
+    In
+    Ilokano, ''naimbag a bigat'' means ''good morning.''
+
+
+    You can use it when
+    greeting someone earlier in the day.
+
+
+    For example, you can use it when greeting
+    vendors as they begin their morning.
+
+
+    Listen carefully: naimbag a bigat.
+
+
+    Now,
+    try saying ''naimbag a bigat'' yourself.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: 'Say: "naimbag a bigat"'
+    nextNode: {fileID: 11400000, guid: 9b3a7058054049e428f91751f660092d, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

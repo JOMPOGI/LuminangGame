@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Ronnie_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: RONNIE
+  speakerPortrait: {fileID: 0}
+  dialogueText: '"When meeting someone new, one of the first things you may want
+    to know is their name. In Ilokano, ''ania ti nagan mo. '' means ''what is your
+    name. ''
+
+    You can use this phrase when introducing yourself to someone or
+    asking for their name.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: Continue
+    nextNode: {fileID: 11400000, guid: 1d209d5bd97fa4247b9c09d21564a014, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
+  - choiceText: "Say: \"what is your name? \u2192 ania ti nagan mo\""
+    nextNode: {fileID: 11400000, guid: f12dad9b7c2816e48ae9c1e3dc2a770c, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

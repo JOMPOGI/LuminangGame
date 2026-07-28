@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: AlingRiza_Node_5
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: ALING RIZA
+  speakerPortrait: {fileID: 0}
+  dialogueText: 'When talking about yourself together with other people, you can
+    use ''dakkami'' for ''we'' in the context taught here.
+
+
+    Listen carefully:
+    dakkami.
+
+
+    Now, try saying ''dakkami'' yourself.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: 'Say: "dakkami"'
+    nextNode: {fileID: 11400000, guid: 76bffd62c372a294495e17ce3c764ca4, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

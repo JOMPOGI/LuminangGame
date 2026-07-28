@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Sally_2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: SALLY
+  speakerPortrait: {fileID: 0}
+  dialogueText: '"Now you can answer that question yourself. In Ilokano, ''taga ___
+    ak'' means ''I am from ___. ''
+
+    The phrase ''taga'' introduces the place
+    you come from, while the location changes depending on your answer. For example:
+    ''taga Vigan ak.'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: Continue
+    nextNode: {fileID: 11400000, guid: cd5edbf5960b1734ca520f38ad4c4146, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
+  - choiceText: "Say: \"i am from ___ \u2192 taga ___ ak\""
+    nextNode: {fileID: 11400000, guid: 9d6ebe7bd0bcf9b4cb337cc4f1feb3b7, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

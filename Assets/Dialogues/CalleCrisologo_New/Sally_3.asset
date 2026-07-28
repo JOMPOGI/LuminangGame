@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
+  m_Name: Sally_3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  speakerName: SALLY
+  speakerPortrait: {fileID: 0}
+  dialogueText: '"If you are in trouble or need assistance, you need a direct way
+    to ask for help.
+
+    In Ilokano, ''tulunganak'' means ''help me.''
+
+    Use
+    it when you urgently need someone to assist you.
+
+    Listen carefully: tulunganak.
+
+    Now,
+    try saying ''tulunganak'' yourself."
+
+'
+  translatedText: 
+  animationTrigger: 
+  triggerEventName: 
+  endEventName: 
+  choices:
+  - choiceText: "Say: \"help me \u2192 tulongannak\""
+    nextNode: {fileID: 11400000, guid: db254801759afd34bac3ac6791b0b309, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
