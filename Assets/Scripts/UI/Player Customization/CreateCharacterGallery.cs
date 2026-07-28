@@ -21,6 +21,9 @@ public class CreateCharacterGallery : MonoBehaviour
     public Sprite noneIcon;
     public Sprite noneBackground;
 
+    [Header("Detail Panel")]
+    public ItemDetailPanelController detailPanel;
+
     void Start()
     {
         GenerateGallery();
@@ -33,7 +36,7 @@ public class CreateCharacterGallery : MonoBehaviour
         // 1. Clear existing items
         ClearAllContent();
 
-        // 2. Add "None" button to each slot first
+        // 2. Add "None" button to each slot first — these start selected so nothing is equipped
         List<Toggle> noneToggles = new List<Toggle>();
         foreach (OutfitItem.Slot slot in System.Enum.GetValues(typeof(OutfitItem.Slot)))
         {
@@ -54,10 +57,10 @@ public class CreateCharacterGallery : MonoBehaviour
             GameObject frameObj = Instantiate(itemFramePrefab, targetContent);
             frameObj.name = $"Item_{item.name}";
 
-            // 6. Set Icon (from the Sprite you assigned)
+            // 6. Set Icon
             Transform iconTransform = FindChildRecursive(frameObj.transform, "AssetIcon");
             if (iconTransform == null) iconTransform = FindChildRecursive(frameObj.transform, "ItemIcon");
-            
+
             Image iconImage = iconTransform?.GetComponent<Image>();
             if (iconImage != null)
             {
@@ -68,28 +71,35 @@ public class CreateCharacterGallery : MonoBehaviour
                 }
                 else
                 {
-                    // If no icon, hide the image or show a placeholder
-                    iconImage.color = new Color(0, 0, 0, 0); 
+                    iconImage.color = new Color(0, 0, 0, 0);
                 }
             }
 
-            // 7. Setup Toggle Event
+            // 7. Set item name label if it exists on the frame
+            Transform nameLabelTransform = FindChildRecursive(frameObj.transform, "ItemName");
+            TMPro.TextMeshProUGUI nameLabel = nameLabelTransform?.GetComponent<TMPro.TextMeshProUGUI>();
+            if (nameLabel != null)
+                nameLabel.text = string.IsNullOrEmpty(item.itemName) ? item.name : item.itemName;
+
+            // 8. Setup Toggle — clicking opens the detail panel (NO auto-equip)
             Toggle toggle = frameObj.GetComponent<Toggle>();
             if (toggle != null)
             {
                 ToggleGroup group = targetContent.GetComponent<ToggleGroup>();
                 if (group != null) toggle.group = group;
 
-                // Ensure clothing items are NOT selected by default
+                // Not selected by default
                 toggle.isOn = false;
 
-                toggle.onValueChanged.AddListener((isOn) => {
-                    if (isOn) characterManager.Equip(item);
+                toggle.onValueChanged.AddListener((isOn) =>
+                {
+                    if (isOn && detailPanel != null)
+                        detailPanel.ShowItem(item);
                 });
             }
         }
 
-        // 8. FINAL STEP: Force all "None" buttons to be selected last
+        // 9. Force all "None" toggles ON at start — nothing equipped, panel hidden
         foreach (var t in noneToggles)
         {
             t.isOn = true;
@@ -104,19 +114,17 @@ public class CreateCharacterGallery : MonoBehaviour
         GameObject frameObj = Instantiate(itemFramePrefab, targetContent);
         frameObj.name = $"None_{slot}";
 
-        // Set the Background if a special "None Background" is provided
+        // Set background sprite
         Image backgroundImage = frameObj.GetComponent<Image>();
         if (backgroundImage == null) backgroundImage = FindChildRecursive(frameObj.transform, "Background")?.GetComponent<Image>();
-        
-        if (backgroundImage != null && noneBackground != null)
-        {
-            backgroundImage.sprite = noneBackground;
-        }
 
-        // Set Icon to the "None" sprite
+        if (backgroundImage != null && noneBackground != null)
+            backgroundImage.sprite = noneBackground;
+
+        // Set icon
         Transform iconTransform = FindChildRecursive(frameObj.transform, "AssetIcon");
         if (iconTransform == null) iconTransform = FindChildRecursive(frameObj.transform, "ItemIcon");
-        
+
         Image iconImage = iconTransform?.GetComponent<Image>();
         if (iconImage != null)
         {
@@ -127,19 +135,25 @@ public class CreateCharacterGallery : MonoBehaviour
             }
             else
             {
-                iconImage.color = new Color(0, 0, 0, 0); // Transparent if no icon
+                iconImage.color = new Color(0, 0, 0, 0);
             }
         }
 
-        // Setup Toggle Event to Unequip
+        // Setup Toggle — selecting None unequips and hides the detail panel
         Toggle toggle = frameObj.GetComponent<Toggle>();
         if (toggle != null)
         {
             ToggleGroup group = targetContent.GetComponent<ToggleGroup>();
             if (group != null) toggle.group = group;
 
-            toggle.onValueChanged.AddListener((isOn) => {
-                if (isOn) characterManager.Unequip(slot);
+            toggle.onValueChanged.AddListener((isOn) =>
+            {
+                if (isOn)
+                {
+                    characterManager.Unequip(slot);
+                    if (detailPanel != null)
+                        detailPanel.HidePanel();
+                }
             });
         }
         return toggle;
@@ -149,12 +163,12 @@ public class CreateCharacterGallery : MonoBehaviour
     {
         return slot switch
         {
-            OutfitItem.Slot.Hair => hairContent,
-            OutfitItem.Slot.Top => shirtsContent,
-            OutfitItem.Slot.Bottom => pantsContent,
-            OutfitItem.Slot.Shoes => shoesContent,
+            OutfitItem.Slot.Hair        => hairContent,
+            OutfitItem.Slot.Top         => shirtsContent,
+            OutfitItem.Slot.Bottom      => pantsContent,
+            OutfitItem.Slot.Shoes       => shoesContent,
             OutfitItem.Slot.Accessories => accessoriesContent,
-            _ => null
+            _                           => null
         };
     }
 

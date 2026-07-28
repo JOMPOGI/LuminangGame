@@ -4,43 +4,43 @@
       "title": "Conversational & Social",
       "isExpanded": true,
       "lessons": [
-        { "title": "Greetings", "categoryName": "Greetings", "isCompleted": true },
-        { "title": "Expressions of Gratitude", "categoryName": "Expressions of Gratitude", "isCompleted": true },
-        { "title": "Responses (Yes / No / Maybe)", "categoryName": "Responses", "isCompleted": true },
-        { "title": "Identity Expressions", "categoryName": "Identity Expressions", "isCompleted": false }
+        { "categoryKey": "Greetings",   "isCompleted": true  },
+        { "categoryKey": "Gratitude",   "isCompleted": true  },
+        { "categoryKey": "Responses",   "isCompleted": true  },
+        { "categoryKey": "Identity",    "isCompleted": false }
       ]
     },
     {
       "title": "Functional & Navigational",
       "isExpanded": false,
       "lessons": [
-        { "title": "Requests", "categoryName": "Requests", "isCompleted": false },
-        { "title": "Directions", "categoryName": "Directions", "isCompleted": false },
-        { "title": "Count", "categoryName": "Count", "isCompleted": false }
+        { "categoryKey": "Requests",    "isCompleted": false },
+        { "categoryKey": "Directions",  "isCompleted": false },
+        { "categoryKey": "Count",       "isCompleted": false }
       ]
     },
     {
       "title": "Grammatical Foundations",
       "isExpanded": false,
       "lessons": [
-        { "title": "Action Verbs", "categoryName": "Action Verbs", "isCompleted": false },
-        { "title": "Linking Verbs", "categoryName": "Linking Verbs", "isCompleted": false },
-        { "title": "Pronouns", "categoryName": "Pronouns", "isCompleted": false },
-        { "title": "Interrogatives", "categoryName": "Interrogatives", "isCompleted": false }
+        { "categoryKey": "Action Verbs",    "isCompleted": false },
+        { "categoryKey": "Linking Verbs",   "isCompleted": false },
+        { "categoryKey": "Pronouns",        "isCompleted": false },
+        { "categoryKey": "Interrogatives",  "isCompleted": false }
       ]
     },
     {
       "title": "Sentence Building",
       "isExpanded": false,
       "lessons": [
-        { "title": "Sentence Building Intro", "categoryName": "Sentence Building", "isCompleted": false }
+        { "categoryKey": "Sentence Building", "isCompleted": false }
       ]
     },
     {
       "title": "Final Assessment",
       "isExpanded": false,
       "lessons": [
-        { "title": "Final Assessment Test", "categoryName": "Final Assessment", "isCompleted": false }
+        { "categoryKey": "Final Assessment", "isCompleted": false }
       ]
     }
   ],
@@ -49,15 +49,43 @@
       "title": "Conversational & Social",
       "isExpanded": true,
       "lessons": [
-        { "title": "Greetings", "categoryName": "Greetings", "isCompleted": false },
-        { "title": "Expressions of Gratitude", "categoryName": "Expressions of Gratitude", "isCompleted": false }
+        { "categoryKey": "Greetings",   "isCompleted": false },
+        { "categoryKey": "Gratitude",   "isCompleted": false },
+        { "categoryKey": "Responses",   "isCompleted": false },
+        { "categoryKey": "Identity",    "isCompleted": false }
       ]
     },
     {
       "title": "Functional & Navigational",
       "isExpanded": false,
       "lessons": [
-        { "title": "Requests", "categoryName": "Requests", "isCompleted": false }
+        { "categoryKey": "Requests",    "isCompleted": false },
+        { "categoryKey": "Directions",  "isCompleted": false },
+        { "categoryKey": "Count",       "isCompleted": false }
+      ]
+    },
+    {
+      "title": "Grammatical Foundations",
+      "isExpanded": false,
+      "lessons": [
+        { "categoryKey": "Action Verbs",    "isCompleted": false },
+        { "categoryKey": "Linking Verbs",   "isCompleted": false },
+        { "categoryKey": "Pronouns",        "isCompleted": false },
+        { "categoryKey": "Interrogatives",  "isCompleted": false }
+      ]
+    },
+    {
+      "title": "Sentence Building",
+      "isExpanded": false,
+      "lessons": [
+        { "categoryKey": "Sentence Building", "isCompleted": false }
+      ]
+    },
+    {
+      "title": "Final Assessment",
+      "isExpanded": false,
+      "lessons": [
+        { "categoryKey": "Final Assessment", "isCompleted": false }
       ]
     }
   ]

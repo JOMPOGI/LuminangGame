@@ -52,15 +52,25 @@ public class BookSelectionManager : MonoBehaviour
     public Sprite idleBookSprite;
     public Sprite[] flipSprites;
     public Sprite[] openSprites;
-    public Sprite[] closeSprites;
-    [Tooltip("Time (seconds) between each sprite frame of the page flip animation. Lower = faster flip, Higher = slower flip. Try 0.05–0.15.")]
-    public float timePerFrame = 0.05f;
+
+    [Tooltip("Time (seconds) between each sprite frame for the page FLIP animation.")]
+    public float flipTimePerFrame = 0.05f;
+    [Tooltip("Time (seconds) between each sprite frame for the OPEN and CLOSE animations.")]
+    public float openCloseTimePerFrame = 0.08f;
+    [Tooltip("Delay (seconds) before the book starts opening when the scene loads (to let cloud transitions finish).")]
+    public float startOpenDelay = 0.5f;
+    [Tooltip("Delay (seconds) after the book STARTS opening before the UI pages begin to fade in. Use this to make the UI appear while the book is still opening.")]
+    public float uiFadeInDelay = 0.2f;
+    [Tooltip("Delay (seconds) after the book STARTS closing before the UI pages begin to fade out. Usually 0.0 to fade immediately as the book shuts.")]
+    public float uiFadeOutDelay = 0.0f;
 
     [Header("Tab Content Fade Animation")]
-    [Tooltip("How long (seconds) the content tab fades OUT when switching tabs. Lower = faster.")]
+    [Tooltip("How long (seconds) the content tab fades OUT when switching/flipping tabs. Lower = faster.")]
     public float tabFadeOutDuration = 0.2f;
-    [Tooltip("How long (seconds) the content tab fades IN when switching tabs. Lower = faster.")]
-    public float tabFadeInDuration  = 0.2f;
+    [Tooltip("How long (seconds) the content tab fades IN when switching/flipping tabs. Lower = faster.")]
+    public float tabFadeInDuration = 0.2f;
+    [Tooltip("How long (seconds) the UI takes to fade in/out when the entire book OPENS or CLOSES.")]
+    public float openCloseFadeDuration = 0.1f;
 
     [Header("Page Content CanvasGroup (for Fading)")]
     [Tooltip("CanvasGroup surrounding the inner page contents to fade out during flips.")]
@@ -87,11 +97,15 @@ public class BookSelectionManager : MonoBehaviour
     private CanvasGroup _levelsCanvasGroup;
     private bool _isLevelsGroupOpen = false;
     private CanvasGroup _currentActiveCanvas;
+    private CanvasGroup _bookmarksCanvasGroup;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        // Run UI setup before the very first frame renders so nothing flashes visible
+        InitializeUI();
     }
 
     private void Start()
@@ -109,8 +123,8 @@ public class BookSelectionManager : MonoBehaviour
             }
         }
 
-        // Initial setup
-        InitializeUI();
+        // Automatically trigger the open animation
+        OpenBook();
     }
 
     private void InitializeUI()
@@ -135,11 +149,11 @@ public class BookSelectionManager : MonoBehaviour
                 if (_tabCanvasGroups[i] == null)
                     _tabCanvasGroups[i] = tabContentGroups[i].AddComponent<CanvasGroup>();
 
-                // Only index 0 visible at start; rest hidden
-                bool isFirst = (i == 0);
-                _tabCanvasGroups[i].alpha = isFirst ? 1f : 0f;
-                _tabCanvasGroups[i].interactable = isFirst;
-                _tabCanvasGroups[i].blocksRaycasts = isFirst;
+                // We will keep alpha at 0 initially so the pages don't show while the book is closed.
+                // The OpenBook() coroutine will fade the first tab in once the book is open.
+                _tabCanvasGroups[i].alpha = 0f;
+                _tabCanvasGroups[i].interactable = false;
+                _tabCanvasGroups[i].blocksRaycasts = false;
             }
         }
 
@@ -153,6 +167,19 @@ public class BookSelectionManager : MonoBehaviour
             _levelsCanvasGroup.alpha = 0f;
             _levelsCanvasGroup.interactable = false;
             _levelsCanvasGroup.blocksRaycasts = false;
+        }
+
+        // Auto-cache or add CanvasGroup on the parent of the bookmarks so they can fade in/out too
+        if (bookmarkButtons != null && bookmarkButtons.Length > 0 && bookmarkButtons[0].tabButton != null)
+        {
+            Transform bookmarksParent = bookmarkButtons[0].tabButton.transform.parent;
+            _bookmarksCanvasGroup = bookmarksParent.GetComponent<CanvasGroup>();
+            if (_bookmarksCanvasGroup == null)
+                _bookmarksCanvasGroup = bookmarksParent.gameObject.AddComponent<CanvasGroup>();
+            
+            _bookmarksCanvasGroup.alpha = 0f;
+            _bookmarksCanvasGroup.interactable = false;
+            _bookmarksCanvasGroup.blocksRaycasts = false;
         }
 
         UpdateTabButtonColors(0);
@@ -214,17 +241,17 @@ public class BookSelectionManager : MonoBehaviour
 
             // 1. First half: play flip frames + fade OUT old tab group
             float fadeOutElapsed = 0f;
-            float fadeOutTotal = tabFadeOutDuration > 0f ? tabFadeOutDuration : (midpoint * timePerFrame);
+            float fadeOutTotal = tabFadeOutDuration > 0f ? tabFadeOutDuration : (midpoint * flipTimePerFrame);
 
             if (forward)
             {
                 for (int i = 0; i < midpoint; i++)
                 {
                     bookImage.sprite = flipSprites[i];
-                    fadeOutElapsed += timePerFrame;
+                    fadeOutElapsed += flipTimePerFrame;
                     float t = Mathf.Clamp01(fadeOutElapsed / fadeOutTotal);
                     SetCanvasGroupAlpha(oldGroup, 1f - t); // fade out
-                    yield return new WaitForSeconds(timePerFrame);
+                    yield return new WaitForSeconds(flipTimePerFrame);
                 }
             }
             else
@@ -232,10 +259,10 @@ public class BookSelectionManager : MonoBehaviour
                 for (int i = frameCount - 1; i >= midpoint; i--)
                 {
                     bookImage.sprite = flipSprites[i];
-                    fadeOutElapsed += timePerFrame;
+                    fadeOutElapsed += flipTimePerFrame;
                     float t = Mathf.Clamp01(fadeOutElapsed / fadeOutTotal);
                     SetCanvasGroupAlpha(oldGroup, 1f - t); // fade out
-                    yield return new WaitForSeconds(timePerFrame);
+                    yield return new WaitForSeconds(flipTimePerFrame);
                 }
             }
 
@@ -251,17 +278,17 @@ public class BookSelectionManager : MonoBehaviour
 
             // 4. Second half: play flip frames + fade IN new tab group
             float fadeInElapsed = 0f;
-            float fadeInTotal = tabFadeInDuration > 0f ? tabFadeInDuration : (midpoint * timePerFrame);
+            float fadeInTotal = tabFadeInDuration > 0f ? tabFadeInDuration : (midpoint * flipTimePerFrame);
 
             if (forward)
             {
                 for (int i = midpoint; i < frameCount; i++)
                 {
                     bookImage.sprite = flipSprites[i];
-                    fadeInElapsed += timePerFrame;
+                    fadeInElapsed += flipTimePerFrame;
                     float t = Mathf.Clamp01(fadeInElapsed / fadeInTotal);
                     SetCanvasGroupAlpha(newGroup, t); // fade in
-                    yield return new WaitForSeconds(timePerFrame);
+                    yield return new WaitForSeconds(flipTimePerFrame);
                 }
             }
             else
@@ -269,10 +296,10 @@ public class BookSelectionManager : MonoBehaviour
                 for (int i = midpoint - 1; i >= 0; i--)
                 {
                     bookImage.sprite = flipSprites[i];
-                    fadeInElapsed += timePerFrame;
+                    fadeInElapsed += flipTimePerFrame;
                     float t = Mathf.Clamp01(fadeInElapsed / fadeInTotal);
                     SetCanvasGroupAlpha(newGroup, t); // fade in
-                    yield return new WaitForSeconds(timePerFrame);
+                    yield return new WaitForSeconds(flipTimePerFrame);
                 }
             }
 
@@ -370,33 +397,140 @@ public class BookSelectionManager : MonoBehaviour
     // External Book Open / Close Trigger Animations
     // =====================================================
 
+    [ContextMenu("Test Open Book")]
     public void OpenBook()
     {
         if (_isTransitioning) return;
-        StartCoroutine(PlaySequentialSprites(openSprites, idleBookSprite));
+        StartCoroutine(OpenBookRoutine());
     }
 
+    private IEnumerator OpenBookRoutine()
+    {
+        _isTransitioning = true;
+
+        if (startOpenDelay > 0f)
+            yield return new WaitForSeconds(startOpenDelay);
+
+        // 1. Play book open animation independently so we can overlap the UI fade
+        Coroutine animCoroutine = StartCoroutine(PlayOpenSprites());
+
+        // Wait for the exact moment the UI should start appearing
+        if (uiFadeInDelay > 0f)
+            yield return new WaitForSeconds(uiFadeInDelay);
+
+        // 2. Fade in the active tab (and the bookmarks)
+        if (_bookmarksCanvasGroup != null)
+        {
+            _bookmarksCanvasGroup.interactable = true;
+            _bookmarksCanvasGroup.blocksRaycasts = true;
+        }
+
+        if (_currentActiveCanvas != null)
+        {
+            _currentActiveCanvas.interactable = true;
+            _currentActiveCanvas.blocksRaycasts = true;
+        }
+
+        float fadeElapsed = 0f;
+        while (fadeElapsed < openCloseFadeDuration)
+        {
+            fadeElapsed += Time.deltaTime;
+            // Prevent divide by zero if user sets duration to 0
+            float alpha = openCloseFadeDuration > 0f ? Mathf.Clamp01(fadeElapsed / openCloseFadeDuration) : 1f;
+            
+            if (_currentActiveCanvas != null) _currentActiveCanvas.alpha = alpha;
+            if (_bookmarksCanvasGroup != null) _bookmarksCanvasGroup.alpha = alpha;
+            
+            yield return null;
+        }
+        
+        if (_currentActiveCanvas != null) _currentActiveCanvas.alpha = 1f;
+        if (_bookmarksCanvasGroup != null) _bookmarksCanvasGroup.alpha = 1f;
+
+        // Ensure the book sprite animation is fully finished before allowing other clicks
+        yield return animCoroutine;
+
+        _isTransitioning = false;
+    }
+
+    private IEnumerator PlayOpenSprites()
+    {
+        if (bookImage != null && openSprites != null && openSprites.Length > 0)
+        {
+            for (int i = 0; i < openSprites.Length; i++)
+            {
+                bookImage.sprite = openSprites[i];
+                yield return new WaitForSeconds(openCloseTimePerFrame);
+            }
+        }
+
+        if (idleBookSprite != null)
+            bookImage.sprite = idleBookSprite;
+    }
+
+    [ContextMenu("Test Close Book")]
     public void CloseBook()
     {
         if (_isTransitioning) return;
-        StartCoroutine(PlaySequentialSprites(closeSprites, null));
+        StartCoroutine(CloseBookRoutine());
     }
 
-    private IEnumerator PlaySequentialSprites(Sprite[] animationSprites, Sprite finalSprite)
+    private IEnumerator CloseBookRoutine()
     {
-        if (bookImage == null || animationSprites == null || animationSprites.Length == 0) yield break;
         _isTransitioning = true;
 
-        for (int i = 0; i < animationSprites.Length; i++)
+        // 1. Play book close animation independently so we can overlap the UI fade
+        Coroutine animCoroutine = StartCoroutine(PlayCloseSprites());
+
+        // Wait for the exact moment the UI should start disappearing
+        if (uiFadeOutDelay > 0f)
+            yield return new WaitForSeconds(uiFadeOutDelay);
+
+        // 2. Fade out whatever tab is currently open (and the bookmarks)
+        if (_bookmarksCanvasGroup != null)
         {
-            bookImage.sprite = animationSprites[i];
-            yield return new WaitForSeconds(timePerFrame);
+            _bookmarksCanvasGroup.interactable = false;
+            _bookmarksCanvasGroup.blocksRaycasts = false;
         }
 
-        if (finalSprite != null)
-            bookImage.sprite = finalSprite;
+        if (_currentActiveCanvas != null)
+        {
+            _currentActiveCanvas.interactable = false;
+            _currentActiveCanvas.blocksRaycasts = false;
+        }
+
+        float fadeElapsed = 0f;
+        while (fadeElapsed < openCloseFadeDuration)
+        {
+            fadeElapsed += Time.deltaTime;
+            // Prevent divide by zero if user sets duration to 0
+            float alpha = openCloseFadeDuration > 0f ? 1f - Mathf.Clamp01(fadeElapsed / openCloseFadeDuration) : 0f;
+            
+            if (_currentActiveCanvas != null) _currentActiveCanvas.alpha = alpha;
+            if (_bookmarksCanvasGroup != null) _bookmarksCanvasGroup.alpha = alpha;
+            
+            yield return null;
+        }
+        
+        if (_currentActiveCanvas != null) _currentActiveCanvas.alpha = 0f;
+        if (_bookmarksCanvasGroup != null) _bookmarksCanvasGroup.alpha = 0f;
+
+        // Ensure the book sprite animation is fully finished before allowing other clicks
+        yield return animCoroutine;
 
         _isTransitioning = false;
+    }
+
+    private IEnumerator PlayCloseSprites()
+    {
+        if (bookImage != null && openSprites != null && openSprites.Length > 0)
+        {
+            for (int i = openSprites.Length - 1; i >= 0; i--)
+            {
+                bookImage.sprite = openSprites[i];
+                yield return new WaitForSeconds(openCloseTimePerFrame);
+            }
+        }
     }
 
     // =====================================================
@@ -423,7 +557,10 @@ public class BookSelectionManager : MonoBehaviour
         if (playerInfoPanel != null) playerInfoPanel.Hide();
         if (hudGroupManager != null) hudGroupManager.Hide();
 
-        // Overlay Cloud Transition
+        // 1. Trigger Book Closing Animation First!
+        yield return StartCoroutine(CloseBookRoutine());
+
+        // 2. Overlay Cloud Transition
         if (MapTransitionManager.Instance != null)
         {
             MapTransitionManager.Instance.CloseMap();

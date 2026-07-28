@@ -135,8 +135,12 @@ public class STTVoiceVisualizerAdapter : MonoBehaviour
 
     private void OnTranscriptionSuccess(string result)
     {
+<<<<<<< HEAD
         string expectedWord = "";
         if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
+=======
+        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
+>>>>>>> origin/calle-crisologo
         {
             expectedWord = DialogueManager.Instance.PendingSTTChoice.expectedSTTWord;
         }
