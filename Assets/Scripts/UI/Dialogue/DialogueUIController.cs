@@ -109,6 +109,7 @@ public class DialogueUIController : MonoBehaviour
     /// </summary>
     public void DisplayNode(DialogueNode node, System.Action<DialogueChoice> onChoiceSelected, bool skipAnimation = false)
     {
+        Debug.Log($"<color=magenta>[DialogueUIController] DisplayNode -> Displaying Node: '{(node != null ? node.name : "NULL")}', Text: '{(node != null ? node.dialogueText : "")}'</color>");
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
         _fullText         = injectedPrefixText + node.dialogueText;
@@ -164,11 +165,12 @@ public class DialogueUIController : MonoBehaviour
             }
         }
         
-        // Show the Mic button if one is injected AND this node requires STT
+        // Show the Mic button if one is injected AND this node requires STT (and not handled by InSceneLessonController)
         STTVoiceVisualizerAdapter micAdapter = GetComponentInChildren<STTVoiceVisualizerAdapter>(true);
         if (micAdapter != null)
         {
-            if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
+            if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null &&
+                (InSceneLessonController.Instance == null || !InSceneLessonController.Instance.IsLessonActive))
             {
                 micAdapter.ShowAndPrepare();
             }

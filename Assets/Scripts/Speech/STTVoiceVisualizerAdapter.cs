@@ -135,27 +135,45 @@ public class STTVoiceVisualizerAdapter : MonoBehaviour
 
     private void OnTranscriptionSuccess(string result)
     {
-        PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
+        string expectedWord = "";
+        if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
         {
-            if (bestEntry != null && isEnglish)
+            expectedWord = DialogueManager.Instance.PendingSTTChoice.expectedSTTWord;
+        }
+
+        if (!string.IsNullOrEmpty(expectedWord))
+        {
+            // Evaluate against the expected STT word using the NLP backend service (luminang-nlp-service)
+            PhraseEvaluator.Instance.EvaluateSpeech(expectedWord, result, (transcript, scorePercent, evalResult) =>
             {
-                string prefix = $"<color=#00FFFF>You said:</color> \"{result}\"\n\n";
-                OnSTTEvaluationComplete?.Invoke(false, result, prefix);
-            }
-            else if (bestEntry != null)
-            {
-                string prefix = $"<color=#00FFFF>You said:</color> \"{result}\" (<color=yellow>{accuracy:F0}% Match</color>)\n\n";
-                // Only consider it a success if accuracy >= 80%
-                bool success = accuracy >= 80f;
+                bool success = scorePercent >= 80f;
+                string prefix = $"<color=#00FFFF>You said:</color> \"{result}\" (<color={(success ? "#55FF55" : "#FF7777")}>{scorePercent:F0}% Match</color>)\n\n";
                 OnSTTEvaluationComplete?.Invoke(success, result, prefix);
-            }
-            else
+            });
+        }
+        else
+        {
+            // Fallback to dataset search if no specific expected word was defined
+            PhraseEvaluator.Instance.FindBestMatch(result, (bestEntry, bestLang, accuracy, isEnglish, matchResult) =>
             {
-                // Unrecognized completely
-                string prefix = $"<color=#00FFFF>You said:</color> \"{result}\"\n\n";
-                OnSTTEvaluationComplete?.Invoke(false, result, prefix);
-            }
-        });
+                if (bestEntry != null && isEnglish)
+                {
+                    string prefix = $"<color=#00FFFF>You said:</color> \"{result}\"\n\n";
+                    OnSTTEvaluationComplete?.Invoke(false, result, prefix);
+                }
+                else if (bestEntry != null)
+                {
+                    string prefix = $"<color=#00FFFF>You said:</color> \"{result}\" (<color=yellow>{accuracy:F0}% Match</color>)\n\n";
+                    bool success = accuracy >= 80f;
+                    OnSTTEvaluationComplete?.Invoke(success, result, prefix);
+                }
+                else
+                {
+                    string prefix = $"<color=#00FFFF>You said:</color> \"{result}\"\n\n";
+                    OnSTTEvaluationComplete?.Invoke(false, result, prefix);
+                }
+            });
+        }
     }
 
     private void OnTranscriptionError(string error)

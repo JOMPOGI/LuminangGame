@@ -404,13 +404,14 @@ public class LessonManager : MonoBehaviour
 
     public void HideLesson()
     {
-        if (!_isLessonActive) return;
-        
-        Debug.Log("[LessonManager] HideLesson requested.");
         _isLessonActive = false;
 
-        StopAllCoroutines();
-        StartCoroutine(FadeRoutine(false));
+        if (lessonPanel != null && lessonPanel.activeSelf)
+        {
+            Debug.Log("[LessonManager] HideLesson requested.");
+            StopAllCoroutines();
+            StartCoroutine(FadeRoutine(false));
+        }
     }
 
     private IEnumerator FadeRoutine(bool show)
@@ -437,6 +438,11 @@ public class LessonManager : MonoBehaviour
         {
             ClearRows();
             lessonPanel.SetActive(false); // THE TRIGGER FOR THE WATCHDOG
+
+            // Let MinigameManager.HideMinigame() handle CompleteMinigame() in all cases.
+            // (MinigameManager now always calls CompleteMinigame when it cleans up.)
+            if (MinigameManager.Instance != null)
+                MinigameManager.Instance.HideMinigame();
 
             // Fire quest events!
             if (onLessonComplete != null)
