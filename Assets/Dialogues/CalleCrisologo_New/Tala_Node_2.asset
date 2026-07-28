@@ -15,23 +15,14 @@ MonoBehaviour:
   speakerName: TALA
   speakerPortrait: {fileID: 0}
   dialogueText: 'The next number is ''lima.''
-
-
-    In Ilokano, ''lima'' means ''five.''
-
-
-    Listen
-    carefully: lima.
-
-
-    Now, try saying ''lima'' yourself.'
+In Ilokano, ''lima'' means ''five.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "lima"'
-    nextNode: {fileID: 11400000, guid: 7dfc085374a16be42b6eabeb3508e444, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 38001e4d41355655b7375dadf58fc53a, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

@@ -15,32 +15,14 @@ MonoBehaviour:
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
   dialogueText: 'Look at the morning sun shining over the tiled roofs of Calle Crisologo.
-
-
-    In
-    Ilokano, ''naimbag a bigat'' means ''good morning.''
-
-
-    You can use it when
-    greeting someone earlier in the day.
-
-
-    For example, you can use it when greeting
-    vendors as they begin their morning.
-
-
-    Listen carefully: naimbag a bigat.
-
-
-    Now,
-    try saying ''naimbag a bigat'' yourself.'
+In Ilokano, ''naimbag a bigat'' means ''good morning.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "naimbag a bigat"'
-    nextNode: {fileID: 11400000, guid: 9b3a7058054049e428f91751f660092d, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a91efa7a54635cdf90183fe6882e1613, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

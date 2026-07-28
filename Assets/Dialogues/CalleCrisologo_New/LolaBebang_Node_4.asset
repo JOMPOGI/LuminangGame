@@ -15,23 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'When asking about time, you can use ''kaano.''
-
-
-    It means ''when.''
-
-
-    Listen
-    carefully: kaano.
-
-
-    Now, try saying ''kaano'' yourself.'
+It means ''when.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "kaano"'
-    nextNode: {fileID: 11400000, guid: 39770d267cc6e7a4dbe0d0d327b11858, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: b808a38ce7555e37ab1e820913a7d103, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

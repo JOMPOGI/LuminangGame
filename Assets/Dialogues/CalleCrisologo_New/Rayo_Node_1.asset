@@ -15,31 +15,14 @@ MonoBehaviour:
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
   dialogueText: 'Click! Great pose!
-
-
-    It''s warm today, and you might want something
-    refreshing.
-
-
-    In Ilokano, ''uminom'' means ''drink.''
-
-
-    It is an action
-    verb used when talking about drinking something.
-
-
-    Listen carefully: uminom.
-
-
-    Now,
-    try saying ''uminom'' yourself.'
+It''s warm today, and you might want something refreshing.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:RayoCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "uminom"'
-    nextNode: {fileID: 11400000, guid: 1bf66734f60239c44a4f70c8042b2c36, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a0d870e402365ad08fa56bd32f887378, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

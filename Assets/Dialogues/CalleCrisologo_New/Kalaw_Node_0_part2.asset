@@ -14,19 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Wait a second... look at that ancient anting-anting pendant resting
-    on your chest! Feel that faint hum?
-
-
-    The Ilocos Language Crystal inside
-    it is sleeping.'
+  dialogueText: 'Wait a second... look at that ancient anting-anting pendant resting on your chest! Feel that faint hum?
+The Ilocos Language Crystal inside it is sleeping.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 411b9bf8da1e01545ac4307c0ac23384, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: db47955438f95d489142de5553e37747, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

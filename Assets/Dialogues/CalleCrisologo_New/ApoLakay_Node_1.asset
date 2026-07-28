@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
-  dialogueText: 'To reach the Burnay pottery yard, you need to tell someone which
-    direction to take.
-
-
-    In Ilokano, ''agliko iti kannigid'' means ''turn left.''
-
-
-    Use
-    it when directing someone to turn toward the left side.
-
-
-    Listen carefully:
-    agliko iti kannigid.
-
-
-    Now, try saying ''agliko iti kannigid'' yourself.'
+  dialogueText: 'To reach the Burnay pottery yard, you need to tell someone which direction to take.
+In Ilokano, ''agliko iti kannigid'' means ''turn left.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:ApoLakayCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "agliko iti kannigid"'
-    nextNode: {fileID: 11400000, guid: cd16b6e388341004f8c33ffc4d8dba70, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9fef413e8f8e52e193b70335cfa678f4, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

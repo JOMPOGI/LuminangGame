@@ -14,17 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING ROSA
   speakerPortrait: {fileID: 0}
-  dialogueText: "You're doing something very important right now\u2014you are using
-    your voice.\n\nIn Ilokano, 'agsao' means 'speak.'\n\nYou can use it when talking
-    about speaking with another person or practicing a language.\n\nListen carefully:
-    agsao.\n\nNow, try saying 'agsao' yourself."
+  dialogueText: 'You''re doing something very important right now - you are using your voice.
+In Ilokano, ''agsao'' means ''speak.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agsao"'
-    nextNode: {fileID: 11400000, guid: 64f77dc1d89288842ad2c17e2090a5dd, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: e32b4169dfa55a07917a140a4d6ba77f, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

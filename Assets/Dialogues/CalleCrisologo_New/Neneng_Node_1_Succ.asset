@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: NENENG
   speakerPortrait: {fileID: 0}
-  dialogueText: Agbalin! With practice, you can become a confident Ilokano speaker!
+  dialogueText: 'Agbalin! With practice, you can become a confident Ilokano speaker!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: d33fe6d5a33410d4a8730d5b7864edb6, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9270645806ef57878129da646e2e14da, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

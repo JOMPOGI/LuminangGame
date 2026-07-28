@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING ROSA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Ket! Spot on!
-
-
-    Go see Lola Nida for more connector words!'
+  dialogueText: 'Makita! Look at these lovely patterns!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Lola Nida
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 0a18d402cadd517da028fdf7023a0229, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

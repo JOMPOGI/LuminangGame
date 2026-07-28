@@ -14,30 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes you want to give someone a general greeting without focusing
-    on morning, afternoon, or evening.
-
-
-    In Ilokano, ''naimbag nga aldaw'' means
-    ''good day.''
-
-
-    It is a general greeting that can be used to wish someone
-    a pleasant day.
-
-
-    Listen carefully: naimbag nga aldaw.
-
-
-    Now, try saying
-    ''naimbag nga aldaw'' yourself.'
+  dialogueText: 'Sometimes you want to give someone a general greeting without focusing on a specific time of day.
+In Ilokano, ''naimbag nga aldaw'' means ''good day.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "naimbag nga aldaw"'
-    nextNode: {fileID: 11400000, guid: 674dee9f2d76ab24d87034e77d58601a, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 70416d11bab751708aad709d18c97fc9, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

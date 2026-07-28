@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TALA
   speakerPortrait: {fileID: 0}
-  dialogueText: Lima! Five kilos of delicious Bagnet!
+  dialogueText: 'Lima! Five kilos of delicious Bagnet!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 168d17ff7e85fe846bbd935837832dbc, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 7addcc0e356252c79986f1eb7095bc4b, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

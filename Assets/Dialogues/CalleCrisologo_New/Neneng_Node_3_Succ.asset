@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: NENENG
   speakerPortrait: {fileID: 0}
-  dialogueText: Agtalinaed! May our culture remain strong for generations!
+  dialogueText: 'Agtalinaed! May our culture remain strong for generations!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 1746fb29ae1a9a849b4e4632bede5dc7, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 097f91549c3954f8949a045d03f45570, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

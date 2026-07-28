@@ -14,26 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When identifying or describing something specific, Ilokano can use
-    ''isu ti'' as part of the sentence structure.
-
-
-    For example, it can help
-    express an idea similar to ''is the'' in English.
-
-
-    Listen carefully: isu
-    ti.
-
-
-    Now, try saying ''isu ti'' yourself.'
+  dialogueText: 'When identifying or describing something specific, Ilokano can use ''isu ti'' as part of the sentence structure.
+For example, it can help express an idea similar to ''is the'' in English.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:LolaNidaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "isu ti"'
-    nextNode: {fileID: 11400000, guid: 513cd33c7fb931147a00a0ae92a82348, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 1b99402b714b51b4b6ca86b899efe31e, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

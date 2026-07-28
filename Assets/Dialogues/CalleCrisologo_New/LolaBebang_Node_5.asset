@@ -15,27 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'Sometimes we want to understand the reason behind something.
-
-
-    In
-    Ilokano, ''apay'' means ''why.''
-
-
-    Use it when asking for a reason or explanation.
-
-
-    Listen
-    carefully: apay.
-
-
-    Now, try saying ''apay'' yourself.'
+In Ilokano, ''apay'' means ''why.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "apay"'
-    nextNode: {fileID: 11400000, guid: a2e38593896029845b4705b46068a97a, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 98c75ccbb2d35b57aa43103986bdbe58, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

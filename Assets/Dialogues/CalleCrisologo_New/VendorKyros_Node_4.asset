@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
   dialogueText: 'Every journey eventually continues to another place.
-
-
-    When
-    leaving someone, you can say ''agpakada akon'' to say ''goodbye.''
-
-
-    Use
-    it when ending a conversation or parting ways.
-
-
-    Listen carefully: agpakada
-    akon.
-
-
-    Now, try saying ''agpakada akon'' yourself.'
+When leaving someone, you can say ''agpakada akon'' to say ''goodbye.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agpakada akon"'
-    nextNode: {fileID: 11400000, guid: b88e4d8b1e974d349ab21602f97c77ea, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9adb3017d7465a808bf98554f3e53352, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

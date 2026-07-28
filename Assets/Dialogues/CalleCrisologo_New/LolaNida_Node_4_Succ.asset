@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
   speakerPortrait: {fileID: 0}
-  dialogueText: Ket idi! The past lives on through the stories we tell!
+  dialogueText: 'Ket idi! The past lives on through the stories we tell!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: 
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: ec1ec08cdf365b1faa0027f00af855ff, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

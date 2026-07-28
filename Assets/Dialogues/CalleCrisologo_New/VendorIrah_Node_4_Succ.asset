@@ -15,12 +15,14 @@ MonoBehaviour:
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
   dialogueText: 'Pakawanen nak... No harm done!
-
-
-    Pop over to Vendor Jom''s empanada
-    stall for the last gratitude phrase!'
+Pop over to Vendor Jom''s empanada stall for the last gratitude phrase!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Vendor Jom
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: d32fe70542cb5376bcf4d526f2ec5a04, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

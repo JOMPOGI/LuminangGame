@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Once you''ve greeted someone, you can show more warmth by asking
-    how they are.
-
-
-    In Ilokano, ''kumusta ka?'' means ''how are you?''
-
-
-    You
-    can use it when checking on a friend, neighbor, or someone you''ve just met.
-
-
-    Listen
-    carefully: kumusta ka?
-
-
-    Now, try saying ''kumusta ka?'' yourself.'
+  dialogueText: 'Once you''ve greeted someone, you can show more warmth by asking how they are.
+In Ilokano, ''kumusta ka?'' means ''how are you?'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "kumusta ka?"'
-    nextNode: {fileID: 11400000, guid: a0c5327bb26930340a05933102817b6d, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: d84044ac038e584cbd1bf53586ff12ec, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

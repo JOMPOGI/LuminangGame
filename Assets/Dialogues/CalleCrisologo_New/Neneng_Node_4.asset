@@ -14,25 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: NENENG
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about staying or residing in a place, Ilokano uses
-    ''agyan.''
-
-
-    You can use it when talking about where someone stays or lives.
-
-
-    Listen
-    carefully: agyan.
-
-
-    Now, try saying ''agyan'' yourself.'
+  dialogueText: 'When talking about staying or residing in a place, Ilokano uses ''agyan.''
+You can use it when talking about where someone stays or lives.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agyan"'
-    nextNode: {fileID: 11400000, guid: cf1c9e4ec55d44d4dac802a37273538c, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 2f8a33bb11a65b23a46779f468e26615, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

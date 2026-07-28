@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
   dialogueText: 'After enjoying the view, you''ll need to return to the ground.
-
-
-    In
-    Ilokano, ''bumaba'' means ''go down.''
-
-
-    Use it when telling someone to move
-    toward a lower place.
-
-
-    Listen carefully: bumaba.
-
-
-    Now, try saying ''bumaba''
-    yourself.'
+In Ilokano, ''bumaba'' means ''go down.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "bumaba"'
-    nextNode: {fileID: 11400000, guid: 9e7041087631e2743b36750762365c92, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: ba0480e8efe45846ae9ba0bc70510952, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

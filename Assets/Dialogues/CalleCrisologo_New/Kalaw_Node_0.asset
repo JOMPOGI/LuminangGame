@@ -14,19 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Squawk! Look at you, traveler!
-
-
-    You''ve walked the streets
-    of Vigan, spoken with the people of Ilocos, and learned the words and expressions
-    that carry our everyday conversations.'
+  dialogueText: 'Mmm, sweet and juicy! Thank you so much, traveler!
+Ah, where are my manners - I am Kalaw, your companion and guide through these lands!'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:KalawCloseUp
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 5509a676db1683d408916aaa6a70a316, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 3b755b095498578c9ee696ed60760684, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

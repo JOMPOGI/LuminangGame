@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
-  dialogueText: Kumusta! Nailed it! That's a great way to greet someone!
+  dialogueText: 'Kumusta! Nailed it! That''s a great way to greet someone!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: d1a01bf066a3f5f459ecf0cd0aa6df80, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 678e43b0cbd0551ca19d2570c8f252ca, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

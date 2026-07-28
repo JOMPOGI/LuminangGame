@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When you want to talk about moving from one place to another, you
-    can use the verb ''mapan.''
-
-
-    It means ''go.''
-
-
-    For example, if you''re
-    heading toward a scenic photo spot, you can say ''mapan.''
-
-
-    Listen carefully:
-    mapan.
-
-
-    Now, try saying ''mapan'' yourself.'
+  dialogueText: 'When you want to talk about moving from one place to another, you can use the verb ''mapan.''
+It means ''go.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "mapan"'
-    nextNode: {fileID: 11400000, guid: 98b6b74965f66104f836b724cce90d4b, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 85dcf591ef07563f851fd81799dfd145, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

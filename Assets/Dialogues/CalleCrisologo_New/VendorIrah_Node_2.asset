@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes a simple thank you isn''t enough to express how grateful
-    you feel.
-
-
-    In Ilokano, ''agyamanak unay'' means ''thank you very much.''
-
-
-    You
-    can use it when someone does something especially kind or generous for you.
-
-
-    Listen
-    carefully: agyamanak unay.
-
-
-    Now, try saying ''agyamanak unay'' yourself.'
+  dialogueText: 'Sometimes a simple thank you isn''t enough to express how grateful you feel.
+In Ilokano, ''agyamanak unay'' means ''thank you very much.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agyamanak unay"'
-    nextNode: {fileID: 11400000, guid: 75fdda664d73288419981480428945c9, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: c1edfa63918056bbbee81a30bfe8cc99, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

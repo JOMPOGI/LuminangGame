@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
-  dialogueText: Umuli iti ngato! Climb up to the top!
+  dialogueText: 'Umuli iti ngato! Climb up to the top!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: a42b2d9ea1949594ba3d029b6ee2e35a, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9f066fddc51f5fff99b5892b750b315d, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

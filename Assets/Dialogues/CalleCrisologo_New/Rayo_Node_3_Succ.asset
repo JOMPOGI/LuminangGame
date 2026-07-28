@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
-  dialogueText: Umay! Come stand right by the window!
+  dialogueText: 'Umay! Come stand right by the window!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: acaadd056a82a0242949dd231e528716, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 45126cde55c65e4ca9580ea9a444213a, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

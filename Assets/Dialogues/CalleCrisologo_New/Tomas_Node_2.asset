@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: TOMAS
   speakerPortrait: {fileID: 0}
   dialogueText: 'Sometimes you need to call someone toward you.
-
-
-    In Ilokano,
-    ''umay ditoy'' means ''come here.''
-
-
-    Use it when asking someone to move
-    toward your location.
-
-
-    Listen carefully: umay ditoy.
-
-
-    Now, try saying
-    ''umay ditoy'' yourself.'
+In Ilokano, ''umay ditoy'' means ''come here.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "umay ditoy"'
-    nextNode: {fileID: 11400000, guid: 0a85c11dc2cf7b1428c69c151ef2e07b, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 2f96aa48aa145d2db834481a19e9e3c7, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

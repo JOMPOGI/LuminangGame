@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: SALLY
   speakerPortrait: {fileID: 0}
-  dialogueText: "Tulunganak! Don't worry\u2014you're never alone!"
+  dialogueText: 'Taga sadino ka? That''s how you ask where someone comes from!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: f5e96578fbf42f3419d1ee33bfbae3e0, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: f40f12de897b549c97b7180a0351c432, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

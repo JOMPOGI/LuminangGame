@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
   dialogueText: 'Now let''s learn the opposite direction.
-
-
-    In Ilokano, ''umay''
-    means ''come.''
-
-
-    You can use it when asking someone to move toward you or
-    toward a particular place.
-
-
-    Listen carefully: umay.
-
-
-    Now, try saying
-    ''umay'' yourself.'
+In Ilokano, ''umay'' means ''come.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "umay"'
-    nextNode: {fileID: 11400000, guid: 7c97d023c3c6c3d46a5845c18b7260f8, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 52ed303201885bafba17221bde86455f, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

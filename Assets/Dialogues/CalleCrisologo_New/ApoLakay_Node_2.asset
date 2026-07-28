@@ -14,26 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
-  dialogueText: 'If you want someone to take the opposite direction, you can tell
-    them to turn right.
-
-
-    In Ilokano, ''agliko iti kannawan'' means ''turn right.''
-
-
-    Listen
-    carefully: agliko iti kannawan.
-
-
-    Now, try saying ''agliko iti kannawan''
-    yourself.'
+  dialogueText: 'If you want someone to take the opposite direction, you can tell them to turn right.
+In Ilokano, ''agliko iti kannawan'' means ''turn right.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agliko iti kannawan"'
-    nextNode: {fileID: 11400000, guid: 152599460a20aa44e9ed08f175e036ec, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: f4b41fd6a2a350b09a100778f814cb5e, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

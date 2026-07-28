@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING ROSA
   speakerPortrait: {fileID: 0}
-  dialogueText: "Agsao!\n\n\u2728 ACTION VERBS MILESTONE UNLOCKED! \u2728\n\nStay
-    here for Linking Verbs!"
+  dialogueText: 'Agsao!
+ACTION VERBS MILESTONE UNLOCKED!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 1fa64106ee6950409fa37e8b88e4f298, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

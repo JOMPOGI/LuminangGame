@@ -14,28 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Let''s learn words that help us talk about people.
-
-
-    In Ilokano,
-    ''siak'' means ''I.''
-
-
-    You use it when referring to yourself.
-
-
-    Listen
-    carefully: siak.
-
-
-    Now, try saying ''siak'' yourself.'
+  dialogueText: 'Language is more than words. Sometimes, it is about what you experience.
+In Ilokano, ''marikna'' means ''feel'' or ''perceive.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:AlingRizaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "siak"'
-    nextNode: {fileID: 11400000, guid: 30f1224102413b044928bf140eb773e3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: ebe9d38958cd5af7a548cbc0122488ad, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

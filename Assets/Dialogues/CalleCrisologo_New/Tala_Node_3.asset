@@ -15,20 +15,14 @@ MonoBehaviour:
   speakerName: TALA
   speakerPortrait: {fileID: 0}
   dialogueText: 'In Ilokano, the number ''six'' is ''innem.''
-
-
-    Listen carefully:
-    innem.
-
-
-    Now, try saying ''innem'' yourself.'
+Listen carefully: innem.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "innem"'
-    nextNode: {fileID: 11400000, guid: a0888b44c2ef8654a977ef9dea4350d5, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: fd33a67b8f86512f8619b1ab6756b01b, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

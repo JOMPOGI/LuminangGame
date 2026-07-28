@@ -15,12 +15,14 @@ MonoBehaviour:
   speakerName: RONNIE
   speakerPortrait: {fileID: 0}
   dialogueText: 'Awesome to meet you! You just introduced yourself in Ilokano!
-
-
-    Go
-    meet Sally near the brick arch to complete Level I!'
+Go meet Sally near the brick arch to complete Level I!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Sally
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: c3f6899c620459c182f7dcc5ae98726b, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: NENENG
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes we want to describe how something appears or feels to
-    us.
-
-
-    In Ilokano, ''kasla'' can express the idea of ''seem'' or ''like.''
-
-
-    For
-    example, you might say something seems like a journey through time.
-
-
-    Listen
-    carefully: kasla.
-
-
-    Now, try saying ''kasla'' yourself.'
+  dialogueText: 'Sometimes we want to describe how something appears or feels to us.
+In Ilokano, ''kasla'' can express the idea of ''seem'' or ''like.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "kasla"'
-    nextNode: {fileID: 11400000, guid: aad31b0545426144f8b092ad28fce9a0, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 70e96883900f5f04934be971154f2823, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

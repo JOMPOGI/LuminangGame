@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: Siak! That's you!
+  dialogueText: 'Marikna!
+LINKING VERBS MILESTONE UNLOCKED!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 0c11c6b8c162e4c468b1ec51d422c56c, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 281630ee9af35ae19e49caa656a4c97c, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

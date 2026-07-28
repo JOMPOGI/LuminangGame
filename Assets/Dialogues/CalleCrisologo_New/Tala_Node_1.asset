@@ -15,27 +15,14 @@ MonoBehaviour:
   speakerName: TALA
   speakerPortrait: {fileID: 0}
   dialogueText: 'Let''s keep counting.
-
-
-    In Ilokano, ''uppat'' means ''four.''
-
-
-    You
-    can use it when counting four objects, such as four pieces of Bagnet.
-
-
-    Listen
-    carefully: uppat.
-
-
-    Now, try saying ''uppat'' yourself.'
+In Ilokano, ''uppat'' means ''four.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:TalaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "uppat"'
-    nextNode: {fileID: 11400000, guid: be933a863a85d3349ae83bb25e22f8de, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 03c0d210585c53ab942da48dbba35638, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

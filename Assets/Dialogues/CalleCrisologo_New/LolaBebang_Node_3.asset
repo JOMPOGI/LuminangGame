@@ -15,24 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'When you need to find a place or location, you can ask ''where?''
-
-
-    In
-    Ilokano, ''sadino'' means ''where.''
-
-
-    Listen carefully: sadino.
-
-
-    Now,
-    try saying ''sadino'' yourself.'
+In Ilokano, ''sadino'' means ''where.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "sadino"'
-    nextNode: {fileID: 11400000, guid: 5636661de20c97e4dbfeb43912433bda, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 785c8dd8cfc2519e904c7ca53441d7dc, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

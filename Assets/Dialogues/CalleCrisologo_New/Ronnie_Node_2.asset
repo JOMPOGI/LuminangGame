@@ -15,30 +15,14 @@ MonoBehaviour:
   speakerName: RONNIE
   speakerPortrait: {fileID: 0}
   dialogueText: 'Now it''s your turn to introduce yourself.
-
-
-    In Ilokano, ''ti
-    nagan ko ket...'' means ''my name is...''
-
-
-    The words ''ti nagan ko ket''
-    form the fixed part of the phrase. You then complete the sentence by introducing
-    yourself.
-
-
-    For example, you can say ''ti nagan ko ket...'' followed by your
-    own name.
-
-
-    Now, introduce yourself using ''ti nagan ko ket...'' and say
-    your own name.'
+In Ilokano, ''ti nagan ko ket...'' means ''my name is...'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "ti nagan ko ket [Your Name]"'
-    nextNode: {fileID: 11400000, guid: f13ba0aa40b506b4bbe72710a7ea54ca, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 55c3c4d0c2cc5e768cc01dc419703480, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
-  dialogueText: Agliko iti kannawan! Turn right at the corner!
+  dialogueText: 'Agliko iti kannawan! Turn right at the corner!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 6894ce8a0d2c32742be67a9bddcb09d8, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: de181b05f77b56fa9fb67cdcee85d210, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

@@ -15,23 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'Mano! Now you can ask about quantity and numbers.
-
-
-    You''ve
-    learned how to communicate in many everyday situations throughout your journey.
-
-
-    But
-    learning doesn''t end with repeating what you''ve heard.
-
-
-    Head back to Kalaw
-    at the plaza.
-
-
-    Your final challenge awaits.'
+You''ve learned how to communicate in many everyday situations throughout your journey.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: return to Kalaw at the Calle Crisologo Plaza Arch
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: dd7001d9f94155988848612b0be423f4, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

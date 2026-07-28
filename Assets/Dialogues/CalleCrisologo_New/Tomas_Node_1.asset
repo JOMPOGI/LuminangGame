@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: TOMAS
   speakerPortrait: {fileID: 0}
   dialogueText: 'Welcome to the clay yard!
-
-
-    If you want someone to stop at the
-    place where they are standing, you can say ''agsardeng ditoy.''
-
-
-    It means
-    ''stop here.''
-
-
-    Listen carefully: agsardeng ditoy.
-
-
-    Now, try saying
-    ''agsardeng ditoy'' yourself.'
+If you want someone to stop at the place where they are standing, you can say ''agsardeng ditoy.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:TomasCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "agsardeng ditoy"'
-    nextNode: {fileID: 11400000, guid: 9e43028e51dd9bf4eb161070a7eeae10, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: c4033fe7ad60582c8cd88016bd830d46, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

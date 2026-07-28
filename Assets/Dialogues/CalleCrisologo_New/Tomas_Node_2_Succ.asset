@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TOMAS
   speakerPortrait: {fileID: 0}
-  dialogueText: Umay ditoy! Come take a look at this pottery!
+  dialogueText: 'Umay ditoy! Come take a look at this pottery!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: c90610aa1d89ca942910c49c2185b2b3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a7ee8ab4cefd558ebeca1249c8808531, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

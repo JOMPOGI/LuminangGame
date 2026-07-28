@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When referring to other people as the object of an action, ''isuda''
-    is used in the context we''re learning for ''them.''
-
-
-    Listen carefully:
-    isuda.
-
-
-    Now, try saying ''isuda'' yourself.'
+  dialogueText: 'When referring to yourself together with others, ''dakkami'' can represent ''us'' in the context we''re learning.
+Listen carefully: dakkami.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "isuda"'
-    nextNode: {fileID: 11400000, guid: 534c29d23537edb4281cb3a2750a9571, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: c5aec55387785555875067683a8b03f7, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

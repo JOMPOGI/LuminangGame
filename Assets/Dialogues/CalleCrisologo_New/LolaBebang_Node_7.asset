@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'And now, you''ve reached another important question.
-
-
-    When
-    you want to ask about quantity, Ilokano uses ''mano'' for ''how many.''
-
-
-    You
-    can use it when asking about the number of people or objects.
-
-
-    Listen carefully:
-    mano.
-
-
-    Now, try saying ''mano'' yourself.'
+When you want to ask about quantity, Ilokano uses ''mano'' for ''how many.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "mano"'
-    nextNode: {fileID: 11400000, guid: 8e18e9f99179dbe479e2286b64b27a73, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: aa1f75d0376b56c89c6806344a6e0e66, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

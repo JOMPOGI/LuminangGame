@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: SALLY
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes you want to ask for help more politely.
-
-
-    In Ilokano,
-    ''mabalin kadi a tulunganak?'' means ''can you help me?''
-
-
-    This is useful
-    when politely requesting someone''s assistance.
-
-
-    Listen carefully: mabalin
-    kadi a tulunganak?
-
-
-    Now, try saying ''mabalin kadi a tulunganak?'' yourself.'
+  dialogueText: 'Now you can answer that question yourself.
+In Ilokano, ''taga ___ ak'' means ''I am from ___.'' Add your hometown after ''taga.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "mabalin kadi a tulunganak?"'
-    nextNode: {fileID: 11400000, guid: 5a48c2116c7b9c249821fb5968ca683e, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: b20867eba8335c5aaf9914dfca6b0677, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

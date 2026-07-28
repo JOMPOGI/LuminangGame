@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: LITO
   speakerPortrait: {fileID: 0}
   dialogueText: 'Before asking someone a question, it''s polite to ask for permission.
-
-
-    In
-    Ilokano, ''mabalin kadi agsaludsod?'' means ''can I ask?''
-
-
-    You can use
-    it before asking someone for information.
-
-
-    Listen carefully: mabalin kadi
-    agsaludsod?
-
-
-    Now, try saying ''mabalin kadi agsaludsod?'' yourself.'
+In Ilokano, ''mabalin kadi agsaludsod?'' means ''can I ask?'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "mabalin kadi agsaludsod?"'
-    nextNode: {fileID: 11400000, guid: e015c7e861fc8d3468200ce78988e31a, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 518a5ed1761d57c2a7569794d8064d93, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

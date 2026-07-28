@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
-  dialogueText: 'To reach the top of the tower and see the province below, you need
-    to tell someone to move upward.
-
-
-    In Ilokano, ''umuli iti ngato'' means ''go
-    up.''
-
-
-    Use it when directing someone toward a higher place.
-
-
-    Listen
-    carefully: umuli iti ngato.
-
-
-    Now, try saying ''umuli iti ngato'' yourself.'
+  dialogueText: 'To reach the top of the tower and see the province below, you need to tell someone to move upward.
+In Ilokano, ''umuli iti ngato'' means ''go up.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "umuli iti ngato"'
-    nextNode: {fileID: 11400000, guid: 612784feb8060f84da34e2e8a26d6568, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 8dd4162afd465c3b91e509bc0a0c41ef, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

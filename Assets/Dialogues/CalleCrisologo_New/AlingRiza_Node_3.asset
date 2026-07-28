@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about a person who is not the speaker or listener,
-    Ilokano uses ''isuna.''
-
-
-    Listen carefully: isuna.
-
-
-    Now, try saying
-    ''isuna'' yourself.'
+  dialogueText: 'When speaking directly to another person, Ilokano uses ''sika'' for ''you.''
+Listen carefully: sika.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "isuna"'
-    nextNode: {fileID: 11400000, guid: 998dac756b1bd874c8e2ae79e2b4a980, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 7200f41882b85067b417435c908f166b, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

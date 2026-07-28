@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
-  dialogueText: Agyamanak! Showing gratitude helps keep our community close-knit!
+  dialogueText: 'Agyamanak! Showing gratitude helps keep our community close-knit!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 6357a0fb09367b64db26b14df72aafd5, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 6a6b1e05a7185168943230656dbefdab, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

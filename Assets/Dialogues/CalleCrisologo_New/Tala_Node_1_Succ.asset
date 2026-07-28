@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TALA
   speakerPortrait: {fileID: 0}
-  dialogueText: Uppat! Four crispy slabs!
+  dialogueText: 'Uppat! Four crispy slabs!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 11c3775938dc75d4db0b01f11b760e4d, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: eec532e86fb65e3f9b25746678883cf5, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

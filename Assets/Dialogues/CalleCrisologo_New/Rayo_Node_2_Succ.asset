@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
-  dialogueText: Mapan! Let's head over to the arch!
+  dialogueText: 'Mapan! Let''s head over to the arch!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: f0967a66169f9e34793d3604ca6a1fa4, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a2e7a0a51b5551f69658fb4ac3829683, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

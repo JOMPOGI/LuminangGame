@@ -14,26 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'The same past expression can also appear when talking about a group
-    in a historical context.
-
-
-    For example, when describing what people were
-    like in the past, ''ket idi'' can be part of the sentence structure.
-
-
-    Listen
-    carefully: ket idi.
-
-
-    Now, try saying ''ket idi'' yourself.'
+  dialogueText: 'The same past expression can also appear when talking about a group in a historical context.
+For example, when describing what people were like in the past, ''ket idi'' can be part of the sentence structure.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "ket idi"'
-    nextNode: {fileID: 11400000, guid: 7ae6f1d57ad1ad342b6eb9d8d8868d91, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: af5b12c6ce3c5676a96d896e401dac26, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

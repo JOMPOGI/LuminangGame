@@ -15,27 +15,14 @@ MonoBehaviour:
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
   dialogueText: 'After exploring all day, everyone needs time to rest.
-
-
-    In Ilokano,
-    ''maturog'' means ''sleep.''
-
-
-    It is the action of resting while asleep.
-
-
-    Listen
-    carefully: maturog.
-
-
-    Now, try saying ''maturog'' yourself.'
+In Ilokano, ''maturog'' means ''sleep.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "maturog"'
-    nextNode: {fileID: 11400000, guid: 1d1b2972a6126dc42889729912b135a4, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: e4f04ab7c6a0558b9b35c685c0e14b03, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

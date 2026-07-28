@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
-  dialogueText: Kasano! Look how far you've come!
+  dialogueText: 'Kasano! Look how far you''ve come!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: b38bb51409ec1cc4f9387e86402be06d, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 41e8daed8f2d5023bf8fd3170aeeb35a, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

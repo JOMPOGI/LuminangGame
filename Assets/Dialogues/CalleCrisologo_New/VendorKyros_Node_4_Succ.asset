@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
-  dialogueText: "Agpakada akon!\n\n\u2728 GREETINGS MILESTONE UNLOCKED! \u2728\n\nGo
-    meet Vendor Irah at the weaving loom. She has something important to teach you
-    about showing gratitude."
+  dialogueText: 'Agpakada akon! GREETINGS MILESTONE UNLOCKED!
+Go meet Vendor Irah at the weaving loom. She has something important to teach you about showing gratitude.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Vendor Irah
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: b8bb45c553905a009a4304056ba81b15, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

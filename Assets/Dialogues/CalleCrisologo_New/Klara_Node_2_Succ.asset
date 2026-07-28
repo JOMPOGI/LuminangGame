@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
   speakerPortrait: {fileID: 0}
-  dialogueText: Dua! Two matching chairs!
+  dialogueText: 'Maysa! Just one rare chest!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 0e0dd6f4dc929ab42b7597332c91c5d0, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9a33d16b3bcb55709f432c8c7f7120d5, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

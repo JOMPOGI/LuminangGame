@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
-  dialogueText: Uminom! Refreshing!
+  dialogueText: 'Uminom! Refreshing!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 843daa7ab620aee488e36ad6e47b740d, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 326d5c81176b56ea90549d4f4951fbe3, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

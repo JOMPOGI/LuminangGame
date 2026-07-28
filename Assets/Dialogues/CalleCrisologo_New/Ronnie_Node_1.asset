@@ -14,30 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: RONNIE
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When meeting someone new, one of the first things you may want to
-    know is their name.
-
-
-    In Ilokano, ''ania ti nagan mo?'' means ''what is your
-    name?''
-
-
-    You can use this phrase when introducing yourself to someone or
-    asking for their name.
-
-
-    Listen carefully: ania ti nagan mo?
-
-
-    Now, try
-    saying ''ania ti nagan mo?'' yourself.'
+  dialogueText: 'When meeting someone new, one of the first things you may want to know is their name.
+In Ilokano, ''ania ti nagan mo?'' means ''what is your name?'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:RonnieCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "ania ti nagan mo?"'
-    nextNode: {fileID: 11400000, guid: 430e84fe5d75b2144a8fca06423e7c98, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 8819e41d7ca252beb2ab4d62ea20d232, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

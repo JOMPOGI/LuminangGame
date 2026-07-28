@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
-  dialogueText: Agyamanak iti tulong mo! We Ilocanos love helping one another!
+  dialogueText: 'Agyamanak iti tulong mo! We Ilocanos love helping one another!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 4b6162b5cbf33cf4aa624b429fefad84, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: d3db54daab105dba84c0f55e23b58d1e, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: MANG LANCE
   speakerPortrait: {fileID: 0}
-  dialogueText: "Sangapulo! You made it to ten!\n\n\U0001F3C6 LEVEL II: FUNCTIONAL
-    & NAVIGATIONAL COMPLETE! \U0001F3C6\n\nYou've learned how to ask for help, navigate
-    the streets, give directions, and use numbers in everyday situations.\n\nNow
-    let's explore how Ilokano describes actions, people, and ideas.\n\nWelcome to
-    Level III: Grammatical Foundations!"
+  dialogueText: 'Sangapulo! You made it to ten!
+LEVEL II: FUNCTIONAL & NAVIGATIONAL COMPLETE!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 43d077b94c39576887475983d870925d, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

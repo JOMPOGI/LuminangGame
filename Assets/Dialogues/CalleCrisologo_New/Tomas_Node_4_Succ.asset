@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TOMAS
   speakerPortrait: {fileID: 0}
-  dialogueText: Surotennak! Follow me to the jar drying racks!
+  dialogueText: 'Surotennak! Follow me to the jar drying racks!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: 
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 56148bde65ac58e9b0b2b9fc6630e894, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

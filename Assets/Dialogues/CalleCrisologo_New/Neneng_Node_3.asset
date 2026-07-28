@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: NENENG
   speakerPortrait: {fileID: 0}
   dialogueText: 'Some things change, but others continue to stay strong.
-
-
-    In
-    Ilokano, ''agtalinaed'' means ''remain.''
-
-
-    You can use it when talking about
-    something continuing to exist or stay in a certain state.
-
-
-    Listen carefully:
-    agtalinaed.
-
-
-    Now, try saying ''agtalinaed'' yourself.'
+In Ilokano, ''agtalinaed'' means ''remain.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agtalinaed"'
-    nextNode: {fileID: 11400000, guid: 652b3b2c3f05359468ed8e5c3e6ecacc, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 2497589d4d515fe49bdbda5733c38b0e, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

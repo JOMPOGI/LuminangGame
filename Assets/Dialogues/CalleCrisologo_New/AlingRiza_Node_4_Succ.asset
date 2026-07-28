@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: Isuna! Context helps us understand who we're talking about!
+  dialogueText: 'Isuna! You''re talking about someone else!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 9b4218d1685b52442ab7315c559d46f4, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: b6a4305213b8551fbbf0542743d28f81, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about a group of other people, Ilokano uses ''isuda''
-    for ''they.''
-
-
-    Listen carefully: isuda.
-
-
-    Now, try saying ''isuda''
-    yourself.'
+  dialogueText: 'When talking about yourself together with other people, you can use ''dakkami'' for ''we'' in the context taught here.
+Listen carefully: dakkami.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "isuda"'
-    nextNode: {fileID: 11400000, guid: 676c7bff616bd754cb0eff43f0f436aa, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: fa662ac9869153f4bf1ccbe50312eded, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

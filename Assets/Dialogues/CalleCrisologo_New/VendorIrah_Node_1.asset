@@ -15,32 +15,14 @@ MonoBehaviour:
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
   dialogueText: 'Clack-clack-clack goes the loom! Welcome, traveler!
-
-
-    When someone
-    helps you, gives you something, or does something kind for you, it is important
-    to show appreciation.
-
-
-    In Ilokano, ''agyamanak'' means ''thank you.''
-
-
-    You
-    can use it whenever you want to express gratitude.
-
-
-    Listen carefully: agyamanak.
-
-
-    Now,
-    try saying ''agyamanak'' yourself.'
+When someone helps you, gives you something, or does something kind for you, it is important to show appreciation.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:IrahCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "agyamanak"'
-    nextNode: {fileID: 11400000, guid: a1563533beef97f44a70ea8aa8844fc3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 3d2a114667f551aaad22c4a18ec0eb95, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

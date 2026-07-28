@@ -15,32 +15,14 @@ MonoBehaviour:
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
   dialogueText: 'Oops! Be careful around these delicate threads.
-
-
-    If you accidentally
-    bump into someone or make a mistake, you can apologize.
-
-
-    In Ilokano, ''pakawanen
-    nak'' means ''I am sorry.''
-
-
-    Use it when you want to apologize for something
-    you''ve done.
-
-
-    Listen carefully: pakawanen nak.
-
-
-    Now, try saying ''pakawanen
-    nak'' yourself.'
+If you accidentally bump into someone or make a mistake, you can apologize.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "pakawanen nak"'
-    nextNode: {fileID: 11400000, guid: 9a94f700428803540840504a9609c2d8, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 48c2a8a45b3c508293703b360e6aeb8e, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

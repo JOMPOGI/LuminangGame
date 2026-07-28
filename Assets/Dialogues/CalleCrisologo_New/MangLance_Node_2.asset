@@ -15,23 +15,14 @@ MonoBehaviour:
   speakerName: MANG LANCE
   speakerPortrait: {fileID: 0}
   dialogueText: 'The next number is ''siam.''
-
-
-    In Ilokano, ''siam'' means ''nine.''
-
-
-    Listen
-    carefully: siam.
-
-
-    Now, try saying ''siam'' yourself.'
+In Ilokano, ''siam'' means ''nine.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "siam"'
-    nextNode: {fileID: 11400000, guid: a6986e677f648d44eab61c3305d70713, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 2103f9e205815b48bd906c1c5cf2f0f6, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

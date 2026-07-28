@@ -14,26 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Interestingly, the same Ilokano pronoun ''isuna'' can refer to another
-    person as well.
-
-
-    The meaning depends on the person you''re talking about
-    and the context.
-
-
-    Listen carefully: isuna.
-
-
-    Now, try saying ''isuna''
-    yourself.'
+  dialogueText: 'When talking about a male person who is not the speaker or listener, Ilokano uses ''isuna'' for ''he.''
+Listen carefully: isuna.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "isuna"'
-    nextNode: {fileID: 11400000, guid: 08fd8b88c620c5b41b5e6ffb1bbfb290, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: cebe914c62dc5fe298b5535f8b0e4d77, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

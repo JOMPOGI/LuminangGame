@@ -14,28 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'The next number is ''tallo.''
-
-
-    In Ilokano, ''tallo'' means
-    ''three.''
-
-
-    For example, you can use it when counting three objects.
-
-
-    Listen
-    carefully: tallo.
-
-
-    Now, try saying ''tallo'' yourself.'
+  dialogueText: 'When you count two objects, people, or things, Ilokano uses ''dua.''
+It means ''two.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "tallo"'
-    nextNode: {fileID: 11400000, guid: 68f817b6e6fef864bb3e22f53e7481e7, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 3b3db68b18005552a9a29e1c7f76bb27, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

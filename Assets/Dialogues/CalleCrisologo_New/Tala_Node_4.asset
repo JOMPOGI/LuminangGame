@@ -15,20 +15,14 @@ MonoBehaviour:
   speakerName: TALA
   speakerPortrait: {fileID: 0}
   dialogueText: 'The Ilokano word for ''seven'' is ''pito.''
-
-
-    Listen carefully:
-    pito.
-
-
-    Now, try saying ''pito'' yourself.'
+Listen carefully: pito.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "pito"'
-    nextNode: {fileID: 11400000, guid: cc707a0f00528d24bb0100ae9bfcc10c, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: fd78a12e7ac15e57b959edebddc4c12b, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

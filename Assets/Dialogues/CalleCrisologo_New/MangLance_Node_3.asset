@@ -15,24 +15,14 @@ MonoBehaviour:
   speakerName: MANG LANCE
   speakerPortrait: {fileID: 0}
   dialogueText: 'And now, we''ve reached ten!
-
-
-    In Ilokano, ''sangapulo'' means
-    ''ten.''
-
-
-    Listen carefully: sangapulo.
-
-
-    Now, try saying ''sangapulo''
-    yourself.'
+In Ilokano, ''sangapulo'' means ''ten.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "sangapulo"'
-    nextNode: {fileID: 11400000, guid: 9f08a9b47454af24694d211b45e9eabe, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 2daff52da4a055549704f6c3f0eeaa80, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

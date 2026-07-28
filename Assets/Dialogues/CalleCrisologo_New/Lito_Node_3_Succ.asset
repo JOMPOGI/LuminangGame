@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LITO
   speakerPortrait: {fileID: 0}
-  dialogueText: "Mabalin kadi agsaludsod! Ask away!\n\n\u2728 REQUESTS MILESTONE
-    UNLOCKED! \u2728"
+  dialogueText: 'Mabalin kadi agsaludsod! Ask away!
+REQUESTS MILESTONE UNLOCKED!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 40458e8b6c8e5f1c82afa3a203470ef5, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

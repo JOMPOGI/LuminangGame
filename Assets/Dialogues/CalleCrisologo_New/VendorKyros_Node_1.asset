@@ -14,33 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was
-    exploring Vigan.
-
-
-    When the morning has passed and the afternoon arrives,
-    Ilocanos can greet someone by saying ''naimbag a malem.''
-
-
-    It means ''good
-    afternoon.''
-
-
-    You can use it when greeting someone during the afternoon.
-
-
-    Listen
-    carefully: naimbag a malem.
-
-
-    Now, try saying ''naimbag a malem'' yourself.'
+  dialogueText: 'Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was exploring Vigan.
+When the morning has passed and the afternoon arrives, Ilocanos greet someone by saying ''naimbag a malem.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:KyrosCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "naimbag a malem"'
-    nextNode: {fileID: 11400000, guid: 08631db03c079644498d293048de342e, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 32a6ae0a45d659549b6ce041a6bdeac8, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

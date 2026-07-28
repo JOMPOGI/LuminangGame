@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
-  dialogueText: Apay! Now you can ask why!
+  dialogueText: 'Apay! Now you can ask why!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: d1ab4a17ce52d4042a84ab93e0d3af92, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: c7dc3c4de6af59428dec0f7639d6a5b1, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

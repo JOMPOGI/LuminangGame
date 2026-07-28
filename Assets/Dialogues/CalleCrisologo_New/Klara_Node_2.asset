@@ -14,24 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When you count two objects, people, or things, Ilokano uses ''dua.''
-
-
-    It
-    means ''two.''
-
-
-    Listen carefully: dua.
-
-
-    Now, try saying ''dua'' yourself.'
+  dialogueText: 'Let''s begin counting in Ilokano.
+The word ''maysa'' means ''one.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "dua"'
-    nextNode: {fileID: 11400000, guid: 877f28544b71a3846b143d8f97678b35, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 6b1637f5f3ce5340b1792bb2b42f5f94, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

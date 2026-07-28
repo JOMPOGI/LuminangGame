@@ -15,24 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'When you want to know which person you are talking about, use ''asino.''
-
-
-    It
-    means ''who.''
-
-
-    Listen carefully: asino.
-
-
-    Now, try saying ''asino''
-    yourself.'
+It means ''who.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "asino"'
-    nextNode: {fileID: 11400000, guid: 30f0c417d1ea10040a25e61fd723e3bc, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a18f2f484c9b543a9e545ade9d4c61fa, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

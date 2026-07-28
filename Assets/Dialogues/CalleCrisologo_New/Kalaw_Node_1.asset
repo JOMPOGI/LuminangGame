@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
   dialogueText: 'Let''s start with a simple word you''ll use often when meeting someone.
-
-
-    In
-    Ilokano, ''kumusta'' means ''hello.''
-
-
-    It is a friendly greeting you can
-    use when you meet someone or begin a conversation.
-
-
-    Listen carefully: kumusta.
-
-
-    Now,
-    try saying ''kumusta'' yourself.'
+In Ilokano, ''kumusta'' means ''hello.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "kumusta"'
-    nextNode: {fileID: 11400000, guid: 411d71ff18b7c6a4d87c0f5a86bf0092, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 80c30da777e05730a9ea88d073244300, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

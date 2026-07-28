@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LITO
   speakerPortrait: {fileID: 0}
-  dialogueText: 'You''re heading toward Plaza Salcedo and don''t want to make any
-    turns.
-
-
-    In Ilokano, ''agdiretso'' means ''go straight.''
-
-
-    You can use
-    it when giving directions or telling someone to continue forward.
-
-
-    Listen
-    carefully: agdiretso.
-
-
-    Now, try saying ''agdiretso'' yourself.'
+  dialogueText: 'Look out! A horse carriage is passing through!
+When you need someone to pause and wait for you, you can say ''urayennak.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:LitoCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "agdiretso"'
-    nextNode: {fileID: 11400000, guid: 3ad5554db8378484e839444ba481e946, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: b300bb3cb9c15155b6129744bbfc7561, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

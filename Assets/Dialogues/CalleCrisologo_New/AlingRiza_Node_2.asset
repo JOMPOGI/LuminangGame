@@ -14,21 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When speaking directly to another person, Ilokano uses ''sika''
-    for ''you.''
-
-
-    Listen carefully: sika.
-
-
-    Now, try saying ''sika'' yourself.'
+  dialogueText: 'Let''s learn words that help us talk about people.
+In Ilokano, ''siak'' means ''I.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "sika"'
-    nextNode: {fileID: 11400000, guid: c1dc3fba39695f94eaa8ff926a3d058e, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 552c9912fe155d3face6c2a65a1b2779, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

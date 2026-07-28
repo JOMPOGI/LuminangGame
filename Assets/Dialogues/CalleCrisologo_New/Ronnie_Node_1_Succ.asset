@@ -14,15 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: RONNIE
   speakerPortrait: {fileID: 0}
-  dialogueText: Ania ti nagan mo? That's a great question to ask when meeting someone
-    new!
+  dialogueText: 'Ania ti nagan mo? That''s a great question to ask when meeting someone new!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: ea37aeae1bb78a94fb579696cd0cacc8, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: f7030786bfd95dab8dbc4ca5a7cbf000, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

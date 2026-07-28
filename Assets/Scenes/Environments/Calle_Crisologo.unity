@@ -791,7 +791,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 15268efa8bcc1fa4d8cc1e9c2ba2d3c3, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 9125334}
@@ -7801,7 +7801,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: b157236fbcf02cd489ba9023f2c1bdf6, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 61506373}
@@ -17169,6 +17169,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3359774747580980472, guid: d2b6de4ef632c2f49ad38840c3f0c01d, type: 3}
   m_PrefabInstance: {fileID: 118080265}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &119038966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 119038967}
+  m_Layer: 0
+  m_Name: NenengCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &119038967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119038966}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7997703, z: -0, w: 0.60030615}
+  m_LocalPosition: {x: 23.753555, y: -0.46503302, z: -66.310455}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &119054457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28656,6 +28687,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 633050434965226603, guid: 875df168b40992f45ad4ad5920574794, type: 3}
   m_PrefabInstance: {fileID: 192350381}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &192368884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192368885}
+  m_Layer: 0
+  m_Name: AlingRizaCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &192368885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192368884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 16.055609, y: -0.4726035, z: -66.06814}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &192869556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59883,7 +59945,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 3ba54529c59d6bf4bb0b2ae60b416751, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 410554194}
@@ -60081,6 +60143,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 554182680}
   m_SourcePrefab: {fileID: 100100000, guid: a6b6d5eceb48ab44e871e27f9fdb3b81, type: 3}
+--- !u!1 &414066427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414066428}
+  m_Layer: 0
+  m_Name: LolaNidaCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414066428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414066427}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.04078267, z: -0, w: 0.99916804}
+  m_LocalPosition: {x: -48.639126, y: -0.46250954, z: -55.444286}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &414985453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71665,7 +71758,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: ceff0c79caeeca941a75de199ae5ab5e, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 486362059}
@@ -72565,6 +72658,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3416058713181227923, guid: 02b202fcf5b356942b7d9991418bcfe9, type: 3}
   m_PrefabInstance: {fileID: 489205718}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &489481516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 489481517}
+  m_Layer: 0
+  m_Name: MangLanceCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &489481517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489481516}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.76767164, z: -0, w: 0.64084345}
+  m_LocalPosition: {x: 27.782957, y: -0.6946454, z: -61.26282}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &490926735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84024,6 +84148,24 @@ Transform:
   m_Children:
   - {fileID: 4925487949837542311}
   - {fileID: 984189415}
+  - {fileID: 1630413237}
+  - {fileID: 900385697}
+  - {fileID: 1670992574}
+  - {fileID: 1481685782}
+  - {fileID: 1920259230}
+  - {fileID: 1583415455}
+  - {fileID: 670273571}
+  - {fileID: 934524858}
+  - {fileID: 1305226922}
+  - {fileID: 1834129214}
+  - {fileID: 1960608141}
+  - {fileID: 489481517}
+  - {fileID: 1500461605}
+  - {fileID: 1747855142}
+  - {fileID: 414066428}
+  - {fileID: 119038967}
+  - {fileID: 192368885}
+  - {fileID: 1571142330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &561486387
@@ -89319,7 +89461,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 15c0f362c2b2d904bb986c4cbe1f7d4a, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 600636685}
@@ -89807,7 +89949,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 76c06b0d4a1bd484594e3640dd884b12, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
@@ -99702,6 +99844,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ddb670162ab8f04eb99c7e7ffca3f76, type: 3}
   m_PrefabInstance: {fileID: 669912756}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &670273570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670273571}
+  m_Layer: 0
+  m_Name: LitoCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &670273571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670273570}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 42.99589, y: -0.4448475, z: -67.503815}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &670728500
 GameObject:
   m_ObjectHideFlags: 0
@@ -139711,6 +139884,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2563648020402818627, guid: b042955ef1e1c6d41a9aa4831e8e8844, type: 3}
   m_PrefabInstance: {fileID: 899518143}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &900385696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900385697}
+  m_Layer: 0
+  m_Name: KyrosCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &900385697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900385696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -10.29925, y: -0.6088566, z: -64.06973}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901435079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 83facea8107a47e4db8d3c90e9d34084, type: 3}
@@ -143100,6 +143304,37 @@ Transform:
   - {fileID: 498308476}
   m_Father: {fileID: 508127551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &934524857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 934524858}
+  m_Layer: 0
+  m_Name: ApoLakayCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934524858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934524857}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.28034532, z: -0, w: 0.95989925}
+  m_LocalPosition: {x: 47.932407, y: -0.7804339, z: -64.41135}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &935117203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144779,7 +145014,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 9d4dc3435ef9e7b41b697feda77cdfc5, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
@@ -162544,7 +162779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 895e95cfa973573478f3be26ecddf4a3, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1067440871}
@@ -165164,7 +165399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 6b8e7ece3bdba2a4ebbbff44d20f4ac3, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1079974222}
@@ -193992,6 +194227,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 1304550516}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1305226921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305226922}
+  m_Layer: 0
+  m_Name: TomasCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1305226922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305226921}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 34.487617, y: -0.54325235, z: -66.79732}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1306283398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -194846,7 +195112,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 22248944864f1df4e86563d98f16ff77, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 626c8d5c56fa5928b00985800b8e650a, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1314448087}
@@ -222397,6 +222663,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 1480721757}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1481685781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481685782}
+  m_Layer: 0
+  m_Name: JomCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1481685782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481685781}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 4.3605237, y: -0.47512665, z: -66.567696}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1482267456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224754,6 +225051,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7434ccbecd3eb947a478ad34b7c84d6, type: 3}
   m_PrefabInstance: {fileID: 1500178374}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1500461604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1500461605}
+  m_Layer: 0
+  m_Name: RayoCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1500461605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500461604}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.53753567, z: -0, w: 0.84324104}
+  m_LocalPosition: {x: 31.864246, y: -0.70221555, z: -65.41104}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1501180535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236260,6 +236588,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8408091499677546124, guid: 16d1ddfc9f2185942a273d005f393f9d, type: 3}
   m_PrefabInstance: {fileID: 774252541}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1571142329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1571142330}
+  m_Layer: 0
+  m_Name: LolaBebangCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1571142330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571142329}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9257552, z: -0, w: 0.37812337}
+  m_LocalPosition: {x: 42.767452, y: -0.6921219, z: -62.871033}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1571186173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237170,7 +237529,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: 613a0f3787a993b43a566fc16d06f20a, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 5534d1a795ef53c8bc68d4dcbf9ccf6a, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1577654839}
@@ -237626,6 +237985,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
+--- !u!1 &1583415454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583415455}
+  m_Layer: 0
+  m_Name: SallyCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583415455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583415454}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.031887207, y: -0.47720852, z: -0.017330462, w: 0.8780404}
+  m_LocalPosition: {x: 24.58831, y: -0.92325544, z: -60.54786}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1583782116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244849,6 +245239,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
+--- !u!1 &1630413236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630413237}
+  m_Layer: 0
+  m_Name: KalawCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1630413237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630413236}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0032941338, y: 0.5023773, z: 0.001913973, w: 0.8646402}
+  m_LocalPosition: {x: 61.32025, y: 0.1418713, z: -71.62438}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1634437758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247720,7 +248141,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 1295df97f3e300f40b98ac8739f05788, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1653427253}
@@ -250583,6 +251004,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 1670512142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1670992573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670992574}
+  m_Layer: 0
+  m_Name: IrahCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1670992574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670992573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -2.232613, y: -0.21018912, z: -64.44821}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1671448220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262666,7 +263118,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: fe4cecf9929f6f74abc83607e4b3fd0a, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1741770517}
@@ -263383,6 +263835,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
+--- !u!1 &1747855141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1747855142}
+  m_Layer: 0
+  m_Name: AlingRosaCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1747855142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747855141}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.2649968, z: -0, w: 0.9642493}
+  m_LocalPosition: {x: 43.14608, y: -0.4524176, z: -60.780727}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1748901841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278489,6 +278972,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 1833406874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1834129213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1834129214}
+  m_Layer: 0
+  m_Name: KlaraCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1834129214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834129213}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.0999177, z: -0, w: 0.9949957}
+  m_LocalPosition: {x: 33.319046, y: -0.3817667, z: -60.197243}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1834645836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4120817809323121745, guid: 8b8f16dfa274b08458d8a22752548085, type: 3}
@@ -283298,7 +283812,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: efb477e35c2346841a8bdab4975042d8, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1866386742}
@@ -291218,7 +291732,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: a4804abc6f10d2c41a0cdeb3546e9566, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 9b83b63f6d9d5e7bb06b01e7bb17f892, type: 2}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1913505686}
@@ -291837,6 +292351,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 1919503574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1920259229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1920259230}
+  m_Layer: 0
+  m_Name: RonnieCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1920259230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920259229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.12738954, z: -0, w: 0.99185276}
+  m_LocalPosition: {x: 9.576861, y: -0.41709182, z: -59.349365}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1920946974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299200,6 +299745,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427614215938619461, guid: ec3e7fbae3eb5d74ebf9682cef054cbc, type: 3}
   m_PrefabInstance: {fileID: 1960451131}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1960608140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960608141}
+  m_Layer: 0
+  m_Name: TalaCloseUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1960608141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960608140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 39.0546, y: -0.6845515, z: -60.277264}
+  m_LocalScale: {x: 1.3800843, y: 1.4285713, z: 1.3467382}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 560605814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1960731636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -319462,7 +320038,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 7f5feafe668627d48a5d2ee4d5582e5a, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 2094566722}
@@ -327618,7 +328194,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: defaultDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: b1a6f7183cce14546b42fe494353aa20, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameCategory
       value: Gratitude
@@ -331175,8 +331751,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5542111180197857980}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06117111, y: -0.45630476, z: -0.038557813, w: 0.8868807}
-  m_LocalPosition: {x: -135.49818, y: 0.40012902, z: -65.47249}
+  m_LocalRotation: {x: 0, y: -0.19560799, z: 0, w: 0.9806822}
+  m_LocalPosition: {x: -90.62725, y: 0.6662569, z: -70.581406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -331235,7 +331811,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 60.000004
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1

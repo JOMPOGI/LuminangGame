@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LITO
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Agdiretso! Straight ahead!
-
-
-    Go find Apo Lakay by the stone
-    well for more pathfinding!'
+  dialogueText: 'Urayennak! Safety first on these narrow streets!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Apo Lakay
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: caf23c5e95d95762b6ae4a1def48083a, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!
+  dialogueText: 'Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: fd7fdad3ad6f9744e93fe1fd0953d45f, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: cd73f881037f5a9d86b7b46db4d5b216, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

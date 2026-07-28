@@ -15,11 +15,14 @@ MonoBehaviour:
   speakerName: APO LAKAY
   speakerPortrait: {fileID: 0}
   dialogueText: 'Bumaba! Mind your step!
-
-
-    Go see Tomas at the pottery yard!'
+Go see Tomas at the pottery yard!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Tomas
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 6eac3617b81f5f58a2bbaf2e9245933e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

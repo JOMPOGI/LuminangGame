@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
-  dialogueText: Kaano! Now you can ask about when something happened!
+  dialogueText: 'Kaano! Now you can ask about when something happened!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 25e8e605c21a3494ea25ad11257ea5c5, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: eb1a82df47315b09b1bd2b62260682a5, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

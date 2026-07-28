@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about yourself together with other people, you can
-    use ''dakkami'' for ''we'' in the context taught here.
-
-
-    Listen carefully:
-    dakkami.
-
-
-    Now, try saying ''dakkami'' yourself.'
+  dialogueText: 'Interestingly, the same Ilokano pronoun ''isuna'' can refer to ''she'' as well.
+The meaning depends on the person you''re talking about and the context.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "dakkami"'
-    nextNode: {fileID: 11400000, guid: 76bffd62c372a294495e17ce3c764ca4, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: ff0046dbcdc8595dbfbb3d4a24d39d5e, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

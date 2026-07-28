@@ -14,30 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR IRAH
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When someone gives you a helping hand, you can thank them specifically
-    for their assistance.
-
-
-    In Ilokano, ''agyamanak iti tulong mo'' means ''thank
-    you for your help.''
-
-
-    You can use it when someone helps you complete a task
-    or solve a problem.
-
-
-    Listen carefully: agyamanak iti tulong mo.
-
-
-    Now,
-    try saying ''agyamanak iti tulong mo'' yourself.'
+  dialogueText: 'When someone gives you a helping hand, you can thank them specifically for their assistance.
+In Ilokano, ''agyamanak iti tulong mo'' means ''thank you for your help.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "agyamanak iti tulong mo"'
-    nextNode: {fileID: 11400000, guid: 6ab67f2aae50aae488b90ded8b766f5d, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: cf528742847050a080cde107d0571ad2, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

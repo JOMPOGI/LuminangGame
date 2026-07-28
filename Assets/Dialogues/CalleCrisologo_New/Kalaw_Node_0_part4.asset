@@ -14,20 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
-  dialogueText: 'To charge it up and awaken its power, you''ve got to explore Calle
-    Crisologo and speak with the locals in their native tongue.
-
-
-    As you practice
-    and learn how Ilocanos talk in their daily lives, your voice will help restore
-    the crystal''s power.'
+  dialogueText: 'So, let''s begin with something simple.
+Before you can truly connect with the people of Ilocos, you must first learn how to greet them.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 37f2352eb0263ed4292773d8603074a1, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a02b7401e7ec5170b982a4503f44f2f3, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

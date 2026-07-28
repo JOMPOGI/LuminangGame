@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a rabii! Look at your pendant glow!
+  dialogueText: 'Naimbag a rabii! Look at your pendant glow!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: c3dd283745e06164dbc1919c08ca40b8, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 4d4da004795657949af8e41bc1514a39, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

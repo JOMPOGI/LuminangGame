@@ -14,26 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about a group of people, Ilokano can use ''da'' as
-    a plural marker.
-
-
-    For example, when referring to a group such as the weavers,
-    ''da'' can help indicate that you''re talking about more than one person.
-
-
-    Listen
-    carefully: da.
-
-
-    Now, try saying ''da'' yourself.'
+  dialogueText: 'When talking about a group of people, Ilokano can use ''da'' as a plural marker.
+For example, ''da'' can help indicate that you''re talking about more than one person.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "da"'
-    nextNode: {fileID: 11400000, guid: 0dd27189b9c0beb4faf208ef639f9410, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: aad73463143953d7a98502aead5eebc5, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

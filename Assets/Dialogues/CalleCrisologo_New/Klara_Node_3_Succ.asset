@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Tallo! Three oil lamps!
-
-
-    Head over to Tala the Bagnet seller
-    for more numbers!'
+  dialogueText: 'Dua! Two matching chairs!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Tala
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9bb7482c459851b9aae430d51665ed8a, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

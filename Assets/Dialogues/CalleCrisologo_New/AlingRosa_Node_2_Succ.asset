@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING ROSA
   speakerPortrait: {fileID: 0}
-  dialogueText: Mangngeg! You can hear the kalesas coming!
+  dialogueText: 'Mangngeg! You can hear the kalesas coming!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 3c8fe123318d4194cb912584d191c8b4, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 7e7173af9e045a23a7976784b145f1cc, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

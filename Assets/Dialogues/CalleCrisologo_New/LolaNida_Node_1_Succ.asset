@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
   speakerPortrait: {fileID: 0}
-  dialogueText: Isu ti! You're learning how Ilokano connects ideas!
+  dialogueText: 'Isu ti! You''re learning how Ilokano connects ideas!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: ffe11ebef1b82dc48b38986900cfb528, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: df6c176a3eab5aa68973e2446b565d4f, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

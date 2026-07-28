@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: Siak! You're getting comfortable with these pronouns!
+  dialogueText: 'Isuda! You''re talking about them!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: f2749420673fbb4429beca24e8d0e6de, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 4efd17efae445a9787332ff9e402dd77, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

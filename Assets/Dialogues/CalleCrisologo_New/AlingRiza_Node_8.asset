@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When referring to yourself together with others, ''dakkami'' can
-    represent ''us'' in the context we''re learning.
-
-
-    Listen carefully: dakkami.
-
-
-    Now,
-    try saying ''dakkami'' yourself.'
+  dialogueText: 'Ilokano can use ''siak'' when referring to ''me'' as well, depending on the sentence structure.
+Listen carefully: siak.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "dakkami"'
-    nextNode: {fileID: 11400000, guid: e5879eebd9aeb9942a6f3a1b27e5ade2, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 8d03cc4f62955180bd5f5184b213a6f9, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

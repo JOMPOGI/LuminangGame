@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a malem! Welcome to my shop, friend!
+  dialogueText: 'Naimbag a malem! Welcome to my shop, friend!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 8c6175ddb158b1f4db5c3b6daa59d7ce, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 7d5fd0074c4c528897f5b9de6c7e38d4, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

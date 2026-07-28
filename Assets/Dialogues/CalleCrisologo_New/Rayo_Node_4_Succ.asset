@@ -15,11 +15,14 @@ MonoBehaviour:
   speakerName: RAYO
   speakerPortrait: {fileID: 0}
   dialogueText: 'Maturog well!
-
-
-    Catch up with Aling Rosa to wrap up Action Verbs!'
+Catch up with Aling Rosa to wrap up Action Verbs!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Aling Rosa
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 9ed527c6818e5ef19051a58b62bf454a, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

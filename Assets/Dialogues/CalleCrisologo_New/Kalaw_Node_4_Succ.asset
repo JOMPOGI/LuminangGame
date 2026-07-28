@@ -15,13 +15,14 @@ MonoBehaviour:
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
   dialogueText: 'Naimbag a bigat! You''ve got the morning greeting down!
-
-
-    Fly
-    over to Vendor Kyros''s souvenir stall. He''ll teach you how to greet people
-    at other times of the day.'
+Fly over to Vendor Kyros''s souvenir stall. He''ll teach you how to greet people at other times of the day.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Vendor Kyros
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: a26abb810767520a91f97740f20b9baf, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

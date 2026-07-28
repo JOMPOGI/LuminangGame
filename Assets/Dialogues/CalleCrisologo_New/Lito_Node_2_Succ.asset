@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LITO
   speakerPortrait: {fileID: 0}
-  dialogueText: Ikanmo man! Well done!
+  dialogueText: 'Ikanmo man! Well done! Here is your map of Vigan!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: ef49e39ac515b874bb48da29f697fba3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: b931074f3d5d51909a22f58796300290, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

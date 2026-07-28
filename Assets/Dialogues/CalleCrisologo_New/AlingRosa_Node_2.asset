@@ -14,25 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING ROSA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Listen closely. Can you hear the horse hooves clattering down Calle
-    Crisologo?
-
-
-    In Ilokano, ''mangngeg'' means ''hear.''
-
-
-    Listen carefully:
-    mangngeg.
-
-
-    Now, try saying ''mangngeg'' yourself.'
+  dialogueText: 'Listen closely. Can you hear the horse hooves clattering down Calle Crisologo?
+In Ilokano, ''mangngeg'' means ''hear.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "mangngeg"'
-    nextNode: {fileID: 11400000, guid: 12156f19db28d0f4784a7aac6c9e88b5, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: e6bf10baf941575c9a77c547d1dfa07b, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

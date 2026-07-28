@@ -15,31 +15,14 @@ MonoBehaviour:
   speakerName: NENENG
   speakerPortrait: {fileID: 0}
   dialogueText: 'Hey! Here''s an interesting one.
-
-
-    In Ilokano, ''agbalin'' means
-    ''become.''
-
-
-    It describes a change from one state or condition into another.
-
-
-    For
-    example, with practice, you can become more confident in speaking Ilokano.
-
-
-    Listen
-    carefully: agbalin.
-
-
-    Now, try saying ''agbalin'' yourself.'
+In Ilokano, ''agbalin'' means ''become.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:NenengCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "agbalin"'
-    nextNode: {fileID: 11400000, guid: 56810225e309ef8488a9ec592eb8685f, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: dbfd196b32195f58b12e3e29e4b101d7, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

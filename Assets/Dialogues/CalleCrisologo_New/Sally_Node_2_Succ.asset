@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: SALLY
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Mabalin kadi a tulunganak! Perfect!
-
-
-    Find Tour Guide Lito for
-    the rest of these requests!'
+  dialogueText: 'Excellent! You just told me where you''re from!
+LEVEL I: CONVERSATIONAL & SOCIAL COMPLETE!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Lito
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 4c7e212711c15db5ab61674003470f7c, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

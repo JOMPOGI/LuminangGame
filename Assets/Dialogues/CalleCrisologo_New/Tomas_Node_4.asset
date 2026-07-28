@@ -14,29 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TOMAS
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When you want someone to come along with you, you can tell them
-    to follow.
-
-
-    In Ilokano, ''surotennak'' means ''follow me.''
-
-
-    Use it
-    when leading someone to another place.
-
-
-    Listen carefully: surotennak.
-
-
-    Now,
-    try saying ''surotennak'' yourself.'
+  dialogueText: 'When you want someone to come along with you, you can tell them to follow.
+In Ilokano, ''surotennak'' means ''follow me.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "surotennak"'
-    nextNode: {fileID: 11400000, guid: 2175392f03e37494d93bfdaf612028e3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 0bf62f865e88544ab9b4bca503f7dd10, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

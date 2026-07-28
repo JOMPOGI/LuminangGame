@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: MANG LANCE
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Mangan! Now you''re making me hungry!
-
-
-    Go see Rayo the photographer
-    for more action verbs!'
+  dialogueText: 'Walo! Eight treats for Barnaby!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Rayo
-  choices: []
+  endEventName: 
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: f016ce9c37f45827b08e8659f925e42e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

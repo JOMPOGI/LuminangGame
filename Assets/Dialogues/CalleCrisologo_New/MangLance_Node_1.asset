@@ -14,33 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: MANG LANCE
   speakerPortrait: {fileID: 0}
-  dialogueText: 'After all that walking, you''ll probably be hungry!
-
-
-    In Ilokano,
-    ''mangan'' means ''eat.''
-
-
-    It is an action verb used when talking about
-    the act of eating.
-
-
-    For example, when it''s time for lunch, you can say
-    ''mangan.''
-
-
-    Listen carefully: mangan.
-
-
-    Now, try saying ''mangan''
-    yourself.'
+  dialogueText: 'Naimbag nga aldaw, traveler! Heard you''re learning Ilokano. Let''s keep counting!
+In Ilokano, ''walo'' means ''eight.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:MangLanceCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "mangan"'
-    nextNode: {fileID: 11400000, guid: 2a1ed8d0d5267de4e904f5a113bda913, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: dfc14e457df15fa48b9f3608a462e0a1, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

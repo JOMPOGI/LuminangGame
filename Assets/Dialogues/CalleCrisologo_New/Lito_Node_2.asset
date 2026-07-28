@@ -14,27 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LITO
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When asking someone to hand you an object, you can use ''ikanmo
-    man...''
-
-
-    It means ''give me...'' and you add the item you want afterward.
-
-
-    For
-    example, you can say ''ikanmo man...'' followed by the object you want.
-
-
-    Now,
-    ask for an object using ''ikanmo man...'' and complete the phrase with the object
-    you want.'
+  dialogueText: 'When asking someone to hand you an object, you can use ''ikanmo man...''
+It means ''give me...'' and you add the item you want afterward.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "ikanmo man [object]"'
-    nextNode: {fileID: 11400000, guid: ecb28cee5b1748a47a65375b7991523c, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: bb5c4f2aeaab5cbfab0263fe5ffa7295, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

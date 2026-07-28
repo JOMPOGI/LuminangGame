@@ -15,28 +15,14 @@ MonoBehaviour:
   speakerName: VENDOR JOM
   speakerPortrait: {fileID: 0}
   dialogueText: 'Smell that sizzling longganisa? My counter is getting crowded!
-
-
-    When
-    you need to politely get someone''s attention or pass through a crowded space,
-    you can say ''dispensaren nak.''
-
-
-    It means ''excuse me.''
-
-
-    Listen carefully:
-    dispensaren nak.
-
-
-    Now, try saying ''dispensaren nak'' yourself.'
+When you need to politely get someone''s attention or pass through a crowded space, you can say ''dispensaren nak.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:JomCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "dispensaren nak"'
-    nextNode: {fileID: 11400000, guid: 763687893a52e694f917e744475a62b3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: e8abf38768c85659a32a8b2a75b70361, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

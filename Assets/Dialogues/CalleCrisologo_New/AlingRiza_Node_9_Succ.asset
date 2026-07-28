@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: Isuda! You've learned how Ilokano can talk about different people!
+  dialogueText: 'Dakkami! Language helps us describe who belongs together!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: ec4c0d12fc565525b2247d9b3212a771, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

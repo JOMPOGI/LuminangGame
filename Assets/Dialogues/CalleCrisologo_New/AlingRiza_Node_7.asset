@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Ilokano can use ''siak'' when referring to ''me'' as well, depending
-    on the sentence structure.
-
-
-    Listen carefully: siak.
-
-
-    Now, try saying
-    ''siak'' yourself.'
+  dialogueText: 'When talking about a group of other people, Ilokano uses ''isuda'' for ''they.''
+Listen carefully: isuda.'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "siak"'
-    nextNode: {fileID: 11400000, guid: dc685113e84c0984084cad21e619cce6, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: d0d7a4eb8028591bb25f97cae150710f, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

@@ -14,32 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Let''s begin counting in Ilokano.
-
-
-    The word ''maysa'' means
-    ''one.''
-
-
-    You use it when counting a single person or object.
-
-
-    For
-    example, if you see one chest, you can say ''maysa.''
-
-
-    Listen carefully:
-    maysa.
-
-
-    Now, try saying ''maysa'' yourself.'
+  dialogueText: 'If you need someone to stay in their current location while you do something else, you can tell them to wait.
+In Ilokano, ''uray ditoy'' means ''wait here.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:KlaraCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "maysa"'
-    nextNode: {fileID: 11400000, guid: bd97e6a30e429fd488f8b5baca3cd44f, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 866cc88cd3a65c72b2235089562f24af, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

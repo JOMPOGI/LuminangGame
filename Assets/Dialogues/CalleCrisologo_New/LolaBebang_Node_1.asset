@@ -15,27 +15,14 @@ MonoBehaviour:
   speakerName: LOLA BEBANG
   speakerPortrait: {fileID: 0}
   dialogueText: 'Questions help us learn about the world around us.
-
-
-    In Ilokano,
-    ''ania'' means ''what.''
-
-
-    Use it when asking about an object, thing, or
-    information.
-
-
-    Listen carefully: ania.
-
-
-    Now, try saying ''ania'' yourself.'
+In Ilokano, ''ania'' means ''what.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: StartInSceneLesson:LolaBebangCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Say: "ania"'
-    nextNode: {fileID: 11400000, guid: 790e2afb082b8dd4fa1a66d3a933f2e5, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 3accf9bcd0e65399aacabc3104aa64d6, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

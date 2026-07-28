@@ -15,12 +15,14 @@ MonoBehaviour:
   speakerName: TALA
   speakerPortrait: {fileID: 0}
   dialogueText: 'Pito! Seven!
-
-
-    Run to Mang Lance the Kalesa driver to finish
-    counting!'
+Run to Mang Lance the Kalesa driver to finish counting!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: find Mang Lance
-  choices: []
+  endEventName: EndInSceneLesson
+  choices:
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: 8c2eb62384b75445b4437d252dd83c6e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

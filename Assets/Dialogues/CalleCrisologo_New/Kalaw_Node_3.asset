@@ -14,30 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When someone asks you ''kumusta ka?'', you can tell them how you''re
-    doing.
-
-
-    In Ilokano, ''nasayaat ak'' means ''I''m fine'' or ''I''m doing
-    well.''
-
-
-    For example, if someone asks how your journey is going, you can
-    answer: ''Nasayaat ak.''
-
-
-    Listen carefully: nasayaat ak.
-
-
-    Now, try
-    saying ''nasayaat ak'' yourself.'
+  dialogueText: 'When someone asks you ''kumusta ka?'', you can tell them how you''re doing.
+In Ilokano, ''nasayaat ak'' means ''I''m fine'' or ''I''m doing well.'''
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Say: "nasayaat ak"'
-    nextNode: {fileID: 11400000, guid: d2aa0a096cf6c1a428198cd3527d4dc3, type: 2}
+  - choiceText: 'Continue'
+    nextNode: {fileID: 11400000, guid: ff9da86a20585a99badb43ae14de1b77, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 
