@@ -152,10 +152,6 @@ public class TeachingOverlayPanel : MonoBehaviour
 
         EnsureSpeechEngineDependencies();
 
-        // Match STT_TestScene behavior: always set region to Cebuano for Magellan scene lessons
-        if (PhraseEvaluator.Instance != null)
-            PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);
-
         if (backgroundImage != null)
         {
             if (!string.IsNullOrEmpty(backgroundName))
@@ -171,9 +167,10 @@ public class TeachingOverlayPanel : MonoBehaviour
                     backgroundImage.gameObject.SetActive(false);
                 }
             }
-            else
-            {
-                backgroundImage.gameObject.SetActive(false);
+                else
+                {
+                    // Do nothing, leave existing background active
+                }
             }
         }
 
