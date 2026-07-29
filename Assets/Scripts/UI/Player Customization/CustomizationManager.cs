@@ -232,8 +232,9 @@ public class CustomizationManager : MonoBehaviour
 
         foreach (var item in allItems)
         {
-            // Show ALL items now (so they can buy unowned ones)
-            if (item.slot == category.slot)
+            // Only show owned items in Character Customization
+            bool isOwned = ownedItems.Contains(item.name) || item.price <= 0;
+            if (item.slot == category.slot && isOwned)
             {
                 Toggle t = CreateItem(category, item.name, item.icon, null, item, group);
                 if (item.name == equippedName)
@@ -303,9 +304,6 @@ public class CustomizationManager : MonoBehaviour
         // Set up "None" button specifics
         if (item == null)
         {
-            HideChild(frameObj.transform, "CoinIcon");
-            HideChild(frameObj.transform, "Price");
-            HideChild(frameObj.transform, "PriceGroup");
             HideChild(frameObj.transform, "Ownership");
         }
 
@@ -478,10 +476,7 @@ public class CustomizationFrameUI : MonoBehaviour
     private CustomizationManager myManager;
     
     private TMPro.TextMeshProUGUI nameLabel;
-    private TMPro.TextMeshProUGUI priceLabel;
     private TMPro.TextMeshProUGUI ownershipLabel;
-    private GameObject coinIcon;
-    private GameObject priceGroup;
 
     public void Init(OutfitItem item, CustomizationManager manager)
     {
@@ -494,63 +489,34 @@ public class CustomizationFrameUI : MonoBehaviour
         Transform nameTrans = myManager.FindChildRecursive(transform, "ItemName");
         if (nameTrans != null) nameLabel = nameTrans.GetComponent<TMPro.TextMeshProUGUI>();
 
-        Transform priceTrans = myManager.FindChildRecursive(transform, "Price");
-        if (priceTrans != null) priceLabel = priceTrans.GetComponent<TMPro.TextMeshProUGUI>();
-
         Transform ownerTrans = myManager.FindChildRecursive(transform, "Ownership");
         if (ownerTrans != null) ownershipLabel = ownerTrans.GetComponent<TMPro.TextMeshProUGUI>();
 
-        Transform coinTrans = myManager.FindChildRecursive(transform, "CoinIcon");
-        if (coinTrans != null) coinIcon = coinTrans.gameObject;
-        
-        Transform groupTrans = myManager.FindChildRecursive(transform, "PriceGroup");
-        if (groupTrans != null) priceGroup = groupTrans.gameObject;
-
         // Set static data
         if (nameLabel != null) nameLabel.text = string.IsNullOrEmpty(item.itemName) ? item.name : item.itemName;
-        if (priceLabel != null) priceLabel.text = item.price.ToString();
     }
 
     public void RefreshVisuals()
     {
         if (myItem == null) return;
 
-        bool isOwned = myManager.ownedItems.Contains(myItem.name) || myItem.price <= 0;
         bool isEquipped = IsItemEquipped();
 
-        if (isOwned)
+        if (ownershipLabel != null)
         {
-            // Hide Price & Coin
-            if (coinIcon != null) coinIcon.SetActive(false);
-            if (priceLabel != null) priceLabel.gameObject.SetActive(false);
-            if (priceGroup != null) priceGroup.SetActive(false);
-
-            // Show Ownership
-            if (ownershipLabel != null)
+            ownershipLabel.gameObject.SetActive(true);
+            
+            if (isEquipped)
             {
-                ownershipLabel.gameObject.SetActive(true);
-                
-                if (isEquipped)
-                {
-                    ownershipLabel.text = "Equipped";
-                    ownershipLabel.color = myManager.equippedColor;
-                }
-                else
-                {
-                    ownershipLabel.text = "Owned";
-                    ownershipLabel.color = myManager.ownedColor;
-                }
+                ownershipLabel.text = "Equipped";
+                ownershipLabel.color = myManager.equippedColor;
             }
-        }
-        else
-        {
-            // Show Price & Coin
-            if (coinIcon != null) coinIcon.SetActive(true);
-            if (priceLabel != null) priceLabel.gameObject.SetActive(true);
-            if (priceGroup != null) priceGroup.SetActive(true);
-
-            // Hide Ownership
-            if (ownershipLabel != null) ownershipLabel.gameObject.SetActive(false);
+            else
+            {
+                // We're only showing owned items anyway, so we just show "Owned" or "Not Equipped"
+                ownershipLabel.text = "Owned";
+                ownershipLabel.color = myManager.ownedColor;
+            }
         }
     }
 
