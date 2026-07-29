@@ -36,6 +36,10 @@ public class InSceneLessonController : MonoBehaviour
     [Tooltip("Seconds for the camera to pan from player to NPC close-up position and back.")]
     public float panDuration = 0.8f;
 
+    [Header("STT Language")]
+    [Tooltip("The spoken language region for this scene. Ilokano = ilo, Cebuano = ceb. Set in Inspector per scene.")]
+    public RegionMode sttRegion = RegionMode.Ilokano;
+
     // ─────────────────────────────────────────────────────────────────
     // Private State
     // ─────────────────────────────────────────────────────────────────
@@ -180,7 +184,7 @@ public class InSceneLessonController : MonoBehaviour
         EnsureSpeechDependencies();
 
         if (PhraseEvaluator.Instance != null)
-            PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);
+            PhraseEvaluator.Instance.SetRegion(sttRegion);
 
         // Ensure parent hierarchy (e.g. TeachingOverlayPanel) is active & visible
         GameObject micTarget = micButton != null ? micButton.gameObject : inSceneMicPanel;
@@ -460,7 +464,12 @@ public class InSceneLessonController : MonoBehaviour
         string filePath = SpeechRecorder.Instance != null ? SpeechRecorder.Instance.StopRecording() : "";
         if (!string.IsNullOrEmpty(filePath))
         {
-            string langCode = (PhraseEvaluator.Instance != null && PhraseEvaluator.Instance.CurrentRegion == RegionMode.Cebuano) ? "ceb" : "tl";
+            string langCode = "tl";
+            if (PhraseEvaluator.Instance != null)
+            {
+                if (PhraseEvaluator.Instance.CurrentRegion == RegionMode.Cebuano)  langCode = "ceb";
+                else if (PhraseEvaluator.Instance.CurrentRegion == RegionMode.Ilokano) langCode = "ilo";
+            }
             GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError, "", langCode);
         }
         else

@@ -43,6 +43,22 @@ public class InteractableNPC : InteractableBase
     public UnityEvent OnDialogueEnd;
     public UnityEvent OnWrongAnswer;
 
+        #if UNITY_EDITOR
+    protected virtual void Awake()
+    {
+        if (defaultDialogue == null)
+        {
+            string cleanName = gameObject.name.Replace("_Rigged", "");
+            string assetPath = $"Assets/Dialogues/CalleCrisologo_New/{cleanName}_Node_0.asset";
+            defaultDialogue = UnityEditor.AssetDatabase.LoadAssetAtPath<DialogueNode>(assetPath);
+            if (defaultDialogue != null) 
+            {
+                Debug.Log($"[InteractableNPC] Successfully loaded fallback dialogue for {cleanName} via AssetDatabase!");
+            }
+        }
+    }
+    #endif
+
     public override void Interact()
     {
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
@@ -407,65 +423,79 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(eventName)) return;
         
-        string cleanEventName = eventName.Trim();
-        // NOTE: Logging is intentionally placed inside the match block below to avoid
-        // console spam — this method is called on ALL NPCs via the broadcast pattern.
+        string[] events = eventName.Split(',');
+        foreach(string evt in events)
+        {
+            string cleanEventName = evt.Trim();
+            if (string.IsNullOrEmpty(cleanEventName)) continue;
+            // NOTE: Logging is intentionally placed inside the match block below to avoid
+            // console spam — this method is called on ALL NPCs via the broadcast pattern.
+            
+            // Automatic system handler for TeachingOverlayPanel events
 
-        // Automatic system handler for TeachingOverlayPanel events
-        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
-        {
-            if (TeachingOverlayPanel.Instance != null)
+            if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
             {
-                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+                if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+                }
             }
-        }
-        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
-        {
-            if (TeachingOverlayPanel.Instance != null)
+            else if (cleanEventName.StartsWith("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
             {
-                TeachingOverlayPanel.Instance.Hide();
+                if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.Hide();
+                }
             }
-        }
-        else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
-        {
-            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
-            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            else if (cleanEventName.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
             {
-                ObjectiveManager.Instance.SetObjective(newObjText);
+                string popupName = cleanEventName.Substring("ShowPopup:".Length).Trim();
+                if (PopupManager.Instance != null && !string.IsNullOrEmpty(popupName))
+                {
+                    PopupManager.Instance.ShowPopups(popupName);
+                }
             }
-        }
-        else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
-        {
-            string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
-            if (InSceneLessonController.Instance != null)
+            else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
             {
-                InSceneLessonController.Instance.StartInSceneLesson(camName);
+                string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+                if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+                {
+                    ObjectiveManager.Instance.SetObjective(newObjText);
+                }
             }
-        }
-        else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
-        {
-            string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
-            if (InSceneLessonController.Instance != null)
+            else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
             {
-                InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+                string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+                if (InSceneLessonController.Instance != null)
+                {
+                    InSceneLessonController.Instance.StartInSceneLesson(camName);
+                }
             }
-        }
-        else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
-        {
-            if (InSceneLessonController.Instance != null)
+            else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
             {
-                InSceneLessonController.Instance.EndInSceneLesson();
+                string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+                if (InSceneLessonController.Instance != null)
+                {
+                    InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+                }
             }
-        }
+            else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+            {
+                if (InSceneLessonController.Instance != null)
+                {
+                    InSceneLessonController.Instance.EndInSceneLesson();
+                }
+            }
 
-        foreach (var mapping in dialogueEvents)
-        {
-            if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+            foreach (var mapping in dialogueEvents)
             {
-                Debug.Log($"[InteractableNPC] '{gameObject.name}' matched event '{cleanEventName}' — firing UnityEvent.");
-                mapping.onEventTriggered?.Invoke();
+                if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+                {
+                    Debug.Log($"[{gameObject.name}] Found mapping for event '{cleanEventName}'. Invoking associated UnityEvent.");
+                    mapping.onEventTriggered?.Invoke();
+                }
             }
-        }
+        } // End foreach event loop
     }
 
     /// <summary>
@@ -568,3 +598,4 @@ public class DialogueEventMapping
     public string eventName;
     public UnityEvent onEventTriggered;
 }
+

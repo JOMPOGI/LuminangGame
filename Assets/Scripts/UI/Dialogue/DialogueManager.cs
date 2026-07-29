@@ -532,8 +532,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(eventName)) return;
 
-        string cleanEventName = eventName.Trim();
-        Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
+        string[] events = eventName.Split(',');
+        foreach (string evt in events)
+        {
+            string cleanEventName = evt.Trim();
+            if (string.IsNullOrEmpty(cleanEventName)) continue;
+            
+            Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
 
         // 1. Handle SetObjective: or SetObjective_
         if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
@@ -579,6 +584,14 @@ public class DialogueManager : MonoBehaviour
                 _keepOverlayForOneNode = true; // Prevent ProcessNode from immediately hiding it
             }
         }
+        else if (cleanEventName.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string popupName = cleanEventName.Substring("ShowPopup:".Length).Trim();
+            if (PopupManager.Instance != null && !string.IsNullOrEmpty(popupName))
+            {
+                PopupManager.Instance.ShowPopups(popupName);
+            }
+        }
         else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
         {
             string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
@@ -616,6 +629,7 @@ public class DialogueManager : MonoBehaviour
 
         // 4. Forward to ALL NPCs — the one with the event mapping will handle it
         BroadcastDialogueEvent(cleanEventName);
+        } // End foreach event loop
     }
 
     /// <summary>
