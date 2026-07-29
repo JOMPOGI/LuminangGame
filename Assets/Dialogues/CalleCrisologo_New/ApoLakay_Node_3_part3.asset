@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''umuli iti ngato'''
     nextNode: {fileID: 11400000, guid: 060af8c78b4e556488cd9df9a764d996, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:umuli iti ngato
+    choiceEvent: 
     expectedSTTWord: umuli iti ngato

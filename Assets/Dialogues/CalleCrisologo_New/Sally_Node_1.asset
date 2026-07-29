@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''taga sadino ka?'' means ''where are you from?'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:SallyCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

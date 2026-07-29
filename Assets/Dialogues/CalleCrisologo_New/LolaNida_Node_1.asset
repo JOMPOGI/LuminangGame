@@ -18,7 +18,7 @@ MonoBehaviour:
 For example, it can help express an idea similar to ''is the'' in English.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:LolaNidaCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

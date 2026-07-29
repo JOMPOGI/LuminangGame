@@ -24,5 +24,5 @@ Now, try saying ''mangan'' yourself.'
   - choiceText: 'Say: ''mangan'''
     nextNode: {fileID: 11400000, guid: 66178831e806578983d96a2792851289, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:mangan
+    choiceEvent: 
     expectedSTTWord: mangan

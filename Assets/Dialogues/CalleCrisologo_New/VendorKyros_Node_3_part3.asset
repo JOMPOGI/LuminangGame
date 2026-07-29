@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''naimbag nga aldaw'''
     nextNode: {fileID: 11400000, guid: 2013a0c668725edcb26d97514eea033e, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:naimbag nga aldaw
+    choiceEvent: 
     expectedSTTWord: naimbag nga aldaw

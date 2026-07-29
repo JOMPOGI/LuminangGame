@@ -19,5 +19,5 @@ Go see Tomas at the pottery yard!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Tomas
+  endEventName: HideTeachingPanel,SetObjective_Talk to Tomas
   choices: []

@@ -24,5 +24,5 @@ Now, try saying ''uminom'' yourself.'
   - choiceText: 'Say: ''uminom'''
     nextNode: {fileID: 11400000, guid: 47d4998ea07a560b83cf813cc689ae06, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:uminom
+    choiceEvent: 
     expectedSTTWord: uminom

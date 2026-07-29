@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''siak'''
     nextNode: {fileID: 11400000, guid: a489cd968986519da5dfce8fbc841f86, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:siak
+    choiceEvent: 
     expectedSTTWord: siak

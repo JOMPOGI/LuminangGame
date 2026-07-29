@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''makita'''
     nextNode: {fileID: 11400000, guid: 8d8ba9531b3e5d1f8c7bb711af411764, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:makita
+    choiceEvent: 
     expectedSTTWord: makita

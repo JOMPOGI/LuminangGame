@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''ania'' means ''what.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:LolaBebangCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

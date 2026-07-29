@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''mabalin kadi a tulunganak'''
     nextNode: {fileID: 11400000, guid: 7f6fdb4c794f5a8aa68203814060de61, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:mabalin kadi a tulunganak
+    choiceEvent: 
     expectedSTTWord: mabalin kadi a tulunganak

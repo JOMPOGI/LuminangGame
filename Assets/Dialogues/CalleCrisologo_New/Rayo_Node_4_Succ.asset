@@ -19,5 +19,5 @@ Catch up with Aling Rosa to wrap up Action Verbs!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Aling Rosa
+  endEventName: HideTeachingPanel,SetObjective_Talk to Aling Rosa
   choices: []

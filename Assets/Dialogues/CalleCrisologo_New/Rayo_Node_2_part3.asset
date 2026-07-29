@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''mapan'''
     nextNode: {fileID: 11400000, guid: e36d3685d8c55e1998a8dde6ca2b0cb2, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:mapan
+    choiceEvent: 
     expectedSTTWord: mapan

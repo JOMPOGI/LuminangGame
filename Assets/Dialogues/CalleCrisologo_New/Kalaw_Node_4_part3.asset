@@ -24,5 +24,5 @@ Now, try saying ''naimbag a bigat'' yourself.'
   - choiceText: 'Say: ''naimbag a bigat'''
     nextNode: {fileID: 11400000, guid: 548b1cbc8bb057e09b9b588fcef86009, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:naimbag a bigat
+    choiceEvent: 
     expectedSTTWord: naimbag a bigat

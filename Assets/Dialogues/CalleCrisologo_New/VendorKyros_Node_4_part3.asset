@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''agpakada akon'''
     nextNode: {fileID: 11400000, guid: 74bbbcdf01f25034b0ef15e51a91f008, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:agpakada akon
+    choiceEvent: 
     expectedSTTWord: agpakada akon

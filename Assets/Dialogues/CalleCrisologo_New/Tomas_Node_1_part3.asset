@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''agsardeng ditoy'''
     nextNode: {fileID: 11400000, guid: 69e663ebe9345b56a9c5e6271500feea, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:agsardeng ditoy
+    choiceEvent: 
     expectedSTTWord: agsardeng ditoy

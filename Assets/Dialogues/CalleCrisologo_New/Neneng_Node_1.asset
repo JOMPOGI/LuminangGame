@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''agbalin'' means ''become.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:NenengCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

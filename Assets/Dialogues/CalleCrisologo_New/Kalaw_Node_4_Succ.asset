@@ -19,5 +19,5 @@ Fly over to Vendor Kyros''s souvenir stall. He''ll teach you how to greet people
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Vendor Kyros
+  endEventName: HideTeachingPanel,SetObjective_Talk to Vendor Kyros
   choices: []

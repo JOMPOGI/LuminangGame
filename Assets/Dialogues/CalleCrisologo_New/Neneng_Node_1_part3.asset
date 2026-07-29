@@ -24,5 +24,5 @@ Now, try saying ''agbalin'' yourself.'
   - choiceText: 'Say: ''agbalin'''
     nextNode: {fileID: 11400000, guid: a4602ed76a17596ea30539d586bee01d, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:agbalin
+    choiceEvent: 
     expectedSTTWord: agbalin

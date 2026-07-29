@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''mano'''
     nextNode: {fileID: 11400000, guid: 4c5d8184420f5426af43deac72c2f646, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:mano
+    choiceEvent: 
     expectedSTTWord: mano

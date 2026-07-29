@@ -19,5 +19,5 @@ RESPONSES MILESTONE UNLOCKED!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Ronnie
+  endEventName: HideTeachingPanel,SetObjective_Talk to Ronnie
   choices: []

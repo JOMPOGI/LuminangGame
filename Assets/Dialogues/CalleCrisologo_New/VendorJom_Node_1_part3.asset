@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''dispensaren nak'''
     nextNode: {fileID: 11400000, guid: 63a1e33a9ac65b42aa2fd0b88f271ff2, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:dispensaren nak
+    choiceEvent: 
     expectedSTTWord: dispensaren nak

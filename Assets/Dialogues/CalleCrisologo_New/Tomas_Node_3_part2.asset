@@ -24,5 +24,5 @@ Now, try saying ''mapan idiay'' yourself.'
   - choiceText: 'Say: ''mapan idiay'''
     nextNode: {fileID: 11400000, guid: df94228c11725e809f95d3884ac8d66a, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:mapan idiay
+    choiceEvent: 
     expectedSTTWord: mapan idiay

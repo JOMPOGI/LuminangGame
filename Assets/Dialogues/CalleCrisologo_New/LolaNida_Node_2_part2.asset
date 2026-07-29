@@ -24,5 +24,5 @@ Now, try saying ''da'' yourself.'
   - choiceText: 'Say: ''da'''
     nextNode: {fileID: 11400000, guid: edf8274823d957f089b19c5c1574c640, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:da
+    choiceEvent: 
     expectedSTTWord: da

@@ -19,5 +19,5 @@ Go meet Sally near the brick arch to complete Level I!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Sally
+  endEventName: HideTeachingPanel,SetObjective_Talk to Sally
   choices: []

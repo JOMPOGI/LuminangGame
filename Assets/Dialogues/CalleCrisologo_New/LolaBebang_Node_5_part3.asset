@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''apay'''
     nextNode: {fileID: 11400000, guid: cebedda01f6a58fd8a8663a8f7c286a1, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:apay
+    choiceEvent: 
     expectedSTTWord: apay

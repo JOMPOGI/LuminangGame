@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''uppat'''
     nextNode: {fileID: 11400000, guid: 5ffc3c303a6755ca9ab67fca9b0400ab, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:uppat
+    choiceEvent: 
     expectedSTTWord: uppat

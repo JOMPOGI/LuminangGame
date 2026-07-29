@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''innem'''
     nextNode: {fileID: 11400000, guid: 0df471703609582b9d04b4500ba1c12e, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:innem
+    choiceEvent: 
     expectedSTTWord: innem

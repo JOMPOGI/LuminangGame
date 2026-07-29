@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''umay ditoy'''
     nextNode: {fileID: 11400000, guid: 894013d599875116b37074ab9cdd6c0e, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:umay ditoy
+    choiceEvent: 
     expectedSTTWord: umay ditoy

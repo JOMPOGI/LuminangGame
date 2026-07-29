@@ -18,7 +18,7 @@ MonoBehaviour:
 When you need to politely get someone''s attention or pass through a crowded space, you can say ''dispensaren nak.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:JomCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''agliko iti kannigid'''
     nextNode: {fileID: 11400000, guid: fa0d24cee80351849540c96cda5181b3, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:agliko iti kannigid
+    choiceEvent: 
     expectedSTTWord: agliko iti kannigid

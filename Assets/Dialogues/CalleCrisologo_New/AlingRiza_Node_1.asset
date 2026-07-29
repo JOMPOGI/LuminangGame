@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''marikna'' means ''feel'' or ''perceive.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:AlingRizaCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -18,7 +18,7 @@ MonoBehaviour:
 When you look at something or notice something with your eyes, the Ilokano verb ''makita'' means ''see.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:AlingRosaCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

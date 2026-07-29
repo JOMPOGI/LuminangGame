@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''kumusta ka'''
     nextNode: {fileID: 11400000, guid: 5923583ae998566aa58b470cbe4fc623, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:kumusta ka
+    choiceEvent: 
     expectedSTTWord: kumusta ka

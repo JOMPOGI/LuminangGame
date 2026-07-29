@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''okay'''
     nextNode: {fileID: 11400000, guid: 264fa50f083c536c970ff512333d66a1, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:okay
+    choiceEvent: 
     expectedSTTWord: okay

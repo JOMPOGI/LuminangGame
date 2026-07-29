@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''pito'''
     nextNode: {fileID: 11400000, guid: 09355e148d56553a9708418b24a263be, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:pito
+    choiceEvent: 
     expectedSTTWord: pito

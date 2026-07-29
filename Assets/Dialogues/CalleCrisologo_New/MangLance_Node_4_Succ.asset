@@ -19,5 +19,5 @@ Go see Rayo the photographer for more action verbs!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Rayo
+  endEventName: HideTeachingPanel,SetObjective_Talk to Rayo
   choices: []

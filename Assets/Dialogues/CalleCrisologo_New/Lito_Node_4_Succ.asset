@@ -19,5 +19,5 @@ Go find Apo Lakay by the stone well for more pathfinding!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Apo Lakay
+  endEventName: HideTeachingPanel,SetObjective_Talk to Apo Lakay
   choices: []

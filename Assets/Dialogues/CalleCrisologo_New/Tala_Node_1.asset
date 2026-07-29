@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''uppat'' means ''four.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:TalaCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

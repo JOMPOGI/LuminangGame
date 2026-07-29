@@ -18,7 +18,7 @@ MonoBehaviour:
 When someone helps you, gives you something, or does something kind for you, it is important to show appreciation.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:IrahCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

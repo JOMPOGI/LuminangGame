@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''maturog'''
     nextNode: {fileID: 11400000, guid: 296207ff91d8537fb49408f3068f752d, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:maturog
+    choiceEvent: 
     expectedSTTWord: maturog

@@ -19,5 +19,5 @@ Go meet Vendor Irah at the weaving loom. She has something important to teach yo
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Vendor Irah
+  endEventName: HideTeachingPanel,SetObjective_Talk to Vendor Irah
   choices: []

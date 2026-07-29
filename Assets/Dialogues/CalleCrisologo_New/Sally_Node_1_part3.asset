@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''taga sadino ka'''
     nextNode: {fileID: 11400000, guid: 4525b3bd53c05ebf9a307571f07ddc64, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:taga sadino ka
+    choiceEvent: 
     expectedSTTWord: taga sadino ka

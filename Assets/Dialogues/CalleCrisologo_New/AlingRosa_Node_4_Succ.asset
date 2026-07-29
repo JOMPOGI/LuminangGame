@@ -19,5 +19,5 @@ Go see Lola Nida for more connector words!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Lola Nida
+  endEventName: HideTeachingPanel,SetObjective_Talk to Lola Nida
   choices: []

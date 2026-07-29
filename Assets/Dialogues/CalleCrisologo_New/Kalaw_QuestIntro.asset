@@ -18,6 +18,6 @@ MonoBehaviour:
 Flying under this hot Vigan sun has completely worn me out...'
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective_FindFruit
+  triggerEventName: ShowPopup:welcome_level1,SetObjective_FindFruit
   endEventName: 
   choices: []

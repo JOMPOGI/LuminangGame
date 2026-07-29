@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''diak maawatan'''
     nextNode: {fileID: 11400000, guid: dc3e7c2e27595859ba76949b7b8920c9, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:diak maawatan
+    choiceEvent: 
     expectedSTTWord: diak maawatan

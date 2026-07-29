@@ -18,5 +18,5 @@ MonoBehaviour:
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Lola Bebang
+  endEventName: HideTeachingPanel,SetObjective_Talk to Lola Bebang
   choices: []

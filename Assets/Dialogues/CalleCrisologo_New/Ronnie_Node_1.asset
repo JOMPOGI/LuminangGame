@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''ania ti nagan mo?'' means ''what is your name?'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:RonnieCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

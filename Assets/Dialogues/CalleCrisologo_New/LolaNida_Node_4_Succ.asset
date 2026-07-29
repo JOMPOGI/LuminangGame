@@ -18,5 +18,5 @@ MonoBehaviour:
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Neneng
+  endEventName: HideTeachingPanel,SetObjective_Talk to Neneng
   choices: []

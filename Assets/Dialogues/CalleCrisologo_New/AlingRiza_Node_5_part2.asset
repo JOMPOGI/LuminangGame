@@ -24,5 +24,5 @@ Now, try saying ''isuna'' yourself.'
   - choiceText: 'Say: ''isuna'''
     nextNode: {fileID: 11400000, guid: 28a00bcfb65a574f9eeb8198d523fda9, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:isuna
+    choiceEvent: 
     expectedSTTWord: isuna

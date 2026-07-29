@@ -19,5 +19,5 @@ Pop over to Vendor Jom''s empanada stall for the last gratitude phrase!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Vendor Jom
+  endEventName: HideTeachingPanel,SetObjective_Talk to Vendor Jom
   choices: []

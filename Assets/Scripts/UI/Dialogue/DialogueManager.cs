@@ -584,6 +584,14 @@ public class DialogueManager : MonoBehaviour
                 _keepOverlayForOneNode = true; // Prevent ProcessNode from immediately hiding it
             }
         }
+        else if (cleanEventName.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string popupName = cleanEventName.Substring("ShowPopup:".Length).Trim();
+            if (PopupManager.Instance != null && !string.IsNullOrEmpty(popupName))
+            {
+                PopupManager.Instance.ShowPopups(popupName);
+            }
+        }
         else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
         {
             string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";

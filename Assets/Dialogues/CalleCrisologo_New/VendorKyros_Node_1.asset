@@ -18,7 +18,7 @@ MonoBehaviour:
 When the morning has passed and the afternoon arrives, Ilocanos greet someone by saying ''naimbag a malem.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: StartInSceneLesson:KyrosCloseUp
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -24,5 +24,5 @@ Now, try saying ''walo'' yourself.'
   - choiceText: 'Say: ''walo'''
     nextNode: {fileID: 11400000, guid: dcd2a07d0b26558a9711b71cfaabe990, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:walo
+    choiceEvent: 
     expectedSTTWord: walo

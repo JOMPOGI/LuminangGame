@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''taga vigan ak'''
     nextNode: {fileID: 11400000, guid: dcf0cbc30a6d58a2b02109d31089947a, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:taga vigan ak
+    choiceEvent: 
     expectedSTTWord: taga vigan ak

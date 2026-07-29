@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''marikna'''
     nextNode: {fileID: 11400000, guid: 4e1304a76507510594cd100a2323c8a4, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:marikna
+    choiceEvent: 
     expectedSTTWord: marikna

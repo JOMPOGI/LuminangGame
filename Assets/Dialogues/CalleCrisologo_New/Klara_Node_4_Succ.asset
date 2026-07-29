@@ -19,5 +19,5 @@ Head over to Tala the Bagnet seller for more numbers!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson,SetObjective_Talk to Tala
+  endEventName: HideTeachingPanel,SetObjective_Talk to Tala
   choices: []

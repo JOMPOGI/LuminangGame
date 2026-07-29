@@ -23,5 +23,5 @@ MonoBehaviour:
   - choiceText: 'Say: ''naimbag a malem'''
     nextNode: {fileID: 11400000, guid: ac96bd5da23f5b808ae71f26f49d54d8, type: 2}
     isWrong: 0
-    choiceEvent: ShowInSceneMic:naimbag a malem
+    choiceEvent: 
     expectedSTTWord: naimbag a malem

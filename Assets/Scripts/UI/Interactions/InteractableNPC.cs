@@ -440,11 +440,19 @@ public class InteractableNPC : InteractableBase
                     TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
                 }
             }
-            else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+            else if (cleanEventName.StartsWith("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
             {
                 if (TeachingOverlayPanel.Instance != null)
                 {
                     TeachingOverlayPanel.Instance.Hide();
+                }
+            }
+            else if (cleanEventName.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string popupName = cleanEventName.Substring("ShowPopup:".Length).Trim();
+                if (PopupManager.Instance != null && !string.IsNullOrEmpty(popupName))
+                {
+                    PopupManager.Instance.ShowPopups(popupName);
                 }
             }
             else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
