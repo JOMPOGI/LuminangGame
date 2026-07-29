@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LolaNida_Node_3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
-  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
+  speakerPortrait: {fileID: 0}
   dialogueText: 'When talking about something that existed or was true in the past, you can use ''ket idi'' in a historical context.
 For example, when describing how a place was in the past, this phrase helps connect the subject with its former state.'
   translatedText: 

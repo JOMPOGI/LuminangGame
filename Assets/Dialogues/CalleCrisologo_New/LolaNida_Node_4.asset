@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LolaNida_Node_4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA NIDA
-  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
+  speakerPortrait: {fileID: 0}
   dialogueText: 'The same past expression can also appear when talking about a group in a historical context.
 For example, when describing what people were like in the past, ''ket idi'' can be part of the sentence structure.'
   translatedText: 
