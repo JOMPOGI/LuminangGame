@@ -21,7 +21,7 @@ In Ilokano, ''tallo'' means ''three.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 4bdd19d1d88755cd87df31f623c448cb, type: 2}
     isWrong: 0
     choiceEvent: 

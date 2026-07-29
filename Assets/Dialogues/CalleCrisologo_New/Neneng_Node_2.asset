@@ -21,7 +21,7 @@ In Ilokano, ''kasla'' can express the idea of ''seem'' or ''like.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 70e96883900f5f04934be971154f2823, type: 2}
     isWrong: 0
     choiceEvent: 

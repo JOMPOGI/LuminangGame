@@ -21,12 +21,7 @@ Listen carefully: umay ditoy.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 06739a19e34c52d6961ab757bcef3cfe, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 6e87b5ed55045654a03d5b7a31845798, type: 2}
     isWrong: 0
     choiceEvent: 

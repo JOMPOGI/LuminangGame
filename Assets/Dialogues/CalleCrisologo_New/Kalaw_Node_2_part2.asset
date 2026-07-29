@@ -21,12 +21,7 @@ Listen carefully: kumusta ka?'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 678e43b0cbd0551ca19d2570c8f252ca, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 69fa0e0fbf7b5804871133c2ba1dfacb, type: 2}
     isWrong: 0
     choiceEvent: 

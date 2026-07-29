@@ -21,11 +21,6 @@ Now, try saying ''agbalin'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: dbfd196b32195f58b12e3e29e4b101d7, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''agbalin'''
     nextNode: {fileID: 11400000, guid: a4602ed76a17596ea30539d586bee01d, type: 2}
     isWrong: 0

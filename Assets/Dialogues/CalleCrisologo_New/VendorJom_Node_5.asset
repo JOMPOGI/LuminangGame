@@ -21,7 +21,7 @@ It means ''I understand.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 95dba6e0af015556b251a59b3b9fbe7e, type: 2}
     isWrong: 0
     choiceEvent: 

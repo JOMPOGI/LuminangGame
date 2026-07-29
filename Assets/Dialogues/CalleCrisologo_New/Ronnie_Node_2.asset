@@ -21,7 +21,7 @@ In Ilokano, ''ti nagan ko ket...'' means ''my name is...'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 55c3c4d0c2cc5e768cc01dc419703480, type: 2}
     isWrong: 0
     choiceEvent: 

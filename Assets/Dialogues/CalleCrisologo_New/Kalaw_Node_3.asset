@@ -21,7 +21,7 @@ In Ilokano, ''nasayaat ak'' means ''I''m fine'' or ''I''m doing well.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: ff9da86a20585a99badb43ae14de1b77, type: 2}
     isWrong: 0
     choiceEvent: 

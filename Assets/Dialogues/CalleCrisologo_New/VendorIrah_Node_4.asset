@@ -21,7 +21,7 @@ If you accidentally bump into someone or make a mistake, you can apologize.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 48c2a8a45b3c508293703b360e6aeb8e, type: 2}
     isWrong: 0
     choiceEvent: 

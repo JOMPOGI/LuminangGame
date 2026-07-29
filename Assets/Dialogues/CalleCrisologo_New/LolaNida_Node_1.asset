@@ -21,7 +21,7 @@ For example, it can help express an idea similar to ''is the'' in English.'
   triggerEventName: StartInSceneLesson:LolaNidaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 1b99402b714b51b4b6ca86b899efe31e, type: 2}
     isWrong: 0
     choiceEvent: 

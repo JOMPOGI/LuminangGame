@@ -21,12 +21,7 @@ Listen carefully: umuli iti ngato.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: de181b05f77b56fa9fb67cdcee85d210, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: ab480e761d2758a4a0ad492b24f414a5, type: 2}
     isWrong: 0
     choiceEvent: 

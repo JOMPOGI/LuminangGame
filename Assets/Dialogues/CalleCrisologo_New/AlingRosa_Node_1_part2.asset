@@ -21,12 +21,7 @@ Listen carefully: makita.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 9ed527c6818e5ef19051a58b62bf454a, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 64707fa12ca85d63be1cae2a500f87a9, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,11 +21,6 @@ Now, try saying ''isu ti'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 9da546352a02558caca7966c19084022, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''isu ti'''
     nextNode: {fileID: 11400000, guid: 74f7f40f1ac55decbd7078ab0efcc5b0, type: 2}
     isWrong: 0

@@ -21,11 +21,6 @@ Now, try saying ''uminom'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: a0d870e402365ad08fa56bd32f887378, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''uminom'''
     nextNode: {fileID: 11400000, guid: 47d4998ea07a560b83cf813cc689ae06, type: 2}
     isWrong: 0

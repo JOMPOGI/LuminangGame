@@ -21,7 +21,7 @@ In Ilokano, ''mapan idiay'' means ''go there.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 3e55511e25e45566bfdaa532dd02f714, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ In Ilokano, ''kumusta ka?'' means ''how are you?'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: d84044ac038e584cbd1bf53586ff12ec, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ In Ilokano, ''ania ti nagan mo?'' means ''what is your name?'''
   triggerEventName: StartInSceneLesson:RonnieCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 8819e41d7ca252beb2ab4d62ea20d232, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ It means ''when.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: b808a38ce7555e37ab1e820913a7d103, type: 2}
     isWrong: 0
     choiceEvent: 

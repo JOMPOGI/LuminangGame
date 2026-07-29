@@ -21,12 +21,7 @@ Listen carefully: maturog.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 45126cde55c65e4ca9580ea9a444213a, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 48ebb5645cff572190808552f99d4cd7, type: 2}
     isWrong: 0
     choiceEvent: 

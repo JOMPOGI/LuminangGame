@@ -21,7 +21,7 @@ In Ilokano, ''umuli iti ngato'' means ''go up.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 8dd4162afd465c3b91e509bc0a0c41ef, type: 2}
     isWrong: 0
     choiceEvent: 

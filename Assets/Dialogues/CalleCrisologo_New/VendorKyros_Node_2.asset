@@ -21,7 +21,7 @@ In Ilokano, ''naimbag a rabii'' means ''good evening.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 076c0a97ec6b585f9469f76916581249, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,11 +21,6 @@ Now, try saying ''pakawanen nak'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 48c2a8a45b3c508293703b360e6aeb8e, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''pakawanen nak'''
     nextNode: {fileID: 11400000, guid: 495a98a7fec75b95a01736a37e505bd6, type: 2}
     isWrong: 0

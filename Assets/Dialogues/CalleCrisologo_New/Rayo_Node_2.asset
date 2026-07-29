@@ -21,7 +21,7 @@ It means ''go.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 85dcf591ef07563f851fd81799dfd145, type: 2}
     isWrong: 0
     choiceEvent: 

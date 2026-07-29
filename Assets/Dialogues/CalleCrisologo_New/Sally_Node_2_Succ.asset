@@ -21,7 +21,7 @@ LEVEL I: CONVERSATIONAL & SOCIAL COMPLETE!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 4c7e212711c15db5ab61674003470f7c, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,11 +21,6 @@ Now, try saying ''mangngeg'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 0a18d402cadd517da028fdf7023a0229, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''mangngeg'''
     nextNode: {fileID: 11400000, guid: 67858fc8297d536d81f2aefc5b5aa583, type: 2}
     isWrong: 0

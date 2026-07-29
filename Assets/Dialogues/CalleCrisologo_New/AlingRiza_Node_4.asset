@@ -21,7 +21,7 @@ Listen carefully: isuna.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: cebe914c62dc5fe298b5535f8b0e4d77, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,12 +21,7 @@ Listen carefully: dispensaren nak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: d32fe70542cb5376bcf4d526f2ec5a04, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 62c0bacc152b5202ac5f216dcdaa50a8, type: 2}
     isWrong: 0
     choiceEvent: 

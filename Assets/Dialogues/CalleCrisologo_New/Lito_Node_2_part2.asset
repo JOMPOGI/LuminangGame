@@ -21,12 +21,7 @@ Listen carefully: ikanmo man map.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: caf23c5e95d95762b6ae4a1def48083a, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 325c5949fd1b5432b8d28c8392756c8a, type: 2}
     isWrong: 0
     choiceEvent: 

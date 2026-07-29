@@ -21,7 +21,7 @@ When someone asks you a question and you want to agree or answer ''yes,'' Ilokan
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 42c6717f38565b78bf8f7be2307fdc24, type: 2}
     isWrong: 0
     choiceEvent: 

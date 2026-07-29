@@ -21,7 +21,7 @@ In Ilokano, ''ania'' means ''what.'''
   triggerEventName: StartInSceneLesson:LolaBebangCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 3accf9bcd0e65399aacabc3104aa64d6, type: 2}
     isWrong: 0
     choiceEvent: 

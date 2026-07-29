@@ -21,7 +21,7 @@ In Ilokano, ''diak maawatan'' means ''I don''t understand.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: ba0d3d177c09505ca3c624e123c9f682, type: 2}
     isWrong: 0
     choiceEvent: 

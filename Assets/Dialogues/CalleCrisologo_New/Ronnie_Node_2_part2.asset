@@ -21,12 +21,7 @@ For example: ''Ti nagan ko ket Jom.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: f7030786bfd95dab8dbc4ca5a7cbf000, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 4ba490b5c6ad503291d39deb7a424d27, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ In Ilokano, ''mabalin kadi agsaludsod?'' means ''can I ask?'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 518a5ed1761d57c2a7569794d8064d93, type: 2}
     isWrong: 0
     choiceEvent: 

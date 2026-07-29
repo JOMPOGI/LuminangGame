@@ -21,11 +21,6 @@ Now, try saying ''sangapulo'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: b9c4d285659b5c409fda895118d774d8, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''sangapulo'''
     nextNode: {fileID: 11400000, guid: 138cec41ffb15a75b53ec3a4e60fd5b0, type: 2}
     isWrong: 0

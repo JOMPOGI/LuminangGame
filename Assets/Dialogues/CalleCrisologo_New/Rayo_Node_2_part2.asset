@@ -21,12 +21,7 @@ Listen carefully: mapan.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 326d5c81176b56ea90549d4f4951fbe3, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 8597e180607f5a719881c9e8ea207bae, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,11 +21,6 @@ Now, try saying ''maysa'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 6b1637f5f3ce5340b1792bb2b42f5f94, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''maysa'''
     nextNode: {fileID: 11400000, guid: 9ce4de68723854358010eebb67799d75, type: 2}
     isWrong: 0

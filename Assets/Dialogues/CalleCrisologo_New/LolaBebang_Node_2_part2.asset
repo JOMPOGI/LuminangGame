@@ -21,11 +21,6 @@ Now, try saying ''asino'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 94417a14069155cfb3c2ab3e3834958a, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''asino'''
     nextNode: {fileID: 11400000, guid: ccafa57eba98568781a26369f5879ff5, type: 2}
     isWrong: 0

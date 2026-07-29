@@ -21,7 +21,7 @@ In Ilokano, ''umay'' means ''come.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 52ed303201885bafba17221bde86455f, type: 2}
     isWrong: 0
     choiceEvent: 

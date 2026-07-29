@@ -21,7 +21,7 @@ When you need someone to pause and wait for you, you can say ''urayennak.'''
   triggerEventName: StartInSceneLesson:LitoCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: b300bb3cb9c15155b6129744bbfc7561, type: 2}
     isWrong: 0
     choiceEvent: 

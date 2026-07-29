@@ -21,7 +21,7 @@ Listen carefully: pito.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: fd78a12e7ac15e57b959edebddc4c12b, type: 2}
     isWrong: 0
     choiceEvent: 

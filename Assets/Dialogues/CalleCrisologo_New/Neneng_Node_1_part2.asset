@@ -21,12 +21,7 @@ For example, with practice, you can become more confident in speaking Ilokano.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: ec1ec08cdf365b1faa0027f00af855ff, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 2db00887f1f15a54b00b4b7d00035c99, type: 2}
     isWrong: 0
     choiceEvent: 

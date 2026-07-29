@@ -21,12 +21,7 @@ The Ilocos Language Crystal inside it is sleeping.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: c108a300e8525be39928e5b51367cefb, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: db47955438f95d489142de5553e37747, type: 2}
     isWrong: 0
     choiceEvent: 

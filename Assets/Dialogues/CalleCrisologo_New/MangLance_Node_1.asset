@@ -21,7 +21,7 @@ In Ilokano, ''walo'' means ''eight.'''
   triggerEventName: StartInSceneLesson:MangLanceCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: dfc14e457df15fa48b9f3608a462e0a1, type: 2}
     isWrong: 0
     choiceEvent: 

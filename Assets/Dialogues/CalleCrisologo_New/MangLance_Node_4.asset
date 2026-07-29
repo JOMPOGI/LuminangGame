@@ -21,7 +21,7 @@ In Ilokano, ''mangan'' means ''eat.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: bb5c8d9c3afc59f7a7f6bef2dee6b78d, type: 2}
     isWrong: 0
     choiceEvent: 

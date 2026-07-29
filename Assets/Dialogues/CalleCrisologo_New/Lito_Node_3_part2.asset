@@ -21,12 +21,7 @@ Listen carefully: mabalin kadi agsaludsod?'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: b931074f3d5d51909a22f58796300290, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: fc8efbc2980b546f992f4de7847aa098, type: 2}
     isWrong: 0
     choiceEvent: 

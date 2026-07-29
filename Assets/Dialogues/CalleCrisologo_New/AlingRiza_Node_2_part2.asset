@@ -21,12 +21,7 @@ Listen carefully: siak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 4e71c6482fca560cbcb2e5a1ca26b542, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 745726257e5557c394ccb1d77b519d6e, type: 2}
     isWrong: 0
     choiceEvent: 

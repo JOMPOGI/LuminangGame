@@ -21,12 +21,7 @@ Listen carefully: nasayaat ak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 3856e17efeb7542dacf1415994532562, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 623c3c1fc05752acab705ed29ee45204, type: 2}
     isWrong: 0
     choiceEvent: 

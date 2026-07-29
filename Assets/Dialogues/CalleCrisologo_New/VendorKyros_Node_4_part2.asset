@@ -21,12 +21,7 @@ Listen carefully: agpakada akon.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: cd73f881037f5a9d86b7b46db4d5b216, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: b6f60c84de195d3b85eb15fefb91ce29, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,12 +21,7 @@ Welcome to Level II: Functional & Navigational!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: dcf0cbc30a6d58a2b02109d31089947a, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: da56e83967b6562faacf19ebc9818bc7, type: 2}
     isWrong: 0
     choiceEvent: 

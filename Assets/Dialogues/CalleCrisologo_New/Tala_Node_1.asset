@@ -21,7 +21,7 @@ In Ilokano, ''uppat'' means ''four.'''
   triggerEventName: StartInSceneLesson:TalaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 03c0d210585c53ab942da48dbba35638, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,12 +21,7 @@ It is an action verb used when talking about drinking something.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: deb27759964359f887d0c45f7c3debff, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: b064298ab28453e0a60cf0d8ba41ec28, type: 2}
     isWrong: 0
     choiceEvent: 

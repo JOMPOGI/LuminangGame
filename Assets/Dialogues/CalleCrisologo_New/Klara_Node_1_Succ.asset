@@ -21,7 +21,7 @@ DIRECTIONS MILESTONE UNLOCKED!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 38b1f3844fde57acb993a8c6696755bf, type: 2}
     isWrong: 0
     choiceEvent: 

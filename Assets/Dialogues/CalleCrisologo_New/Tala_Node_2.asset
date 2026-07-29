@@ -21,7 +21,7 @@ In Ilokano, ''lima'' means ''five.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 38001e4d41355655b7375dadf58fc53a, type: 2}
     isWrong: 0
     choiceEvent: 

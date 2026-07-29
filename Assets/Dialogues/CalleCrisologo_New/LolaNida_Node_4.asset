@@ -21,7 +21,7 @@ For example, when describing what people were like in the past, ''ket idi'' can 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: af5b12c6ce3c5676a96d896e401dac26, type: 2}
     isWrong: 0
     choiceEvent: 

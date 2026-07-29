@@ -21,11 +21,6 @@ Now, try saying ''kaano'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: c57ef95ab37e5c0bb6df9a16ef788842, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''kaano'''
     nextNode: {fileID: 11400000, guid: ac4a781cbb665bdba0c31a866f6b9325, type: 2}
     isWrong: 0

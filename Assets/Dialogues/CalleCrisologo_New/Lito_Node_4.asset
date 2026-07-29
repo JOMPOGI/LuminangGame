@@ -21,7 +21,7 @@ In Ilokano, ''agdiretso'' means ''go straight.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 068bb4d12f2f5a02b589eaa92d971167, type: 2}
     isWrong: 0
     choiceEvent: 

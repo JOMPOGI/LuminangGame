@@ -21,7 +21,7 @@ Listen carefully: innem.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: fd33a67b8f86512f8619b1ab6756b01b, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ In Ilokano, ''saan'' means ''no.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 2a6aae8d8ffc52758c3e2a0976d46ff0, type: 2}
     isWrong: 0
     choiceEvent: 

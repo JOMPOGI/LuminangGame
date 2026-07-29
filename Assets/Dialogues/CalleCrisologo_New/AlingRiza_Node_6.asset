@@ -21,7 +21,7 @@ Listen carefully: dakkami.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: fa662ac9869153f4bf1ccbe50312eded, type: 2}
     isWrong: 0
     choiceEvent: 

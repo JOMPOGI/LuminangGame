@@ -21,12 +21,7 @@ Listen carefully: ania.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 776f8e9f570e57b4a2fd9d371fc21994, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: c50c9129978d548db251dad9c098a28d, type: 2}
     isWrong: 0
     choiceEvent: 

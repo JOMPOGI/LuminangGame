@@ -21,7 +21,7 @@ The meaning depends on the person you''re talking about and the context.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: ff0046dbcdc8595dbfbb3d4a24d39d5e, type: 2}
     isWrong: 0
     choiceEvent: 

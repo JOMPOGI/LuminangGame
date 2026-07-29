@@ -21,7 +21,7 @@ The word ''maysa'' means ''one.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 6b1637f5f3ce5340b1792bb2b42f5f94, type: 2}
     isWrong: 0
     choiceEvent: 

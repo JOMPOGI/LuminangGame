@@ -21,11 +21,6 @@ Now, try saying ''lima'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: eec532e86fb65e3f9b25746678883cf5, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''lima'''
     nextNode: {fileID: 11400000, guid: 1ca05324f8ae5d8b903639d23b4df0eb, type: 2}
     isWrong: 0

@@ -21,12 +21,7 @@ Listen carefully: uppat.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: ab91ad38eb5a5a03a919cdd051f4ee0b, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 8aa19481e84258d68b09ddc3593162dc, type: 2}
     isWrong: 0
     choiceEvent: 

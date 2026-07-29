@@ -21,11 +21,6 @@ Now, try saying ''agliko iti kannawan'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: dda1a4a2535350fb9dab47eb943a0aec, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''agliko iti kannawan'''
     nextNode: {fileID: 11400000, guid: 00d1627dc3f154f9af920c5116d010bd, type: 2}
     isWrong: 0

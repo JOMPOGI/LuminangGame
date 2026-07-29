@@ -21,7 +21,7 @@ GRATITUDE MILESTONE UNLOCKED!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: 94f40d845c3152138d009c6d0a556623, type: 2}
     isWrong: 0
     choiceEvent: 

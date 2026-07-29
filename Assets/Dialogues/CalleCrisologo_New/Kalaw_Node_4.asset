@@ -21,7 +21,7 @@ In Ilokano, ''naimbag a bigat'' means ''good morning.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: a91efa7a54635cdf90183fe6882e1613, type: 2}
     isWrong: 0
     choiceEvent: 

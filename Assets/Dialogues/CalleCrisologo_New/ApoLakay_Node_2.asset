@@ -21,7 +21,7 @@ In Ilokano, ''agliko iti kannawan'' means ''turn right.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Next'
+  - choiceText: ''
     nextNode: {fileID: 11400000, guid: f4b41fd6a2a350b09a100778f814cb5e, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,11 +21,6 @@ Now, try saying ''sadino'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Prev'
-    nextNode: {fileID: 11400000, guid: 07be5cca073d57c3a06e8c4519bb4f7e, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
   - choiceText: 'Say: ''sadino'''
     nextNode: {fileID: 11400000, guid: ee59e3b4bb6d53009d47a1e7d5693615, type: 2}
     isWrong: 0
