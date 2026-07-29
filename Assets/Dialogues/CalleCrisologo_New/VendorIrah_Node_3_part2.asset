@@ -21,6 +21,11 @@ Listen carefully: agyamanak iti tulong mo.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 2fd6c58faee7525e9242c006bda58ff3, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: d74e72a5d42b5331aaf8ac2ee9e4ffe5, type: 2}
     isWrong: 0

@@ -20,6 +20,11 @@ MonoBehaviour:
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 4e1304a76507510594cd100a2323c8a4, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 4e71c6482fca560cbcb2e5a1ca26b542, type: 2}
     isWrong: 0

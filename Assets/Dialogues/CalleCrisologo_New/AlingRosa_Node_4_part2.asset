@@ -21,6 +21,11 @@ Listen carefully: ket.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: a13e2ab4e0155c759052da2e7f7eb00f, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 9669df28425f5a70a49c7123feedd1e4, type: 2}
     isWrong: 0

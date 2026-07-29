@@ -21,6 +21,11 @@ For example, you can use it when greeting vendors as they begin their morning.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 96af44131ed850d0a833e723cdadba13, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e66e90bd0a765ed6a8956dcd3d969ffb, type: 2}
     isWrong: 0

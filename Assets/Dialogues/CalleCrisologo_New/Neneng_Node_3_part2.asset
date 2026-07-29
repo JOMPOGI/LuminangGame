@@ -21,6 +21,11 @@ Listen carefully: agtalinaed.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 93290b070144598a8996495492f5d1a5, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 663dec6add1258f798991742becb7d16, type: 2}
     isWrong: 0

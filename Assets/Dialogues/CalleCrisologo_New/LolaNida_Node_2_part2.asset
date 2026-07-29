@@ -21,6 +21,11 @@ Now, try saying ''da'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: df6c176a3eab5aa68973e2446b565d4f, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''da'''
     nextNode: {fileID: 11400000, guid: edf8274823d957f089b19c5c1574c640, type: 2}
     isWrong: 0

@@ -21,6 +21,11 @@ Now, try saying ''ket idi'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: c7a30c034e7656f086e72c55737fb7b6, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''ket idi'''
     nextNode: {fileID: 11400000, guid: 4dcc17c36a0f5e98b61c63c52e2aa91c, type: 2}
     isWrong: 0

@@ -21,6 +21,11 @@ Now, try saying ''uray ditoy'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 56148bde65ac58e9b0b2b9fc6630e894, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''uray ditoy'''
     nextNode: {fileID: 11400000, guid: dca2e91dec9f5a71b26ef65180579933, type: 2}
     isWrong: 0

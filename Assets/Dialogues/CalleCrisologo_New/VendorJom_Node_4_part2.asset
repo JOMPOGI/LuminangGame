@@ -21,6 +21,11 @@ Listen carefully: okay.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 6466ed99abff5a1d86ffbf8bcabe03e0, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: ed5fce2af31c5ae3a8344a7338e31cb0, type: 2}
     isWrong: 0

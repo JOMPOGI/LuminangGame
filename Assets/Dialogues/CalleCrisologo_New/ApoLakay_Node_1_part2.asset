@@ -21,6 +21,11 @@ Listen carefully: agliko iti kannigid.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 334e5b8fd44f57da9d5c21b81c3adcf1, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 290bd3b5283e575c87d3b1fb8d39861f, type: 2}
     isWrong: 0

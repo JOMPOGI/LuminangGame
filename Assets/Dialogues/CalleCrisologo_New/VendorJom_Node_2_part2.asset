@@ -21,6 +21,11 @@ Now, try saying ''wen'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: bb6548a7547d580f87e11a112291ad7b, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''wen'''
     nextNode: {fileID: 11400000, guid: 6d65a4fe0f6150559f8fd2c3f528919f, type: 2}
     isWrong: 0

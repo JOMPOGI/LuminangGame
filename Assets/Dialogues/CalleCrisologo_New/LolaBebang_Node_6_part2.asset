@@ -21,6 +21,11 @@ Now, try saying ''kasano'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: c7dc3c4de6af59428dec0f7639d6a5b1, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''kasano'''
     nextNode: {fileID: 11400000, guid: 515c336eacd35e0e99788629167b83c6, type: 2}
     isWrong: 0

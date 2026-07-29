@@ -21,6 +21,11 @@ Listen carefully: agsao.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 7e7173af9e045a23a7976784b145f1cc, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: be7aa8dc17745600ae6d139958c45206, type: 2}
     isWrong: 0

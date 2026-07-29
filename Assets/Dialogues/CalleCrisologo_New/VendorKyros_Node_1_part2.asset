@@ -21,6 +21,11 @@ Listen carefully: naimbag a malem.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: a26abb810767520a91f97740f20b9baf, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: a89586999ad95b72b81e291cafd58764, type: 2}
     isWrong: 0

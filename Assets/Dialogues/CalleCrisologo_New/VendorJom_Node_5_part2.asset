@@ -21,6 +21,11 @@ Now, try saying ''maawatan ko'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 9f6ed4fa0709548b8f40cb92b312c090, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''maawatan ko'''
     nextNode: {fileID: 11400000, guid: 03d8ac599bd451ffb58851b340bc5174, type: 2}
     isWrong: 0

@@ -21,6 +21,11 @@ Now, try saying ''dua'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 9a33d16b3bcb55709f432c8c7f7120d5, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''dua'''
     nextNode: {fileID: 11400000, guid: d8437e3665b950f5b7d79cbdf70cf62f, type: 2}
     isWrong: 0

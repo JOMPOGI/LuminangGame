@@ -21,6 +21,11 @@ Listen carefully: urayennak.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: e864a6f6e77d585eacf780930965e6f7, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 3bee811b7a4b55a0ad59fc022cc795db, type: 2}
     isWrong: 0

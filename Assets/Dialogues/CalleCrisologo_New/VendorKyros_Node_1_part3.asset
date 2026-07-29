@@ -20,6 +20,11 @@ MonoBehaviour:
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 32a6ae0a45d659549b6ce041a6bdeac8, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''naimbag a malem'''
     nextNode: {fileID: 11400000, guid: ac96bd5da23f5b808ae71f26f49d54d8, type: 2}
     isWrong: 0

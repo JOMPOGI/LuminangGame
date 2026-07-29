@@ -21,6 +21,11 @@ Now, try saying ''walo'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 8c2eb62384b75445b4437d252dd83c6e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''walo'''
     nextNode: {fileID: 11400000, guid: dcd2a07d0b26558a9711b71cfaabe990, type: 2}
     isWrong: 0

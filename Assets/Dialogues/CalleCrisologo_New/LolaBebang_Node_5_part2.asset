@@ -21,6 +21,11 @@ Listen carefully: apay.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: eb1a82df47315b09b1bd2b62260682a5, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 9109e5f8ad605470adadda2149d0da9d, type: 2}
     isWrong: 0

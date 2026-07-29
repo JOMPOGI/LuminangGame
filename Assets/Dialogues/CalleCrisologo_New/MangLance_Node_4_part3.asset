@@ -21,6 +21,11 @@ Now, try saying ''mangan'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: bb5c8d9c3afc59f7a7f6bef2dee6b78d, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''mangan'''
     nextNode: {fileID: 11400000, guid: 66178831e806578983d96a2792851289, type: 2}
     isWrong: 0

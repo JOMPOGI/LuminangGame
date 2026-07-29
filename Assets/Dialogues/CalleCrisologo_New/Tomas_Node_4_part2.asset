@@ -21,6 +21,11 @@ Listen carefully: surotennak.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 0bd65b3abc785ef7a08ab5f59077c2f5, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 43b36ec7b4b55f7c87200e7d0006c89c, type: 2}
     isWrong: 0

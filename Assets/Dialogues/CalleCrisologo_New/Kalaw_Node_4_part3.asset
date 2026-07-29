@@ -21,6 +21,11 @@ Now, try saying ''naimbag a bigat'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: a91efa7a54635cdf90183fe6882e1613, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''naimbag a bigat'''
     nextNode: {fileID: 11400000, guid: 548b1cbc8bb057e09b9b588fcef86009, type: 2}
     isWrong: 0

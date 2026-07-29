@@ -21,6 +21,11 @@ Now, try saying ''ania ti nagan mo?'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 0368f1a0f1005584bd7cbf2fe20fcd80, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''ania ti nagan mo'''
     nextNode: {fileID: 11400000, guid: f423b2865b3c5873a31b40b7d86228ce, type: 2}
     isWrong: 0

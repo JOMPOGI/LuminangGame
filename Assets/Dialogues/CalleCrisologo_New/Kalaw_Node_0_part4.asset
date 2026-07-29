@@ -21,7 +21,12 @@ Before you can truly connect with the people of Ilocos, you must first learn how
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: db47955438f95d489142de5553e37747, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: a02b7401e7ec5170b982a4503f44f2f3, type: 2}
     isWrong: 0
     choiceEvent: 

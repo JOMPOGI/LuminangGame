@@ -21,6 +21,11 @@ Listen carefully: diak maawatan.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: b4027549c6e7532ebf1c942b367eae6f, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 275e94aed3bc5b7fa064d9d2b92d10f6, type: 2}
     isWrong: 0

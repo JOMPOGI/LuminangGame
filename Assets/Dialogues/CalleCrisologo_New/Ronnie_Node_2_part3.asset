@@ -21,6 +21,11 @@ Now, try introducing yourself using ''ti nagan ko ket...'' and your own name.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 55c3c4d0c2cc5e768cc01dc419703480, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''ti nagan ko ket'''
     nextNode: {fileID: 11400000, guid: aecbd918d76f5586ad7a2605b71d893c, type: 2}
     isWrong: 0

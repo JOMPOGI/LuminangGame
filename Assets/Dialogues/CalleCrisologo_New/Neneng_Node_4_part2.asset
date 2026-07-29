@@ -21,6 +21,11 @@ Now, try saying ''agyan'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 097f91549c3954f8949a045d03f45570, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''agyan'''
     nextNode: {fileID: 11400000, guid: a74122b93608525f99aef31d34458488, type: 2}
     isWrong: 0

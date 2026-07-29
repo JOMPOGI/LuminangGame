@@ -21,6 +21,11 @@ Listen carefully: kumusta.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: a02b7401e7ec5170b982a4503f44f2f3, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 732e2ce553fe54d4a12352dc84e5c3c0, type: 2}
     isWrong: 0

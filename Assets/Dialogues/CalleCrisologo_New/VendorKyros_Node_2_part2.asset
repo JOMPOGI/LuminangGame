@@ -21,6 +21,11 @@ Listen carefully: naimbag a rabii.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: 7d5fd0074c4c528897f5b9de6c7e38d4, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 33535863d9c25cd1a9adbb0e9005a05d, type: 2}
     isWrong: 0

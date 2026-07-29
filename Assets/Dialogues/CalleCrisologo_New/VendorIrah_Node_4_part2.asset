@@ -21,6 +21,11 @@ Use it when you want to apologize for something you''ve done.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: d3db54daab105dba84c0f55e23b58d1e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 0a628963215d5155939f3734d3502885, type: 2}
     isWrong: 0

@@ -21,6 +21,11 @@ Now, try saying ''siam'' yourself.'
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: f016ce9c37f45827b08e8659f925e42e, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''siam'''
     nextNode: {fileID: 11400000, guid: e19dba25422958068683afbdcd214d7a, type: 2}
     isWrong: 0

@@ -20,6 +20,11 @@ MonoBehaviour:
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: e4f04ab7c6a0558b9b35c685c0e14b03, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''maturog'''
     nextNode: {fileID: 11400000, guid: 296207ff91d8537fb49408f3068f752d, type: 2}
     isWrong: 0

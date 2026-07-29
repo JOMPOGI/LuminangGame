@@ -20,6 +20,11 @@ MonoBehaviour:
   triggerEventName: 
   endEventName: 
   choices:
+  - choiceText: 'Prev'
+    nextNode: {fileID: 11400000, guid: cf528742847050a080cde107d0571ad2, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 
   - choiceText: 'Say: ''agyamanak iti tulong mo'''
     nextNode: {fileID: 11400000, guid: e0c978bb94275ebea77e7070069ad478, type: 2}
     isWrong: 0
