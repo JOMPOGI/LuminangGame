@@ -20,9 +20,4 @@ Go see Lola Nida for more connector words!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: 9da546352a02558caca7966c19084022, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

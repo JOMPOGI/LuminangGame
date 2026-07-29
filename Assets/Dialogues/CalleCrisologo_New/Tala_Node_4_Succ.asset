@@ -20,9 +20,4 @@ Run to Mang Lance the Kalesa driver to finish counting!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: 8c2eb62384b75445b4437d252dd83c6e, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

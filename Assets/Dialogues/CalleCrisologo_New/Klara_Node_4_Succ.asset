@@ -20,9 +20,4 @@ Head over to Tala the Bagnet seller for more numbers!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: ab91ad38eb5a5a03a919cdd051f4ee0b, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

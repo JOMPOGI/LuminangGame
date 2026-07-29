@@ -20,9 +20,4 @@ Go see Rayo the photographer for more action verbs!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: deb27759964359f887d0c45f7c3debff, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

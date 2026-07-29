@@ -19,9 +19,4 @@ MonoBehaviour:
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: ec1ec08cdf365b1faa0027f00af855ff, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

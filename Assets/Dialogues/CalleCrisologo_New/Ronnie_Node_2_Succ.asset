@@ -20,9 +20,4 @@ Go meet Sally near the brick arch to complete Level I!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: c3f6899c620459c182f7dcc5ae98726b, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

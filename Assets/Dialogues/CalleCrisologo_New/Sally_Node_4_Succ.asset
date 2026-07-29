@@ -20,9 +20,4 @@ Find Tour Guide Lito for the rest of these requests!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: e864a6f6e77d585eacf780930965e6f7, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

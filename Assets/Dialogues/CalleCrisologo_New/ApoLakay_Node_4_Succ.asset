@@ -20,9 +20,4 @@ Go see Tomas at the pottery yard!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: 6eac3617b81f5f58a2bbaf2e9245933e, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

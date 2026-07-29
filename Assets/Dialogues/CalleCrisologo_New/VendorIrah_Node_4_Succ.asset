@@ -20,9 +20,4 @@ Pop over to Vendor Jom''s empanada stall for the last gratitude phrase!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: d32fe70542cb5376bcf4d526f2ec5a04, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

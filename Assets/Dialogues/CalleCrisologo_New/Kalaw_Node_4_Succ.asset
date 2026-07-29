@@ -20,9 +20,4 @@ Fly over to Vendor Kyros''s souvenir stall. He''ll teach you how to greet people
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: a26abb810767520a91f97740f20b9baf, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

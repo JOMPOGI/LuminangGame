@@ -20,9 +20,4 @@ RESPONSES MILESTONE UNLOCKED!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: 0368f1a0f1005584bd7cbf2fe20fcd80, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

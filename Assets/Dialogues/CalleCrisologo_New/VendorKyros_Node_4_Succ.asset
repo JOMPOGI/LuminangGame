@@ -20,9 +20,4 @@ Go meet Vendor Irah at the weaving loom. She has something important to teach yo
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: b8bb45c553905a009a4304056ba81b15, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []

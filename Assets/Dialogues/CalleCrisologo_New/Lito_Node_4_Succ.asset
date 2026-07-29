@@ -20,9 +20,4 @@ Go find Apo Lakay by the stone well for more pathfinding!'
   animationTrigger: 
   triggerEventName: 
   endEventName: EndInSceneLesson
-  choices:
-  - choiceText: 'Continue'
-    nextNode: {fileID: 11400000, guid: 334e5b8fd44f57da9d5c21b81c3adcf1, type: 2}
-    isWrong: 0
-    choiceEvent: 
-    expectedSTTWord: 
+  choices: []
