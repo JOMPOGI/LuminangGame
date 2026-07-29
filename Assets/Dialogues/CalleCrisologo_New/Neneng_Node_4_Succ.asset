@@ -19,5 +19,5 @@ Go see Aling Riza at the restaurant!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson
+  endEventName: EndInSceneLesson,SetObjective_Talk to Aling Riza
   choices: []

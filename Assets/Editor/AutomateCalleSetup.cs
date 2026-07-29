@@ -77,9 +77,21 @@ public class AutomateCalleSetup
                     npcComponent.defaultDialogue = startingNode;
                     
                     // Clear out old quest dialogues since we handle quests directly in the nodes now
-                    if (npcComponent.questDialogues != null && npcComponent.questDialogues.Count > 0)
+                    if (npcComponent.questDialogues != null)
                     {
                         npcComponent.questDialogues.Clear();
+                        
+                        if (npcName == "Kalaw")
+                        {
+                            DialogueNode postQuestNode = AssetDatabase.LoadAssetAtPath<DialogueNode>("Assets/Dialogues/CalleCrisologo_New/Kalaw_Node_0.asset");
+                            if (postQuestNode != null)
+                            {
+                                npcComponent.questDialogues.Add(new InteractableNPC.QuestDialogue { 
+                                    requiredObjective = "Talk to Kalaw", 
+                                    dialogueNode = postQuestNode 
+                                });
+                            }
+                        }
                     }
                     
                     EditorUtility.SetDirty(npcComponent);

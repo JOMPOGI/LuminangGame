@@ -532,8 +532,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(eventName)) return;
 
-        string cleanEventName = eventName.Trim();
-        Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
+        string[] events = eventName.Split(',');
+        foreach (string evt in events)
+        {
+            string cleanEventName = evt.Trim();
+            if (string.IsNullOrEmpty(cleanEventName)) continue;
+            
+            Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
 
         // 1. Handle SetObjective: or SetObjective_
         if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
@@ -616,6 +621,7 @@ public class DialogueManager : MonoBehaviour
 
         // 4. Forward to ALL NPCs — the one with the event mapping will handle it
         BroadcastDialogueEvent(cleanEventName);
+        } // End foreach event loop
     }
 
     /// <summary>

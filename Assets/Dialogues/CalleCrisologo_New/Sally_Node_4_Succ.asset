@@ -19,5 +19,5 @@ Find Tour Guide Lito for the rest of these requests!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson
+  endEventName: EndInSceneLesson,SetObjective_Talk to Lito
   choices: []

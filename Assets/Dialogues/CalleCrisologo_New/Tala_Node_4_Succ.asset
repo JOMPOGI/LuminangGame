@@ -19,5 +19,5 @@ Run to Mang Lance the Kalesa driver to finish counting!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: EndInSceneLesson
+  endEventName: EndInSceneLesson,SetObjective_Talk to Mang Lance
   choices: []
