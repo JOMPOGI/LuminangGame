@@ -19,5 +19,5 @@ Find Tour Guide Lito for the rest of these requests!'
   translatedText: 
   animationTrigger: 
   triggerEventName: 
-  endEventName: HideTeachingPanel,SetObjective_Talk to Lito
+  endEventName: HideTeachingPanel,SetObjective_Talk to Lito,ShowPopup:welcome_level2
   choices: []
