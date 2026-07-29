@@ -16,7 +16,7 @@ public class FixCalleCrisologo
         if (activeScene.name != "Calle_Crisologo") return;
 
         // Fix Terrain Collider spam
-        Terrain[] terrains = Object.FindObjectsOfType<Terrain>();
+        TerrainCollider[] terrains = Object.FindObjectsOfType<TerrainCollider>(true);
         foreach (var t in terrains)
         {
             MeshCollider mc = t.GetComponent<MeshCollider>();
