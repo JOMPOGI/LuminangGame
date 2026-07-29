@@ -21,7 +21,7 @@ For example, when it''s time for lunch, you can say ''mangan.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 68c598ae25a25691b850f689a2e2fc10, type: 2}
     isWrong: 0
     choiceEvent: 

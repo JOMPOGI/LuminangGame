@@ -21,7 +21,7 @@ When the morning has passed and the afternoon arrives, Ilocanos greet someone by
   triggerEventName: StartInSceneLesson:KyrosCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 32a6ae0a45d659549b6ce041a6bdeac8, type: 2}
     isWrong: 0
     choiceEvent: 

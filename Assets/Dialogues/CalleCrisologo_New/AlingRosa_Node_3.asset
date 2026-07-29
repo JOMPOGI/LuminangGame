@@ -21,7 +21,7 @@ In Ilokano, ''agsao'' means ''speak.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e32b4169dfa55a07917a140a4d6ba77f, type: 2}
     isWrong: 0
     choiceEvent: 

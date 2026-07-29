@@ -21,7 +21,7 @@ In Ilokano, ''agyamanak iti tulong mo'' means ''thank you for your help.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: cf528742847050a080cde107d0571ad2, type: 2}
     isWrong: 0
     choiceEvent: 

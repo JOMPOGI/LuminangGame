@@ -21,7 +21,7 @@ In Ilokano, ''agliko iti kannigid'' means ''turn left.'''
   triggerEventName: StartInSceneLesson:ApoLakayCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 9fef413e8f8e52e193b70335cfa678f4, type: 2}
     isWrong: 0
     choiceEvent: 

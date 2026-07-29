@@ -21,7 +21,7 @@ In Ilokano, ''marikna'' means ''feel'' or ''perceive.'''
   triggerEventName: StartInSceneLesson:AlingRizaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: ebe9d38958cd5af7a548cbc0122488ad, type: 2}
     isWrong: 0
     choiceEvent: 

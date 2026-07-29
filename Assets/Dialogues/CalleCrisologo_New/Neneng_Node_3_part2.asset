@@ -21,7 +21,7 @@ Listen carefully: agtalinaed.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 663dec6add1258f798991742becb7d16, type: 2}
     isWrong: 0
     choiceEvent: 

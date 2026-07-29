@@ -21,7 +21,7 @@ In Ilokano, ''sangapulo'' means ''ten.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 2daff52da4a055549704f6c3f0eeaa80, type: 2}
     isWrong: 0
     choiceEvent: 

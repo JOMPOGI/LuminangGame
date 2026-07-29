@@ -21,7 +21,7 @@ In Ilokano, ''umay ditoy'' means ''come here.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 2f96aa48aa145d2db834481a19e9e3c7, type: 2}
     isWrong: 0
     choiceEvent: 

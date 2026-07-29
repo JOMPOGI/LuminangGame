@@ -21,7 +21,7 @@ When you need to politely get someone''s attention or pass through a crowded spa
   triggerEventName: StartInSceneLesson:JomCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e8abf38768c85659a32a8b2a75b70361, type: 2}
     isWrong: 0
     choiceEvent: 

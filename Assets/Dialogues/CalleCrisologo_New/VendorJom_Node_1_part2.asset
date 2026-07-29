@@ -21,7 +21,7 @@ Listen carefully: dispensaren nak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 62c0bacc152b5202ac5f216dcdaa50a8, type: 2}
     isWrong: 0
     choiceEvent: 

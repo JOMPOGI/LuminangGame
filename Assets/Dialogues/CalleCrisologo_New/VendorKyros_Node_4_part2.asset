@@ -21,7 +21,7 @@ Listen carefully: agpakada akon.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: b6f60c84de195d3b85eb15fefb91ce29, type: 2}
     isWrong: 0
     choiceEvent: 

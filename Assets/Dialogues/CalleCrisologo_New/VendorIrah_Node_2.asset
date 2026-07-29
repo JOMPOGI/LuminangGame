@@ -21,7 +21,7 @@ In Ilokano, ''agyamanak unay'' means ''thank you very much.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: c1edfa63918056bbbee81a30bfe8cc99, type: 2}
     isWrong: 0
     choiceEvent: 

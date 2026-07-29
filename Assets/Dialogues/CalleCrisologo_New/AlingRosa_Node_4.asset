@@ -21,7 +21,7 @@ In a sentence such as ''Siak ket weaver,'' the word ''ket'' connects the subject
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: f4865ee7205253eaaaef07f98a5a9227, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ You can use it whenever you want to express gratitude.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: b363567a443b5f04ae8a2d2ee7cc4980, type: 2}
     isWrong: 0
     choiceEvent: 

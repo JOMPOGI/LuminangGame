@@ -21,7 +21,7 @@ Listen carefully: bumaba.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e64c5fc3b0da5beba744b7d7de5c9f60, type: 2}
     isWrong: 0
     choiceEvent: 

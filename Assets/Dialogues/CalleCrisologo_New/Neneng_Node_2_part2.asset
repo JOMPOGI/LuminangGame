@@ -21,7 +21,7 @@ Listen carefully: kasla.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 4914de79583f56f7a026e76bae25c5eb, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ Listen carefully: agliko iti kannigid.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 290bd3b5283e575c87d3b1fb8d39861f, type: 2}
     isWrong: 0
     choiceEvent: 

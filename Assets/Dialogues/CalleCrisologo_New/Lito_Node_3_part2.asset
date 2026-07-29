@@ -21,7 +21,7 @@ Listen carefully: mabalin kadi agsaludsod?'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: fc8efbc2980b546f992f4de7847aa098, type: 2}
     isWrong: 0
     choiceEvent: 

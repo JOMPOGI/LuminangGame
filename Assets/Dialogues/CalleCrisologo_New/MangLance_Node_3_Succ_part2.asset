@@ -21,7 +21,7 @@ Welcome to Level III: Grammatical Foundations!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 3694b576995356649243bb388500ddc3, type: 2}
     isWrong: 0
     choiceEvent: 

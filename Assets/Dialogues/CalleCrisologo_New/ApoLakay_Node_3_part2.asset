@@ -21,7 +21,7 @@ Listen carefully: umuli iti ngato.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: ab480e761d2758a4a0ad492b24f414a5, type: 2}
     isWrong: 0
     choiceEvent: 

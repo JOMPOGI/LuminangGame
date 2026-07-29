@@ -21,7 +21,7 @@ When someone helps you, gives you something, or does something kind for you, it 
   triggerEventName: StartInSceneLesson:IrahCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 3d2a114667f551aaad22c4a18ec0eb95, type: 2}
     isWrong: 0
     choiceEvent: 

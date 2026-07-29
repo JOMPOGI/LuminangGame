@@ -21,7 +21,7 @@ LINKING VERBS MILESTONE UNLOCKED!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 281630ee9af35ae19e49caa656a4c97c, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ In Ilokano, ''surotennak'' means ''follow me.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 0bf62f865e88544ab9b4bca503f7dd10, type: 2}
     isWrong: 0
     choiceEvent: 

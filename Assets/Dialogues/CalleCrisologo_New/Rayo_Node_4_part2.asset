@@ -21,7 +21,7 @@ Listen carefully: maturog.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 48ebb5645cff572190808552f99d4cd7, type: 2}
     isWrong: 0
     choiceEvent: 

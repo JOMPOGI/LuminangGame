@@ -21,7 +21,7 @@ Listen carefully: taga Vigan ak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 7c15acc3aa8950c5ac5687de9b9419fd, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ Listen carefully: sika.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 7200f41882b85067b417435c908f166b, type: 2}
     isWrong: 0
     choiceEvent: 

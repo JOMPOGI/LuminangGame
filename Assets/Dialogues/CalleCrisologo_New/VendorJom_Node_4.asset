@@ -21,7 +21,7 @@ In Ilokano, ''okay'' can also be used to say ''okay.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 9559912c9aba571a9f32eb0fcfb03d11, type: 2}
     isWrong: 0
     choiceEvent: 

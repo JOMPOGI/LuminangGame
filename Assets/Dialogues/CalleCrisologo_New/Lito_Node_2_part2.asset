@@ -21,7 +21,7 @@ Listen carefully: ikanmo man map.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 325c5949fd1b5432b8d28c8392756c8a, type: 2}
     isWrong: 0
     choiceEvent: 

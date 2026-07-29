@@ -21,7 +21,7 @@ Listen carefully: agyamanak unay.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 69abac54cd2e53b1a9fedb3b4505602b, type: 2}
     isWrong: 0
     choiceEvent: 

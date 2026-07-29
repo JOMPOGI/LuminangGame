@@ -21,7 +21,7 @@ In Ilokano, ''mabalin kadi a tulunganak?'' means ''can you help me?'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 70681120e8f55855a130a52a9b916765, type: 2}
     isWrong: 0
     choiceEvent: 

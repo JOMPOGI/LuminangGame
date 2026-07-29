@@ -21,7 +21,7 @@ Listen carefully: urayennak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 3bee811b7a4b55a0ad59fc022cc795db, type: 2}
     isWrong: 0
     choiceEvent: 

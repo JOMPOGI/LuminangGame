@@ -21,7 +21,7 @@ ACTION VERBS MILESTONE UNLOCKED!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 1fa64106ee6950409fa37e8b88e4f298, type: 2}
     isWrong: 0
     choiceEvent: 

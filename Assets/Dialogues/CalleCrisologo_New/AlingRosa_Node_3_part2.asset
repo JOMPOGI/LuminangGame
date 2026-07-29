@@ -21,7 +21,7 @@ Listen carefully: agsao.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: be7aa8dc17745600ae6d139958c45206, type: 2}
     isWrong: 0
     choiceEvent: 

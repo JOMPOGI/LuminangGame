@@ -21,7 +21,7 @@ Listen carefully: mabalin kadi a tulunganak?'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: b34ced2be1cc5d38addb5ae5c7d47497, type: 2}
     isWrong: 0
     choiceEvent: 

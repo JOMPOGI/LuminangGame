@@ -21,7 +21,7 @@ Listen carefully: okay.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: ed5fce2af31c5ae3a8344a7338e31cb0, type: 2}
     isWrong: 0
     choiceEvent: 

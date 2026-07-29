@@ -21,7 +21,7 @@ In Ilokano, ''kumusta'' means ''hello.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 80c30da777e05730a9ea88d073244300, type: 2}
     isWrong: 0
     choiceEvent: 

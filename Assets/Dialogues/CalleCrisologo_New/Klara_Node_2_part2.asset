@@ -21,7 +21,7 @@ For example, if you see one chest, you can say ''maysa.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: d76d97ba925452fd94638fe304fbde9a, type: 2}
     isWrong: 0
     choiceEvent: 

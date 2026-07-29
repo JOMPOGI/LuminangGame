@@ -21,7 +21,7 @@ For example, you can use it when greeting vendors as they begin their morning.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e66e90bd0a765ed6a8956dcd3d969ffb, type: 2}
     isWrong: 0
     choiceEvent: 

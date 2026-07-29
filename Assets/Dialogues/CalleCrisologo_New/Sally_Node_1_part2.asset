@@ -21,7 +21,7 @@ Listen carefully: taga sadino ka?'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e1593291b8f75e6991243bbe2cf94343, type: 2}
     isWrong: 0
     choiceEvent: 

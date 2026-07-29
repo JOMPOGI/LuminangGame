@@ -21,7 +21,7 @@ Listen carefully: apay.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 9109e5f8ad605470adadda2149d0da9d, type: 2}
     isWrong: 0
     choiceEvent: 

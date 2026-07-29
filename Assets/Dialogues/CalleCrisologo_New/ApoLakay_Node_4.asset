@@ -21,7 +21,7 @@ In Ilokano, ''bumaba'' means ''go down.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: ba0480e8efe45846ae9ba0bc70510952, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ Use it when you want to apologize for something you''ve done.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 0a628963215d5155939f3734d3502885, type: 2}
     isWrong: 0
     choiceEvent: 

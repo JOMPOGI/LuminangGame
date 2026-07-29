@@ -21,7 +21,7 @@ In Ilokano, ''agbalin'' means ''become.'''
   triggerEventName: StartInSceneLesson:NenengCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: dbfd196b32195f58b12e3e29e4b101d7, type: 2}
     isWrong: 0
     choiceEvent: 

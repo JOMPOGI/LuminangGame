@@ -21,7 +21,7 @@ In Ilokano, ''siak'' means ''I.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 552c9912fe155d3face6c2a65a1b2779, type: 2}
     isWrong: 0
     choiceEvent: 

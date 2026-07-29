@@ -21,7 +21,7 @@ Listen carefully: tallo.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 625a1795ac9550db81b3ee829d5f7d3a, type: 2}
     isWrong: 0
     choiceEvent: 

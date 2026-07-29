@@ -21,7 +21,7 @@ As you practice and learn how Ilocanos talk in their daily lives, your voice wil
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 64ec9c0e1d75542ca0855369f4aefff8, type: 2}
     isWrong: 0
     choiceEvent: 

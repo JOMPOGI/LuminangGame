@@ -21,7 +21,7 @@ In Ilokano, ''apay'' means ''why.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 98c75ccbb2d35b57aa43103986bdbe58, type: 2}
     isWrong: 0
     choiceEvent: 

@@ -21,7 +21,7 @@ It''s warm today, and you might want something refreshing.'
   triggerEventName: StartInSceneLesson:RayoCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: a0d870e402365ad08fa56bd32f887378, type: 2}
     isWrong: 0
     choiceEvent: 

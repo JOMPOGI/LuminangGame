@@ -21,7 +21,7 @@ Listen carefully: tulunganak.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: c881988b9789505e884dcb3430ed9f82, type: 2}
     isWrong: 0
     choiceEvent: 

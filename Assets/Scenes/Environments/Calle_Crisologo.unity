@@ -791,7 +791,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: e864a6f6e77d585eacf780930965e6f7, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 9125334}
@@ -7801,7 +7801,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 0368f1a0f1005584bd7cbf2fe20fcd80, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 61506373}
@@ -59945,7 +59945,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 6eac3617b81f5f58a2bbaf2e9245933e, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 410554194}
@@ -65643,7 +65643,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 334e5b8fd44f57da9d5c21b81c3adcf1, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 434578661}
@@ -71758,7 +71758,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 776f8e9f570e57b4a2fd9d371fc21994, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 486362059}
@@ -89461,7 +89461,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 13d17339f1d95c7e96d88cf9b0fd70ad, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 600636685}
@@ -89949,7 +89949,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 9da546352a02558caca7966c19084022, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
@@ -145014,7 +145014,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: deb27759964359f887d0c45f7c3debff, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 0}
@@ -162779,7 +162779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 8c2eb62384b75445b4437d252dd83c6e, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1067440871}
@@ -165399,7 +165399,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: ab91ad38eb5a5a03a919cdd051f4ee0b, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1079974222}
@@ -248141,7 +248141,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 9ed527c6818e5ef19051a58b62bf454a, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 1653427253}
@@ -263118,7 +263118,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: ec1ec08cdf365b1faa0027f00af855ff, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1741770517}
@@ -283812,7 +283812,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: c3f6899c620459c182f7dcc5ae98726b, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 0
   questDialogues: []
   npcAnimator: {fileID: 1866386742}
@@ -320038,7 +320038,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 11400000, guid: 56148bde65ac58e9b0b2b9fc6630e894, type: 2}
+  defaultDialogue: {fileID: 0}
   isOrganizer: 1
   questDialogues: []
   npcAnimator: {fileID: 2094566722}
@@ -328194,7 +328194,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: defaultDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: eb4ba99e61775d2abfa6b2b5336cd50e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameCategory
       value: Gratitude
@@ -328250,7 +328250,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].dialogueNode
       value: 
-      objectReference: {fileID: 11400000, guid: 1758c850955147d2aaa0686d231d00a7, type: 2}
+      objectReference: {fileID: 11400000, guid: c108a300e8525be39928e5b51367cefb, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[1].dialogueNode
       value: 
@@ -328301,7 +328301,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5f34e1a53ec74f2785377bee6605cd8d, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].requiredObjective
-      value: Return to Kalaw for Final Test
+      value: Talk to Kalaw
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[1].requiredObjective

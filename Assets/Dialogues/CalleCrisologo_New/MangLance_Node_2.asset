@@ -21,7 +21,7 @@ In Ilokano, ''siam'' means ''nine.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 2103f9e205815b48bd906c1c5cf2f0f6, type: 2}
     isWrong: 0
     choiceEvent: 

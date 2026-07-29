@@ -21,7 +21,7 @@ LEVEL II: FUNCTIONAL & NAVIGATIONAL COMPLETE!'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 43d077b94c39576887475983d870925d, type: 2}
     isWrong: 0
     choiceEvent: 

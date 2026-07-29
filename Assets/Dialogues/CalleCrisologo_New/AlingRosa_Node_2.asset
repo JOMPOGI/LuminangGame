@@ -21,7 +21,7 @@ In Ilokano, ''mangngeg'' means ''hear.'''
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: e6bf10baf941575c9a77c547d1dfa07b, type: 2}
     isWrong: 0
     choiceEvent: 

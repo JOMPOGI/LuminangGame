@@ -20,7 +20,7 @@ MonoBehaviour:
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: a13e2ab4e0155c759052da2e7f7eb00f, type: 2}
     isWrong: 0
     choiceEvent: 

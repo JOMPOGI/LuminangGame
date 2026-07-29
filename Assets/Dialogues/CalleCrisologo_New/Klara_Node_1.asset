@@ -21,7 +21,7 @@ In Ilokano, ''uray ditoy'' means ''wait here.'''
   triggerEventName: StartInSceneLesson:KlaraCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 866cc88cd3a65c72b2235089562f24af, type: 2}
     isWrong: 0
     choiceEvent: 

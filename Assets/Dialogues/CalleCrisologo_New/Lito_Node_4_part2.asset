@@ -21,7 +21,7 @@ Listen carefully: agdiretso.'
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: 34364688fb225631b9c892ee3e8d352a, type: 2}
     isWrong: 0
     choiceEvent: 

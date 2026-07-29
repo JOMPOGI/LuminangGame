@@ -21,7 +21,7 @@ When you look at something or notice something with your eyes, the Ilokano verb 
   triggerEventName: StartInSceneLesson:AlingRosaCloseUp
   endEventName: 
   choices:
-  - choiceText: 'Continue'
+  - choiceText: 'Next'
     nextNode: {fileID: 11400000, guid: ff0d07e26a3256dd8cd0c6e92b577bdd, type: 2}
     isWrong: 0
     choiceEvent: 
