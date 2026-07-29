@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Klara_Node_3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
   dialogueText: 'When you count two objects, people, or things, Ilokano uses ''dua.''
 It means ''two.'''
   translatedText: 

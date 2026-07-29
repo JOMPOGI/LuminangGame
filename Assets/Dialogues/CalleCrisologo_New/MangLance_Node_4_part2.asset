@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MangLance_Node_4_part2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: MANG LANCE
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
   dialogueText: 'It is an action verb used when talking about the act of eating.
 For example, when it''s time for lunch, you can say ''mangan.'''
   translatedText: 

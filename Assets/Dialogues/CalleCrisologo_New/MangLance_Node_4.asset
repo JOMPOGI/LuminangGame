@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MangLance_Node_4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: MANG LANCE
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
   dialogueText: 'After all that walking, you''ll probably be hungry!
 In Ilokano, ''mangan'' means ''eat.'''
   translatedText: 

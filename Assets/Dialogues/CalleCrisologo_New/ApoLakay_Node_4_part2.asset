@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ApoLakay_Node_4_part2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: APO LAKAY
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
   dialogueText: 'Use it when telling someone to move toward a lower place.
 Listen carefully: bumaba.'
   translatedText: 

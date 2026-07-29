@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AlingRiza_Node_1_part3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: ALING RIZA
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 2e5c6d5b3cf6cb843b38c59528bb5268, type: 3}
   dialogueText: 'Now, try saying ''marikna'' yourself.'
   translatedText: 
   animationTrigger: 

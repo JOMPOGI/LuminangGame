@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VendorJom_Node_6_Succ
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR JOM
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
   dialogueText: 'Diak maawatan! No worries - learning takes practice!
 RESPONSES MILESTONE UNLOCKED!'
   translatedText: 

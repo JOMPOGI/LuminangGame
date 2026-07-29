@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kalaw_Node_0_part2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: 'Wait a second... look at that ancient anting-anting pendant resting on your chest! Feel that faint hum?
 The Ilocos Language Crystal inside it is sleeping.'
   translatedText: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sally_Node_3_part3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: SALLY
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 7733d16353c0fcf4b99b8f89f3ad1780, type: 3}
   dialogueText: 'Now, try saying ''tulunganak'' yourself.'
   translatedText: 
   animationTrigger: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kalaw_Node_0_part4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: 'So, let''s begin with something simple.
 Before you can truly connect with the people of Ilocos, you must first learn how to greet them.'
   translatedText: 

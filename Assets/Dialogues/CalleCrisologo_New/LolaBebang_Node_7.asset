@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LolaBebang_Node_7
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA BEBANG
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
   dialogueText: 'And now, you''ve reached another important question.
 When you want to ask about quantity, Ilokano uses ''mano'' for ''how many.'''
   translatedText: 

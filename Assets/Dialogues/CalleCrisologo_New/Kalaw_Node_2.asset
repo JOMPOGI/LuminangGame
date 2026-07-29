@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kalaw_Node_2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KALAW
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
   dialogueText: 'Once you''ve greeted someone, you can show more warmth by asking how they are.
 In Ilokano, ''kumusta ka?'' means ''how are you?'''
   translatedText: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Neneng_Node_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: NENENG
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 611ad860b9db6ab4099058fa87d0e81b, type: 3}
   dialogueText: 'Hey! Here''s an interesting one.
 In Ilokano, ''agbalin'' means ''become.'''
   translatedText: 

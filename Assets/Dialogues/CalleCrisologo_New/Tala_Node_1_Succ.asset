@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tala_Node_1_Succ
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TALA
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 0c019a51009268f43a5d4f67570f27cb, type: 3}
   dialogueText: 'Uppat! Four crispy slabs!'
   translatedText: 
   animationTrigger: 

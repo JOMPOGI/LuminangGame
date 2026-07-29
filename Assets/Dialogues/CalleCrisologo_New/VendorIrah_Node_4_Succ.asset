@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VendorIrah_Node_4_Succ
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR IRAH
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: b96d8c4f1b10b3e49acce404fb9d0f4c, type: 3}
   dialogueText: 'Pakawanen nak... No harm done!
 Pop over to Vendor Jom''s empanada stall for the last gratitude phrase!'
   translatedText: 

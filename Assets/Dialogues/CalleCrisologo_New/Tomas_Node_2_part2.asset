@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomas_Node_2_part2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: TOMAS
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: 'Use it when asking someone to move toward your location.
 Listen carefully: umay ditoy.'
   translatedText: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Klara_Node_4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: KLARA
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
   dialogueText: 'The next number is ''tallo.''
 In Ilokano, ''tallo'' means ''three.'''
   translatedText: 

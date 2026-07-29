@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VendorKyros_Node_3_part3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: VENDOR KYROS
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: db4b95a5dcb32e7418179af124fd02a2, type: 3}
   dialogueText: 'Now, try saying ''naimbag nga aldaw'' yourself.'
   translatedText: 
   animationTrigger: 

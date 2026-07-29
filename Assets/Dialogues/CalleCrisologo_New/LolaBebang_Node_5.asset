@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LolaBebang_Node_5
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: LOLA BEBANG
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
   dialogueText: 'Sometimes we want to understand the reason behind something.
 In Ilokano, ''apay'' means ''why.'''
   translatedText: 
