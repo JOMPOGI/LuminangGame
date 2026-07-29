@@ -52,7 +52,7 @@ public class FixCalleCrisologo
         PopupManager popup = Object.FindObjectOfType<PopupManager>(true);
         if (popup != null && popup.popupPanel != null)
         {
-            Canvas popupCanvas = popup.popupPanel.GetComponentInParent<Canvas>();
+            Canvas popupCanvas = popup.popupPanel.GetComponentInParent<Canvas>(true);
             if (popupCanvas == null)
             {
                  popup.popupPanel.AddComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
