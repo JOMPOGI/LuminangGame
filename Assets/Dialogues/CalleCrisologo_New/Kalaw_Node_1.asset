@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''kumusta'' means ''hello.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:bg_morning
   endEventName: 
   choices:
   - choiceText: ''
