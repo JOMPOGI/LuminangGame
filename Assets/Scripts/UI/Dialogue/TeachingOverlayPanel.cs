@@ -167,11 +167,6 @@ public class TeachingOverlayPanel : MonoBehaviour
                     backgroundImage.gameObject.SetActive(false);
                 }
             }
-                else
-                {
-                    // Do nothing, leave existing background active
-                }
-            }
         }
 
         ResetPromptText();
