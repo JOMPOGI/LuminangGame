@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''mabalin kadi a tulunganak?'' means ''can you help me?'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:mabalin kadi a tulunganak:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

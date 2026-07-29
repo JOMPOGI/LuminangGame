@@ -18,7 +18,7 @@ MonoBehaviour:
 The meaning depends on the person you''re talking about and the context.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:isuna:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

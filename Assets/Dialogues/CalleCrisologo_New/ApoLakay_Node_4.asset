@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''bumaba'' means ''go down.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:bumaba:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

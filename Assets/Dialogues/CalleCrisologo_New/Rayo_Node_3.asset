@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''umay'' means ''come.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:umay:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

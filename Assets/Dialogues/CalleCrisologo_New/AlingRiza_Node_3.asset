@@ -18,7 +18,7 @@ MonoBehaviour:
 Listen carefully: sika.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:sika:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

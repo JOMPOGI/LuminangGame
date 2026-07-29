@@ -18,7 +18,7 @@ MonoBehaviour:
 For example, when describing what people were like in the past, ''ket idi'' can be part of the sentence structure.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:ket idi:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''agsao'' means ''speak.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:agsao:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

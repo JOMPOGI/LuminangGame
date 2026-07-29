@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''agyamanak unay'' means ''thank you very much.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:agyamanak unay:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

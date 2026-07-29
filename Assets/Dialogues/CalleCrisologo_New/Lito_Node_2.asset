@@ -18,7 +18,7 @@ MonoBehaviour:
 It means ''give me...'' and you add the item you want afterward.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:ikanmo man:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

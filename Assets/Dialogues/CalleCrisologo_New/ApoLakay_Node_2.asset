@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''agliko iti kannawan'' means ''turn right.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:agliko iti kannawan:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

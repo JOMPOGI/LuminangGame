@@ -18,7 +18,7 @@ MonoBehaviour:
 When leaving someone, you can say ''agpakada akon'' to say ''goodbye.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:agpakada akon:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

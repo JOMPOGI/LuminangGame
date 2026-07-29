@@ -18,7 +18,7 @@ MonoBehaviour:
 If you accidentally bump into someone or make a mistake, you can apologize.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:pakawanen nak:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

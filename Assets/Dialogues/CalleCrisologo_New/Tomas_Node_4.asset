@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''surotennak'' means ''follow me.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:surotennak:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -18,7 +18,7 @@ MonoBehaviour:
 When you want to ask about quantity, Ilokano uses ''mano'' for ''how many.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:mano:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

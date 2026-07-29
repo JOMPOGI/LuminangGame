@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''ti nagan ko ket...'' means ''my name is...'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:ti nagan ko ket:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

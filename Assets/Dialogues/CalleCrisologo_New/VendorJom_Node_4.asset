@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''okay'' can also be used to say ''okay.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:okay:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

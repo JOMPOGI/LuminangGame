@@ -18,7 +18,7 @@ MonoBehaviour:
 The word ''maysa'' means ''one.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:maysa:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

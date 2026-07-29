@@ -18,7 +18,7 @@ MonoBehaviour:
 Listen carefully: isuda.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:isuda:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

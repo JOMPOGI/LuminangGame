@@ -18,7 +18,7 @@ MonoBehaviour:
 In a sentence such as ''Siak ket weaver,'' the word ''ket'' connects the subject with the information that describes it.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:ket:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

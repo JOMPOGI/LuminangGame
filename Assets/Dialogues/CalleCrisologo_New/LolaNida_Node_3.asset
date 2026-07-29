@@ -18,7 +18,7 @@ MonoBehaviour:
 For example, when describing how a place was in the past, this phrase helps connect the subject with its former state.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:ket idi:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

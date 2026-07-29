@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''kasla'' can express the idea of ''seem'' or ''like.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:kasla:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

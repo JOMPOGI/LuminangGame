@@ -18,7 +18,7 @@ MonoBehaviour:
 Listen carefully: dakkami.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:dakkami:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

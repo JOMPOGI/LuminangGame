@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''umuli iti ngato'' means ''go up.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:umuli iti ngato:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

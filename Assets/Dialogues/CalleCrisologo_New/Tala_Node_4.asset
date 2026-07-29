@@ -18,7 +18,7 @@ MonoBehaviour:
 Listen carefully: pito.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:pito:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

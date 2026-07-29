@@ -18,7 +18,7 @@ MonoBehaviour:
 It means ''how.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:kasano:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

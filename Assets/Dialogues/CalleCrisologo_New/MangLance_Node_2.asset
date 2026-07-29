@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''siam'' means ''nine.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:siam:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

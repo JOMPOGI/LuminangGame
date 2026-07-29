@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''mangan'' means ''eat.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:mangan:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

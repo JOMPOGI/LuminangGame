@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''nasayaat ak'' means ''I''m fine'' or ''I''m doing well.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:nasayaat ak:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

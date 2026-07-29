@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''mapan idiay'' means ''go there.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:mapan idiay:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

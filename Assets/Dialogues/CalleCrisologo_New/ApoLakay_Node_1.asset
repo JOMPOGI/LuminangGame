@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''agliko iti kannigid'' means ''turn left.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: ShowTeachingPanel:bg_morning
+  triggerEventName: ShowTeachingPanel:agliko iti kannigid:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

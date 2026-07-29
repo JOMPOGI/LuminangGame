@@ -18,7 +18,7 @@ MonoBehaviour:
 It means ''two.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:dua:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

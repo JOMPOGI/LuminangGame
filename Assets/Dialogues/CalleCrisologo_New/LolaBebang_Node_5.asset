@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''apay'' means ''why.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:apay:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

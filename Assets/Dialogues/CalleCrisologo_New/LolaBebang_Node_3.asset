@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''sadino'' means ''where.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:sadino:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

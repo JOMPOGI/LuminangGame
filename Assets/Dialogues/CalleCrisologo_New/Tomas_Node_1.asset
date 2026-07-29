@@ -18,7 +18,7 @@ MonoBehaviour:
 If you want someone to stop at the place where they are standing, you can say ''agsardeng ditoy.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: ShowTeachingPanel:bg_morning
+  triggerEventName: ShowTeachingPanel:agsardeng ditoy:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -18,7 +18,7 @@ MonoBehaviour:
 Listen carefully: innem.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:innem:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''taga ___ ak'' means ''I am from ___.'' Add your hometown after ''taga.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:taga vigan ak:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

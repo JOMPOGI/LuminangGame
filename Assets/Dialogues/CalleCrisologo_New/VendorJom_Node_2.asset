@@ -18,7 +18,7 @@ MonoBehaviour:
 When someone asks you a question and you want to agree or answer ''yes,'' Ilokano uses the word ''wen.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:wen:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

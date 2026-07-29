@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''naimbag a bigat'' means ''good morning.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:naimbag a bigat:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

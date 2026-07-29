@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''sangapulo'' means ''ten.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:sangapulo:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''mangngeg'' means ''hear.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:mangngeg:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

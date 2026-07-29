@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''maturog'' means ''sleep.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:maturog:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

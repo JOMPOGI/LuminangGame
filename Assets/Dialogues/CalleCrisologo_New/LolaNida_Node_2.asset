@@ -18,7 +18,7 @@ MonoBehaviour:
 For example, ''da'' can help indicate that you''re talking about more than one person.'
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:da:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

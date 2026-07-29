@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''agyamanak iti tulong mo'' means ''thank you for your help.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:agyamanak iti tulong mo:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

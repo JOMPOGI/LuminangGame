@@ -18,7 +18,7 @@ MonoBehaviour:
 It means ''who.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:asino:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

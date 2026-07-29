@@ -18,7 +18,7 @@ MonoBehaviour:
 It means ''go.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:mapan:bg_morning
   endEventName: 
   choices:
   - choiceText: ''

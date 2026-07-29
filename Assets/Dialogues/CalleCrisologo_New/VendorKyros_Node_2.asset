@@ -18,7 +18,7 @@ MonoBehaviour:
 In Ilokano, ''naimbag a rabii'' means ''good evening.'''
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: ShowTeachingPanel:naimbag a rabii:bg_morning
   endEventName: 
   choices:
   - choiceText: ''
