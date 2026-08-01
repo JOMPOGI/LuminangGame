@@ -408,6 +408,10 @@ public class InteractableNPC : InteractableBase
         if (string.IsNullOrEmpty(eventName)) return;
         
         string cleanEventName = eventName.Trim();
+        
+        // Forward the event to custom scripts (e.g. IrahCoolerLogic)
+        gameObject.SendMessage("OnDialogueEvent", cleanEventName, SendMessageOptions.DontRequireReceiver);
+
         // NOTE: Logging is intentionally placed inside the match block below to avoid
         // console spam — this method is called on ALL NPCs via the broadcast pattern.
 

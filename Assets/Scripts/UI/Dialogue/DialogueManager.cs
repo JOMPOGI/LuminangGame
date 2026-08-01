@@ -163,7 +163,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     InSceneLessonController.Instance.ClearPromptAndFeedbackUI();
                 }
-                if (TeachingOverlayPanel.Instance != null)
+                if (TeachingOverlayPanel.Instance != null && !TeachingOverlayPanel.Instance.isManuallyShown)
                 {
                     TeachingOverlayPanel.Instance.Hide();
                 }

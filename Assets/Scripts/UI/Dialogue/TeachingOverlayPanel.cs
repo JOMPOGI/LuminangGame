@@ -86,8 +86,12 @@ public class TeachingOverlayPanel : MonoBehaviour
     // Public API
     // ─────────────────────────────────────────────────────────────────
 
+    public bool isManuallyShown = false;
+
     public void ShowFromEvent(string eventName)
     {
+        isManuallyShown = true;
+
         string autoWord = "";
         if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
         {
@@ -118,6 +122,7 @@ public class TeachingOverlayPanel : MonoBehaviour
 
     public void ShowCustomText(string text)
     {
+        isManuallyShown = true;
         gameObject.SetActive(true);
 
         if (backgroundImage != null) backgroundImage.gameObject.SetActive(false); // Hide bird
@@ -166,15 +171,9 @@ public class TeachingOverlayPanel : MonoBehaviour
                     backgroundImage.gameObject.SetActive(true);
                     ChangeBackground(found);
                 }
-                else
-                {
-                    backgroundImage.gameObject.SetActive(false);
-                }
             }
-            else
-            {
-                backgroundImage.gameObject.SetActive(false);
-            }
+            // If backgroundName is empty, DO NOT hide the background.
+            // This allows the background to persist across multiple STT nodes!
         }
 
         ResetPromptText();
@@ -221,6 +220,7 @@ public class TeachingOverlayPanel : MonoBehaviour
 
     public void Hide()
     {
+        isManuallyShown = false;
         if (!gameObject.activeInHierarchy) return;
         StopAllCoroutines();
         StartCoroutine(FadeOut());

@@ -19,7 +19,7 @@ MonoBehaviour:
     our words? '
   translatedText: 
   animationTrigger: 
-  triggerEventName: StoryQuest
+  triggerEventName: 
   endEventName: 
   choices:
   - choiceText: Yes

@@ -23674,6 +23674,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -26309,6 +26312,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -30700,8 +30706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.7, y: -30}
-  m_SizeDelta: {x: 101.4, y: 44.69}
+  m_AnchoredPosition: {x: 107.005005, y: -30}
+  m_SizeDelta: {x: 114.01, y: 53.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201167318
 MonoBehaviour:
@@ -37016,6 +37022,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 1
@@ -53055,6 +53064,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -53076,6 +53088,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 1
@@ -53097,6 +53112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -53118,6 +53136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -66830,6 +66851,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 4
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -71098,6 +71122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -71524,6 +71551,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -94270,6 +94300,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -101723,6 +101756,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -150602,6 +150638,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -150623,6 +150662,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -163816,6 +163858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -172939,6 +172984,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -175255,6 +175303,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -180672,6 +180723,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
@@ -200001,6 +200055,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 1
@@ -206000,6 +206057,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -209373,6 +209433,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
@@ -227173,6 +227236,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 1
@@ -228814,6 +228880,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -233420,6 +233489,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -240595,6 +240667,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
@@ -253672,6 +253747,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -260407,6 +260485,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -267098,6 +267179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -268138,6 +268222,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4238644137792691927, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426937383109157324, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426937383109157324, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426937383109157324, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426937383109157324, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -276821,6 +276921,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -281815,6 +281918,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
@@ -293220,6 +293326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -297077,6 +297186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -303405,6 +303517,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -308081,6 +308196,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -320154,6 +320272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  price: 100
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
