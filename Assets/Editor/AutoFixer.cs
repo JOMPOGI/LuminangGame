@@ -32,7 +32,33 @@ public class AutoFixer : EditorWindow
             }
         }
 
-        Debug.Log($"AutoFixer Complete: Removed {missingScriptsRemoved} missing scripts and {meshCollidersRemoved} invalid MeshColliders.");
-        EditorUtility.DisplayDialog("Fixes Complete", $"Removed {missingScriptsRemoved} missing scripts.\nRemoved {meshCollidersRemoved} invalid MeshColliders from Terrains.", "OK");
+        // 3. Fix UI Raycasts
+        int raycastsFixed = 0;
+        UnityEngine.UI.Graphic[] graphics = Object.FindObjectsByType<UnityEngine.UI.Graphic>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (var graphic in graphics)
+        {
+            // If it's not a Selectable (Button, Toggle, etc) and has no Selectable in parent/itself that needs it
+            if (graphic.raycastTarget)
+            {
+                bool needsRaycast = false;
+                if (graphic.GetComponent<UnityEngine.UI.Selectable>() != null) needsRaycast = true;
+                if (graphic.GetComponent<UnityEngine.EventSystems.IEventSystemHandler>() != null) needsRaycast = true;
+                
+                // If the graphic is part of a button, it might be the background or text of the button.
+                // We should keep raycast on the Button itself, but often people put raycast on everything.
+                // Actually, if it has a Button component, it needs it. If its parent has a button, does the text need it? No, only the graphic receiving the raycast needs it (usually the Button's own Graphic).
+                // But to be safe, if there's any Selectable on the same GameObject, keep it.
+                if (!needsRaycast)
+                {
+                    Undo.RecordObject(graphic, "Fix RaycastTarget");
+                    graphic.raycastTarget = false;
+                    raycastsFixed++;
+                    PrefabUtility.RecordPrefabInstancePropertyModifications(graphic);
+                }
+            }
+        }
+
+        Debug.Log($"AutoFixer Complete: Removed {missingScriptsRemoved} missing scripts and {meshCollidersRemoved} invalid MeshColliders. Fixed {raycastsFixed} UI RaycastTargets.");
+        EditorUtility.DisplayDialog("Fixes Complete", $"Removed {missingScriptsRemoved} missing scripts.\nRemoved {meshCollidersRemoved} invalid MeshColliders from Terrains.\nFixed {raycastsFixed} UI RaycastTargets.\nIf your buttons are now clickable, the issue was an invisible UI panel blocking clicks!", "OK");
     }
 }

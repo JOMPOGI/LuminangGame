@@ -92,6 +92,18 @@ public class LessonManager : MonoBehaviour
 
     public void ShowLessonWithCategory(string category)
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Calle_Crisologo")
+        {
+            Debug.Log("[LessonManager] Bypassing LessonManager in Calle Crisologo");
+            _isLessonActive = false;
+            if (lessonPanel != null) lessonPanel.SetActive(false);
+            if (onLessonComplete != null)
+                onLessonComplete.Invoke();
+            if (MinigameManager.Instance != null)
+                MinigameManager.Instance.HideMinigame();
+            return;
+        }
+
         if (lessonPanel == null) return;
         
         Debug.Log($"[LessonManager] ShowLesson requested for category: {category}");

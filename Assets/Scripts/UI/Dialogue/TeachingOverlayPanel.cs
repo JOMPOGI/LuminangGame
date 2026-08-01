@@ -152,25 +152,10 @@ public class TeachingOverlayPanel : MonoBehaviour
 
         EnsureSpeechEngineDependencies();
 
+        // The user requested to disable the background image for now.
         if (backgroundImage != null)
         {
-            Sprite found = null;
-            if (!string.IsNullOrEmpty(backgroundName))
-                found = FindBackground(backgroundName);
-
-            // Fall back to first sprite if name not matched
-            if (found == null && backgroundOptions != null && backgroundOptions.Length > 0)
-                found = backgroundOptions[0];
-
-            if (found != null)
-            {
-                backgroundImage.gameObject.SetActive(true);
-                ChangeBackground(found);
-            }
-            else
-            {
-                backgroundImage.gameObject.SetActive(false);
-            }
+            backgroundImage.gameObject.SetActive(false);
         }
 
         ResetPromptText();

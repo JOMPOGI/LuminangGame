@@ -62,6 +62,7 @@ public class DialogueManager : MonoBehaviour
         _currentNPCAnimator = npcAnimator;
         _currentNPC = npc;
         IsInDialogue = true;
+        ToggleCursor(false);
 
         // Hide the proximity Talk button
         if (InteractionManager.Instance != null && InteractionManager.Instance.talkButton != null)
@@ -137,19 +138,73 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Automatically show InSceneLessonController or TeachingOverlayPanel if this is an STT node
-        if (PendingSTTChoice != null)
+        // Auto-inject STT choice if text contains "try saying" or "Try saying" but is missing STT configuration
+        if (PendingSTTChoice == null && !string.IsNullOrEmpty(node.dialogueText) && 
+            (node.dialogueText.Contains("try saying") || node.dialogueText.Contains("Try saying")))
         {
-            if (InSceneLessonController.Instance != null && InSceneLessonController.Instance.IsLessonActive)
+            string expectedWord = "";
+            int firstQuote = node.dialogueText.IndexOf('\'');
+            if (firstQuote >= 0)
             {
-                InSceneLessonController.Instance.ShowInSceneMic(PendingSTTChoice.expectedSTTWord);
+                int secondQuote = node.dialogueText.IndexOf('\'', firstQuote + 1);
+                if (secondQuote > firstQuote)
+                {
+                    expectedWord = node.dialogueText.Substring(firstQuote + 1, secondQuote - firstQuote - 1);
+                }
             }
-            else if (TeachingOverlayPanel.Instance != null)
+            if (string.IsNullOrEmpty(expectedWord))
             {
-                TeachingOverlayPanel.Instance.ShowForPendingSTT(node.triggerEventName);
+                firstQuote = node.dialogueText.IndexOf('\"');
+                if (firstQuote >= 0)
+                {
+                    int secondQuote = node.dialogueText.IndexOf('\"', firstQuote + 1);
+                    if (secondQuote > firstQuote)
+                    {
+                        expectedWord = node.dialogueText.Substring(firstQuote + 1, secondQuote - firstQuote - 1);
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(expectedWord))
+            {
+                expectedWord = expectedWord.Trim().Trim('?', '.', '!', ',', ';', ':', '`', '\'', '\"');
+            }
+
+            if (!string.IsNullOrEmpty(expectedWord))
+            {
+                Debug.Log($"[DialogueManager] Auto-injecting STT choice for word: '{expectedWord}'");
+                if (node.choices == null) node.choices = new List<DialogueChoice>();
+                
+                // If there is an existing empty or continue choice, update it to be the STT choice
+                if (node.choices.Count > 0)
+                {
+                    node.choices[0].expectedSTTWord = expectedWord;
+                    node.choices[0].choiceEvent = "StartSTT";
+                    if (string.IsNullOrEmpty(node.choices[0].choiceText))
+                    {
+                        node.choices[0].choiceText = $"Say: \"{expectedWord}\"";
+                    }
+                    PendingSTTChoice = node.choices[0];
+                }
+                else
+                {
+                    DialogueChoice newChoice = new DialogueChoice
+                    {
+                        choiceText = $"Say: \"{expectedWord}\"",
+                        nextNode = null,
+                        isWrong = false,
+                        choiceEvent = "StartSTT",
+                        expectedSTTWord = expectedWord
+                    };
+                    node.choices.Add(newChoice);
+                    PendingSTTChoice = newChoice;
+                }
             }
         }
-        else
+
+        // Automatically hide InSceneLessonController or TeachingOverlayPanel if we've moved to a non-STT node.
+        // We DO NOT automatically show them here anymore. They will be shown at the end of the text when OnChoiceSelected(StartSTT) is triggered!
+        if (PendingSTTChoice == null)
         {
             if (_keepOverlayForOneNode)
             {
@@ -240,14 +295,21 @@ public class DialogueManager : MonoBehaviour
         {
             string choiceEventTrimmed = choice.choiceEvent.Trim();
 
-            // ── STT: pause until STTDialogueAdapter calls CompleteSTT ──
+            // ── STT: pause dialogue and show the Teaching Panel with mic ──
             if (choiceEventTrimmed.Equals("StartSTT", System.StringComparison.OrdinalIgnoreCase))
             {
                 PendingSTTChoice = choice;
-                if (_currentNPC != null) _currentNPC.HandleDialogueEvent(choiceEventTrimmed);
-                if (uiController != null)
-                    uiController.ToggleSTTRecording(choice);
-                return; // PAUSE here. STTDialogueAdapter will call CompleteSTT later.
+                // Show the TeachingOverlayPanel with the mic so the player can speak
+                if (InSceneLessonController.Instance != null && InSceneLessonController.Instance.IsLessonActive)
+                {
+                    InSceneLessonController.Instance.ShowInSceneMic(choice.expectedSTTWord);
+                }
+                else if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.Show(choice.expectedSTTWord);
+                }
+                // PAUSE here. TeachingOverlayPanel.HandleSuccess -> CompleteSTT(true) resumes dialogue.
+                return;
             }
 
             // ── Minigame: pause until MinigameManager calls CompleteMinigame ──
@@ -461,6 +523,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("[DialogueManager] Conversation ended.");
         IsInDialogue = false;
+        ToggleCursor(true);
         _nodeHistory.Clear();
         _activeNode = null;
         
@@ -499,6 +562,18 @@ public class DialogueManager : MonoBehaviour
 
         _currentNPCAnimator = null;
         _currentNPC = null;
+    }
+
+    private void ToggleCursor(bool isLocked)
+    {
+        var input = FindFirstObjectByType<StarterAssets.StarterAssetsInputs>();
+        if (input != null)
+        {
+            input.cursorLocked = false;
+            input.cursorInputForLook = true; // Let them look around if they drag? Actually, keep true.
+        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void FirePendingEvent(InteractableNPC npc)

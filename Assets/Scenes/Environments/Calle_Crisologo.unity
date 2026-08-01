@@ -791,9 +791,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: c74f397f7f76b114696b1f754379c69e, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Lito
+    dialogueNode: {fileID: 11400000, guid: c74f397f7f76b114696b1f754379c69e, type: 2}
   npcAnimator: {fileID: 9125334}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -7801,9 +7803,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 0bd95d4fc4ce88642be8789ec5dcea87, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Ronnie
+    dialogueNode: {fileID: 11400000, guid: 0bd95d4fc4ce88642be8789ec5dcea87, type: 2}
   npcAnimator: {fileID: 61506373}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -27611,7 +27615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -30080,7 +30084,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 107.005005, y: -30}
-  m_SizeDelta: {x: 0, y: 53.93}
+  m_SizeDelta: {x: 114.01, y: 53.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201167318
 MonoBehaviour:
@@ -30096,7 +30100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -45606,7 +45610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -53879,20 +53883,19 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369708659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -914.6304}
-  m_LocalScale: {x: 1.7201685, y: 1.7201685, z: 1.7201685}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 555205369}
   - {fileID: 185586480}
-  - {fileID: 2053992278}
   - {fileID: 941744393}
   m_Father: {fileID: 4072154296723578129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1859.8425, y: 1470.2043}
-  m_SizeDelta: {x: 4236.197, y: 1957.9829}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369708661
 MonoBehaviour:
@@ -53947,7 +53950,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &370970961
 PrefabInstance:
@@ -60179,9 +60182,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: b90c52e854535264e9b09cd85d0000c6, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Tomas
+    dialogueNode: {fileID: 11400000, guid: b90c52e854535264e9b09cd85d0000c6, type: 2}
   npcAnimator: {fileID: 410554194}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -65997,9 +66002,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 7e807dd3b44d1854ab0b9f464ae5c85d, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Apo Lakay
+    dialogueNode: {fileID: 11400000, guid: 7e807dd3b44d1854ab0b9f464ae5c85d, type: 2}
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -72112,9 +72119,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: a4d2534bc803c6d48be4e517d11532f7, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Lola Bebang
+    dialogueNode: {fileID: 11400000, guid: a4d2534bc803c6d48be4e517d11532f7, type: 2}
   npcAnimator: {fileID: 486362059}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -77994,9 +78003,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4072154296723578129}
     m_Modifications:
+    - target: {fileID: 1570110866692782706, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857887655343761352, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2185118385730040904, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_Name
       value: SmallLoading
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629030869937273205, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074556131377619479, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8261799911222859380, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_Pivot.x
@@ -78072,7 +78101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0000076293945
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -78088,6 +78117,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500105904440796293, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -83149,7 +83182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -89890,9 +89923,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 357201e42ade6254c947f7a2c0c71ec9, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Aling Riza
+    dialogueNode: {fileID: 11400000, guid: 357201e42ade6254c947f7a2c0c71ec9, type: 2}
   npcAnimator: {fileID: 600636685}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -90378,9 +90413,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: c60250359ed55e943ab5f3a81addf538, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Lola Nida
+    dialogueNode: {fileID: 11400000, guid: c60250359ed55e943ab5f3a81addf538, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -91913,7 +91950,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &610761463
 MonoBehaviour:
@@ -134391,7 +134428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -145756,9 +145793,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 471f37b1c849cfe4db3f833cf6d13d0b, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Rayo
+    dialogueNode: {fileID: 11400000, guid: 471f37b1c849cfe4db3f833cf6d13d0b, type: 2}
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -148709,16 +148748,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978497596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -395.6777}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0038122719, y: 0.0038122719, z: 0.0038122719}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1313681374}
-  m_Father: {fileID: 1127642862}
+  m_Father: {fileID: 4072154296723578129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 804.58545, y: 636.0243}
+  m_AnchoredPosition: {x: 1059.0492, y: 489.49573}
   m_SizeDelta: {x: 2118.0984, y: 978.99146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978497598
@@ -163521,9 +163560,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: ef86e58da9b58b041901bf5b782a0dcf, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Mang Lance
+    dialogueNode: {fileID: 11400000, guid: ef86e58da9b58b041901bf5b782a0dcf, type: 2}
+  - requiredObjective: LEVEL II COMPLETE! Head to Level III
+    dialogueNode: {fileID: 11400000, guid: f0e6534ba66c65b4086b07db751ffa25, type: 2}
   npcAnimator: {fileID: 1067440871}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -166141,9 +166184,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 329bec24a1fffd646b1a6aa2a20c9ca6, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Tala
+    dialogueNode: {fileID: 11400000, guid: 329bec24a1fffd646b1a6aa2a20c9ca6, type: 2}
   npcAnimator: {fileID: 1079974222}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -170251,7 +170296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -171559,7 +171604,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4072154296723578129}
-  - {fileID: 978497597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1128528001
@@ -173277,7 +173321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -195801,7 +195845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.05660379, g: 0.04565683, b: 0.04565683, a: 0.59607846}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -195929,9 +195973,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: b8bb45c553905a009a4304056ba81b15, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: c87c32bcc3f412f49a1f81d01a788970, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Irah
+    dialogueNode: {fileID: 11400000, guid: c87c32bcc3f412f49a1f81d01a788970, type: 2}
   npcAnimator: {fileID: 1314448087}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -220823,7 +220869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -238346,9 +238392,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: a26abb810767520a91f97740f20b9baf, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: b3007ce4b0cf8df4fb1de639d902343f, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Kyros
+    dialogueNode: {fileID: 11400000, guid: b3007ce4b0cf8df4fb1de639d902343f, type: 2}
   npcAnimator: {fileID: 1577654839}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -239815,7 +239863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -249095,9 +249143,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 20a193e1549d78b48950c49394d2c729, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Aling Rosa
+    dialogueNode: {fileID: 11400000, guid: 20a193e1549d78b48950c49394d2c729, type: 2}
   npcAnimator: {fileID: 1653427253}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -255744,7 +255794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -261098,7 +261148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -261767,7 +261817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.3207547, g: 0.28898183, b: 0.28898183, a: 0.64705884}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -264072,9 +264122,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: d7fd18c8c251ca647bd6796de45c0e8d, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Neneng
+    dialogueNode: {fileID: 11400000, guid: d7fd18c8c251ca647bd6796de45c0e8d, type: 2}
   npcAnimator: {fileID: 1741770517}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -266046,6 +266098,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1228123649128452919, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2262980132812594454, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2364975569587636732, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_Name
       value: PlayerInfoPanel
@@ -266054,6 +266114,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3801293847822662318, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949944925177005223, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4238644137792691927, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -266084,6 +266152,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4426937383109157324, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276459968494092240, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462344996902920094, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469428686019646152, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6636947282813975614, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
@@ -266105,6 +266185,26 @@ PrefabInstance:
     - target: {fileID: 6989993393906185280, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: entranceDelay
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320665086965146684, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567326045798354705, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787714590825285715, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352018339734276756, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726582762097752273, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119310101203568520, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_AnchorMax.y
@@ -271534,6 +271634,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4072154296723578129}
     m_Modifications:
+    - target: {fileID: 197354412269843355, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 272916238951415819, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 299819154247070707, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -271558,9 +271666,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 619932958213870611, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635887963560831364, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 639193222949868789, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 639193222949868789, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 652183862305814564, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
@@ -271576,6 +271696,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 652183862305814564, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 788224751690901600, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1161102638345120439, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -271612,6 +271736,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1310631598378545793, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390089588606495411, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188788278933429496, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2323249960036348653, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -271730,6 +271862,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 2505015591271026589, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3254441894113630122, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -271746,6 +271882,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3359997954502802801, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408798586269641057, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416541002430692649, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3525107507053505292, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -271760,6 +271908,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525107507053505292, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3571485782668245307, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3723907990790689190, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -271790,6 +271942,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3795002066667779351, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3798316676232353019, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893842871476653131, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4025958688260947494, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -271838,6 +272002,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4968971725763300528, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5181970091812074230, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -271860,7 +272028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5275349528589722689, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00015637308
+      value: 0.000009708152
       objectReference: {fileID: 0}
     - target: {fileID: 5342835589975094289, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
@@ -271878,6 +272046,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5510500446333867047, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5619148381897469328, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -271892,6 +272064,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619148381897469328, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774004390430516230, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6004549927436037165, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -271924,6 +272100,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6520484789017819278, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187852165115866653, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234902239963522955, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7399186667911769762, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7459330477315261642, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -271964,6 +272152,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7518118501593989983, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748693927600935500, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7902686568884226239, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
@@ -272100,6 +272292,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054879580898438268, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084682022217576804, guid: e9d38e75420e73e4cafb2731a8035a25, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -284766,9 +284962,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 08723f1f46e267545a643384836682e4, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Sally
+    dialogueNode: {fileID: 11400000, guid: 08723f1f46e267545a643384836682e4, type: 2}
+  - requiredObjective: LEVEL I COMPLETE! Head to Level II
+    dialogueNode: {fileID: 11400000, guid: 12ef079275ec76b40857bf33ccbaddd5, type: 2}
   npcAnimator: {fileID: 1866386742}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -285316,7 +285516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -292775,9 +292975,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 1
-  defaultDialogue: {fileID: 11400000, guid: d32fe70542cb5376bcf4d526f2ec5a04, type: 2}
+  defaultDialogue: {fileID: 11400000, guid: 8ee0e1e52dbc7cf44a21a84fb772861e, type: 2}
   isOrganizer: 0
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Jom
+    dialogueNode: {fileID: 11400000, guid: 8ee0e1e52dbc7cf44a21a84fb772861e, type: 2}
   npcAnimator: {fileID: 1913505686}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -302540,7 +302742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -315672,16 +315874,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053992277}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -914.6303}
+  m_LocalScale: {x: 1.7201684, y: 1.7201684, z: 1.7201684}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 369708660}
+  m_Father: {fileID: 4072154296723578129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: 269}
+  m_AnchoredPosition: {x: 1818.5585, y: 1932.9298}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2053992279
@@ -315698,7 +315900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -321218,9 +321420,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactionEnabled: 0
-  defaultDialogue: {fileID: 0}
+  defaultDialogue: {fileID: 11400000, guid: 424bb1d3a18e9d245bdd7be5d3f61b22, type: 2}
   isOrganizer: 1
-  questDialogues: []
+  questDialogues:
+  - requiredObjective: Find Klara
+    dialogueNode: {fileID: 11400000, guid: 424bb1d3a18e9d245bdd7be5d3f61b22, type: 2}
   npcAnimator: {fileID: 2094566722}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -328944,6 +329148,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4072154296723578129}
     m_Modifications:
+    - target: {fileID: 1568228199378721879, guid: fca1112e492da3a4eb122697d2d3c4ad, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434419236320810907, guid: fca1112e492da3a4eb122697d2d3c4ad, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4258542495202001684, guid: fca1112e492da3a4eb122697d2d3c4ad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -329374,7 +329586,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: defaultDialogue
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 358d480568b1d574682325bf5be770fb, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameCategory
       value: Gratitude
@@ -329397,7 +329609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].eventName
@@ -329430,7 +329642,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].dialogueNode
       value: 
-      objectReference: {fileID: 11400000, guid: c108a300e8525be39928e5b51367cefb, type: 2}
+      objectReference: {fileID: 11400000, guid: 358d480568b1d574682325bf5be770fb, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[1].dialogueNode
       value: 
@@ -330375,7 +330587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -331747,15 +331959,17 @@ RectTransform:
   m_Children:
   - {fileID: 369708660}
   - {fileID: 477728226}
-  - {fileID: 37314823}
   - {fileID: 715730110}
   - {fileID: 2133951329}
+  - {fileID: 37314823}
   - {fileID: 1964875086}
   - {fileID: 316936742}
   - {fileID: 1719723368}
   - {fileID: 1603644734}
   - {fileID: 524444373}
   - {fileID: 1793591899}
+  - {fileID: 2053992278}
+  - {fileID: 978497597}
   m_Father: {fileID: 1127642862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -333136,7 +333350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -333391,7 +333605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -333989,7 +334203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -334283,7 +334497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -335166,7 +335380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

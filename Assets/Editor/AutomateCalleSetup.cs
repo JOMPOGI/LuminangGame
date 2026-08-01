@@ -1,139 +1,180 @@
-using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
+/// <summary>
+/// Editor tool: Tools > Setup Calle Crisologo NPCs
+///
+/// Wires every InteractableNPC in the scene to their correct _Intro dialogue
+/// asset using the structured folder layout:
+///   Assets/Dialogues/CalleCrisologo/<Level>/<Quest>/<NPCName>/<NPCName>_Intro.asset
+///
+/// NPC Walk Order (all Levels 1-3, all 9 quests):
+///  L1 Q1 Greetings     : Kalaw > Kyros
+///  L1 Q2 Gratitude     : Irah  > Jom
+///  L1 Q4 Identity      : Ronnie > Sally
+///  L2 Q5 Requests      : Sally (level transition) > Lito
+///  L2 Q6 Directions    : Tomas > ApoLakay > Klara
+///  L2 Q7 Count         : MangLance > Tala
+///  L3 Q8 ActionVerbs   : AlingRosa > MangLance (level transition) > Rayo
+///  L3 Q9 LinkingVerbs  : LolaNida > AlingRiza > Neneng
+///  L3 Q11 Interrogat.  : LolaBebang
+/// </summary>
 public class AutomateCalleSetup
 {
-    [MenuItem("Tools/Automate Calle Crisologo Setup")]
+    // -------------------------------------------------------------------------
+    // NPC Table - each row: (goNameContains, requiredObjective, assetName, questFolder)
+    // When two entries share the same goNameContains, both will be added to the
+    // same NPC's questDialogues list (one per required-objective).
+    // -------------------------------------------------------------------------
+    private struct NPCEntry
+    {
+        public string GoContains;     // fragment matched (normalised) against GO name
+        public string Objective;      // ObjectiveManager text that enables this NPC
+        public string AssetName;      // asset/folder name inside CalleCrisologo/
+        public string QuestFolder;    // disambiguates duplicate NPC names across quests
+
+        public NPCEntry(string g, string o, string a, string q)
+        {
+            GoContains = g; Objective = o; AssetName = a; QuestFolder = q;
+        }
+    }
+
+    private static readonly List<NPCEntry> TABLE = new List<NPCEntry>
+    {
+        // ── LEVEL 1 ───────────────────────────────────────────────────────────
+        new NPCEntry("Kalaw",     "Talk to Kalaw",                        "Kalaw",     "Quest1_Greetings"),
+        new NPCEntry("Kyros",     "Find Kyros",                           "Kyros",     "Quest1_Greetings"),
+
+        new NPCEntry("Irah",      "Find Irah",                            "Irah",      "Quest2_Gratitude"),
+        new NPCEntry("Jom",       "Find Jom",                             "Jom",       "Quest2_Gratitude"),
+
+        new NPCEntry("Ronnie",    "Find Ronnie",                          "Ronnie",    "Quest4_Identity"),
+        new NPCEntry("Sally",     "Find Sally",                           "Sally",     "Quest4_Identity"),
+
+        // ── LEVEL 2 ───────────────────────────────────────────────────────────
+        // Sally also triggers the Level-I-complete cutscene (Quest5 version)
+        new NPCEntry("Sally",     "LEVEL I COMPLETE! Head to Level II",   "Sally",     "Quest5_Requests"),
+        new NPCEntry("Lito",      "Find Lito",                            "Lito",      "Quest5_Requests"),
+
+        new NPCEntry("Tomas",     "Find Tomas",                           "Tomas",     "Quest6_Directions"),
+        new NPCEntry("ApoLakay",  "Find Apo Lakay",                       "ApoLakay",  "Quest6_Directions"),
+        new NPCEntry("Klara",     "Find Klara",                           "Klara",     "Quest6_Directions"),
+
+        new NPCEntry("MangLance", "Find Mang Lance",                      "MangLance", "Quest7_Count"),
+        new NPCEntry("Tala",      "Find Tala",                            "Tala",      "Quest7_Count"),
+
+        // ── LEVEL 3 ───────────────────────────────────────────────────────────
+        new NPCEntry("AlingRosa", "Find Aling Rosa",                      "AlingRosa", "Quest8_ActionVerbs"),
+        // MangLance also triggers the Level-II-complete cutscene (Quest8 version)
+        new NPCEntry("MangLance", "LEVEL II COMPLETE! Head to Level III", "MangLance", "Quest8_ActionVerbs"),
+        new NPCEntry("Rayo",      "Find Rayo",                            "Rayo",      "Quest8_ActionVerbs"),
+
+        new NPCEntry("LolaNida",  "Find Lola Nida",                       "LolaNida",  "Quest9_LinkingVerbs"),
+        new NPCEntry("AlingRiza", "Find Aling Riza",                      "AlingRiza", "Quest9_LinkingVerbs"),
+        new NPCEntry("Neneng",    "Find Neneng",                          "Neneng",    "Quest9_LinkingVerbs"),
+
+        new NPCEntry("LolaBebang","Find Lola Bebang",                     "LolaBebang","Quest11_Interrogatives"),
+    };
+
+    // =========================================================================
+
+    [MenuItem("Tools/Setup Calle Crisologo NPCs")]
     public static void RunSetup()
     {
-        Scene activeScene = EditorSceneManager.GetActiveScene();
-        if (activeScene.name != "Calle_Crisologo")
-        {
-            Debug.LogError("Please open the Calle_Crisologo scene first!");
-            return;
-        }
+        var interactables = Object.FindObjectsByType<InteractableNPC>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        int assignedCount = 0;
+        int npcsTouched   = 0;
 
-        // 1. InSceneLessonController STT Region
-        var lessonController = Object.FindObjectOfType<InSceneLessonController>(true);
-        if (lessonController != null)
+        foreach (var npc in interactables)
         {
-            Undo.RecordObject(lessonController, "Set STT Region");
-            lessonController.sttRegion = RegionMode.Ilokano;
-            EditorUtility.SetDirty(lessonController);
-            Debug.Log("Set InSceneLessonController sttRegion to Ilokano.");
-        }
-        else
-        {
-            Debug.LogWarning("InSceneLessonController not found in scene!");
-        }
+            string rawName   = npc.gameObject.name;
+            string cleanGoName = Normalize(rawName);
 
-        // 2. Setup NPCs
-        var interactables = Object.FindObjectsOfType<InteractableNPC>(true);
-        
-        string[] npcNames = { "Kalaw", "VendorKyros", "VendorIrah", "VendorJom", "Ronnie", "Sally", 
-                              "Lito", "ApoLakay", "Tomas", "Klara", "Tala", "MangLance", 
-                              "Rayo", "AlingRosa", "LolaNida", "Neneng", "AlingRiza", "LolaBebang" };
-        
-        GameObject closeUpParent = GameObject.Find("CloseUpCameras");
-        if (closeUpParent == null)
-        {
-            closeUpParent = new GameObject("CloseUpCameras");
-            Undo.RegisterCreatedObjectUndo(closeUpParent, "Create CloseUpCameras");
-        }
+            // Build the expected quest dialogues list
+            List<InteractableNPC.QuestDialogue> expectedDialogues = new List<InteractableNPC.QuestDialogue>();
 
-        foreach (var npcName in npcNames)
-        {
-            InteractableNPC npcComponent = null;
-            
-            // Try to find the matching NPC GameObject based on name
-            foreach (var i in interactables)
+            foreach (var entry in TABLE)
             {
-                string objName = i.gameObject.name.Replace(" ", "").Replace("_", "").ToLower();
-                string targetName = npcName.ToLower();
-                
-                if (objName.Contains(targetName) || 
-                   (targetName == "vendorkyros" && objName.Contains("kyros")) ||
-                   (targetName == "vendorirah" && objName.Contains("irah")) ||
-                   (targetName == "vendorjom" && objName.Contains("jom")))
+                if (!cleanGoName.Contains(Normalize(entry.GoContains))) continue;
+
+                // Find _Intro asset restricted to the matching quest folder
+                string[] guids = AssetDatabase.FindAssets(
+                    entry.AssetName + "_Intro t:DialogueNode",
+                    new[] { "Assets/Dialogues/CalleCrisologo" });
+
+                foreach (string guid in guids)
                 {
-                    npcComponent = i;
-                    break;
+                    string path = AssetDatabase.GUIDToAssetPath(guid);
+                    if (!path.Contains(entry.QuestFolder)) continue;   // wrong quest
+
+                    var node = AssetDatabase.LoadAssetAtPath<DialogueNode>(path);
+                    if (node == null) continue;
+
+                    expectedDialogues.Add(new InteractableNPC.QuestDialogue
+                    {
+                        requiredObjective = entry.Objective,
+                        dialogueNode      = node
+                    });
                 }
             }
 
-            if (npcComponent != null)
+            // Compare expected with actual
+            bool needsUpdate = false;
+            if (npc.questDialogues == null || npc.questDialogues.Count != expectedDialogues.Count)
             {
-                string assetName = (npcName == "Kalaw") ? "Kalaw_QuestIntro" : $"{npcName}_Node_1";
-                string assetPath = $"Assets/Dialogues/CalleCrisologo_New/{assetName}.asset";
-                DialogueNode startingNode = AssetDatabase.LoadAssetAtPath<DialogueNode>(assetPath);
-                
-                if (startingNode != null)
-                {
-                    Undo.RecordObject(npcComponent, "Set Default Dialogue");
-                    npcComponent.defaultDialogue = startingNode;
-                    
-                    // Clear out old quest dialogues since we handle quests directly in the nodes now
-                    if (npcComponent.questDialogues != null)
-                    {
-                        npcComponent.questDialogues.Clear();
-                        
-                        if (npcName == "Kalaw")
-                        {
-                            DialogueNode postQuestNode = AssetDatabase.LoadAssetAtPath<DialogueNode>("Assets/Dialogues/CalleCrisologo_New/Kalaw_Node_0.asset");
-                            if (postQuestNode != null)
-                            {
-                                npcComponent.questDialogues.Add(new InteractableNPC.QuestDialogue { 
-                                    requiredObjective = "Talk to Kalaw", 
-                                    dialogueNode = postQuestNode 
-                                });
-                            }
-                        }
-                    }
-                    
-                    EditorUtility.SetDirty(npcComponent);
-                    Debug.Log($"Assigned {assetName} to {npcComponent.gameObject.name}");
-                }
-                else
-                {
-                    Debug.LogError($"Could not find asset {assetPath}");
-                }
-
-                // 3. Create CloseUp Camera Target
-                string camName = npcName == "VendorKyros" ? "KyrosCloseUp" : 
-                                 npcName == "VendorIrah" ? "IrahCloseUp" : 
-                                 npcName == "VendorJom" ? "JomCloseUp" : 
-                                 $"{npcName}CloseUp";
-                
-                Transform existingCam = closeUpParent.transform.Find(camName);
-                GameObject camObj;
-                if (existingCam == null)
-                {
-                    camObj = new GameObject(camName);
-                    camObj.transform.SetParent(closeUpParent.transform);
-                    Undo.RegisterCreatedObjectUndo(camObj, "Create CloseUp Target");
-                }
-                else
-                {
-                    camObj = existingCam.gameObject;
-                }
-                
-                // Position cam relative to NPC (slightly above and in front)
-                Undo.RecordObject(camObj.transform, "Position CloseUp Target");
-                Vector3 forward = npcComponent.transform.forward;
-                camObj.transform.position = npcComponent.transform.position + (forward * 1.5f) + (Vector3.up * 1.5f);
-                camObj.transform.rotation = Quaternion.LookRotation(-forward);
+                needsUpdate = true;
             }
             else
             {
-                Debug.LogWarning($"Could not find NPC named {npcName} in the scene.");
+                for (int i = 0; i < expectedDialogues.Count; i++)
+                {
+                    if (npc.questDialogues[i].requiredObjective != expectedDialogues[i].requiredObjective ||
+                        npc.questDialogues[i].dialogueNode != expectedDialogues[i].dialogueNode)
+                    {
+                        needsUpdate = true;
+                        break;
+                    }
+                }
+            }
+
+            if (needsUpdate && expectedDialogues.Count > 0)
+            {
+                Undo.RecordObject(npc, "Assign Quest Dialogue");
+                npc.questDialogues = new List<InteractableNPC.QuestDialogue>(expectedDialogues);
+                EditorUtility.SetDirty(npc);
+                assignedCount += expectedDialogues.Count;
+                npcsTouched++;
+                Debug.Log($"<color=green>[Setup]</color> Updated {npc.name} with {expectedDialogues.Count} quest dialogues.");
+            }
+            else if (expectedDialogues.Count == 0)
+            {
+                //Debug.Log($"<color=grey>[Setup] No Intro dialogue found for: {rawName}</color>");
             }
         }
 
-        EditorSceneManager.MarkSceneDirty(activeScene);
-        Debug.Log("Calle Crisologo setup complete! Don't forget to save the scene.");
+        if (npcsTouched > 0)
+        {
+            var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene);
+        }
+
+        if (npcsTouched > 0)
+        {
+            Debug.Log($"<color=cyan><b>[Setup Complete]</b></color> " +
+                      $"Touched {npcsTouched} NPCs, assigned {assignedCount} entries. " +
+                      $"<b>Please save the scene!</b>");
+        }
+    }
+
+    // Strip whitespace, underscores, dashes, and common GO suffixes for matching
+    private static string Normalize(string s)
+    {
+        if (s == null) return "";
+        return s.Replace(" ","").Replace("_","").Replace("-","")
+                .ToLowerInvariant()
+                .Replace("rigged","").Replace("vendor","")
+                .Replace("npc","").Replace("position2","")
+                .Replace("closeup","").Replace("position","");
     }
 }

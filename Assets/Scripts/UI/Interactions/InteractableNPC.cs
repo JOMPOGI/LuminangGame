@@ -43,29 +43,18 @@ public class InteractableNPC : InteractableBase
     public UnityEvent OnDialogueEnd;
     public UnityEvent OnWrongAnswer;
 
-        #if UNITY_EDITOR
-    protected virtual void Awake()
-    {
-        if (defaultDialogue == null)
-        {
-            string cleanName = gameObject.name.Replace("_Rigged", "");
-            string assetPath = $"Assets/Dialogues/CalleCrisologo_New/{cleanName}_Node_0.asset";
-            defaultDialogue = UnityEditor.AssetDatabase.LoadAssetAtPath<DialogueNode>(assetPath);
-            if (defaultDialogue != null) 
-            {
-                Debug.Log($"[InteractableNPC] Successfully loaded fallback dialogue for {cleanName} via AssetDatabase!");
-            }
-        }
-    }
-    #endif
+
 
     public override void Interact()
     {
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
-        if (!interactionEnabled || npcAnimator == null) 
+        if (!interactionEnabled) 
         {
-            if (npcAnimator == null) Debug.LogWarning($"[InteractableNPC] {gameObject.name} blocked from interaction because it has no Animator (T-pose/static constraint).");
             return;
+        }
+        if (npcAnimator == null)
+        {
+            Debug.LogWarning($"[InteractableNPC] {gameObject.name} missing Animator, but proceeding with interaction.");
         }
 
         DialogueNode nodeToPlay = GetCurrentDialogueNode();
@@ -94,30 +83,103 @@ public class InteractableNPC : InteractableBase
             string currentObj = ObjectiveManager.Instance.CurrentObjective;
             foreach (var qd in questDialogues)
             {
-                if (currentObj != null && currentObj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
+                if (currentObj != null && !string.IsNullOrEmpty(qd.requiredObjective) && currentObj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     Debug.Log($"[{gameObject.name}] Match found! Using Quest Dialogue: {qd.dialogueNode.name}");
                     return qd.dialogueNode;
                 }
             }
+
+            // 2. Check if the current objective is the RESULT of a previous quest dialogue completing
+            for (int i = 0; i < questDialogues.Count; i++)
+            {
+                if (currentObj != null && DialogueTreeEndsWith(questDialogues[i].dialogueNode, currentObj))
+                {
+                    // This dialogue tree just completed! Advance to the next one if it exists.
+                    if (i + 1 < questDialogues.Count)
+                    {
+                        Debug.Log($"[{gameObject.name}] Previous tree completed. Advancing to Quest Dialogue: {questDialogues[i + 1].dialogueNode.name}");
+                        return questDialogues[i + 1].dialogueNode;
+                    }
+                }
+            }
         }
 
-        // 2. Fallback to default dialogue
-        return defaultDialogue;
+        // 3. Fallback to default dialogue
+        if (defaultDialogue != null)
+        {
+            return defaultDialogue;
+        }
+
+        // 4. Fallback to the first quest dialogue if they have no default dialogue
+        if (questDialogues != null && questDialogues.Count > 0)
+        {
+            return questDialogues[0].dialogueNode;
+        }
+
+        return null;
+    }
+
+    private bool DialogueTreeEndsWith(DialogueNode node, string targetObjective)
+    {
+        if (node == null || string.IsNullOrEmpty(targetObjective)) return false;
+        
+        System.Collections.Generic.HashSet<DialogueNode> visited = new System.Collections.Generic.HashSet<DialogueNode>();
+        System.Collections.Generic.Queue<DialogueNode> queue = new System.Collections.Generic.Queue<DialogueNode>();
+        queue.Enqueue(node);
+        
+        while(queue.Count > 0)
+        {
+            var curr = queue.Dequeue();
+            if (visited.Contains(curr)) continue;
+            visited.Add(curr);
+            
+            if (!string.IsNullOrEmpty(curr.endEventName))
+            {
+                string endEv = curr.endEventName;
+                if (endEv.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+                    endEv = endEv.Substring("SetObjective:".Length).Trim();
+                else if (endEv.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
+                    endEv = endEv.Substring("SetObjective_".Length).Trim();
+                
+                if (targetObjective.Equals(endEv, System.StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            
+            if (curr.choices != null)
+            {
+                foreach(var choice in curr.choices)
+                {
+                    if (choice != null && choice.nextNode != null)
+                        queue.Enqueue(choice.nextNode);
+                }
+            }
+        }
+        return false;
     }
 
     public void EnableInteraction() 
     {
-        if (npcAnimator != null) interactionEnabled = true;
+        interactionEnabled = true;
+        if (npcAnimator == null)
+            Debug.LogWarning($"[InteractableNPC] {gameObject.name}: EnableInteraction called but npcAnimator is not assigned. Interaction enabled anyway.");
     }
     public void DisableInteraction() => interactionEnabled = false;
 
     protected override void Start()
     {
         base.Start();
-        if (npcAnimator == null)
+        // Only auto-disable if there's truly nothing to show (no animator AND no dialogue).
+        // NPCs with dialogue but no animator (e.g. Kalaw before animator is assigned) should
+        // still be interactable so the pickup -> EnableInteraction() chain works.
+        bool hasQuestDialogues = questDialogues != null && questDialogues.Count > 0;
+        if (npcAnimator == null && defaultDialogue == null && !hasQuestDialogues)
         {
-            interactionEnabled = false; // Disable if no animator on start
+            interactionEnabled = false;
+        }
+        else
+        {
+            interactionEnabled = true;
         }
     }
 
@@ -142,9 +204,9 @@ public class InteractableNPC : InteractableBase
         {
             foreach (var qd in questDialogues)
             {
-                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    if (npcAnimator != null) interactionEnabled = true;
+                    interactionEnabled = true;
                     if (InteractionManager.Instance != null) InteractionManager.Instance.ForceCheckProximity();
                     return;
                 }
@@ -153,11 +215,16 @@ public class InteractableNPC : InteractableBase
 
         // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
         if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
-            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
+            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
         {
-            string targetName = obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) 
-                ? obj.Substring("Talk to ".Length).Trim() 
-                : obj.Substring("Return to ".Length).Trim();
+            string targetName = obj;
+            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase))
+                targetName = obj.Substring("Talk to ".Length).Trim();
+            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
+                targetName = obj.Substring("Return to ".Length).Trim();
+            else if (obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+                targetName = obj.Substring("Find ".Length).Trim();
             
             string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
@@ -177,14 +244,7 @@ public class InteractableNPC : InteractableBase
 
             if (isMatch)
             {
-                if (npcAnimator != null)
-                {
-                    interactionEnabled = true;
-                }
-                else
-                {
-                    interactionEnabled = false; // Block if missing animator
-                }
+                interactionEnabled = true;
                 
                 if (InteractionManager.Instance != null)
                 {
@@ -193,11 +253,8 @@ public class InteractableNPC : InteractableBase
             }
             else
             {
-                // Only disable if we don't have defaultDialogue enabled
-                if (defaultDialogue == null)
-                {
-                    interactionEnabled = false;
-                }
+                // STRICTLY disable other NPCs if they are not the target of the linear quest
+                interactionEnabled = false;
             }
         }
     }
@@ -517,6 +574,12 @@ public class InteractableNPC : InteractableBase
     /// </summary>
     public void StartLessonWithCategory(string category)
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Calle_Crisologo")
+        {
+            Debug.Log("[InteractableNPC] Bypassing lesson panels in Calle Crisologo.");
+            return;
+        }
+
         if (LessonIntroPanel.Instance != null)
         {
             LessonIntroPanel.Instance.ShowForCategory(category);

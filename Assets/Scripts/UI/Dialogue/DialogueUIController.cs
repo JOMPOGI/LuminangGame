@@ -78,6 +78,11 @@ public class DialogueUIController : MonoBehaviour
     private string                        _translatedText = "";
     private bool                          _isTranslatedShowing = false;
 
+    // Paging
+    private List<string>                  _pages = new List<string>();
+    private int                           _currentPageIndex = 0;
+    private bool                          _isSkippingAnimation = false;
+
     void Awake()
     {
         HideDialogue();
@@ -114,12 +119,30 @@ public class DialogueUIController : MonoBehaviour
         _currentChoices   = node.choices;
         _fullText         = injectedPrefixText + node.dialogueText;
         _translatedText   = node.translatedText;
+        _isSkippingAnimation = skipAnimation;
         
         // Reset prefix after consuming
         injectedPrefixText = "";
         
         _isTranslatedShowing = false;
         _skipTyping       = skipAnimation; // If skipping, we force it here
+
+        // Split full text into pages
+        _pages.Clear();
+        if (!string.IsNullOrEmpty(_fullText))
+        {
+            string[] rawLines = _fullText.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+            foreach (var line in rawLines)
+            {
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    _pages.Add(line.Trim());
+                }
+            }
+        }
+        
+        if (_pages.Count == 0) _pages.Add("");
+        _currentPageIndex = 0;
 
         // Show/Hide translate button
         if (translateButton != null)
@@ -134,14 +157,12 @@ public class DialogueUIController : MonoBehaviour
         ClearChoices();
 
         // Spawn choice buttons if there are any choices with text
-        int visibleChoices = 0;
         if (node.choices != null)
         {
             foreach (var choice in node.choices)
             {
                 if (string.IsNullOrEmpty(choice.choiceText)) continue;
 
-                visibleChoices++;
                 GameObject obj = Instantiate(choiceButtonPrefab, choicesContainer);
                 obj.SetActive(true);
                 _activeChoiceButtons.Add(obj);
@@ -163,11 +184,6 @@ public class DialogueUIController : MonoBehaviour
                     });
                 }
             }
-        }
-        
-        if (nextButton != null)
-        {
-            nextButton.gameObject.SetActive(visibleChoices == 0);
         }
         
         // Show the Mic button if one is injected AND this node requires STT (and not handled by InSceneLessonController)
@@ -195,15 +211,40 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
-        // If any choice has text, player must pick one — Next is hidden.
-        // ALSO if this is an STT node, they must speak — Next is hidden.
+        DisplayCurrentPage();
+    }
+
+    private void DisplayCurrentPage()
+    {
+        if (dialogueText != null) dialogueText.text = "";
+        
+        bool isLastPage = _currentPageIndex >= _pages.Count - 1;
+        bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
+        int visibleChoices = _activeChoiceButtons.Count;
+
+        // Ensure next button logic
         if (nextButton != null)
         {
-            bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
-            nextButton.gameObject.SetActive(visibleChoices == 0 && !requiresSTT);
+            if (!isLastPage)
+            {
+                // If not last page, ALWAYS show NEXT button so player can paginate
+                nextButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                // If last page, hide NEXT button if there are choices.
+                // Temporarily bypassing STT requirement to allow skipping.
+                nextButton.gameObject.SetActive(visibleChoices == 0);
+            }
         }
 
-        ShowDialogue(true, skipAnimation);
+        // If not last page, hide choices so they don't block
+        if (choicesGroup != null)
+        {
+            choicesGroup.SetActive(isLastPage && visibleChoices > 0);
+        }
+
+        ShowDialogue(true, _isSkippingAnimation);
     }
 
     /// <summary>
@@ -368,15 +409,24 @@ public class DialogueUIController : MonoBehaviour
         }
         else
         {
-            // Auto-advance if there are 0 visible choices
-            if (_currentChoices.Count == 0)
+            if (_currentPageIndex < _pages.Count - 1)
             {
-                _onChoiceSelected?.Invoke(null); // Ends dialogue
+                // Advance to the next page
+                _currentPageIndex++;
+                DisplayCurrentPage();
             }
             else
             {
-                // If there's a choice but it's hidden (empty text), pick the first one
-                _onChoiceSelected?.Invoke(_currentChoices[0]);
+                // Auto-advance if there are 0 visible choices
+                if (_currentChoices.Count == 0)
+                {
+                    _onChoiceSelected?.Invoke(null); // Ends dialogue
+                }
+                else
+                {
+                    // If there's a choice but it's hidden (empty text), pick the first one
+                    _onChoiceSelected?.Invoke(_currentChoices[0]);
+                }
             }
         }
     }
@@ -384,6 +434,15 @@ public class DialogueUIController : MonoBehaviour
     private void OnPrevClicked()
     {
         StartCoroutine(ButtonPressAnim(prevButton.transform));
+        
+        // If we are paginating, maybe go to previous page?
+        if (_currentPageIndex > 0)
+        {
+            _currentPageIndex--;
+            DisplayCurrentPage();
+            return;
+        }
+
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.GoToPreviousNode();
     }
@@ -399,7 +458,9 @@ public class DialogueUIController : MonoBehaviour
 
         if (dialogueText != null)
         {
-            dialogueText.text = _isTranslatedShowing ? _translatedText : _fullText;
+            // For now, translated text is shown fully, or we'd need to paginate it too.
+            // But usually translated text is just a short snippet.
+            dialogueText.text = _isTranslatedShowing ? _translatedText : _pages[_currentPageIndex];
         }
 
         StartCoroutine(ButtonPressAnim(translateButton.transform));
@@ -426,17 +487,24 @@ public class DialogueUIController : MonoBehaviour
             if (cg != null) cg.alpha = 1f;
         }
 
+        string textToShow = _pages.Count > 0 ? _pages[_currentPageIndex] : "";
+        if (_isTranslatedShowing && !string.IsNullOrEmpty(_translatedText)) 
+        {
+            textToShow = _translatedText;
+        }
+
         if (typingSpeed > 0 && !skipAnimation)
         {
             if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
-            _typeTextCoroutine = StartCoroutine(TypeText(_fullText));
+            _typeTextCoroutine = StartCoroutine(TypeText(textToShow));
             yield return _typeTextCoroutine;
         }
         else
-            if (dialogueText != null) dialogueText.text = _fullText;
+            if (dialogueText != null) dialogueText.text = textToShow;
 
-        // Only show the choices area when there are actual choices to pick from
-        if (_activeChoiceButtons.Count > 0 && choicesGroup != null)
+        // Only show the choices area when there are actual choices to pick from AND we are on the last page
+        bool isLastPage = _currentPageIndex >= _pages.Count - 1;
+        if (_activeChoiceButtons.Count > 0 && choicesGroup != null && isLastPage)
         {
             choicesGroup.SetActive(true);
             
@@ -670,5 +738,40 @@ public class DialogueUIController : MonoBehaviour
         foreach (var btn in _activeChoiceButtons)
             if (btn != null) Destroy(btn);
         _activeChoiceButtons.Clear();
+    }
+
+    private void Update()
+    {
+#if ENABLE_INPUT_SYSTEM
+        var kb = UnityEngine.InputSystem.Keyboard.current;
+        if (kb != null && dialoguePanel != null && dialoguePanel.activeInHierarchy)
+        {
+            // Navigation
+            if (nextButton != null && nextButton.gameObject.activeInHierarchy && nextButton.interactable)
+            {
+                if (kb.rightArrowKey.wasPressedThisFrame || kb.enterKey.wasPressedThisFrame)
+                    nextButton.onClick.Invoke();
+            }
+            if (prevButton != null && prevButton.gameObject.activeInHierarchy && prevButton.interactable)
+            {
+                if (kb.leftArrowKey.wasPressedThisFrame)
+                    prevButton.onClick.Invoke();
+            }
+
+            // Choices (1, 2, 3, etc.)
+            if (_activeChoiceButtons != null && _activeChoiceButtons.Count > 0)
+            {
+                if (kb.digit1Key.wasPressedThisFrame) _activeChoiceButtons[0].GetComponent<Button>()?.onClick.Invoke();
+                if (kb.digit2Key.wasPressedThisFrame && _activeChoiceButtons.Count >= 2) _activeChoiceButtons[1].GetComponent<Button>()?.onClick.Invoke();
+                if (kb.digit3Key.wasPressedThisFrame && _activeChoiceButtons.Count >= 3) _activeChoiceButtons[2].GetComponent<Button>()?.onClick.Invoke();
+                
+                // Allow Enter to also select the first choice if Next isn't active
+                if (kb.enterKey.wasPressedThisFrame && (nextButton == null || !nextButton.gameObject.activeInHierarchy))
+                {
+                    _activeChoiceButtons[0].GetComponent<Button>()?.onClick.Invoke();
+                }
+            }
+        }
+#endif
     }
 }
