@@ -56,14 +56,14 @@ public class InteractablePickup : InteractableBase
 
     private void HandleObjectiveChanged(string newObjective)
     {
-        if (_line == null) return; // Not yet initialized by Awake
-
-        _matchesObjective = !string.IsNullOrEmpty(newObjective) && 
+        // Always compute match & interaction state — do NOT gate this on _line being ready
+        _matchesObjective = !string.IsNullOrEmpty(newObjective) &&
                             newObjective.StartsWith(requiredObjective.Trim(), System.StringComparison.OrdinalIgnoreCase);
-        
-        // Only enable interaction if the quest matches AND the designer allowed it
+
+        // Enable interaction if the objective matches AND the designer allowed clicking
         interactionEnabled = _matchesObjective && canBeClicked;
-        
+
+        // Visuals are optional — only apply if the streak LineRenderer was set up
         if (_line != null) _line.gameObject.SetActive(_matchesObjective);
         if (!_matchesObjective && _mat != null) _mat.SetColor("_EmissionColor", Color.black);
     }

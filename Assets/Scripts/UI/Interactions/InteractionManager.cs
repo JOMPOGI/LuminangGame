@@ -98,21 +98,35 @@ public class InteractionManager : MonoBehaviour
             return;
         }
 
-        InteractableBase nearest = null;
-        float shortestDistance = float.MaxValue;
+        InteractableBase nearest        = null;
+        InteractableBase nearestInGrace  = null;  // within 1.5x grace zone (keeps button visible)
+        float shortestDistance           = float.MaxValue;
+        float shortestGraceDistance      = float.MaxValue;
 
         foreach (var interactable in _allInteractables)
         {
             if (interactable == null || !interactable.isActiveAndEnabled || !interactable.interactionEnabled) continue;
 
             float dist = Vector3.Distance(_playerTransform.position, interactable.transform.position);
-            
+
             if (dist <= interactable.interactionDistance && dist < shortestDistance)
             {
                 shortestDistance = dist;
                 nearest = interactable;
             }
+
+            // Keep button showing if player is within 1.5x of interaction distance
+            float graceDist = interactable.interactionDistance * 1.5f;
+            if (dist <= graceDist && dist < shortestGraceDistance)
+            {
+                shortestGraceDistance = dist;
+                nearestInGrace = interactable;
+            }
         }
+
+        // Lock nearest: prefer the true in-range target; fall back to grace-zone
+        // so the button stays visible while the player is "close enough" to click.
+        InteractableBase effective = nearest ?? nearestInGrace;
 
         // Log distance to console to see what's happening
         if (Time.frameCount % 120 == 0 && nearest != null)
@@ -120,9 +134,9 @@ public class InteractionManager : MonoBehaviour
             Debug.Log($"[InteractionManager] Nearest: {nearest.gameObject.name}, Distance: {shortestDistance:F2}");
         }
 
-        if (nearest != _currentNearest)
+        if (effective != _currentNearest)
         {
-            _currentNearest = nearest;
+            _currentNearest = effective;
         }
 
         bool shouldShowButton = _currentNearest != null && !isHUDSuppressed;
@@ -130,27 +144,59 @@ public class InteractionManager : MonoBehaviour
         if (talkButton.gameObject.activeSelf != shouldShowButton)
         {
             talkButton.gameObject.SetActive(shouldShowButton);
-            
+
             if (shouldShowButton && buttonText != null && _currentNearest != null)
             {
                 buttonText.text = _currentNearest.promptText;
             }
         }
+
+        // --- DEBUG FALLBACK ---
+        // If UI clicks are being swallowed by an invisible panel,
+        // pressing E or Enter will bypass the UI and force the interaction.
+#if ENABLE_INPUT_SYSTEM
+        if (shouldShowButton && UnityEngine.InputSystem.Keyboard.current != null)
+        {
+            if (UnityEngine.InputSystem.Keyboard.current.eKey.wasPressedThisFrame || UnityEngine.InputSystem.Keyboard.current.enterKey.wasPressedThisFrame)
+            {
+                Debug.Log("[InteractionManager] Forced interaction via keyboard!");
+                OnButtonClicked();
+            }
+        }
+#else
+        if (shouldShowButton && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return)))
+        {
+            Debug.Log("[InteractionManager] Forced interaction via keyboard!");
+            OnButtonClicked();
+        }
+#endif
     }
 
     private void OnButtonClicked()
     {
+        // If _currentNearest was cleared by this frame's Update before the click fired,
+        // do a fresh scan with generous grace distance so the click always works.
+        if (_currentNearest == null && _playerTransform != null)
+        {
+            float bestDist = float.MaxValue;
+            foreach (var interactable in _allInteractables)
+            {
+                if (interactable == null || !interactable.isActiveAndEnabled || !interactable.interactionEnabled) continue;
+                float dist = Vector3.Distance(_playerTransform.position, interactable.transform.position);
+                float graceDist = interactable.interactionDistance * 2f;
+                if (dist <= graceDist && dist < bestDist)
+                {
+                    bestDist = dist;
+                    _currentNearest = interactable;
+                }
+            }
+        }
+
         Debug.Log($"[InteractionManager] OnButtonClicked! _currentNearest is {(_currentNearest != null ? _currentNearest.gameObject.name : "NULL")}");
         if (_currentNearest != null)
         {
-            // Hide the button so they can't spam it during dialogue
             talkButton.gameObject.SetActive(false);
-            
-            // Tell the interactable to do its thing
             _currentNearest.Interact();
-            
-            // We temporarily clear nearest so the button stays hidden 
-            // until ResetInteraction() is called or we walk away and come back.
             _currentNearest = null;
         }
     }

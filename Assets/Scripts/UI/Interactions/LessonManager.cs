@@ -55,7 +55,9 @@ public class LessonManager : MonoBehaviour
     public UnityEngine.Events.UnityEvent onLessonComplete;
 
     private CanvasGroup _dimmerCG;
+#pragma warning disable 0414
     private bool _isLessonActive = false;
+#pragma warning restore 0414
     private List<GameObject> _spawnedRows = new List<GameObject>();
 
     void Awake()
@@ -90,6 +92,18 @@ public class LessonManager : MonoBehaviour
 
     public void ShowLessonWithCategory(string category)
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Calle_Crisologo")
+        {
+            Debug.Log("[LessonManager] Bypassing LessonManager in Calle Crisologo");
+            _isLessonActive = false;
+            if (lessonPanel != null) lessonPanel.SetActive(false);
+            if (onLessonComplete != null)
+                onLessonComplete.Invoke();
+            if (MinigameManager.Instance != null)
+                MinigameManager.Instance.HideMinigame();
+            return;
+        }
+
         if (lessonPanel == null) return;
         
         Debug.Log($"[LessonManager] ShowLesson requested for category: {category}");
@@ -404,13 +418,14 @@ public class LessonManager : MonoBehaviour
 
     public void HideLesson()
     {
-        if (!_isLessonActive) return;
-        
-        Debug.Log("[LessonManager] HideLesson requested.");
         _isLessonActive = false;
 
-        StopAllCoroutines();
-        StartCoroutine(FadeRoutine(false));
+        if (lessonPanel != null && lessonPanel.activeSelf)
+        {
+            Debug.Log("[LessonManager] HideLesson requested.");
+            StopAllCoroutines();
+            StartCoroutine(FadeRoutine(false));
+        }
     }
 
     private IEnumerator FadeRoutine(bool show)
@@ -437,6 +452,11 @@ public class LessonManager : MonoBehaviour
         {
             ClearRows();
             lessonPanel.SetActive(false); // THE TRIGGER FOR THE WATCHDOG
+
+            // Let MinigameManager.HideMinigame() handle CompleteMinigame() in all cases.
+            // (MinigameManager now always calls CompleteMinigame when it cleans up.)
+            if (MinigameManager.Instance != null)
+                MinigameManager.Instance.HideMinigame();
 
             // Fire quest events!
             if (onLessonComplete != null)

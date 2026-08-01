@@ -1,0 +1,974 @@
+LEVEL I: CONVERSATIONAL & SOCIAL
+QUEST 1: GREETINGS
+Words 1-8
+
+1. KALAW - GUIDE: BASICS & GREETINGS
+Pre-requisite Action
+Player explores sunny Calle Crisologo and picks up [Fruit].
+Approach NPC
+Player approaches Kalaw, perching weakly on a stone pillar.
+Initial Dialogue - Kalaw
+"Squawk! Oh... is that a fruit in your hand? May I have some? Flying under this hot Vigan sun has completely worn me out..."
+Player hands Fruit → Quest SetObjective_Find Fruit Completed
+Kalaw - Post-Quest
+"Mmm, sweet and juicy! Thank you so much, traveler!
+Ah, where are my manners-I am Kalaw, your companion and guide through these lands!
+Wait a second... look at that ancient anting-anting pendant resting on your chest! Feel that faint hum?
+The Ilocos Language Crystal inside it is sleeping.
+To charge it up and awaken its power, you've got to explore Calle Crisologo and speak with the locals in their native tongue.
+As you practice and learn how Ilocanos talk in their daily lives, your voice will help restore the crystal's power.
+So, let's begin with something simple.
+Before you can truly connect with the people of Ilocos, you must first learn how to greet them."
+
+Word 1: HELLO → KUMUSTA
+Kalaw - Teach:
+"Let's start with a simple word you'll use often when meeting someone.
+In Ilokano, 'kumusta' means 'hello.'
+It is a friendly greeting you can use when you meet someone or begin a conversation.
+Listen carefully: kumusta.
+Now, try saying 'kumusta' yourself."
+Player STT: kumusta
+Kalaw - Success:
+"Kumusta! Nailed it! That's a great way to greet someone!"
+
+Word 2: HOW ARE YOU? → KUMUSTA KA?
+Kalaw - Teach:
+"Once you've greeted someone, you can show more warmth by asking how they are.
+In Ilokano, 'kumusta ka?' means 'how are you?'
+You can use it when checking on a friend, neighbor, or someone you've just met.
+Listen carefully: kumusta ka?
+Now, try saying 'kumusta ka?' yourself."
+Player STT: kumusta ka?
+Kalaw - Success:
+"Kumusta ka! Ah, see that smile? You're making friends already!"
+
+Word 3: I'M FINE → NASAYAAT AK
+Kalaw - Teach:
+"When someone asks you 'kumusta ka?', you can tell them how you're doing.
+In Ilokano, 'nasayaat ak' means 'I'm fine' or 'I'm doing well.'
+For example, if someone asks how your journey is going, you can answer: 'Nasayaat ak.'
+Listen carefully: nasayaat ak.
+Now, try saying 'nasayaat ak' yourself."
+Player STT: nasayaat ak
+Kalaw - Success:
+"Nasayaat ak! That's the spirit! Keep that energy up!"
+
+Word 4: GOOD MORNING → NAIMBAG A BIGAT
+Kalaw - Teach:
+"Look at the morning sun shining over the tiled roofs of Calle Crisologo.
+In Ilokano, 'naimbag a bigat' means 'good morning.'
+You can use it when greeting someone earlier in the day.
+For example, you can use it when greeting vendors as they begin their morning.
+Listen carefully: naimbag a bigat.
+Now, try saying 'naimbag a bigat' yourself."
+Player STT: naimbag a bigat
+Kalaw - Success:
+"Naimbag a bigat! You've got the morning greeting down!
+Fly over to Vendor Kyros's souvenir stall. He'll teach you how to greet people at other times of the day."
+
+2. VENDOR KYROS - SOUVENIR VENDOR
+Word 5: GOOD AFTERNOON → NAIMBAG A MALEM
+Kyros - Teach:
+"Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was exploring Vigan.
+When the morning has passed and the afternoon arrives, Ilocanos can greet someone by saying 'naimbag a malem.'
+It means 'good afternoon.'
+You can use it when greeting someone during the afternoon.
+Listen carefully: naimbag a malem.
+Now, try saying 'naimbag a malem' yourself."
+Player STT: naimbag a malem
+Kyros - Success:
+"Naimbag a malem! Welcome to my shop, friend!"
+
+Word 6: GOOD EVENING → NAIMBAG A RABII
+Kyros - Teach:
+"As the sun sets and the streetlamps begin to glow, the greeting changes with the time of day.
+In Ilokano, 'naimbag a rabii' means 'good evening.'
+Use it when greeting someone in the evening.
+Listen carefully: naimbag a rabii.
+Now, try saying 'naimbag a rabii' yourself."
+Player STT: naimbag a rabii
+Kyros - Success:
+"Naimbag a rabii! Look at your pendant glow!"
+
+Word 7: GOOD DAY → NAIMBAG NGA ALDAW
+Kyros - Teach:
+"Sometimes you want to give someone a general greeting without focusing on morning, afternoon, or evening.
+In Ilokano, 'naimbag nga aldaw' means 'good day.'
+It is a general greeting that can be used to wish someone a pleasant day.
+Listen carefully: naimbag nga aldaw.
+Now, try saying 'naimbag nga aldaw' yourself."
+Player STT: naimbag nga aldaw
+Kyros - Success:
+"Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!"
+
+Word 8: GOODBYE → AGPAKADA AKON
+Kyros - Teach:
+"Every journey eventually continues to another place.
+When leaving someone, you can say 'agpakada akon' to say 'goodbye.'
+Use it when ending a conversation or parting ways.
+Listen carefully: agpakada akon.
+Now, try saying 'agpakada akon' yourself."
+Player STT: agpakada akon
+Kyros - Success:
+"Agpakada akon! ✨ GREETINGS MILESTONE UNLOCKED! ✨
+Go meet Vendor Irah at the weaving loom. She has something important to teach you about showing gratitude."
+
+QUEST 2: GRATITUDE
+Words 9-13
+3. VENDOR IRAH - INABEL WEAVER
+Word 9: THANK YOU → AGYAMANAK
+Irah - Teach:
+"Clack-clack-clack goes the loom! Welcome, traveler!
+When someone helps you, gives you something, or does something kind for you, it is important to show appreciation.
+In Ilokano, 'agyamanak' means 'thank you.'
+You can use it whenever you want to express gratitude.
+Listen carefully: agyamanak.
+Now, try saying 'agyamanak' yourself."
+Player STT: agyamanak
+Irah - Success:
+"Agyamanak! Showing gratitude helps keep our community close-knit!"
+
+Word 10: THANK YOU VERY MUCH → AGYAMANAK UNAY
+Irah - Teach:
+"Sometimes a simple thank you isn't enough to express how grateful you feel.
+In Ilokano, 'agyamanak unay' means 'thank you very much.'
+You can use it when someone does something especially kind or generous for you.
+Listen carefully: agyamanak unay.
+Now, try saying 'agyamanak unay' yourself."
+Player STT: agyamanak unay
+Irah - Success:
+"Agyamanak unay! May your journey be smooth and bright!"
+
+Word 11: THANK YOU FOR YOUR HELP → AGYAMANAK ITI TULONG MO
+Irah - Teach:
+"When someone gives you a helping hand, you can thank them specifically for their assistance.
+In Ilokano, 'agyamanak iti tulong mo' means 'thank you for your help.'
+You can use it when someone helps you complete a task or solve a problem.
+Listen carefully: agyamanak iti tulong mo.
+Now, try saying 'agyamanak iti tulong mo' yourself."
+Player STT: agyamanak iti tulong mo
+Irah - Success:
+"Agyamanak iti tulong mo! We Ilocanos love helping one another!"
+
+Word 12: I AM SORRY → PAKAWANEN NAK
+Irah - Teach:
+"Oops! Be careful around these delicate threads.
+If you accidentally bump into someone or make a mistake, you can apologize.
+In Ilokano, 'pakawanen nak' means 'I am sorry.'
+Use it when you want to apologize for something you've done.
+Listen carefully: pakawanen nak.
+Now, try saying 'pakawanen nak' yourself."
+Player STT: pakawanen nak
+Irah - Success:
+"Pakawanen nak... No harm done!
+Pop over to Vendor Jom's empanada stall for the last gratitude phrase!"
+
+4. VENDOR JOM - EMPANADA VENDOR
+Word 13: EXCUSE ME → DISPENSAREN NAK
+Jom - Teach:
+"Smell that sizzling longganisa? My counter is getting crowded!
+When you need to politely get someone's attention or pass through a crowded space, you can say 'dispensaren nak.'
+It means 'excuse me.'
+Listen carefully: dispensaren nak.
+Now, try saying 'dispensaren nak' yourself."
+Player STT: dispensaren nak
+Jom - Success:
+"Dispensaren nak! Sharp manners!
+✨ GRATITUDE MILESTONE UNLOCKED! ✨
+Stick around for the Response trials!"
+
+QUEST 3: RESPONSES
+Words 14-18
+Words 14-18 - JOM
+Word 14: YES → WEN
+Jom - Teach:
+"Let's practice a simple response.
+When someone asks you a question and you want to agree or answer 'yes,' Ilokano uses the word 'wen.'
+Listen carefully: wen.
+Now, try saying 'wen' yourself."
+Player STT: wen
+Jom - Success:
+"Wen! That's what I like to hear! Sizzling away!"
+
+Word 15: NO → SAAN
+Jom - Teach:
+"Of course, sometimes you need to politely disagree or say 'no.'
+In Ilokano, 'saan' means 'no.'
+You can use it when you want to give a negative response.
+Listen carefully: saan.
+Now, try saying 'saan' yourself."
+Player STT: saan
+Jom - Success:
+"Saan! Got it! I'll keep that garlic vinegar ready for another time!"
+
+Word 16: OKAY → OKAY
+Jom - Teach:
+"Sometimes you simply want to show that you agree or understand.
+In Ilokano, 'okay' can also be used to say 'okay.'
+It is a simple response used to acknowledge something or show agreement.
+Listen carefully: okay.
+Now, try saying 'okay' yourself."
+Player STT: okay
+Jom - Success:
+"Okay! Easy enough! You're picking this up quickly!"
+
+Word 17: I UNDERSTAND → MAWATAN KO
+Jom - Teach:
+"When someone explains something and you want to tell them that you understand, you can use 'maawatan ko.'
+It means 'I understand.'
+Listen carefully: maawatan ko.
+Now, try saying 'maawatan ko' yourself."
+Player STT: maawatan ko
+Jom - Success:
+"Maawatan ko! Excellent! You're understanding more and more!"
+
+Word 18: I DON'T UNDERSTAND → DIAK MAWATAN
+Jom - Teach:
+"If someone says something you don't understand, it's useful to let them know.
+In Ilokano, 'diak maawatan' means 'I don't understand.'
+You can use it when you need someone to explain something again.
+Listen carefully: diak maawatan.
+Now, try saying 'diak maawatan' yourself."
+Player STT: diak maawatan
+Jom - Success:
+"Diak maawatan! No worries-learning takes practice!
+✨ RESPONSES MILESTONE UNLOCKED! ✨"
+
+QUEST 4: IDENTITY
+Words 19-22
+5. RONNIE - LOCAL RESIDENT
+Word 19: WHAT IS YOUR NAME? → ANIA TI NAGAN MO
+Ronnie - Teach:
+"When meeting someone new, one of the first things you may want to know is their name.
+In Ilokano, 'ania ti nagan mo?' means 'what is your name?'
+You can use this phrase when introducing yourself to someone or asking for their name.
+Listen carefully: ania ti nagan mo?
+Now, try saying 'ania ti nagan mo?' yourself."
+Player STT: ania ti nagan mo
+Ronnie - Success:
+"Ania ti nagan mo? That's a great question to ask when meeting someone new!"
+
+Word 20: MY NAME IS ___ → TI NAGAN KO KET ___
+Ronnie - Teach:
+"Now it's your turn to introduce yourself.
+In Ilokano, 'ti nagan ko ket...' means 'my name is...'
+The words 'ti nagan ko ket' form the fixed part of the phrase. You then add your own name.
+For example: 'Ti nagan ko ket Jom.'
+Listen carefully: ti nagan ko ket Jom.
+Now, try introducing yourself using 'ti nagan ko ket...' and your own name."
+Player STT: ti nagan ko ket [Player Name]
+Ronnie - Success:
+"Awesome to meet you! You just introduced yourself in Ilokano!
+Go meet Sally near the brick arch to complete Level I!"
+
+6. SALLY - LOCAL RESIDENT
+Word 21: WHERE ARE YOU FROM? → TAGA SADINO KA
+Sally - Teach:
+"When meeting someone new, you may also want to learn where they come from.
+In Ilokano, 'taga sadino ka?' means 'where are you from?'
+Use it when asking someone about their hometown or place of origin.
+Listen carefully: taga sadino ka?
+Now, try saying 'taga sadino ka?' yourself."
+Player STT: taga sadino ka
+Sally - Success:
+"Taga sadino ka? That's how you ask where someone comes from!"
+
+Word 22: I AM FROM ___ → TAGA ___ AK
+Sally - Teach:
+"Now you can answer that question yourself.
+In Ilokano, 'taga ___ ak' means 'I am from ___.'
+The phrase 'taga' introduces the place you come from, while the location changes depending on your answer.
+For example: 'taga Vigan ak.'
+Listen carefully: taga Vigan ak.
+Now, try saying 'taga' followed by your hometown."
+Player STT: taga [Player Town] ak
+Sally - Success:
+"Excellent! You just told me where you're from!
+🏆 LEVEL I: CONVERSATIONAL & SOCIAL COMPLETE! 🏆
+You've learned how to greet people, express gratitude, respond to others, and introduce yourself.
+Your journey now takes you deeper into everyday communication.
+Welcome to Level II: Functional & Navigational!"
+
+LEVEL II: FUNCTIONAL & NAVIGATIONAL
+QUEST 5: REQUESTS
+Words 23-27
+Word 23: HELP ME → TULONGANNAK
+Sally - Teach:
+"If you are in trouble or need assistance, you need a direct way to ask for help.
+In Ilokano, 'tulunganak' means 'help me.'
+Use it when you urgently need someone to assist you.
+Listen carefully: tulunganak.
+Now, try saying 'tulunganak' yourself."
+Player STT: tulunganak
+Sally - Success:
+"Tulunganak! Don't worry-you're never alone!"
+
+Word 24: CAN YOU HELP ME → MABALIN KADI A TULONGANNAK
+Sally - Teach:
+"Sometimes you want to ask for help more politely.
+In Ilokano, 'mabalin kadi a tulunganak?' means 'can you help me?'
+This is useful when politely requesting someone's assistance.
+Listen carefully: mabalin kadi a tulunganak?
+Now, try saying 'mabalin kadi a tulunganak?' yourself."
+Player STT: mabalin kadi a tulunganak
+Sally - Success:
+"Mabalin kadi a tulunganak! Perfect!
+Find Tour Guide Lito for the rest of these requests!"
+
+7. LITO - TOUR GUIDE
+Word 25: PLEASE WAIT → URAYENNAK
+Lito - Teach:
+"Look out! A horse carriage is passing through!
+When you need someone to pause and wait for you, you can say 'urayennak.'
+It means 'please wait' or 'wait for me.'
+Listen carefully: urayennak.
+Now, try saying 'urayennak' yourself."
+Player STT: urayennak
+Lito - Success:
+"Urayennak! Safety first on these narrow streets!"
+
+Word 26: GIVE ME ___ → IKANMO MAN ___
+Lito - Teach:
+"When asking someone to hand you an object, you can use 'ikanmo man...'
+It means 'give me...' and you add the item you want afterward.
+For example: 'ikanmo man map' - 'give me the map.'
+Listen carefully: ikanmo man map.
+Now, try saying 'ikanmo man' followed by an object you want."
+Player STT: ikanmo man [object]
+Lito - Success:
+"Ikanmo man! Well done! Here is your map of Vigan!"
+
+Word 27: CAN I ASK → MABALIN KADI AGSALUDSOD
+Lito - Teach:
+"Before asking someone a question, it's polite to ask for permission.
+In Ilokano, 'mabalin kadi agsaludsod?' means 'can I ask?'
+You can use it before asking someone for information.
+Listen carefully: mabalin kadi agsaludsod?
+Now, try saying 'mabalin kadi agsaludsod?' yourself."
+Player STT: mabalin kadi agsaludsod
+Lito - Success:
+"Mabalin kadi agsaludsod! Ask away!
+✨ REQUESTS MILESTONE UNLOCKED! ✨"
+
+QUEST 6: DIRECTIONS
+Words 28-37
+Word 28: GO STRAIGHT → AGDIRETSO
+Lito - Teach:
+"You're heading toward Plaza Salcedo and don't want to make any turns.
+In Ilokano, 'agdiretso' means 'go straight.'
+You can use it when giving directions or telling someone to continue forward.
+Listen carefully: agdiretso.
+Now, try saying 'agdiretso' yourself."
+Player STT: agdiretso
+Lito - Success:
+"Agdiretso! Straight ahead!
+Go find Apo Lakay by the stone well for more pathfinding!"
+
+8. APO LAKAY - COMMUNITY ELDER
+Word 29: TURN LEFT → AGLIKO ITI KANNIGID
+Apo Lakay - Teach:
+"To reach the Burnay pottery yard, you need to tell someone which direction to take.
+In Ilokano, 'agliko iti kannigid' means 'turn left.'
+Use it when directing someone to turn toward the left side.
+Listen carefully: agliko iti kannigid.
+Now, try saying 'agliko iti kannigid' yourself."
+Player STT: agliko iti kannigid
+Apo Lakay - Success:
+"Agliko iti kannigid! Turn left-the clay kilns are right there!"
+
+Word 30: TURN RIGHT → AGLIKO ITI KANNAWAN
+Apo Lakay - Teach:
+"If you want someone to take the opposite direction, you can tell them to turn right.
+In Ilokano, 'agliko iti kannawan' means 'turn right.'
+Listen carefully: agliko iti kannawan.
+Now, try saying 'agliko iti kannawan' yourself."
+Player STT: agliko iti kannawan
+Apo Lakay - Success:
+"Agliko iti kannawan! Turn right at the corner!"
+
+Word 31: GO UP → UMULI ITI NGATO
+Apo Lakay - Teach:
+"To reach the top of the tower and see the province below, you need to tell someone to move upward.
+In Ilokano, 'umuli iti ngato' means 'go up.'
+Use it when directing someone toward a higher place.
+Listen carefully: umuli iti ngato.
+Now, try saying 'umuli iti ngato' yourself."
+Player STT: umuli iti ngato
+Apo Lakay - Success:
+"Umuli iti ngato! Climb up to the top!"
+
+Word 32: GO DOWN → BUMABA
+Apo Lakay - Teach:
+"After enjoying the view, you'll need to return to the ground.
+In Ilokano, 'bumaba' means 'go down.'
+Use it when telling someone to move toward a lower place.
+Listen carefully: bumaba.
+Now, try saying 'bumaba' yourself."
+Player STT: bumaba
+Apo Lakay - Success:
+"Bumaba! Mind your step!
+Go see Tomas at the pottery yard!"
+
+9. TOMAS - POTTERY MAKER
+Word 33: STOP HERE → AGSARDENG DITOY
+Tomas - Teach:
+"Welcome to the clay yard!
+If you want someone to stop at the place where they are standing, you can say 'agsardeng ditoy.'
+It means 'stop here.'
+Listen carefully: agsardeng ditoy.
+Now, try saying 'agsardeng ditoy' yourself."
+Player STT: agsardeng ditoy
+Tomas - Success:
+"Agsardeng ditoy! Perfect landing spot!"
+
+Word 34: COME HERE → UMAY DITOY
+Tomas - Teach:
+"Sometimes you need to call someone toward you.
+In Ilokano, 'umay ditoy' means 'come here.'
+Use it when asking someone to move toward your location.
+Listen carefully: umay ditoy.
+Now, try saying 'umay ditoy' yourself."
+Player STT: umay ditoy
+Tomas - Success:
+"Umay ditoy! Come take a look at this pottery!"
+
+Word 35: GO THERE → MAPAN IDIAY
+Tomas - Teach:
+"If you want someone to move toward another location, you can direct them away from where you are.
+In Ilokano, 'mapan idiay' means 'go there.'
+Listen carefully: mapan idiay.
+Now, try saying 'mapan idiay' yourself."
+Player STT: mapan idiay
+Tomas - Success:
+"Mapan idiay! Cool shade is much safer!"
+
+Word 36: FOLLOW ME → SUROTENNAK
+Tomas - Teach:
+"When you want someone to come along with you, you can tell them to follow.
+In Ilokano, 'surotennak' means 'follow me.'
+Use it when leading someone to another place.
+Listen carefully: surotennak.
+Now, try saying 'surotennak' yourself."
+Player STT: surotennak
+Tomas - Success:
+"Surotennak! Follow me to the jar drying racks!"
+
+10. KLARA - ANTIQUE SHOP OWNER
+Word 37: WAIT HERE → URAY DITOY
+Klara - Teach:
+"If you need someone to stay in their current location while you do something else, you can tell them to wait.
+In Ilokano, 'uray ditoy' means 'wait here.'
+Listen carefully: uray ditoy.
+Now, try saying 'uray ditoy' yourself."
+Player STT: uray ditoy
+Klara - Success:
+"Uray ditoy!
+✨ DIRECTIONS MILESTONE UNLOCKED! ✨
+Talk to me again for the Counting lessons!"
+
+QUEST 7: COUNT
+Words 38-47
+10. KLARA - ANTIQUE SHOP OWNER
+Word 38: ONE → MAYSA
+Klara - Teach:
+"Let's begin counting in Ilokano.
+The word 'maysa' means 'one.'
+You use it when counting a single person or object.
+For example, if you see one chest, you can say 'maysa.'
+Listen carefully: maysa.
+Now, try saying 'maysa' yourself."
+Player STT: maysa
+Klara - Success:
+"Maysa! Just one rare chest!"
+
+Word 39: TWO → DUA
+Klara - Teach:
+"When you count two objects, people, or things, Ilokano uses 'dua.'
+It means 'two.'
+Listen carefully: dua.
+Now, try saying 'dua' yourself."
+Player STT: dua
+Klara - Success:
+"Dua! Two matching chairs!"
+
+Word 40: THREE → TALLO
+Klara - Teach:
+"The next number is 'tallo.'
+In Ilokano, 'tallo' means 'three.'
+For example, you can use it when counting three objects.
+Listen carefully: tallo.
+Now, try saying 'tallo' yourself."
+Player STT: tallo
+Klara - Success:
+"Tallo! Three oil lamps!
+Head over to Tala the Bagnet seller for more numbers!"
+
+11. TALA - BAGNET SELLER
+Word 41: FOUR → UPPAT
+Tala - Teach:
+"Let's keep counting.
+In Ilokano, 'uppat' means 'four.'
+You can use it when counting four objects, such as four pieces of Bagnet.
+Listen carefully: uppat.
+Now, try saying 'uppat' yourself."
+Player STT: uppat
+Tala - Success:
+"Uppat! Four crispy slabs!"
+
+Word 42: FIVE → LIMA
+Tala - Teach:
+"The next number is 'lima.'
+In Ilokano, 'lima' means 'five.'
+Listen carefully: lima.
+Now, try saying 'lima' yourself."
+Player STT: lima
+Tala - Success:
+"Lima! Five kilos of delicious Bagnet!"
+
+Word 43: SIX → INNEM
+Tala - Teach:
+"In Ilokano, the number 'six' is 'innem.'
+Listen carefully: innem.
+Now, try saying 'innem' yourself."
+Player STT: innem
+Tala - Success:
+"Innem! Six family recipes!"
+
+Word 44: SEVEN → PITO
+Tala - Teach:
+"The Ilokano word for 'seven' is 'pito.'
+Listen carefully: pito.
+Now, try saying 'pito' yourself."
+Player STT: pito
+Tala - Success:
+"Pito! Seven!
+Run to Mang Lance the Kalesa driver to finish counting!"
+
+12. MANG LANCE - KUTSERO / KALESA DRIVER
+Quest Objective
+SetObjective_Find Wheel Pin
+Intro Script
+"Whoa, hold on! My carriage wheel pin popped out!
+Please find the wheel pin so my horse Barnaby and I can ride safely!"
+Player finds pin and returns it → Quest Completed
+Word 45: EIGHT → WALO
+Mang Lance - Teach:
+"Whew! Thanks for fixing my wheel!
+Let's continue counting.
+In Ilokano, 'walo' means 'eight.'
+Listen carefully: walo.
+Now, try saying 'walo' yourself."
+Player STT: walo
+Mang Lance - Success:
+"Walo! Eight treats for Barnaby!"
+
+Word 46: NINE → SIAM
+Mang Lance - Teach:
+"The next number is 'siam.'
+In Ilokano, 'siam' means 'nine.'
+Listen carefully: siam.
+Now, try saying 'siam' yourself."
+Player STT: siam
+Mang Lance - Success:
+"Siam! Nine! You're almost at the end of the count!"
+
+Word 47: TEN → SANGAPULO
+Mang Lance - Teach:
+"And now, we've reached ten!
+In Ilokano, 'sangapulo' means 'ten.'
+Listen carefully: sangapulo.
+Now, try saying 'sangapulo' yourself."
+Player STT: sangapulo
+Mang Lance - Success:
+"Sangapulo! You made it to ten!
+🏆 LEVEL II: FUNCTIONAL & NAVIGATIONAL COMPLETE! 🏆
+You've learned how to ask for help, navigate the streets, give directions, and use numbers in everyday situations.
+Now let's explore how Ilokano describes actions, people, and ideas.
+Welcome to Level III: Grammatical Foundations!"
+
+LEVEL III: GRAMMATICAL FOUNDATIONS
+QUEST 8: ACTION VERBS
+Words 48-55
+13. RAYO - PHOTOGRAPHER
+Word 48: EAT → MANGAN
+Mang Lance - Teach:
+"After all that walking, you'll probably be hungry!
+In Ilokano, 'mangan' means 'eat.'
+It is an action verb used when talking about the act of eating.
+For example, when it's time for lunch, you can say 'mangan.'
+Listen carefully: mangan.
+Now, try saying 'mangan' yourself."
+Player STT: mangan
+Mang Lance - Success:
+"Mangan! Now you're making me hungry!
+Go see Rayo the photographer for more action verbs!"
+
+13. RAYO - PHOTOGRAPHER
+Word 49: DRINK → UMINOM
+Rayo - Teach:
+"Click! Great pose!
+It's warm today, and you might want something refreshing.
+In Ilokano, 'uminom' means 'drink.'
+It is an action verb used when talking about drinking something.
+Listen carefully: uminom.
+Now, try saying 'uminom' yourself."
+Player STT: uminom
+Rayo - Success:
+"Uminom! Refreshing!"
+
+Word 50: GO → MAPAN
+Rayo - Teach:
+"When you want to talk about moving from one place to another, you can use the verb 'mapan.'
+It means 'go.'
+For example, if you're heading toward a scenic photo spot, you can say 'mapan.'
+Listen carefully: mapan.
+Now, try saying 'mapan' yourself."
+Player STT: mapan
+Rayo - Success:
+"Mapan! Let's head over to the arch!"
+
+Word 51: COME → UMAY
+Rayo - Teach:
+"Now let's learn the opposite direction.
+In Ilokano, 'umay' means 'come.'
+You can use it when asking someone to move toward you or toward a particular place.
+Listen carefully: umay.
+Now, try saying 'umay' yourself."
+Player STT: umay
+Rayo - Success:
+"Umay! Come stand right by the window!"
+
+Word 52: SLEEP → MATUROG
+Rayo - Teach:
+"After exploring all day, everyone needs time to rest.
+In Ilokano, 'maturog' means 'sleep.'
+It is the action of resting while asleep.
+Listen carefully: maturog.
+Now, try saying 'maturog' yourself."
+Player STT: maturog
+Rayo - Success:
+"Maturog well!
+Catch up with Aling Rosa to wrap up Action Verbs!"
+
+14. ALING ROSA - SOUVENIR AUNTIE
+Quest Objective
+SetObjective_Find Thread
+Intro Script
+"Ay, my thread broke!
+Please find some thread so I can finish weaving these colorful souvenirs!"
+Player finds thread and returns it → Quest Completed
+Word 53: SEE → MAKITA
+Aling Rosa - Teach:
+"Aww, thank you!
+When you look at something or notice something with your eyes, the Ilokano verb 'makita' means 'see.'
+For example, you can use it when looking at these bright textiles.
+Listen carefully: makita.
+Now, try saying 'makita' yourself."
+Player STT: makita
+Aling Rosa - Success:
+"Makita! Look at these lovely patterns!"
+
+Word 54: HEAR → MANGNGEG
+Aling Rosa - Teach:
+"Listen closely. Can you hear the horse hooves clattering down Calle Crisologo?
+In Ilokano, 'mangngeg' means 'hear.'
+Listen carefully: mangngeg.
+Now, try saying 'mangngeg' yourself."
+Player STT: mangngeg
+Aling Rosa - Success:
+"Mangngeg! You can hear the kalesas coming!"
+
+Word 55: SPEAK → AGSAO
+Aling Rosa - Teach:
+"You're doing something very important right now-you are using your voice.
+In Ilokano, 'agsao' means 'speak.'
+You can use it when talking about speaking with another person or practicing a language.
+Listen carefully: agsao.
+Now, try saying 'agsao' yourself."
+Player STT: agsao
+Aling Rosa - Success:
+"Agsao!
+✨ ACTION VERBS MILESTONE UNLOCKED! ✨
+Stay here for Linking Verbs!"
+
+QUEST 9: LINKING VERBS & CONNECTORS
+Words 56-65
+Word 56: AM / SUBJECT CONNECTOR → KET
+Aling Rosa - Teach:
+"Now we're moving into a more advanced part of Ilokano.
+In a sentence such as 'Siak ket weaver,' the word 'ket' connects the subject with the information that describes it.
+Think of 'ket' as a connector that helps link the two parts of the sentence.
+Listen carefully: ket.
+Now, try saying 'ket' yourself."
+Player STT: ket
+Aling Rosa - Success:
+"Ket! Spot on!
+Go see Lola Nida for more connector words!"
+
+15. LOLA NIDA - ELDERLY RESIDENT
+Word 57: IS / SPECIFIC MARKER → ISU TI
+Lola Nida - Teach:
+"When identifying or describing something specific, Ilokano can use 'isu ti' as part of the sentence structure.
+For example, it can help express an idea similar to 'is the' in English.
+Listen carefully: isu ti.
+Now, try saying 'isu ti' yourself."
+Player STT: isu ti
+Lola Nida - Success:
+"Isu ti! You're learning how Ilokano connects ideas!"
+
+Word 58: PLURAL SUBJECT MARKER → DA
+Lola Nida - Teach:
+"When talking about a group of people, Ilokano can use 'da' as a plural marker.
+For example, when referring to a group such as the weavers, 'da' can help indicate that you're talking about more than one person.
+Listen carefully: da.
+Now, try saying 'da' yourself."
+Player STT: da
+Lola Nida - Success:
+"Da! You're learning how Ilokano expresses groups!"
+
+Word 59: WAS / PAST STATE → KET IDI
+Lola Nida - Teach:
+"When talking about something that existed or was true in the past, you can use 'ket idi' in a historical context.
+For example, when describing how a place was in the past, this phrase can help connect the subject with its former state.
+Listen carefully: ket idi.
+Now, try saying 'ket idi' yourself."
+Player STT: ket idi
+Lola Nida - Success:
+"Ket idi! You're connecting language with the history of Ilocos!"
+
+Word 60: WERE / PLURAL PAST STATE → KET IDI
+Lola Nida - Teach:
+"The same past expression can also appear when talking about a group in a historical context.
+For example, when describing what people were like in the past, 'ket idi' can be part of the sentence structure.
+Listen carefully: ket idi.
+Now, try saying 'ket idi' yourself."
+Player STT: ket idi
+Lola Nida - Success:
+"Ket idi! The past lives on through the stories we tell!"
+
+16. NENENG - STUDENT
+Word 61: BECOME → AGBALIN
+Neneng - Teach:
+"Hey! Here's an interesting one.
+In Ilokano, 'agbalin' means 'become.'
+It describes a change from one state or condition into another.
+For example, with practice, you can become more confident in speaking Ilokano.
+Listen carefully: agbalin.
+Now, try saying 'agbalin' yourself."
+Player STT: agbalin
+Neneng - Success:
+"Agbalin! With practice, you can become a confident Ilokano speaker!"
+
+Word 62: SEEM / LIKE → KASLA
+Neneng - Teach:
+"Sometimes we want to describe how something appears or feels to us.
+In Ilokano, 'kasla' can express the idea of 'seem' or 'like.'
+For example, you might say something seems like a journey through time.
+Listen carefully: kasla.
+Now, try saying 'kasla' yourself."
+Player STT: kasla
+Neneng - Success:
+"Kasla! It really does feel like traveling back through history!"
+
+Word 63: REMAIN → AGTALINAED
+Neneng - Teach:
+"Some things change, but others continue to stay strong.
+In Ilokano, 'agtalinaed' means 'remain.'
+You can use it when talking about something continuing to exist or stay in a certain state.
+Listen carefully: agtalinaed.
+Now, try saying 'agtalinaed' yourself."
+Player STT: agtalinaed
+Neneng - Success:
+"Agtalinaed! May our culture remain strong for generations!"
+
+Word 64: STAY / RESIDE → AGYAN
+Neneng - Teach:
+"When talking about staying or residing in a place, Ilokano uses 'agyan.'
+You can use it when talking about where someone stays or lives.
+Listen carefully: agyan.
+Now, try saying 'agyan' yourself."
+Player STT: agyan
+Neneng - Success:
+"Agyan! I hope you stay in Vigan a little longer!
+Go see Aling Riza at the restaurant!"
+
+17. ALING RIZA - RESTAURANT OWNER
+Word 65: FEEL / PERCEIVE → MARIKNA
+Aling Riza - Teach:
+"Language is more than words. Sometimes, it is about what you experience.
+In Ilokano, 'marikna' means 'feel' or 'perceive.'
+You can use it when talking about experiencing something through your senses or emotions.
+Listen carefully: marikna.
+Now, try saying 'marikna' yourself."
+Player STT: marikna
+Aling Riza - Success:
+"Marikna!
+✨ LINKING VERBS MILESTONE UNLOCKED! ✨
+Talk to me again for Pronouns!"
+
+QUEST 10: PRONOUNS
+Words 66-74
+Words 66-74 - ALING RIZA
+Word 66: I → SIAK
+Aling Riza - Teach:
+"Let's learn words that help us talk about people.
+In Ilokano, 'siak' means 'I.'
+You use it when referring to yourself.
+Listen carefully: siak.
+Now, try saying 'siak' yourself."
+Player STT: siak
+Aling Riza - Success:
+"Siak! That's you!"
+
+Word 67: YOU → SIKA
+Aling Riza - Teach:
+"When speaking directly to another person, Ilokano uses 'sika' for 'you.'
+Listen carefully: sika.
+Now, try saying 'sika' yourself."
+Player STT: sika
+Aling Riza - Success:
+"Sika! That's the word for the person you're speaking to!"
+
+Word 68: HE → ISUNA
+Aling Riza - Teach:
+"When talking about a male person who is not the speaker or listener, Ilokano uses 'isuna' for 'he.'
+Listen carefully: isuna.
+Now, try saying 'isuna' yourself."
+Player STT: isuna
+Aling Riza - Success:
+"Isuna! You're talking about someone else!"
+
+Word 69: SHE → ISUNA
+Aling Riza - Teach:
+"Interestingly, the same Ilokano pronoun 'isuna' can refer to 'she' as well.
+The meaning depends on the person you're talking about and the context.
+Listen carefully: isuna.
+Now, try saying 'isuna' yourself."
+Player STT: isuna
+Aling Riza - Success:
+"Isuna! Context helps us understand who we're talking about!"
+
+Word 70: WE → DAKKAMI
+Aling Riza - Teach:
+"When talking about yourself together with other people, you can use 'dakkami' for 'we' in the context taught here.
+Listen carefully: dakkami.
+Now, try saying 'dakkami' yourself."
+Player STT: dakkami
+Aling Riza - Success:
+"Dakkami! Now you're speaking as part of a group!"
+
+Word 71: THEY → ISUDA
+Aling Riza - Teach:
+"When talking about a group of other people, Ilokano uses 'isuda' for 'they.'
+Listen carefully: isuda.
+Now, try saying 'isuda' yourself."
+Player STT: isuda
+Aling Riza - Success:
+"Isuda! You're talking about them!"
+
+Word 7. ME → SIAK
+Aling Riza - Teach:
+"Ilokano can use 'siak' when referring to 'me' as well, depending on the sentence structure.
+Listen carefully: siak.
+Now, try saying 'siak' yourself."
+Player STT: siak
+Aling Riza - Success:
+"Siak! You're getting comfortable with these pronouns!"
+
+Word 73: US → DAKKAMI
+Aling Riza - Teach:
+"When referring to yourself together with others, 'dakkami' can represent 'us' in the context we're learning.
+Listen carefully: dakkami.
+Now, try saying 'dakkami' yourself."
+Player STT: dakkami
+Aling Riza - Success:
+"Dakkami! Language helps us describe who belongs together!"
+
+Word 74: THEM → ISUDA
+Aling Riza - Teach:
+"When referring to other people as the object of an action, 'isuda' is used in the context we're learning for 'them.'
+Listen carefully: isuda.
+Now, try saying 'isuda' yourself."
+Player STT: isuda
+Aling Riza - Success:
+"Isuda! You've learned how Ilokano can talk about different people!"
+
+QUEST 11: INTERROGATIVES
+Words 75-81
+18. LOLA BEBANG - ELDERLY RESIDENT
+Word 75: WHAT → ANIA
+Lola Bebang - Teach:
+"Questions help us learn about the world around us.
+In Ilokano, 'ania' means 'what.'
+Use it when asking about an object, thing, or information.
+Listen carefully: ania.
+Now, try saying 'ania' yourself."
+Player STT: ania
+Lola Bebang - Success:
+"Ania! You're ready to ask questions!"
+
+Word 76: WHO → ASINO
+Lola Bebang - Teach:
+"When you want to know which person you are talking about, use 'asino.'
+It means 'who.'
+Listen carefully: asino.
+Now, try saying 'asino' yourself."
+Player STT: asino
+Lola Bebang - Success:
+"Asino! Now you can ask who someone is!"
+
+Word 77: WHERE → SADINO
+Lola Bebang - Teach:
+"When you need to find a place or location, you can ask 'where?'
+In Ilokano, 'sadino' means 'where.'
+Listen carefully: sadino.
+Now, try saying 'sadino' yourself."
+Player STT: sadino
+Lola Bebang - Success:
+"Sadino! Now you can ask where something is!"
+
+Word 78: WHEN → KAANO
+Lola Bebang - Teach:
+"When asking about time, you can use 'kaano.'
+It means 'when.'
+Listen carefully: kaano.
+Now, try saying 'kaano' yourself."
+Player STT: kaano
+Lola Bebang - Success:
+"Kaano! Now you can ask about when something happened!"
+
+Word 79: WHY → APAY
+Lola Bebang - Teach:
+"Sometimes we want to understand the reason behind something.
+In Ilokano, 'apay' means 'why.'
+Use it when asking for a reason or explanation.
+Listen carefully: apay.
+Now, try saying 'apay' yourself."
+Player STT: apay
+Lola Bebang - Success:
+"Apay! Now you can ask why!"
+
+Word 80: HOW → KASANO
+Lola Bebang - Teach:
+"When you want to ask about the way something is done, use 'kasano.'
+It means 'how.'
+Listen carefully: kasano.
+Now, try saying 'kasano' yourself."
+Player STT: kasano
+Lola Bebang - Success:
+"Kasano! Look how far you've come!"
+
+Word 81: HOW MANY → MANO
+Lola Bebang - Teach:
+"And now, you've reached another important question.
+When you want to ask about quantity, Ilokano uses 'mano' for 'how many.'
+You can use it when asking about the number of people or objects.
+Listen carefully: mano.
+Now, try saying 'mano' yourself."
+Player STT: mano
+Lola Bebang - Success:
+"Mano! Now you can ask about quantity and numbers.
+You've learned how to communicate in many everyday situations throughout your journey.
+But learning doesn't end with repeating what you've heard.
+Head back to Kalaw at the plaza.
+Your final challenge awaits."

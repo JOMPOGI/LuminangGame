@@ -24,6 +24,16 @@ public class LessonIntroPanel : MonoBehaviour
     /// </summary>
     public void ShowForCategory(string categoryName)
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Calle_Crisologo")
+        {
+            Debug.Log("[LessonIntroPanel] Bypassing LessonIntroPanel in Calle Crisologo");
+            if (LessonManager.Instance != null)
+            {
+                LessonManager.Instance.ShowLessonWithCategory(categoryName);
+            }
+            return;
+        }
+
         LessonCategoryConfig cfg = LessonCategoryConfig.Find(categoryName);
 
         string categoryTitle = cfg != null ? cfg.categoryDisplayName : "Language Lesson";

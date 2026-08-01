@@ -43,13 +43,18 @@ public class InteractableNPC : InteractableBase
     public UnityEvent OnDialogueEnd;
     public UnityEvent OnWrongAnswer;
 
+
+
     public override void Interact()
     {
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
-        if (!interactionEnabled || npcAnimator == null) 
+        if (!interactionEnabled) 
         {
-            if (npcAnimator == null) Debug.LogWarning($"[InteractableNPC] {gameObject.name} blocked from interaction because it has no Animator (T-pose/static constraint).");
             return;
+        }
+        if (npcAnimator == null)
+        {
+            Debug.LogWarning($"[InteractableNPC] {gameObject.name} missing Animator, but proceeding with interaction.");
         }
 
         DialogueNode nodeToPlay = GetCurrentDialogueNode();
@@ -78,30 +83,103 @@ public class InteractableNPC : InteractableBase
             string currentObj = ObjectiveManager.Instance.CurrentObjective;
             foreach (var qd in questDialogues)
             {
-                if (currentObj != null && currentObj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
+                if (currentObj != null && !string.IsNullOrEmpty(qd.requiredObjective) && currentObj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
                 {
                     Debug.Log($"[{gameObject.name}] Match found! Using Quest Dialogue: {qd.dialogueNode.name}");
                     return qd.dialogueNode;
                 }
             }
+
+            // 2. Check if the current objective is the RESULT of a previous quest dialogue completing
+            for (int i = 0; i < questDialogues.Count; i++)
+            {
+                if (currentObj != null && DialogueTreeEndsWith(questDialogues[i].dialogueNode, currentObj))
+                {
+                    // This dialogue tree just completed! Advance to the next one if it exists.
+                    if (i + 1 < questDialogues.Count)
+                    {
+                        Debug.Log($"[{gameObject.name}] Previous tree completed. Advancing to Quest Dialogue: {questDialogues[i + 1].dialogueNode.name}");
+                        return questDialogues[i + 1].dialogueNode;
+                    }
+                }
+            }
         }
 
-        // 2. Fallback to default dialogue
-        return defaultDialogue;
+        // 3. Fallback to default dialogue
+        if (defaultDialogue != null)
+        {
+            return defaultDialogue;
+        }
+
+        // 4. Fallback to the first quest dialogue if they have no default dialogue
+        if (questDialogues != null && questDialogues.Count > 0)
+        {
+            return questDialogues[0].dialogueNode;
+        }
+
+        return null;
+    }
+
+    private bool DialogueTreeEndsWith(DialogueNode node, string targetObjective)
+    {
+        if (node == null || string.IsNullOrEmpty(targetObjective)) return false;
+        
+        System.Collections.Generic.HashSet<DialogueNode> visited = new System.Collections.Generic.HashSet<DialogueNode>();
+        System.Collections.Generic.Queue<DialogueNode> queue = new System.Collections.Generic.Queue<DialogueNode>();
+        queue.Enqueue(node);
+        
+        while(queue.Count > 0)
+        {
+            var curr = queue.Dequeue();
+            if (visited.Contains(curr)) continue;
+            visited.Add(curr);
+            
+            if (!string.IsNullOrEmpty(curr.endEventName))
+            {
+                string endEv = curr.endEventName;
+                if (endEv.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+                    endEv = endEv.Substring("SetObjective:".Length).Trim();
+                else if (endEv.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
+                    endEv = endEv.Substring("SetObjective_".Length).Trim();
+                
+                if (targetObjective.Equals(endEv, System.StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            
+            if (curr.choices != null)
+            {
+                foreach(var choice in curr.choices)
+                {
+                    if (choice != null && choice.nextNode != null)
+                        queue.Enqueue(choice.nextNode);
+                }
+            }
+        }
+        return false;
     }
 
     public void EnableInteraction() 
     {
-        if (npcAnimator != null) interactionEnabled = true;
+        interactionEnabled = true;
+        if (npcAnimator == null)
+            Debug.LogWarning($"[InteractableNPC] {gameObject.name}: EnableInteraction called but npcAnimator is not assigned. Interaction enabled anyway.");
     }
     public void DisableInteraction() => interactionEnabled = false;
 
     protected override void Start()
     {
         base.Start();
-        if (npcAnimator == null)
+        // Only auto-disable if there's truly nothing to show (no animator AND no dialogue).
+        // NPCs with dialogue but no animator (e.g. Kalaw before animator is assigned) should
+        // still be interactable so the pickup -> EnableInteraction() chain works.
+        bool hasQuestDialogues = questDialogues != null && questDialogues.Count > 0;
+        if (npcAnimator == null && defaultDialogue == null && !hasQuestDialogues)
         {
-            interactionEnabled = false; // Disable if no animator on start
+            interactionEnabled = false;
+        }
+        else
+        {
+            interactionEnabled = true;
         }
     }
 
@@ -121,36 +199,53 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(obj)) return;
 
-        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw"
-        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
-            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
+        // First check if any questDialogue matches this objective directly
+        if (questDialogues != null)
         {
-            string targetName = obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) 
-                ? obj.Substring("Talk to ".Length).Trim() 
-                : obj.Substring("Return to ".Length).Trim();
+            foreach (var qd in questDialogues)
+            {
+                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    interactionEnabled = true;
+                    if (InteractionManager.Instance != null) InteractionManager.Instance.ForceCheckProximity();
+                    return;
+                }
+            }
+        }
+
+        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
+        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
+            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string targetName = obj;
+            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase))
+                targetName = obj.Substring("Talk to ".Length).Trim();
+            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
+                targetName = obj.Substring("Return to ".Length).Trim();
+            else if (obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+                targetName = obj.Substring("Find ".Length).Trim();
             
-            // Remove spaces and underscores from both for a bulletproof comparison (e.g. "Apo Lakay" vs "NPC_Apo_Lakay")
             string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
-            
-            // Clean the gameobject name to get the base NPC name (e.g. "NPC_Apo_Lakay" -> "apolakay")
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
                                               .Replace("rigged", "")
                                               .Replace("vendor", "")
                                               .Replace("npc", "");
 
-            // Check if the objective starts with the NPC name (e.g. "apolakay".StartsWith("apolakay") == true)
-            if (cleanTarget.StartsWith(cleanName))
+            bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
+            
+            // Check Tiptip <-> flowerpecker alias
+            if (!isMatch)
             {
-                if (npcAnimator != null)
-                {
-                    interactionEnabled = true;
-                }
-                else
-                {
-                    interactionEnabled = false; // Block if missing animator
-                }
+                bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
+                bool isTiptipName = cleanName.Contains("tiptip") || cleanName.Contains("flowerpecker");
+                if (isTiptipTarget && isTiptipName) isMatch = true;
+            }
+
+            if (isMatch)
+            {
+                interactionEnabled = true;
                 
-                // Also automatically show the interact prompt if the player is already close
                 if (InteractionManager.Instance != null)
                 {
                     InteractionManager.Instance.ForceCheckProximity();
@@ -158,7 +253,8 @@ public class InteractableNPC : InteractableBase
             }
             else
             {
-                interactionEnabled = false; // Disable everyone else!
+                // STRICTLY disable other NPCs if they are not the target of the linear quest
+                interactionEnabled = false;
             }
         }
     }
@@ -313,32 +409,62 @@ public class InteractableNPC : InteractableBase
 
     public void TriggerWrongAnswerAnimation()
     {
-        if (npcAnimator != null)
+        if (npcAnimator == null)
         {
-            StartCoroutine(WrongAnswerRoutine());
+            npcAnimator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>();
         }
+        
+        Debug.Log($"<color=orange>[InteractableNPC] TriggerWrongAnswerAnimation called on '{gameObject.name}' (Animator: {(npcAnimator != null ? npcAnimator.name : "NULL")})</color>");
+        StopCoroutine("WrongAnswerRoutine");
+        StartCoroutine(WrongAnswerRoutine());
     }
 
     private IEnumerator WrongAnswerRoutine()
     {
         isWrongAnswerPlaying = true;
         
-        // Let the UnityEvent fire (which likely triggers the Animator)
+        // 1. Invoke Inspector UnityEvent (OnWrongAnswer)
+        Debug.Log($"[InteractableNPC] Invoking OnWrongAnswer UnityEvent for '{gameObject.name}'...");
         OnWrongAnswer?.Invoke();
 
-        // Wait a moment for the animator to transition
-        yield return new WaitForSeconds(0.2f);
+        // 2. Direct Fallback: Try playing headShake state/trigger directly on Animator if defined
+        if (npcAnimator != null)
+        {
+            bool played = false;
+            foreach (var param in npcAnimator.parameters)
+            {
+                if (param.name.Equals("headShake", System.StringComparison.OrdinalIgnoreCase) ||
+                    param.name.Equals("wrongAnswer", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    if (param.type == AnimatorControllerParameterType.Trigger)
+                    {
+                        npcAnimator.SetTrigger(param.name);
+                        played = true;
+                    }
+                    else if (param.type == AnimatorControllerParameterType.Bool)
+                    {
+                        npcAnimator.SetBool(param.name, true);
+                        played = true;
+                    }
+                }
+            }
 
-        // Wait while the animator is in ANY state other than the base Idle
-        // This assumes the wrong answer animation is NOT the default state.
+            if (!played)
+            {
+                try { npcAnimator.Play("headShake", 0, 0f); } catch {}
+            }
+        }
+
+        // Wait a moment for the animator to transition
+        yield return new WaitForSeconds(0.3f);
+
         if (npcAnimator != null)
         {
             float elapsed = 0f;
-            while (elapsed < 5f) // Safety timeout
+            while (elapsed < 3f) // Safety timeout
             {
                 var state = npcAnimator.GetCurrentAnimatorStateInfo(0);
-                // If we've returned to the Idle state (assuming it's named "Idle" or contains "Idle")
-                if (state.IsName("apoLakay_Idle") || state.IsName("Idle")) 
+                if (state.IsName("Idle") || state.IsName("apoLakay_Idle") || state.normalizedTime >= 0.95f) 
                     break;
                 
                 elapsed += Time.deltaTime;
@@ -347,23 +473,86 @@ public class InteractableNPC : InteractableBase
         }
 
         isWrongAnswerPlaying = false;
+        Debug.Log($"[InteractableNPC] WrongAnswerRoutine finished for '{gameObject.name}'.");
     }
 
     public void HandleDialogueEvent(string eventName)
     {
         if (string.IsNullOrEmpty(eventName)) return;
         
-        string cleanEventName = eventName.Trim();
-        Debug.Log($"[InteractableNPC] Received Dialogue Event: '{cleanEventName}' on NPC: {gameObject.name}");
-
-        foreach (var mapping in dialogueEvents)
+        string[] events = eventName.Split(',');
+        foreach(string evt in events)
         {
-            if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+            string cleanEventName = evt.Trim();
+            if (string.IsNullOrEmpty(cleanEventName)) continue;
+            // NOTE: Logging is intentionally placed inside the match block below to avoid
+            // console spam — this method is called on ALL NPCs via the broadcast pattern.
+            
+            // Automatic system handler for TeachingOverlayPanel events
+
+            if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
             {
-                Debug.Log($"[InteractableNPC] Match found! Firing UnityEvents for: '{cleanEventName}'");
-                mapping.onEventTriggered?.Invoke();
+                if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+                }
             }
-        }
+            else if (cleanEventName.StartsWith("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+            {
+                if (TeachingOverlayPanel.Instance != null)
+                {
+                    TeachingOverlayPanel.Instance.Hide();
+                }
+            }
+            else if (cleanEventName.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string popupName = cleanEventName.Substring("ShowPopup:".Length).Trim();
+                if (PopupManager.Instance != null && !string.IsNullOrEmpty(popupName))
+                {
+                    PopupManager.Instance.ShowPopups(popupName);
+                }
+            }
+            else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+                if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+                {
+                    ObjectiveManager.Instance.SetObjective(newObjText);
+                }
+            }
+            else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+                if (InSceneLessonController.Instance != null)
+                {
+                    InSceneLessonController.Instance.StartInSceneLesson(camName);
+                }
+            }
+            else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
+            {
+                string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+                if (InSceneLessonController.Instance != null)
+                {
+                    InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+                }
+            }
+            else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+            {
+                if (InSceneLessonController.Instance != null)
+                {
+                    InSceneLessonController.Instance.EndInSceneLesson();
+                }
+            }
+
+            foreach (var mapping in dialogueEvents)
+            {
+                if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+                {
+                    Debug.Log($"[{gameObject.name}] Found mapping for event '{cleanEventName}'. Invoking associated UnityEvent.");
+                    mapping.onEventTriggered?.Invoke();
+                }
+            }
+        } // End foreach event loop
     }
 
     /// <summary>
@@ -385,6 +574,12 @@ public class InteractableNPC : InteractableBase
     /// </summary>
     public void StartLessonWithCategory(string category)
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Calle_Crisologo")
+        {
+            Debug.Log("[InteractableNPC] Bypassing lesson panels in Calle Crisologo.");
+            return;
+        }
+
         if (LessonIntroPanel.Instance != null)
         {
             LessonIntroPanel.Instance.ShowForCategory(category);
@@ -466,3 +661,4 @@ public class DialogueEventMapping
     public string eventName;
     public UnityEvent onEventTriggered;
 }
+
