@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Agyan! I hope you stay in Vigan a little longer!
+  dialogueText: 'Agyan! Sapay koma ta agtalinaedka pay iti Vigan iti ad-adu pay nga
+    aldaw!
+
+
+    Mapanka ken Aling Riza iti restaurant!'
+  translatedText: 'Agyan! I hope you stay in Vigan a little longer!
 
     Go see Aling
     Riza at the restaurant!'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Aling Riza

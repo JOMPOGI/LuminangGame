@@ -14,16 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Rayo
   speakerPortrait: {fileID: 21300000, guid: 375a2426790ffd84aa1a9c7758ba6b06, type: 3}
-  dialogueText: 'After exploring all day, everyone needs time to rest.
+  dialogueText: 'Kalpasan ti panagpasyar iti intero nga aldaw, kasapulan ti tunggal
+    maysa ti tiempo a paginana.
 
-    In Ilokano,
-    ''maturog'' means ''sleep.''
 
-    It is the action of resting while asleep.
+    Iti Ilokano, ti ''maturog'' ket kayatna a saoen
+    ti ''sleep.''
 
-    Now,
-    try saying ''maturog'' yourself.'
-  translatedText: 
+
+    Dayta ti aramid ti panaginana bayat ti turog.
+
+
+    Denggem
+    a naimbag: maturog.
+
+
+    Ita, padasem nga ibagam ti ''maturog'' iti bukodmo
+    a timek.'
+  translatedText: 'After exploring all day, everyone needs time to rest.
+
+    In
+    Ilokano, ''maturog'' means ''sleep.''
+
+    It is the action of resting while
+    asleep.
+
+    Now, try saying ''maturog'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

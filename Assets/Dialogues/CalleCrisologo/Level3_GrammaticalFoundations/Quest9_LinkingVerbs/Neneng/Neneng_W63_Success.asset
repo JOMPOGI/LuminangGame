@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: Agtalinaed! May our culture remain strong for generations!
-  translatedText: 
+  dialogueText: Agtalinaed! Sapay koma ta agtalinaed a napigsa ti kultura tayo iti
+    sumarsaruno a henerasyon!
+  translatedText: Agtalinaed! May our culture remain strong for generations!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

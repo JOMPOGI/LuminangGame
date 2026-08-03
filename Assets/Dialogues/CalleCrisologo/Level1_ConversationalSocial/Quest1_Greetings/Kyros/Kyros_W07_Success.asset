@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!
-  translatedText: 
+  dialogueText: Naimbag nga aldaw! Sapay koma ta ragsakam ti panagpasyarmo iti Calle
+    Crisologo!
+  translatedText: Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

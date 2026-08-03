@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes we want to understand the reason behind something.
+  dialogueText: 'Adda dagiti oras a kayattayo a maawatan ti rason iti likudan ti
+    maysa a banag.
+
+
+    Iti Ilokano, ti ''apay'' ket kayatna a saoen ti ''why.''
+
+
+    Usarem
+    daytoy no damagem ti rason wenno ilawlawag ti maysa a banag.
+
+
+    Denggem a
+    naimbag: apay.
+
+
+    Ita, padasem nga ibagam ti ''apay'' iti bukodmo a timek.'
+  translatedText: 'Sometimes we want to understand the reason behind something.
 
     In
     Ilokano, ''apay'' means ''why.''
@@ -23,7 +39,6 @@ MonoBehaviour:
 
     Now,
     try saying ''apay'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

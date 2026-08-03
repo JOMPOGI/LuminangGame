@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Isuda! You're talking about them!
-  translatedText: 
+  dialogueText: Isuda! Pagsasaritaanmo ida!
+  translatedText: Isuda! You're talking about them!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

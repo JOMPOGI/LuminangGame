@@ -14,11 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about a group of other people, Ilokano uses ''isuda''
+  dialogueText: 'No pagsasaritaanmo ti maysa a grupo dagiti sabali a tattao, agusar
+    ti Ilokano iti ''isuda'' para iti ''they.''
+
+
+    Denggem a naimbag: isuda.
+
+
+    Ita,
+    padasem nga ibagam ti ''isuda'' iti bukodmo a timek.'
+  translatedText: 'When talking about a group of other people, Ilokano uses ''isuda''
     for ''they.''
 
     Now, try saying ''isuda'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

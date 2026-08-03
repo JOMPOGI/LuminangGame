@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Marikna! Talk to me again for Pronouns!
-  translatedText: 
+  dialogueText: "Marikna!\n\n\u2728 NALUKATAN TI LINKING VERBS MILESTONE! \u2728\n\nMakisaritaka
+    manen kaniak para kadagiti Pronouns!"
+  translatedText: Marikna! Talk to me again for Pronouns!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Learn pronouns with Aling Riza

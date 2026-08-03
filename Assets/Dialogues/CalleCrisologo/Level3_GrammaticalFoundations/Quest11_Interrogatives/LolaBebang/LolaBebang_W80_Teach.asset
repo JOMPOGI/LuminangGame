@@ -14,13 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When you want to ask about the way something is done, use ''kasano.''
+  dialogueText: 'No kayatmo a damagen no kasano a naaramid ti maysa a banag, agusarka
+    iti ''kasano.''
+
+
+    Kayatna a saoen ti ''how.''
+
+
+    Denggem a naimbag: kasano.
+
+
+    Ita,
+    padasem nga ibagam ti ''kasano'' iti bukodmo a timek.'
+  translatedText: 'When you want to ask about the way something is done, use ''kasano.''
 
     It
     means ''how.''
 
     Now, try saying ''kasano'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

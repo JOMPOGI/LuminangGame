@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: 'Smell that sizzling longganisa? My counter is getting crowded!
+  dialogueText: 'Mariknam kadi ti angot dayta a mapudpudot a longganisa? Napno ti
+    counterko!
+
+
+    No kasapulam a tawagan iti naurnos a wagas ti panagkitana ti
+    maysa a tao wenno lumabas iti napno a lugar, mabalinmo nga ibaga ti ''dispensaren
+    nak.''
+
+
+    Kayatna a saoen ti ''excuse me.''
+
+
+    Denggem a naimbag: dispensaren
+    nak.
+
+
+    Ita, padasem nga ibagam ti ''dispensaren nak'' iti bukodmo a timek.'
+  translatedText: 'Smell that sizzling longganisa? My counter is getting crowded!
 
     When
     you need to politely get someone''s attention or pass through a crowded space,
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try saying
     ''dispensaren nak'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

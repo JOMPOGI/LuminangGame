@@ -14,8 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: 'If someone says something you don''t understand, it''s useful to
-    let them know.
+  dialogueText: 'No adda nagsao iti maysa a banag nga saanmo a naawatan, nasayaat
+    nga ibagam kadakuada.
+
+
+    Iti Ilokano, ti ''diak maawatan'' ket kayatna a saoen
+    ti ''I don''t understand.''
+
+
+    Mabalinmo nga agusar iti daytoy no kasapulam
+    nga ilawlawag manen ti maysa a tao.
+
+
+    Denggem a naimbag: diak maawatan.
+
+
+    Ita,
+    padasem nga ibagam ti ''diak maawatan'' iti bukodmo a timek.'
+  translatedText: 'If someone says something you don''t understand, it''s useful
+    to let them know.
 
     In Ilokano, ''diak maawatan'' means ''I don''t understand.''
 
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try saying
     ''diak mawatan'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

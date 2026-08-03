@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: Mabalin kadi agsaludsod! Ask away!
-  translatedText: 
+  dialogueText: "Mabalin kadi agsaludsod! Sige, damagem laeng!\n\n\u2728 NALUKATAN
+    TI REQUESTS MILESTONE! \u2728"
+  translatedText: Mabalin kadi agsaludsod! Ask away!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Learn directions from Lito

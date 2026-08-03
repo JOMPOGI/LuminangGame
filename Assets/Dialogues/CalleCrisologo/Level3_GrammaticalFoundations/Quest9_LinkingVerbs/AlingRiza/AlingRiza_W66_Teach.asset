@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Let''s learn words that help us talk about people.
+  dialogueText: 'Sursuruentayo dagiti sasao a makatulong kadatayo a mangsarita maipapan
+    kadagiti tattao.
+
+
+    Iti Ilokano, ti ''siak'' ket kayatna a saoen ti ''I.''
+
+
+    Usarem
+    daytoy no pagsasaritaanmo ti bagim.
+
+
+    Denggem a naimbag: siak.
+
+
+    Ita,
+    padasem nga ibagam ti ''siak'' iti bukodmo a timek.'
+  translatedText: 'Let''s learn words that help us talk about people.
 
     In Ilokano,
     ''siak'' means ''I.''
@@ -23,7 +39,6 @@ MonoBehaviour:
 
     Now, try
     saying ''siak'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

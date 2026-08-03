@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: 'You''re heading toward Plaza Salcedo and don''t want to make any
+  dialogueText: 'Mapanka iti Plaza Salcedo ken saanmo a kayat ti agliko iti aniaman
+    a dalan.
+
+
+    Iti Ilokano, ti ''agdiretso'' ket kayatna a saoen ti ''go straight.''
+
+
+    Mabalinmo
+    nga agusar iti daytoy no mangtedka iti direksyon wenno no ibagam iti maysa a
+    tao nga agtultuloy a mapan iti sango.
+
+
+    Denggem a naimbag: agdiretso.
+
+
+    Ita,
+    padasem nga ibagam ti ''agdiretso'' iti bukodmo a timek.'
+  translatedText: 'You''re heading toward Plaza Salcedo and don''t want to make any
     turns.
 
     In Ilokano, ''agdiretso'' means ''go straight.''
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try
     saying ''agdiretso'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: Agyamanak iti tulong mo! We Ilocanos love helping one another!
-  translatedText: 
+  dialogueText: Agyamanak iti tulong mo! Ay-ayatenmi dagiti Ilocano ti panagtutulong
+    iti tunggal maysa!
+  translatedText: Agyamanak iti tulong mo! We Ilocanos love helping one another!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

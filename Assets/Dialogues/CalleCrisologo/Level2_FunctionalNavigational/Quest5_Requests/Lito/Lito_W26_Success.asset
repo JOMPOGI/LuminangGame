@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: Ikanmo man! Well done! Here is your map of Vigan!
-  translatedText: 
+  dialogueText: Ikanmo man! Naimbag ti panagaramidmo! Adda ditoy ti mapam iti Vigan!
+  translatedText: Ikanmo man! Well done! Here is your map of Vigan!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

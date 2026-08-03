@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: Uray ditoy! Talk to me again for the Counting lessons!
-  translatedText: 
+  dialogueText: "Uray ditoy!\n\n\u2728 NALUKATAN TI DIRECTIONS MILESTONE! \u2728\n\nMakisaritaka
+    manen kaniak para kadagiti leksyon iti panagbilang!"
+  translatedText: Uray ditoy! Talk to me again for the Counting lessons!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Learn counting with Klara

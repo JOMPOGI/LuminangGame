@@ -14,20 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Clack-clack-clack goes the loom! Welcome, traveler!
+  dialogueText: 'Clack-clack-clack ti loom! Naragsak a panagbalinka ditoy, biyahero!
 
-    When someone
-    helps you, gives you something, or does something kind for you, it is important
-    to show appreciation.
 
-    In Ilokano, ''agyamanak'' means ''thank you.''
+    No
+    adda tumulong kenka, nangted iti maysa a banag kenka, wenno nangaramid iti naimbag
+    a banag para kenka, napateg nga ipakitam ti panagyamanmo.
 
-    You
-    can use it whenever you want to express gratitude.
 
-    Now, try saying ''agyamanak''
-    yourself.'
-  translatedText: 
+    Iti Ilokano,
+    ti ''agyamanak'' ket kayatna a saoen ti ''thank you.''
+
+
+    Mabalinmo nga agusar
+    iti daytoy no kayatmo nga ipakita ti panagyamanmo.
+
+
+    Denggem a naimbag: agyamanak.
+
+
+    Ita,
+    padasem nga ibagam ti ''agyamanak'' iti bukodmo a timek.'
+  translatedText: 'Clack-clack-clack goes the loom! Welcome, traveler!
+
+    When
+    someone helps you, gives you something, or does something kind for you, it is
+    important to show appreciation.
+
+    In Ilokano, ''agyamanak'' means ''thank
+    you.''
+
+    You can use it whenever you want to express gratitude.
+
+    Now,
+    try saying ''agyamanak'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,13 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When asking about time, you can use ''kaano.''
+  dialogueText: 'No damagem maipapan iti tiempo wenno oras, mabalinmo nga agusar
+    iti ''kaano.''
+
+
+    Kayatna a saoen ti ''when.''
+
+
+    Denggem a naimbag: kaano.
+
+
+    Ita,
+    padasem nga ibagam ti ''kaano'' iti bukodmo a timek.'
+  translatedText: 'When asking about time, you can use ''kaano.''
 
     It means ''when.''
 
     Now,
     try saying ''kaano'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Isuda! You've learned how Ilokano can talk about different people!
-  translatedText: 
+  dialogueText: Isuda! Nasursurom no kasano nga pagsasaritaan ti Ilokano dagiti nadumaduma
+    a tattao!
+  translatedText: Isuda! You've learned how Ilokano can talk about different people!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Lola Bebang

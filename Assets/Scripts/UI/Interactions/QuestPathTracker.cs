@@ -211,6 +211,26 @@ public class QuestPathTracker : MonoBehaviour
             }
         }
 
+        // 3. Fallback: Search InteractableNPC objects
+        if (_activeMarker == null)
+        {
+            InteractableNPC[] npcs = FindObjectsByType<InteractableNPC>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            for (int i = 0; i < npcs.Length; i++)
+            {
+                if (npcs[i] != null && npcs[i].IsTargetOfObjective(objectiveName))
+                {
+                    QuestTargetMarker dynamicMarker = npcs[i].GetComponent<QuestTargetMarker>();
+                    if (dynamicMarker == null)
+                    {
+                        dynamicMarker = npcs[i].gameObject.AddComponent<QuestTargetMarker>();
+                        dynamicMarker.requiredObjective = objectiveName;
+                    }
+                    _activeMarker = dynamicMarker;
+                    break;
+                }
+            }
+        }
+
         _markersDirty = false;
         bool hasTarget = _activeMarker != null;
         if (hasTarget)

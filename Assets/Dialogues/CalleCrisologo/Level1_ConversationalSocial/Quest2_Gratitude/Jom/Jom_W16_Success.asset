@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: Okay! Easy enough! You're picking this up quickly!
-  translatedText: 
+  dialogueText: Okay! Nalaka laeng! Napardas ti panagsursurom!
+  translatedText: Okay! Easy enough! You're picking this up quickly!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,7 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was
+  dialogueText: 'Naimbag nga aldaw, biyahero! Imbaga ni Kalaw kaniak nga adda baro
+    a biyahero nga agpasyar iti Vigan.
+
+
+    No nalpasen ti bigat ken dumteng ti
+    malem, mabalin nga mangabla dagiti Ilocano iti maysa a tao babaen ti panangibaga
+    iti ''naimbag a malem.''
+
+
+    Kayatna a saoen ti ''good afternoon.''
+
+
+    Mabalinmo
+    nga agusar iti daytoy no mangabla ka iti maysa a tao iti malem.
+
+
+    Denggem
+    a naimbag: naimbag a malem.
+
+
+    Ita, padasem nga ibagam ti ''naimbag a malem''
+    iti bukodmo a timek.'
+  translatedText: 'Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was
     exploring Vigan.
 
     When the morning has passed and the afternoon arrives,
@@ -27,7 +49,6 @@ MonoBehaviour:
 
     Now,
     try saying ''naimbag a malem'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

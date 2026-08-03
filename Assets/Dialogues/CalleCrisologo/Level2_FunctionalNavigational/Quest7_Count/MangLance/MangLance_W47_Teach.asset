@@ -14,13 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
   speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
-  dialogueText: 'And now, we''ve reached ten!
+  dialogueText: 'Ket ita, nakadanontayon iti sangapulo!
+
+
+    Iti Ilokano, ti ''sangapulo''
+    ket kayatna a saoen ti ''ten.''
+
+
+    Denggem a naimbag: sangapulo.
+
+
+    Ita,
+    padasem nga ibagam ti ''sangapulo'' iti bukodmo a timek.'
+  translatedText: 'And now, we''ve reached ten!
 
     In Ilokano, ''sangapulo'' means
     ''ten.''
 
     Now, try saying ''sangapulo'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

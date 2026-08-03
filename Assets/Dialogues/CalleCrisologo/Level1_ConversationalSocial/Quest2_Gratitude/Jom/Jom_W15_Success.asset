@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: Saan! Got it! I'll keep that garlic vinegar ready for another time!
-  translatedText: 
+  dialogueText: Saan! Naawatak! Isaganaak laeng dayta a garlic vinegar iti sabali
+    nga aldaw!
+  translatedText: Saan! Got it! I'll keep that garlic vinegar ready for another time!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

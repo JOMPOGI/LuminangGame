@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: 'Sometimes you simply want to show that you agree or understand.
+  dialogueText: 'Adda dagiti oras a kayatmo laeng a mangipakita nga umanamongka wenno
+    naawatam ti maysa a banag.
+
+
+    Iti Ilokano, mabalin met nga agusar iti ''okay''
+    tapno ibagam ti ''okay.''
+
+
+    Maysa dayta a simple a sungbat nga agusarem tapno
+    ipakitam nga naawatam ti banag wenno umanamongka.
+
+
+    Denggem a naimbag: okay.
+
+
+    Ita,
+    padasem nga ibagam ti ''okay'' iti bukodmo a timek.'
+  translatedText: 'Sometimes you simply want to show that you agree or understand.
 
     In
     Ilokano, ''okay'' can also be used to say ''okay.''
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try saying ''okay''
     yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -80,6 +80,7 @@ public class DialogueUIController : MonoBehaviour
 
     // Paging
     private List<string>                  _pages = new List<string>();
+    private List<string>                  _translatedPages = new List<string>();
     private int                           _currentPageIndex = 0;
     private bool                          _isSkippingAnimation = false;
 
@@ -127,19 +128,9 @@ public class DialogueUIController : MonoBehaviour
         _isTranslatedShowing = false;
         _skipTyping       = skipAnimation; // If skipping, we force it here
 
-        // Split full text into pages
-        _pages.Clear();
-        if (!string.IsNullOrEmpty(_fullText))
-        {
-            string[] rawLines = _fullText.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-            foreach (var line in rawLines)
-            {
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    _pages.Add(line.Trim());
-                }
-            }
-        }
+        // Split full text and translated text into pages (sentences)
+        _pages = SplitIntoSentences(_fullText);
+        _translatedPages = SplitIntoSentences(_translatedText);
         
         if (_pages.Count == 0) _pages.Add("");
         _currentPageIndex = 0;
@@ -458,9 +449,8 @@ public class DialogueUIController : MonoBehaviour
 
         if (dialogueText != null)
         {
-            // For now, translated text is shown fully, or we'd need to paginate it too.
-            // But usually translated text is just a short snippet.
-            dialogueText.text = _isTranslatedShowing ? _translatedText : _pages[_currentPageIndex];
+            int idx = Mathf.Min(_currentPageIndex, Mathf.Max(0, _translatedPages.Count - 1));
+            dialogueText.text = _isTranslatedShowing && _translatedPages.Count > 0 ? _translatedPages[idx] : _pages[_currentPageIndex];
         }
 
         StartCoroutine(ButtonPressAnim(translateButton.transform));
@@ -488,9 +478,10 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string textToShow = _pages.Count > 0 ? _pages[_currentPageIndex] : "";
-        if (_isTranslatedShowing && !string.IsNullOrEmpty(_translatedText)) 
+        if (_isTranslatedShowing && _translatedPages.Count > 0) 
         {
-            textToShow = _translatedText;
+            int idx = Mathf.Min(_currentPageIndex, Mathf.Max(0, _translatedPages.Count - 1));
+            textToShow = _translatedPages[idx];
         }
 
         if (typingSpeed > 0 && !skipAnimation)
@@ -773,5 +764,61 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 #endif
+    }
+
+    private List<string> SplitIntoSentences(string text)
+    {
+        List<string> result = new List<string>();
+        if (string.IsNullOrWhiteSpace(text)) return result;
+
+        string[] paragraphs = text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        
+        foreach (var paragraph in paragraphs)
+        {
+            string p = paragraph.Trim();
+            if (string.IsNullOrEmpty(p)) continue;
+
+            int startIndex = 0;
+            for (int i = 0; i < p.Length; i++)
+            {
+                char c = p[i];
+                if (c == '.' || c == '!' || c == '?')
+                {
+                    // Check for ellipsis
+                    if (c == '.' && i + 2 < p.Length && p[i+1] == '.' && p[i+2] == '.')
+                    {
+                        i += 2;
+                        continue;
+                    }
+                    
+                    int endIndex = i;
+                    while (endIndex + 1 < p.Length && (p[endIndex + 1] == '"' || p[endIndex + 1] == '\'' || p[endIndex + 1] == ')'))
+                    {
+                        endIndex++;
+                    }
+
+                    if (endIndex + 1 >= p.Length || char.IsWhiteSpace(p[endIndex + 1]))
+                    {
+                        string sentence = p.Substring(startIndex, (endIndex + 1) - startIndex).Trim();
+                        if (!string.IsNullOrEmpty(sentence))
+                        {
+                            result.Add(sentence);
+                        }
+                        startIndex = endIndex + 1;
+                        i = endIndex;
+                    }
+                }
+            }
+
+            if (startIndex < p.Length)
+            {
+                string remaining = p.Substring(startIndex).Trim();
+                if (!string.IsNullOrEmpty(remaining))
+                {
+                    result.Add(remaining);
+                }
+            }
+        }
+        return result;
     }
 }

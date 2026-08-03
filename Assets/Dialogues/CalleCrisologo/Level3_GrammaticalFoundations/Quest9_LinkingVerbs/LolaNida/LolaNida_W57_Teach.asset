@@ -14,14 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When identifying or describing something specific, Ilokano can use
-    ''isu ti'' as part of the sentence structure.
+  dialogueText: 'No mangibaga wenno mangiladawan ka iti espesipiko a banag, mabalin
+    nga agusar ti Ilokano iti ''isu ti'' a paset ti istruktura ti pangungusap.
 
-    For example, it can help express
-    an idea similar to ''is the'' in English.
 
-    Now, try saying ''isu ti'' yourself.'
-  translatedText: 
+    Kas
+    pagarigan, makatulong daytoy a mangipakita iti kapanunotan a kas iti ''is the''
+    iti English.
+
+
+    Denggem a naimbag: isu ti.
+
+
+    Ita, padasem nga ibagam ti
+    ''isu ti'' iti bukodmo a timek.'
+  translatedText: 'When identifying or describing something specific, Ilokano can
+    use ''isu ti'' as part of the sentence structure.
+
+    For example, it can help
+    express an idea similar to ''is the'' in English.
+
+    Now, try saying ''isu
+    ti'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

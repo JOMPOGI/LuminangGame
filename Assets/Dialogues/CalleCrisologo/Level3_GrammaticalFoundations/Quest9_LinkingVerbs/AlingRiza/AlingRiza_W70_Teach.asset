@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about yourself together with other people, you can
+  dialogueText: 'No pagsasaritaanmo ti bagim a kadua dagiti dadduma, mabalinmo nga
+    agusar iti ''dakkami'' para iti ''we'' iti konteksto nga sursursuruentayo.
+
+
+    Denggem
+    a naimbag: dakkami.
+
+
+    Ita, padasem nga ibagam ti ''dakkami'' iti bukodmo
+    a timek.'
+  translatedText: 'When talking about yourself together with other people, you can
     use ''dakkami'' for ''we'' in the context taught here.
 
     Now, try saying ''dakkami''
     yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

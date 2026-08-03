@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Apay! Now you can ask why!
-  translatedText: 
+  dialogueText: Apay! Ita, mabalinmon a damagen no apay!
+  translatedText: Apay! Now you can ask why!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

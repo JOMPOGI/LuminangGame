@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: Ket idi! The past lives on through the stories we tell!
-  translatedText: 
+  dialogueText: Ket idi! Agtultuloy ti napalabas babaen kadagiti istoria nga isasaritatayo!
+  translatedText: Ket idi! The past lives on through the stories we tell!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Neneng

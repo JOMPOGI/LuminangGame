@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
   speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
-  dialogueText: Mapan idiay! Cool shade is much safer!
-  translatedText: 
+  dialogueText: Mapan idiay! Nasaysayaat ti nalamiis a lugar!
+  translatedText: Mapan idiay! Cool shade is much safer!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

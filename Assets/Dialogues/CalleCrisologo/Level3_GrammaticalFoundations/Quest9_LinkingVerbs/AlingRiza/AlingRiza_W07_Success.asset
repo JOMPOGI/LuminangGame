@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Siak! You're getting comfortable with these pronouns!
-  translatedText: 
+  dialogueText: Siak! Agbalinmon a komportable kadagitoy a pronouns!
+  translatedText: Siak! You're getting comfortable with these pronouns!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

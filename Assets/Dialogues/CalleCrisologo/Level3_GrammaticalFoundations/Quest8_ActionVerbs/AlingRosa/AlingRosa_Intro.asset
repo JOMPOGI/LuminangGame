@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Rosa
   speakerPortrait: {fileID: 21300000, guid: e185e0ec3efba60429a1f9e0680e9fe7, type: 3}
-  dialogueText: 'Ay, my thread broke!
+  dialogueText: 'Ay, napukaw ti linya!
+
+
+    Pangngaasim, sapulem ti bassit a linya
+    tapno malpas ko ti panagabel kadagitoy napintas ken nadumaduma a souvenir!'
+  translatedText: 'Ay, my thread broke!
 
     Please find some thread so I can finish
     weaving these colorful souvenirs!'
-  translatedText: 
   animationTrigger: 
   triggerEventName: SetObjective_Learn action verbs from Aling Rosa
   endEventName: 

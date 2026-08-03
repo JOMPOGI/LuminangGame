@@ -71,10 +71,11 @@ public class QuestIndicator : MonoBehaviour
     {
         if (!_isInitialized) return;
 
-        // If attached to an NPC, perfectly sync with its interaction state!
+        // If attached to an NPC, perfectly sync with its exact objective target status
         if (_parentNPC != null)
         {
-            _matchesObjective = _parentNPC.interactionEnabled;
+            string currentObj = ObjectiveManager.Instance != null ? ObjectiveManager.Instance.CurrentObjective : "";
+            _matchesObjective = _parentNPC.IsTargetOfObjective(currentObj);
         }
 
         // 1. Check if we are in a dialogue right now (Reliable every-frame check)

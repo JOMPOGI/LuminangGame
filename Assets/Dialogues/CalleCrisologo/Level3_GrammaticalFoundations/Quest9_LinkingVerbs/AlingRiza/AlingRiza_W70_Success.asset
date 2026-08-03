@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Dakkami! Now you're speaking as part of a group!
-  translatedText: 
+  dialogueText: Dakkami! Ita, agsarsaritaka kas paset ti maysa a grupo!
+  translatedText: Dakkami! Now you're speaking as part of a group!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

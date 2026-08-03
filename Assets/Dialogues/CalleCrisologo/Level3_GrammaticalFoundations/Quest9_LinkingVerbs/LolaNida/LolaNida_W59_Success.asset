@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: Ket idi! You're connecting language with the history of Ilocos!
-  translatedText: 
+  dialogueText: Ket idi! Ikonektaem ti pagsasao iti pakasaritaan ti Ilocos!
+  translatedText: Ket idi! You're connecting language with the history of Ilocos!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

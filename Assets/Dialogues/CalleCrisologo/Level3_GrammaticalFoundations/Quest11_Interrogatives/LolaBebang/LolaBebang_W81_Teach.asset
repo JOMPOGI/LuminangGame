@@ -14,17 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: 'And now, you''ve reached another important question.
+  dialogueText: 'Ket ita, nakadanonka iti sabali pay a napateg a saludsod.
 
-    When you
-    want to ask about quantity, Ilokano uses ''mano'' for ''how many.''
+
+    No
+    kayatmo a damagen ti bilang wenno kadakkel ti maysa a grupo, agusar ti Ilokano
+    iti ''mano'' para iti ''how many.''
+
+
+    Mabalinmo nga agusar iti daytoy no
+    damagem ti bilang dagiti tattao wenno banag.
+
+
+    Denggem a naimbag: mano.
+
+
+    Ita,
+    padasem nga ibagam ti ''mano'' iti bukodmo a timek.'
+  translatedText: 'And now, you''ve reached another important question.
+
+    When
+    you want to ask about quantity, Ilokano uses ''mano'' for ''how many.''
 
     You
     can use it when asking about the number of people or objects.
 
     Now, try saying
     ''mano'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

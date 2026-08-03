@@ -14,20 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: 'Look at the morning sun shining over the tiled roofs of Calle Crisologo.
+  dialogueText: 'Kitaem ti init ti bigat a sumilnag iti ngato dagiti tuktok a tuilan
+    iti Calle Crisologo.
 
-    In
-    Ilokano, ''naimbag a bigat'' means ''good morning.''
 
-    You can use it when
-    greeting someone earlier in the day.
+    Iti Ilokano, ti ''naimbag a bigat'' ket kayatna a
+    saoen ti ''good morning.''
 
-    For example, you can use it when greeting
-    vendors as they begin their morning.
 
-    Now, try saying ''naimbag a bigat''
-    yourself.'
-  translatedText: 
+    Mabalinmo nga agusar iti daytoy no mangabla
+    ka iti maysa a tao iti nasapa a paset ti aldaw.
+
+
+    Kas pagarigan, mabalinmo
+    nga ibaga daytoy no mangabla ka kadagiti aglaklako bayat ti panangrugi da iti
+    trabaho iti bigat.
+
+
+    Denggem a naimbag: naimbag a bigat.
+
+
+    Ita, padasem
+    nga ibagam ti ''naimbag a bigat'' iti bukodmo a timek.'
+  translatedText: 'Look at the morning sun shining over the tiled roofs of Calle
+    Crisologo.
+
+    In Ilokano, ''naimbag a bigat'' means ''good morning.''
+
+    You
+    can use it when greeting someone earlier in the day.
+
+    For example, you can
+    use it when greeting vendors as they begin their morning.
+
+    Now, try saying
+    ''naimbag a bigat'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

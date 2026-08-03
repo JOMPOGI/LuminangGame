@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: Ania ti nagan mo? That's a great question to ask when meeting someone
+  dialogueText: Ania ti nagan mo? Nasayaat dayta a saludsod no makisabatka iti baro
+    a tao!
+  translatedText: Ania ti nagan mo? That's a great question to ask when meeting someone
     new!
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

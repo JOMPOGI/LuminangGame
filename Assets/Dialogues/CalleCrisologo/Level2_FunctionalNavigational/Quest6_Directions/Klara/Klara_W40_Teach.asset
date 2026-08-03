@@ -14,16 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: 'The next number is ''tallo.''
+  dialogueText: 'Ti sumaruno a numero ket ''tallo.''
 
-    In Ilokano, ''tallo'' means ''three.''
 
-    For
-    example, you can use it when counting three objects.
+    Iti Ilokano, ti ''tallo''
+    ket kayatna a saoen ti ''three.''
 
-    Now, try saying ''tallo''
-    yourself.'
-  translatedText: 
+
+    Kas pagarigan, mabalinmo nga agusar iti
+    daytoy no agbilangka iti tallo a banag.
+
+
+    Denggem a naimbag: tallo.
+
+
+    Ita,
+    padasem nga ibagam ti ''tallo'' iti bukodmo a timek.'
+  translatedText: 'The next number is ''tallo.''
+
+    In Ilokano, ''tallo'' means
+    ''three.''
+
+    For example, you can use it when counting three objects.
+
+    Now,
+    try saying ''tallo'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

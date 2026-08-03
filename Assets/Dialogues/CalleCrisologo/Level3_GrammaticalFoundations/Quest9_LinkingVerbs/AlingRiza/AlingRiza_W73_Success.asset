@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Dakkami! Language helps us describe who belongs together!
-  translatedText: 
+  dialogueText: Dakkami! Ti pagsasao ket makatulong a mangiladawan no asino dagiti
+    agkakadua!
+  translatedText: Dakkami! Language helps us describe who belongs together!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

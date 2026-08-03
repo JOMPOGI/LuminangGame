@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: Agliko iti kannawan! Turn right at the corner!
-  translatedText: 
+  dialogueText: Agliko iti kannawan! Agliko iti kannawan iti suli!
+  translatedText: Agliko iti kannawan! Turn right at the corner!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

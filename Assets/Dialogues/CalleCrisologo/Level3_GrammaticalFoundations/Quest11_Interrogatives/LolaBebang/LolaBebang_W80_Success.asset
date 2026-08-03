@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Kasano! Look how far you've come!
-  translatedText: 
+  dialogueText: Kasano! Kitaem no kasano ti kinadayo ti nadanonmo!
+  translatedText: Kasano! Look how far you've come!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

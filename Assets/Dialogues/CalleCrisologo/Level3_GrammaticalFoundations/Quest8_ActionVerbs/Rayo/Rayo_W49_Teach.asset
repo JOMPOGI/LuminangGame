@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Rayo
   speakerPortrait: {fileID: 21300000, guid: 375a2426790ffd84aa1a9c7758ba6b06, type: 3}
-  dialogueText: 'Click! Great pose!
+  dialogueText: 'Click! Nasayaat a pose!
+
+
+    Napudot ita nga aldaw, ket nalabit
+    a kayatmo ti maysa a makapresko.
+
+
+    Iti Ilokano, ti ''uminom'' ket kayatna
+    a saoen ti ''drink.''
+
+
+    Maysa dayta nga action verb nga agusar no pagsasaritaan
+    ti panaginom iti maysa a banag.
+
+
+    Denggem a naimbag: uminom.
+
+
+    Ita, padasem
+    nga ibagam ti ''uminom'' iti bukodmo a timek.'
+  translatedText: 'Click! Great pose!
 
     It''s warm today, and you might want something
     refreshing.
@@ -26,7 +46,6 @@ MonoBehaviour:
 
     Now, try saying ''uminom''
     yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

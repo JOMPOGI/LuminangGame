@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a rabii! Look at your pendant glow!
-  translatedText: 
+  dialogueText: Naimbag a rabii! Kitaem, sumilnag ti pendantmo!
+  translatedText: Naimbag a rabii! Look at your pendant glow!
   animationTrigger: 
   triggerEventName: 
   endEventName: 
