@@ -14,11 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tala
   speakerPortrait: {fileID: 21300000, guid: 0c019a51009268f43a5d4f67570f27cb, type: 3}
-  dialogueText: 'In Ilokano, the number ''six'' is ''innem.''
+  dialogueText: 'Iti Ilokano, ti numero a ''six'' ket ''innem.''
+
+
+    Denggem a
+    naimbag: innem.
+
+
+    Ita, padasem nga ibagam ti ''innem'' iti bukodmo a timek.'
+  translatedText: 'In Ilokano, the number ''six'' is ''innem.''
 
     Now, try saying
     ''innem'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: Agyamanak! Showing gratitude helps keep our community close-knit!
-  translatedText: 
+  dialogueText: Agyamanak! Ti panangipakita iti panagyaman ket makatulong a mangpapigsa
+    iti panagkakayamet ti komunidad!
+  translatedText: Agyamanak! Showing gratitude helps keep our community close-knit!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

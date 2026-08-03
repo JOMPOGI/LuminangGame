@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: Isu ti! You're learning how Ilokano connects ideas!
-  translatedText: 
+  dialogueText: Isu ti! Sursuruem no kasano nga ikonekta ti Ilokano dagiti kapanunotan!
+  translatedText: Isu ti! You're learning how Ilokano connects ideas!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

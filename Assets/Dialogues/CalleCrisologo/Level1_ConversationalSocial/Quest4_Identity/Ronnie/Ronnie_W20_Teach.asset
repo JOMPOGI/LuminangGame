@@ -14,7 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Now it''s your turn to introduce yourself.
+  dialogueText: 'Ita, sika met ti agpakilala iti bagim.
+
+
+    Iti Ilokano, ti ''ti
+    nagan ko ket...'' ket kayatna a saoen ti ''my name is...''
+
+
+    Dagiti sao a
+    ''ti nagan ko ket'' ket isu ti fixed a paset ti pagsasao. Kalpasanna, iyungetmo
+    ti bukodmo a nagan.
+
+
+    Kas pagarigan: ''Ti nagan ko ket Jom.''
+
+
+    Denggem
+    a naimbag: ti nagan ko ket Jom.
+
+
+    Ita, padasem nga agpakilala iti bagim babaen
+    ti ''ti nagan ko ket...'' ken iyungetmo ti bukodmo a nagan.'
+  translatedText: 'Now it''s your turn to introduce yourself.
 
     In Ilokano, ''ti
     nagan ko ket...'' means ''my name is...''
@@ -26,7 +47,6 @@ MonoBehaviour:
     ''Ti nagan ko ket Jom.''
 
     Now, try saying ''ti nagan ko ket ___'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,11 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about a male person who is not the speaker or listener,
+  dialogueText: 'No pagsasaritaanmo ti lalaki a saan nga isuna ti agsao wenno ti
+    tao nga pagsasaritaam, agusar ti Ilokano iti ''isuna'' para iti ''he.''
+
+
+    Denggem
+    a naimbag: isuna.
+
+
+    Ita, padasem nga ibagam ti ''isuna'' iti bukodmo a timek.'
+  translatedText: 'When talking about a male person who is not the speaker or listener,
     Ilokano uses ''isuna'' for ''he.''
 
     Now, try saying ''isuna'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

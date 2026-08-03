@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Ania! You're ready to ask questions!
-  translatedText: 
+  dialogueText: Ania! Nakapadas ka itan a mangdamag iti saludsod!
+  translatedText: Ania! You're ready to ask questions!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

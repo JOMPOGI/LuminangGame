@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: 'After enjoying the view, you''ll need to return to the ground.
+  dialogueText: 'Kalpasan ti panagragsakmo iti makita a pasdek, masapulmo nga agsubli
+    iti daga.
+
+
+    Iti Ilokano, ti ''bumaba'' ket kayatna a saoen ti ''go down.''
+
+
+    Usarem
+    daytoy no ibagam iti maysa a tao nga agturong iti nababbaba a lugar.
+
+
+    Denggem
+    a naimbag: bumaba.
+
+
+    Ita, padasem nga ibagam ti ''bumaba'' iti bukodmo a
+    timek.'
+  translatedText: 'After enjoying the view, you''ll need to return to the ground.
 
     In
     Ilokano, ''bumaba'' means ''go down.''
@@ -23,7 +40,6 @@ MonoBehaviour:
     toward a lower place.
 
     Now, try saying ''bumaba'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Interestingly, the same Ilokano pronoun ''isuna'' can refer to ''she''
-    as well.
+  dialogueText: 'Napateg a maammoan a ti isu met laeng a pronoun iti Ilokano a ''isuna''
+    ket mabalin met a mangitukoy iti ''she.''
 
-    The meaning depends on the person you''re talking about and the
-    context.
+
+    Ti kayatna a saoen ket agdepende
+    iti tao nga pagsasaritaanmo ken iti konteksto.
+
+
+    Denggem a naimbag: isuna.
+
+
+    Ita,
+    padasem nga ibagam ti ''isuna'' iti bukodmo a timek.'
+  translatedText: 'Interestingly, the same Ilokano pronoun ''isuna'' can refer to
+    ''she'' as well.
+
+    The meaning depends on the person you''re talking about
+    and the context.
 
     Now, try saying ''isuna'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

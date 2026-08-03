@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Kaano! Now you can ask about when something happened!
-  translatedText: 
+  dialogueText: Kaano! Ita, mabalinmon a damagen no kaano a napasamak ti maysa a
+    banag!
+  translatedText: Kaano! Now you can ask about when something happened!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,13 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When you need to find a place or location, you can ask ''where?''
+  dialogueText: 'No kasapulam a sapulen ti maysa a lugar wenno lokasyon, mabalinmo
+    a damagen ti ''where?''
+
+
+    Iti Ilokano, ti ''sadino'' ket kayatna a saoen
+    ti ''where.''
+
+
+    Denggem a naimbag: sadino.
+
+
+    Ita, padasem nga ibagam
+    ti ''sadino'' iti bukodmo a timek.'
+  translatedText: 'When you need to find a place or location, you can ask ''where?''
 
     In
     Ilokano, ''sadino'' means ''where.''
 
     Now, try saying ''sadino'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

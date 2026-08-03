@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: Maysa! Just one rare chest!
-  translatedText: 
+  dialogueText: Maysa! Maysa laeng a napateg a kahon!
+  translatedText: Maysa! Just one rare chest!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

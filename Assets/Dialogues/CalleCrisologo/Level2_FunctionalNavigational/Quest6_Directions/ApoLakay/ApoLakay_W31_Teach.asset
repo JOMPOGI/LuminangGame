@@ -14,17 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: 'To reach the top of the tower and see the province below, you need
-    to tell someone to move upward.
+  dialogueText: 'Tapno makadanonka iti tuktok ti torre ken makitam ti probinsia iti
+    baba, masapulmo nga ibaga iti maysa a tao nga umuli iti ngato.
 
-    In Ilokano, ''umuli iti ngato'' means ''go
-    up.''
+
+    Iti Ilokano,
+    ti ''umuli iti ngato'' ket kayatna a saoen ti ''go up.''
+
+
+    Usarem daytoy
+    no mangidalan ka iti maysa a tao iti nangato a lugar.
+
+
+    Denggem a naimbag:
+    umuli iti ngato.
+
+
+    Ita, padasem nga ibagam ti ''umuli iti ngato'' iti bukodmo
+    a timek.'
+  translatedText: 'To reach the top of the tower and see the province below, you
+    need to tell someone to move upward.
+
+    In Ilokano, ''umuli iti ngato'' means
+    ''go up.''
 
     Use it when directing someone toward a higher place.
 
-    Now, try
-    saying ''umuli iti ngato'' yourself.'
-  translatedText: 
+    Now,
+    try saying ''umuli iti ngato'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Isuna! Context helps us understand who we're talking about!
-  translatedText: 
+  dialogueText: Isuna! Ti konteksto ti makatulong a mangawat no asino ti pagsasaritaan!
+  translatedText: Isuna! Context helps us understand who we're talking about!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

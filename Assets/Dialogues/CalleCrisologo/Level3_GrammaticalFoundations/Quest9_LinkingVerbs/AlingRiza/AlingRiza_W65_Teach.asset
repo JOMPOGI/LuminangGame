@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Language is more than words. Sometimes, it is about what you experience.
+  dialogueText: 'Ti pagsasao ket saan laeng a maipapan kadagiti sasao. No dadduma,
+    maipapan met iti rikna ken kapadasanmo.
+
+
+    Iti Ilokano, ti ''marikna'' ket
+    kayatna a saoen ti ''feel'' wenno ''perceive.''
+
+
+    Mabalinmo nga agusar iti
+    daytoy no pagsasaritaanmo ti panagkapadas iti maysa a banag babaen kadagiti riknam
+    wenno emosyonmo.
+
+
+    Denggem a naimbag: marikna.
+
+
+    Ita, padasem nga ibagam
+    ti ''marikna'' iti bukodmo a timek.'
+  translatedText: 'Language is more than words. Sometimes, it is about what you experience.
 
     In
     Ilokano, ''marikna'' means ''feel'' or ''perceive.''
@@ -24,7 +42,6 @@ MonoBehaviour:
 
     Now,
     try saying ''marikna'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

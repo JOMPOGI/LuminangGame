@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about staying or residing in a place, Ilokano uses
+  dialogueText: 'No pagsasaritaanmo ti panagtalinaed wenno panagnaed iti maysa a
+    lugar, agusar ti Ilokano iti ''agyan.''
+
+
+    Mabalinmo nga agusar iti daytoy
+    no pagsasaritaanmo no sadino ti pagnaedan wenno pagtalinaedan ti maysa a tao.
+
+
+    Denggem
+    a naimbag: agyan.
+
+
+    Ita, padasem nga ibagam ti ''agyan'' iti bukodmo a timek.'
+  translatedText: 'When talking about staying or residing in a place, Ilokano uses
     ''agyan.''
 
     You can use it when talking about where someone stays or lives.
 
     Now,
     try saying ''agyan'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

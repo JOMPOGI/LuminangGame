@@ -14,13 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When you want to know which person you are talking about, use ''asino.''
+  dialogueText: 'No kayatmo a maammoan no asino ti pagsasaritaanmo, agusarka iti
+    ''asino.''
 
-    It
-    means ''who.''
+
+    Kayatna a saoen ti ''who.''
+
+
+    Denggem a naimbag: asino.
+
+
+    Ita,
+    padasem nga ibagam ti ''asino'' iti bukodmo a timek.'
+  translatedText: 'When you want to know which person you are talking about, use
+    ''asino.''
+
+    It means ''who.''
 
     Now, try saying ''asino'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

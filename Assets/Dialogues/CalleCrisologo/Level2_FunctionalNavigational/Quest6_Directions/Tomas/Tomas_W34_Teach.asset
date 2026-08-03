@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
   speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
-  dialogueText: 'Sometimes you need to call someone toward you.
+  dialogueText: 'Adda dagiti oras a kasapulam a tawagan ti maysa a tao nga umay iti
+    ayanmo.
+
+
+    Iti Ilokano, ti ''umay ditoy'' ket kayatna a saoen ti ''come here.''
+
+
+    Usarem
+    daytoy no kayatmo a dawaten iti maysa a tao nga umay iti ayanmo.
+
+
+    Denggem
+    a naimbag: umay ditoy.
+
+
+    Ita, padasem nga ibagam ti ''umay ditoy'' iti bukodmo
+    a timek.'
+  translatedText: 'Sometimes you need to call someone toward you.
 
     In Ilokano,
     ''umay ditoy'' means ''come here.''
@@ -23,7 +40,6 @@ MonoBehaviour:
     your location.
 
     Now, try saying ''umay ditoy'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

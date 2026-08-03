@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Sadino! Now you can ask where something is!
-  translatedText: 
+  dialogueText: Sadino! Ita, mabalinmon a damagen no sadino ti ayan ti maysa a banag!
+  translatedText: Sadino! Now you can ask where something is!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When someone gives you a helping hand, you can thank them specifically
+  dialogueText: 'No adda nangted kenka iti tulong, mabalinmo nga agyaman iti espesipiko
+    a tulong nga inaramidna.
+
+
+    Iti Ilokano, ti ''agyamanak iti tulong mo'' ket
+    kayatna a saoen ti ''thank you for your help.''
+
+
+    Mabalinmo nga agusar iti
+    daytoy no adda tumulong kenka a mangileppas iti maysa a trabaho wenno mangrisot
+    iti maysa a parikut.
+
+
+    Denggem a naimbag: agyamanak iti tulong mo.
+
+
+    Ita,
+    padasem nga ibagam ti ''agyamanak iti tulong mo'' iti bukodmo a timek.'
+  translatedText: 'When someone gives you a helping hand, you can thank them specifically
     for their assistance.
 
     In Ilokano, ''agyamanak iti tulong mo'' means ''thank
@@ -24,7 +42,6 @@ MonoBehaviour:
     or solve a problem.
 
     Now, try saying ''agyamanak iti tulong mo'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

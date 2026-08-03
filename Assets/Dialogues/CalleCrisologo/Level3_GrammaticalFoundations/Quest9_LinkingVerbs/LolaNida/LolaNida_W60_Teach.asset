@@ -14,15 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: 'The same past expression can also appear when talking about a group
-    in a historical context.
+  dialogueText: 'Daytoy met laeng a pagsasao mausar iti panagsasarita maipapan iti
+    grupo iti konteksto ti pakasaritaan.
 
-    For example, when describing what people were like
-    in the past, ''ket idi'' can be part of the sentence structure.
 
-    Now, try
-    saying ''ket idi'' yourself.'
-  translatedText: 
+    Kas pagarigan, no iladawanmo no kasano
+    dagiti tattao idi napalabas, ti ''ket idi'' ket mabalin a paset ti istruktura
+    ti pangungusap.
+
+
+    Denggem a naimbag: ket idi.
+
+
+    Ita, padasem nga ibagam
+    ti ''ket idi'' iti bukodmo a timek.'
+  translatedText: 'The same past expression can also appear when talking about a
+    group in a historical context.
+
+    For example, when describing what people
+    were like in the past, ''ket idi'' can be part of the sentence structure.
+
+    Now,
+    try saying ''ket idi'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

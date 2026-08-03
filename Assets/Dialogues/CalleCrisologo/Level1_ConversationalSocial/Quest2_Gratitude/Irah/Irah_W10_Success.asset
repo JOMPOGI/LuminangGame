@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: Agyamanak unay! May your journey be smooth and bright!
-  translatedText: 
+  dialogueText: Agyamanak unay! Sapay koma ta nalaka ken naraniag ti dalan ti panagdaliasatmo!
+  translatedText: Agyamanak unay! May your journey be smooth and bright!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

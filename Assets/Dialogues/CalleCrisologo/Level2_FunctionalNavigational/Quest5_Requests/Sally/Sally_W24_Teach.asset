@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Sally
   speakerPortrait: {fileID: 21300000, guid: 7733d16353c0fcf4b99b8f89f3ad1780, type: 3}
-  dialogueText: 'Sometimes you want to ask for help more politely.
+  dialogueText: 'Adda dagiti oras a kayatmo a dumawat iti tulong iti naurnos ken
+    naayat a wagas.
+
+
+    Iti Ilokano, ti ''mabalin kadi a tulunganak?'' ket kayatna
+    a saoen ti ''can you help me?''
+
+
+    Nasayaat daytoy no kayatmo a dumawat iti
+    tulong ti maysa a tao iti naurnos a wagas.
+
+
+    Denggem a naimbag: mabalin kadi
+    a tulunganak?
+
+
+    Ita, padasem nga ibagam ti ''mabalin kadi a tulunganak?''
+    iti bukodmo a timek.'
+  translatedText: 'Sometimes you want to ask for help more politely.
 
     In Ilokano,
     ''mabalin kadi a tulunganak?'' means ''can you help me?''
@@ -24,7 +42,6 @@ MonoBehaviour:
 
     Now, try saying ''mabalin
     kadi a tulongannak'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

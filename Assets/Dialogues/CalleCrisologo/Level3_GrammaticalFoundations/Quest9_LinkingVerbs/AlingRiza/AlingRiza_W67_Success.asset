@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Sika! That's the word for the person you're speaking to!
-  translatedText: 
+  dialogueText: Sika! Dayta ti sao para iti tao nga pagsasaritaam!
+  translatedText: Sika! That's the word for the person you're speaking to!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

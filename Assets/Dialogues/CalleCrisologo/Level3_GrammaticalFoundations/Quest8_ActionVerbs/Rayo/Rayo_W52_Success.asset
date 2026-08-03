@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Rayo
   speakerPortrait: {fileID: 21300000, guid: 375a2426790ffd84aa1a9c7758ba6b06, type: 3}
-  dialogueText: 'Maturog well!
+  dialogueText: 'Maturog a naimbag!
 
-    Catch up with Aling Rosa to wrap up Action Verbs!'
-  translatedText: 
+
+    Mapanka ken Aling Rosa tapno malpasmo dagiti
+    Action Verbs!'
+  translatedText: 'Maturog well!
+
+    Catch up with Aling Rosa to wrap up Action
+    Verbs!'
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Aling Rosa

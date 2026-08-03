@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: 'When someone explains something and you want to tell them that you
-    understand, you can use ''maawatan ko.''
+  dialogueText: 'No adda mangilawlawag iti maysa a banag ken kayatmo nga ibaga nga
+    naawatam, mabalinmo nga agusar iti ''maawatan ko.''
+
+
+    Kayatna a saoen ti
+    ''I understand.''
+
+
+    Denggem a naimbag: maawatan ko.
+
+
+    Ita, padasem nga
+    ibagam ti ''maawatan ko'' iti bukodmo a timek.'
+  translatedText: 'When someone explains something and you want to tell them that
+    you understand, you can use ''maawatan ko.''
 
     It means ''I understand.''
 
     Now,
     try saying ''mawatan ko'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

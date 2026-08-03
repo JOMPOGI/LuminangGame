@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When referring to other people as the object of an action, ''isuda''
+  dialogueText: 'No mangitukoyka kadagiti sabali a tattao kas pakayatan ti maysa
+    nga aramid, ti ''isuda'' ti mausar iti konteksto nga sursursuruentayo para iti
+    ''them.''
+
+
+    Denggem a naimbag: isuda.
+
+
+    Ita, padasem nga ibagam ti ''isuda''
+    iti bukodmo a timek.'
+  translatedText: 'When referring to other people as the object of an action, ''isuda''
     is used in the context we''re learning for ''them.''
 
     Now, try saying ''isuda''
     yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

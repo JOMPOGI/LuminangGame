@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: 'Let''s practice a simple response.
+  dialogueText: 'Agpraktistayo iti maysa a simple a sungbat.
 
-    When someone asks you a
-    question and you want to agree or answer ''yes,'' Ilokano uses the word ''wen.''
+
+    No adda mangdamag
+    kenka iti maysa a saludsod ken kayatmo nga umanamong wenno sumungbat iti ''yes,''
+    agusar ti Ilokano iti sao a ''wen.''
+
+
+    Denggem a naimbag: wen.
+
+
+    Ita,
+    padasem nga ibagam ti ''wen'' iti bukodmo a timek.'
+  translatedText: 'Let''s practice a simple response.
+
+    When someone asks you
+    a question and you want to agree or answer ''yes,'' Ilokano uses the word ''wen.''
 
     Now,
     try saying ''wen'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

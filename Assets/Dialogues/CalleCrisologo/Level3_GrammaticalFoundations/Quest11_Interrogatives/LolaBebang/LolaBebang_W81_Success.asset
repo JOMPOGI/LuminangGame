@@ -14,11 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 0}
-  dialogueText: Mano! Now you can ask about quantity and numbers. You've learned
+  dialogueText: 'Mano! Ita, mabalinmon a damagen ti bilang dagiti tattao ken banag.
+
+
+    Nasursurom
+    no kasano ti makikomunikar iti adu a kasasaad iti inaldaw-aldaw iti amin a panagdaliasatmo.
+
+
+    Ngem
+    saan a nagpatingga ti panagsursuro babaen laeng iti panangulit iti nadenggem.
+
+
+    Agsublika
+    ken Kalaw iti plaza.
+
+
+    Adda agur-uray kenka a maudi a karit.'
+  translatedText: Mano! Now you can ask about quantity and numbers. You've learned
     how to communicate in many everyday situations throughout your journey. But learning
     doesn't end with repeating what you've heard. Head back to Kalaw at the plaza.
     Your final challenge awaits.
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 'SetObjective_LEVEL III COMPLETE! Head to Plaza: Talk to Kalaw'

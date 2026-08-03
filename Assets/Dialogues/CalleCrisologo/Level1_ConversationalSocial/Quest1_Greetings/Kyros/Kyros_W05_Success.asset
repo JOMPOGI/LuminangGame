@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a malem! Welcome to my shop, friend!
-  translatedText: 
+  dialogueText: Naimbag a malem! Umayka iti tindak, gayyem!
+  translatedText: Naimbag a malem! Welcome to my shop, friend!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

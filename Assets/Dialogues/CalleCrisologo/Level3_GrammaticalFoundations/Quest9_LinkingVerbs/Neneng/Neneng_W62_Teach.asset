@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes we want to describe how something appears or feels to
+  dialogueText: 'Adda dagiti oras a kayattayo a iladawan no kasano ti langa wenno
+    rikna ti maysa a banag kadatayo.
+
+
+    Iti Ilokano, ti ''kasla'' ket mabalin
+    a mangipakita iti kapanunotan a ''seem'' wenno ''like.''
+
+
+    Kas pagarigan,
+    mabalinmo a saoen nga kasla maysa a panagdaliasat iti napalabas ti tiempo ti
+    maysa a dalan.
+
+
+    Denggem a naimbag: kasla.
+
+
+    Ita, padasem nga ibagam
+    ti ''kasla'' iti bukodmo a timek.'
+  translatedText: 'Sometimes we want to describe how something appears or feels to
     us.
 
     In Ilokano, ''kasla'' can express the idea of ''seem'' or ''like.''
@@ -24,7 +42,6 @@ MonoBehaviour:
 
     Now,
     try saying ''kasla'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

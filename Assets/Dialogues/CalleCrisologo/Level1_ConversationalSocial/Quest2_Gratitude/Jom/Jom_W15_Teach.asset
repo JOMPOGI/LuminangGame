@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: 'Of course, sometimes you need to politely disagree or say ''no.''
+  dialogueText: 'Natural, adda met dagiti oras a kasapulam nga agsungbat iti ''no''
+    wenno saan nga umanamong.
+
+
+    Iti Ilokano, ti ''saan'' ket kayatna a saoen
+    ti ''no.''
+
+
+    Mabalinmo nga agusar iti daytoy no kayatmo nga mangted iti negatibo
+    a sungbat.
+
+
+    Denggem a naimbag: saan.
+
+
+    Ita, padasem nga ibagam ti ''saan''
+    iti bukodmo a timek.'
+  translatedText: 'Of course, sometimes you need to politely disagree or say ''no.''
 
     In
     Ilokano, ''saan'' means ''no.''
@@ -23,7 +40,6 @@ MonoBehaviour:
     response.
 
     Now, try saying ''saan'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

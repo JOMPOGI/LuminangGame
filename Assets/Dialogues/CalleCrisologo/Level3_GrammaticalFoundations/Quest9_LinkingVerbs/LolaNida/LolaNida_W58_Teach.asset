@@ -14,7 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about a group of people, Ilokano can use ''da'' as
+  dialogueText: 'No pagsasaritaanmo ti grupo dagiti tattao, mabalin nga agusar ti
+    Ilokano iti ''da'' kas plural marker.
+
+
+    Kas pagarigan, no pagsasaritaanmo
+    ti maysa a grupo kas dagiti agabel, makatulong ti ''da'' a mangipakita nga ad-adu
+    ngem iti maysa a tao ti pagsasaritaanmo.
+
+
+    Denggem a naimbag: da.
+
+
+    Ita,
+    padasem nga ibagam ti ''da'' iti bukodmo a timek.'
+  translatedText: 'When talking about a group of people, Ilokano can use ''da'' as
     a plural marker.
 
     For example, when referring to a group such as the weavers,
@@ -22,7 +36,6 @@ MonoBehaviour:
 
     Now,
     try saying ''da'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

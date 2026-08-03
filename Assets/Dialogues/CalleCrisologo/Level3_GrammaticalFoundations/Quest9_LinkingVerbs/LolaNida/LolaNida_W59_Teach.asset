@@ -14,7 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When talking about something that existed or was true in the past,
+  dialogueText: 'No pagsasaritaanmo ti maysa a banag a nagadda wenno pudno idi napalabas,
+    mabalinmo nga agusar iti ''ket idi'' iti konteksto ti pakasaritaan.
+
+
+    Kas
+    pagarigan, no iladawanmo no kasano ti maysa a lugar idi napalabas, makatulong
+    daytoy a pagsasao a mangikonekta iti subject iti daan a kasasaadna.
+
+
+    Denggem
+    a naimbag: ket idi.
+
+
+    Ita, padasem nga ibagam ti ''ket idi'' iti bukodmo
+    a timek.'
+  translatedText: 'When talking about something that existed or was true in the past,
     you can use ''ket idi'' in a historical context.
 
     For example, when describing
@@ -22,7 +37,6 @@ MonoBehaviour:
     former state.
 
     Now, try saying ''ket idi'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

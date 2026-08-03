@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: Kumusta ka! Ah, see that smile? You're making friends already!
-  translatedText: 
+  dialogueText: Kumusta ka! Ah, kitaem dayta a ragsak! Agaramidka kadin iti baro
+    a gayyem!
+  translatedText: Kumusta ka! Ah, see that smile? You're making friends already!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

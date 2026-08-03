@@ -14,7 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
   speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
-  dialogueText: 'After all that walking, you''ll probably be hungry!
+  dialogueText: 'Kalpasan ti amin a panagpaspas ken panagpasyar, nalabit nga mabisinan
+    ka!
+
+
+    Iti Ilokano, ti ''mangan'' ket kayatna a saoen ti ''eat.''
+
+
+    Maysa
+    dayta nga action verb nga agusar no pagsasaritaan ti aramid a panangan.
+
+
+    Kas
+    pagarigan, no orasmon ti panangan iti pangrabii, mabalinmo nga ibaga ti ''mangan.''
+
+
+    Denggem
+    a naimbag: mangan.
+
+
+    Ita, padasem nga ibagam ti ''mangan'' iti bukodmo a
+    timek.'
+  translatedText: 'After all that walking, you''ll probably be hungry!
 
     In Ilokano,
     ''mangan'' means ''eat.''
@@ -26,7 +47,6 @@ MonoBehaviour:
 
     Now,
     try saying ''mangan'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

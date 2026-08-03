@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: 'Let''s begin counting in Ilokano.
+  dialogueText: 'Rugiantayo ti panagbilang iti Ilokano.
+
+
+    Ti sao a ''maysa''
+    ket kayatna a saoen ti ''one.''
+
+
+    Usarem daytoy no agbilangka iti maysa laeng
+    a tao wenno banag.
+
+
+    Kas pagarigan, no makitam ti maysa a kahon, mabalinmo
+    nga ibaga ti ''maysa.''
+
+
+    Denggem a naimbag: maysa.
+
+
+    Ita, padasem nga
+    ibagam ti ''maysa'' iti bukodmo a timek.'
+  translatedText: 'Let''s begin counting in Ilokano.
 
     The word ''maysa'' means
     ''one.''
@@ -25,7 +45,6 @@ MonoBehaviour:
     if you see one chest, you can say ''maysa.''
 
     Now, try saying ''maysa'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

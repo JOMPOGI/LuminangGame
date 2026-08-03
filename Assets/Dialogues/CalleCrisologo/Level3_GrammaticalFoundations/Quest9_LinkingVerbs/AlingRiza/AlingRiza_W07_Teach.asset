@@ -14,11 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Ilokano can use ''siak'' when referring to ''me'' as well, depending
+  dialogueText: 'Ti Ilokano ket mabalin nga agusar iti ''siak'' no mangitukoy iti
+    ''me,'' depende iti istruktura ti pangungusap.
+
+
+    Denggem a naimbag: siak.
+
+
+    Ita,
+    padasem nga ibagam ti ''siak'' iti bukodmo a timek.'
+  translatedText: 'Ilokano can use ''siak'' when referring to ''me'' as well, depending
     on the sentence structure.
 
     Now, try saying ''siak'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: 'If you need someone to stay in their current location while you
+  dialogueText: 'No kasapulam a mapagtalinaed ti maysa a tao iti ayanna bayat nga
+    adda aramidem, mabalinmo nga ibaga kenkuana nga aguray.
+
+
+    Iti Ilokano, ti
+    ''uray ditoy'' ket kayatna a saoen ti ''wait here.''
+
+
+    Denggem a naimbag:
+    uray ditoy.
+
+
+    Ita, padasem nga ibagam ti ''uray ditoy'' iti bukodmo a timek.'
+  translatedText: 'If you need someone to stay in their current location while you
     do something else, you can tell them to wait.
 
     In Ilokano, ''uray ditoy''
     means ''wait here.''
 
     Now, try saying ''uray ditoy'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

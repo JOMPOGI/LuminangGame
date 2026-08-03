@@ -14,17 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes you want to give someone a general greeting without focusing
-    on morning, afternoon, or evening.
+  dialogueText: 'Adda dagiti oras a kayatmo laeng a mangted iti sapasap a panangabla
+    iti maysa a tao nga awan ti espesipiko a bigat, malem, wenno rabii.
 
-    In Ilokano, ''naimbag nga aldaw'' means
-    ''good day.''
+
+    Iti
+    Ilokano, ti ''naimbag nga aldaw'' ket kayatna a saoen ti ''good day.''
+
+
+    Maysa
+    dayta a sapasap a panangabla nga agusarem no kayatmo a tarigagayen ti naimbag
+    nga aldaw ti maysa a tao.
+
+
+    Denggem a naimbag: naimbag nga aldaw.
+
+
+    Ita,
+    padasem nga ibagam ti ''naimbag nga aldaw'' iti bukodmo a timek.'
+  translatedText: 'Sometimes you want to give someone a general greeting without
+    focusing on morning, afternoon, or evening.
+
+    In Ilokano, ''naimbag nga aldaw''
+    means ''good day.''
 
     It is a general greeting that can be used to wish someone
     a pleasant day.
 
     Now, try saying ''naimbag nga aldaw'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

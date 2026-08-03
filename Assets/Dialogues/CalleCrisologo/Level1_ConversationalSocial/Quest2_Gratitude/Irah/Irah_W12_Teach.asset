@@ -14,7 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Oops! Be careful around these delicate threads.
+  dialogueText: 'Oops! Agannadka kadagitoy nadumaduma a linya.
+
+
+    No saanmo a
+    ninamnama a nasangkam ti maysa a tao wenno nakaaramidka iti biddut, mabalinmo
+    nga agpakawan.
+
+
+    Iti Ilokano, ti ''pakawanen nak'' ket kayatna a saoen ti
+    ''I am sorry.''
+
+
+    Usarem daytoy no kayatmo nga agpakawan iti maysa a banag
+    nga inaramidmo.
+
+
+    Denggem a naimbag: pakawanen nak.
+
+
+    Ita, padasem nga
+    ibagam ti ''pakawanen nak'' iti bukodmo a timek.'
+  translatedText: 'Oops! Be careful around these delicate threads.
 
     If you accidentally
     bump into someone or make a mistake, you can apologize.
@@ -26,7 +47,6 @@ MonoBehaviour:
     you''ve done.
 
     Now, try saying ''pakawanen nak'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

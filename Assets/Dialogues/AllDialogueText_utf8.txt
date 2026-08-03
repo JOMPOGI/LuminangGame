@@ -1,0 +1,345 @@
+﻿Kalaw_Intro.asset|Squawk! Oh... is that a fruit in your hand? May I have some? Flying
+    under this hot Vigan sun has completely worn me out...
+
+    Mmm, sweet and juicy!
+    Thank you so much, traveler!
+
+    Ah, where are my manners-I am Kalaw, your companion
+    and guide through these lands!
+
+    Wait a second... look at that ancient anting-anting
+    pendant resting on your chest! Feel that faint hum?
+
+    The Ilocos Language
+    Crystal inside it is sleeping.
+
+    To charge it up and awaken its power, you
+Kalaw_W01_Success.asset|Kumusta! Nailed it! That's a great way to greet someone!
+Kalaw_W01_Teach.asset|Let
+Kalaw_W02_Success.asset|Kumusta ka! Ah, see that smile? You're making friends already!
+Kalaw_W02_Teach.asset|Once you
+Kalaw_W03_Success.asset|Nasayaat ak! That's the spirit! Keep that energy up!
+Kalaw_W03_Teach.asset|When someone asks you 
+Kalaw_W04_Success.asset|Naimbag a bigat! You
+Kalaw_W04_Teach.asset|Look at the morning sun shining over the tiled roofs of Calle Crisologo.
+
+    In
+    Ilokano, 
+Kyros_Intro.asset|...
+Kyros_W05_Success.asset|Naimbag a malem! Welcome to my shop, friend!
+Kyros_W05_Teach.asset|Naimbag nga aldaw, traveler! Kalaw told me a new adventurer was
+    exploring Vigan.
+
+    When the morning has passed and the afternoon arrives,
+    Ilocanos can greet someone by saying 
+Kyros_W06_Success.asset|Naimbag a rabii! Look at your pendant glow!
+Kyros_W06_Teach.asset|As the sun sets and the streetlamps begin to glow, the greeting
+    changes with the time of day.
+
+    In Ilokano, 
+Kyros_W07_Success.asset|Naimbag nga aldaw! Hope you enjoy your stroll down Calle Crisologo!
+Kyros_W07_Teach.asset|Sometimes you want to give someone a general greeting without focusing
+    on morning, afternoon, or evening.
+
+    In Ilokano, 
+Kyros_W08_Success.asset|Agpakada akon! Go meet Vendor Irah at the weaving loom. She has something
+Kyros_W08_Teach.asset|Every journey eventually continues to another place.
+
+    When leaving
+    someone, you can say 
+Irah_Intro.asset|...
+Irah_W09_Success.asset|Agyamanak! Showing gratitude helps keep our community close-knit!
+Irah_W09_Teach.asset|Clack-clack-clack goes the loom! Welcome, traveler!
+
+    When someone
+    helps you, gives you something, or does something kind for you, it is important
+    to show appreciation.
+
+    In Ilokano, 
+Irah_W10_Success.asset|Agyamanak unay! May your journey be smooth and bright!
+Irah_W10_Teach.asset|Sometimes a simple thank you isn
+Irah_W11_Success.asset|Agyamanak iti tulong mo! We Ilocanos love helping one another!
+Irah_W11_Teach.asset|When someone gives you a helping hand, you can thank them specifically
+    for their assistance.
+
+    In Ilokano, 
+Irah_W12_Success.asset|Pakawanen nak... No harm done!
+
+    Pop over to Vendor Jom
+Irah_W12_Teach.asset|Oops! Be careful around these delicate threads.
+
+    If you accidentally
+    bump into someone or make a mistake, you can apologize.
+
+    In Ilokano, 
+Jom_Intro.asset|...
+Jom_W13_Success.asset|Dispensaren nak! Sharp manners! Stick around for the Response trials!
+Jom_W13_Teach.asset|Smell that sizzling longganisa? My counter is getting crowded!
+
+    When
+    you need to politely get someone
+Jom_W14_Success.asset|Wen! That's what I like to hear! Sizzling away!
+Jom_W14_Teach.asset|Let
+Jom_W15_Success.asset|Saan! Got it! I'll keep that garlic vinegar ready for another time!
+Jom_W15_Teach.asset|Of course, sometimes you need to politely disagree or say 
+Jom_W16_Success.asset|Okay! Easy enough! You're picking this up quickly!
+Jom_W16_Teach.asset|Sometimes you simply want to show that you agree or understand.
+
+    In
+    Ilokano, 
+Jom_W17_Success.asset|Maawatan ko! Excellent! You're understanding more and more!
+Jom_W17_Teach.asset|When someone explains something and you want to tell them that you
+    understand, you can use 
+Jom_W18_Success.asset|Diak maawatan! No worries-learning takes practice!
+Jom_W18_Teach.asset|If someone says something you don
+Ronnie_Intro.asset|...
+Ronnie_W19_Success.asset|Ania ti nagan mo? That's a great question to ask when meeting someone
+Ronnie_W19_Teach.asset|When meeting someone new, one of the first things you may want to
+    know is their name.
+
+    In Ilokano, 
+Ronnie_W20_Success.asset|Awesome to meet you! You just introduced yourself in Ilokano!
+
+    Go
+    meet Sally near the brick arch to complete Level I!
+Ronnie_W20_Teach.asset|Now it
+Sally_Intro.asset|...
+Sally_W21_Success.asset|Taga sadino ka? That's how you ask where someone comes from!
+Sally_W21_Teach.asset|When meeting someone new, you may also want to learn where they
+    come from.
+
+    In Ilokano, 
+Sally_W22_Success.asset|Excellent! You just told me where you're from!
+Sally_W22_Teach.asset|Now you can answer that question yourself.
+
+    In Ilokano, 
+Lito_Intro.asset|...
+Lito_W25_Success.asset|Urayennak! Safety first on these narrow streets!
+Lito_W25_Teach.asset|Look out! A horse carriage is passing through!
+
+    When you need
+    someone to pause and wait for you, you can say 
+Lito_W26_Success.asset|Ikanmo man! Well done! Here is your map of Vigan!
+Lito_W26_Teach.asset|When asking someone to hand you an object, you can use 
+Lito_W27_Success.asset|Mabalin kadi agsaludsod! Ask away!
+Lito_W27_Teach.asset|Before asking someone a question, it
+Lito_W28_Success.asset|Agdiretso! Straight ahead!
+
+    Go find Apo Lakay by the stone well
+    for more pathfinding!
+Lito_W28_Teach.asset|You
+Sally_Intro.asset|...
+Sally_W23_Success.asset|Tulunganak! Don't worry-you're never alone!
+Sally_W23_Teach.asset|If you are in trouble or need assistance, you need a direct way
+    to ask for help.
+
+    In Ilokano, 
+Sally_W24_Success.asset|Mabalin kadi a tulunganak! Perfect!
+
+    Find Tour Guide Lito for
+    the rest of these requests!
+Sally_W24_Teach.asset|Sometimes you want to ask for help more politely.
+
+    In Ilokano,
+    
+ApoLakay_Intro.asset|...
+ApoLakay_W29_Success.asset|Agliko iti kannigid! Turn left-the clay kilns are right there!
+ApoLakay_W29_Teach.asset|To reach the Burnay pottery yard, you need to tell someone which
+    direction to take.
+
+    In Ilokano, 
+ApoLakay_W30_Success.asset|Agliko iti kannawan! Turn right at the corner!
+ApoLakay_W30_Teach.asset|If you want someone to take the opposite direction, you can tell
+    them to turn right.
+
+    In Ilokano, 
+ApoLakay_W31_Success.asset|Umuli iti ngato! Climb up to the top!
+ApoLakay_W31_Teach.asset|To reach the top of the tower and see the province below, you need
+    to tell someone to move upward.
+
+    In Ilokano, 
+ApoLakay_W32_Success.asset|Bumaba! Mind your step!
+
+    Go see Tomas at the pottery yard!
+ApoLakay_W32_Teach.asset|After enjoying the view, you
+Klara_Intro.asset|...
+Klara_W37_Success.asset|Uray ditoy! Talk to me again for the Counting lessons!
+Klara_W37_Teach.asset|If you need someone to stay in their current location while you
+    do something else, you can tell them to wait.
+
+    In Ilokano, 
+Klara_W38_Success.asset|Maysa! Just one rare chest!
+Klara_W38_Teach.asset|Let
+Klara_W39_Success.asset|Dua! Two matching chairs!
+Klara_W39_Teach.asset|When you count two objects, people, or things, Ilokano uses 
+Klara_W40_Success.asset|Tallo! Three oil lamps!
+
+    Head over to Tala the Bagnet seller
+    for more numbers!
+Klara_W40_Teach.asset|The next number is 
+Tomas_Intro.asset|...
+Tomas_W33_Success.asset|Agsardeng ditoy! Perfect landing spot!
+Tomas_W33_Teach.asset|Welcome to the clay yard!
+
+    If you want someone to stop at the
+    place where they are standing, you can say 
+Tomas_W34_Success.asset|Umay ditoy! Come take a look at this pottery!
+Tomas_W34_Teach.asset|Sometimes you need to call someone toward you.
+
+    In Ilokano,
+    
+Tomas_W35_Success.asset|Mapan idiay! Cool shade is much safer!
+Tomas_W35_Teach.asset|If you want someone to move toward another location, you can direct
+    them away from where you are.
+
+    In Ilokano, 
+Tomas_W36_Success.asset|Surotennak! Follow me to the jar drying racks!
+Tomas_W36_Teach.asset|When you want someone to come along with you, you can tell them
+    to follow.
+
+    In Ilokano, 
+MangLance_Intro.asset|Whoa, hold on! My carriage wheel pin popped out!
+
+    Please find
+    the wheel pin so my horse Barnaby and I can ride safely!
+MangLance_W45_Success.asset|Walo! Eight treats for Barnaby!
+MangLance_W45_Teach.asset|Whew! Thanks for fixing my wheel!
+
+    Let
+MangLance_W46_Success.asset|Siam! Nine! You're almost at the end of the count!
+MangLance_W46_Teach.asset|The next number is 
+MangLance_W47_Success.asset|Sangapulo! You made it to ten!
+MangLance_W47_Teach.asset|And now, we
+Tala_Intro.asset|...
+Tala_W41_Success.asset|Uppat! Four crispy slabs!
+Tala_W41_Teach.asset|Let
+Tala_W42_Success.asset|Lima! Five kilos of delicious Bagnet!
+Tala_W42_Teach.asset|The next number is 
+Tala_W43_Success.asset|Innem! Six family recipes!
+Tala_W43_Teach.asset|In Ilokano, the number 
+Tala_W44_Success.asset|Pito! Seven!
+
+    Run to Mang Lance the Kalesa driver to finish
+    counting!
+Tala_W44_Teach.asset|The Ilokano word for 
+LolaBebang_Intro.asset|...
+LolaBebang_W75_Success.asset|Ania! You're ready to ask questions!
+LolaBebang_W75_Teach.asset|Questions help us learn about the world around us.
+
+    In Ilokano,
+    
+LolaBebang_W76_Success.asset|Asino! Now you can ask who someone is!
+LolaBebang_W76_Teach.asset|When you want to know which person you are talking about, use 
+LolaBebang_W77_Success.asset|Sadino! Now you can ask where something is!
+LolaBebang_W77_Teach.asset|When you need to find a place or location, you can ask 
+LolaBebang_W78_Success.asset|Kaano! Now you can ask about when something happened!
+LolaBebang_W78_Teach.asset|When asking about time, you can use 
+LolaBebang_W79_Success.asset|Apay! Now you can ask why!
+LolaBebang_W79_Teach.asset|Sometimes we want to understand the reason behind something.
+
+    In
+    Ilokano, 
+LolaBebang_W80_Success.asset|Kasano! Look how far you've come!
+LolaBebang_W80_Teach.asset|When you want to ask about the way something is done, use 
+LolaBebang_W81_Success.asset|Mano! Now you can ask about quantity and numbers. You've learned
+LolaBebang_W81_Teach.asset|And now, you
+AlingRosa_Intro.asset|Ay, my thread broke!
+
+    Please find some thread so I can finish
+    weaving these colorful souvenirs!
+AlingRosa_W53_Success.asset|Makita! Look at these lovely patterns!
+AlingRosa_W53_Teach.asset|Aww, thank you!
+
+    When you look at something or notice something
+    with your eyes, the Ilokano verb 
+AlingRosa_W54_Success.asset|Mangngeg! You can hear the kalesas coming!
+AlingRosa_W54_Teach.asset|Listen closely. Can you hear the horse hooves clattering down Calle
+    Crisologo?
+
+    In Ilokano, 
+AlingRosa_W55_Success.asset|Agsao! Stay here for Linking Verbs!
+AlingRosa_W55_Teach.asset|You
+AlingRosa_W56_Success.asset|Ket! Spot on!
+
+    Go see Lola Nida for more connector words!
+AlingRosa_W56_Teach.asset|Now we
+MangLance_Intro.asset|...
+MangLance_W48_Success.asset|Mangan! Now you
+MangLance_W48_Teach.asset|After all that walking, you
+Rayo_Intro.asset|...
+Rayo_W49_Success.asset|Uminom! Refreshing!
+Rayo_W49_Teach.asset|Click! Great pose!
+
+    It
+Rayo_W50_Success.asset|Mapan! Let's head over to the arch!
+Rayo_W50_Teach.asset|When you want to talk about moving from one place to another, you
+    can use the verb 
+Rayo_W51_Success.asset|Umay! Come stand right by the window!
+Rayo_W51_Teach.asset|Now let
+Rayo_W52_Success.asset|Maturog well!
+
+    Catch up with Aling Rosa to wrap up Action Verbs!
+Rayo_W52_Teach.asset|After exploring all day, everyone needs time to rest.
+
+    In Ilokano,
+    
+AlingRiza_Intro.asset|...
+AlingRiza_W07_Success.asset|Siak! You're getting comfortable with these pronouns!
+AlingRiza_W07_Teach.asset|Ilokano can use 
+AlingRiza_W65_Success.asset|Marikna! Talk to me again for Pronouns!
+AlingRiza_W65_Teach.asset|Language is more than words. Sometimes, it is about what you experience.
+
+    In
+    Ilokano, 
+AlingRiza_W66_Success.asset|Siak! That's you!
+AlingRiza_W66_Teach.asset|Let
+AlingRiza_W67_Success.asset|Sika! That's the word for the person you're speaking to!
+AlingRiza_W67_Teach.asset|When speaking directly to another person, Ilokano uses 
+AlingRiza_W68_Success.asset|Isuna! You're talking about someone else!
+AlingRiza_W68_Teach.asset|When talking about a male person who is not the speaker or listener,
+    Ilokano uses 
+AlingRiza_W69_Success.asset|Isuna! Context helps us understand who we're talking about!
+AlingRiza_W69_Teach.asset|Interestingly, the same Ilokano pronoun 
+AlingRiza_W70_Success.asset|Dakkami! Now you're speaking as part of a group!
+AlingRiza_W70_Teach.asset|When talking about yourself together with other people, you can
+    use 
+AlingRiza_W71_Success.asset|Isuda! You're talking about them!
+AlingRiza_W71_Teach.asset|When talking about a group of other people, Ilokano uses 
+AlingRiza_W73_Success.asset|Dakkami! Language helps us describe who belongs together!
+AlingRiza_W73_Teach.asset|When referring to yourself together with others, 
+AlingRiza_W74_Success.asset|Isuda! You've learned how Ilokano can talk about different people!
+AlingRiza_W74_Teach.asset|When referring to other people as the object of an action, 
+LolaNida_Intro.asset|...
+LolaNida_W57_Success.asset|Isu ti! You're learning how Ilokano connects ideas!
+LolaNida_W57_Teach.asset|When identifying or describing something specific, Ilokano can use
+    
+LolaNida_W58_Success.asset|Da! You're learning how Ilokano expresses groups!
+LolaNida_W58_Teach.asset|When talking about a group of people, Ilokano can use 
+LolaNida_W59_Success.asset|Ket idi! You're connecting language with the history of Ilocos!
+LolaNida_W59_Teach.asset|When talking about something that existed or was true in the past,
+    you can use 
+LolaNida_W60_Success.asset|Ket idi! The past lives on through the stories we tell!
+LolaNida_W60_Teach.asset|The same past expression can also appear when talking about a group
+    in a historical context.
+
+    For example, when describing what people were like
+    in the past, 
+Neneng_Intro.asset|...
+Neneng_W61_Success.asset|Agbalin! With practice, you can become a confident Ilokano speaker!
+Neneng_W61_Teach.asset|Hey! Here
+Neneng_W62_Success.asset|Kasla! It really does feel like traveling back through history!
+Neneng_W62_Teach.asset|Sometimes we want to describe how something appears or feels to
+    us.
+
+    In Ilokano, 
+Neneng_W63_Success.asset|Agtalinaed! May our culture remain strong for generations!
+Neneng_W63_Teach.asset|Some things change, but others continue to stay strong.
+
+    In
+    Ilokano, 
+Neneng_W64_Success.asset|Agyan! I hope you stay in Vigan a little longer!
+
+    Go see Aling
+    Riza at the restaurant!
+Neneng_W64_Teach.asset|When talking about staying or residing in a place, Ilokano uses
+    

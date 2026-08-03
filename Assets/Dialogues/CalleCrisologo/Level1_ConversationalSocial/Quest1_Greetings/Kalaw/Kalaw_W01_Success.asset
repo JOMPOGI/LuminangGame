@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: Kumusta! Nailed it! That's a great way to greet someone!
-  translatedText: 
+  dialogueText: Kumusta! Nasayaat! Nalpasmo a naimbag! Nasayaat dayta a wagas a panangabla
+    iti maysa a tao!
+  translatedText: Kumusta! Nailed it! That's a great way to greet someone!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

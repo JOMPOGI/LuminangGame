@@ -199,6 +199,8 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(obj)) return;
 
+        bool isTarget = IsTargetOfObjective(obj);
+
         // First check if any questDialogue matches this objective directly
         if (questDialogues != null)
         {
@@ -214,6 +216,46 @@ public class InteractableNPC : InteractableBase
         }
 
         // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
+        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
+            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (isTarget)
+            {
+                interactionEnabled = true;
+                
+                if (InteractionManager.Instance != null)
+                {
+                    InteractionManager.Instance.ForceCheckProximity();
+                }
+            }
+            else
+            {
+                // STRICTLY disable other NPCs if they are not the target of the linear quest
+                interactionEnabled = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Evaluates if this NPC is the explicit target of the given objective, 
+    /// without mutating their interaction state.
+    /// </summary>
+    public bool IsTargetOfObjective(string obj)
+    {
+        if (string.IsNullOrEmpty(obj)) return false;
+
+        if (questDialogues != null)
+        {
+            foreach (var qd in questDialogues)
+            {
+                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+            }
+        }
+
         if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
             obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
             obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
@@ -234,29 +276,16 @@ public class InteractableNPC : InteractableBase
 
             bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
             
-            // Check Tiptip <-> flowerpecker alias
             if (!isMatch)
             {
                 bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
                 bool isTiptipName = cleanName.Contains("tiptip") || cleanName.Contains("flowerpecker");
                 if (isTiptipTarget && isTiptipName) isMatch = true;
             }
-
-            if (isMatch)
-            {
-                interactionEnabled = true;
-                
-                if (InteractionManager.Instance != null)
-                {
-                    InteractionManager.Instance.ForceCheckProximity();
-                }
-            }
-            else
-            {
-                // STRICTLY disable other NPCs if they are not the target of the linear quest
-                interactionEnabled = false;
-            }
+            return isMatch;
         }
+
+        return false;
     }
 
     /// <summary>
@@ -512,9 +541,15 @@ public class InteractableNPC : InteractableBase
                     PopupManager.Instance.ShowPopups(popupName);
                 }
             }
-            else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+            else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase) || 
+                     cleanEventName.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
             {
-                string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+                string newObjText = "";
+                if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+                    newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+                else
+                    newObjText = cleanEventName.Substring("SetObjective_".Length).Trim();
+                    
                 if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
                 {
                     ObjectiveManager.Instance.SetObjective(newObjText);

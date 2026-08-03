@@ -14,17 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When meeting someone new, one of the first things you may want to
-    know is their name.
+  dialogueText: 'No makisabatka iti baro a tao, maysa kadagiti umuna a banag nga
+    kayatmo a maammoan ket ti naganna.
 
-    In Ilokano, ''ania ti nagan mo?'' means ''what is your
-    name?''
 
-    You can use this phrase when introducing yourself to someone or
-    asking for their name.
+    Iti Ilokano, ti ''ania ti nagan mo?''
+    ket kayatna a saoen ti ''what is your name?''
+
+
+    Mabalinmo nga agusar iti
+    daytoy a pagsasao no mangrugi ka nga agpakilala iti bagim wenno no damagem ti
+    nagan ti maysa a tao.
+
+
+    Denggem a naimbag: ania ti nagan mo?
+
+
+    Ita, padasem
+    nga ibagam ti ''ania ti nagan mo?'' iti bukodmo a timek.'
+  translatedText: 'When meeting someone new, one of the first things you may want
+    to know is their name.
+
+    In Ilokano, ''ania ti nagan mo?'' means ''what is
+    your name?''
+
+    You can use this phrase when introducing yourself to someone
+    or asking for their name.
 
     Now, try saying ''ania ti nagan mo'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

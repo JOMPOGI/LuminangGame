@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: 'Naimbag a bigat! You''ve got the morning greeting down!
+  dialogueText: 'Naimbag a bigat! Nasursurom a nalaing ti panangabla iti bigat!
+
+
+    Agpayso
+    ka ken Vendor Kyros iti souvenir stallna. Isurona kenka no kasano ti panangabla
+    kadagiti tattao kadagiti dadduma a oras ti aldaw.'
+  translatedText: 'Naimbag a bigat! You''ve got the morning greeting down!
 
     Fly
     over to Vendor Kyros''s souvenir stall. He''ll teach you how to greet people
     at other times of the day.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Kyros

@@ -14,11 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 'When speaking directly to another person, Ilokano uses ''sika''
+  dialogueText: 'No makisaritaka a direkta iti sabali a tao, agusar ti Ilokano iti
+    ''sika'' para iti ''you.''
+
+
+    Denggem a naimbag: sika.
+
+
+    Ita, padasem
+    nga ibagam ti ''sika'' iti bukodmo a timek.'
+  translatedText: 'When speaking directly to another person, Ilokano uses ''sika''
     for ''you.''
 
     Now, try saying ''sika'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

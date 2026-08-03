@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: 'Look out! A horse carriage is passing through!
+  dialogueText: 'Agannadka! Adda kalesa nga lumabas!
+
+
+    No kasapulam a dumteng
+    ti maysa a tao iti bassit a panaguray ken aguray kenka, mabalinmo nga ibaga ti
+    ''urayennak.''
+
+
+    Kayatna a saoen ti ''please wait'' wenno ''wait for me.''
+
+
+    Denggem
+    a naimbag: urayennak.
+
+
+    Ita, padasem nga ibagam ti ''urayennak'' iti bukodmo
+    a timek.'
+  translatedText: 'Look out! A horse carriage is passing through!
 
     When you need
     someone to pause and wait for you, you can say ''urayennak.''
@@ -23,7 +40,6 @@ MonoBehaviour:
     wait'' or ''wait for me.''
 
     Now, try saying ''urayennak'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

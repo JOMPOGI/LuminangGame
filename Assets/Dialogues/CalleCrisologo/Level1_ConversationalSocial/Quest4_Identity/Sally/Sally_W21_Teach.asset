@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Sally
   speakerPortrait: {fileID: 21300000, guid: 7733d16353c0fcf4b99b8f89f3ad1780, type: 3}
-  dialogueText: 'When meeting someone new, you may also want to learn where they
+  dialogueText: 'No makisabatka iti baro a tao, mabalinmo met a kayat a maammoan
+    no sadino ti naggapuan na.
+
+
+    Iti Ilokano, ti ''taga sadino ka?'' ket kayatna
+    a saoen ti ''where are you from?''
+
+
+    Usarem daytoy no damagem no sadino ti
+    ili wenno lugar a naggapuanna.
+
+
+    Denggem a naimbag: taga sadino ka?
+
+
+    Ita,
+    padasem nga ibagam ti ''taga sadino ka?'' iti bukodmo a timek.'
+  translatedText: 'When meeting someone new, you may also want to learn where they
     come from.
 
     In Ilokano, ''taga sadino ka?'' means ''where are you from?''
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try
     saying ''taga sadino ka'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
