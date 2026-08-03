@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomas_Start
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: 'Ah, you must be the one Lito told me about! If you''re ready, I''d
     be happy to teach you a few more useful direction phrases. '
   translatedText: 

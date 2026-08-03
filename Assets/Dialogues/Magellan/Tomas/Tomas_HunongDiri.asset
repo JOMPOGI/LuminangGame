@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomas_HunongDiri
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: When guiding someone, there may come a moment when you want them
     to stop exactly where they are.
   translatedText: 

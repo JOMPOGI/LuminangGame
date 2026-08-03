@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: Tomas_No
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: No worries. Good craftsmanship takes patience, and so does learning.
-    If you decide you'd like to continue your directions training, come speak with
-    me again.
   translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 
-  choices: []
+  choices:
+  - choiceText: 
+    nextNode: {fileID: 11400000, guid: 2d6ec271590b4574b832dfcc6e5559b0, type: 2}
+    isWrong: 0
+    choiceEvent: 
+    expectedSTTWord: 

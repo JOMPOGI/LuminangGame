@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lito_Padayon_Success
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
   dialogueText: 'Padayon! Excellent! Sometimes all you need to do is move forward! '
   translatedText: 
   animationTrigger: 

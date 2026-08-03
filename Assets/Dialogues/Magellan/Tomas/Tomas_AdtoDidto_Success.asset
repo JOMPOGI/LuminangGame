@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomas_AdtoDidto_Success
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: Adto didto! Excellent! Clear directions make every journey easier.
   translatedText: 
   animationTrigger: 

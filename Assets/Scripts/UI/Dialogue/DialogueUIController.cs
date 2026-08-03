@@ -41,9 +41,11 @@ public class DialogueUIController : MonoBehaviour
         new Keyframe(1f,    1f,   0f, 0f)
     );
 
-    [Header("Choices Curtain Drop Animation")]
-    public float curtainDropDuration = 0.5f;
-    public float curtainDelay        = 0.1f;
+    [Header("Choices Reveal Animation")]
+    public float dialogueMoveUpDistance = 150f;
+    public float dialogueMoveDuration = 0.35f;
+    private float _dialogueOriginalY;
+    private bool _isDialoguePosCaptured = false;
 
     [Header("Portrait Settings")]
     public Image speakerPortraitImage;
@@ -139,7 +141,7 @@ public class DialogueUIController : MonoBehaviour
         {
             foreach (var choice in node.choices)
             {
-                if (string.IsNullOrEmpty(choice.choiceText)) continue;
+                if (string.IsNullOrWhiteSpace(choice.choiceText)) continue;
 
                 visibleChoices++;
                 GameObject obj = Instantiate(choiceButtonPrefab, choicesContainer);
@@ -284,10 +286,16 @@ public class DialogueUIController : MonoBehaviour
             _skipTyping = false;
 
             dialoguePanel.SetActive(false);
+            if (_isDialoguePosCaptured)
+            {
+                RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, _dialogueOriginalY);
+            }
+
             if (choicesGroup != null)
             {
                 choicesGroup.SetActive(false);
-                choicesGroup.transform.localScale = new Vector3(1, 0, 1);
+                choicesGroup.transform.localScale = Vector3.one;
             }
 
             // Hide Portrait
@@ -340,7 +348,7 @@ public class DialogueUIController : MonoBehaviour
         if (choicesGroup != null)
         {
             choicesGroup.SetActive(false);
-            choicesGroup.transform.localScale = new Vector3(1, 0, 1);
+            choicesGroup.transform.localScale = Vector3.one;
         }
 
         // NOTE: We intentionally do NOT call movementUI.SetActive(true) here.
@@ -412,13 +420,35 @@ public class DialogueUIController : MonoBehaviour
         if (choicesGroup != null && !skipAnimation) choicesGroup.SetActive(false);
         dialoguePanel.SetActive(true);
 
+        // Reset position before pop-in if not captured
+        if (!_isDialoguePosCaptured)
+        {
+            _dialogueOriginalY = dialoguePanel.GetComponent<RectTransform>().anchoredPosition.y;
+            _isDialoguePosCaptured = true;
+        }
+        
+        RectTransform dialogRT = dialoguePanel.GetComponent<RectTransform>();
+
         if (!isAlreadyOpen && !skipAnimation)
+        {
+            dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY);
             yield return StartCoroutine(PopInPanel());
+        }
         else
         {
             dialoguePanel.transform.localScale = Vector3.one;
             var cg = dialoguePanel.GetComponent<CanvasGroup>();
             if (cg != null) cg.alpha = 1f;
+
+            // If the panel is currently UP from a previous choice, slide it down first to act as a curtain
+            if (!skipAnimation && dialogRT.anchoredPosition.y > _dialogueOriginalY + 10f)
+            {
+                yield return StartCoroutine(MoveDialoguePanelDown());
+            }
+            else if (skipAnimation)
+            {
+                dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY);
+            }
         }
 
         if (typingSpeed > 0 && !skipAnimation)
@@ -431,18 +461,29 @@ public class DialogueUIController : MonoBehaviour
             if (dialogueText != null) dialogueText.text = _fullText;
 
         // Only show the choices area when there are actual choices to pick from
-        if (_activeChoiceButtons.Count > 0 && choicesGroup != null)
+        bool hasValidChoices = _activeChoiceButtons.Count > 0 && choicesGroup != null;
+        
+        Debug.Log($"<color=cyan>[DialogueUIController] hasValidChoices = {hasValidChoices} (Active Buttons: {_activeChoiceButtons.Count}). Moving UP? {hasValidChoices && !skipAnimation}</color>");
+
+        if (hasValidChoices)
         {
-            choicesGroup.SetActive(true);
-            
-            // Re-enforce scale BEFORE layout rebuild to prevent "squish"
-            choicesGroup.transform.localScale = new Vector3(1, 0, 1);
+            // Ensure choices are normal scale
+            choicesGroup.transform.localScale = Vector3.one;
             
             RectTransform choicesRT = choicesGroup.GetComponent<RectTransform>();
             if (choicesRT != null) LayoutRebuilder.ForceRebuildLayoutImmediate(choicesRT);
 
-            if (curtainDelay > 0 && !skipAnimation) yield return new WaitForSeconds(curtainDelay);
-            yield return StartCoroutine(CurtainDrop());
+            // Activate the choices BEFORE sliding up so the dialogue panel acts as a curtain revealing them
+            choicesGroup.SetActive(true);
+
+            if (!skipAnimation)
+            {
+                yield return StartCoroutine(MoveDialoguePanelUp());
+            }
+            else
+            {
+                dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY + dialogueMoveUpDistance);
+            }
         }
     }
 
@@ -495,26 +536,40 @@ public class DialogueUIController : MonoBehaviour
         _skipTyping = false;
     }
 
-    private IEnumerator CurtainDrop()
+    private IEnumerator MoveDialoguePanelUp()
     {
-        if (choicesGroup == null) yield break; // Safety Check
-
-        Vector3 start = new Vector3(1f, 0f, 1f);
-        Vector3 end   = Vector3.one;
-        choicesGroup.transform.localScale = start;
-
+        RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
+        Vector2 startPos = rt.anchoredPosition;
+        Vector2 endPos = new Vector2(startPos.x, _dialogueOriginalY + dialogueMoveUpDistance);
+        
         float elapsed = 0f;
-        while (elapsed < curtainDropDuration)
+        while (elapsed < dialogueMoveDuration)
         {
-            if (choicesGroup == null) yield break; // Safety Check mid-loop
-
             elapsed += Time.unscaledDeltaTime;
-            float t     = Mathf.Clamp01(elapsed / curtainDropDuration);
-            float eased = 1f - Mathf.Pow(1f - t, 3f);
-            choicesGroup.transform.localScale = Vector3.Lerp(start, end, eased);
+            float t = Mathf.Clamp01(elapsed / dialogueMoveDuration);
+            float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out cubic
+            rt.anchoredPosition = Vector2.LerpUnclamped(startPos, endPos, eased);
             yield return null;
         }
-        if (choicesGroup != null) choicesGroup.transform.localScale = end;
+        rt.anchoredPosition = endPos;
+    }
+
+    private IEnumerator MoveDialoguePanelDown()
+    {
+        RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
+        Vector2 startPos = rt.anchoredPosition;
+        Vector2 endPos = new Vector2(startPos.x, _dialogueOriginalY);
+        
+        float elapsed = 0f;
+        while (elapsed < dialogueMoveDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / dialogueMoveDuration);
+            float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out cubic
+            rt.anchoredPosition = Vector2.LerpUnclamped(startPos, endPos, eased);
+            yield return null;
+        }
+        rt.anchoredPosition = endPos;
     }
 
     private void UpdatePortrait(Sprite newPortrait)

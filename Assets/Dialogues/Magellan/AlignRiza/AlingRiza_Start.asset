@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: 
+  dialogueText: Oh no! I still need to deliver this pan de coco before it gets cold.
+    Could you help me?
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
-  endEventName: 
+  triggerEventName: SetObjective:Deliver the pan de coco to Mang Lance
+  endEventName: SetObjective:Deliver the pan de coco to Mang Lance
   choices: []

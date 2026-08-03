@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Tomas_AfterLesson 1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: Just come find me and Lito and we'll be happy to go over them with
     you again.
   translatedText: 
   animationTrigger: 
-  triggerEventName: HideTeachingPanel
+  triggerEventName: 
   endEventName: 
   choices:
   - choiceText: 

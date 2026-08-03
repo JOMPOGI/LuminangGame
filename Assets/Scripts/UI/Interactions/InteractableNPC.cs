@@ -26,6 +26,10 @@ public class InteractableNPC : InteractableBase
     [Tooltip("List of special dialogues that only trigger during specific quest objectives.")]
     public List<QuestDialogue> questDialogues = new List<QuestDialogue>();
 
+    [Header("Visibility Settings")]
+    [Tooltip("If true, the NPC is completely hidden (mesh and colliders disabled) until their quest objective is active.")]
+    public bool hideUntilObjective = false;
+
     public Animator npcAnimator;
 
     [Header("One-Time Interaction")]
@@ -103,6 +107,12 @@ public class InteractableNPC : InteractableBase
         {
             interactionEnabled = false; // Disable if no animator on start
         }
+
+        if (hideUntilObjective)
+        {
+            SetVisibility(false);
+            interactionEnabled = false;
+        }
     }
 
     protected override void OnEnable()
@@ -120,6 +130,8 @@ public class InteractableNPC : InteractableBase
     private void HandleObjective(string obj)
     {
         if (string.IsNullOrEmpty(obj)) return;
+        
+        bool isTarget = false;
 
         // First check if any questDialogue matches this objective directly
         if (questDialogues != null)
@@ -128,20 +140,21 @@ public class InteractableNPC : InteractableBase
             {
                 if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.StartsWith(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    if (npcAnimator != null) interactionEnabled = true;
-                    if (InteractionManager.Instance != null) InteractionManager.Instance.ForceCheckProximity();
-                    return;
+                    isTarget = true;
+                    break;
                 }
             }
         }
 
-        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
-        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
-            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
+        // Check implicit targeting if not already found in questDialogues
+        if (!isTarget && (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
+            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Meet ", System.StringComparison.OrdinalIgnoreCase)))
         {
-            string targetName = obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) 
-                ? obj.Substring("Talk to ".Length).Trim() 
-                : obj.Substring("Return to ".Length).Trim();
+            string targetName = obj;
+            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Talk to ".Length).Trim();
+            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Return to ".Length).Trim();
+            else if (obj.StartsWith("Meet ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Meet ".Length).Trim();
             
             string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
@@ -159,29 +172,27 @@ public class InteractableNPC : InteractableBase
                 if (isTiptipTarget && isTiptipName) isMatch = true;
             }
 
-            if (isMatch)
+            isTarget = isMatch;
+        }
+        
+        if (isTarget)
+        {
+            if (npcAnimator != null) interactionEnabled = true;
+            if (hideUntilObjective) SetVisibility(true);
+            if (InteractionManager.Instance != null) InteractionManager.Instance.ForceCheckProximity();
+        }
+        else
+        {
+            // Only disable interaction if we don't have defaultDialogue enabled
+            if (defaultDialogue == null)
             {
-                if (npcAnimator != null)
-                {
-                    interactionEnabled = true;
-                }
-                else
-                {
-                    interactionEnabled = false; // Block if missing animator
-                }
-                
-                if (InteractionManager.Instance != null)
-                {
-                    InteractionManager.Instance.ForceCheckProximity();
-                }
+                interactionEnabled = false;
             }
-            else
+            
+            if (hideUntilObjective)
             {
-                // Only disable if we don't have defaultDialogue enabled
-                if (defaultDialogue == null)
-                {
-                    interactionEnabled = false;
-                }
+                SetVisibility(false);
+                interactionEnabled = false;
             }
         }
     }
@@ -237,13 +248,26 @@ public class InteractableNPC : InteractableBase
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
-            // Find the child object that usually holds the armature/mesh in StarterAssets
-            // Usually we just disable all SkinnedMeshRenderers or MeshRenderers
             var renderers = player.GetComponentsInChildren<Renderer>();
             foreach (var r in renderers)
             {
                 r.enabled = isVisible;
             }
+        }
+    }
+
+    private void SetVisibility(bool isVisible)
+    {
+        var renderers = GetComponentsInChildren<Renderer>();
+        foreach (var r in renderers)
+        {
+            r.enabled = isVisible;
+        }
+
+        var colliders = GetComponentsInChildren<Collider>();
+        foreach(var c in colliders)
+        {
+            c.enabled = isVisible;
         }
     }
 

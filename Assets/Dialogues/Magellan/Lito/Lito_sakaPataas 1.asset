@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lito_sakaPataas 1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
   dialogueText: 'In Cebuano, ''saka pataas'' means ''go up.'' Listen carefully: saka
     pataas. Now, try saying ''saka pataas'' yourself.'
   translatedText: 

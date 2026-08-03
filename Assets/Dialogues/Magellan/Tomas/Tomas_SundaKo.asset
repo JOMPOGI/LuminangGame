@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomas_SundaKo
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: Sometimes the easiest way to guide someone is to lead the way yourself.
     In Cebuano, 'sunda ko' means 'follow me.' Use it when you want someone to come
     along with you.
