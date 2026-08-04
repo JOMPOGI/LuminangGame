@@ -26,6 +26,10 @@ public class InteractableNPC : InteractableBase
     [Tooltip("List of special dialogues that only trigger during specific quest objectives.")]
     public List<QuestDialogue> questDialogues = new List<QuestDialogue>();
 
+    [Header("Visibility Settings")]
+    [Tooltip("If true, the NPC is completely hidden (mesh and colliders disabled) until their quest objective is active.")]
+    public bool hideUntilObjective = false;
+
     public Animator npcAnimator;
 
     [Header("One-Time Interaction")]
@@ -181,6 +185,12 @@ public class InteractableNPC : InteractableBase
         {
             interactionEnabled = true;
         }
+
+        if (hideUntilObjective)
+        {
+            SetVisibility(false);
+            interactionEnabled = false;
+        }
     }
 
     protected override void OnEnable()
@@ -222,7 +232,8 @@ public class InteractableNPC : InteractableBase
         {
             if (isTarget)
             {
-                interactionEnabled = true;
+                if (npcAnimator != null) interactionEnabled = true;
+                if (hideUntilObjective) SetVisibility(true);
                 
                 if (InteractionManager.Instance != null)
                 {
@@ -233,6 +244,12 @@ public class InteractableNPC : InteractableBase
             {
                 // STRICTLY disable other NPCs if they are not the target of the linear quest
                 interactionEnabled = false;
+
+                if (hideUntilObjective)
+                {
+                    SetVisibility(false);
+                    interactionEnabled = false;
+                }
             }
         }
     }
@@ -258,15 +275,14 @@ public class InteractableNPC : InteractableBase
 
         if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
             obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
-            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Meet ", System.StringComparison.OrdinalIgnoreCase))
         {
             string targetName = obj;
-            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Talk to ".Length).Trim();
-            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Return to ".Length).Trim();
-            else if (obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Find ".Length).Trim();
+            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Talk to ".Length).Trim();
+            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Return to ".Length).Trim();
+            else if (obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Find ".Length).Trim();
+            else if (obj.StartsWith("Meet ", System.StringComparison.OrdinalIgnoreCase)) targetName = obj.Substring("Meet ".Length).Trim();
             
             string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
@@ -346,6 +362,21 @@ public class InteractableNPC : InteractableBase
             {
                 r.enabled = isVisible;
             }
+        }
+    }
+
+    private void SetVisibility(bool isVisible)
+    {
+        var renderers = GetComponentsInChildren<Renderer>();
+        foreach (var r in renderers)
+        {
+            r.enabled = isVisible;
+        }
+
+        var colliders = GetComponentsInChildren<Collider>();
+        foreach(var c in colliders)
+        {
+            c.enabled = isVisible;
         }
     }
 
@@ -514,6 +545,9 @@ public class InteractableNPC : InteractableBase
         {
             string cleanEventName = evt.Trim();
             if (string.IsNullOrEmpty(cleanEventName)) continue;
+            // Forward the event to custom scripts (e.g. IrahCoolerLogic)
+            gameObject.SendMessage("OnDialogueEvent", cleanEventName, SendMessageOptions.DontRequireReceiver);
+
             // NOTE: Logging is intentionally placed inside the match block below to avoid
             // console spam — this method is called on ALL NPCs via the broadcast pattern.
             
