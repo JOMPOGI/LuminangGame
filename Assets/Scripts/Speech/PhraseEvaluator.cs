@@ -15,10 +15,20 @@ public class PhraseEvaluator : MonoBehaviour
 
     private const string BACKEND_URL = "https://luminang-nlp-service.onrender.com";
 
+    private const string REGION_PREFS_KEY = "SelectedRegion";
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        // Restore saved language across scene loads
+        if (PlayerPrefs.HasKey(REGION_PREFS_KEY))
+        {
+            int saved = PlayerPrefs.GetInt(REGION_PREFS_KEY);
+            CurrentRegion = (RegionMode)saved;
+            Debug.Log($"[PhraseEvaluator] Restored saved region: {CurrentRegion}");
+        }
     }
 
     private void OnDestroy()
@@ -29,6 +39,8 @@ public class PhraseEvaluator : MonoBehaviour
     public void SetRegion(RegionMode mode)
     {
         CurrentRegion = mode;
+        PlayerPrefs.SetInt(REGION_PREFS_KEY, (int)mode);
+        PlayerPrefs.Save();
         Debug.Log($"Speech Region set to: {mode}");
     }
 
