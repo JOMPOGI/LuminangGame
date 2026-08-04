@@ -14,11 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jen
   speakerPortrait: {fileID: 0}
-  dialogueText: 'That''s okay.
-
-
-    Questions aren''t going anywhere. Come find
-    me when you''re feeling curious!'
+  dialogueText: That's okay. Questions aren't going anywhere. Come find me when you're
+    feeling curious!
   translatedText: 
   animationTrigger: 
   triggerEventName: 

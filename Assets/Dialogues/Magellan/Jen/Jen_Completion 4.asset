@@ -18,11 +18,11 @@ MonoBehaviour:
     question words with you again.
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective:Meet Tiptip at Magella's Cross
-  endEventName: SetObjective:Meet Tiptip at Magella's Cross
+  triggerEventName: 
+  endEventName: 
   choices:
   - choiceText: 
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: 09da7ca4a04d7d8488743c81ac3a8a4a, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:Interrogatives
     expectedSTTWord: 

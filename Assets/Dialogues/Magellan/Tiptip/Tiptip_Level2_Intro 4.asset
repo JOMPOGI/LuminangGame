@@ -18,6 +18,6 @@ MonoBehaviour:
     requests!
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
-  endEventName: SetObjective_Find Irah to learn Requests
+  triggerEventName: SetObjective:Find Irah to learn Requests
+  endEventName: SetObjective:Find Irah to learn Requests
   choices: []

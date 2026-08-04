@@ -192,12 +192,11 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
-        // If any choice has text, player must pick one — Next is hidden.
-        // ALSO if this is an STT node, they must speak — Next is hidden.
+        // We ALWAYS keep the next button active initially so the player can click it to skip the typing animation.
+        // It will be disabled at the very end of the TypeText coroutine if this node has choices or requires STT.
         if (nextButton != null)
         {
-            bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
-            nextButton.gameObject.SetActive(visibleChoices == 0 && !requiresSTT);
+            nextButton.gameObject.SetActive(true);
         }
 
         ShowDialogue(true, skipAnimation);
@@ -356,6 +355,38 @@ public class DialogueUIController : MonoBehaviour
         ClearChoices();
     }
 
+    /// <summary>
+    /// Hides the entire dialogue UI (panel, portrait, choices) but intentionally
+    /// keeps the movement UI hidden because a minigame is taking over.
+    /// </summary>
+    public void HideDialogueForMinigame()
+    {
+        if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
+        if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
+        _showSequenceCoroutine = null;
+        _typeTextCoroutine = null;
+        _isTyping   = false;
+        _skipTyping = false;
+
+        dialoguePanel.SetActive(false);
+        if (_isDialoguePosCaptured)
+        {
+            RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, _dialogueOriginalY);
+        }
+
+        if (choicesGroup != null)
+        {
+            choicesGroup.SetActive(false);
+            choicesGroup.transform.localScale = Vector3.one;
+        }
+
+        SetPortraitVisibility(false, false);
+        _lastPortrait = null;
+        
+        ClearChoices();
+    }
+
     // ─────────────────────────────────────────────────────────────────
     // Button Handlers
     // ─────────────────────────────────────────────────────────────────
@@ -470,22 +501,106 @@ public class DialogueUIController : MonoBehaviour
             // Ensure choices are normal scale
             choicesGroup.transform.localScale = Vector3.one;
             
-            RectTransform choicesRT = choicesGroup.GetComponent<RectTransform>();
-            if (choicesRT != null) LayoutRebuilder.ForceRebuildLayoutImmediate(choicesRT);
+            RectTransform containerRT = choicesContainer.GetComponent<RectTransform>();
+            
+            if (containerRT != null)
+            {
+                SetupChoicesLayout(containerRT);
+            }
 
-            // Activate the choices BEFORE sliding up so the dialogue panel acts as a curtain revealing them
+            // Calculate rows mathematically based on string length and number of choices
+            int maxLen = 0;
+            foreach (var choice in _currentChoices)
+            {
+                if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
+                    maxLen = choice.choiceText.Length;
+            }
+            bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
+            
+            int numChoices = _activeChoiceButtons.Count;
+            int rows = useGrid ? Mathf.CeilToInt((float)numChoices / 2f) : numChoices;
+            
+            // The user requested we just calculate the height of the rows directly!
+            float dynamicDistance = (rows * 75f) + (Mathf.Max(0, rows - 1) * 9f) + 15f;
+
             choicesGroup.SetActive(true);
+            Canvas.ForceUpdateCanvases();
 
             if (!skipAnimation)
             {
-                yield return StartCoroutine(MoveDialoguePanelUp());
+                yield return StartCoroutine(MoveDialoguePanelUp(dynamicDistance));
             }
             else
             {
-                dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY + dialogueMoveUpDistance);
+                dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY + dynamicDistance);
             }
         }
     }
+
+    private void SetupChoicesLayout(RectTransform choicesRT)
+    {
+        if (choicesContainer == null) return;
+        
+        UnityEngine.UI.VerticalLayoutGroup vLayout = choicesContainer.GetComponent<UnityEngine.UI.VerticalLayoutGroup>();
+        UnityEngine.UI.GridLayoutGroup grid = choicesContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
+        
+        // Save layout settings so we don't lose them when switching
+        RectOffset padding = null;
+        float spacing = 9f; // default spacing
+        
+        if (vLayout != null) { padding = vLayout.padding; spacing = vLayout.spacing; }
+        else if (grid != null) { padding = grid.padding; spacing = grid.spacing.y; }
+
+        int maxLen = 0;
+        foreach (var choice in _currentChoices)
+        {
+            if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
+                maxLen = choice.choiceText.Length;
+        }
+
+        // If all texts are short (<=15 chars) and we have multiple choices, use 2-column Grid
+        bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
+
+        if (useGrid)
+        {
+            if (vLayout != null) UnityEngine.Object.DestroyImmediate(vLayout);
+            if (grid == null) grid = choicesContainer.gameObject.AddComponent<UnityEngine.UI.GridLayoutGroup>();
+            
+            grid.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
+            grid.constraintCount = 2;
+            grid.startAxis = UnityEngine.UI.GridLayoutGroup.Axis.Horizontal;
+            grid.startCorner = UnityEngine.UI.GridLayoutGroup.Corner.UpperLeft;
+            grid.childAlignment = TextAnchor.LowerCenter; // Place from bottom
+            
+            if (padding != null)
+            {
+                grid.padding = padding;
+                grid.spacing = new Vector2(spacing, spacing);
+            }
+            
+            float totalWidth = choicesRT.rect.width - grid.padding.left - grid.padding.right;
+            float cellWidth = (totalWidth - grid.spacing.x) / 2f;
+            grid.cellSize = new Vector2(cellWidth, 75f); // Use the default button height
+        }
+        else
+        {
+            if (grid != null) UnityEngine.Object.DestroyImmediate(grid);
+            if (vLayout == null) vLayout = choicesContainer.gameObject.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
+            
+            vLayout.childAlignment = TextAnchor.LowerCenter; // Group everything at the bottom
+            vLayout.childControlHeight = false;
+            vLayout.childControlWidth = true;
+            vLayout.childForceExpandHeight = false;
+
+            if (padding != null)
+            {
+                vLayout.padding = padding;
+                vLayout.spacing = spacing;
+            }
+        }
+    }
+
+    // Removed CalculateTargetDialogueY as we are using direct mathematical row height
 
     private IEnumerator PopInPanel()
     {
@@ -534,13 +649,21 @@ public class DialogueUIController : MonoBehaviour
 
         _isTyping   = false;
         _skipTyping = false;
+        
+        // Now that typing is finished, hide the next button if there are choices or STT required.
+        if (nextButton != null)
+        {
+            bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
+            bool hasChoices = _activeChoiceButtons != null && _activeChoiceButtons.Count > 0;
+            nextButton.gameObject.SetActive(!hasChoices && !requiresSTT);
+        }
     }
 
-    private IEnumerator MoveDialoguePanelUp()
+    private IEnumerator MoveDialoguePanelUp(float distance)
     {
         RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
         Vector2 startPos = rt.anchoredPosition;
-        Vector2 endPos = new Vector2(startPos.x, _dialogueOriginalY + dialogueMoveUpDistance);
+        Vector2 endPos = new Vector2(startPos.x, _dialogueOriginalY + distance);
         
         float elapsed = 0f;
         while (elapsed < dialogueMoveDuration)
@@ -718,7 +841,15 @@ public class DialogueUIController : MonoBehaviour
     private void ClearChoices()
     {
         foreach (var btn in _activeChoiceButtons)
-            if (btn != null) Destroy(btn);
+        {
+            if (btn != null) 
+            {
+                // Unparent immediately so it doesn't affect the layout group calculation in the same frame
+                btn.transform.SetParent(null);
+                btn.SetActive(false);
+                Destroy(btn);
+            }
+        }
         _activeChoiceButtons.Clear();
     }
 }
