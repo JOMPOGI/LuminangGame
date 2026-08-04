@@ -6,6 +6,7 @@ using System.Linq;
 [Serializable]
 public class PhraseEntry
 {
+    public string id;
     public string category;
     public string english;
     public string ilokano;
@@ -130,5 +131,11 @@ public class DatasetManager : MonoBehaviour
     public PhraseEntry GetPhraseByEnglish(string englishText)
     {
         return dataset.phrases.FirstOrDefault(p => p.english.Equals(englishText, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public PhraseEntry GetPhraseById(string id)
+    {
+        if (dataset == null || dataset.phrases == null) return null;
+        return dataset.phrases.FirstOrDefault(p => string.Equals(p.id, id, StringComparison.OrdinalIgnoreCase));
     }
 }

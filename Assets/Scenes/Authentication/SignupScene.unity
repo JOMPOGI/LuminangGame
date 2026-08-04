@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 18553952}
   - component: {fileID: 18553951}
   - component: {fileID: 18553950}
+  - component: {fileID: 18553953}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -239,6 +240,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18553948}
   m_CullTransparentMesh: 1
+--- !u!114 &18553953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18553948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 2105896594}
+  clickSFX: {fileID: 8300000, guid: 7585e520433f2604a99b0093b21eb838, type: 3}
 --- !u!1 &54077287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,6 +2757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109502260}
   - component: {fileID: 1109502261}
+  - component: {fileID: 1109502262}
   m_Layer: 5
   m_Name: ReusableModal
   m_TagString: Untagged
@@ -2795,6 +2811,24 @@ MonoBehaviour:
   okayButtonSprite: {fileID: 21300000, guid: f220115bc0162374fa0252ade2feac3c, type: 3}
   yesButtonSprite: {fileID: 21300000, guid: 9aed4a15d39fdbf4989b8e0102fef7bc, type: 3}
   noButtonSprite: {fileID: 21300000, guid: db53d91cf87cf9244b7be86075b0e0c2, type: 3}
+--- !u!114 &1109502262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109502259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224b09be53c0ddc42b55786e772eb3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelOpenEffect
+  sfxSource: {fileID: 2105896594}
+  openSFX: {fileID: 8300000, guid: 0c51ba05ccf243a45aadbcc14abc3305, type: 3}
+  animateOnEnable: 1
+  startDelay: 0.5
+  animationDuration: 0.3
+  overshootScale: 1.1
 --- !u!1 &1117880908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,6 +2844,7 @@ GameObject:
   - component: {fileID: 1117880911}
   - component: {fileID: 1117880910}
   - component: {fileID: 1117880915}
+  - component: {fileID: 1117880916}
   m_Layer: 5
   m_Name: SignupButton
   m_TagString: Untagged
@@ -2985,6 +3020,20 @@ MonoBehaviour:
   loginSceneName: LoginScene
   mainMenuSceneName: MainMenuScene
   isBusy: 0
+--- !u!114 &1117880916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117880908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 2105896594}
+  clickSFX: {fileID: 8300000, guid: d71ef51224ec98e44be6d75751a71e09, type: 3}
 --- !u!1 &1121525767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,6 +3368,7 @@ GameObject:
   - component: {fileID: 1169280437}
   - component: {fileID: 1169280436}
   - component: {fileID: 1169280435}
+  - component: {fileID: 1169280440}
   m_Layer: 5
   m_Name: ContinueWithGoogleButton
   m_TagString: Untagged
@@ -3476,6 +3526,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169280433}
   m_CullTransparentMesh: 1
+--- !u!114 &1169280440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169280433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 2105896594}
+  clickSFX: {fileID: 8300000, guid: d71ef51224ec98e44be6d75751a71e09, type: 3}
 --- !u!1 &1305291071
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3552,7 @@ GameObject:
   - component: {fileID: 1305291075}
   - component: {fileID: 1305291074}
   - component: {fileID: 1305291073}
+  - component: {fileID: 1305291076}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -3596,6 +3661,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305291071}
   m_CullTransparentMesh: 1
+--- !u!114 &1305291076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305291071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 2105896594}
+  clickSFX: {fileID: 8300000, guid: 7585e520433f2604a99b0093b21eb838, type: 3}
 --- !u!1 &1308117381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,6 +4054,7 @@ GameObject:
   - component: {fileID: 1491810531}
   - component: {fileID: 1491810530}
   - component: {fileID: 1491810533}
+  - component: {fileID: 1491810534}
   m_Layer: 5
   m_Name: SignupPanel
   m_TagString: Untagged
@@ -4095,6 +4175,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1491810534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491810528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224b09be53c0ddc42b55786e772eb3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelOpenEffect
+  sfxSource: {fileID: 2105896594}
+  openSFX: {fileID: 8300000, guid: 0c51ba05ccf243a45aadbcc14abc3305, type: 3}
+  animateOnEnable: 1
+  startDelay: 0.2
+  animationDuration: 0.3
+  overshootScale: 1.1
 --- !u!1 &1553584500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4415,7 +4513,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -5272,6 +5370,7 @@ GameObject:
   - component: {fileID: 2105896592}
   - component: {fileID: 2105896591}
   - component: {fileID: 2105896590}
+  - component: {fileID: 2105896594}
   m_Layer: 5
   m_Name: GameLogo
   m_TagString: Untagged
@@ -5368,6 +5467,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105896588}
   m_CullTransparentMesh: 1
+--- !u!82 &2105896594
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105896588}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &8973254833495819225
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 18668554}
   - component: {fileID: 18668553}
   - component: {fileID: 18668552}
+  - component: {fileID: 18668557}
   m_Layer: 5
   m_Name: LoginButton
   m_TagString: Untagged
@@ -472,6 +473,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18668550}
   m_CullTransparentMesh: 1
+--- !u!114 &18668557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18668550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 236513657}
+  clickSFX: {fileID: 8300000, guid: d71ef51224ec98e44be6d75751a71e09, type: 3}
 --- !u!1001 &59317492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,6 +1028,7 @@ GameObject:
   - component: {fileID: 236513655}
   - component: {fileID: 236513654}
   - component: {fileID: 236513653}
+  - component: {fileID: 236513657}
   m_Layer: 5
   m_Name: GameLogo
   m_TagString: Untagged
@@ -1109,6 +1125,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236513651}
   m_CullTransparentMesh: 1
+--- !u!82 &236513657
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236513651}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &392662864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1776,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6942424678833521712, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1058087336}
+    - targetCorrespondingSourceObject: {fileID: 1880963314994779604, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 691023021}
+    - targetCorrespondingSourceObject: {fileID: 458249028326730444, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1579366106}
   m_SourcePrefab: {fileID: 100100000, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
 --- !u!224 &491352259 stripped
 RectTransform:
@@ -2061,6 +2183,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654062028}
   m_CullTransparentMesh: 1
+--- !u!1 &691023016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1880963314994779604, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
+  m_PrefabInstance: {fileID: 491352258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &691023021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691023016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 236513657}
+  clickSFX: {fileID: 8300000, guid: 7585e520433f2604a99b0093b21eb838, type: 3}
 --- !u!1 &691555132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2556,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1058087335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6942424678833521712, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
+  m_PrefabInstance: {fileID: 491352258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058087336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058087335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224b09be53c0ddc42b55786e772eb3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelOpenEffect
+  sfxSource: {fileID: 236513657}
+  openSFX: {fileID: 8300000, guid: 0c51ba05ccf243a45aadbcc14abc3305, type: 3}
+  animateOnEnable: 1
+  startDelay: 0
+  animationDuration: 0.3
+  overshootScale: 1.1
 --- !u!1 &1071975459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,6 +3369,7 @@ GameObject:
   - component: {fileID: 1561169418}
   - component: {fileID: 1561169420}
   - component: {fileID: 1561169421}
+  - component: {fileID: 1561169422}
   m_Layer: 5
   m_Name: LoginPanel
   m_TagString: Untagged
@@ -3323,6 +3488,43 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1561169422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561169416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224b09be53c0ddc42b55786e772eb3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelOpenEffect
+  sfxSource: {fileID: 236513657}
+  openSFX: {fileID: 8300000, guid: 0c51ba05ccf243a45aadbcc14abc3305, type: 3}
+  animateOnEnable: 1
+  startDelay: 0.2
+  animationDuration: 0.3
+  overshootScale: 1.1
+--- !u!1 &1579366101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 458249028326730444, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
+  m_PrefabInstance: {fileID: 491352258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1579366106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579366101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 236513657}
+  clickSFX: {fileID: 8300000, guid: 7585e520433f2604a99b0093b21eb838, type: 3}
 --- !u!1 &1654001099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3850,7 +4052,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -4059,6 +4261,7 @@ GameObject:
   - component: {fileID: 1941062503}
   - component: {fileID: 1941062502}
   - component: {fileID: 1941062501}
+  - component: {fileID: 1941062506}
   m_Layer: 5
   m_Name: ContinueWithGoogleButton
   m_TagString: Untagged
@@ -4216,6 +4419,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941062499}
   m_CullTransparentMesh: 1
+--- !u!114 &1941062506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941062499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a7b7eeb2a29a6469ed393db25eb80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxSource: {fileID: 236513657}
+  clickSFX: {fileID: 8300000, guid: d71ef51224ec98e44be6d75751a71e09, type: 3}
 --- !u!1 &2042429804
 GameObject:
   m_ObjectHideFlags: 0
