@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(AudioSource))]
 public class BGMManager : MonoBehaviour
@@ -8,9 +9,33 @@ public class BGMManager : MonoBehaviour
     public static BGMManager Instance { get; private set; }
     private AudioSource audioSource;
 
+    [System.Serializable]
+    public class SceneBGM
+    {
+        [Tooltip("Part of the scene name to match (case-insensitive). E.g. 'fishing', 'mainmenu'")]
+        public string sceneNameContains;
+        public AudioClip clip;
+        [Range(0f, 1f)]
+        public float volumeMultiplier = 1f;
+    }
+
+    [Header("Per-Scene BGM")]
+    [Tooltip("Map scene names to BGM clips. The first match wins.")]
+    public List<SceneBGM> sceneBGMList = new List<SceneBGM>();
+
+    [Header("Default BGM")]
+    [Tooltip("Plays on any scene that doesn't match the list above")]
+    public AudioClip defaultClip;
+    [Range(0f, 1f)]
+    public float defaultVolumeMultiplier = 1f;
+
+    [Header("Crossfade")]
+    public float crossfadeDuration = 1f;
+
+    private float currentVolumeMultiplier = 1f;
+
     private void Awake()
     {
-        // Singleton pattern: Ensure only one instance of BGMManager exists
         if (Instance == null)
         {
             Instance = this;
@@ -18,55 +43,92 @@ public class BGMManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             
             audioSource = GetComponent<AudioSource>();
+            audioSource.loop = true;
             
-            // Init volume
             UpdateVolume();
 
-            // Start listening for scene changes
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
-            // Start listening for volume changes
             AudioManager.onMusicVolumeChange += UpdateVolume;
         }
         else
         {
-            // If another instance already exists, destroy this duplicate
             Destroy(gameObject);
         }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        string name = scene.name.ToLower();
-        
-        // STOP music if we enter the actual gameplay level
-        if (name.Contains("sample") || name.Contains("game"))
+        string sceneName = scene.name.ToLower();
+        AudioClip targetClip = null;
+        float targetMultiplier = defaultVolumeMultiplier;
+
+        // Find the first matching scene BGM entry
+        foreach (var entry in sceneBGMList)
         {
-             Debug.Log("[BGMManager] Stopping menu music for gameplay transition.");
-             audioSource.Stop();
-        }
-        else
-        {
-            // For all other scenes (MainMenu, Login, Signup, Loading, etc.)
-            // Keep the music running!
-            if (audioSource != null && !audioSource.isPlaying)
+            if (!string.IsNullOrEmpty(entry.sceneNameContains) &&
+                sceneName.Contains(entry.sceneNameContains.ToLower()))
             {
-                audioSource.Play();
+                targetClip = entry.clip;
+                targetMultiplier = entry.volumeMultiplier;
+                break;
             }
         }
+
+        // Fall back to the default clip if no match
+        if (targetClip == null)
+        {
+            targetClip = defaultClip;
+            targetMultiplier = defaultVolumeMultiplier;
+        }
+
+        // If no clip is mapped at all, stop the music
+        if (targetClip == null)
+        {
+            audioSource.Stop();
+            return;
+        }
+
+        // If it's already playing the correct track, just update multiplier if it changed
+        if (audioSource.clip == targetClip && audioSource.isPlaying)
+        {
+            currentVolumeMultiplier = targetMultiplier;
+            UpdateVolume();
+            return;
+        }
+
+        // Crossfade to the new track
+        StartCoroutine(CrossfadeTo(targetClip, targetMultiplier));
+    }
+
+    private IEnumerator CrossfadeTo(AudioClip newClip, float newMultiplier)
+    {
+        float startVolume = audioSource.volume;
+
+        // Fade out
+        yield return FadeCoroutine(0f, crossfadeDuration / 2f);
+
+        audioSource.clip = newClip;
+        currentVolumeMultiplier = newMultiplier; // Set new base volume
+        audioSource.Play();
+
+        // Target volume based on AudioManager * our new scene multiplier
+        float finalVolume = (AudioManager.instance != null ? AudioManager.instance.musicVolume : 1f) * currentVolumeMultiplier;
+        
+        // Fade back in
+        yield return FadeCoroutine(finalVolume, crossfadeDuration / 2f);
     }
 
     private void UpdateVolume()
     {
         if (audioSource != null && AudioManager.instance != null)
         {
-            audioSource.volume = AudioManager.instance.musicVolume;
+            // The actual volume is the player's setting (0-1) MULTIPLIED by the scene's setting (0-1)
+            audioSource.volume = AudioManager.instance.musicVolume * currentVolumeMultiplier;
         }
     }
 
     private void OnDestroy()
     {
-        // Clean up event listener when destroyed
         if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -74,9 +136,6 @@ public class BGMManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Smoothly fades the BGM volume to a target value.
-    /// </summary>
     public void FadeVolume(float targetVolume, float duration)
     {
         StopAllCoroutines();
