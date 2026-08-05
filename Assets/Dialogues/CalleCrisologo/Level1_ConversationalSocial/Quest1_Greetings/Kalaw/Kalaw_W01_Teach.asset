@@ -14,33 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: 'Rugiantayo iti maysa a simple a sao nga agusarem a masansan no makisabatka
-    iti maysa a tao.
+  dialogueText: 'Let''s start with a simple word you''ll use often when meeting someone.
 
+    In
+    Ilokano, ''kumusta'' means ''hello.''
 
-    Iti Ilokano, ti ''kumusta'' ket kayatna a saoen ti ''hello.''
+    It is a friendly greeting you can
+    use when you meet someone or begin a conversation.
 
-
-    Maysa
-    dayta a napno iti kinamagkakadua a panangabla nga agusarem no makitam ti maysa
-    a tao wenno no mangrugi ka iti sarita.
-
-
-    Denggem a naimbag: kumusta.
-
-
-    Ita,
-    padasem nga ibagam ti ''kumusta'' iti bukodmo a timek.'
-  translatedText: 'Let''s start with a simple word you''ll use often when meeting
-    someone.
-
-    In Ilokano, ''kumusta'' means ''hello.''
-
-    It is a friendly
-    greeting you can use when you meet someone or begin a conversation.
-
-    Now,
-    try saying ''kumusta'' yourself.'
+    Now, try saying ''kumusta''
+    yourself.'
+  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

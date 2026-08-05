@@ -14,25 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: 'No damagen ka iti ''kumusta ka?'', mabalinmo nga ibaga no kumusta
-    ti kasasaadmo.
-
-
-    Iti Ilokano, ti ''nasayaat ak'' ket kayatna a saoen ti ''I''m
-    fine'' wenno ''nasayaat ti kasasaadko.''
-
-
-    Kas pagarigan, no damagen ka no
-    kasano ti panagdaliasatmo, mabalinmo nga sumungbat iti ''Nasayaat ak.''
-
-
-    Denggem
-    a naimbag: nasayaat ak.
-
-
-    Ita, padasem nga ibagam ti ''nasayaat ak'' iti
-    bukodmo a timek.'
-  translatedText: 'When someone asks you ''kumusta ka?'', you can tell them how you''re
+  dialogueText: 'When someone asks you ''kumusta ka?'', you can tell them how you''re
     doing.
 
     In Ilokano, ''nasayaat ak'' means ''I''m fine'' or ''I''m doing well.''
@@ -42,6 +24,7 @@ MonoBehaviour:
     ak.''
 
     Now, try saying ''nasayaat ak'' yourself.'
+  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

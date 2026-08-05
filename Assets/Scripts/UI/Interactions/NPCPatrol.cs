@@ -112,7 +112,11 @@ public class NPCPatrol : MonoBehaviour
         string animToPlay = waypoints[_currentWaypointIndex].idleStateName;
         if (string.IsNullOrEmpty(animToPlay)) animToPlay = defaultIdleStateName;
 
-        if (_animator != null) _animator.Play(animToPlay);
+        if (_animator != null)
+        {
+            if (_animator.HasState(0, Animator.StringToHash(animToPlay)))
+                _animator.Play(animToPlay);
+        }
 
         float waitTime = waypoints[_currentWaypointIndex].waitTime;
         yield return new WaitForSeconds(waitTime);
@@ -127,7 +131,8 @@ public class NPCPatrol : MonoBehaviour
     {
         if (_animator != null && !_isPausedForInteraction)
         {
-            _animator.Play(moveStateName);
+            if (_animator.HasState(0, Animator.StringToHash(moveStateName)))
+                _animator.Play(moveStateName);
         }
     }
 
@@ -141,7 +146,11 @@ public class NPCPatrol : MonoBehaviour
         _isIdling = false; // Reset idle state so we can resume properly later
         
         // Let InteractableNPC.SmoothLookAtPlayer() handle the rotation and idle animation during conversation
-        if (_animator != null) _animator.Play(defaultIdleStateName);
+        if (_animator != null)
+        {
+            if (_animator.HasState(0, Animator.StringToHash(defaultIdleStateName)))
+                _animator.Play(defaultIdleStateName);
+        }
     }
 
     /// <summary>

@@ -215,27 +215,42 @@ public class InteractableNPC : InteractableBase
             }
         }
 
-        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
-        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
-            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
-            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+        // Also enable if the objective contains this NPC's name in any phrasing
+        // e.g. "Learn greetings from Kyros" should enable Kyros
+        if (!isTarget)
+        {
+            string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
+                                              .Replace("rigged", "").Replace("vendor", "").Replace("npc", "");
+            string cleanObj  = obj.Replace(" ", "").Replace("_", "").ToLower();
+            if (cleanName.Length > 2 && cleanObj.Contains(cleanName))
+                isTarget = true;
+        }
+
+        // The linear story sets objectives like "Talk to Kyros" / "Find Irah" / "Learn X from Kyros"
+        bool isLinearObjective =
+            obj.StartsWith("Talk to ",    System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Return to ",  System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Find ",       System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Learn ",      System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Go to ",      System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Meet ",       System.StringComparison.OrdinalIgnoreCase);
+
+        if (isLinearObjective || isTarget)
         {
             if (isTarget)
             {
                 interactionEnabled = true;
-                
                 if (InteractionManager.Instance != null)
-                {
                     InteractionManager.Instance.ForceCheckProximity();
-                }
             }
             else
             {
-                // STRICTLY disable other NPCs if they are not the target of the linear quest
+                // Disable all non-target NPCs strictly.
                 interactionEnabled = false;
             }
         }
     }
+
 
     /// <summary>
     /// Evaluates if this NPC is the explicit target of the given objective, 
@@ -245,48 +260,56 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(obj)) return false;
 
+        // 1. Check questDialogues for exact requiredObjective match
         if (questDialogues != null)
         {
             foreach (var qd in questDialogues)
             {
-                if (!string.IsNullOrEmpty(qd.requiredObjective) && obj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
-                {
+                if (!string.IsNullOrEmpty(qd.requiredObjective) &&
+                    obj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
                     return true;
-                }
             }
         }
 
-        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
+        // Build a clean NPC name for matching
+        string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
+                                          .Replace("rigged", "").Replace("vendor", "").Replace("npc", "");
+
+        // 2. Prefix-style objectives: "Talk to Kyros", "Find Irah", "Return to Kalaw", "Meet X"
+        if (obj.StartsWith("Talk to ",   System.StringComparison.OrdinalIgnoreCase) ||
             obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
-            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+            obj.StartsWith("Find ",      System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Meet ",      System.StringComparison.OrdinalIgnoreCase))
         {
-            string targetName = obj;
-            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Talk to ".Length).Trim();
-            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Return to ".Length).Trim();
-            else if (obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Find ".Length).Trim();
-            
-            string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
-            string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
-                                              .Replace("rigged", "")
-                                              .Replace("vendor", "")
-                                              .Replace("npc", "");
+            string prefix = obj.StartsWith("Talk to ",   System.StringComparison.OrdinalIgnoreCase) ? "Talk to " :
+                            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ? "Return to " :
+                            obj.StartsWith("Find ",      System.StringComparison.OrdinalIgnoreCase) ? "Find " : "Meet ";
+            string cleanTarget = obj.Substring(prefix.Length).Trim().Replace(" ", "").Replace("_", "").ToLower();
 
             bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
-            
+
+            // Tiptip / Flowerpecker alias
             if (!isMatch)
             {
                 bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
-                bool isTiptipName = cleanName.Contains("tiptip") || cleanName.Contains("flowerpecker");
+                bool isTiptipName   = cleanName.Contains("tiptip")   || cleanName.Contains("flowerpecker");
                 if (isTiptipTarget && isTiptipName) isMatch = true;
             }
             return isMatch;
         }
 
+        // 3. Free-form objectives that contain the NPC name anywhere
+        //    e.g. "Learn greetings from Kyros", "LEVEL III COMPLETE! Head to Plaza: Talk to Kalaw"
+        if (cleanName.Length > 2)
+        {
+            string cleanObj = obj.Replace(" ", "").Replace("_", "").ToLower();
+            if (cleanObj.Contains(cleanName))
+                return true;
+        }
+
         return false;
     }
+
 
     /// <summary>
     /// Helper method to teleport the NPC. Easily callable from UnityEvents.

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Welcome, traveler! I heard you're learning Ilokano. I'm Irah, the
+    weaver. I'll teach you how to express gratitude in Ilokano!
+  translatedText: Welcome, traveler! I heard you're learning Ilokano. I'm Irah, the
+    weaver. I'll teach you how to express gratitude in Ilokano!
   animationTrigger: 
   triggerEventName: SetObjective_Learn gratitude from Irah
   endEventName: 

@@ -38,7 +38,7 @@ public class NPCRandomIdle : MonoBehaviour
         while (true)
         {
             // 1. Play the default idle
-            _animator.CrossFadeInFixedTime(defaultIdleState, 0.25f);
+            SafeCrossFade(defaultIdleState, 0.25f);
 
             // 2. Wait for a random amount of time
             float waitTime = Random.Range(minWaitTime, maxWaitTime);
@@ -46,10 +46,22 @@ public class NPCRandomIdle : MonoBehaviour
 
             // 3. Pick a random animation and play it
             string randomAnim = randomIdleStates[Random.Range(0, randomIdleStates.Length)];
-            _animator.CrossFadeInFixedTime(randomAnim, 0.25f);
+            SafeCrossFade(randomAnim, 0.25f);
 
             // 4. Wait for the random animation to finish before looping back to default
             yield return new WaitForSeconds(randomAnimDuration);
         }
     }
+
+    private void SafeCrossFade(string stateName, float duration)
+    {
+        if (_animator != null && _animator.runtimeAnimatorController != null)
+        {
+            if (_animator.HasState(0, Animator.StringToHash(stateName)))
+            {
+                _animator.CrossFadeInFixedTime(stateName, duration, 0);
+            }
+        }
+    }
 }
+

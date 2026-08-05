@@ -27,7 +27,7 @@ MonoBehaviour:
     Lance'
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: afdaa143b7c1a174f8f5d558482a925c, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:counting,complete_level2,welcome_level3
     expectedSTTWord: 

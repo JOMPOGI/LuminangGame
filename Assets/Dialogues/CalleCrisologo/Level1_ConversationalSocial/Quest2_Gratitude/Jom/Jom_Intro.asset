@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
   speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Ay, a visitor! I'm Jom. Pull up a chair! I'll teach you the proper
+    Ilokano responses when someone thanks you.
+  translatedText: Ay, a visitor! I'm Jom. Pull up a chair! I'll teach you the proper
+    Ilokano responses when someone thanks you.
   animationTrigger: 
   triggerEventName: SetObjective_Learn gratitude and responses from Jom
   endEventName: 

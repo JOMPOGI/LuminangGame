@@ -118,14 +118,26 @@ public class DialogueUIController : MonoBehaviour
         Debug.Log($"<color=magenta>[DialogueUIController] DisplayNode -> Displaying Node: '{(node != null ? node.name : "NULL")}', Text: '{(node != null ? node.dialogueText : "")}'</color>");
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
-        _fullText         = injectedPrefixText + node.dialogueText;
-        _translatedText   = node.translatedText;
+        string rawText = injectedPrefixText + node.dialogueText;
+        string rawTranslated = node.translatedText;
+        
+        if (TimeManager.Instance != null && rawText != null)
+        {
+            string greeting = TimeManager.Instance.GetGreetingTag();
+            rawText = rawText.Replace("{Greeting}", greeting);
+            
+            string engGreeting = TimeManager.Instance.IsMorning ? "Good morning" : (TimeManager.Instance.IsAfternoon ? "Good afternoon" : "Good evening");
+            if (rawTranslated != null) rawTranslated = rawTranslated.Replace("{Greeting}", engGreeting);
+        }
+        
+        _fullText = rawText;
+        _translatedText = rawTranslated;
         _isSkippingAnimation = skipAnimation;
         
         // Reset prefix after consuming
         injectedPrefixText = "";
         
-        _isTranslatedShowing = false;
+        _isTranslatedShowing = true;
         _skipTyping       = skipAnimation; // If skipping, we force it here
 
         // Split full text and translated text into pages (sentences)
@@ -137,7 +149,7 @@ public class DialogueUIController : MonoBehaviour
 
         // Show/Hide translate button
         if (translateButton != null)
-            translateButton.gameObject.SetActive(!string.IsNullOrEmpty(_translatedText));
+            translateButton.gameObject.SetActive(false);
 
         if (speakerNameText != null)
             speakerNameText.text = string.IsNullOrEmpty(node.speakerName) ? "" : node.speakerName;

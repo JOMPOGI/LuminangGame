@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: ...
+  dialogueText: 'Naimbag nga aldaw, biyahero! Kalaw told me you were exploring Vigan.
+    I''m Kyros, the souvenir vendor. Let me teach you more greetings!'
   translatedText: 
   animationTrigger: 
   triggerEventName: SetObjective_Learn greetings from Kyros

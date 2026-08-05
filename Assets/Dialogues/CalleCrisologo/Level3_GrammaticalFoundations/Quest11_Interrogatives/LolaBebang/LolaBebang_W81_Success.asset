@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LolaBebang_W81_Success
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
-  speakerPortrait: {fileID: 0}
+  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
   dialogueText: 'Mano! Ita, mabalinmon a damagen ti bilang dagiti tattao ken banag.
 
 
@@ -39,7 +39,7 @@ MonoBehaviour:
   endEventName: 'SetObjective_LEVEL III COMPLETE! Head to Plaza: Talk to Kalaw'
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: 1790a9600c049514db2163885b114896, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:interrogatives,complete_level3,final
     expectedSTTWord: 

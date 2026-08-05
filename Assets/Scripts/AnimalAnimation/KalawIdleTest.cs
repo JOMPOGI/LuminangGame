@@ -53,13 +53,13 @@ public class KalawIdleTest : MonoBehaviour
 
                     if (randomChoice == 0)
                     {
-                        animator.SetTrigger("DoIdleMove");
+                        SafeSetTrigger("DoIdleMove");
                         currentState = KalawState.SimpleIdle;
                         SetSimpleIdleTimer();
                     }
                     else
                     {
-                        animator.SetTrigger("DoPointing");
+                        SafeSetTrigger("DoPointing");
                         currentState = KalawState.Pointing;
                         SetPointingTimer();
                     }
@@ -68,7 +68,7 @@ public class KalawIdleTest : MonoBehaviour
 
                 case KalawState.SimpleIdle:
 
-                    animator.SetTrigger("ReturnToStill");
+                    SafeSetTrigger("ReturnToStill");
                     currentState = KalawState.IdleStill;
                     SetIdleStillTimer();
 
@@ -76,7 +76,7 @@ public class KalawIdleTest : MonoBehaviour
 
                 case KalawState.Pointing:
 
-                    animator.SetTrigger("ReturnFromPointing");
+                    SafeSetTrigger("ReturnFromPointing");
                     currentState = KalawState.IdleStill;
                     SetIdleStillTimer();
 
@@ -105,7 +105,7 @@ public class KalawIdleTest : MonoBehaviour
         if (npc != null) npc.isWrongAnswerPlaying = true;
 
         // Fire the trigger — AnyState → idle (exit time OFF means it interrupts immediately)
-        animator.SetTrigger("WrongAnswer");
+        SafeSetTrigger("WrongAnswer");
 
         // Wait one frame so the animator has time to transition into the idle state
         yield return null;
@@ -140,12 +140,12 @@ public class KalawIdleTest : MonoBehaviour
         _isActive = false;
         
         // Reset existing triggers to ensure clean transition
-        animator.ResetTrigger("DoIdleMove");
-        animator.ResetTrigger("DoPointing");
-        animator.ResetTrigger("ReturnToStill");
-        animator.ResetTrigger("ReturnFromPointing");
+        SafeResetTrigger("DoIdleMove");
+        SafeResetTrigger("DoPointing");
+        SafeResetTrigger("ReturnToStill");
+        SafeResetTrigger("ReturnFromPointing");
 
-        animator.SetTrigger("StartFlying");
+        SafeSetTrigger("StartFlying");
         Debug.Log("[KalawIdleTest] Continuous flying started.");
     }
 
@@ -153,13 +153,13 @@ public class KalawIdleTest : MonoBehaviour
     {
         _isActive = false;
 
-        animator.ResetTrigger("DoIdleMove");
-        animator.ResetTrigger("DoPointing");
+        SafeResetTrigger("DoIdleMove");
+        SafeResetTrigger("DoPointing");
 
         if (currentState == KalawState.SimpleIdle)
-            animator.SetTrigger("ReturnToStill");
+            SafeSetTrigger("ReturnToStill");
         else if (currentState == KalawState.Pointing)
-            animator.SetTrigger("ReturnFromPointing");
+            SafeSetTrigger("ReturnFromPointing");
 
         currentState = KalawState.IdleStill;
         timer = 0f;
@@ -192,5 +192,35 @@ public class KalawIdleTest : MonoBehaviour
     void SetPointingTimer()
     {
         currentDuration = Random.Range(minPointingTime, maxPointingTime);
+    }
+
+    private void SafeSetTrigger(string triggerName)
+    {
+        if (animator != null && animator.runtimeAnimatorController != null)
+        {
+            foreach (var param in animator.parameters)
+            {
+                if (param.name == triggerName)
+                {
+                    SafeSetTrigger(triggerName);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void SafeResetTrigger(string triggerName)
+    {
+        if (animator != null && animator.runtimeAnimatorController != null)
+        {
+            foreach (var param in animator.parameters)
+            {
+                if (param.name == triggerName)
+                {
+                    SafeResetTrigger(triggerName);
+                    return;
+                }
+            }
+        }
     }
 }

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Naimbag nga aldaw! I'm Aling Riza, the seamstress. Let me finish
+    teaching you the linking verbs you'll need every day!
+  translatedText: Naimbag nga aldaw! I'm Aling Riza, the seamstress. Let me finish
+    teaching you the linking verbs you'll need every day!
   animationTrigger: 
   triggerEventName: SetObjective_Learn pronouns from Aling Riza
   endEventName: 

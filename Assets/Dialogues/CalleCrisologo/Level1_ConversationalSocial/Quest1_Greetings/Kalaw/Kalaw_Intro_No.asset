@@ -14,25 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kalaw
   speakerPortrait: {fileID: 21300000, guid: e9a1f2822809deb49a0ce098da0fddca, type: 3}
-  dialogueText: "Ay, kasta kadi... Saan a bale.\n\nAy, sadinoman ti manners ko\u2014siak
-    ni Kalaw, ti kadwam ken guide mo kadagitoy a lugar!\n\nUray bassit... kitaem
-    dayta daan nga anting-anting a pendant nga aginana iti barukongmo! Mariknam kadi
-    dayta bassit a panaguni?\n\nTi Ilocos Language Crystal nga adda iti uneg dayta
-    ket matmaturog.\n\nTapno mapno iti pigsa ken mapukaw ti turogna, masapul nga
-    agpasyar ka iti Calle Crisologo ken makisarita kadagiti umili iti nasao a pagsasaoda.\n\nBayat
-    ti panagsanaymo ken panagsursurom no kasano ti panagsao dagiti Ilocano iti inaldaw-aldaw
-    a panagbiagda, ti timekmo ti makatulong a mangisubli iti pigsana ti crystal.\n\nIsu
-    a, rugiantayo iti nalaka.\n\nSakbay a pudno a makikadua ka kadagiti tattao ti
-    Ilocos, masapul nga umuna a sursuruem no kasano ti panangabla kadakuada."
-  translatedText: "Oh, is that so... Nevermind.\n\nAh, where are my manners\u2014I
-    am Kalaw, your companion and guide through these lands!\n\nWait a second... look
-    at that ancient anting-anting pendant resting on your chest! Feel that faint
-    hum?\n\nThe Ilocos Language Crystal inside it is sleeping.\n\nTo charge it up
-    and awaken its power, you've got to explore Calle Crisologo and speak with the
-    locals in their native tongue.\n\nAs you practice and learn how Ilocanos talk
-    in their daily lives, your voice will help restore the crystal's power.\n\nSo,
+  dialogueText: "Oh, is that so... Nevermind.\n\nAh, where are my manners\u2014I
+    am Kalaw, your companion and guide through these lands!\n\nTo
+    truly experience the beauty of Vigan, you've got to explore Calle Crisologo and
+    speak with the locals in their native tongue.\n\nAs you practice and learn how
+    Ilocanos talk in their daily lives, you will earn their trust and friendship.\n\nSo,
     let's begin with something simple.\n\nBefore you can truly connect with the people
     of Ilocos, you must first learn how to greet them."
+  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

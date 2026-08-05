@@ -22,7 +22,7 @@ MonoBehaviour:
   endEventName: SetObjective_Learn responses from Jom
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: ff71966970218aa43ad986956d26fe08, type: 2}
+    nextNode: {fileID: 11400000, guid: 884a12e93673be24db42e4a1d6d430a3, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:gratitude
     expectedSTTWord: 

@@ -22,7 +22,12 @@ MonoBehaviour:
   endEventName: SetObjective_Learn directions from Lito
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 7b0a445bb6b68aa4ca238d50ea7ae053, type: 2}
+    nextNode: {fileID: 11400000, guid: 0046c3e47443b4a469c731885c80d370, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:requests
+    expectedSTTWord: 
+  - choiceText: Play Fishing Game!
+    nextNode: {fileID: 11400000, guid: f0658711a3afa104a8289586a0e52cce, type: 2}
+    isWrong: 0
+    choiceEvent: StartMinigame:FishingGame
     expectedSTTWord: 

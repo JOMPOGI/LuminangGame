@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Naimbag nga aldaw! I'm Klara! You've come to the right place. Let
+    me teach you the last few direction phrases and we'll start counting too!
+  translatedText: Naimbag nga aldaw! I'm Klara! You've come to the right place. Let
+    me teach you the last few direction phrases and we'll start counting too!
   animationTrigger: 
   triggerEventName: SetObjective_Learn directions and numbers from Klara
   endEventName: 
