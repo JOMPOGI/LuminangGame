@@ -19,22 +19,29 @@ public class CustomizationDetailPanel : MonoBehaviour
     [Header("Description Panel Content")]
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescText;
-    public TextMeshProUGUI statusText; // Replaced priceText with statusText
+    public TextMeshProUGUI priceText;
     public Image itemIconImage;
-    public Button actionButton; // Equip or Unequip
+    public Button actionButton; // Buy, Equip, or Unequip
     public TextMeshProUGUI actionButtonLabel;
 
     [Header("Character")]
     public OutfitManager outfitManager;
 
     [Header("Colors")]
-    public Color equippedColor = Color.green;
-    public Color notEquippedColor = Color.white;
+    public Color affordableColor = Color.white;
+    public Color tooExpensiveColor = Color.red;
 
     // ---- private state ----
     private OutfitItem currentItem;
     private bool isPanelOpen = false;
     private Coroutine animCoroutine;
+
+    // TODO: Connect this to your real PlayerPrefs/Coin Manager or Supabase later
+    private int TempPlayerCoins
+    {
+        get => PlayerPrefs.GetInt("TempCoins", 500); // Give player 500 starting coins for testing
+        set => PlayerPrefs.SetInt("TempCoins", value);
+    }
 
     void Awake()
     {
@@ -61,11 +68,10 @@ public class CustomizationDetailPanel : MonoBehaviour
         if (itemDescText != null)
             itemDescText.text = item.itemDescription;
 
-        if (statusText != null)
+        if (priceText != null)
         {
-            bool isEquipped = IsCurrentItemEquipped();
-            statusText.text = isEquipped ? "Equipped" : "Not Equipped";
-            statusText.color = isEquipped ? equippedColor : notEquippedColor;
+            priceText.text = item.price.ToString();
+            priceText.color = TempPlayerCoins >= item.price ? affordableColor : tooExpensiveColor;
         }
 
         // Set Icon
@@ -104,9 +110,32 @@ public class CustomizationDetailPanel : MonoBehaviour
     {
         if (currentItem == null || outfitManager == null) return;
 
+        bool isOwned = IsItemOwned(currentItem);
         bool isEquipped = IsCurrentItemEquipped();
 
-        if (isEquipped)
+        if (!isOwned)
+        {
+            // BUY Logic
+            if (TempPlayerCoins >= currentItem.price)
+            {
+                // Spend coins
+                TempPlayerCoins -= currentItem.price;
+                Debug.Log($"Bought {currentItem.itemName} for {currentItem.price} coins. Remaining: {TempPlayerCoins}");
+                
+                // Save ownership
+                SetItemOwned(currentItem, true);
+                
+                // Immediately update all frames (so the coin icon disappears on the frame)
+                CustomizationManager manager = Object.FindFirstObjectByType<CustomizationManager>();
+                if (manager != null) manager.RefreshAllFrames();
+            }
+            else
+            {
+                Debug.LogWarning("Not enough coins to buy this item!");
+                return; // Do nothing if too expensive
+            }
+        }
+        else if (isEquipped)
         {
             // UNEQUIP Logic
             outfitManager.Unequip(currentItem.slot);
@@ -118,32 +147,36 @@ public class CustomizationDetailPanel : MonoBehaviour
         }
 
         RefreshButtonState();
-        
-        // Update status text on click
-        if (statusText != null)
-        {
-            bool nowEquipped = !isEquipped;
-            statusText.text = nowEquipped ? "Equipped" : "Not Equipped";
-            statusText.color = nowEquipped ? equippedColor : notEquippedColor;
-        }
     }
 
     private void RefreshButtonState()
     {
         if (currentItem == null || actionButtonLabel == null) return;
 
+        bool isOwned = IsItemOwned(currentItem);
         bool isEquipped = IsCurrentItemEquipped();
 
-        if (actionButton != null)
-            actionButton.interactable = true;
-
-        if (isEquipped)
+        if (!isOwned)
         {
-            actionButtonLabel.text = "Unequip";
+            actionButtonLabel.text = "Buy";
+            
+            // Disable button if too expensive
+            if (actionButton != null)
+                actionButton.interactable = (TempPlayerCoins >= currentItem.price);
         }
         else
         {
-            actionButtonLabel.text = "Equip";
+            if (actionButton != null)
+                actionButton.interactable = true; // Always interactable if owned
+
+            if (isEquipped)
+            {
+                actionButtonLabel.text = "Unequip";
+            }
+            else
+            {
+                actionButtonLabel.text = "Equip";
+            }
         }
     }
 

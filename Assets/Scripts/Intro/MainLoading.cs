@@ -26,7 +26,7 @@ public class MainLoading : MonoBehaviour
     public string[] scenesToPreload = new string[] { 
         "LoadingScene", "LoginScene", "SignupScene", "MainMenuScene", 
         "AboutScene", "OptionScene", "CreateCharacterScene", "PrologueScene", 
-        "LanguageSelectionScene", "TutorialScene", "Calle_Crisologo", "Magellan's_Cross", "hatdog"
+        "MapSelectionScene", "TutorialScene", "Calle_Crisologo", "Magellan's_Cross", "hatdog"
     };
     public float minimumLoadTime = 5f;
     public float smoothSpeed = 3f;
@@ -186,7 +186,23 @@ public class MainLoading : MonoBehaviour
         if (string.IsNullOrEmpty(sceneToLoad)) sceneToLoad = SceneLoader.targetSceneForLoading;
         if (string.IsNullOrEmpty(sceneToLoad)) yield break; 
 
-        // 3. (Removed MinigameAssetCache Preload logic)
+        // 3. NEW: Preload Minigame Assets into Memory
+        if (MinigameAssetCache.Instance != null)
+        {
+            Debug.Log("[MainLoading] Starting Minigame Asset Cache Preload...");
+            loadingText.text = "Caching Minigame Assets...";
+            MinigameAssetCache.Instance.StartPreload();
+            
+            // Wait for cache to be ready
+            while (!MinigameAssetCache.Instance.IsReady)
+            {
+                // We show the specific cache progress on the bar (from 0% to 100%)
+                float cacheProgress = MinigameAssetCache.Instance.PreloadProgress;
+                UpdateProgressUI(cacheProgress * 0.5f); // Use first 50% of bar for assets
+                yield return null;
+            }
+            Debug.Log("[MainLoading] Minigame Assets Cached Successfully!");
+        }
 
         // 4. Preload all background scenes
         float totalSteps = (scenesToPreload != null ? scenesToPreload.Length : 0) + 1; // +1 for the target scene

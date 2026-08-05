@@ -18,7 +18,7 @@ MonoBehaviour:
   translatedText: 
   animationTrigger: Clap
   triggerEventName: ShowFloatingText:Excellent result!
-  endEventName: SetObjective:Explore Magellan's Cross
+  endEventName: 
   choices:
   - choiceText: 
     nextNode: {fileID: 11400000, guid: f0d58fce275919c43996718fb8d78e83, type: 2}

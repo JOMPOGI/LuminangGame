@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
   m_Name: Ronnie_Default
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: LOLA NIDA
+  speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: '"Ket idi! The past lives on through the stories we tell!"
-
-'
-  translatedText: 
+  dialogueText: Aynta, napintas unay daytoy nga kuting!
+  translatedText: Such a cute kitten you are!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

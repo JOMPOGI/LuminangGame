@@ -4,13 +4,10 @@ using System.Collections;
 
 public class PrologueController : MonoBehaviour
 {
-    [Header("Scene Navigation")]
-    [Tooltip("The name of the scene to load after the prologue finishes.")]
-    public string nextSceneName = "LanguageSelectionScene";
-
     [Header("Video Settings")]
     public VideoPlayer videoPlayer;
     public float fallbackWaitTime = 5.0f;
+    public string nextSceneName = "MapSelectionScene";
     public SceneLoader sceneLoader;
 
     void Start()

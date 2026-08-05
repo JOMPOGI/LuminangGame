@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
   m_Name: Ronnie_Quest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: ALING RIZA
+  speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: 
-  translatedText: 
+  dialogueText: "Thanks! Meet Sally and Neneng near the landmarks to learn about our history."
+  translatedText: "Thanks! Meet Sally and Neneng..."
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 4a88825ee1c795648b43156ac357e038, type: 2}
+  - choiceText: Ask about the weaving materials
+    nextNode: {fileID: 11400000, guid: b7ffa4bb0e07cd3418f02f68706dccd0, type: 2}
     isWrong: 0
     choiceEvent: 
-    expectedSTTWord: 

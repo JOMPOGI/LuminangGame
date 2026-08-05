@@ -34,7 +34,7 @@ public class SceneLoader : MonoBehaviour
         // NEW RULE: Only use the loading screen if we are leaving the Main Menu 
         // AND going to a "heavy" scene (Game, Map, Prologue, or Character Creation).
         bool isHeavyScene = (sceneName == "Calle_Crisologo" || sceneName == "Magellan's_Cross" || 
-                             sceneName == "LanguageSelectionScene" || sceneName == "PrologueScene" || 
+                             sceneName == "MapSelectionScene" || sceneName == "PrologueScene" || 
                              sceneName == "CreateCharacterScene");
         
         bool shouldShowLoadingScreen = (currentScene == "MainMenuScene" && isHeavyScene);

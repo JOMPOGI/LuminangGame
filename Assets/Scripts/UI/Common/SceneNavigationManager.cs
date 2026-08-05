@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public static class SceneNavigationManager
 {
     // This is the "Memory" of our navigator
-    private static string lastSceneName = "LanguageSelectionScene"; // Default fallback
+    private static string lastSceneName = "MapSelectionScene"; // Default fallback
 
     /// <summary>
     /// Loads the customization scene and remembers the current scene.
@@ -29,9 +29,8 @@ public static class SceneNavigationManager
 
     public static void LoadSTTTest()
     {
-        // 1. Remember where we are (LanguageSelectionScene)
+        // 1. Remember where we are (MapSelectionScene)
         lastSceneName = SceneManager.GetActiveScene().name;
-        PlayerPrefs.SetString("PreviousScene", "LanguageSelectionScene");
         Debug.Log("[SceneNavigator] Saving scene: " + lastSceneName);
 
         // 2. Load the test scene

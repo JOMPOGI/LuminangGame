@@ -5,7 +5,7 @@ public class MainMenuRedirection : MonoBehaviour
     [Header("Scene Names")]
     public string createCharacterScene = "CreateCharacterScene";
     public string prologueScene = "PrologueScene";
-    public string languageSelectionScene = "LanguageSelectionScene";
+    public string mapSelectionScene = "MapSelectionScene";
 
     public void StartGame()
     {
@@ -27,8 +27,8 @@ public class MainMenuRedirection : MonoBehaviour
             }
             else
             {
-                sceneToLoad = languageSelectionScene;
-                Debug.Log("[Main Menu] Player is ready. Loading Language Selection...");
+                sceneToLoad = mapSelectionScene;
+                Debug.Log("[Main Menu] Player is ready. Loading Map Selection...");
             }
         }
         else

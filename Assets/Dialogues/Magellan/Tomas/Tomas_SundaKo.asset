@@ -15,15 +15,13 @@ MonoBehaviour:
   speakerName: Tomas
   speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
   dialogueText: Sometimes the easiest way to guide someone is to lead the way yourself.
-    In Cebuano, 'sunda ko' means 'follow me.' Use it when you want someone to come
-    along with you.
   translatedText: 
   animationTrigger: 
   triggerEventName: ShowTeachingPanel:Sige
   endEventName: 
   choices:
   - choiceText: 
-    nextNode: {fileID: 11400000, guid: 63d72af4bd082d84d8af0080ca5fb422, type: 2}
+    nextNode: {fileID: 11400000, guid: 6d3fe9830411b5041a3578a325481379, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

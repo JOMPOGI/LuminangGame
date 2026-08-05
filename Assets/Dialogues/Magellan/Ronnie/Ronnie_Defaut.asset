@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff519377b990a4c81cd1461a3c1f62, type: 3}
   m_Name: Ronnie_Defaut
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  speakerName: TOMAS
+  speakerName: 
   speakerPortrait: {fileID: 0}
-  dialogueText: '"Surotennak! Follow me to the jar drying racks!"
-
-'
+  dialogueText: 
   translatedText: 
   animationTrigger: 
   triggerEventName: 
