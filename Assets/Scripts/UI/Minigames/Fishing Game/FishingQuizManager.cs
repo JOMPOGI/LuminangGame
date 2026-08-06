@@ -368,6 +368,41 @@ public class FishingQuizManager : MonoBehaviour
         else if (baitsUsed == 18) { stars = 2; coinsEarned = 20; }
         else { stars = 1; coinsEarned = 10; }
 
+        // Auto-recover winStars if unassigned in Inspector
+        if (winStars == null || winStars.Length == 0 || winStars[0] == null)
+        {
+            if (winPanel != null)
+            {
+                var foundList = new List<Image>();
+                for (int s = 1; s <= 5; s++)
+                {
+                    foreach (Transform t in winPanel.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (t.name.Equals($"Star{s}", System.StringComparison.OrdinalIgnoreCase) && t.TryGetComponent<Image>(out var img))
+                        {
+                            foundList.Add(img);
+                            break;
+                        }
+                    }
+                }
+                if (foundList.Count > 0)
+                {
+                    winStars = foundList.ToArray();
+                }
+            }
+        }
+
+        // Auto-recover sprites if unassigned in Inspector
+        if (activeStarSprite == null || inactiveStarSprite == null)
+        {
+            Sprite[] allSprites = UnityEngine.Resources.FindObjectsOfTypeAll<Sprite>();
+            foreach (var sp in allSprites)
+            {
+                if (activeStarSprite == null && sp.name == "star_active") activeStarSprite = sp;
+                if (inactiveStarSprite == null && sp.name == "star_inactive") inactiveStarSprite = sp;
+            }
+        }
+
         // Update star sprites visually
         for (int i = 0; i < winStars.Length; i++)
         {
