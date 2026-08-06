@@ -19,7 +19,7 @@ public class LoadingSceneController : MonoBehaviour
     public string introAnimation = "LoadingReveal";
     public string outroAnimation = "LoadingOutro";
     public float transitionTime = 1f;
-    public float minimumLoadTime = 3f;
+    public float minimumLoadTime = 1.5f;
 
     private string sceneToLoad;
     private string callerScene;
@@ -125,8 +125,8 @@ public class LoadingSceneController : MonoBehaviour
     {
         Debug.Log("[LoadingScene] Starting LoadProcess...");
 
-        // Reduce background loading impact to keep UI smooth during animation
-        Application.backgroundLoadingPriority = ThreadPriority.Low;
+        // Normal priority: fast enough to not stall, smooth enough to not freeze UI
+        Application.backgroundLoadingPriority = ThreadPriority.Normal;
 
         // 1. Start Crystal Bounce IMMEDIATELY
         if (crystalBounce != null)
@@ -151,8 +151,8 @@ public class LoadingSceneController : MonoBehaviour
         // Wait a frame to ensure target is set
         if (string.IsNullOrEmpty(sceneToLoad)) sceneToLoad = SceneLoader.targetSceneForLoading;
 
-        // EXTREME LAG REDUCTION: Use Low priority for the entire loading process
-        Application.backgroundLoadingPriority = ThreadPriority.Low;
+        // NORMAL priority gives a good balance between speed and UI smoothness
+        Application.backgroundLoadingPriority = ThreadPriority.Normal;
 
         // UI OPTIMIZATION: Disable Raycast on non-interactive images
         RaycastOptimization uiOpt = GetComponent<RaycastOptimization>();
