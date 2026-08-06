@@ -121,12 +121,6 @@ public class FishingSequenceManager : MonoBehaviour
     IEnumerator StartCastAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        // Fish may have been deselected during the delay — safety check
-        if (currentlySelectedFish == null)
-        {
-            isFishingSequenceActive = false;
-            yield break;
-        }
         if (sfxSource != null && throwRodSFX != null) sfxSource.PlayOneShot(throwRodSFX);
         StartCoroutine(CastAndReelSequence());
     }

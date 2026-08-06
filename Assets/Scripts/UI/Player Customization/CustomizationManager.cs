@@ -54,6 +54,16 @@ public class CustomizationManager : MonoBehaviour
 
     async void Start()
     {
+        // Auto-fetch the singleton modal if the inspector slot lost its reference
+        if (modal == null) 
+        {
+            modal = GenericModal.Instance;
+            if (modal == null)
+            {
+                modal = FindFirstObjectByType<GenericModal>(FindObjectsInactive.Include);
+            }
+        }
+
         // 1. Ensure the profile is loaded
         if (UserProfileManager.Instance != null && UserProfileManager.Instance.CurrentProfile == null)
         {
@@ -162,7 +172,14 @@ public class CustomizationManager : MonoBehaviour
         }
 
         if (saveChangesButton != null)
+        {
             saveChangesButton.onClick.AddListener(OnSaveChangesClicked);
+            Debug.Log("[Customization] Successfully bound saveChangesButton onClick listener!");
+        }
+        else
+        {
+            Debug.LogError("[Customization] ERROR: saveChangesButton is NOT ASSIGNED in the Inspector! The button will do nothing.");
+        }
 
         // 3. Fetch inventory and build the UI
         await InitializeGallery();
@@ -209,9 +226,13 @@ public class CustomizationManager : MonoBehaviour
         return owned;
     }
 
+    private bool isInitializingUI = false;
+
     private void GenerateCategory(CategoryFolder category, List<string> ownedItems)
     {
         if (category.contentParent == null) return;
+
+        isInitializingUI = true;
 
         // Clear existing
         foreach (Transform child in category.contentParent)
@@ -232,8 +253,9 @@ public class CustomizationManager : MonoBehaviour
 
         foreach (var item in allItems)
         {
-            // Show ALL items now (so they can buy unowned ones)
-            if (item.slot == category.slot)
+            // Only show owned items in Character Customization
+            bool isOwned = ownedItems.Contains(item.name) || item.price <= 0;
+            if (item.slot == category.slot && isOwned)
             {
                 Toggle t = CreateItem(category, item.name, item.icon, null, item, group);
                 if (item.name == equippedName)
@@ -246,6 +268,7 @@ public class CustomizationManager : MonoBehaviour
             selectedToggle = noneToggle;
 
         selectedToggle.isOn = true;
+        isInitializingUI = false;
     }
 
     private Toggle CreateItem(CategoryFolder category, string itemName, Sprite icon, Sprite bg, OutfitItem item, ToggleGroup group)
@@ -303,9 +326,6 @@ public class CustomizationManager : MonoBehaviour
         // Set up "None" button specifics
         if (item == null)
         {
-            HideChild(frameObj.transform, "CoinIcon");
-            HideChild(frameObj.transform, "Price");
-            HideChild(frameObj.transform, "PriceGroup");
             HideChild(frameObj.transform, "Ownership");
         }
 
@@ -323,9 +343,12 @@ public class CustomizationManager : MonoBehaviour
             {
                 if (item == null) 
                 {
-                    characterManager.Unequip(category.slot);
+                    if (!isInitializingUI)
+                    {
+                        characterManager.Unequip(category.slot);
+                        RefreshAllFrames();
+                    }
                     if (detailPanel != null) detailPanel.HidePanel();
-                    RefreshAllFrames();
                 }
                 else 
                 {
@@ -380,17 +403,42 @@ public class CustomizationManager : MonoBehaviour
 
     private void OnSaveChangesClicked()
     {
-        if (characterManager == null || modal == null) return;
+        Debug.Log("[Customization] Save button clicked!");
+
+        // Dynamically find managers if they are missing or destroyed due to scene transitions
+        if (characterManager == null) characterManager = FindFirstObjectByType<OutfitManager>(FindObjectsInactive.Include);
+        
+        if (modal == null || modal.gameObject == null || !modal.gameObject.scene.IsValid()) 
+        {
+            modal = GenericModal.Instance;
+            if (modal == null || modal.gameObject == null)
+            {
+                modal = FindFirstObjectByType<GenericModal>(FindObjectsInactive.Include);
+            }
+        }
+
+        if (characterManager == null) 
+        {
+            Debug.LogError("[Customization] Save aborted: characterManager is completely missing from the scene!");
+            return;
+        }
+        if (modal == null) 
+        {
+            Debug.LogError("[Customization] Save aborted: modal is completely missing from the scene!");
+            return;
+        }
 
         EquippedOutfitData currentOutfit = characterManager.GetEquippedNames();
 
         // Check if there are any changes
         if (originalOutfit != null && currentOutfit.IsSameAs(originalOutfit))
         {
+            Debug.Log("[Customization] No changes detected, showing alert.");
             modal.ShowAlert("You didn't change anything in your outfit.");
             return;
         }
 
+        Debug.Log("[Customization] Showing confirmation modal.");
         // Ask for confirmation
         modal.ShowConfirm(
             "Are you sure you want to save these changes?",
@@ -478,10 +526,7 @@ public class CustomizationFrameUI : MonoBehaviour
     private CustomizationManager myManager;
     
     private TMPro.TextMeshProUGUI nameLabel;
-    private TMPro.TextMeshProUGUI priceLabel;
     private TMPro.TextMeshProUGUI ownershipLabel;
-    private GameObject coinIcon;
-    private GameObject priceGroup;
 
     public void Init(OutfitItem item, CustomizationManager manager)
     {
@@ -494,63 +539,34 @@ public class CustomizationFrameUI : MonoBehaviour
         Transform nameTrans = myManager.FindChildRecursive(transform, "ItemName");
         if (nameTrans != null) nameLabel = nameTrans.GetComponent<TMPro.TextMeshProUGUI>();
 
-        Transform priceTrans = myManager.FindChildRecursive(transform, "Price");
-        if (priceTrans != null) priceLabel = priceTrans.GetComponent<TMPro.TextMeshProUGUI>();
-
         Transform ownerTrans = myManager.FindChildRecursive(transform, "Ownership");
         if (ownerTrans != null) ownershipLabel = ownerTrans.GetComponent<TMPro.TextMeshProUGUI>();
 
-        Transform coinTrans = myManager.FindChildRecursive(transform, "CoinIcon");
-        if (coinTrans != null) coinIcon = coinTrans.gameObject;
-        
-        Transform groupTrans = myManager.FindChildRecursive(transform, "PriceGroup");
-        if (groupTrans != null) priceGroup = groupTrans.gameObject;
-
         // Set static data
         if (nameLabel != null) nameLabel.text = string.IsNullOrEmpty(item.itemName) ? item.name : item.itemName;
-        if (priceLabel != null) priceLabel.text = item.price.ToString();
     }
 
     public void RefreshVisuals()
     {
         if (myItem == null) return;
 
-        bool isOwned = myManager.ownedItems.Contains(myItem.name) || myItem.price <= 0;
         bool isEquipped = IsItemEquipped();
 
-        if (isOwned)
+        if (ownershipLabel != null)
         {
-            // Hide Price & Coin
-            if (coinIcon != null) coinIcon.SetActive(false);
-            if (priceLabel != null) priceLabel.gameObject.SetActive(false);
-            if (priceGroup != null) priceGroup.SetActive(false);
-
-            // Show Ownership
-            if (ownershipLabel != null)
+            ownershipLabel.gameObject.SetActive(true);
+            
+            if (isEquipped)
             {
-                ownershipLabel.gameObject.SetActive(true);
-                
-                if (isEquipped)
-                {
-                    ownershipLabel.text = "Equipped";
-                    ownershipLabel.color = myManager.equippedColor;
-                }
-                else
-                {
-                    ownershipLabel.text = "Owned";
-                    ownershipLabel.color = myManager.ownedColor;
-                }
+                ownershipLabel.text = "Equipped";
+                ownershipLabel.color = myManager.equippedColor;
             }
-        }
-        else
-        {
-            // Show Price & Coin
-            if (coinIcon != null) coinIcon.SetActive(true);
-            if (priceLabel != null) priceLabel.gameObject.SetActive(true);
-            if (priceGroup != null) priceGroup.SetActive(true);
-
-            // Hide Ownership
-            if (ownershipLabel != null) ownershipLabel.gameObject.SetActive(false);
+            else
+            {
+                // We're only showing owned items anyway, so we just show "Owned" or "Not Equipped"
+                ownershipLabel.text = "Owned";
+                ownershipLabel.color = myManager.ownedColor;
+            }
         }
     }
 

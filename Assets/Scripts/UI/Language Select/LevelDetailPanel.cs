@@ -1,3 +1,4 @@
+#pragma warning disable 0649
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -113,7 +114,7 @@ public class LevelDetailPanel : MonoBehaviour
     private class LanguageEntry
     {
         public string languageKey;
-        public List<ChapterEntry> chapters;
+        public List<ChapterEntry> chapters = null;
     }
 
     [System.Serializable]
@@ -138,9 +139,16 @@ public class LevelDetailPanel : MonoBehaviour
     {
         if (lessonsDataJson != null)
             _data = JsonUtility.FromJson<LessonsDataWrapper>(lessonsDataJson.text);
+        else
+        {
+            // Fallback for mobile if Inspector reference is lost
+            TextAsset resourceAsset = Resources.Load<TextAsset>("LessonsData");
+            if (resourceAsset != null)
+                _data = JsonUtility.FromJson<LessonsDataWrapper>(resourceAsset.text);
+        }
 
         if (_data == null)
-            Debug.LogError("[LevelDetailPanel] Failed to parse LessonsData.json. Is it assigned?");
+            Debug.LogError("[LevelDetailPanel] Failed to parse LessonsData.json. Is it assigned or in the Resources folder?");
 
         if (startButton != null)
             startButton.onClick.AddListener(OnStartButtonPressed);
@@ -177,7 +185,7 @@ public class LevelDetailPanel : MonoBehaviour
 
         // ── Level Number ──
         if (levelNumberText != null)
-            levelNumberText.text = $"Level {lesson.levelNumber}";
+            levelNumberText.text = $"Quest {lesson.levelNumber}";
 
         // ── Chapter Icon (pulled from CategoryListManager's chapterIconSprites array) ──
         if (chapterIconImage != null && categoryListManager != null)

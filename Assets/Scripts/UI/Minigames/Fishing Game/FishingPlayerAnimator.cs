@@ -51,10 +51,11 @@ public class FishingPlayerAnimator : MonoBehaviour
     // Added a callback parameter so the Sequence Manager knows when it finishes!
     public IEnumerator PlayAnimationOnce(System.Action onAnimationFinished)
     {
+        Debug.Log($"[FishingPlayerAnimator] PlayAnimationOnce called on: {gameObject.name} | frames: {(fishingFrames != null ? fishingFrames.Length : 0)} | uiImage: {(uiImage != null ? uiImage.name : "NULL")} | spriteRenderer: {(spriteRenderer != null ? spriteRenderer.name : "NULL")}");
+
         if (fishingFrames == null || fishingFrames.Length == 0) 
         {
             Debug.LogError($"[FishingPlayerAnimator] No frames on {gameObject.name}!");
-            onAnimationFinished?.Invoke();
             yield break;
         }
 
@@ -62,11 +63,8 @@ public class FishingPlayerAnimator : MonoBehaviour
 
         for (int i = 0; i < fishingFrames.Length; i++)
         {
-            Sprite frame = fishingFrames[i];
-            if (frame == null) { yield return new WaitForSeconds(timePerFrame); continue; } // skip null frames
-
-            if (spriteRenderer != null) spriteRenderer.sprite = frame;
-            if (uiImage != null) uiImage.sprite = frame;
+            if (spriteRenderer != null) spriteRenderer.sprite = fishingFrames[i];
+            if (uiImage != null) uiImage.sprite = fishingFrames[i];
             
             if (headTransform != null && neckPositions != null && i < neckPositions.Length)
             {
@@ -76,7 +74,11 @@ public class FishingPlayerAnimator : MonoBehaviour
             yield return new WaitForSeconds(timePerFrame);
         }
         
-        onAnimationFinished?.Invoke();
+        // Tell the manager the animation is completely done!
+        if (onAnimationFinished != null)
+        {
+            onAnimationFinished.Invoke();
+        }
     }
 
     // Plays the frames BACKWARDS (reverse of the casting animation, like pulling the rod back)
@@ -84,7 +86,7 @@ public class FishingPlayerAnimator : MonoBehaviour
     {
         if (fishingFrames == null || fishingFrames.Length == 0)
         {
-            onAnimationFinished?.Invoke();
+            if (onAnimationFinished != null) onAnimationFinished.Invoke();
             yield break;
         }
 
@@ -93,11 +95,8 @@ public class FishingPlayerAnimator : MonoBehaviour
         // Loop backwards from the last frame to the first frame
         for (int i = fishingFrames.Length - 1; i >= 0; i--)
         {
-            Sprite frame = fishingFrames[i];
-            if (frame == null) { yield return new WaitForSeconds(timePerFrame); continue; } // skip null frames
-
-            if (spriteRenderer != null) spriteRenderer.sprite = frame;
-            if (uiImage != null) uiImage.sprite = frame;
+            if (spriteRenderer != null) spriteRenderer.sprite = fishingFrames[i];
+            if (uiImage != null) uiImage.sprite = fishingFrames[i];
 
             if (headTransform != null && neckPositions != null && i < neckPositions.Length)
             {
@@ -115,6 +114,9 @@ public class FishingPlayerAnimator : MonoBehaviour
             if (uiImage != null) uiImage.sprite = restoreSprite;
         }
 
-        onAnimationFinished?.Invoke();
+        if (onAnimationFinished != null)
+        {
+            onAnimationFinished.Invoke();
+        }
     }
 }

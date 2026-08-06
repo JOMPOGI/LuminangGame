@@ -51,9 +51,8 @@ public class FishingSTTManager : MonoBehaviour
 
     private int currentTries = 3;
     private bool isRecording = false;
-    private Coroutine _fadeCoroutine; // Track fade coroutine so we can cancel it safely
-    public string TargetWord { get; private set; } = "";
-    public bool IsSTTActive { get; private set; } = false;
+    private string targetWord = "";
+    private bool isSTTActive = false;
 
     // We store these to restore if needed
     private Vector2 panelOffscreenPos;
@@ -103,7 +102,7 @@ public class FishingSTTManager : MonoBehaviour
 
     void Update()
     {
-        if (IsSTTActive && glowTransform != null)
+        if (isSTTActive && glowTransform != null)
         {
             glowTransform.Rotate(0, 0, glowRotationSpeed * Time.deltaTime);
         }
@@ -113,7 +112,7 @@ public class FishingSTTManager : MonoBehaviour
     {
         if (sttGroup == null) return;
         
-        IsSTTActive = true;
+        isSTTActive = true;
         currentTries = 3;
         isRecording = false;
 
@@ -140,14 +139,24 @@ public class FishingSTTManager : MonoBehaviour
             glowTransform.localScale = Vector3.one * 0.5f;
         }
 
-        // Use the word already assigned to the fish (which is already localized by FishDictionaryList)
-        TargetWord = caughtFish != null ? caughtFish.assignedWord : "";
+        // Figure out the target word based on FishingGameConfig language
+        targetWord = "";
+        string langToUse = FishingGameConfig.TargetLanguage;
+        
+        if (DatasetManager.Instance != null && caughtFish != null)
+        {
+            PhraseEntry entry = DatasetManager.Instance.GetPhraseById(caughtFish.assignedId);
+            if (entry != null)
+            {
+                targetWord = entry.GetPhrase(langToUse);
+            }
+        }
 
         // Setup texts
         UpdateTitle("Nice Catch!", colorInitial);
         if (sayWordText != null)
         {
-            sayWordText.text = $"Say \"{TargetWord}\"";
+            sayWordText.text = $"Say \"{targetWord}\"";
         }
 
         // Reset button
@@ -156,13 +165,14 @@ public class FishingSTTManager : MonoBehaviour
         // Show UI and Slide In, then fade in fish + glow
         sttGroup.SetActive(true);
         StartCoroutine(SlidePanel(panelOffscreenPos, panelOnscreenPos, true));
-        if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
-        _fadeCoroutine = StartCoroutine(FadeInFishAndGlow());
+        
+        if (fadeInCoroutine != null) StopCoroutine(fadeInCoroutine);
+        fadeInCoroutine = StartCoroutine(FadeInFishAndGlow());
     }
 
     private void OnSpeakButtonClicked()
     {
-        if (!IsSTTActive) return;
+        if (!isSTTActive) return;
         if (sfxSource != null && buttonClickSFX != null) sfxSource.PlayOneShot(buttonClickSFX);
 
         if (!isRecording)
@@ -204,13 +214,13 @@ public class FishingSTTManager : MonoBehaviour
 
     private void OnTranscriptionSuccess(string result)
     {
-        if (!IsSTTActive) return;
+        if (!isSTTActive) return;
 
-        PhraseEvaluator.Instance.EvaluateSpeech(TargetWord, result, (transcript, scorePercent, evalResult) =>
+        PhraseEvaluator.Instance.EvaluateSpeech(targetWord, result, (transcript, scorePercent, evalResult) =>
         {
             // --- STT DEBUG LOGS ---
             Debug.Log("<color=cyan>====== STT DEBUG INFO ======</color>");
-            Debug.Log($"<color=white>Target Word:</color> {TargetWord}");
+            Debug.Log($"<color=white>Target Word:</color> {targetWord}");
             Debug.Log($"<color=yellow>Heard Word(s):</color> {transcript}");
             Debug.Log($"<color={(scorePercent >= 80f ? "green" : "red")}>Match Score:</color> {scorePercent:F1}%");
             Debug.Log("<color=cyan>============================</color>");
@@ -234,7 +244,7 @@ public class FishingSTTManager : MonoBehaviour
 
     private void OnTranscriptionError(string error)
     {
-        if (!IsSTTActive) return;
+        if (!isSTTActive) return;
         UpdateTitle("Oops! Couldn't hear that. Try again.", colorWrong);
         ShowResultOverlay(false);
         ConsumeTry(0);
@@ -261,17 +271,6 @@ public class FishingSTTManager : MonoBehaviour
         }
     }
 
-    public void SimulateSuccess(string spokenWord)
-    {
-        if (!IsSTTActive) return;
-        
-        Debug.Log($"<color=cyan>[FishingSTTManager] Debug simulate success with word '{spokenWord}'.</color>");
-        
-        ShowResultOverlay(true);
-        UpdateTitle(GetRandomCorrectFeedback(), colorRight);
-        StartCoroutine(EndSTTFlow(true));
-    }
-
     private void UpdateTitle(string text, Color color)
     {
         if (titleText != null)
@@ -281,14 +280,8 @@ public class FishingSTTManager : MonoBehaviour
         }
     }
 
-    private void ShowResultOverlay(bool isCorrect)
-    {
-        if (correctWrongImage == null) return;
-        correctWrongImage.sprite = isCorrect ? correctResultSprite : wrongResultSprite;
-        correctWrongImage.gameObject.SetActive(true);
-        correctWrongImage.transform.localScale = Vector3.zero;
-        StartCoroutine(PopInThenOut(correctWrongImage.transform));
-    }
+    private Coroutine fadeInCoroutine;
+    private Coroutine popInCoroutine;
 
     private string GetRandomCorrectFeedback()
     {
@@ -326,8 +319,20 @@ public class FishingSTTManager : MonoBehaviour
         // Stay visible (EndSTTFlow will hide with the panel)
     }
 
+    private void ShowResultOverlay(bool isCorrect)
+    {
+        if (correctWrongImage == null) return;
+        correctWrongImage.sprite = isCorrect ? correctResultSprite : wrongResultSprite;
+        correctWrongImage.gameObject.SetActive(true);
+        correctWrongImage.transform.localScale = Vector3.zero;
+        
+        if (popInCoroutine != null) StopCoroutine(popInCoroutine);
+        popInCoroutine = StartCoroutine(PopInThenOut(correctWrongImage.transform));
+    }
+
     private IEnumerator FadeInFishAndGlow()
     {
+        // Wait for panel to start arriving (slight delay feels more polished)
         yield return new WaitForSeconds(panelAnimationDuration * 0.6f);
 
         Image glowImg = glowTransform != null ? glowTransform.GetComponent<Image>() : null;
@@ -343,7 +348,7 @@ public class FishingSTTManager : MonoBehaviour
                 fishCenterImage.color = new Color(1, 1, 1, t);
                 fishCenterImage.transform.localScale = Vector3.one * scale;
             }
-            if (glowImg != null && glowTransform != null)
+            if (glowImg != null)
             {
                 glowImg.color = new Color(1, 1, 1, t);
                 glowTransform.localScale = Vector3.one * scale;
@@ -352,54 +357,26 @@ public class FishingSTTManager : MonoBehaviour
         }
         if (fishCenterImage != null) fishCenterImage.color = Color.white;
         if (glowImg != null) glowImg.color = Color.white;
-        _fadeCoroutine = null;
     }
 
     private IEnumerator EndSTTFlow(bool success)
     {
-        IsSTTActive = false;
-
-        // Cancel the fade coroutine before anything else
-        if (_fadeCoroutine != null)
-        {
-            StopCoroutine(_fadeCoroutine);
-            _fadeCoroutine = null;
-        }
+        isSTTActive = false;
         
-        // Wait so player can see the result message
+        // Wait a bit so the player can see the success/fail message
         yield return new WaitForSeconds(resultWaitTime);
 
-        // === INLINED SLIDE OUT (was: yield return StartCoroutine(SlidePanel(...))) ===
-        // The nested StartCoroutine pattern causes a native crash on Android IL2CPP.
-        // Inlining it here eliminates the nested coroutine entirely.
-        if (sttPanel != null)
-        {
-            Vector2 startPos = panelOnscreenPos;
-            Vector2 endPos = panelOffscreenPos;
-            float elapsed = 0f;
-            while (elapsed < panelAnimationDuration)
-            {
-                elapsed += Time.deltaTime;
-                float t = elapsed / panelAnimationDuration;
-                t = t * t * (3f - 2f * t); // smoothstep
-                sttPanel.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
-                yield return null;
-            }
-            if (sttPanel != null) sttPanel.anchoredPosition = endPos;
-        }
-
-        if (sttGroup != null) sttGroup.SetActive(false);
-        // =========================================================================
+        // Slide out (Flattened Coroutine to avoid IL2CPP crash)
+        yield return SlidePanel(panelOnscreenPos, panelOffscreenPos, false);
 
         if (success)
         {
-            if (FishingQuizManager.Instance != null)
-                FishingQuizManager.Instance.CompleteSTTAndAdvanceRound();
+            FishingQuizManager.Instance.CompleteSTTAndAdvanceRound();
         }
         else
         {
-            if (FishingQuizManager.Instance != null)
-                FishingQuizManager.Instance.CompleteSTTAndFailRound();
+            // If they failed, just go back to the pond (same question/round)
+            FishingQuizManager.Instance.CompleteSTTAndFailRound();
         }
     }
 
@@ -412,6 +389,7 @@ public class FishingSTTManager : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = elapsed / panelAnimationDuration;
+            // Smoothstep curve for nice easing
             t = t * t * (3f - 2f * t);
             
             sttPanel.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
@@ -422,6 +400,11 @@ public class FishingSTTManager : MonoBehaviour
 
         if (!showGroup && sttGroup != null)
         {
+            // CRITICAL: Stop background animations BEFORE disabling the UI group
+            // Modifying a disabled UI object causes native IL2CPP crashes on Android.
+            if (fadeInCoroutine != null) StopCoroutine(fadeInCoroutine);
+            if (popInCoroutine != null) StopCoroutine(popInCoroutine);
+            
             sttGroup.SetActive(false);
         }
     }

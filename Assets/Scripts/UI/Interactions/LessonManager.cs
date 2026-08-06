@@ -55,6 +55,9 @@ public class LessonManager : MonoBehaviour
     public UnityEngine.Events.UnityEvent onLessonComplete;
 
     private CanvasGroup _dimmerCG;
+#pragma warning disable 0414
+    private bool _isLessonActive = false;
+#pragma warning restore 0414
     private List<GameObject> _spawnedRows = new List<GameObject>();
 
     void Awake()
@@ -92,6 +95,7 @@ public class LessonManager : MonoBehaviour
         if (lessonPanel == null) return;
         
         Debug.Log($"[LessonManager] ShowLesson requested for category: {category}");
+        _isLessonActive = true;
 
         // Set the title immediately while data loads
         if (categoryText != null && !string.IsNullOrEmpty(category))
@@ -402,6 +406,8 @@ public class LessonManager : MonoBehaviour
 
     public void HideLesson()
     {
+        _isLessonActive = false;
+
         if (lessonPanel != null && lessonPanel.activeSelf)
         {
             Debug.Log("[LessonManager] HideLesson requested.");

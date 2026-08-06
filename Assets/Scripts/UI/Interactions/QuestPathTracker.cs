@@ -194,7 +194,7 @@ public class QuestPathTracker : MonoBehaviour
         // 2. Fallback: Search QuestIndicator objects
         if (_activeMarker == null)
         {
-            QuestIndicator[] indicators = FindObjectsByType<QuestIndicator>(FindObjectsSortMode.None);
+            QuestIndicator[] indicators = FindObjectsByType<QuestIndicator>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
             for (int i = 0; i < indicators.Length; i++)
             {
                 if (indicators[i] != null && 

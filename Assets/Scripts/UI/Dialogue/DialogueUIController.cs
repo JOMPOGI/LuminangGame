@@ -64,10 +64,6 @@ public class DialogueUIController : MonoBehaviour
     public float buttonPressScale    = 0.85f;
     public float buttonAnimDuration  = 0.12f;
 
-    [Header("Audio Settings")]
-    public AudioSource sfxSource;
-    public AudioClip buttonClickSFX;
-
     // ── Private State ────────────────────────────────────────────────
     private List<GameObject>              _activeChoiceButtons = new List<GameObject>();
     private Coroutine                     _showSequenceCoroutine;
@@ -163,13 +159,17 @@ public class DialogueUIController : MonoBehaviour
                     {
                         if (gameObject.activeInHierarchy)
                         {
-                            PlayClickSound();
                             StartCoroutine(ButtonPressAnim(btn.transform));
                         }
                         _onChoiceSelected?.Invoke(cached);
                     });
                 }
             }
+        }
+        
+        if (nextButton != null)
+        {
+            nextButton.gameObject.SetActive(visibleChoices == 0);
         }
         
         // Show the Mic button if one is injected AND this node requires STT (and not handled by InSceneLessonController)
@@ -396,18 +396,8 @@ public class DialogueUIController : MonoBehaviour
     // Button Handlers
     // ─────────────────────────────────────────────────────────────────
 
-    private void PlayClickSound()
-    {
-        if (buttonClickSFX != null)
-        {
-            if (sfxSource == null) sfxSource = GetComponent<AudioSource>();
-            if (sfxSource != null) sfxSource.PlayOneShot(buttonClickSFX);
-        }
-    }
-
     private void OnNextClicked()
     {
-        PlayClickSound();
         StartCoroutine(ButtonPressAnim(nextButton.transform));
 
         if (_isTyping)
@@ -422,7 +412,7 @@ public class DialogueUIController : MonoBehaviour
             {
                 _onChoiceSelected?.Invoke(null); // Ends dialogue
             }
-            else if (_activeChoiceButtons.Count == 0)
+            else
             {
                 // If there's a choice but it's hidden (empty text), pick the first one
                 _onChoiceSelected?.Invoke(_currentChoices[0]);
@@ -432,7 +422,6 @@ public class DialogueUIController : MonoBehaviour
 
     private void OnPrevClicked()
     {
-        PlayClickSound();
         StartCoroutine(ButtonPressAnim(prevButton.transform));
         if (DialogueManager.Instance != null)
             DialogueManager.Instance.GoToPreviousNode();
@@ -452,7 +441,6 @@ public class DialogueUIController : MonoBehaviour
             dialogueText.text = _isTranslatedShowing ? _translatedText : _fullText;
         }
 
-        PlayClickSound();
         StartCoroutine(ButtonPressAnim(translateButton.transform));
     }
 
@@ -506,17 +494,7 @@ public class DialogueUIController : MonoBehaviour
             yield return _typeTextCoroutine;
         }
         else
-        {
             if (dialogueText != null) dialogueText.text = _fullText;
-            
-            // Also hide the next button if there are choices or STT required
-            if (nextButton != null)
-            {
-                bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
-                bool hasChoices = _activeChoiceButtons != null && _activeChoiceButtons.Count > 0;
-                nextButton.gameObject.SetActive(!hasChoices && !requiresSTT);
-            }
-        }
 
         // Only show the choices area when there are actual choices to pick from
         bool hasValidChoices = _activeChoiceButtons.Count > 0 && choicesGroup != null;

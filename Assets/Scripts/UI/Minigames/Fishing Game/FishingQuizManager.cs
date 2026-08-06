@@ -66,20 +66,38 @@ public class FishingQuizManager : MonoBehaviour
     public int totalBaits = 20;
     public int totalRounds = 15;
     
+#if UNITY_EDITOR
+    [Header("--- EDITOR DEBUG (hidden in build) ---")]
+    public int currentBaits;
+    public int currentRound;
+#else
     [HideInInspector] public int currentBaits;
     private int currentRound;
+#endif
     
     private List<GreetingQuizData> allGreetings = new List<GreetingQuizData>();
     private List<QuestionData> questionPool = new List<QuestionData>();
 
     private GreetingQuizData currentTarget;
-    private bool isAskingScenario;
-    private Coroutine _feedbackCoroutine; // Track only the feedback popup coroutine
+    private bool isAskingScenario; // false = ask direct translation, true = ask scenario
 
     void Awake()
     {
         Instance = this;
     }
+
+#if UNITY_EDITOR
+    void Update()
+    {
+        // EDITOR CHEATS — stripped out of APK builds completely
+        // Press W → instantly trigger Win Screen
+        // Press L → instantly trigger Lose Screen
+        var kb = UnityEngine.InputSystem.Keyboard.current;
+        if (kb == null) return;
+        if (kb.wKey.wasPressedThisFrame) ShowWinScreen();
+        if (kb.lKey.wasPressedThisFrame) ShowLoseScreen();
+    }
+#endif
 
     void Start()
     {
@@ -89,7 +107,8 @@ public class FishingQuizManager : MonoBehaviour
         if (howToPlayGroup != null && howToPlayPanel != null)
         {
             howToPlayGroup.SetActive(true);
-            StartCoroutine(AnimatePanelIn(howToPlayPanel.transform));
+            howToPlayGroup.GetComponent<UIFadeAnimator>()?.FadeIn();
+            howToPlayPanel.GetComponent<UIPopAnimator>()?.PopIn();
         }
         else
         {
@@ -100,8 +119,9 @@ public class FishingQuizManager : MonoBehaviour
 
     void LoadQuizData()
     {
-        // Load the greetings scenario data
-        TextAsset jsonFile = Resources.Load<TextAsset>("Minigames/Greetings");
+        // Load the greetings scenario data from the Resources folder (mobile friendly)
+        TextAsset jsonFile = Resources.Load<TextAsset>("Greetings");
+        
         if (jsonFile != null)
         {
             string jsonString = jsonFile.text;
@@ -131,7 +151,7 @@ public class FishingQuizManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Greetings.json not found in Resources/Minigames/");
+            Debug.LogError("Greetings.json not found in any Resources folder! Make sure it is inside a folder named 'Resources'.");
         }
     }
 
@@ -139,25 +159,6 @@ public class FishingQuizManager : MonoBehaviour
     {
         public GreetingQuizData[] items;
     }
-
-#if UNITY_EDITOR
-    void Update()
-    {
-        // Debug tool to instantly skip to the Win Screen and evaluate
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            currentBaits = totalBaits; // perfect score
-            ShowWinScreen();
-        }
-
-        // Debug tool to instantly skip to the Lose Screen
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            currentBaits = 0; // out of baits
-            ShowLoseScreen();
-        }
-    }
-#endif
 
     public void StartGame()
     {
@@ -173,24 +174,7 @@ public class FishingQuizManager : MonoBehaviour
         NextRound();
     }
 
-    // Call this from the "X" Button OnClick()
-    public void CloseHowToPlay()
-    {
-        if (uiAudioSource != null && buttonClickSFX != null) uiAudioSource.PlayOneShot(buttonClickSFX);
-        if (howToPlayPanel != null)
-        {
-            StartCoroutine(AnimatePanelOut(howToPlayPanel.transform, () => 
-            {
-                if (howToPlayGroup != null) howToPlayGroup.SetActive(false);
-                StartGame(); // Actually start the game after the animation finishes!
-            }));
-        }
-        else
-        {
-            if (howToPlayGroup != null) howToPlayGroup.SetActive(false);
-            StartGame();
-        }
-    }
+
 
     void NextRound()
     {
@@ -295,7 +279,7 @@ public class FishingQuizManager : MonoBehaviour
 
         // Vibrate on mobile
         #if UNITY_ANDROID || UNITY_IOS
-        try { Handheld.Vibrate(); } catch (System.Exception e) { Debug.LogWarning("Vibrate failed: " + e.Message); }
+        Handheld.Vibrate();
         #endif
 
         Vector3 originalPos = shakeTarget.localPosition;
@@ -341,15 +325,48 @@ public class FishingQuizManager : MonoBehaviour
         }
     }
 
+    // Fallback: if any star reference is missing, search for them under WinPanel automatically
+    private void ValidateStars()
+    {
+        if (winPanel == null) return;
+        bool anyNull = winStars == null || winStars.Length == 0;
+        if (!anyNull)
+        {
+            foreach (var s in winStars) if (s == null) { anyNull = true; break; }
+        }
+        if (!anyNull) return; // All fine, skip
+
+        Debug.LogWarning("[WinScreen] Some star references are missing — searching for them automatically under WinPanel...");
+        var images = winPanel.GetComponentsInChildren<UnityEngine.UI.Image>(true);
+        var found = new System.Collections.Generic.List<UnityEngine.UI.Image>();
+        foreach (var img in images)
+        {
+            string n = img.gameObject.name.ToLower();
+            if (n.Contains("star")) found.Add(img);
+        }
+        if (found.Count > 0)
+        {
+            winStars = found.ToArray();
+            Debug.Log($"[WinScreen] Auto-recovered {winStars.Length} star Image(s) from WinPanel children.");
+        }
+        else
+        {
+            Debug.LogError("[WinScreen] Could not auto-find any star Images under WinPanel! Make sure they are named with 'Star' in them.");
+        }
+    }
+
     private void ShowWinScreen()
     {
         Debug.Log("Game Won! Showing Win Screen.");
-        if (winOrLoseGroup == null || winPanel == null) { Debug.LogError("[FishingQuizManager] winOrLoseGroup or winPanel is NULL! Assign in Inspector."); return; }
-        winOrLoseGroup.SetActive(true);
-        winPanel.SetActive(true);
+        if (winOrLoseGroup != null)
+        {
+            winOrLoseGroup.SetActive(true);
+            winOrLoseGroup.GetComponent<UIFadeAnimator>()?.FadeIn();
+        }
+        if (winPanel != null) winPanel.SetActive(true);
         if (losePanel != null) losePanel.SetActive(false);
 
-        // Calculate Stars based on remaining baits
+        // Calculate Stars based on remaining baits (Total Baits is 20, 15 rounds = min 15 baits used)
         int baitsUsed = totalBaits - currentBaits;
         int stars = 0;
         int coinsEarned = 0;
@@ -361,41 +378,58 @@ public class FishingQuizManager : MonoBehaviour
         else { stars = 1; coinsEarned = 10; }
 
         // Update star sprites visually
-        if (winStars != null && activeStarSprite != null && inactiveStarSprite != null)
+        ValidateStars(); // Auto-recover if references are missing
+        Debug.Log($"[WinScreen] baitsUsed={baitsUsed}, stars={stars}, winStars.Length={winStars?.Length ?? -1}, activeSprite={activeStarSprite?.name}, inactiveSprite={inactiveStarSprite?.name}");
+        if (winStars != null)
         {
             for (int i = 0; i < winStars.Length; i++)
             {
                 if (winStars[i] != null)
                 {
-                    winStars[i].sprite = (i < stars) ? activeStarSprite : inactiveStarSprite;
+                    Sprite chosen = (i < stars) ? activeStarSprite : inactiveStarSprite;
+                    winStars[i].sprite = chosen;
                     winStars[i].gameObject.SetActive(true);
+                    Debug.Log($"[WinScreen] Star[{i}] → {chosen?.name ?? "NULL sprite!"}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[WinScreen] Star[{i}] is NULL in the array!");
                 }
             }
         }
 
-        if (winCoinsText != null) winCoinsText.text = $"+{coinsEarned}";
+        if (winCoinsText != null)
+        {
+            winCoinsText.text = $"+{coinsEarned}";
+        }
 
         // Save coins and minigame win state
         int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0);
         PlayerPrefs.SetInt("PlayerCoins", currentCoins + coinsEarned);
-        PlayerPrefs.SetInt("FishingMinigameWon", 1);
+        PlayerPrefs.SetInt("FishingMinigameWon", 1); 
         PlayerPrefs.Save();
 
         if (uiAudioSource != null && winPanelSFX != null) uiAudioSource.PlayOneShot(winPanelSFX);
-        StartCoroutine(AnimatePanelIn(winPanel.transform));
+        winPanel?.GetComponent<UIPopAnimator>()?.PopIn();
     }
 
     private void ShowLoseScreen()
     {
         Debug.Log("Game Over! Showing Lose Screen.");
-        if (winOrLoseGroup == null || losePanel == null) { Debug.LogError("[FishingQuizManager] winOrLoseGroup or losePanel is NULL! Assign in Inspector."); return; }
-        winOrLoseGroup.SetActive(true);
+        if (winOrLoseGroup != null)
+        {
+            winOrLoseGroup.SetActive(true);
+            winOrLoseGroup.GetComponent<UIFadeAnimator>()?.FadeIn();
+        }
         if (winPanel != null) winPanel.SetActive(false);
-        losePanel.SetActive(true);
+        if (losePanel != null) losePanel.SetActive(true);
 
         // Consolation prize for losing
         int coinsEarned = 2;
-        if (loseCoinsText != null) loseCoinsText.text = $"+{coinsEarned}";
+        if (loseCoinsText != null)
+        {
+            loseCoinsText.text = $"+{coinsEarned}";
+        }
 
         int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0);
         PlayerPrefs.SetInt("PlayerCoins", currentCoins + coinsEarned);
@@ -403,81 +437,38 @@ public class FishingQuizManager : MonoBehaviour
         PlayerPrefs.Save();
 
         if (uiAudioSource != null && losePanelSFX != null) uiAudioSource.PlayOneShot(losePanelSFX);
-        StartCoroutine(AnimatePanelIn(losePanel.transform));
+        losePanel?.GetComponent<UIPopAnimator>()?.PopIn();
     }
 
-    private System.Collections.IEnumerator AnimatePanelIn(Transform panelTransform)
+    // Call this from the "X" Button OnClick()
+    public void CloseHowToPlay()
     {
-        panelTransform.localScale = Vector3.zero;
+        if (uiAudioSource != null && buttonClickSFX != null) uiAudioSource.PlayOneShot(buttonClickSFX);
         
-        float duration = 0.3f;
-        float elapsed = 0f;
-
-        // Pop up and overshoot slightly
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = elapsed / duration;
-            // Ease out back (bouncy overshoot)
-            float scale = 1 + 0.15f * Mathf.Sin(t * Mathf.PI); // Bounces up to 1.15
-            panelTransform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 1.1f, t);
-            yield return null;
-        }
-
-        // Settle back to exactly 1
-        elapsed = 0f;
-        while (elapsed < 0.1f)
-        {
-            elapsed += Time.deltaTime;
-            panelTransform.localScale = Vector3.Lerp(Vector3.one * 1.1f, Vector3.one, elapsed / 0.1f);
-            yield return null;
-        }
-
-        panelTransform.localScale = Vector3.one;
-    }
-
-    private System.Collections.IEnumerator AnimatePanelOut(Transform panelTransform, System.Action onComplete = null)
-    {
-        float duration = 0.2f;
-        float elapsed = 0f;
-        Vector3 startScale = panelTransform.localScale;
-
-        // Shrink down quickly
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            panelTransform.localScale = Vector3.Lerp(startScale, Vector3.zero, elapsed / duration);
-            yield return null;
-        }
-
-        panelTransform.localScale = Vector3.zero;
-        onComplete?.Invoke();
+        if (howToPlayPanel != null) howToPlayPanel.transform.localScale = Vector3.zero; // INSTANT SNAP
+        if (howToPlayGroup != null) howToPlayGroup.SetActive(false);
+        
+        StartGame(); 
     }
 
     // Call this from the "Try Again" Button OnClick()
     public void RestartGame()
     {
-        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
-        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
-        loader.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Call this from the WinPanel's "Continue" Button OnClick()
     public void ContinueToNextObjective()
     {
         string prevScene = PlayerPrefs.GetString("PreviousScene", "LanguageSelectionScene");
-        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
-        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
-        loader.LoadScene(prevScene);
+        SceneManager.LoadScene(prevScene);
     }
 
     // Call this from the LosePanel's "Quit" Button OnClick()
     public void QuitToPreviousScene()
     {
         string prevScene = PlayerPrefs.GetString("PreviousScene", "LanguageSelectionScene");
-        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
-        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
-        loader.LoadScene(prevScene);
+        SceneManager.LoadScene(prevScene);
     }
 
     void UpdateHUD()
@@ -493,9 +484,9 @@ public class FishingQuizManager : MonoBehaviour
         // Set the right sprite
         feedbackImage.sprite = isCorrect ? correctSprite : wrongSprite;
         
-        // Stop ONLY the feedback coroutine — never StopAllCoroutines (it kills WinScreen/SFX coroutines!)
-        if (_feedbackCoroutine != null) StopCoroutine(_feedbackCoroutine);
-        _feedbackCoroutine = StartCoroutine(AnimateFeedbackPopup());
+        // Stop any running animations on it
+        StopAllCoroutines();
+        StartCoroutine(AnimateFeedbackPopup());
     }
 
     private System.Collections.IEnumerator AnimateFeedbackPopup()

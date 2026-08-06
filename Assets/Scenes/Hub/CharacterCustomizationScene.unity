@@ -201,44 +201,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15036764}
   m_CullTransparentMesh: 1
---- !u!1 &34174090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 34174091}
-  m_Layer: 5
-  m_Name: PriceGroup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &34174091
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34174090}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1030033691}
-  - {fileID: 204933821}
-  - {fileID: 577988221}
-  m_Father: {fileID: 1402338688}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &46585042
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,9 +295,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: f6faf2206729a8a45bd5b3cf8c4ee0ac, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Spiky Cut
+  itemDescription: A bold hairstyle with plenty of attitude.
+  price: 600
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -362,9 +324,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: 67e77921ec516474290de3b625f7c43b, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Golden Layers
+  itemDescription: Soft layered hair with a bright, cheerful look.
+  price: 250
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -1217,6 +1179,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192244529}
   m_CullTransparentMesh: 1
+--- !u!1 &196262407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196262408}
+  - component: {fileID: 196262410}
+  - component: {fileID: 196262409}
+  m_Layer: 5
+  m_Name: Status
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &196262408
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196262407}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1402338688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 33.0249, y: -138}
+  m_SizeDelta: {x: 145.7588, y: 18.3634}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &196262409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196262407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Equipped
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
+  m_sharedMaterial: {fileID: 9194849470857495647, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278193828
+  m_fontColor: {r: 0.6415094, g: 0.05401205, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 17
+  m_fontSizeBase: 17
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &196262410
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196262407}
+  m_CullTransparentMesh: 1
 --- !u!1 &199352010 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5575797390454136160, guid: 7dec9aba355dd2c48bb358e98aabf78d, type: 3}
@@ -1236,9 +1335,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: 58b91e49a810e9745bb27b83158c4bcd, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Pink Twin Braids
+  itemDescription: A playful braided style full of personality.
+  price: 600
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -1246,81 +1345,6 @@ MonoBehaviour:
   hideFeet: 0
   hideHands: 0
   hideHips: 0
---- !u!1 &204933820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 204933821}
-  - component: {fileID: 204933823}
-  - component: {fileID: 204933822}
-  m_Layer: 5
-  m_Name: CoinIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &204933821
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204933820}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 34174091}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.18918, y: -137.32}
-  m_SizeDelta: {x: 17.5043, y: 18.364}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &204933822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204933820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5e2535c4365b1f741be19f88ff225885, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &204933823
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204933820}
-  m_CullTransparentMesh: 1
 --- !u!1 &209825445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,9 +1858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: e00b02d1d4431f047a6860f8e23d1454, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Lakbay Vest
+  itemDescription: Made for little explorers who are always ready for the next adventure.
+  price: 600
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -3048,9 +3072,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: bfa2983bfc3e73b47bf35c5b1aaf146e, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Brown Oxfords
+  itemDescription: A classic pair with a warm, timeless look.
+  price: 300
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -3260,9 +3284,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: 7c6ebf744397676478e1a4d43f2ba752, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Lakbay Boots
+  itemDescription: Lace up and head out for your next adventure.
+  price: 800
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -3385,143 +3409,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &577988220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 577988221}
-  - component: {fileID: 577988223}
-  - component: {fileID: 577988222}
-  m_Layer: 5
-  m_Name: Price
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &577988221
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577988220}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 34174091}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.139404, y: -137.32}
-  m_SizeDelta: {x: 80.3788, y: 18.3634}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &577988222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577988220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 1200
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
-  m_sharedMaterial: {fileID: 9194849470857495647, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278197052
-  m_fontColor: {r: 0.23584908, g: 0.10704111, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 17
-  m_fontSizeBase: 17
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &577988223
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577988220}
-  m_CullTransparentMesh: 1
 --- !u!1 &593396257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3722,9 +3609,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 4d48255ca8a03ed42a8b4baea8526b42, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Polo Blanco
+  itemDescription: A neat and polished look that's always in style.
+  price: 150
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -3832,35 +3719,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 428260930886485648, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 428260930886485648, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 428260930886485648, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 215.67499
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 428260930886485648, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -41.7065
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2242588035783613611, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2242588035783613611, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2242588035783613611, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 470.675
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2242588035783613611, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -41.7065
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5537220669221836139, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_Pivot.x
@@ -3948,7 +3835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6942424678833521712, guid: fc61f329e7349c2459804f6586d7b46e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4145,8 +4032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 21300000, guid: db1767685a11f3148ad2d25f9eb945c0, type: 3}
-  itemName: 
-  itemDescription: 
+  itemName: Black Trousers
+  itemDescription: A clean and versatile pair for any occasion.
   price: 100
   hideTorso: 0
   hideLegs: 1
@@ -4174,9 +4061,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 21300000, guid: 68f20fad3fa2e4c45b647e7deeb4d206, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Rosas Skirt
+  itemDescription: A sweet and playful skirt that brightens any day.
+  price: 300
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -4362,9 +4249,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 21300000, guid: fdd9dff9de37f1241802b22b0dd38765, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Maong Pants
+  itemDescription: A timeless favorite made for everyday wear.
+  price: 150
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
@@ -4391,9 +4278,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 21300000, guid: 5482204cf8b70f04b8d0b5b659714e6e, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Lino Trousers
+  itemDescription: Lightweight trousers that keep you comfy wherever you go.
+  price: 250
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
@@ -4693,8 +4580,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: ec560c2cde8a7f849826f9f79a2808f1, type: 3}
-  itemName: 
-  itemDescription: 
+  itemName: Textured Crop
+  itemDescription: A clean, textured haircut for an everyday look.
   price: 100
   hideTorso: 0
   hideLegs: 0
@@ -4722,9 +4609,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: 3aac2ce23274c314cbc5425303116e0d, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Mutya Heels
+  itemDescription: A graceful pair that adds a touch of elegance to any outfit.
+  price: 400
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -5046,9 +4933,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: d544a10be79e4e244867fbbc6aeb9fb2, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Long Black Hair
+  itemDescription: Long, sleek hair that's simple and elegant.
+  price: 150
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -5281,9 +5168,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 03e1fefa5147ea3438d97713bb4a5c58, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Filipiniana
+  itemDescription: An elegant Filipiniana outfit that celebrates Filipino heritage
+    with pride.
+  price: 1000
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -5310,9 +5198,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: 2fb2a5c1af6e0814eb315ca7038a944c, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Brown Boots
+  itemDescription: Sturdy boots built for every trail and every journey.
+  price: 600
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -5526,8 +5414,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: f2ea6831d3fdfee4fb10fe2a6259ef28, type: 3}
-  itemName: 
-  itemDescription: 
+  itemName: Black Hair Short
+  itemDescription: A neat bob that never goes out of style.
   price: 100
   hideTorso: 0
   hideLegs: 0
@@ -5610,143 +5498,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997237297}
-  m_CullTransparentMesh: 1
---- !u!1 &1030033690
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1030033691}
-  - component: {fileID: 1030033693}
-  - component: {fileID: 1030033692}
-  m_Layer: 5
-  m_Name: PriceText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1030033691
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030033690}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 34174091}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: -137}
-  m_SizeDelta: {x: 85.972, y: 18.3634}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1030033692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030033690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Price
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
-  m_sharedMaterial: {fileID: 9194849470857495647, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4280235611
-  m_fontColor: {r: 0.35686275, g: 0.21176472, b: 0.121568635, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1030033693
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030033690}
   m_CullTransparentMesh: 1
 --- !u!1 &1034035040
 GameObject:
@@ -5842,9 +5593,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 31b1f1049817f44479ca54861e75d9e0, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Kuneho Tee
+  itemDescription: A soft little shirt with an extra dose of cuteness.
+  price: 300
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -5852,6 +5603,143 @@ MonoBehaviour:
   hideFeet: 0
   hideHands: 0
   hideHips: 0
+--- !u!1 &1054916579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1054916580}
+  - component: {fileID: 1054916582}
+  - component: {fileID: 1054916581}
+  m_Layer: 5
+  m_Name: StatusText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1054916580
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054916579}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1402338688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -66, y: -138}
+  m_SizeDelta: {x: 85.972, y: 18.3634}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1054916581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054916579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Status
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
+  m_sharedMaterial: {fileID: 9194849470857495647, guid: 721a421f1884e754aa51d30324c4d1a9, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4280235611
+  m_fontColor: {r: 0.35686275, g: 0.21176472, b: 0.121568635, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 15
+  m_fontSizeBase: 15
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1054916582
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054916579}
+  m_CullTransparentMesh: 1
 --- !u!1 &1085856895
 GameObject:
   m_ObjectHideFlags: 0
@@ -5974,9 +5862,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 7c6418756674da244b328b813219954c, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Barong Tagalog
+  itemDescription: A proudly Filipino classic, perfect for special occasions.
+  price: 1000
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -6003,8 +5891,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: cf9a807dd053d3b409509a575e23dbc7, type: 3}
-  itemName: 
-  itemDescription: 
+  itemName: White Tee
+  itemDescription: The everyday favorite that never goes out of fashion.
   price: 100
   hideTorso: 1
   hideLegs: 0
@@ -6817,9 +6705,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 94de54c9f733c274d93527e76a2039a9, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Diwata Dress
+  itemDescription: A magical dress that feels straight out of a Filipino folktale.
+  price: 1000
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -7716,7 +7604,8 @@ RectTransform:
   - {fileID: 450760743}
   - {fileID: 262552842}
   - {fileID: 997237298}
-  - {fileID: 34174091}
+  - {fileID: 196262408}
+  - {fileID: 1054916580}
   - {fileID: 1629210910}
   m_Father: {fileID: 1725020151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7741,7 +7630,7 @@ MonoBehaviour:
   animDuration: 0.3
   itemNameText: {fileID: 1404734165}
   itemDescText: {fileID: 262552843}
-  statusText: {fileID: 577988222}
+  statusText: {fileID: 0}
   equippedColor: {r: 0.28235295, g: 0.3019608, b: 0.1254902, a: 1}
   notEquippedColor: {r: 0.6431373, g: 0.05490196, b: 0, a: 1}
   itemIconImage: {fileID: 450760744}
@@ -7768,7 +7657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b2284113bd687734cb53b04a97ec6cfa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 115bc81f8030eb042ad1534ca182334f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7802,13 +7691,13 @@ MonoBehaviour:
   animDuration: 0.2
   itemNameText: {fileID: 1404734165}
   itemDescText: {fileID: 262552843}
-  priceText: {fileID: 577988222}
+  statusText: {fileID: 196262409}
   itemIconImage: {fileID: 450760744}
   actionButton: {fileID: 1629210911}
   actionButtonLabel: {fileID: 1483551195}
   outfitManager: {fileID: 1672617700}
-  affordableColor: {r: 1, g: 1, b: 1, a: 1}
-  tooExpensiveColor: {r: 1, g: 0, b: 0, a: 1}
+  equippedColor: {r: 0.28235295, g: 0.3019608, b: 0.1254902, a: 1}
+  notEquippedColor: {r: 0.6431373, g: 0.05490196, b: 0, a: 1}
 --- !u!1 &1404734163
 GameObject:
   m_ObjectHideFlags: 0
@@ -7965,9 +7854,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 87564aa215889784e80eb07ebe5166e2, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Guayabera
+  itemDescription: A breezy embroidered shirt with timeless island charm.
+  price: 350
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -7994,9 +7883,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 21300000, guid: b78716b37a5a06542bd53c3cab101641, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Lakbay Shorts
+  itemDescription: Packed with pockets for every little adventure.
+  price: 120
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -8196,9 +8085,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: e099b8f4c0d884f448419258184cecd1, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Side Fringe
+  itemDescription: A short cut with a stylish side-swept fringe.
+  price: 300
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -8362,9 +8251,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 0228ebab8c3b7114e9e3a899b7f951eb, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Muning Tee
+  itemDescription: For cat lovers who carry a little mischief wherever they go.
+  price: 300
   hideTorso: 1
   hideLegs: 0
   hideArms: 0
@@ -8391,8 +8280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: 201dc628dfe640c4cbb3f1104da453d1, type: 3}
-  itemName: 
-  itemDescription: 
+  itemName: Black Tee
+  itemDescription: Simple, comfy, and goes with just about anything.
   price: 100
   hideTorso: 1
   hideLegs: 0
@@ -9013,9 +8902,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: 5134616e53052414fbccf89a64fe7a82, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Tousled Cut
+  itemDescription: A slightly messy style with effortless charm.
+  price: 200
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -9118,7 +9007,7 @@ GameObject:
   - component: {fileID: 1629210912}
   - component: {fileID: 1629210911}
   m_Layer: 5
-  m_Name: BuyEquipButton
+  m_Name: EquipUnequipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9208,7 +9097,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dfed5018a726b2542925fa6e1cef1124, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ddec65da53137de40add16d012d59b7b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9345,6 +9234,10 @@ PrefabInstance:
     - target: {fileID: 2185118385730040904, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_Name
       value: SmallLoading
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185118385730040904, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8277686444751464440, guid: ba604ad061317e94ba8f90d6e24690ce, type: 3}
       propertyPath: m_Pivot.x
@@ -9731,8 +9624,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: 826a0b43d20172c43bd2b29dfaa73775, type: 3}
-  itemName: 
-  itemDescription: 
+  itemName: Bakya Sandals
+  itemDescription: Light, comfy sandals perfect for sunny days.
   price: 100
   hideTorso: 0
   hideLegs: 0
@@ -11218,9 +11111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 4
   icon: {fileID: 21300000, guid: e36d58900ecf4514084d6f65c289bbd5, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Salakot
+  itemDescription: A traditional Filipino hat that keeps you cool under the sun.
+  price: 350
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -11247,9 +11140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: 5b0e102be17c45247b3bdd2123ab1c91, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Black Sneakers
+  itemDescription: Made for busy days and endless exploring.
+  price: 120
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -11417,9 +11310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 3
   icon: {fileID: 21300000, guid: f08e7358506ba274ab1cc920e8326b6d, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Black Loafers
+  itemDescription: A dependable pair that's ready for school, work, or adventure.
+  price: 150
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -11960,9 +11853,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 1
   icon: {fileID: 21300000, guid: e22426f99ca1dbb4c9392cf4091d7dd8, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Maharlika Dress
+  itemDescription: A regal outfit inspired by stories of old Filipino kingdoms.
+  price: 800
   hideTorso: 1
   hideLegs: 0
   hideArms: 1
@@ -12792,9 +12685,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 0
   icon: {fileID: 21300000, guid: 41f8926c5e7c19f479213e844f09a029, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Soft Layers
+  itemDescription: Light layers that create a gentle, relaxed look.
+  price: 250
   hideTorso: 0
   hideLegs: 0
   hideArms: 0
@@ -12983,9 +12876,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OutfitItem
   slot: 2
   icon: {fileID: 21300000, guid: 642708906e796d8448c50549a789e2dd, type: 3}
-  itemName: 
-  itemDescription: 
-  price: 100
+  itemName: Mandirigma Greaves
+  itemDescription: Rugged legwear fit for a brave adventurer.
+  price: 600
   hideTorso: 0
   hideLegs: 1
   hideArms: 0
