@@ -29,6 +29,18 @@ public class SceneMinigameTrigger : MonoBehaviour
 
         // 2. Tell the minigame where to return to when it finishes
         PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
+
+        // Save Player Position
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerPrefs.SetFloat("PlayerPosX", player.transform.position.x);
+            PlayerPrefs.SetFloat("PlayerPosY", player.transform.position.y);
+            PlayerPrefs.SetFloat("PlayerPosZ", player.transform.position.z);
+            PlayerPrefs.SetFloat("PlayerRotY", player.transform.eulerAngles.y);
+            PlayerPrefs.SetInt("RestorePlayerPos", 1);
+        }
+
         PlayerPrefs.Save();
 
         // Optional: Smoothly fade out the current scene before the chunky load happens

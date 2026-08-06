@@ -22,7 +22,7 @@ MonoBehaviour:
   endEventName: 
   choices:
   - choiceText: Yes
-    nextNode: {fileID: 11400000, guid: 5ebffcefe2aa74c458e5b9f654c7a832, type: 2}
+    nextNode: {fileID: 11400000, guid: 03527acf09cc3b54187be9c9582ecfb0, type: 2}
     isWrong: 0
     choiceEvent: StartMinigame_Greetings
     expectedSTTWord: 

@@ -73,7 +73,8 @@ public class FishingQuizManager : MonoBehaviour
     private List<QuestionData> questionPool = new List<QuestionData>();
 
     private GreetingQuizData currentTarget;
-    private bool isAskingScenario; // false = ask direct translation, true = ask scenario
+    private bool isAskingScenario;
+    private Coroutine _feedbackCoroutine; // Track only the feedback popup coroutine
 
     void Awake()
     {
@@ -100,12 +101,10 @@ public class FishingQuizManager : MonoBehaviour
     void LoadQuizData()
     {
         // Load the greetings scenario data
-        TextAsset jsonFile = Resources.Load<TextAsset>("Greetings"); // We'll put it in Resources for easy loading, or read from Data path
-        // Actually, let's read from the exact path we created it at:
-        string path = Path.Combine(Application.dataPath, "Data/Minigames/FishingGame/Greetings.json");
-        if (File.Exists(path))
+        TextAsset jsonFile = Resources.Load<TextAsset>("Minigames/Greetings");
+        if (jsonFile != null)
         {
-            string jsonString = File.ReadAllText(path);
+            string jsonString = jsonFile.text;
             string wrappedJson = "{\"items\":" + jsonString + "}";
             GreetingDataWrapper wrapper = JsonUtility.FromJson<GreetingDataWrapper>(wrappedJson);
             if (wrapper != null && wrapper.items != null)
@@ -132,7 +131,7 @@ public class FishingQuizManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Greetings.json not found at " + path);
+            Debug.LogError("Greetings.json not found in Resources/Minigames/");
         }
     }
 
@@ -140,6 +139,25 @@ public class FishingQuizManager : MonoBehaviour
     {
         public GreetingQuizData[] items;
     }
+
+#if UNITY_EDITOR
+    void Update()
+    {
+        // Debug tool to instantly skip to the Win Screen and evaluate
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            currentBaits = totalBaits; // perfect score
+            ShowWinScreen();
+        }
+
+        // Debug tool to instantly skip to the Lose Screen
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            currentBaits = 0; // out of baits
+            ShowLoseScreen();
+        }
+    }
+#endif
 
     public void StartGame()
     {
@@ -277,7 +295,7 @@ public class FishingQuizManager : MonoBehaviour
 
         // Vibrate on mobile
         #if UNITY_ANDROID || UNITY_IOS
-        Handheld.Vibrate();
+        try { Handheld.Vibrate(); } catch (System.Exception e) { Debug.LogWarning("Vibrate failed: " + e.Message); }
         #endif
 
         Vector3 originalPos = shakeTarget.localPosition;
@@ -326,11 +344,12 @@ public class FishingQuizManager : MonoBehaviour
     private void ShowWinScreen()
     {
         Debug.Log("Game Won! Showing Win Screen.");
+        if (winOrLoseGroup == null || winPanel == null) { Debug.LogError("[FishingQuizManager] winOrLoseGroup or winPanel is NULL! Assign in Inspector."); return; }
         winOrLoseGroup.SetActive(true);
         winPanel.SetActive(true);
-        losePanel.SetActive(false);
+        if (losePanel != null) losePanel.SetActive(false);
 
-        // Calculate Stars based on remaining baits (Total Baits is 20, 15 rounds = min 15 baits used)
+        // Calculate Stars based on remaining baits
         int baitsUsed = totalBaits - currentBaits;
         int stars = 0;
         int coinsEarned = 0;
@@ -342,21 +361,24 @@ public class FishingQuizManager : MonoBehaviour
         else { stars = 1; coinsEarned = 10; }
 
         // Update star sprites visually
-        for (int i = 0; i < winStars.Length; i++)
+        if (winStars != null && activeStarSprite != null && inactiveStarSprite != null)
         {
-            if (winStars[i] != null)
+            for (int i = 0; i < winStars.Length; i++)
             {
-                winStars[i].sprite = (i < stars) ? activeStarSprite : inactiveStarSprite;
-                winStars[i].gameObject.SetActive(true); // Make sure they are visible!
+                if (winStars[i] != null)
+                {
+                    winStars[i].sprite = (i < stars) ? activeStarSprite : inactiveStarSprite;
+                    winStars[i].gameObject.SetActive(true);
+                }
             }
         }
 
-        winCoinsText.text = $"+{coinsEarned}";
+        if (winCoinsText != null) winCoinsText.text = $"+{coinsEarned}";
 
         // Save coins and minigame win state
         int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0);
         PlayerPrefs.SetInt("PlayerCoins", currentCoins + coinsEarned);
-        PlayerPrefs.SetInt("FishingMinigameWon", 1); 
+        PlayerPrefs.SetInt("FishingMinigameWon", 1);
         PlayerPrefs.Save();
 
         if (uiAudioSource != null && winPanelSFX != null) uiAudioSource.PlayOneShot(winPanelSFX);
@@ -366,13 +388,14 @@ public class FishingQuizManager : MonoBehaviour
     private void ShowLoseScreen()
     {
         Debug.Log("Game Over! Showing Lose Screen.");
+        if (winOrLoseGroup == null || losePanel == null) { Debug.LogError("[FishingQuizManager] winOrLoseGroup or losePanel is NULL! Assign in Inspector."); return; }
         winOrLoseGroup.SetActive(true);
-        winPanel.SetActive(false);
+        if (winPanel != null) winPanel.SetActive(false);
         losePanel.SetActive(true);
 
         // Consolation prize for losing
         int coinsEarned = 2;
-        loseCoinsText.text = $"+{coinsEarned}";
+        if (loseCoinsText != null) loseCoinsText.text = $"+{coinsEarned}";
 
         int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0);
         PlayerPrefs.SetInt("PlayerCoins", currentCoins + coinsEarned);
@@ -434,21 +457,27 @@ public class FishingQuizManager : MonoBehaviour
     // Call this from the "Try Again" Button OnClick()
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
+        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
+        loader.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // Call this from the WinPanel's "Continue" Button OnClick()
     public void ContinueToNextObjective()
     {
         string prevScene = PlayerPrefs.GetString("PreviousScene", "LanguageSelectionScene");
-        SceneManager.LoadScene(prevScene);
+        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
+        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
+        loader.LoadScene(prevScene);
     }
 
     // Call this from the LosePanel's "Quit" Button OnClick()
     public void QuitToPreviousScene()
     {
         string prevScene = PlayerPrefs.GetString("PreviousScene", "LanguageSelectionScene");
-        SceneManager.LoadScene(prevScene);
+        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
+        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
+        loader.LoadScene(prevScene);
     }
 
     void UpdateHUD()
@@ -464,9 +493,9 @@ public class FishingQuizManager : MonoBehaviour
         // Set the right sprite
         feedbackImage.sprite = isCorrect ? correctSprite : wrongSprite;
         
-        // Stop any running animations on it
-        StopAllCoroutines();
-        StartCoroutine(AnimateFeedbackPopup());
+        // Stop ONLY the feedback coroutine — never StopAllCoroutines (it kills WinScreen/SFX coroutines!)
+        if (_feedbackCoroutine != null) StopCoroutine(_feedbackCoroutine);
+        _feedbackCoroutine = StartCoroutine(AnimateFeedbackPopup());
     }
 
     private System.Collections.IEnumerator AnimateFeedbackPopup()

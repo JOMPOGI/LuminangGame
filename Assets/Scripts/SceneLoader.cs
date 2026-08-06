@@ -31,33 +31,50 @@ public class SceneLoader : MonoBehaviour
         
         string currentScene = SceneManager.GetActiveScene().name;
 
-        // NEW RULE: Only use the loading screen if we are leaving the Main Menu 
-        // AND going to a "heavy" scene (Game, Map, Prologue, or Character Creation).
+        // NEW RULE: Only use the loading screen if we are going to a "heavy" scene (Game, Map, Prologue, or Character Creation).
         bool isHeavyScene = (sceneName == "Calle_Crisologo" || sceneName == "Magellan's_Cross" || 
                              sceneName == "LanguageSelectionScene" || sceneName == "PrologueScene" || 
                              sceneName == "CreateCharacterScene");
         
-        bool shouldShowLoadingScreen = (currentScene == "MainMenuScene" && isHeavyScene);
+        bool shouldShowLoadingScreen = isHeavyScene;
 
         if (shouldShowLoadingScreen && useLoadingScreenForGameScene)
         {
-            Debug.Log("[SceneLoader] Using loading screen for transition from Main Menu to: " + sceneName);
-            targetSceneForLoading = sceneName;
-            keepBackgroundPersistent = false; // Reset persistence for normal loads
-            
-            if (IsSceneLoaded(loadingSceneName))
-            {
-                ActivateScene(loadingSceneName);
-            }
-            else
-            {
-                SceneManager.LoadScene(loadingSceneName, LoadSceneMode.Additive);
-            }
+            Debug.Log("[SceneLoader] Using loading screen for transition to: " + sceneName);
+            StartCoroutine(LoadWithLoadingScreenCoroutine(sceneName));
         }
         else
         {
             Debug.Log("[SceneLoader] Normal (Direct) loading for: " + sceneName);
             StartCoroutine(LoadSceneWithFade(sceneName));
+        }
+    }
+
+    private IEnumerator LoadWithLoadingScreenCoroutine(string sceneName)
+    {
+        // 1. Fade to black first so the current scene's UI doesn't interlap
+        if (SceneFader.Instance != null)
+        {
+            yield return SceneFader.Instance.FadeOutCoroutine();
+        }
+
+        // 2. Trigger the loading screen
+        targetSceneForLoading = sceneName;
+        keepBackgroundPersistent = false; // Reset persistence for normal loads
+        
+        if (IsSceneLoaded(loadingSceneName))
+        {
+            ActivateScene(loadingSceneName);
+            // CRITICAL: Because the scene was already loaded, OnSceneLoaded won't fire in SceneFader!
+            // We must manually tell it to fade back to transparent so the Loading Screen is visible.
+            if (SceneFader.Instance != null)
+            {
+                SceneFader.Instance.FadeIn();
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(loadingSceneName, LoadSceneMode.Additive);
         }
     }
 
@@ -68,7 +85,7 @@ public class SceneLoader : MonoBehaviour
         // CHECK: Are these "Sibling" scenes with the same background?
         bool isCurrentSibling = (currentScene == "MainMenuScene" || currentScene == "OptionScene" || currentScene == "AboutScene");
         bool isTargetSibling = (sceneName == "MainMenuScene" || sceneName == "OptionScene" || sceneName == "AboutScene");
-        bool isSiblingTransition = isCurrentSibling && isTargetSibling;
+        bool isSiblingTransition = (isCurrentSibling && isTargetSibling) || (sceneName == currentScene);
 
         // 1. Only use the Visual Fade if it's NOT a sibling transition
         if (!isSiblingTransition && SceneFader.Instance != null)
@@ -87,11 +104,11 @@ public class SceneLoader : MonoBehaviour
             previousScene = SceneManager.GetActiveScene().name;
         }
 
-        // 3. SMART LOADING: Check if scene is already pre-loaded
+        // 3. SMART LOADING: Check if scene is already pre-loaded (BUT force reload if it's the current scene)
         isSceneLoading = false; 
         Scene preloadedScene = SceneManager.GetSceneByName(sceneName);
 
-        if (preloadedScene.IsValid() && preloadedScene.isLoaded)
+        if (preloadedScene.IsValid() && preloadedScene.isLoaded && sceneName != currentScene)
         {
             Debug.Log("[SceneLoader] Scene " + sceneName + " is already pre-loaded! Activating instantly...");
             
@@ -108,6 +125,13 @@ public class SceneLoader : MonoBehaviour
             if (!string.IsNullOrEmpty(oldScene) && oldScene != sceneName)
             {
                 SceneManager.UnloadSceneAsync(oldScene);
+            }
+            
+            // CRITICAL: We didn't actually load a new scene, so OnSceneLoaded will never fire.
+            // We must manually trigger FadeIn so the screen doesn't stay white!
+            if (!isSiblingTransition && SceneFader.Instance != null)
+            {
+                SceneFader.Instance.FadeIn();
             }
         }
         else

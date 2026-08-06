@@ -43,7 +43,9 @@ public class MinigameMenuManager : MonoBehaviour
     {
         if (sfxSource != null && buttonClickSFX != null) sfxSource.PlayOneShot(buttonClickSFX);
         // Reloads the current active scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
+        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
+        loader.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitMinigame()
@@ -56,7 +58,9 @@ public class MinigameMenuManager : MonoBehaviour
 
         // Load previous scene, or LanguageSelectionScene if none exists
         string prevScene = PlayerPrefs.GetString("PreviousScene", "LanguageSelectionScene");
-        SceneManager.LoadScene(prevScene);
+        SceneLoader loader = FindFirstObjectByType<SceneLoader>();
+        if (loader == null) loader = new GameObject("SceneLoader").AddComponent<SceneLoader>();
+        loader.LoadScene(prevScene);
     }
 
     public void OpenHowToPlay()

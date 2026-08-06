@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
   speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
-  dialogueText: It's been too long since I visited Cebu. Now I can't remember clearly
-    how the greetings here work. Can you help me, dear?
+  dialogueText: Oh dear, it's happened again. I was about to greet someone, but the
+    Cebuano words slipped right out of my head. Could you help me remember?
   translatedText: 
   animationTrigger: 
   triggerEventName: 

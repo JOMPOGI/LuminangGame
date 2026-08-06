@@ -51,8 +51,9 @@ public class FishingSTTManager : MonoBehaviour
 
     private int currentTries = 3;
     private bool isRecording = false;
-    private string targetWord = "";
-    private bool isSTTActive = false;
+    private Coroutine _fadeCoroutine; // Track fade coroutine so we can cancel it safely
+    public string TargetWord { get; private set; } = "";
+    public bool IsSTTActive { get; private set; } = false;
 
     // We store these to restore if needed
     private Vector2 panelOffscreenPos;
@@ -102,7 +103,7 @@ public class FishingSTTManager : MonoBehaviour
 
     void Update()
     {
-        if (isSTTActive && glowTransform != null)
+        if (IsSTTActive && glowTransform != null)
         {
             glowTransform.Rotate(0, 0, glowRotationSpeed * Time.deltaTime);
         }
@@ -112,7 +113,7 @@ public class FishingSTTManager : MonoBehaviour
     {
         if (sttGroup == null) return;
         
-        isSTTActive = true;
+        IsSTTActive = true;
         currentTries = 3;
         isRecording = false;
 
@@ -139,24 +140,14 @@ public class FishingSTTManager : MonoBehaviour
             glowTransform.localScale = Vector3.one * 0.5f;
         }
 
-        // Figure out the target word based on FishingGameConfig language
-        targetWord = "";
-        string langToUse = FishingGameConfig.TargetLanguage;
-        
-        if (DatasetManager.Instance != null && caughtFish != null)
-        {
-            PhraseEntry entry = DatasetManager.Instance.GetPhraseById(caughtFish.assignedId);
-            if (entry != null)
-            {
-                targetWord = entry.GetPhrase(langToUse);
-            }
-        }
+        // Use the word already assigned to the fish (which is already localized by FishDictionaryList)
+        TargetWord = caughtFish != null ? caughtFish.assignedWord : "";
 
         // Setup texts
         UpdateTitle("Nice Catch!", colorInitial);
         if (sayWordText != null)
         {
-            sayWordText.text = $"Say \"{targetWord}\"";
+            sayWordText.text = $"Say \"{TargetWord}\"";
         }
 
         // Reset button
@@ -165,12 +156,13 @@ public class FishingSTTManager : MonoBehaviour
         // Show UI and Slide In, then fade in fish + glow
         sttGroup.SetActive(true);
         StartCoroutine(SlidePanel(panelOffscreenPos, panelOnscreenPos, true));
-        StartCoroutine(FadeInFishAndGlow());
+        if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
+        _fadeCoroutine = StartCoroutine(FadeInFishAndGlow());
     }
 
     private void OnSpeakButtonClicked()
     {
-        if (!isSTTActive) return;
+        if (!IsSTTActive) return;
         if (sfxSource != null && buttonClickSFX != null) sfxSource.PlayOneShot(buttonClickSFX);
 
         if (!isRecording)
@@ -212,13 +204,13 @@ public class FishingSTTManager : MonoBehaviour
 
     private void OnTranscriptionSuccess(string result)
     {
-        if (!isSTTActive) return;
+        if (!IsSTTActive) return;
 
-        PhraseEvaluator.Instance.EvaluateSpeech(targetWord, result, (transcript, scorePercent, evalResult) =>
+        PhraseEvaluator.Instance.EvaluateSpeech(TargetWord, result, (transcript, scorePercent, evalResult) =>
         {
             // --- STT DEBUG LOGS ---
             Debug.Log("<color=cyan>====== STT DEBUG INFO ======</color>");
-            Debug.Log($"<color=white>Target Word:</color> {targetWord}");
+            Debug.Log($"<color=white>Target Word:</color> {TargetWord}");
             Debug.Log($"<color=yellow>Heard Word(s):</color> {transcript}");
             Debug.Log($"<color={(scorePercent >= 80f ? "green" : "red")}>Match Score:</color> {scorePercent:F1}%");
             Debug.Log("<color=cyan>============================</color>");
@@ -242,7 +234,7 @@ public class FishingSTTManager : MonoBehaviour
 
     private void OnTranscriptionError(string error)
     {
-        if (!isSTTActive) return;
+        if (!IsSTTActive) return;
         UpdateTitle("Oops! Couldn't hear that. Try again.", colorWrong);
         ShowResultOverlay(false);
         ConsumeTry(0);
@@ -267,6 +259,17 @@ public class FishingSTTManager : MonoBehaviour
             UpdateTitle($"Out of tries! ({score:F0}% Match)", colorWrong);
             StartCoroutine(EndSTTFlow(false)); // Close, but they didn't pass
         }
+    }
+
+    public void SimulateSuccess(string spokenWord)
+    {
+        if (!IsSTTActive) return;
+        
+        Debug.Log($"<color=cyan>[FishingSTTManager] Debug simulate success with word '{spokenWord}'.</color>");
+        
+        ShowResultOverlay(true);
+        UpdateTitle(GetRandomCorrectFeedback(), colorRight);
+        StartCoroutine(EndSTTFlow(true));
     }
 
     private void UpdateTitle(string text, Color color)
@@ -325,7 +328,6 @@ public class FishingSTTManager : MonoBehaviour
 
     private IEnumerator FadeInFishAndGlow()
     {
-        // Wait for panel to start arriving (slight delay feels more polished)
         yield return new WaitForSeconds(panelAnimationDuration * 0.6f);
 
         Image glowImg = glowTransform != null ? glowTransform.GetComponent<Image>() : null;
@@ -341,7 +343,7 @@ public class FishingSTTManager : MonoBehaviour
                 fishCenterImage.color = new Color(1, 1, 1, t);
                 fishCenterImage.transform.localScale = Vector3.one * scale;
             }
-            if (glowImg != null)
+            if (glowImg != null && glowTransform != null)
             {
                 glowImg.color = new Color(1, 1, 1, t);
                 glowTransform.localScale = Vector3.one * scale;
@@ -350,26 +352,54 @@ public class FishingSTTManager : MonoBehaviour
         }
         if (fishCenterImage != null) fishCenterImage.color = Color.white;
         if (glowImg != null) glowImg.color = Color.white;
+        _fadeCoroutine = null;
     }
 
     private IEnumerator EndSTTFlow(bool success)
     {
-        isSTTActive = false;
+        IsSTTActive = false;
+
+        // Cancel the fade coroutine before anything else
+        if (_fadeCoroutine != null)
+        {
+            StopCoroutine(_fadeCoroutine);
+            _fadeCoroutine = null;
+        }
         
-        // Wait a bit so the player can see the success/fail message
+        // Wait so player can see the result message
         yield return new WaitForSeconds(resultWaitTime);
 
-        // Slide out
-        yield return StartCoroutine(SlidePanel(panelOnscreenPos, panelOffscreenPos, false));
+        // === INLINED SLIDE OUT (was: yield return StartCoroutine(SlidePanel(...))) ===
+        // The nested StartCoroutine pattern causes a native crash on Android IL2CPP.
+        // Inlining it here eliminates the nested coroutine entirely.
+        if (sttPanel != null)
+        {
+            Vector2 startPos = panelOnscreenPos;
+            Vector2 endPos = panelOffscreenPos;
+            float elapsed = 0f;
+            while (elapsed < panelAnimationDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / panelAnimationDuration;
+                t = t * t * (3f - 2f * t); // smoothstep
+                sttPanel.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+                yield return null;
+            }
+            if (sttPanel != null) sttPanel.anchoredPosition = endPos;
+        }
+
+        if (sttGroup != null) sttGroup.SetActive(false);
+        // =========================================================================
 
         if (success)
         {
-            FishingQuizManager.Instance.CompleteSTTAndAdvanceRound();
+            if (FishingQuizManager.Instance != null)
+                FishingQuizManager.Instance.CompleteSTTAndAdvanceRound();
         }
         else
         {
-            // If they failed, just go back to the pond (same question/round)
-            FishingQuizManager.Instance.CompleteSTTAndFailRound();
+            if (FishingQuizManager.Instance != null)
+                FishingQuizManager.Instance.CompleteSTTAndFailRound();
         }
     }
 
@@ -382,7 +412,6 @@ public class FishingSTTManager : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = elapsed / panelAnimationDuration;
-            // Smoothstep curve for nice easing
             t = t * t * (3f - 2f * t);
             
             sttPanel.anchoredPosition = Vector2.Lerp(startPos, endPos, t);

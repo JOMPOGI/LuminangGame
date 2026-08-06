@@ -194,7 +194,7 @@ public class QuestPathTracker : MonoBehaviour
         // 2. Fallback: Search QuestIndicator objects
         if (_activeMarker == null)
         {
-            QuestIndicator[] indicators = FindObjectsOfType<QuestIndicator>();
+            QuestIndicator[] indicators = FindObjectsByType<QuestIndicator>(FindObjectsSortMode.None);
             for (int i = 0; i < indicators.Length; i++)
             {
                 if (indicators[i] != null && 
@@ -439,7 +439,7 @@ public class QuestPathTracker : MonoBehaviour
 
             _particleBuffer[i].position = pos;
             _particleBuffer[i].startColor = col;
-            _particleBuffer[i].size = sparkleSize * _seeds[i].sizeMult * (0.8f + twinkle * 0.4f);
+            _particleBuffer[i].startSize = sparkleSize * _seeds[i].sizeMult * (0.8f + twinkle * 0.4f);
             _particleBuffer[i].remainingLifetime = 1f;
             _particleBuffer[i].startLifetime = 1f;
         }
