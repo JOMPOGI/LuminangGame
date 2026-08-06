@@ -437,10 +437,12 @@ public class STTDebugTool : MonoBehaviour
         }
 
         // Check Fishing Game STT Manager
+        /*
         if (FishingSTTManager.Instance != null && FishingSTTManager.Instance.IsSTTActive)
         {
             return FishingSTTManager.Instance.TargetWord;
         }
+        */
 
         if (DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null)
         {
@@ -464,10 +466,12 @@ public class STTDebugTool : MonoBehaviour
         {
             TeachingOverlayPanel.Instance.HandleSuccess(spokenWord);
         }
+        /*
         else if (FishingSTTManager.Instance != null && FishingSTTManager.Instance.IsSTTActive)
         {
             FishingSTTManager.Instance.SimulateSuccess(spokenWord);
         }
+        */
         else if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.CompleteSTT(true, "");

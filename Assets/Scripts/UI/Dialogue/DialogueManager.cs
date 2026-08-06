@@ -34,8 +34,9 @@ public class DialogueManager : MonoBehaviour
     /// <summary>Returns the currently active dialogue node.</summary>
     public DialogueNode GetActiveNode() => _activeNode;
 
-    // The next node to advance to after a minigame completes (stored separately so it survives clone destruction)
-    private DialogueNode _pendingMinigameNextNode;
+    // The next node to advance to after a minigame completes (stored statically so it survives scene reloads)
+    private static DialogueNode _pendingMinigameNextNode;
+    private static string _pendingMinigameNPCName;
 
     void Awake()
     {
@@ -43,6 +44,62 @@ public class DialogueManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        CheckAndResumeMinigame();
+    }
+
+    /// <summary>
+    /// Called by LoadingSceneController when returning to this scene from a minigame
+    /// (when the scene was kept in memory and Start() won't fire again).
+    /// </summary>
+    public void OnReturnFromMinigame()
+    {
+        Debug.Log("[DialogueManager] OnReturnFromMinigame called.");
+        // Do NOT reset IsInDialogue here — keep it true so the HUD stays hidden
+        // and the dialogue node appears FIRST before movement controls restore.
+        // IsInDialogue will naturally become false when the dialogue ends.
+        CheckAndResumeMinigame();
+    }
+
+    private void CheckAndResumeMinigame()
+    {
+        if (_pendingMinigameNextNode != null)
+        {
+            int minigameWon = PlayerPrefs.GetInt("FishingMinigameWon", 0);
+            if (minigameWon == 1)
+            {
+                StartCoroutine(ResumePostMinigameDialogue());
+            }
+            else
+            {
+                _pendingMinigameNextNode = null;
+                _pendingMinigameNPCName = null;
+            }
+            PlayerPrefs.SetInt("FishingMinigameWon", 0);
+            PlayerPrefs.Save();
+        }
+    }
+
+    private System.Collections.IEnumerator ResumePostMinigameDialogue()
+    {
+        yield return new WaitForSeconds(1f); // 1s matches the outro circle animation duration
+        
+        InteractableNPC targetNPC = null;
+        if (!string.IsNullOrEmpty(_pendingMinigameNPCName))
+        {
+            GameObject npcGo = GameObject.Find(_pendingMinigameNPCName);
+            if (npcGo != null) targetNPC = npcGo.GetComponent<InteractableNPC>();
+        }
+        
+        DialogueNode node = _pendingMinigameNextNode;
+        _pendingMinigameNextNode = null;
+        _pendingMinigameNPCName = null;
+        
+        Animator anim = targetNPC != null ? targetNPC.GetComponent<Animator>() : null;
+        StartDialogue(node, anim, targetNPC);
     }
 
     /// <summary>
@@ -62,6 +119,9 @@ public class DialogueManager : MonoBehaviour
         _currentNPCAnimator = npcAnimator;
         _currentNPC = npc;
         IsInDialogue = true;
+
+        StarterAssets.StarterAssetsInputs inputs = FindFirstObjectByType<StarterAssets.StarterAssetsInputs>();
+        if (inputs != null) inputs.move = Vector2.zero;
 
         // Hide the proximity Talk button
         if (InteractionManager.Instance != null && InteractionManager.Instance.talkButton != null)
@@ -254,7 +314,8 @@ public class DialogueManager : MonoBehaviour
             if (choiceEventTrimmed.StartsWith("StartMinigame", System.StringComparison.OrdinalIgnoreCase))
             {
                 PendingMinigameChoice = choice;
-                _pendingMinigameNextNode = choice.nextNode; // Store nextNode NOW before any clone destroys the choice reference
+                _pendingMinigameNextNode = choice.nextNode; 
+                if (_currentNPC != null) _pendingMinigameNPCName = _currentNPC.gameObject.name;
                 
                 // Hide the ENTIRE dialogue box (so it doesn't show during LoadingScene transitions)
                 if (uiController != null) uiController.HideDialogueForMinigame();
@@ -535,13 +596,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(eventName)) return;
 
-        string[] events = eventName.Split(',');
-        foreach (string evt in events)
-        {
-            string cleanEventName = evt.Trim();
-            if (string.IsNullOrEmpty(cleanEventName)) continue;
-            
-            Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
+        string cleanEventName = eventName.Trim();
+        Debug.Log($"[DialogueManager] Handling Event: '{cleanEventName}'");
 
         // 1. Handle SetObjective: or SetObjective_
         if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
@@ -587,14 +643,6 @@ public class DialogueManager : MonoBehaviour
                 _keepOverlayForOneNode = true; // Prevent ProcessNode from immediately hiding it
             }
         }
-        else if (cleanEventName.StartsWith("ShowPopup:", System.StringComparison.OrdinalIgnoreCase))
-        {
-            string popupName = cleanEventName.Substring("ShowPopup:".Length).Trim();
-            if (PopupManager.Instance != null && !string.IsNullOrEmpty(popupName))
-            {
-                PopupManager.Instance.ShowPopups(popupName);
-            }
-        }
         else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
         {
             string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
@@ -632,7 +680,6 @@ public class DialogueManager : MonoBehaviour
 
         // 4. Forward to ALL NPCs — the one with the event mapping will handle it
         BroadcastDialogueEvent(cleanEventName);
-        } // End foreach event loop
     }
 
     /// <summary>
