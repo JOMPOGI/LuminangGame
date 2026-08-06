@@ -23,8 +23,12 @@ public class MainLoading : MonoBehaviour
 
     [Header("Settings")]
     public string sceneToLoad = "Calle_Crisologo";
-    public string[] scenesToPreload = new string[] { "LoadingScene" };
-    public float minimumLoadTime = 1.5f;
+    public string[] scenesToPreload = new string[] { 
+        "LoadingScene", "LoginScene", "SignupScene", "MainMenuScene", 
+        "AboutScene", "OptionScene", "CreateCharacterScene", "PrologueScene", 
+        "LanguageSelectionScene", "TutorialScene", "Calle_Crisologo", "Magellan's_Cross", "hatdog"
+    };
+    public float minimumLoadTime = 5f;
     public float smoothSpeed = 3f;
 
     private float displayedProgress = 0f;
@@ -118,8 +122,8 @@ public class MainLoading : MonoBehaviour
     {
         Debug.Log("[MainLoading] Starting LoadAsyncSequence...");
         
-        // Normal priority keeps loading fast and UI responsive
-        Application.backgroundLoadingPriority = ThreadPriority.Normal;
+        // Reduce quality to keep UI smooth during expansion
+        Application.backgroundLoadingPriority = ThreadPriority.Low;
 
         // 1. Start Crystal Bounce IMMEDIATELY
         if (crystalBounce != null)
@@ -171,8 +175,9 @@ public class MainLoading : MonoBehaviour
             yield return new WaitForSeconds(transitionTime); 
         }
 
-        // Normal priority for fast loading
-        Application.backgroundLoadingPriority = ThreadPriority.Normal;
+        // EXTREME LAG REDUCTION: Use Low priority for pre-loading everything
+        // This keeps the UI (crystals) smooth during the entire sequence
+        Application.backgroundLoadingPriority = ThreadPriority.Low;
 
         // PREVENT CAMERA CONFLICTS: Only untag if we DON'T want the background visible
         if (!SceneLoader.keepBackgroundPersistent)

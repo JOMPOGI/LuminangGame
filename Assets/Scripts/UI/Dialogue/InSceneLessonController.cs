@@ -36,9 +36,9 @@ public class InSceneLessonController : MonoBehaviour
     [Tooltip("Seconds for the camera to pan from player to NPC close-up position and back.")]
     public float panDuration = 0.8f;
 
-    [Header("STT Language")]
+    [Header("STT Language Settings")]
     [Tooltip("The spoken language region for this scene. Ilokano = ilo, Cebuano = ceb. Set in Inspector per scene.")]
-    public RegionMode sttRegion = RegionMode.Cebuano;
+    public RegionMode sttRegion = RegionMode.Ilokano;
 
     // ─────────────────────────────────────────────────────────────────
     // Private State
