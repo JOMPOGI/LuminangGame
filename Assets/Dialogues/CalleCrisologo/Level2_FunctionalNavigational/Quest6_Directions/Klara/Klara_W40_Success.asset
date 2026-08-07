@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: 'Tallo! Three oil lamps!
+  dialogueText: 'Tallo! Tallo a silaw ti lana!
+
+
+    Mapanka ken Tala, ti aglako
+    iti bagnet, para iti sumaruno a numero!'
+  translatedText: 'Tallo! Three oil lamps!
 
     Head over to Tala the Bagnet seller
     for more numbers!'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Tala

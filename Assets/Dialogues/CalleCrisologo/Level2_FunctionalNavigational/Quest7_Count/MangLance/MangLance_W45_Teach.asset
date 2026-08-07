@@ -14,7 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
   speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
-  dialogueText: 'Whew! Thanks for fixing my wheel!
+  dialogueText: 'Agpuyat! Agyamanak iti panangurnosmo iti wheelko!
+
+
+    Itultuloytayo
+    ti panagbilang.
+
+
+    Iti Ilokano, ti ''walo'' ket kayatna a saoen ti ''eight.''
+
+
+    Denggem
+    a naimbag: walo.
+
+
+    Ita, padasem nga ibagam ti ''walo'' iti bukodmo a timek.'
+  translatedText: 'Whew! Thanks for fixing my wheel!
 
     Let''s continue counting.
 
@@ -22,7 +37,6 @@ MonoBehaviour:
     Ilokano, ''walo'' means ''eight.''
 
     Now, try saying ''walo'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

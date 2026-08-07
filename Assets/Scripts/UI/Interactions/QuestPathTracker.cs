@@ -211,6 +211,26 @@ public class QuestPathTracker : MonoBehaviour
             }
         }
 
+        // 3. Fallback: Search InteractableNPC objects
+        if (_activeMarker == null)
+        {
+            InteractableNPC[] npcs = FindObjectsByType<InteractableNPC>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            for (int i = 0; i < npcs.Length; i++)
+            {
+                if (npcs[i] != null && npcs[i].IsTargetOfObjective(objectiveName))
+                {
+                    QuestTargetMarker dynamicMarker = npcs[i].GetComponent<QuestTargetMarker>();
+                    if (dynamicMarker == null)
+                    {
+                        dynamicMarker = npcs[i].gameObject.AddComponent<QuestTargetMarker>();
+                        dynamicMarker.requiredObjective = objectiveName;
+                    }
+                    _activeMarker = dynamicMarker;
+                    break;
+                }
+            }
+        }
+
         _markersDirty = false;
         bool hasTarget = _activeMarker != null;
         if (hasTarget)
@@ -325,7 +345,9 @@ public class QuestPathTracker : MonoBehaviour
     private Vector3 GetPlayerFeetPosition()
     {
         Vector3 startPos = playerTransform.position;
-        if (Physics.Raycast(startPos + Vector3.up * 1f, Vector3.down, out RaycastHit feetHit, 5f))
+        int layerMask = ~(1 << playerTransform.gameObject.layer); // Ignore the player's own layer
+        
+        if (Physics.Raycast(startPos + Vector3.up * 1f, Vector3.down, out RaycastHit feetHit, 5f, layerMask))
         {
             return feetHit.point + Vector3.up * groundYOffset;
         }

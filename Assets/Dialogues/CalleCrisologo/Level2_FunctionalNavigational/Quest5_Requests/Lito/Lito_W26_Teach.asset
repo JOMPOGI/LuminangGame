@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: 'When asking someone to hand you an object, you can use ''ikanmo
+  dialogueText: "No dumawatka iti maysa a tao a mangted iti maysa a banag kenka,
+    mabalinmo nga agusar iti 'ikanmo man...'\n\nKayatna a saoen ti 'give me...' ken
+    kalpasanna, iyungetmo ti banag a kayatmo.\n\nKas pagarigan: 'ikanmo man map'\u2014'give
+    me the map.'\n\nDenggem a naimbag: ikanmo man map.\n\nIta, padasem nga ibagam
+    ti 'ikanmo man' ken kalpasanna ti nagan ti banag a kayatmo."
+  translatedText: 'When asking someone to hand you an object, you can use ''ikanmo
     man...''
 
     It means ''give me...'' and you add the item you want afterward.
@@ -24,7 +29,6 @@ MonoBehaviour:
 
     Now, try saying ''ikanmo
     man ___'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

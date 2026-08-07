@@ -14,14 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: Uray ditoy! Talk to me again for the Counting lessons!
-  translatedText: 
+  dialogueText: "Uray ditoy!\n\n\u2728 NALUKATAN TI DIRECTIONS MILESTONE! \u2728\n\nMakisaritaka
+    manen kaniak para kadagiti leksyon iti panagbilang!"
+  translatedText: Uray ditoy! Talk to me again for the Counting lessons!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Learn counting with Klara
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: ae4f3795d13237b4791cd51a37a3d339, type: 2}
+    nextNode: {fileID: 11400000, guid: fc5939e61c1ab7b4a8a0165724a7247f, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:directions
+    expectedSTTWord: 
+  - choiceText: Play Fishing Game!
+    nextNode: {fileID: 11400000, guid: 5eb3f315038fe4147879fa29c1e883e1, type: 2}
+    isWrong: 0
+    choiceEvent: StartMinigame:FishingGame
     expectedSTTWord: 

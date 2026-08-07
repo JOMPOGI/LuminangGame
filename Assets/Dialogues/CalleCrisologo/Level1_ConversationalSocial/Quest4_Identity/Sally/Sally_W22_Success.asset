@@ -14,14 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Sally
   speakerPortrait: {fileID: 21300000, guid: 7733d16353c0fcf4b99b8f89f3ad1780, type: 3}
-  dialogueText: Excellent! You just told me where you're from!
-  translatedText: 
+  dialogueText: "Nasayaat! Imbagam laeng no sadino ti naggappuam!\n\n\U0001F3C6 NALPAS
+    TI LEVEL I: CONVERSATIONAL & SOCIAL! \U0001F3C6\n\nNasursurom no kasano ti mangabla
+    kadagiti tattao, mangipakita iti panagyaman, sumungbat kadagiti dadduma, ken
+    agpakilala iti bagim.\n\nIta, agtultuloy ti panagdaliasatmo iti ad-adu pay a
+    paset ti inaldaw-aldaw a panagkomunikar.\n\nWen, umayka iti Level II: Functional
+    & Navigational!"
+  translatedText: Excellent! You just told me where you're from!
   animationTrigger: 
   triggerEventName: 
   endEventName: 'SetObjective_LEVEL I COMPLETE! Head to Level II: Talk to Sally'
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: ff9a6d5249b80a14fa4179d4db5793e4, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:identity,complete_level1,welcome_level2
     expectedSTTWord: 

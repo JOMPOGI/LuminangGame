@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Tomas
   speakerPortrait: {fileID: 21300000, guid: ba6dfb4f62658bd4f9bcd95d048fa112, type: 3}
-  dialogueText: Umay ditoy! Come take a look at this pottery!
-  translatedText: 
+  dialogueText: Umay ditoy! Umayka ken kitaem daytoy a pottery!
+  translatedText: Umay ditoy! Come take a look at this pottery!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

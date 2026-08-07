@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Rosa
   speakerPortrait: {fileID: 21300000, guid: e185e0ec3efba60429a1f9e0680e9fe7, type: 3}
-  dialogueText: 'Now we''re moving into a more advanced part of Ilokano.
+  dialogueText: 'Ita, mapantayo iti ad-adu a nasukimat a paset ti Ilokano.
+
+
+    Iti
+    maysa a pangungusap a kas iti ''Siak ket weaver,'' ti sao a ''ket'' ket mangikonekta
+    iti subject iti impormasyon a mangiladawan kenkuana.
+
+
+    Ibilangmo ti ''ket''
+    a kas maysa a connector nga makatulong a mangikonekta iti dua a paset ti pangungusap.
+
+
+    Denggem
+    a naimbag: ket.
+
+
+    Ita, padasem nga ibagam ti ''ket'' iti bukodmo a timek.'
+  translatedText: 'Now we''re moving into a more advanced part of Ilokano.
 
     In
     a sentence such as ''Siak ket weaver,'' the word ''ket'' connects the subject
@@ -24,7 +41,6 @@ MonoBehaviour:
     that helps link the two parts of the sentence.
 
     Now, try saying ''ket'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

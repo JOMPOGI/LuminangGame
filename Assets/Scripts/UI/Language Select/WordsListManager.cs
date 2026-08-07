@@ -34,7 +34,7 @@ public class WordsListManager : MonoBehaviour
     public Sprite cebuanoIcon;
 
     // Private state
-    private JournalDemoData _data;
+    private JournalData _journalData;
     private string _currentLanguage = "Ilokano";
     private string _currentCategory = "All";
 
@@ -46,14 +46,20 @@ public class WordsListManager : MonoBehaviour
 
     private void LoadData()
     {
-        if (journalJsonFile == null)
+        if (journalJsonFile != null)
         {
-            Debug.LogError("[WordsListManager] Journal JSON file not assigned!");
-            return;
+            _journalData = JsonUtility.FromJson<JournalData>(journalJsonFile.text);
         }
-        _data = JsonUtility.FromJson<JournalDemoData>(journalJsonFile.text);
-        if (_data == null)
-            Debug.LogError("[WordsListManager] Failed to parse JournalDemoData JSON!");
+        else
+        {
+            // Fallback for mobile if Inspector reference is lost
+            TextAsset resourceAsset = Resources.Load<TextAsset>("LuminangJournalDictionary");
+            if (resourceAsset != null)
+                _journalData = JsonUtility.FromJson<JournalData>(resourceAsset.text);
+        }
+
+        if (_journalData == null)
+            Debug.LogError("[WordsListManager] Failed to parse JournalData JSON! Is it assigned or in the Resources folder?");
     }
 
     // Called by LanguageCardManager when a card is selected
@@ -76,7 +82,7 @@ public class WordsListManager : MonoBehaviour
         foreach (Transform child in contentParent)
             Destroy(child.gameObject);
 
-        if (_data == null || _data.journal_entries == null) return;
+        if (_journalData == null || _journalData.journal_entries == null) return;
 
         // Update header texts
         if (categoryHeaderText != null)
@@ -92,11 +98,23 @@ public class WordsListManager : MonoBehaviour
 
         // Filter and spawn rows
         int count = 0;
-        foreach (var entry in _data.journal_entries)
+        foreach (var entry in _journalData.journal_entries)
         {
             // Filter by language
             if (!string.Equals(entry.language, _currentLanguage, System.StringComparison.OrdinalIgnoreCase))
                 continue;
+
+            // Filter by Unlocked Status in Supabase
+            if (UserProfileManager.Instance != null && UserProfileManager.Instance.CurrentProfile != null)
+            {
+                string baseId = entry.id.Replace("ilo_", "").Replace("ceb_", "");
+                List<string> unlockedIds = (_currentLanguage == "Ilokano")
+                    ? UserProfileManager.Instance.CurrentProfile.UnlockedPhrasesIlokano
+                    : UserProfileManager.Instance.CurrentProfile.UnlockedPhrasesCebuano;
+
+                if (unlockedIds == null || !unlockedIds.Contains(baseId))
+                    continue;
+            }
 
             // Filter by category (skip if "All")
             if (_currentCategory != "All" && _currentCategory != "All Categories")

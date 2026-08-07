@@ -58,6 +58,14 @@ namespace Luminang.UI.Minigames
         {
             if (useDatabase)
             {
+                // If spawned dynamically by MinigameManager, fetch the real Category UUID!
+                if (MinigameManager.Instance != null && !string.IsNullOrEmpty(MinigameManager.Instance.CurrentCategory))
+                {
+                    initialCategoryId = MinigameManager.Instance.CurrentCategory;
+                    initialLanguageId = MinigameManager.Instance.CurrentLanguageId;
+                    Debug.Log($"[MatchingGame] Spawned via MinigameManager! Fetching UUID for category: {initialCategoryId} (Lang: {initialLanguageId})...");
+                }
+
                 if (!string.IsNullOrEmpty(initialCategoryId))
                     await LoadLesson(initialCategoryId, initialLanguageId);
             }

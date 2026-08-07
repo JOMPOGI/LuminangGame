@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: Naimbag a rabii! Look at your pendant glow!
-  translatedText: 
+  dialogueText: Naimbag a rabii! Napartak ka nga agsursuro!
+  translatedText: Naimbag a rabii! You are a fast learner!
   animationTrigger: 
   triggerEventName: 
   endEventName: 
   choices:
-  - choiceText: 
+  - choiceText: Play Fishing Game!
     nextNode: {fileID: 11400000, guid: d912d64b852d49c4fa7c442f4068cf56, type: 2}
     isWrong: 0
-    choiceEvent: 
+    choiceEvent: StartMinigame:FishingGame
     expectedSTTWord: 

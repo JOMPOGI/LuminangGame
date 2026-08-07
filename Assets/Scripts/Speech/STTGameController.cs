@@ -33,8 +33,8 @@ public class STTGameController : MonoBehaviour
 
     private void Start()
     {
-        micButton.onClick.AddListener(OnMicButtonClicked);
-        retryButton.onClick.AddListener(ResetUI);
+        if (micButton != null) micButton.onClick.AddListener(OnMicButtonClicked);
+        if (retryButton != null) retryButton.onClick.AddListener(ResetUI);
         ResetUI();
     }
 

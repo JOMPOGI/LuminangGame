@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: 'Agdiretso! Straight ahead!
+  dialogueText: 'Agdiretso! Diretso laeng iti sango!
 
-    Go find Apo Lakay by the stone well
-    for more pathfinding!'
-  translatedText: 
+
+    Mapanka ken Apo Lakay
+    iti asideg ti bato a bubon para kadagiti sumaruno a direksyon!'
+  translatedText: 'Agdiretso! Straight ahead!
+
+    Go find Apo Lakay by the stone
+    well for more pathfinding!'
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Apo Lakay

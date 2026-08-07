@@ -14,16 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Every journey eventually continues to another place.
+  dialogueText: 'Ti tunggal dalan ket agtultuloy iti sabali a lugar.
 
-    When leaving
-    someone, you can say ''agpakada akon'' to say ''goodbye.''
 
-    Use it when ending
-    a conversation or parting ways.
+    No pumanawka
+    iti maysa a tao, mabalinmo nga ibaga ti ''agpakada akon'' a kayatna a saoen ti
+    ''goodbye.''
 
-    Now, try saying ''agpakada akon'' yourself.'
-  translatedText: 
+
+    Usarem daytoy no pagpatinggaem ti sarita wenno no agsinaaykayo.
+
+
+    Denggem
+    a naimbag: agpakada akon.
+
+
+    Ita, padasem nga ibagam ti ''agpakada akon''
+    iti bukodmo a timek.'
+  translatedText: 'Every journey eventually continues to another place.
+
+    When
+    leaving someone, you can say ''agpakada akon'' to say ''goodbye.''
+
+    Use it
+    when ending a conversation or parting ways.
+
+    Now, try saying ''agpakada akon''
+    yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

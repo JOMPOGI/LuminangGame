@@ -40,11 +40,31 @@ public class InteractableNPC : InteractableBase
     public int minigameLanguageId = 1;
 
     [Header("Events")]
-    public UnityEvent OnDialogueEnd;
-    public UnityEvent OnWrongAnswer;
+    public UnityEngine.Events.UnityEvent OnDialogueEnd;
+    public UnityEngine.Events.UnityEvent OnWrongAnswer;
+
+<<<<<<< HEAD
+    [Header("Ambient Dialogue (World-Building)")]
+    [Tooltip("Dialogue shown when this NPC is NOT the current objective. Keeps the world feeling alive.")]
+    public List<DialogueNode> ambientDialogues = new List<DialogueNode>();
+
+    [Tooltip("Shared library of ambient lines to use if no custom ambient dialogue is assigned. Assign via CreateAmbientDialogues tool.")]
+    public AmbientDialogueLibrary ambientLibrary;
+
+    [Header("Post-Completion")]
+    [Tooltip("If true, this NPC's main story arc is complete. The NPC will serve postCompletionDialogue or ambient dialogue instead.")]
+    public bool isStoryComplete = false;
+
+    [Tooltip("Dialogue to show after this NPC's story arc is done. If empty, ambient dialogue is used.")]
+    public DialogueNode postCompletionDialogue;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
     public override void Interact()
     {
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
@@ -78,6 +98,13 @@ public class InteractableNPC : InteractableBase
 
     private DialogueNode GetCurrentDialogueNode()
     {
+        // ── Post-completion: NPC's story arc is done ──────────────────────────
+        if (isStoryComplete)
+        {
+            if (postCompletionDialogue != null) return postCompletionDialogue;
+            return GetAmbientDialogue();
+        }
+
         if (ObjectiveManager.Instance != null && questDialogues != null)
         {
             string currentObj = ObjectiveManager.Instance.CurrentObjective;
@@ -103,6 +130,19 @@ public class InteractableNPC : InteractableBase
                     }
                 }
             }
+
+            // ── Part 5: If this NPC is NOT the current objective target, serve ambient dialogue ──
+            // Only apply if the NPC has quest dialogues (i.e., is a story NPC) but isn't
+            // currently the active objective, to prevent story spoilers or out-of-order progression.
+            if (questDialogues.Count > 0 && !IsTargetOfObjective(currentObj))
+            {
+                DialogueNode ambient = GetAmbientDialogue();
+                if (ambient != null)
+                {
+                    Debug.Log($"[{gameObject.name}] Not the current objective NPC. Serving ambient dialogue.");
+                    return ambient;
+                }
+            }
         }
 
         // 3. Fallback to default dialogue
@@ -117,6 +157,19 @@ public class InteractableNPC : InteractableBase
             return questDialogues[0].dialogueNode;
         }
 
+        return null;
+    }
+
+    /// <summary>
+    /// Returns an ambient dialogue node for world-building conversations.
+    /// Prefers custom ambientDialogues, falls back to ambientLibrary.
+    /// </summary>
+    private DialogueNode GetAmbientDialogue()
+    {
+        if (ambientDialogues != null && ambientDialogues.Count > 0)
+            return ambientDialogues[Random.Range(0, ambientDialogues.Count)];
+        if (ambientLibrary != null)
+            return ambientLibrary.GetRandom();
         return null;
     }
 
@@ -199,6 +252,8 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(obj)) return;
 
+        bool isTarget = IsTargetOfObjective(obj);
+
         // First check if any questDialogue matches this objective directly
         if (questDialogues != null)
         {
@@ -213,51 +268,101 @@ public class InteractableNPC : InteractableBase
             }
         }
 
-        // The linear story sets objectives like "Talk to Kyros" or "Return to Kalaw" or "Talk to Tiptip"
-        if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase) || 
-            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
-            obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
+        // Also enable if the objective contains this NPC's name in any phrasing
+        // e.g. "Learn greetings from Kyros" should enable Kyros
+        if (!isTarget)
         {
-            string targetName = obj;
-            if (obj.StartsWith("Talk to ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Talk to ".Length).Trim();
-            else if (obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Return to ".Length).Trim();
-            else if (obj.StartsWith("Find ", System.StringComparison.OrdinalIgnoreCase))
-                targetName = obj.Substring("Find ".Length).Trim();
-            
-            string cleanTarget = targetName.Replace(" ", "").Replace("_", "").ToLower();
             string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
-                                              .Replace("rigged", "")
-                                              .Replace("vendor", "")
-                                              .Replace("npc", "");
+                                              .Replace("rigged", "").Replace("vendor", "").Replace("npc", "");
+            string cleanObj  = obj.Replace(" ", "").Replace("_", "").ToLower();
+            if (cleanName.Length > 2 && cleanObj.Contains(cleanName))
+                isTarget = true;
+        }
 
-            bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
-            
-            // Check Tiptip <-> flowerpecker alias
-            if (!isMatch)
-            {
-                bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
-                bool isTiptipName = cleanName.Contains("tiptip") || cleanName.Contains("flowerpecker");
-                if (isTiptipTarget && isTiptipName) isMatch = true;
-            }
+        // The linear story sets objectives like "Talk to Kyros" / "Find Irah" / "Learn X from Kyros"
+        bool isLinearObjective =
+            obj.StartsWith("Talk to ",    System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Return to ",  System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Find ",       System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Learn ",      System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Go to ",      System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Meet ",       System.StringComparison.OrdinalIgnoreCase);
 
-            if (isMatch)
+        if (isLinearObjective || isTarget)
+        {
+            if (isTarget)
             {
                 interactionEnabled = true;
-                
                 if (InteractionManager.Instance != null)
-                {
                     InteractionManager.Instance.ForceCheckProximity();
-                }
             }
             else
             {
-                // STRICTLY disable other NPCs if they are not the target of the linear quest
+                // Disable all non-target NPCs strictly.
                 interactionEnabled = false;
             }
         }
     }
+
+
+    /// <summary>
+    /// Evaluates if this NPC is the explicit target of the given objective, 
+    /// without mutating their interaction state.
+    /// </summary>
+    public bool IsTargetOfObjective(string obj)
+    {
+        if (string.IsNullOrEmpty(obj)) return false;
+
+        // 1. Check questDialogues for exact requiredObjective match
+        if (questDialogues != null)
+        {
+            foreach (var qd in questDialogues)
+            {
+                if (!string.IsNullOrEmpty(qd.requiredObjective) &&
+                    obj.IndexOf(qd.requiredObjective, System.StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+            }
+        }
+
+        // Build a clean NPC name for matching
+        string cleanName = gameObject.name.Replace(" ", "").Replace("_", "").ToLower()
+                                          .Replace("rigged", "").Replace("vendor", "").Replace("npc", "");
+
+        // 2. Prefix-style objectives: "Talk to Kyros", "Find Irah", "Return to Kalaw", "Meet X"
+        if (obj.StartsWith("Talk to ",   System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Find ",      System.StringComparison.OrdinalIgnoreCase) ||
+            obj.StartsWith("Meet ",      System.StringComparison.OrdinalIgnoreCase))
+        {
+            string prefix = obj.StartsWith("Talk to ",   System.StringComparison.OrdinalIgnoreCase) ? "Talk to " :
+                            obj.StartsWith("Return to ", System.StringComparison.OrdinalIgnoreCase) ? "Return to " :
+                            obj.StartsWith("Find ",      System.StringComparison.OrdinalIgnoreCase) ? "Find " : "Meet ";
+            string cleanTarget = obj.Substring(prefix.Length).Trim().Replace(" ", "").Replace("_", "").ToLower();
+
+            bool isMatch = cleanTarget.StartsWith(cleanName) || cleanName.StartsWith(cleanTarget);
+
+            // Tiptip / Flowerpecker alias
+            if (!isMatch)
+            {
+                bool isTiptipTarget = cleanTarget.Contains("tiptip") || cleanTarget.Contains("flowerpecker");
+                bool isTiptipName   = cleanName.Contains("tiptip")   || cleanName.Contains("flowerpecker");
+                if (isTiptipTarget && isTiptipName) isMatch = true;
+            }
+            return isMatch;
+        }
+
+        // 3. Free-form objectives that contain the NPC name anywhere
+        //    e.g. "Learn greetings from Kyros", "LEVEL III COMPLETE! Head to Plaza: Talk to Kalaw"
+        if (cleanName.Length > 2)
+        {
+            string cleanObj = obj.Replace(" ", "").Replace("_", "").ToLower();
+            if (cleanObj.Contains(cleanName))
+                return true;
+        }
+
+        return false;
+    }
+
 
     /// <summary>
     /// Helper method to teleport the NPC. Easily callable from UnityEvents.
@@ -480,6 +585,8 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(eventName)) return;
         
+<<<<<<< HEAD
+<<<<<<< HEAD
         string[] events = eventName.Split(',');
         foreach(string evt in events)
         {
@@ -489,14 +596,71 @@ public class InteractableNPC : InteractableBase
             // console spam — this method is called on ALL NPCs via the broadcast pattern.
             
             // Automatic system handler for TeachingOverlayPanel events
+=======
+        string cleanEventName = eventName.Trim();
+        
+        // Forward the event to custom scripts (e.g. IrahCoolerLogic)
+        gameObject.SendMessage("OnDialogueEvent", cleanEventName, SendMessageOptions.DontRequireReceiver);
 
-            if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        // NOTE: Logging is intentionally placed inside the match block below to avoid
+        // console spam — this method is called on ALL NPCs via the broadcast pattern.
+
+        // Automatic system handler for TeachingOverlayPanel events
+        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
             {
-                if (TeachingOverlayPanel.Instance != null)
-                {
-                    TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
-                }
+                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
             }
+        }
+        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.Hide();
+            }
+        }
+        else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+            }
+        }
+        else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.StartInSceneLesson(camName);
+            }
+        }
+        else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+            }
+        }
+        else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.EndInSceneLesson();
+            }
+        }
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+
+        foreach (var mapping in dialogueEvents)
+        {
+            if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+            {
+                Debug.Log($"[InteractableNPC] '{gameObject.name}' matched event '{cleanEventName}' — firing UnityEvent.");
+                mapping.onEventTriggered?.Invoke();
+            }
+<<<<<<< HEAD
             else if (cleanEventName.StartsWith("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
             {
                 if (TeachingOverlayPanel.Instance != null)
@@ -512,9 +676,15 @@ public class InteractableNPC : InteractableBase
                     PopupManager.Instance.ShowPopups(popupName);
                 }
             }
-            else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+            else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase) || 
+                     cleanEventName.StartsWith("SetObjective_", System.StringComparison.OrdinalIgnoreCase))
             {
-                string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+                string newObjText = "";
+                if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+                    newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+                else
+                    newObjText = cleanEventName.Substring("SetObjective_".Length).Trim();
+                    
                 if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
                 {
                     ObjectiveManager.Instance.SetObjective(newObjText);
@@ -553,6 +723,74 @@ public class InteractableNPC : InteractableBase
                 }
             }
         } // End foreach event loop
+=======
+        }
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+        string cleanEventName = eventName.Trim();
+        
+        // Forward the event to custom scripts (e.g. IrahCoolerLogic)
+        gameObject.SendMessage("OnDialogueEvent", cleanEventName, SendMessageOptions.DontRequireReceiver);
+
+        // NOTE: Logging is intentionally placed inside the match block below to avoid
+        // console spam — this method is called on ALL NPCs via the broadcast pattern.
+
+        // Automatic system handler for TeachingOverlayPanel events
+        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
+            }
+        }
+        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.Hide();
+            }
+        }
+        else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+            }
+        }
+        else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.StartInSceneLesson(camName);
+            }
+        }
+        else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+            }
+        }
+        else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.EndInSceneLesson();
+            }
+        }
+
+        foreach (var mapping in dialogueEvents)
+        {
+            if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+            {
+                Debug.Log($"[InteractableNPC] '{gameObject.name}' matched event '{cleanEventName}' — firing UnityEvent.");
+                mapping.onEventTriggered?.Invoke();
+            }
+        }
+>>>>>>> upstream/irah-version
     }
 
     /// <summary>
@@ -661,4 +899,3 @@ public class DialogueEventMapping
     public string eventName;
     public UnityEvent onEventTriggered;
 }
-

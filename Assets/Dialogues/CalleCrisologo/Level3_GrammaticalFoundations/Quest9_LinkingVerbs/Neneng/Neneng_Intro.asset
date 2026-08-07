@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Hello! I'm Neneng! Linking verbs make your Ilokano sound so natural.
+    Let me teach you a few more before you see Aling Riza!
+  translatedText: Hello! I'm Neneng! Linking verbs make your Ilokano sound so natural.
+    Let me teach you a few more before you see Aling Riza!
   animationTrigger: 
   triggerEventName: SetObjective_Learn linking verbs from Neneng
   endEventName: 

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lito
   speakerPortrait: {fileID: 21300000, guid: dec1559c1c146ff4c8cb2f55c759d194, type: 3}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Ay, hello traveler! I'm Lito. I spend my days by the river. Let me
+    teach you how to make polite requests in Ilokano!
+  translatedText: Ay, hello traveler! I'm Lito. I spend my days by the river. Let
+    me teach you how to make polite requests in Ilokano!
   animationTrigger: 
   triggerEventName: SetObjective_Learn requests from Lito
   endEventName: 

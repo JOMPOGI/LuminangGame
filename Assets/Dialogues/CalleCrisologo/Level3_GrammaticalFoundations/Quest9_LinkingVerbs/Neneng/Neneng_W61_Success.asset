@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: Agbalin! With practice, you can become a confident Ilokano speaker!
-  translatedText: 
+  dialogueText: Agbalin! Babaen ti praktis, mabalinmo nga agbalin a natalek nga agsao
+    iti Ilokano!
+  translatedText: Agbalin! With practice, you can become a confident Ilokano speaker!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

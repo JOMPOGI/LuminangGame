@@ -143,6 +143,25 @@ public class STTVoiceVisualizerAdapter : MonoBehaviour
 
         if (!string.IsNullOrEmpty(expectedWord))
         {
+            // Dynamic STT check for fill-in-the-blanks
+            if (expectedWord.Contains("___"))
+            {
+                string prefix = expectedWord.Replace("___", "").Trim().ToLower();
+                string normalizedResult = result.ToLower().Trim();
+                
+                // Remove punctuation for robust matching
+                string cleanResult = new string(System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(normalizedResult, c => !char.IsPunctuation(c))));
+                string cleanPrefix = new string(System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Where(prefix, c => !char.IsPunctuation(c))));
+                
+                if (cleanResult.StartsWith(cleanPrefix) && cleanResult.Length >= cleanPrefix.Length)
+                {
+                    // Success! They said the prefix and filled in the blank.
+                    string fbPrefix = $"<color=#00FFFF>You said:</color> \"{result}\" (<color=#55FF55>Dynamic Match</color>)\n\n";
+                    OnSTTEvaluationComplete?.Invoke(true, result, fbPrefix);
+                    return;
+                }
+            }
+
             // Evaluate against the expected STT word using the NLP backend service (luminang-nlp-service)
             PhraseEvaluator.Instance.EvaluateSpeech(expectedWord, result, (transcript, scorePercent, evalResult) =>
             {

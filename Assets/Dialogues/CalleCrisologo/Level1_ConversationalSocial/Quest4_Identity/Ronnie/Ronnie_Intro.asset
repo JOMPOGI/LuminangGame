@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: "Hoy, traveler! The name's Ronnie. Good thing you stopped by \u2014
+    I'll teach you how to introduce yourself in Ilokano!"
+  translatedText: "Hoy, traveler! The name's Ronnie. Good thing you stopped by \u2014
+    I'll teach you how to introduce yourself in Ilokano!"
   animationTrigger: 
   triggerEventName: SetObjective_Learn identity phrases from Ronnie
   endEventName: 

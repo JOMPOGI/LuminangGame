@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: Kasla! It really does feel like traveling back through history!
-  translatedText: 
+  dialogueText: Kasla! Pudno unay a kasla agsubli ti panagdaliasat iti pakasaritaan!
+  translatedText: Kasla! It really does feel like traveling back through history!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

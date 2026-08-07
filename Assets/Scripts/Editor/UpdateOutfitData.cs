@@ -44,6 +44,8 @@ public class UpdateOutfitData : MonoBehaviour
             { "lacedBrownBoots", ("Lakbay Boots", "Lace up and head out for your next adventure.") },
 
             // Hairs
+<<<<<<< HEAD
+<<<<<<< HEAD
             { "blackHairShort", ("Classic Bob", "A neat bob that never goes out of style.") },
             { "blondHair", ("Golden Layers", "Soft layered hair with a bright, cheerful look.") },
             { "longBlackHair", ("Straight Locks", "Long, sleek hair that's simple and elegant.") },
@@ -53,6 +55,19 @@ public class UpdateOutfitData : MonoBehaviour
             { "shortBrownHair", ("Tousled Cut", "A slightly messy style with effortless charm.") },
             { "shortMochaHair", ("Soft Layers", "Light layers that create a gentle, relaxed look.") },
             { "spikyBlonde", ("Spiky Cut", "A bold hairstyle with plenty of attitude.") },
+=======
+=======
+>>>>>>> upstream/irah-version
+            { "blackHairShort", ("Black Hair Short", "A neat bob that never goes out of style.", 100) },
+            { "blondHair", ("Golden Layers", "Soft layered hair with a bright, cheerful look.", 250) },
+            { "longBlackHair", ("Long Black Hair", "Long, sleek hair that's simple and elegant.", 150) },
+            { "pinkHair", ("Pink Twin Braids", "A playful braided style full of personality.", 600) },
+            { "purpBlackHairShort", ("Side Fringe", "A short cut with a stylish side-swept fringe.", 300) },
+            { "shortBlackHair", ("Textured Crop", "A clean, textured haircut for an everyday look.", 100) },
+            { "shortBrownHair", ("Tousled Cut", "A slightly messy style with effortless charm.", 200) },
+            { "shortMochaHair", ("Soft Layers", "Light layers that create a gentle, relaxed look.", 250) },
+            { "spikyBlonde", ("Spiky Cut", "A bold hairstyle with plenty of attitude.", 600) },
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
 
             // Accessories
             { "strawHat", ("Salakot", "A traditional Filipino hat that keeps you cool under the sun.") }

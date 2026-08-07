@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: Agpakada akon! Go meet Vendor Irah at the weaving loom. She has something
-    important to teach you about showing gratitude.
-  translatedText: 
+  dialogueText: "Agpakada akon! \u2728 NALUKATAN TI GREETINGS MILESTONE! \u2728\n\nMapanka
+    ken Vendor Irah iti loom a panagabel. Adda napateg nga isurona kenka maipapan
+    iti panangipakita iti panagyaman."
+  translatedText: Agpakada akon! Go meet Vendor Irah at the weaving loom. She has
+    something important to teach you about showing gratitude.
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Irah

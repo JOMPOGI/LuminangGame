@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: "Anak, come here! I'm Lola Nida. Sit with me and I'll teach you linking
+    verbs \u2014 the words that connect your sentences in Ilokano."
+  translatedText: "Anak, come here! I'm Lola Nida. Sit with me and I'll teach you
+    linking verbs \u2014 the words that connect your sentences in Ilokano."
   animationTrigger: 
   triggerEventName: SetObjective_Learn linking verbs from Lola Nida
   endEventName: 

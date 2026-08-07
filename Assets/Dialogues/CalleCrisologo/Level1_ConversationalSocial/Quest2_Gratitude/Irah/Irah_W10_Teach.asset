@@ -14,7 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Sometimes a simple thank you isn''t enough to express how grateful
+  dialogueText: 'Adda dagiti oras a saan a makaanay ti simple a panagyaman tapno
+    maipakita no kasano ti kaadu ti panagyamanmo.
+
+
+    Iti Ilokano, ti ''agyamanak
+    unay'' ket kayatna a saoen ti ''thank you very much.''
+
+
+    Mabalinmo nga agusar
+    iti daytoy no adda nangaramid iti naisangsangayan a naimbag wenno naindaklan
+    a tulong kenka.
+
+
+    Denggem a naimbag: agyamanak unay.
+
+
+    Ita, padasem nga
+    ibagam ti ''agyamanak unay'' iti bukodmo a timek.'
+  translatedText: 'Sometimes a simple thank you isn''t enough to express how grateful
     you feel.
 
     In Ilokano, ''agyamanak unay'' means ''thank you very much.''
@@ -24,7 +42,6 @@ MonoBehaviour:
 
     Now,
     try saying ''agyamanak unay'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

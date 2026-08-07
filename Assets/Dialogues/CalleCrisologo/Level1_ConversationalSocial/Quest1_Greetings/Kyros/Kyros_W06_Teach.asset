@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Kyros
   speakerPortrait: {fileID: 0}
-  dialogueText: 'As the sun sets and the streetlamps begin to glow, the greeting
+  dialogueText: 'No lumubog ti init ken mangrugi a sumilnag dagiti silaw iti dalan,
+    agbaliw ti panangabla segun iti oras ti aldaw.
+
+
+    Iti Ilokano, ti ''naimbag
+    a rabii'' ket kayatna a saoen ti ''good evening.''
+
+
+    Usarem daytoy no mangabla
+    ka iti maysa a tao iti rabii.
+
+
+    Denggem a naimbag: naimbag a rabii.
+
+
+    Ita,
+    padasem nga ibagam ti ''naimbag a rabii'' iti bukodmo a timek.'
+  translatedText: 'As the sun sets and the streetlamps begin to glow, the greeting
     changes with the time of day.
 
     In Ilokano, ''naimbag a rabii'' means ''good
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try saying
     ''naimbag a rabii'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

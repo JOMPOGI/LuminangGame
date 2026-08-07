@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: Agliko iti kannigid! Turn left-the clay kilns are right there!
-  translatedText: 
+  dialogueText: "Agliko iti kannigid! Agliko iti kannigid\u2014adda idiay dagiti
+    pugon a paglutuan iti luto!"
+  translatedText: Agliko iti kannigid! Turn left-the clay kilns are right there!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

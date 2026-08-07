@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Riza
   speakerPortrait: {fileID: 0}
-  dialogueText: Marikna! Talk to me again for Pronouns!
-  translatedText: 
+  dialogueText: "Marikna!\n\n\u2728 NALUKATAN TI LINKING VERBS MILESTONE! \u2728\n\nMakisaritaka
+    manen kaniak para kadagiti Pronouns!"
+  translatedText: Marikna! Talk to me again for Pronouns!
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Learn pronouns with Aling Riza
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 11400000, guid: 0d6b64a066247264b948a9833006ce06, type: 2}
+    nextNode: {fileID: 11400000, guid: 32fb485955f4a87409dcbdd07361b45b, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:linkingVerbs
     expectedSTTWord: 

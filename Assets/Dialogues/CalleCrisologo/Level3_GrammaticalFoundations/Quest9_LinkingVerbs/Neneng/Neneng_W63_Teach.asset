@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Some things change, but others continue to stay strong.
+  dialogueText: 'Adda dagiti banag a agbaliw, ngem adda met dagiti agtalinaed a napigsa.
+
+
+    Iti
+    Ilokano, ti ''agtalinaed'' ket kayatna a saoen ti ''remain.''
+
+
+    Mabalinmo
+    nga agusar iti daytoy no pagsasaritaanmo ti maysa a banag nga agtultuloy a nagnaed
+    wenno agtalinaed iti maysa a kasasaad.
+
+
+    Denggem a naimbag: agtalinaed.
+
+
+    Ita,
+    padasem nga ibagam ti ''agtalinaed'' iti bukodmo a timek.'
+  translatedText: 'Some things change, but others continue to stay strong.
 
     In
     Ilokano, ''agtalinaed'' means ''remain.''
@@ -24,7 +41,6 @@ MonoBehaviour:
 
     Now, try saying
     ''agtalinaed'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

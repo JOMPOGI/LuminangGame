@@ -14,19 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Neneng
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Hey! Here''s an interesting one.
+  dialogueText: 'Hey! Adda maysa a napintas a banag ditoy.
 
-    In Ilokano, ''agbalin'' means
-    ''become.''
 
-    It describes a change from one state or condition into another.
+    Iti Ilokano, ti
+    ''agbalin'' ket kayatna a saoen ti ''become.''
 
-    For
-    example, with practice, you can become more confident in speaking Ilokano.
 
-    Now,
-    try saying ''agbalin'' yourself.'
-  translatedText: 
+    Iladladawanna ti panagbaliw
+    manipud iti maysa a kasasaad wenno kondisyon iti sabali.
+
+
+    Kas pagarigan,
+    babaen ti praktis, mabalinmo nga agbalin a nasaysayaat ken natalek iti panagsao
+    iti Ilokano.
+
+
+    Denggem a naimbag: agbalin.
+
+
+    Ita, padasem nga ibagam
+    ti ''agbalin'' iti bukodmo a timek.'
+  translatedText: 'Hey! Here''s an interesting one.
+
+    In Ilokano, ''agbalin''
+    means ''become.''
+
+    It describes a change from one state or condition into
+    another.
+
+    For example, with practice, you can become more confident in speaking
+    Ilokano.
+
+    Now, try saying ''agbalin'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

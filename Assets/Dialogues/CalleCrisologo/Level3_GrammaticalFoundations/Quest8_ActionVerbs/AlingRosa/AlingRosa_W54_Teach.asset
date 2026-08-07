@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Aling Rosa
   speakerPortrait: {fileID: 21300000, guid: e185e0ec3efba60429a1f9e0680e9fe7, type: 3}
-  dialogueText: 'Listen closely. Can you hear the horse hooves clattering down Calle
-    Crisologo?
+  dialogueText: 'Denggem a naimbag. Mangngegmo kadi dagiti yapak dagiti kabalyo nga
+    agpaspas iti Calle Crisologo?
+
+
+    Iti Ilokano, ti ''mangngeg'' ket kayatna
+    a saoen ti ''hear.''
+
+
+    Denggem a naimbag: mangngeg.
+
+
+    Ita, padasem nga
+    ibagam ti ''mangngeg'' iti bukodmo a timek.'
+  translatedText: 'Listen closely. Can you hear the horse hooves clattering down
+    Calle Crisologo?
 
     In Ilokano, ''mangngeg'' means ''hear.''
 
-    Now, try saying
-    ''mangngeg'' yourself.'
-  translatedText: 
+    Now, try
+    saying ''mangngeg'' yourself.'
   animationTrigger: 
   triggerEventName: 
   endEventName: 

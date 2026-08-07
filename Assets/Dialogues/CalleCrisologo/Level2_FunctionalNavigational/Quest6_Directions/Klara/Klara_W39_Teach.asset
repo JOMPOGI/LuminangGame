@@ -14,13 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Klara
   speakerPortrait: {fileID: 21300000, guid: cf385c5c4168f354ca622b8557a81b73, type: 3}
-  dialogueText: 'When you count two objects, people, or things, Ilokano uses ''dua.''
+  dialogueText: 'No agbilangka iti dua a banag, tattao, wenno aniaman a banag, agusar
+    ti Ilokano iti ''dua.''
+
+
+    Kayatna a saoen ti ''two.''
+
+
+    Denggem a naimbag:
+    dua.
+
+
+    Ita, padasem nga ibagam ti ''dua'' iti bukodmo a timek.'
+  translatedText: 'When you count two objects, people, or things, Ilokano uses ''dua.''
 
     It
     means ''two.''
 
     Now, try saying ''dua'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

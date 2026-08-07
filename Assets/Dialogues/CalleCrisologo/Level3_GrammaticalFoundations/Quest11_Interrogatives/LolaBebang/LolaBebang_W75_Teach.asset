@@ -13,8 +13,24 @@ MonoBehaviour:
   m_Name: LolaBebang_W75_Teach
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
-  speakerPortrait: {fileID: 0}
-  dialogueText: 'Questions help us learn about the world around us.
+  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
+  dialogueText: 'Dagiti saludsod ket makatulong kadatayo a mangammo iti lubong iti
+    aglawlawtayo.
+
+
+    Iti Ilokano, ti ''ania'' ket kayatna a saoen ti ''what.''
+
+
+    Usarem
+    daytoy no damagem maipapan iti maysa a banag, bagay, wenno impormasyon.
+
+
+    Denggem
+    a naimbag: ania.
+
+
+    Ita, padasem nga ibagam ti ''ania'' iti bukodmo a timek.'
+  translatedText: 'Questions help us learn about the world around us.
 
     In Ilokano,
     ''ania'' means ''what.''
@@ -23,7 +39,6 @@ MonoBehaviour:
 
     Now,
     try saying ''ania'' yourself.'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: 

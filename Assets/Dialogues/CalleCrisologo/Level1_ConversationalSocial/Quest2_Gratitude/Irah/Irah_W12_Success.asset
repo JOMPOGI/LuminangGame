@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Irah
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Pakawanen nak... No harm done!
+  dialogueText: 'Pakawanen nak... Awan ti problema!
 
-    Pop over to Vendor Jom''s empanada
-    stall for the last gratitude phrase!'
-  translatedText: 
+
+    Mapanka ken Vendor Jom
+    iti empanada stallna para iti maudi a pagsasao ti gratitude!'
+  translatedText: 'Pakawanen nak... No harm done!
+
+    Pop over to Vendor Jom''s
+    empanada stall for the last gratitude phrase!'
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Jom

@@ -14,15 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Mang Lance
   speakerPortrait: {fileID: 21300000, guid: 38bc51c443a4bad45af2e4bd479c519b, type: 3}
-  dialogueText: Sangapulo! You made it to ten!
-  translatedText: 
+  dialogueText: "Sangapulo! Nakadanonka iti sangapulo!\n\n\U0001F3C6 NALPAS TI LEVEL
+    II: FUNCTIONAL & NAVIGATIONAL! \U0001F3C6\n\nNasursurom no kasano ti agkiddaw
+    iti tulong, agturong kadagiti dalan, mangted iti direksyon, ken agusar kadagiti
+    numero iti inaldaw-aldaw a kasasaad.\n\nIta, sursuruentayo no kasano a iladawan
+    ti Ilokano dagiti aramid, tattao, ken kapanunotan.\n\nNaragsak a panagsangbay
+    iti Level III: Grammatical Foundations!"
+  translatedText: Sangapulo! You made it to ten!
   animationTrigger: 
   triggerEventName: 
   endEventName: 'SetObjective_LEVEL II COMPLETE! Head to Level III: Talk to Mang
     Lance'
   choices:
   - choiceText: Continue
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: afdaa143b7c1a174f8f5d558482a925c, type: 2}
     isWrong: 0
     choiceEvent: ShowPopup:counting,complete_level2,welcome_level3
     expectedSTTWord: 

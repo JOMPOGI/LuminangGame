@@ -23,4 +23,9 @@ MonoBehaviour:
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Kyros
-  choices: []
+  choices:
+  - choiceText: Take Kalaw's Quiz!
+    nextNode: {fileID: 11400000, guid: bf0428a2982af2a4f8800455e945f123, type: 2}
+    isWrong: 0
+    choiceEvent: StartTiptipQuiz:A
+    expectedSTTWord: 

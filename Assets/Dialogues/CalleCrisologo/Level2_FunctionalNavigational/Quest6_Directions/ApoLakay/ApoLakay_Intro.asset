@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Apo Lakay
   speakerPortrait: {fileID: 21300000, guid: a6fe17a2d439d18459e035bb2968ecb3, type: 3}
-  dialogueText: ...
-  translatedText: 
+  dialogueText: Naimbag a bigat, anak! I am Apo Lakay, an elder of this street. Come,
+    let me show you how we talk about directions in Ilokano!
+  translatedText: Naimbag a bigat, anak! I am Apo Lakay, an elder of this street.
+    Come, let me show you how we talk about directions in Ilokano!
   animationTrigger: 
   triggerEventName: SetObjective_Learn directions from Apo Lakay
   endEventName: 

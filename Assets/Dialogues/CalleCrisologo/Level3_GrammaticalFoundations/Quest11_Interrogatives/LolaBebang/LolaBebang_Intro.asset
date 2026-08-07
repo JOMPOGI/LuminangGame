@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: LolaBebang_Intro
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Bebang
-  speakerPortrait: {fileID: 0}
-  dialogueText: ...
-  translatedText: 
+  speakerPortrait: {fileID: 21300000, guid: 431c291e6a9edde459aa387cb0de89cb, type: 3}
+  dialogueText: "Halika, anak! I'm Lola Bebang. Sit, sit! I'll teach you the question
+    words \u2014 the most important tools for any curious traveler!"
+  translatedText: "Halika, anak! I'm Lola Bebang. Sit, sit! I'll teach you the question
+    words \u2014 the most important tools for any curious traveler!"
   animationTrigger: 
   triggerEventName: SetObjective_Learn question words from Lola Bebang
   endEventName: 

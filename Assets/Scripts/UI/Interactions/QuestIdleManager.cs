@@ -84,7 +84,7 @@ public class QuestIdleManager : MonoBehaviour
         }
 
         // 2. Force the state change (using Layer 0)
-        targetAnimator.CrossFadeInFixedTime("Breathing_Idle", 0.1f, 0);
+        SafeCrossFade(targetAnimator, "Breathing_Idle", 0.1f);
         
         // 3. Last resort: Direct Play
         targetAnimator.Play("Breathing_Idle");
@@ -100,4 +100,16 @@ public class QuestIdleManager : MonoBehaviour
         _manuallyStopped = true;
         Debug.Log($"[{gameObject.name}] Quest Idle Stopped Manually.");
     }
+
+    private void SafeCrossFade(Animator anim, string stateName, float duration)
+    {
+        if (anim != null && anim.runtimeAnimatorController != null)
+        {
+            if (anim.HasState(0, Animator.StringToHash(stateName)))
+            {
+                anim.CrossFadeInFixedTime(stateName, duration, 0);
+            }
+        }
+    }
 }
+

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Lola Nida
   speakerPortrait: {fileID: 0}
-  dialogueText: Da! You're learning how Ilokano expresses groups!
-  translatedText: 
+  dialogueText: Da! Sursuruem no kasano nga ipakita ti Ilokano dagiti grupo!
+  translatedText: Da! You're learning how Ilokano expresses groups!
   animationTrigger: 
   triggerEventName: 
   endEventName: 

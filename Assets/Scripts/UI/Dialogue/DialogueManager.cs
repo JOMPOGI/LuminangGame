@@ -9,6 +9,11 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
+    /// <summary>Fired when a dialogue begins with a specific NPC. NPCPatrol subscribes to auto-pause.</summary>
+    public static System.Action<InteractableNPC> OnNPCDialogueStarted;
+    /// <summary>Fired when a dialogue ends with a specific NPC. NPCPatrol subscribes to auto-resume.</summary>
+    public static System.Action<InteractableNPC> OnNPCDialogueEnded;
+
     /// <summary>
     /// True for the entire duration of a conversation.
     /// InteractionManager and QuestIndicator use this to hide themselves.
@@ -63,6 +68,9 @@ public class DialogueManager : MonoBehaviour
         _currentNPC = npc;
         IsInDialogue = true;
         ToggleCursor(false);
+
+        // Notify NPCPatrol and other listeners
+        OnNPCDialogueStarted?.Invoke(npc);
 
         // Hide the proximity Talk button
         if (InteractionManager.Instance != null && InteractionManager.Instance.talkButton != null)
@@ -317,7 +325,10 @@ public class DialogueManager : MonoBehaviour
             {
                 PendingMinigameChoice = choice;
                 _pendingMinigameNextNode = choice.nextNode; // Store nextNode NOW before any clone destroys the choice reference
-                if (uiController != null) uiController.HideChoicesOnly();
+                
+                // Hide the ENTIRE dialogue box (so it doesn't show during LoadingScene transitions)
+                if (uiController != null) uiController.HideDialogueForMinigame();
+                
                 // Broadcast to ALL NPCs — the one with this event mapped will respond
                 BroadcastDialogueEvent(choiceEventTrimmed);
                 Debug.Log($"<color=cyan>[DialogueManager] StartMinigame event fired ('{choiceEventTrimmed}'). Next node: '{(choice.nextNode != null ? choice.nextNode.name : "NULL")}'. Dialogue PAUSED until CompleteMinigame() is called.</color>");
@@ -526,6 +537,9 @@ public class DialogueManager : MonoBehaviour
         ToggleCursor(true);
         _nodeHistory.Clear();
         _activeNode = null;
+
+        // Notify NPCPatrol and other listeners before clearing _currentNPC
+        OnNPCDialogueEnded?.Invoke(_currentNPC);
         
         if (uiController != null)
             uiController.HideDialogue();

@@ -80,6 +80,7 @@ public class DialogueUIController : MonoBehaviour
 
     // Paging
     private List<string>                  _pages = new List<string>();
+    private List<string>                  _translatedPages = new List<string>();
     private int                           _currentPageIndex = 0;
     private bool                          _isSkippingAnimation = false;
 
@@ -117,39 +118,54 @@ public class DialogueUIController : MonoBehaviour
         Debug.Log($"<color=magenta>[DialogueUIController] DisplayNode -> Displaying Node: '{(node != null ? node.name : "NULL")}', Text: '{(node != null ? node.dialogueText : "")}'</color>");
         _onChoiceSelected = onChoiceSelected;
         _currentChoices   = node.choices;
-        _fullText         = injectedPrefixText + node.dialogueText;
-        _translatedText   = node.translatedText;
+        string rawText = injectedPrefixText + node.dialogueText;
+        string rawTranslated = node.translatedText;
+        
+        if (TimeManager.Instance != null && rawText != null)
+        {
+            string greeting = TimeManager.Instance.GetGreetingTag();
+            rawText = rawText.Replace("{Greeting}", greeting);
+            
+            string engGreeting = TimeManager.Instance.IsMorning ? "Good morning" : (TimeManager.Instance.IsAfternoon ? "Good afternoon" : "Good evening");
+            if (rawTranslated != null) rawTranslated = rawTranslated.Replace("{Greeting}", engGreeting);
+        }
+        
+        _fullText = rawText;
+        _translatedText = rawTranslated;
         _isSkippingAnimation = skipAnimation;
         
         // Reset prefix after consuming
         injectedPrefixText = "";
         
-        _isTranslatedShowing = false;
+        _isTranslatedShowing = true;
         _skipTyping       = skipAnimation; // If skipping, we force it here
 
-        // Split full text into pages
-        _pages.Clear();
-        if (!string.IsNullOrEmpty(_fullText))
-        {
-            string[] rawLines = _fullText.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-            foreach (var line in rawLines)
-            {
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    _pages.Add(line.Trim());
-                }
-            }
-        }
+        // Split full text and translated text into pages (sentences)
+        _pages = SplitIntoSentences(_fullText);
+        _translatedPages = SplitIntoSentences(_translatedText);
         
         if (_pages.Count == 0) _pages.Add("");
         _currentPageIndex = 0;
 
         // Show/Hide translate button
         if (translateButton != null)
-            translateButton.gameObject.SetActive(!string.IsNullOrEmpty(_translatedText));
+            translateButton.gameObject.SetActive(false);
 
         if (speakerNameText != null)
-            speakerNameText.text = string.IsNullOrEmpty(node.speakerName) ? "" : node.speakerName;
+        {
+            string sName = node.speakerName;
+            if (string.IsNullOrEmpty(sName) && DialogueManager.Instance != null)
+            {
+                InteractableNPC activeNPC = DialogueManager.Instance.GetActiveNPC();
+                if (activeNPC != null)
+                {
+                    sName = activeNPC.gameObject.name
+                        .Replace("_Rigged", "").Replace("_rigged", "").Replace("_Rrrigged", "")
+                        .Replace("Vendor", "").Replace("barista", "").Trim();
+                }
+            }
+            speakerNameText.text = sName;
+        }
 
         // Clear text immediately so no placeholder shows during pop-in
         if (dialogueText != null) dialogueText.text = "";
@@ -159,6 +175,7 @@ public class DialogueUIController : MonoBehaviour
         // Spawn choice buttons if there are any choices with text
         if (node.choices != null)
         {
+            int choiceIndex = 0;
             foreach (var choice in node.choices)
             {
                 if (string.IsNullOrEmpty(choice.choiceText)) continue;
@@ -168,7 +185,20 @@ public class DialogueUIController : MonoBehaviour
                 _activeChoiceButtons.Add(obj);
 
                 var btnText = obj.GetComponentInChildren<TextMeshProUGUI>();
-                if (btnText != null) btnText.text = choice.choiceText;
+                if (btnText != null)
+                {
+                    // If this node is a yes/no question, override labels with Ilocano
+                    if (node.isYesNoChoice)
+                    {
+                        if (choiceIndex == 0) btnText.text = "Wen";
+                        else if (choiceIndex == 1) btnText.text = "Saan";
+                        else btnText.text = choice.choiceText;
+                    }
+                    else
+                    {
+                        btnText.text = choice.choiceText;
+                    }
+                }
 
                 var btn = obj.GetComponent<Button>();
                 if (btn != null)
@@ -183,6 +213,7 @@ public class DialogueUIController : MonoBehaviour
                         _onChoiceSelected?.Invoke(cached);
                     });
                 }
+                choiceIndex++;
             }
         }
         
@@ -211,6 +242,8 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
         DisplayCurrentPage();
     }
 
@@ -236,6 +269,20 @@ public class DialogueUIController : MonoBehaviour
                 // Temporarily bypassing STT requirement to allow skipping.
                 nextButton.gameObject.SetActive(visibleChoices == 0);
             }
+=======
+        // We ALWAYS keep the next button active initially so the player can click it to skip the typing animation.
+        // It will be disabled at the very end of the TypeText coroutine if this node has choices or requires STT.
+        if (nextButton != null)
+        {
+            nextButton.gameObject.SetActive(true);
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+        // We ALWAYS keep the next button active initially so the player can click it to skip the typing animation.
+        // It will be disabled at the very end of the TypeText coroutine if this node has choices or requires STT.
+        if (nextButton != null)
+        {
+            nextButton.gameObject.SetActive(true);
+>>>>>>> upstream/irah-version
         }
 
         // If not last page, hide choices so they don't block
@@ -394,6 +441,38 @@ public class DialogueUIController : MonoBehaviour
         ClearChoices();
     }
 
+    /// <summary>
+    /// Hides the entire dialogue UI (panel, portrait, choices) but intentionally
+    /// keeps the movement UI hidden because a minigame is taking over.
+    /// </summary>
+    public void HideDialogueForMinigame()
+    {
+        if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
+        if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
+        _showSequenceCoroutine = null;
+        _typeTextCoroutine = null;
+        _isTyping   = false;
+        _skipTyping = false;
+
+        dialoguePanel.SetActive(false);
+        if (_isDialoguePosCaptured)
+        {
+            RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
+            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, _dialogueOriginalY);
+        }
+
+        if (choicesGroup != null)
+        {
+            choicesGroup.SetActive(false);
+            choicesGroup.transform.localScale = Vector3.one;
+        }
+
+        SetPortraitVisibility(false, false);
+        _lastPortrait = null;
+        
+        ClearChoices();
+    }
+
     // ─────────────────────────────────────────────────────────────────
     // Button Handlers
     // ─────────────────────────────────────────────────────────────────
@@ -458,9 +537,8 @@ public class DialogueUIController : MonoBehaviour
 
         if (dialogueText != null)
         {
-            // For now, translated text is shown fully, or we'd need to paginate it too.
-            // But usually translated text is just a short snippet.
-            dialogueText.text = _isTranslatedShowing ? _translatedText : _pages[_currentPageIndex];
+            int idx = Mathf.Min(_currentPageIndex, Mathf.Max(0, _translatedPages.Count - 1));
+            dialogueText.text = _isTranslatedShowing && _translatedPages.Count > 0 ? _translatedPages[idx] : _pages[_currentPageIndex];
         }
 
         StartCoroutine(ButtonPressAnim(translateButton.transform));
@@ -488,9 +566,10 @@ public class DialogueUIController : MonoBehaviour
         }
 
         string textToShow = _pages.Count > 0 ? _pages[_currentPageIndex] : "";
-        if (_isTranslatedShowing && !string.IsNullOrEmpty(_translatedText)) 
+        if (_isTranslatedShowing && _translatedPages.Count > 0) 
         {
-            textToShow = _translatedText;
+            int idx = Mathf.Min(_currentPageIndex, Mathf.Max(0, _translatedPages.Count - 1));
+            textToShow = _translatedPages[idx];
         }
 
         if (typingSpeed > 0 && !skipAnimation)
@@ -506,18 +585,214 @@ public class DialogueUIController : MonoBehaviour
         bool isLastPage = _currentPageIndex >= _pages.Count - 1;
         if (_activeChoiceButtons.Count > 0 && choicesGroup != null && isLastPage)
         {
+<<<<<<< HEAD
             choicesGroup.SetActive(true);
             
             // Re-enforce scale BEFORE layout rebuild to prevent "squish"
             choicesGroup.transform.localScale = new Vector3(1, 0, 1);
             
-            RectTransform choicesRT = choicesGroup.GetComponent<RectTransform>();
-            if (choicesRT != null) LayoutRebuilder.ForceRebuildLayoutImmediate(choicesRT);
+            RectTransform containerRT = choicesContainer.GetComponent<RectTransform>();
+            
+            if (containerRT != null)
+            {
+                SetupChoicesLayout(containerRT);
+            }
 
+            // Calculate rows mathematically based on string length and number of choices
+            int maxLen = 0;
+            foreach (var choice in _currentChoices)
+            {
+                if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
+                    maxLen = choice.choiceText.Length;
+            }
+            bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
+            
+            int numChoices = _activeChoiceButtons.Count;
+            int rows = useGrid ? Mathf.CeilToInt((float)numChoices / 2f) : numChoices;
+            
+            // The user requested we just calculate the height of the rows directly!
+            float dynamicDistance = (rows * 75f) + (Mathf.Max(0, rows - 1) * 9f) + 15f;
+
+<<<<<<< HEAD
             if (curtainDelay > 0 && !skipAnimation) yield return new WaitForSeconds(curtainDelay);
             yield return StartCoroutine(CurtainDrop());
+=======
+            choicesGroup.SetActive(true);
+=======
+            // Ensure choices are normal scale
+            choicesGroup.transform.localScale = Vector3.one;
+            
+            RectTransform containerRT = choicesContainer.GetComponent<RectTransform>();
+            
+            if (containerRT != null)
+            {
+                SetupChoicesLayout(containerRT);
+            }
+
+            // Calculate rows mathematically based on string length and number of choices
+            int maxLen = 0;
+            foreach (var choice in _currentChoices)
+            {
+                if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
+                    maxLen = choice.choiceText.Length;
+            }
+            bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
+            
+            int numChoices = _activeChoiceButtons.Count;
+            int rows = useGrid ? Mathf.CeilToInt((float)numChoices / 2f) : numChoices;
+            
+            // The user requested we just calculate the height of the rows directly!
+            float dynamicDistance = (rows * 75f) + (Mathf.Max(0, rows - 1) * 9f) + 15f;
+
+            choicesGroup.SetActive(true);
+>>>>>>> upstream/irah-version
+            Canvas.ForceUpdateCanvases();
+
+            if (!skipAnimation)
+            {
+                yield return StartCoroutine(MoveDialoguePanelUp(dynamicDistance));
+            }
+            else
+            {
+                dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY + dynamicDistance);
+<<<<<<< HEAD
+            }
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
         }
     }
+
+    private void SetupChoicesLayout(RectTransform choicesRT)
+    {
+        if (choicesContainer == null) return;
+        
+        UnityEngine.UI.VerticalLayoutGroup vLayout = choicesContainer.GetComponent<UnityEngine.UI.VerticalLayoutGroup>();
+        UnityEngine.UI.GridLayoutGroup grid = choicesContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
+        
+        // Save layout settings so we don't lose them when switching
+        RectOffset padding = null;
+        float spacing = 9f; // default spacing
+        
+        if (vLayout != null) { padding = vLayout.padding; spacing = vLayout.spacing; }
+        else if (grid != null) { padding = grid.padding; spacing = grid.spacing.y; }
+
+        int maxLen = 0;
+        foreach (var choice in _currentChoices)
+        {
+            if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
+                maxLen = choice.choiceText.Length;
+        }
+
+        // If all texts are short (<=15 chars) and we have multiple choices, use 2-column Grid
+        bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
+
+        if (useGrid)
+        {
+            if (vLayout != null) UnityEngine.Object.DestroyImmediate(vLayout);
+            if (grid == null) grid = choicesContainer.gameObject.AddComponent<UnityEngine.UI.GridLayoutGroup>();
+            
+            grid.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
+            grid.constraintCount = 2;
+            grid.startAxis = UnityEngine.UI.GridLayoutGroup.Axis.Horizontal;
+            grid.startCorner = UnityEngine.UI.GridLayoutGroup.Corner.UpperLeft;
+            grid.childAlignment = TextAnchor.LowerCenter; // Place from bottom
+            
+            if (padding != null)
+            {
+                grid.padding = padding;
+                grid.spacing = new Vector2(spacing, spacing);
+            }
+            
+            float totalWidth = choicesRT.rect.width - grid.padding.left - grid.padding.right;
+            float cellWidth = (totalWidth - grid.spacing.x) / 2f;
+            grid.cellSize = new Vector2(cellWidth, 75f); // Use the default button height
+        }
+        else
+        {
+            if (grid != null) UnityEngine.Object.DestroyImmediate(grid);
+            if (vLayout == null) vLayout = choicesContainer.gameObject.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
+            
+            vLayout.childAlignment = TextAnchor.LowerCenter; // Group everything at the bottom
+            vLayout.childControlHeight = false;
+            vLayout.childControlWidth = true;
+            vLayout.childForceExpandHeight = false;
+
+            if (padding != null)
+            {
+                vLayout.padding = padding;
+                vLayout.spacing = spacing;
+=======
+>>>>>>> upstream/irah-version
+            }
+        }
+    }
+
+<<<<<<< HEAD
+=======
+    private void SetupChoicesLayout(RectTransform choicesRT)
+    {
+        if (choicesContainer == null) return;
+        
+        UnityEngine.UI.VerticalLayoutGroup vLayout = choicesContainer.GetComponent<UnityEngine.UI.VerticalLayoutGroup>();
+        UnityEngine.UI.GridLayoutGroup grid = choicesContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
+        
+        // Save layout settings so we don't lose them when switching
+        RectOffset padding = null;
+        float spacing = 9f; // default spacing
+        
+        if (vLayout != null) { padding = vLayout.padding; spacing = vLayout.spacing; }
+        else if (grid != null) { padding = grid.padding; spacing = grid.spacing.y; }
+
+        int maxLen = 0;
+        foreach (var choice in _currentChoices)
+        {
+            if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
+                maxLen = choice.choiceText.Length;
+        }
+
+        // If all texts are short (<=15 chars) and we have multiple choices, use 2-column Grid
+        bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
+
+        if (useGrid)
+        {
+            if (vLayout != null) UnityEngine.Object.DestroyImmediate(vLayout);
+            if (grid == null) grid = choicesContainer.gameObject.AddComponent<UnityEngine.UI.GridLayoutGroup>();
+            
+            grid.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
+            grid.constraintCount = 2;
+            grid.startAxis = UnityEngine.UI.GridLayoutGroup.Axis.Horizontal;
+            grid.startCorner = UnityEngine.UI.GridLayoutGroup.Corner.UpperLeft;
+            grid.childAlignment = TextAnchor.LowerCenter; // Place from bottom
+            
+            if (padding != null)
+            {
+                grid.padding = padding;
+                grid.spacing = new Vector2(spacing, spacing);
+            }
+            
+            float totalWidth = choicesRT.rect.width - grid.padding.left - grid.padding.right;
+            float cellWidth = (totalWidth - grid.spacing.x) / 2f;
+            grid.cellSize = new Vector2(cellWidth, 75f); // Use the default button height
+        }
+        else
+        {
+            if (grid != null) UnityEngine.Object.DestroyImmediate(grid);
+            if (vLayout == null) vLayout = choicesContainer.gameObject.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
+            
+            vLayout.childAlignment = TextAnchor.LowerCenter; // Group everything at the bottom
+            vLayout.childControlHeight = false;
+            vLayout.childControlWidth = true;
+            vLayout.childForceExpandHeight = false;
+
+            if (padding != null)
+            {
+                vLayout.padding = padding;
+                vLayout.spacing = spacing;
+            }
+        }
+    }
+
+>>>>>>> upstream/irah-version
+    // Removed CalculateTargetDialogueY as we are using direct mathematical row height
 
     private IEnumerator PopInPanel()
     {
@@ -566,8 +841,18 @@ public class DialogueUIController : MonoBehaviour
 
         _isTyping   = false;
         _skipTyping = false;
+        
+        // Now that typing is finished, hide the next button if there are choices or STT required.
+        if (nextButton != null)
+        {
+            bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
+            bool hasChoices = _activeChoiceButtons != null && _activeChoiceButtons.Count > 0;
+            nextButton.gameObject.SetActive(!hasChoices && !requiresSTT);
+        }
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
     private IEnumerator CurtainDrop()
     {
         if (choicesGroup == null) yield break; // Safety Check
@@ -575,6 +860,27 @@ public class DialogueUIController : MonoBehaviour
         Vector3 start = new Vector3(1f, 0f, 1f);
         Vector3 end   = Vector3.one;
         choicesGroup.transform.localScale = start;
+=======
+=======
+>>>>>>> upstream/irah-version
+    private IEnumerator MoveDialoguePanelUp(float distance)
+    {
+        RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
+        Vector2 startPos = rt.anchoredPosition;
+        Vector2 endPos = new Vector2(startPos.x, _dialogueOriginalY + distance);
+        
+        float elapsed = 0f;
+        while (elapsed < dialogueMoveDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / dialogueMoveDuration);
+            float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out cubic
+            rt.anchoredPosition = Vector2.LerpUnclamped(startPos, endPos, eased);
+            yield return null;
+        }
+        rt.anchoredPosition = endPos;
+    }
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
 
         float elapsed = 0f;
         while (elapsed < curtainDropDuration)
@@ -736,7 +1042,15 @@ public class DialogueUIController : MonoBehaviour
     private void ClearChoices()
     {
         foreach (var btn in _activeChoiceButtons)
-            if (btn != null) Destroy(btn);
+        {
+            if (btn != null) 
+            {
+                // Unparent immediately so it doesn't affect the layout group calculation in the same frame
+                btn.transform.SetParent(null);
+                btn.SetActive(false);
+                Destroy(btn);
+            }
+        }
         _activeChoiceButtons.Clear();
     }
 
@@ -773,5 +1087,61 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 #endif
+    }
+
+    private List<string> SplitIntoSentences(string text)
+    {
+        List<string> result = new List<string>();
+        if (string.IsNullOrWhiteSpace(text)) return result;
+
+        string[] paragraphs = text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        
+        foreach (var paragraph in paragraphs)
+        {
+            string p = paragraph.Trim();
+            if (string.IsNullOrEmpty(p)) continue;
+
+            int startIndex = 0;
+            for (int i = 0; i < p.Length; i++)
+            {
+                char c = p[i];
+                if (c == '.' || c == '!' || c == '?')
+                {
+                    // Check for ellipsis
+                    if (c == '.' && i + 2 < p.Length && p[i+1] == '.' && p[i+2] == '.')
+                    {
+                        i += 2;
+                        continue;
+                    }
+                    
+                    int endIndex = i;
+                    while (endIndex + 1 < p.Length && (p[endIndex + 1] == '"' || p[endIndex + 1] == '\'' || p[endIndex + 1] == ')'))
+                    {
+                        endIndex++;
+                    }
+
+                    if (endIndex + 1 >= p.Length || char.IsWhiteSpace(p[endIndex + 1]))
+                    {
+                        string sentence = p.Substring(startIndex, (endIndex + 1) - startIndex).Trim();
+                        if (!string.IsNullOrEmpty(sentence))
+                        {
+                            result.Add(sentence);
+                        }
+                        startIndex = endIndex + 1;
+                        i = endIndex;
+                    }
+                }
+            }
+
+            if (startIndex < p.Length)
+            {
+                string remaining = p.Substring(startIndex).Trim();
+                if (!string.IsNullOrEmpty(remaining))
+                {
+                    result.Add(remaining);
+                }
+            }
+        }
+        return result;
     }
 }

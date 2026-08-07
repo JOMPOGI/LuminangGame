@@ -14,11 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Ronnie
   speakerPortrait: {fileID: 0}
-  dialogueText: 'Awesome to meet you! You just introduced yourself in Ilokano!
+  dialogueText: 'Nasayaat! Naragsakak a nakisabat kenka! Nagpakilalaka iti Ilokano!
+
+
+    Mapanka
+    ken Sally iti asideg ti brick arch tapno malpasmo ti Level I!'
+  translatedText: 'Awesome to meet you! You just introduced yourself in Ilokano!
 
     Go
     meet Sally near the brick arch to complete Level I!'
-  translatedText: 
   animationTrigger: 
   triggerEventName: 
   endEventName: SetObjective_Find Sally

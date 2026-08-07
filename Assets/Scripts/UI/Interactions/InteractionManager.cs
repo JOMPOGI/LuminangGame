@@ -170,6 +170,54 @@ public class InteractionManager : MonoBehaviour
             OnButtonClicked();
         }
 #endif
+
+#if ENABLE_INPUT_SYSTEM
+        if (UnityEngine.InputSystem.Mouse.current != null && UnityEngine.InputSystem.Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (UnityEngine.EventSystems.EventSystem.current == null || !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                HandleMouseClick();
+            }
+        }
+#else
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (UnityEngine.EventSystems.EventSystem.current == null || !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                HandleMouseClick();
+            }
+        }
+#endif
+    }
+
+    private void HandleMouseClick()
+    {
+        if (Camera.main == null || _playerTransform == null) return;
+        
+#if ENABLE_INPUT_SYSTEM
+        Vector2 mousePos = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
+#else
+        Vector2 mousePos = Input.mousePosition;
+#endif
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            InteractableBase clickedInteractable = hit.collider.GetComponent<InteractableBase>();
+            if (clickedInteractable == null) clickedInteractable = hit.collider.GetComponentInParent<InteractableBase>();
+
+            if (clickedInteractable != null && clickedInteractable.isActiveAndEnabled && clickedInteractable.interactionEnabled)
+            {
+                float dist = Vector3.Distance(_playerTransform.position, clickedInteractable.transform.position);
+                if (dist <= clickedInteractable.interactionDistance * 1.5f)
+                {
+                    Debug.Log($"[InteractionManager] Forced interaction via mouse click on {clickedInteractable.gameObject.name}!");
+                    if (talkButton != null) talkButton.gameObject.SetActive(false);
+                    clickedInteractable.Interact();
+                    _currentNearest = null;
+                }
+            }
+        }
     }
 
     private void OnButtonClicked()

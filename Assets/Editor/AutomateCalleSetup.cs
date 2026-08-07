@@ -75,6 +75,9 @@ public class AutomateCalleSetup
         new NPCEntry("Neneng",    "Find Neneng",                          "Neneng",    "Quest9_LinkingVerbs"),
 
         new NPCEntry("LolaBebang","Find Lola Bebang",                     "LolaBebang","Quest11_Interrogatives"),
+
+        // ✨ FINAL CHALLENGE / OUTRO ✨
+        new NPCEntry("Kalaw",     "LEVEL III COMPLETE! Head to Plaza: Talk to Kalaw", "Kalaw", "Quest12_Finale"),
     };
 
     // =========================================================================
@@ -107,6 +110,7 @@ public class AutomateCalleSetup
                 {
                     string path = AssetDatabase.GUIDToAssetPath(guid);
                     if (!path.Contains(entry.QuestFolder)) continue;   // wrong quest
+                    if (!path.EndsWith(entry.AssetName + "_Intro.asset", System.StringComparison.OrdinalIgnoreCase)) continue; // strict exact match
 
                     var node = AssetDatabase.LoadAssetAtPath<DialogueNode>(path);
                     if (node == null) continue;
