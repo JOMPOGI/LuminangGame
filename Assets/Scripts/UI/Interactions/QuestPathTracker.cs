@@ -345,7 +345,9 @@ public class QuestPathTracker : MonoBehaviour
     private Vector3 GetPlayerFeetPosition()
     {
         Vector3 startPos = playerTransform.position;
-        if (Physics.Raycast(startPos + Vector3.up * 1f, Vector3.down, out RaycastHit feetHit, 5f))
+        int layerMask = ~(1 << playerTransform.gameObject.layer); // Ignore the player's own layer
+        
+        if (Physics.Raycast(startPos + Vector3.up * 1f, Vector3.down, out RaycastHit feetHit, 5f, layerMask))
         {
             return feetHit.point + Vector3.up * groundYOffset;
         }

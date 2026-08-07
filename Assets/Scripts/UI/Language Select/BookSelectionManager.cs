@@ -129,8 +129,10 @@ public class BookSelectionManager : MonoBehaviour
 
     private void InitializeUI()
     {
-        // Set idle sprite
-        if (bookImage != null && idleBookSprite != null)
+        // Set to CLOSED sprite initially so it doesn't flash open before the animation starts!
+        if (bookImage != null && openSprites != null && openSprites.Length > 0)
+            bookImage.sprite = openSprites[0];
+        else if (bookImage != null && idleBookSprite != null)
             bookImage.sprite = idleBookSprite;
 
         // Auto-cache or add CanvasGroup on each tab content group
@@ -581,5 +583,20 @@ public class BookSelectionManager : MonoBehaviour
         var loader = FindFirstObjectByType<SceneLoader>();
         if (loader != null) loader.LoadScene(sceneToLoad);
         else UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+    }
+
+    // --- TEMPORARY FISHING GAME TEST BUTTON ---
+    public void LoadFishingGame()
+    {
+        Debug.Log("[BookSelectionManager] Loading FishingGameScene...");
+        
+        // Save the current scene so the minigame knows where to return to
+        PlayerPrefs.SetString("PreviousScene", UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        PlayerPrefs.Save();
+        
+        // Load the minigame
+        var loader = FindFirstObjectByType<SceneLoader>();
+        if (loader != null) loader.LoadScene("FishingGameScene");
+        else UnityEngine.SceneManagement.SceneManager.LoadScene("FishingGameScene");
     }
 }

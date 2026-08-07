@@ -58,7 +58,10 @@ public class InteractableNPC : InteractableBase
     public DialogueNode postCompletionDialogue;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
     public override void Interact()
     {
         Debug.Log($"[InteractableNPC] {gameObject.name} Interact() called. interactionEnabled={interactionEnabled}");
@@ -579,6 +582,7 @@ public class InteractableNPC : InteractableBase
     {
         if (string.IsNullOrEmpty(eventName)) return;
         
+<<<<<<< HEAD
         string[] events = eventName.Split(',');
         foreach(string evt in events)
         {
@@ -588,14 +592,71 @@ public class InteractableNPC : InteractableBase
             // console spam — this method is called on ALL NPCs via the broadcast pattern.
             
             // Automatic system handler for TeachingOverlayPanel events
+=======
+        string cleanEventName = eventName.Trim();
+        
+        // Forward the event to custom scripts (e.g. IrahCoolerLogic)
+        gameObject.SendMessage("OnDialogueEvent", cleanEventName, SendMessageOptions.DontRequireReceiver);
 
-            if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        // NOTE: Logging is intentionally placed inside the match block below to avoid
+        // console spam — this method is called on ALL NPCs via the broadcast pattern.
+
+        // Automatic system handler for TeachingOverlayPanel events
+        if (cleanEventName.StartsWith("ShowTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
             {
-                if (TeachingOverlayPanel.Instance != null)
-                {
-                    TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
-                }
+                TeachingOverlayPanel.Instance.ShowFromEvent(cleanEventName);
             }
+        }
+        else if (cleanEventName.Equals("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (TeachingOverlayPanel.Instance != null)
+            {
+                TeachingOverlayPanel.Instance.Hide();
+            }
+        }
+        else if (cleanEventName.StartsWith("SetObjective:", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string newObjText = cleanEventName.Substring("SetObjective:".Length).Trim();
+            if (ObjectiveManager.Instance != null && !string.IsNullOrEmpty(newObjText))
+            {
+                ObjectiveManager.Instance.SetObjective(newObjText);
+            }
+        }
+        else if (cleanEventName.StartsWith("StartInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string camName = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.StartInSceneLesson(camName);
+            }
+        }
+        else if (cleanEventName.StartsWith("ShowInSceneMic", System.StringComparison.OrdinalIgnoreCase))
+        {
+            string targetPhrase = cleanEventName.Contains(":") ? cleanEventName.Split(':')[1].Trim() : "";
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.ShowInSceneMic(targetPhrase);
+            }
+        }
+        else if (cleanEventName.Equals("EndInSceneLesson", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (InSceneLessonController.Instance != null)
+            {
+                InSceneLessonController.Instance.EndInSceneLesson();
+            }
+        }
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+
+        foreach (var mapping in dialogueEvents)
+        {
+            if (mapping.eventName != null && mapping.eventName.Trim() == cleanEventName)
+            {
+                Debug.Log($"[InteractableNPC] '{gameObject.name}' matched event '{cleanEventName}' — firing UnityEvent.");
+                mapping.onEventTriggered?.Invoke();
+            }
+<<<<<<< HEAD
             else if (cleanEventName.StartsWith("HideTeachingPanel", System.StringComparison.OrdinalIgnoreCase))
             {
                 if (TeachingOverlayPanel.Instance != null)
@@ -658,6 +719,9 @@ public class InteractableNPC : InteractableBase
                 }
             }
         } // End foreach event loop
+=======
+        }
+>>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
     }
 
     /// <summary>
@@ -766,4 +830,3 @@ public class DialogueEventMapping
     public string eventName;
     public UnityEvent onEventTriggered;
 }
-
