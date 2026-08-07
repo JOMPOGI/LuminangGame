@@ -153,11 +153,14 @@ public class TeachingOverlayPanel : MonoBehaviour
         EnsureSpeechEngineDependencies();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // The user requested to disable the background image for now.
         if (backgroundImage != null)
         {
             backgroundImage.gameObject.SetActive(false);
 =======
+=======
+>>>>>>> upstream/irah-version
         // Match STT_TestScene behavior: always set region to Cebuano for Magellan scene lessons
         if (PhraseEvaluator.Instance != null)
             PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);

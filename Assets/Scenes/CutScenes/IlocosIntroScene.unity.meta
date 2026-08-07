@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/CutScenes/IlocosIntroScene.unity.meta
 guid: d93c6fa8e97f15549b29650e601bed72
+========
+guid: a86fa5fd3f1eb024a9abf4841965c65b
+>>>>>>>> upstream/irah-version:Assets/Scenes/CutScenes/CebuIntroScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

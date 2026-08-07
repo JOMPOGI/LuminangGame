@@ -820,6 +820,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 52e2f1205db19684db2b9b5dc732adb3, type: 2}
@@ -848,6 +849,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 4a4ec42db90283e40904e195cda05229, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 9125333}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 570c2625e7c2ed4439b65cc848dd2392, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 4a4ec42db90283e40904e195cda05229, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 9125334}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -872,6 +894,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
@@ -889,6 +912,8 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: 
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -901,7 +926,10 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -8581,6 +8609,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 0bd95d4fc4ce88642be8789ec5dcea87, type: 2}
@@ -8609,6 +8638,27 @@ MonoBehaviour:
   - requiredObjective: Collect all weaving materials
     dialogueNode: {fileID: 11400000, guid: 09585c92bcb94ab4cb8c6df872d97e00, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 61506374}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 29f14c2215a4d1f45bae5d6d4d109c52, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: Collect all weaving materials
+    dialogueNode: {fileID: 11400000, guid: 09585c92bcb94ab4cb8c6df872d97e00, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 61506373}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -19364,6 +19414,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 8585651260475494784, guid: 183658284282d034284a07fc751f2b83, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &122885908
 GameObject:
   m_ObjectHideFlags: 0
@@ -19419,6 +19470,8 @@ GameObject:
   m_IsActive: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &124258949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23248,6 +23301,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &144025405
 GameObject:
   m_ObjectHideFlags: 0
@@ -23360,6 +23414,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &145125404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27599,6 +27655,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 3778637180689281980, guid: 6733b72d683faa74d835180f1dc220e2, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &173910408
 GameObject:
   m_ObjectHideFlags: 0
@@ -27651,6 +27708,8 @@ GameObject:
   m_IsActive: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &175830047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30353,6 +30412,7 @@ Transform:
   m_PrefabInstance: {fileID: 184789385}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &185586479
 GameObject:
   m_ObjectHideFlags: 0
@@ -30492,6 +30552,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &185637962
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34008,6 +34070,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 8932461643520271774, guid: e5e57aa8f5396c744a2f4e2866bc5bf6, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &204345475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34419,6 +34482,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &204711743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37925,6 +37990,7 @@ Transform:
   m_PrefabInstance: {fileID: 766566923}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &232394944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38036,6 +38102,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &234206038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51126,16 +51194,22 @@ Transform:
   m_PrefabInstance: {fileID: 322199849}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &322494233
 GameObject:
 =======
 --- !u!65 &323717202
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &323717202
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -51200,6 +51274,8 @@ Transform:
   m_Father: {fileID: 2025067471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 61559992}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -51215,7 +51291,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236923, z: 0.85131556}
   m_Center: {x: -0.11461596, y: -0.08200488, z: -0.3706801}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &325099946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59258,6 +59337,7 @@ Transform:
   m_PrefabInstance: {fileID: 368291847}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &369708659
 GameObject:
   m_ObjectHideFlags: 0
@@ -59355,6 +59435,8 @@ CanvasGroup:
   m_IgnoreParentGroups: 0
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &370970961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59575,6 +59657,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4658605563163466212, guid: f0953cf1a4dda5f4ba2b40e15a9b8c51, type: 3}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &372979507
 GameObject:
@@ -59805,6 +59888,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &373971388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64280,16 +64365,22 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &399763921
 GameObject:
 =======
 --- !u!65 &399902356
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &399902356
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -64335,6 +64426,8 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 61559995}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -64350,7 +64443,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236927, z: 0.8513157}
   m_Center: {x: -0.12461596, y: 0.005625844, z: -0.36068016}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &400335626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66340,6 +66436,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: b90c52e854535264e9b09cd85d0000c6, type: 2}
@@ -66368,6 +66465,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 02274ab562909d54788aabc709b40896, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 410554193}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 1a4d784b1de96514991d9913767dd50c, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 02274ab562909d54788aabc709b40896, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 410554194}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -66392,12 +66510,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -66415,7 +66536,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!95 &410554194 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e102eb629daf9a5409e126cdc8324420, type: 3}
@@ -71727,6 +71851,7 @@ MonoBehaviour:
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!195 &431707856
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -71875,6 +72000,8 @@ MeshFilter:
   m_Mesh: {fileID: -1218630699638779154, guid: b572ec6caf52d7e43adf1179389b4446, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &432873435
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72328,6 +72455,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 7e807dd3b44d1854ab0b9f464ae5c85d, type: 2}
@@ -72365,11 +72493,45 @@ MonoBehaviour:
   defaultDialogue: {fileID: 11400000, guid: bcf1bbaa5650521438f1d67e069d2078, type: 2}
   isOrganizer: 0
   questDialogues:
+=======
+      m_Calls:
+      - m_Target: {fileID: 434578661}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Turn
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 434578663}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Turn
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: bcf1bbaa5650521438f1d67e069d2078, type: 2}
+  isOrganizer: 0
+  questDialogues:
+>>>>>>> upstream/irah-version
   - requiredObjective: Talk to Apo Lakay
     dialogueNode: {fileID: 11400000, guid: 9fd8217cf4ccbb04296c795c880f80d0, type: 2}
   - requiredObjective: Return to Apo Lakay
     dialogueNode: {fileID: 11400000, guid: 69f687eef69970040b28d05ad772d68d, type: 2}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 434578661}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -72393,6 +72555,7 @@ MonoBehaviour:
           m_StringArgument: Wrong
           m_BoolArgument: 0
         m_CallState: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
@@ -72634,6 +72797,8 @@ MonoBehaviour:
   moveStateName: Run
   defaultIdleStateName: Breathing_Idle
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: StartMinigame
     onEventTriggered:
@@ -72684,7 +72849,10 @@ MonoBehaviour:
             m_StringArgument: Continue towards the market
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!114 &435833960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79571,6 +79739,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: a4d2534bc803c6d48be4e517d11532f7, type: 2}
@@ -79599,6 +79768,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 04dedcb0cd84171418e7d0854a3e55db, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 486362060}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 1b7828b623cf21246bdef5b8a9b585fd, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 04dedcb0cd84171418e7d0854a3e55db, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 486362059}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -80519,6 +80709,7 @@ Transform:
   m_PrefabInstance: {fileID: 489205718}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &489481516
 GameObject:
   m_ObjectHideFlags: 0
@@ -80585,6 +80776,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &490926735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90983,6 +91176,7 @@ Transform:
   m_PrefabInstance: {fileID: 554604622}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &555205368
 GameObject:
   m_ObjectHideFlags: 0
@@ -91060,6 +91254,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &555698356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92005,6 +92201,7 @@ BoxCollider:
   m_Size: {x: 0.13147244, y: 1, z: 0.1508323}
   m_Center: {x: 0.069241025, y: 0, z: 0.03907001}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &558124760
 GameObject:
   m_ObjectHideFlags: 0
@@ -92039,6 +92236,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &559032828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98380,6 +98579,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 357201e42ade6254c947f7a2c0c71ec9, type: 2}
   isOrganizer: 0
@@ -98394,6 +98594,14 @@ MonoBehaviour:
   - requiredObjective: Collect all weaving materials
     dialogueNode: {fileID: 11400000, guid: 8fe175119d8ddf14c839174e321b9f2b, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 611116a27443a214dae21e53ece5b5c5, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: Collect all weaving materials
+    dialogueNode: {fileID: 11400000, guid: 8fe175119d8ddf14c839174e321b9f2b, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 600636685}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -98442,6 +98650,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
@@ -98466,6 +98675,8 @@ MonoBehaviour:
   maxWaitTime: 12
   randomAnimDuration: 3
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: AfterDialogueAnimation
     onEventTriggered:
@@ -98483,7 +98694,10 @@ MonoBehaviour:
             m_StringArgument: Agree
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &601179442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98982,6 +99196,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: c60250359ed55e943ab5f3a81addf538, type: 2}
@@ -99010,6 +99225,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 327508cf834650b40bf8c440e6f6c905, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 604076425}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: a4b9e65b71ff6f444bd594d6619076fa, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 327508cf834650b40bf8c440e6f6c905, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -99021,6 +99257,7 @@ MonoBehaviour:
   OnWrongAnswer:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
 <<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
@@ -99046,6 +99283,8 @@ MonoBehaviour:
   maxWaitTime: 12
   randomAnimDuration: 3
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -99063,7 +99302,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &604815071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100585,6 +100827,7 @@ Transform:
   m_PrefabInstance: {fileID: 610670905}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &610761460
 GameObject:
   m_ObjectHideFlags: 0
@@ -100706,6 +100949,8 @@ Canvas:
   m_TargetDisplay: 0
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &611115073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103387,9 +103632,12 @@ BoxCollider:
   m_Size: {x: 0.009745116, y: 0.0037716527, z: 0.009837232}
   m_Center: {x: 0.00011765786, y: -0.0000010615386, z: 0.00007160404}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &634069180
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &634106773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7833037160580250271, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
@@ -103397,11 +103645,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &634106775
 MeshCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -103430,6 +103682,8 @@ Transform:
   m_Father: {fileID: 1743744496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 634106773}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -103446,7 +103700,10 @@ Transform:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 35341817363126991, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &634517084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109282,6 +109539,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &661166687
 GameObject:
   m_ObjectHideFlags: 0
@@ -109348,6 +109606,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &663544616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110305,12 +110565,18 @@ Transform:
   m_PrefabInstance: {fileID: 669912756}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &669950138
 GameObject:
+=======
+--- !u!65 &670340567
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   serializedVersion: 6
   m_Component:
   - component: {fileID: 669950139}
@@ -110347,6 +110613,8 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 30425825}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -146321,6 +146589,7 @@ Transform:
   m_PrefabInstance: {fileID: 854740444}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &855428232
 GameObject:
   m_ObjectHideFlags: 0
@@ -146398,6 +146667,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &856099099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152971,6 +153242,7 @@ Transform:
   m_PrefabInstance: {fileID: 899518143}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &900385696
 GameObject:
   m_ObjectHideFlags: 0
@@ -153036,6 +153308,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &901435079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 83facea8107a47e4db8d3c90e9d34084, type: 3}
@@ -153247,9 +153521,12 @@ Transform:
   m_PrefabInstance: {fileID: 902985186}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &903955687
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &902985188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 759c49e78c2286a47a0ae12468051848, type: 3}
@@ -153257,11 +153534,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &902985189
 BoxCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -153354,6 +153635,8 @@ Transform:
   m_Father: {fileID: 849014531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 902985188}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -153369,7 +153652,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 3, y: 7.053907, z: 3}
   m_Center: {x: 0, y: 3.5225255, z: 0}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &905932346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156159,9 +156445,12 @@ Transform:
   m_PrefabInstance: {fileID: 926680473}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &926983674
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &926680475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 759c49e78c2286a47a0ae12468051848, type: 3}
@@ -156169,11 +156458,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &926680476
 BoxCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -156201,6 +156494,8 @@ Transform:
   m_Father: {fileID: 2066291022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 926680475}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -156216,7 +156511,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 3, y: 7.053907, z: 3}
   m_Center: {x: 0, y: 3.5225255, z: 0}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &927785376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156883,6 +157181,7 @@ Transform:
   m_Father: {fileID: 508127551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &933481011
 GameObject:
   m_ObjectHideFlags: 0
@@ -156948,6 +157247,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &935117203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -157693,9 +157994,12 @@ Transform:
   m_PrefabInstance: {fileID: 938042831}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &939161245
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &938042833 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 759c49e78c2286a47a0ae12468051848, type: 3}
@@ -157703,11 +158007,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &938042834
 BoxCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -157735,6 +158043,8 @@ Transform:
   m_Father: {fileID: 450512634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 938042833}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -157750,7 +158060,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 3, y: 7.053907, z: 3}
   m_Center: {x: 0, y: 3.5225255, z: 0}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &940273818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158759,6 +159072,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 471f37b1c849cfe4db3f833cf6d13d0b, type: 2}
@@ -158787,6 +159101,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 69c6c905bf088c84bb81558d922c8f20, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 949543551}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 50b158e77da2a344c97d8ac6a73052e7, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 69c6c905bf088c84bb81558d922c8f20, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 0}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -160422,6 +160757,7 @@ Transform:
   m_PrefabInstance: {fileID: 962469239}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &962550103
 GameObject:
   m_ObjectHideFlags: 0
@@ -160573,6 +160909,8 @@ MonoBehaviour:
   datasetJson: {fileID: 4900000, guid: c8c11071e6ba74b4ca653098864c98a0, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &962809032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168433,6 +168771,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Mesh: {fileID: 8698019946123872674, guid: 2d9a359097c85bd4ba79a631db45bafb, type: 3}
 --- !u!1 &1011704717
 GameObject:
@@ -168468,6 +168807,9 @@ Transform:
 =======
   m_Mesh: {fileID: -8310698878540901905, guid: 2c556d2ff443ad044801039cbb497c14, type: 3}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+  m_Mesh: {fileID: -8310698878540901905, guid: 2c556d2ff443ad044801039cbb497c14, type: 3}
+>>>>>>> upstream/irah-version
 --- !u!1001 &1011848349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168533,6 +168875,7 @@ PrefabInstance:
       value: vendorEllai_Rigged
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 5866666021909216657, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
       propertyPath: m_Controller
       value: 
@@ -168557,6 +168900,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+>>>>>>> upstream/irah-version
   m_SourcePrefab: {fileID: 100100000, guid: 12c3df27a88c4b741aaab5fa3344b8de, type: 3}
 --- !u!4 &1011848350 stripped
 Transform:
@@ -168564,9 +168913,12 @@ Transform:
   m_PrefabInstance: {fileID: 1011848349}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1012036135
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &1012060751 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: b9426b9f921cf764bb5da98254fb07c1, type: 3}
@@ -168574,11 +168926,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &1012060753
 MeshCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -168607,6 +168963,8 @@ Transform:
   m_Father: {fileID: 1768173593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 1012060751}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -168623,7 +168981,10 @@ Transform:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: b9426b9f921cf764bb5da98254fb07c1, type: 3}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!4 &1012396690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4120817809323121745, guid: 8b8f16dfa274b08458d8a22752548085, type: 3}
@@ -169240,16 +169601,22 @@ Transform:
   m_PrefabInstance: {fileID: 1015715626}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1016134579
 GameObject:
 =======
 --- !u!65 &1016292831
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1016292831
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -169278,6 +169645,8 @@ Transform:
   m_Father: {fileID: 2042088951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 30425823}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -169293,7 +169662,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.6500006, y: 0.14236927, z: 0.85131556}
   m_Center: {x: 0.75841475, y: -0.033606768, z: -0.3406803}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1016839711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170031,6 +170403,7 @@ PrefabInstance:
       addedObject: {fileID: 1018633971}
   m_SourcePrefab: {fileID: 100100000, guid: 1d7264b0c7823ce46a4e3301d718460c, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1018633970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7968080398330202894, guid: 1d7264b0c7823ce46a4e3301d718460c, type: 3}
@@ -170262,6 +170635,8 @@ MeshFilter:
   m_Mesh: {fileID: -1218630699638779154, guid: b572ec6caf52d7e43adf1179389b4446, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1020174154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176962,16 +177337,22 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -453778769146131905, guid: 1f9054e785a2d2d4799e4d1f897b0e89, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1058033777
 GameObject:
 =======
 --- !u!65 &1056606133
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1056606133
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -177000,6 +177381,8 @@ Transform:
   m_Father: {fileID: 1337853976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 1009175221}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -177015,7 +177398,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236929, z: 0.8513157}
   m_Center: {x: -0.10461586, y: -0.042004954, z: -0.36068016}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1058866747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178731,6 +179117,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: ef86e58da9b58b041901bf5b782a0dcf, type: 2}
@@ -178761,6 +179148,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: cc06d2b0e306e6e4e99aaa0c08c734ca, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 1067440870}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: e28db96506d121843a483179ca4b2d67, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: cc06d2b0e306e6e4e99aaa0c08c734ca, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 1067440871}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -178785,12 +179193,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -178808,7 +179219,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!95 &1067440871 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: d8a568f620480d044a765fb9fdad3571, type: 3}
@@ -181450,6 +181864,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 329bec24a1fffd646b1a6aa2a20c9ca6, type: 2}
@@ -181478,6 +181893,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 1079974221}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 3d2590cb9b17e0947819fbe55378c8de, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 2b316ffae490bf040b1a6be4f243d2f3, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 1079974222}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -181502,12 +181938,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -181525,7 +181964,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!95 &1079974222 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 42ff1eea154e036478cc792c7d14519b, type: 3}
@@ -185617,6 +186059,7 @@ Transform:
   m_PrefabInstance: {fileID: 1110760344}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1111109593
 GameObject:
   m_ObjectHideFlags: 0
@@ -185748,6 +186191,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1111458006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187431,7 +187876,10 @@ Transform:
   m_Children:
   - {fileID: 4072154296723578129}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/irah-version
   - {fileID: 6858111991801140045}
   - {fileID: 978497597}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
@@ -189156,6 +189604,7 @@ PrefabInstance:
       addedObject: {fileID: 1079003247}
   m_SourcePrefab: {fileID: 100100000, guid: 9a7583325170fa541be9a8dc1de1fcbc, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1138541318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189413,6 +189862,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1140636724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189484,6 +189935,7 @@ Transform:
   m_PrefabInstance: {fileID: 1140636724}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1140717161
 GameObject:
   m_ObjectHideFlags: 0
@@ -189537,6 +189989,8 @@ GameObject:
   m_IsActive: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1141896228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196016,16 +196470,22 @@ Transform:
   m_PrefabInstance: {fileID: 1183275150}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1184659631
 GameObject:
 =======
 --- !u!65 &1183457421
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1183457421
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -196086,6 +196546,8 @@ Transform:
   m_Father: {fileID: 667725089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 30425818}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -196101,7 +196563,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236932, z: 0.85131556}
   m_Center: {x: -0.12764637, y: 0.21722785, z: -0.33797753}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1185488589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215003,6 +215468,7 @@ PrefabInstance:
       value: vendorIrah_Rigged
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 5866666021909216657, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
       propertyPath: m_Controller
       value: 
@@ -215035,12 +215501,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+>>>>>>> upstream/irah-version
   m_SourcePrefab: {fileID: 100100000, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
 --- !u!4 &1314448086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2fe4972b96384d44a4a7c8b79b948d5, type: 3}
   m_PrefabInstance: {fileID: 1314448085}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!95 &1314448087 stripped
 Animator:
@@ -215106,6 +215579,8 @@ MonoBehaviour:
   randomAnimDuration: 3
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1315157751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215496,16 +215971,22 @@ Transform:
   m_PrefabInstance: {fileID: 1317043004}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1317559222
 GameObject:
 =======
 --- !u!65 &1317707830
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1317707830
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -215534,6 +216015,8 @@ Transform:
   m_Father: {fileID: 1977965918}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 61559994}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -215549,7 +216032,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.6500007, y: 0.14236926, z: 0.85131556}
   m_Center: {x: 0.7584147, y: -0.10597598, z: -0.36936474}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1318059440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223589,6 +224075,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -2677583690257182563, guid: 6c4573e0a8dc094428defc1c87d46dd3, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1360901401
 GameObject:
   m_ObjectHideFlags: 0
@@ -223870,6 +224357,10 @@ MonoBehaviour:
 --- !u!65 &1360453477
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1360453477
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -223886,6 +224377,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 502f738b329606845a757f70512f27d3, type: 3}
@@ -224160,6 +224652,11 @@ AudioSource:
   m_Size: {x: 0.65, y: 0.14236932, z: 0.85131556}
   m_Center: {x: -0.12764637, y: 0.21722785, z: -0.33797753}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+  serializedVersion: 3
+  m_Size: {x: 0.65, y: 0.14236932, z: 0.85131556}
+  m_Center: {x: -0.12764637, y: 0.21722785, z: -0.33797753}
+>>>>>>> upstream/irah-version
 --- !u!1001 &1362842558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229944,6 +230441,7 @@ Transform:
   m_PrefabInstance: {fileID: 1400068870}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1401614547
 GameObject:
   m_ObjectHideFlags: 0
@@ -230056,6 +230554,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1402498538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -231652,6 +232152,7 @@ Transform:
   m_PrefabInstance: {fileID: 1407726811}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 977023864}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99945325, z: -0, w: -0.033063695}
@@ -231773,6 +232274,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1408117549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242649,6 +243152,7 @@ Transform:
   m_PrefabInstance: {fileID: 1446801927}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1470921227
 GameObject:
   m_ObjectHideFlags: 0
@@ -242757,6 +243261,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180.919, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1472224311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244504,6 +245010,7 @@ Transform:
   m_PrefabInstance: {fileID: 1369285371}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1478995847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244688,6 +245195,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &1479767691
 GameObject:
   m_ObjectHideFlags: 0
@@ -244798,6 +245307,7 @@ Transform:
   m_PrefabInstance: {fileID: 1480721757}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1481685781
 GameObject:
   m_ObjectHideFlags: 0
@@ -244863,6 +245373,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1482267456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245940,16 +246452,22 @@ Transform:
   m_PrefabInstance: {fileID: 1485315104}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1485994891
 GameObject:
 =======
 --- !u!65 &1485837604
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1485837604
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -245977,6 +246495,8 @@ Transform:
   m_Father: {fileID: 837565036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 61559996}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -245992,7 +246512,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236929, z: 0.8513157}
   m_Center: {x: -0.10461586, y: -0.042004954, z: -0.36068016}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1486036337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246391,6 +246914,7 @@ Transform:
   m_Father: {fileID: 353770304}
   m_LocalEulerAnglesHint: {x: -0.637, y: 3.937, z: 0.727}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1493101701
 GameObject:
   m_ObjectHideFlags: 0
@@ -246490,6 +247014,8 @@ MonoBehaviour:
   randomAnimDuration: 3
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1494117776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247552,6 +248078,7 @@ Transform:
   m_PrefabInstance: {fileID: 1500178374}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1500449145
 GameObject:
   m_ObjectHideFlags: 0
@@ -247621,6 +248148,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1501180535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258185,6 +258714,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1559907164
 GameObject:
   m_ObjectHideFlags: 0
@@ -258320,6 +258850,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1560830431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258403,16 +258935,22 @@ Transform:
   m_PrefabInstance: {fileID: 1560830431}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1561216589
 GameObject:
 =======
 --- !u!65 &1562030088
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1562030088
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -258473,6 +259011,8 @@ Transform:
   m_Father: {fileID: 287211812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 61559997}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -258488,7 +259028,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236924, z: 0.85131556}
   m_Center: {x: -0.11461596, y: 0.15562569, z: -0.33068013}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1562585560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260463,16 +261006,22 @@ PrefabInstance:
       addedObject: {fileID: 652833162}
   m_SourcePrefab: {fileID: 100100000, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1575703867
 GameObject:
 =======
 --- !u!65 &1575318988
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1575318988
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -260500,6 +261049,8 @@ Transform:
   m_Father: {fileID: 1022663070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 1009175222}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -260515,7 +261066,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.65, y: 0.14236924, z: 0.85131556}
   m_Center: {x: -0.11461596, y: 0.15562569, z: -0.33068013}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1576415242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260775,6 +261329,7 @@ PrefabInstance:
       value: vendorKyros_Rigged
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 5866666021909216657, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
       propertyPath: m_Controller
       value: 
@@ -260799,12 +261354,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+>>>>>>> upstream/irah-version
   m_SourcePrefab: {fileID: 100100000, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
 --- !u!4 &1577654838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: db3bb5433e86e6b4baf6b49492afd609, type: 3}
   m_PrefabInstance: {fileID: 1577654837}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!95 &1577654839 stripped
 Animator:
@@ -260870,6 +261432,8 @@ MonoBehaviour:
   randomAnimDuration: 3
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1577861239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -262599,6 +263163,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1589066458
 GameObject:
   m_ObjectHideFlags: 0
@@ -262738,6 +263303,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1589449998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269497,6 +270064,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1630413236
 GameObject:
   m_ObjectHideFlags: 0
@@ -269561,6 +270129,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1634437758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270696,16 +271266,22 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a602764cf791edd4384aa97cb5734da9, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1643224097
 GameObject:
 =======
 --- !u!65 &1640983662
 BoxCollider:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+--- !u!65 &1640983662
+BoxCollider:
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -270734,6 +271310,8 @@ Transform:
   m_Father: {fileID: 1218435248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 30425819}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -270749,7 +271327,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 0.6500001, y: 0.1423693, z: 0.8513156}
   m_Center: {x: 0.725384, y: 0.17959724, z: -0.3266621}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1643611019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272689,6 +273270,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 20a193e1549d78b48950c49394d2c729, type: 2}
@@ -272717,6 +273299,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 7754af0d1a645ed4aaee66fbd3175a2e, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 1653427252}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 10f49dd76c508ef42b44015428e11b74, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 7754af0d1a645ed4aaee66fbd3175a2e, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 1653427253}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -272741,12 +273344,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -272764,7 +273370,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!95 &1653427253 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 6fb8df496115f024e891e49ec5cf8529, type: 3}
@@ -281803,9 +282412,12 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -1375052923765806555, guid: 8fb5fa14ea37a2a4f9cc05dcf371688d, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1696382708
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &1696142015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7833037160580250271, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
@@ -281813,11 +282425,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &1696142017
 MeshCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -281846,6 +282462,8 @@ Transform:
   m_Father: {fileID: 2014171834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 1696142015}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -281862,7 +282480,10 @@ Transform:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 35341817363126991, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1696607136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288583,6 +289204,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: d7fd18c8c251ca647bd6796de45c0e8d, type: 2}
@@ -288623,6 +289245,39 @@ MonoBehaviour:
   - requiredObjective: Talk to the little girl
     dialogueNode: {fileID: 11400000, guid: 912e83f7b9d781f45bbd3bc72c88b20f, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 1741770516}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: QuestIdleManager, Assembly-CSharp
+        m_MethodName: StopQuestIdle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: bafe0241ece4ebe49825b8732cfd95fd, type: 2}
+  isOrganizer: 0
+  questDialogues:
+  - requiredObjective: Talk to the little girl
+    dialogueNode: {fileID: 11400000, guid: 912e83f7b9d781f45bbd3bc72c88b20f, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 1741770517}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -288647,12 +289302,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: StartMinigame
     onEventTriggered:
@@ -288670,7 +289328,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!95 &1741770517 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cfb8269fe5e0ca34db4707ce362c6787, type: 3}
@@ -289542,6 +290203,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -3677456882876922028, guid: 211e5396c94b6254cb7f002f2f7334e0, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1747205960
 GameObject:
   m_ObjectHideFlags: 0
@@ -289607,6 +290269,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1748901841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291025,6 +291689,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 4426937383109157324, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -291055,6 +291720,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
     - target: {fileID: 6636947282813975614, guid: dfb268bda76aa5249975687ae63f63ce, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -291347,9 +292014,12 @@ PrefabInstance:
       addedObject: {fileID: 1602396424}
   m_SourcePrefab: {fileID: 100100000, guid: 0dfd3ae5a70108e4db5f8eb43a1f86f7, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1762185213
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &1762399754 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7833037160580250271, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
@@ -291357,11 +292027,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &1762399756
 MeshCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -291422,6 +292096,8 @@ Transform:
   m_Father: {fileID: 1987729289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 1762399754}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -291438,7 +292114,10 @@ Transform:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 35341817363126991, guid: ffa40ca1f2d9aa64ca70ec5a354fc34b, type: 3}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1763775318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -306267,6 +306946,7 @@ Transform:
   m_PrefabInstance: {fileID: 1831327104}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &1831790883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -306379,6 +307059,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1832644152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311833,6 +312515,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 08723f1f46e267545a643384836682e4, type: 2}
@@ -311872,11 +312555,45 @@ MonoBehaviour:
   defaultDialogue: {fileID: 11400000, guid: 523761d603f2ba045845b8a916ffbf99, type: 2}
   isOrganizer: 0
   questDialogues:
+=======
+      m_Calls:
+      - m_Target: {fileID: 1866386743}
+        m_TargetAssemblyTypeName: QuestIdleManager, Assembly-CSharp
+        m_MethodName: StopAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1866386741}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: 523761d603f2ba045845b8a916ffbf99, type: 2}
+  isOrganizer: 0
+  questDialogues:
+>>>>>>> upstream/irah-version
   - requiredObjective: Talk to the woman
     dialogueNode: {fileID: 11400000, guid: e9fd82ba682ace74a8ede2edb1b04013, type: 2}
   - requiredObjective: Return to Sally
     dialogueNode: {fileID: 11400000, guid: c9ac8db22a71cb745b7c40a38cce22ea, type: 2}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 1866386742}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -311889,12 +312606,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
   postCompletionDialogue: {fileID: 0}
   dialogueEvents: []
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: StartCollectMaterials
     onEventTriggered:
@@ -311912,7 +312632,10 @@ MonoBehaviour:
             m_StringArgument: Collect all weaving materials ; 4 ; Return to Sally
             m_BoolArgument: 0
           m_CallState: 2
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!95 &1866386742 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: dfe91ccff460c4a4a99760556510c447, type: 3}
@@ -318371,6 +319094,7 @@ BoxCollider:
   m_Size: {x: 0.13147244, y: 1, z: 0.1508323}
   m_Center: {x: 0.069241025, y: 0, z: 0.03907001}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1900831350
 GameObject:
   m_ObjectHideFlags: 0
@@ -318420,6 +319144,8 @@ MonoBehaviour:
   positionOffset: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1901374622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320568,6 +321294,7 @@ PrefabInstance:
       value: vendorJom_Rigged
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 5866666021909216657, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
       propertyPath: m_Controller
       value: 
@@ -320592,12 +321319,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+>>>>>>> upstream/irah-version
   m_SourcePrefab: {fileID: 100100000, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
 --- !u!4 &1913505685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 381b8e4c1da398f48ab8fba4d1f918e3, type: 3}
   m_PrefabInstance: {fileID: 1913505684}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!95 &1913505686 stripped
 Animator:
@@ -320663,6 +321397,8 @@ MonoBehaviour:
   randomAnimDuration: 3
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &1913862858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342462,9 +343198,12 @@ Transform:
   m_PrefabInstance: {fileID: 2033497594}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2033670448
 GameObject:
 =======
+=======
+>>>>>>> upstream/irah-version
 --- !u!1 &2033497596 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 759c49e78c2286a47a0ae12468051848, type: 3}
@@ -342472,11 +343211,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &2033497597
 BoxCollider:
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   serializedVersion: 6
   m_Component:
@@ -342504,6 +343247,8 @@ Transform:
   m_Father: {fileID: 1538005550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> upstream/irah-version
   m_GameObject: {fileID: 2033497596}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -342519,7 +343264,10 @@ Transform:
   serializedVersion: 3
   m_Size: {x: 3, y: 7.053907, z: 3}
   m_Center: {x: 0, y: 3.5225255, z: 0}
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &2035026466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345763,6 +346511,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2053992277
 GameObject:
   m_ObjectHideFlags: 0
@@ -345902,6 +346651,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &2055230823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -351722,6 +352473,7 @@ MeshCollider:
   m_CookingOptions: 30
   m_Mesh: {fileID: -2321662367409292284, guid: e5221c18c0a38a54a84daeea961ecb2d, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2062059705
 GameObject:
   m_ObjectHideFlags: 0
@@ -351887,6 +352639,8 @@ MeshFilter:
   m_Mesh: {fileID: -1218630699638779154, guid: b572ec6caf52d7e43adf1179389b4446, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &2063728990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356660,6 +357414,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Calls: []
   interactionEnabled: 0
   defaultDialogue: {fileID: 11400000, guid: 9d746a602e0bbd440ab14294b0247a77, type: 2}
@@ -356688,6 +357443,27 @@ MonoBehaviour:
   - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
     dialogueNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      m_Calls:
+      - m_Target: {fileID: 2094566721}
+        m_TargetAssemblyTypeName: InteractableNPC, Assembly-CSharp
+        m_MethodName: SmoothLookAtPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionEnabled: 1
+  defaultDialogue: {fileID: 11400000, guid: feb3fbad686cc7143a0a8fa41a4b5131, type: 2}
+  isOrganizer: 1
+  questDialogues:
+  - requiredObjective: 'Help Apo Lakay identify and greet all organizers properly '
+    dialogueNode: {fileID: 11400000, guid: 1d597ff4b6953b845a75a2da5d8e9c6f, type: 2}
+>>>>>>> upstream/irah-version
   npcAnimator: {fileID: 2094566722}
   disableAfterInteraction: 0
   isWrongAnswerPlaying: 0
@@ -356712,6 +357488,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
   ambientDialogues: []
   ambientLibrary: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
   isStoryComplete: 0
@@ -356729,6 +357506,8 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: 
 =======
+=======
+>>>>>>> upstream/irah-version
   dialogueEvents:
   - eventName: GreetOrganizer
     onEventTriggered:
@@ -356741,7 +357520,10 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+<<<<<<< HEAD
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -363423,6 +364205,7 @@ PrefabInstance:
       addedObject: {fileID: 858705716}
   m_SourcePrefab: {fileID: 100100000, guid: 322bfe4863f7d634bbdf2df72465ae53, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &2137462246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363607,6 +364390,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
 --- !u!1001 &2138362873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -365330,6 +366115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
       propertyPath: ambientLibrary
       value: 
       objectReference: {fileID: 11400000, guid: d7c9f44acb0bb9b4f9378fc7e21e0c2c, type: 2}
@@ -365342,6 +366128,10 @@ PrefabInstance:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
       propertyPath: minigameCategory
       value: Greetings
+=======
+      propertyPath: minigameCategory
+      value: Gratitude
+>>>>>>> upstream/irah-version
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: minigameLanguageId
@@ -365353,6 +366143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.size
+<<<<<<< HEAD
 <<<<<<< HEAD
       value: 3
       objectReference: {fileID: 0}
@@ -365382,6 +366173,17 @@ PrefabInstance:
       propertyPath: dialogueEvents.Array.data[2].eventName
       value: StartLesson_Greetings
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: questDialogues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[2].eventName
+      value: StartLesson_Greetings
+>>>>>>> upstream/irah-version
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[3].eventName
@@ -365402,6 +366204,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].dialogueNode
       value: 
+<<<<<<< HEAD
 <<<<<<< HEAD
       objectReference: {fileID: 11400000, guid: 358d480568b1d574682325bf5be770fb, type: 2}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
@@ -365455,11 +366258,15 @@ PrefabInstance:
 =======
       objectReference: {fileID: 11400000, guid: 56269e7c91865914cad6b4f61ae0f875, type: 2}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      objectReference: {fileID: 11400000, guid: 56269e7c91865914cad6b4f61ae0f875, type: 2}
+>>>>>>> upstream/irah-version
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: questDialogues.Array.data[0].requiredObjective
       value: Talk to Kalaw
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+<<<<<<< HEAD
 <<<<<<< HEAD
       propertyPath: questDialogues.Array.data[1].requiredObjective
       value: 'LEVEL III COMPLETE! Head to Plaza: Talk to Kalaw'
@@ -365515,6 +366322,8 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
       propertyPath: OnDialogueEnd.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -365572,6 +366381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
       propertyPath: dialogueEvents.Array.data[7].onEventTriggered.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -365582,6 +366392,8 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -365615,6 +366427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
       propertyPath: dialogueEvents.Array.data[7].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -365625,6 +366438,8 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 708777761}
@@ -365682,12 +366497,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartMinigame
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: ExitCloseUp
       objectReference: {fileID: 0}
@@ -365702,10 +366520,14 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[2].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: StartMinigame
 =======
       value: StartLessonWithCategory
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      value: StartLessonWithCategory
+>>>>>>> upstream/irah-version
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -365759,10 +366581,14 @@ PrefabInstance:
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
 <<<<<<< HEAD
+<<<<<<< HEAD
       objectReference: {fileID: 634386358314814798, guid: 29b3bc335e87d8445959c4eec71dbafe, type: 3}
 =======
       objectReference: {fileID: 798749206}
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+      objectReference: {fileID: 798749206}
+>>>>>>> upstream/irah-version
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[0].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
       value: Follow Kalaw
@@ -365778,6 +366604,7 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
       propertyPath: dialogueEvents.Array.data[2].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 
 =======
       value: Greetings
@@ -365789,6 +366616,16 @@ PrefabInstance:
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+=======
+      value: Greetings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+      propertyPath: dialogueEvents.Array.data[3].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Help Apo Lakay identify and greet all organizers properly ; 6 ; Return
+        to Apo Lakay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
+>>>>>>> upstream/irah-version
       propertyPath: dialogueEvents.Array.data[4].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Talk to the little girl
       objectReference: {fileID: 0}
@@ -365806,6 +366643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
       propertyPath: dialogueEvents.Array.data[7].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 0}
@@ -365820,6 +366658,8 @@ PrefabInstance:
     - target: {fileID: 8443646649292189996, guid: be9b9f551e0dcd74c81bde93e4837608, type: 3}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version
       propertyPath: dialogueEvents.Array.data[1].onEventTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -371443,6 +372283,7 @@ SceneRoots:
   - {fileID: 300611999}
   - {fileID: 1127642862}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 1900831352}
   - {fileID: 48056250}
   - {fileID: 476267652}
@@ -371469,3 +372310,5 @@ SceneRoots:
   - {fileID: 78866863}
 =======
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+>>>>>>> upstream/irah-version

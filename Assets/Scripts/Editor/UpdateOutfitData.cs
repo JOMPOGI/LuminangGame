@@ -45,6 +45,7 @@ public class UpdateOutfitData : MonoBehaviour
 
             // Hairs
 <<<<<<< HEAD
+<<<<<<< HEAD
             { "blackHairShort", ("Classic Bob", "A neat bob that never goes out of style.") },
             { "blondHair", ("Golden Layers", "Soft layered hair with a bright, cheerful look.") },
             { "longBlackHair", ("Straight Locks", "Long, sleek hair that's simple and elegant.") },
@@ -55,6 +56,8 @@ public class UpdateOutfitData : MonoBehaviour
             { "shortMochaHair", ("Soft Layers", "Light layers that create a gentle, relaxed look.") },
             { "spikyBlonde", ("Spiky Cut", "A bold hairstyle with plenty of attitude.") },
 =======
+=======
+>>>>>>> upstream/irah-version
             { "blackHairShort", ("Black Hair Short", "A neat bob that never goes out of style.", 100) },
             { "blondHair", ("Golden Layers", "Soft layered hair with a bright, cheerful look.", 250) },
             { "longBlackHair", ("Long Black Hair", "Long, sleek hair that's simple and elegant.", 150) },

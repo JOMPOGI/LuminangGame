@@ -39,10 +39,14 @@ public class NPCRandomIdle : MonoBehaviour
         {
             // 1. Play the default idle
 <<<<<<< HEAD
+<<<<<<< HEAD
             SafeCrossFade(defaultIdleState, 0.25f);
 =======
             _animator.CrossFadeInFixedTime(defaultIdleState, 0.25f);
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+            _animator.CrossFadeInFixedTime(defaultIdleState, 0.25f);
+>>>>>>> upstream/irah-version
 
             // 2. Wait for a random amount of time
             float waitTime = Random.Range(minWaitTime, maxWaitTime);
@@ -51,15 +55,20 @@ public class NPCRandomIdle : MonoBehaviour
             // 3. Pick a random animation and play it
             string randomAnim = randomIdleStates[Random.Range(0, randomIdleStates.Length)];
 <<<<<<< HEAD
+<<<<<<< HEAD
             SafeCrossFade(randomAnim, 0.25f);
 =======
             _animator.CrossFadeInFixedTime(randomAnim, 0.25f);
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+            _animator.CrossFadeInFixedTime(randomAnim, 0.25f);
+>>>>>>> upstream/irah-version
 
             // 4. Wait for the random animation to finish before looping back to default
             yield return new WaitForSeconds(randomAnimDuration);
         }
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     private void SafeCrossFade(string stateName, float duration)
@@ -77,3 +86,6 @@ public class NPCRandomIdle : MonoBehaviour
 =======
 }
 >>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
+=======
+}
+>>>>>>> upstream/irah-version

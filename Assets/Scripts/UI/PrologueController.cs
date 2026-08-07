@@ -14,7 +14,10 @@ public enum IntroType
 public class PrologueController : MonoBehaviour
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/irah-version
     [Header("Intro Type")]
     public IntroType introType = IntroType.Prologue;
 
