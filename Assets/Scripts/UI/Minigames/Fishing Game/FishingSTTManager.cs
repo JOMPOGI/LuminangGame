@@ -141,13 +141,16 @@ public class FishingSTTManager : MonoBehaviour
 
         // Figure out the target word based on FishingGameConfig language
         targetWord = "";
-
-        // Use the word already assigned directly to the fish by FishDictionaryList
-        if (caughtFish != null && !string.IsNullOrEmpty(caughtFish.assignedWord))
+        string langToUse = FishingGameConfig.TargetLanguage;
+        
+        if (DatasetManager.Instance != null && caughtFish != null)
         {
-            targetWord = caughtFish.assignedWord;
+            PhraseEntry entry = DatasetManager.Instance.GetPhraseById(caughtFish.assignedId);
+            if (entry != null)
+            {
+                targetWord = entry.GetPhrase(langToUse);
+            }
         }
-
 
         // Setup texts
         UpdateTitle("Nice Catch!", colorInitial);

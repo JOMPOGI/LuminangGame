@@ -68,7 +68,7 @@ public class FishDictionaryList : MonoBehaviour
         }
 
         // Find ALL the swimming fishes in the scene
-        FishController[] swimmingFishes = FindObjectsByType<FishController>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        FishController[] swimmingFishes = FindObjectsOfType<FishController>();
 
         // We only need as many words as we have fishes in the pond!
         int itemsToSpawn = Mathf.Min(validPhrases.Count, swimmingFishes.Length);
