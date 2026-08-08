@@ -2169,7 +2169,6 @@ MonoBehaviour:
   totalBaits: 20
   totalRounds: 15
   currentBaits: 0
-  currentRound: 0
 --- !u!4 &477867331
 Transform:
   m_ObjectHideFlags: 0
@@ -8630,7 +8629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1104347768703891830, guid: f505311fbc4c08142b5441676b25a831, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1757350769655831199, guid: f505311fbc4c08142b5441676b25a831, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
