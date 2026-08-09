@@ -25,9 +25,8 @@ namespace Luminang.UI.Minigames
         public Sprite speakActiveSprite;
 
         [Header("Result Overlay")]
-        public Image correctWrongImage;
-        public Sprite correctResultSprite;
-        public Sprite wrongResultSprite;
+        public GameObject correctResultObject;
+        public GameObject wrongResultObject;
 
         [Header("Tries UI")]
         public List<Image> triesImages;
@@ -53,6 +52,9 @@ namespace Luminang.UI.Minigames
         [Header("Sound Effects")]
         public AudioSource sfxSource;
         public AudioClip buttonClickSFX;
+        public AudioClip panelOpenSFX;
+        public AudioClip successSFX;
+        public AudioClip tryAgainSFX;
 
         private int currentTries = 3;
         private bool isRecording = false;
@@ -67,6 +69,9 @@ namespace Luminang.UI.Minigames
 
         private Coroutine fadeInCoroutine;
         private Coroutine popInCoroutine;
+        
+        private Vector3 correctResultOriginalScale = Vector3.one;
+        private Vector3 wrongResultOriginalScale = Vector3.one;
 
         public bool IsSTTActive => isSTTActive;
         public string TargetWord => targetWord;
@@ -88,6 +93,9 @@ namespace Luminang.UI.Minigames
                 panelOffscreenPos = panelOnscreenPos + new Vector2(0, -1200f); // Slide down out of view
                 sttPanel.anchoredPosition = panelOffscreenPos;
             }
+            
+            if (correctResultObject != null) correctResultOriginalScale = correctResultObject.transform.localScale;
+            if (wrongResultObject != null) wrongResultOriginalScale = wrongResultObject.transform.localScale;
 
             // Hide the group after caching positions
             if (sttGroup != null) sttGroup.SetActive(false);
@@ -97,10 +105,43 @@ namespace Luminang.UI.Minigames
 
         private void Update()
         {
-            if (isSTTActive && glowTransform != null)
+            if (isSTTActive)
             {
-                glowTransform.Rotate(0, 0, glowRotationSpeed * Time.deltaTime);
+                if (glowTransform != null)
+                {
+                    glowTransform.Rotate(0, 0, glowRotationSpeed * Time.deltaTime);
+                }
+
+                // Debug Shortcuts
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                #if ENABLE_INPUT_SYSTEM
+                var keyboard = UnityEngine.InputSystem.Keyboard.current;
+                if (keyboard != null && keyboard.pKey.wasPressedThisFrame)
+                {
+                    SimulateSuccess(targetWord); // Instant debug pass
+                }
+                #endif
+
+                #if ENABLE_LEGACY_INPUT_MANAGER
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    SimulateSuccess(targetWord); // Instant debug pass
+                }
+                #endif
+                #endif
             }
+        }
+
+        public void SimulateSuccess(string spokenWord = "")
+        {
+            if (!isSTTActive) return;
+            ShowResultOverlay(true);
+            UpdateTitle(GetRandomCorrectFeedback(), colorRight);
+            if (sttDebugText != null)
+            {
+                sttDebugText.text = $"[DEBUG BYPASS]\nTarget: {targetWord}\nScore: 100%";
+            }
+            StartCoroutine(EndSTTFlow(true));
         }
 
         private void EnsureDependencies()
@@ -142,8 +183,8 @@ namespace Luminang.UI.Minigames
             }
 
             // Hide overlay from previous rounds
-            if (correctWrongImage != null)
-                correctWrongImage.gameObject.SetActive(false);
+            if (correctResultObject != null) correctResultObject.SetActive(false);
+            if (wrongResultObject != null) wrongResultObject.SetActive(false);
 
             // Determine target word/phrase using config language
             string langToUse = FishingGameConfig.TargetLanguage;
@@ -164,6 +205,12 @@ namespace Luminang.UI.Minigames
             // Reset mic button sprite
             if (speakButtonImage != null) speakButtonImage.sprite = speakNormalSprite;
 
+            // Play panel open SFX
+            if (sfxSource != null && panelOpenSFX != null)
+            {
+                sfxSource.PlayOneShot(panelOpenSFX);
+            }
+
             // Slide in STT Panel
             sttGroup.SetActive(true);
             StartCoroutine(SlidePanel(panelOffscreenPos, panelOnscreenPos, true));
@@ -172,9 +219,16 @@ namespace Luminang.UI.Minigames
             fadeInCoroutine = StartCoroutine(FadeInGlow());
         }
 
+        private float lastSpeakClickTime = 0f;
+
         public void OnSpeakButtonClicked()
         {
             if (!isSTTActive) return;
+            
+            // Prevent double-firing from Unity Button bugs or double-taps causing instant Start/Stop
+            if (Time.time - lastSpeakClickTime < 0.5f) return;
+            lastSpeakClickTime = Time.time;
+
             if (sfxSource != null && buttonClickSFX != null) sfxSource.PlayOneShot(buttonClickSFX);
 
             if (!isRecording)
@@ -193,7 +247,15 @@ namespace Luminang.UI.Minigames
             if (speakButtonImage != null) speakButtonImage.sprite = speakActiveSprite;
             UpdateTitle("Listening... Tap Mic to Stop.", colorListening);
             
-            SpeechRecorder.Instance.StartRecording();
+            var recorder = SpeechRecorder.Instance ?? FindFirstObjectByType<SpeechRecorder>();
+            if (recorder != null)
+            {
+                recorder.StartRecording();
+            }
+            else
+            {
+                UpdateTitle("SpeechRecorder instance missing.", colorWrong);
+            }
         }
 
         private void StopRecording()
@@ -202,11 +264,20 @@ namespace Luminang.UI.Minigames
             if (speakButtonImage != null) speakButtonImage.sprite = speakNormalSprite;
             UpdateTitle("Processing Voice...", colorProcessing);
             
-            string filePath = SpeechRecorder.Instance.StopRecording();
+            var recorder = SpeechRecorder.Instance ?? FindFirstObjectByType<SpeechRecorder>();
+            string filePath = recorder != null ? recorder.StopRecording() : "";
             if (!string.IsNullOrEmpty(filePath))
             {
                 string langCode = FishingGameConfig.TargetLanguage.ToLower() == "ilokano" ? "tl" : "ceb";
-                GroqWhisperManager.Instance.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError, "", langCode);
+                var whisper = GroqWhisperManager.Instance ?? FindFirstObjectByType<GroqWhisperManager>();
+                if (whisper != null)
+                {
+                    whisper.Transcribe(filePath, OnTranscriptionSuccess, OnTranscriptionError, "", langCode);
+                }
+                else
+                {
+                    UpdateTitle("GroqWhisperManager instance missing.", colorWrong);
+                }
             }
             else
             {
@@ -218,8 +289,29 @@ namespace Luminang.UI.Minigames
         {
             if (!isSTTActive) return;
 
-            PhraseEvaluator.Instance.EvaluateSpeech(targetWord, result, (transcript, scorePercent, evalResult) =>
+            // Strip template placeholders like {item}, {name} for robust voice recognition
+            string cleanTarget = System.Text.RegularExpressions.Regex.Replace(targetWord, @"\{.*?\}", "").Trim();
+            string cleanResult = result != null ? result.Trim() : "";
+
+            // Check if clean target is contained in transcription or if it matches
+            bool templateMatch = false;
+            if (!string.IsNullOrEmpty(cleanTarget) && cleanTarget != targetWord)
             {
+                if (!string.IsNullOrEmpty(cleanResult) && cleanResult.ToLower().Contains(cleanTarget.ToLower()))
+                {
+                    templateMatch = true;
+                }
+            }
+
+            string evalTarget = string.IsNullOrEmpty(cleanTarget) ? targetWord : cleanTarget;
+
+            PhraseEvaluator.Instance.EvaluateSpeech(evalTarget, result, (transcript, scorePercent, evalResult) =>
+            {
+                if (templateMatch && scorePercent < 80f)
+                {
+                    scorePercent = 95f; // Template base phrase was spoken correctly
+                }
+
                 // Update Debug text on the panel
                 if (sttDebugText != null)
                 {
@@ -301,23 +393,39 @@ namespace Luminang.UI.Minigames
 
         private void ShowResultOverlay(bool isCorrect)
         {
-            if (correctWrongImage == null) return;
-            correctWrongImage.sprite = isCorrect ? correctResultSprite : wrongResultSprite;
-            correctWrongImage.gameObject.SetActive(true);
-            correctWrongImage.transform.localScale = Vector3.zero;
+            if (correctResultObject != null) correctResultObject.SetActive(false);
+            if (wrongResultObject != null) wrongResultObject.SetActive(false);
+
+            GameObject targetObj = isCorrect ? correctResultObject : wrongResultObject;
+            if (targetObj == null) return;
+
+            // Play success or try-again SFX as the overlay pops in
+            if (isCorrect)
+            {
+                if (sfxSource != null && successSFX != null) sfxSource.PlayOneShot(successSFX);
+            }
+            else
+            {
+                if (sfxSource != null && tryAgainSFX != null) sfxSource.PlayOneShot(tryAgainSFX);
+            }
+
+            targetObj.SetActive(true);
+            targetObj.transform.localScale = Vector3.zero;
             
+            Vector3 targetOriginalScale = isCorrect ? correctResultOriginalScale : wrongResultOriginalScale;
+
             if (popInCoroutine != null) StopCoroutine(popInCoroutine);
-            popInCoroutine = StartCoroutine(PopInThenOut(correctWrongImage.transform));
+            popInCoroutine = StartCoroutine(PopInThenOut(targetObj.transform, targetOriginalScale, !isCorrect));
         }
 
-        private IEnumerator PopInThenOut(Transform t)
+        private IEnumerator PopInThenOut(Transform t, Vector3 originalScale, bool autoPopOut)
         {
             float elapsed = 0f;
             while (elapsed < 0.18f)
             {
                 elapsed += Time.deltaTime;
                 float s = Mathf.Lerp(0f, 1.15f, elapsed / 0.18f);
-                t.localScale = Vector3.one * s;
+                t.localScale = originalScale * s;
                 yield return null;
             }
             elapsed = 0f;
@@ -325,10 +433,25 @@ namespace Luminang.UI.Minigames
             {
                 elapsed += Time.deltaTime;
                 float s = Mathf.Lerp(1.15f, 1f, elapsed / 0.08f);
-                t.localScale = Vector3.one * s;
+                t.localScale = originalScale * s;
                 yield return null;
             }
-            t.localScale = Vector3.one;
+            t.localScale = originalScale;
+
+            if (autoPopOut)
+            {
+                yield return new WaitForSeconds(1.5f);
+                elapsed = 0f;
+                while (elapsed < 0.15f)
+                {
+                    elapsed += Time.deltaTime;
+                    float s = Mathf.Lerp(1f, 0f, elapsed / 0.15f);
+                    t.localScale = originalScale * s;
+                    yield return null;
+                }
+                t.localScale = Vector3.zero;
+                t.gameObject.SetActive(false);
+            }
         }
 
         private IEnumerator FadeInGlow()

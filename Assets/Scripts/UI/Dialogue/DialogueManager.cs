@@ -68,8 +68,13 @@ public class DialogueManager : MonoBehaviour
     {
         if (_pendingMinigameNextNode != null)
         {
-            int minigameWon = PlayerPrefs.GetInt("FishingMinigameWon", 0);
-            if (minigameWon == 1)
+            bool isWon = PlayerPrefs.GetInt("FishingMinigameWon", 0) == 1 ||
+                         PlayerPrefs.GetInt("TCGMinigameWon", 0) == 1 ||
+                         PlayerPrefs.GetInt("ReactionMinigameWon", 0) == 1 ||
+                         PlayerPrefs.GetInt("TumbangPresoMinigameWon", 0) == 1 ||
+                         PlayerPrefs.GetInt("MinigameWon", 0) == 1;
+
+            if (isWon)
             {
                 StartCoroutine(ResumePostMinigameDialogue());
             }
@@ -77,8 +82,14 @@ public class DialogueManager : MonoBehaviour
             {
                 _pendingMinigameNextNode = null;
                 _pendingMinigameNPCName = null;
+                EndDialogue(); // Cleanly end dialogue mode, restoring the player movement controls and main HUD!
             }
+
             PlayerPrefs.SetInt("FishingMinigameWon", 0);
+            PlayerPrefs.SetInt("TCGMinigameWon", 0);
+            PlayerPrefs.SetInt("ReactionMinigameWon", 0);
+            PlayerPrefs.SetInt("TumbangPresoMinigameWon", 0);
+            PlayerPrefs.SetInt("MinigameWon", 0);
             PlayerPrefs.Save();
         }
     }
@@ -547,6 +558,13 @@ public class DialogueManager : MonoBehaviour
             if (_currentNPC.disableAfterInteraction)
             {
                 _currentNPC.interactionEnabled = false;
+            }
+            else if (_currentNPC.defaultDialogue != null && _currentNPC.npcAnimator != null)
+            {
+                // Re-enable interaction so the Talk button can reappear after the conversation ends.
+                // This is important when OnDialogueEnd fires a DisableInteraction() event but the NPC
+                // is meant to be re-talkable (e.g., Lola Bebang after a "No" choice).
+                _currentNPC.interactionEnabled = true;
             }
         }
 

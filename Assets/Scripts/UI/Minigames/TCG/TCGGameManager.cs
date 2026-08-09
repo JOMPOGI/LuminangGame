@@ -64,6 +64,7 @@ namespace Luminang.UI.Minigames
         public AudioClip wrongSFX;
         public AudioClip winSFX;
         public AudioClip loseSFX;
+        public AudioClip cardSlideSFX;
 
         [Header("Win / Lose UI Panels")]
         public GameObject winOrLoseGroup;
@@ -78,6 +79,7 @@ namespace Luminang.UI.Minigames
         [Header("How To Play UI")]
         public GameObject howToPlayGroup;
         public GameObject howToPlayPanel;
+        public Button howToPlayCloseButton;
 
         [Header("Game Mode Config")]
         public int totalRounds = 20;
@@ -95,11 +97,16 @@ namespace Luminang.UI.Minigames
         private int currentlySelectedSlotIndex = -1;
         private int lastEnemyCardSlotIndex = -1;
         private bool isInteractionLocked = true;
-        private Vector3[] playerCardOriginalWorldPositions;
+
+        [Header("Debug & Layout Adjustments")]
+        [Tooltip("If enabled, rotates EnemyPlayedCard 180 degrees so it is oriented upside-down.")]
+        public bool rotateEnemyPlayedCardUpsideDown = false;
+
+        private Vector2[] playerCardOriginalAnchoredPositions;
         private Vector3[] playerCardOriginalScales;
-        private Vector3 enemyPlayedSlotOriginalWorldPos;
+        private Vector2 enemyPlayedSlotOriginalAnchoredPos;
         private Vector3 enemyPlayedSlotOriginalScale;
-        private Vector3 playerPlayedSlotOriginalWorldPos;
+        private Vector2 playerPlayedSlotOriginalAnchoredPos;
         private Vector3 playerPlayedSlotOriginalScale;
 
         private void Awake()
@@ -108,27 +115,42 @@ namespace Luminang.UI.Minigames
             else Destroy(gameObject);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            // Cache starting world positions and scales of card slots
-            playerCardOriginalWorldPositions = new Vector3[playerCardSlots.Length];
+            Canvas.ForceUpdateCanvases();
+            
+            // Give Unity's CanvasScaler and LayoutGroups one full frame to completely finalize 
+            // the screen resolution and safe area layout before we cache their world positions!
+            yield return new WaitForEndOfFrame();
+
+            // Disable main game joysticks and touchpads in background scenes (e.g. Magellan's_Cross)
+            SceneMinigameTrigger.DisableMainGameControls();
+
+            // Make the deck render behind the cards so they fly off the top
+            if (deckTransform != null)
+            {
+                deckTransform.SetAsFirstSibling();
+            }
+
+            // Cache starting anchored positions and scales of card slots
+            playerCardOriginalAnchoredPositions = new Vector2[playerCardSlots.Length];
             playerCardOriginalScales = new Vector3[playerCardSlots.Length];
             for (int i = 0; i < playerCardSlots.Length; i++)
             {
-                playerCardOriginalWorldPositions[i] = playerCardSlots[i].position;
+                playerCardOriginalAnchoredPositions[i] = playerCardSlots[i].anchoredPosition;
                 playerCardOriginalScales[i] = playerCardSlots[i].localScale;
                 // Move them to the deck in world space to start hidden
                 playerCardSlots[i].position = deckTransform.position;
                 playerCardSlots[i].gameObject.SetActive(false);
             }
 
-            enemyPlayedSlotOriginalWorldPos = enemyPlayedSlot.position;
+            enemyPlayedSlotOriginalAnchoredPos = enemyPlayedSlot.anchoredPosition;
             enemyPlayedSlotOriginalScale = enemyPlayedSlot.localScale;
             enemyPlayedSlot.position = deckTransform.position;
             SetupEnemyPlayedCardVisuals(false);
             enemyPlayedSlot.gameObject.SetActive(false);
 
-            playerPlayedSlotOriginalWorldPos = playerPlayedSlot.position;
+            playerPlayedSlotOriginalAnchoredPos = playerPlayedSlot.anchoredPosition;
             playerPlayedSlotOriginalScale = playerPlayedSlot.localScale;
             playerPlayedSlot.position = deckTransform.position;
             playerPlayedSlot.gameObject.SetActive(false);
@@ -193,6 +215,33 @@ namespace Luminang.UI.Minigames
                 chooseCardButton.onClick.AddListener(OnChooseCardPressed);
             }
 
+            // Wire up howToPlay close buttons dynamically
+            if (howToPlayCloseButton != null)
+            {
+                howToPlayCloseButton.onClick.RemoveAllListeners();
+                howToPlayCloseButton.onClick.AddListener(CloseHowToPlay);
+            }
+
+            if (howToPlayPanel != null)
+            {
+                Button[] htpBtns = howToPlayPanel.GetComponentsInChildren<Button>(true);
+                foreach (var b in htpBtns)
+                {
+                    b.onClick.RemoveAllListeners();
+                    b.onClick.AddListener(CloseHowToPlay);
+                }
+            }
+
+            if (howToPlayGroup != null)
+            {
+                Button groupBtn = howToPlayGroup.GetComponent<Button>();
+                if (groupBtn != null)
+                {
+                    groupBtn.onClick.RemoveAllListeners();
+                    groupBtn.onClick.AddListener(CloseHowToPlay);
+                }
+            }
+
             // Start screen flow
             if (howToPlayGroup != null && howToPlayPanel != null)
             {
@@ -207,6 +256,27 @@ namespace Luminang.UI.Minigames
 
         private void Update()
         {
+            // Allow closing HowToPlay with Space, Escape, or Enter if active
+            if (howToPlayGroup != null && howToPlayGroup.activeSelf)
+            {
+                #if ENABLE_INPUT_SYSTEM
+                var kb = UnityEngine.InputSystem.Keyboard.current;
+                if (kb != null && (kb.spaceKey.wasPressedThisFrame || kb.escapeKey.wasPressedThisFrame || kb.enterKey.wasPressedThisFrame))
+                {
+                    CloseHowToPlay();
+                    return;
+                }
+                #endif
+
+                #if ENABLE_LEGACY_INPUT_MANAGER
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return))
+                {
+                    CloseHowToPlay();
+                    return;
+                }
+                #endif
+            }
+
             // Debug Keys (development build and editor only)
             #if UNITY_EDITOR || DEVELOPMENT_BUILD
             #if ENABLE_INPUT_SYSTEM
@@ -271,6 +341,13 @@ namespace Luminang.UI.Minigames
         {
             roundPool.Clear();
 
+            // Sync Target Language from PlayerPrefs / FishingGameConfig
+            if (PlayerPrefs.HasKey("TargetLanguage"))
+            {
+                string savedLang = PlayerPrefs.GetString("TargetLanguage", "");
+                if (!string.IsNullOrEmpty(savedLang)) FishingGameConfig.TargetLanguage = savedLang;
+            }
+
             // Load cards metadata
             TextAsset databaseAsset = Resources.Load<TextAsset>("Minigames/TCG/TCGEnemyCards");
             if (databaseAsset == null)
@@ -292,22 +369,36 @@ namespace Luminang.UI.Minigames
                 gameObject.AddComponent<DatasetManager>();
             }
 
-            // Separate Requests from other categories
-            List<TCGEnemyCardEntry> requestsList = db.cards.Where(c => c.category.Equals("Requests", System.StringComparison.OrdinalIgnoreCase)).ToList();
-            List<TCGEnemyCardEntry> othersList = db.cards.Where(c => !c.category.Equals("Requests", System.StringComparison.OrdinalIgnoreCase)).ToList();
-
-            // Shuffle both sublists
-            ShuffleList(requestsList);
-            ShuffleList(othersList);
-
-            // Gather all 10 Requests
-            List<TCGEnemyCardEntry> selectedEntries = new List<TCGEnemyCardEntry>(requestsList);
-
-            // Pull 10 entries from other categories to complete 20 rounds
-            for (int i = 0; i < Mathf.Min(10, othersList.Count); i++)
+            // The 5 official TCG categories: Requests, Greetings, Gratitude, Identity, Responses
+            HashSet<string> validTCGCategories = new HashSet<string>(System.StringComparer.OrdinalIgnoreCase)
             {
-                selectedEntries.Add(othersList[i]);
+                "Requests", "Greetings", "Gratitude", "Identity", "Responses"
+            };
+
+            // Filter to only cards belonging to the 5 official TCG categories
+            List<TCGEnemyCardEntry> validCards = db.cards.Where(c => validTCGCategories.Contains(c.category)).ToList();
+
+            // Separate Requests (10 cards) from the other 4 categories
+            List<TCGEnemyCardEntry> requestsList = validCards.Where(c => c.category.Equals("Requests", System.StringComparison.OrdinalIgnoreCase)).ToList();
+            List<TCGEnemyCardEntry> otherCategoriesList = validCards.Where(c => !c.category.Equals("Requests", System.StringComparison.OrdinalIgnoreCase)).ToList();
+
+            // Shuffle sublists
+            ShuffleList(requestsList);
+            ShuffleList(otherCategoriesList);
+
+            List<TCGEnemyCardEntry> selectedEntries = new List<TCGEnemyCardEntry>();
+
+            // Always add all 10 Requests situations
+            selectedEntries.AddRange(requestsList);
+
+            // Pull 10 situations randomly from the remaining 4 categories (Greetings, Gratitude, Identity, Responses)
+            for (int i = 0; i < Mathf.Min(10, otherCategoriesList.Count); i++)
+            {
+                selectedEntries.Add(otherCategoriesList[i]);
             }
+
+            totalRounds = selectedEntries.Count; // 20 rounds
+            initialCardsLeft = totalRounds + 5;   // 25 cards total (5 mistakes allowed)
 
             // Map each selected entry to its corresponding PhraseEntry
             foreach (var cardEntry in selectedEntries)
@@ -327,7 +418,7 @@ namespace Luminang.UI.Minigames
                 }
             }
 
-            // Final shuffle of the 20 rounds
+            // Final shuffle of the 20 rounds so Requests and other categories are mixed randomly throughout the match
             ShuffleList(roundPool);
         }
 
@@ -345,6 +436,7 @@ namespace Luminang.UI.Minigames
             // Reset slots and Played zone
             for (int i = 0; i < playerCardSlots.Length; i++)
             {
+                playerCardSlots[i].localScale = playerCardOriginalScales[i];
                 playerCardSlots[i].position = deckTransform.position;
                 playerCardSlots[i].gameObject.SetActive(false);
                 Image img = playerCardSlots[i].GetComponent<Image>();
@@ -355,9 +447,11 @@ namespace Luminang.UI.Minigames
                 if (tmp != null) tmp.gameObject.SetActive(false);
             }
 
+            enemyPlayedSlot.localScale = enemyPlayedSlotOriginalScale;
             enemyPlayedSlot.position = deckTransform.position;
             enemyPlayedSlot.gameObject.SetActive(false);
 
+            playerPlayedSlot.localScale = playerPlayedSlotOriginalScale;
             playerPlayedSlot.position = deckTransform.position;
             playerPlayedSlot.gameObject.SetActive(false);
 
@@ -429,20 +523,28 @@ namespace Luminang.UI.Minigames
                 playerCardSlots[i].gameObject.SetActive(true);
                 playerCardSlots[i].position = deckTransform.position; // Ensure it starts exactly on the deck
                 
-                // Setup the word/phrase on the card
+                // Setup the word/phrase on the card with auto-sizing and dynamic underline
                 TextMeshProUGUI tmp = playerCardSlots[i].GetComponentInChildren<TextMeshProUGUI>(true);
                 if (tmp != null)
                 {
-                    tmp.text = roundOptions[i].GetPhrase(FishingGameConfig.TargetLanguage);
+                    FormatCardTextAndUnderline(tmp, roundOptions[i].GetPhrase(FishingGameConfig.TargetLanguage), 14f, 32f);
                     tmp.gameObject.SetActive(false);
                 }
 
                 // Trigger Throw & Flip with smooth 0.75s duration and upward arc
                 int slotIndex = i;
+                
+                playerCardSlots[slotIndex].anchoredPosition = playerCardOriginalAnchoredPositions[slotIndex];
+                Vector3 targetWorldPos = playerCardSlots[slotIndex].position;
+                playerCardSlots[slotIndex].position = deckTransform.position;
+
+                // Play card slide SFX as each card is thrown to its hand slot
+                PlaySFX(cardSlideSFX);
+
                 StartCoroutine(TCGCardAnimator.Instance.ThrowAndFlipCard(
                     playerCardSlots[slotIndex],
                     deckTransform.position,
-                    playerCardOriginalWorldPositions[slotIndex],
+                    targetWorldPos,
                     0.75f,
                     cardFrontSprite,
                     playerCardOriginalScales[slotIndex],
@@ -464,13 +566,22 @@ namespace Luminang.UI.Minigames
             // Step 2: Deal Enemy Card from a random top EnemyCard (1 to 4), different every round!
             Vector3 enemySourcePos = GetRandomEnemyCardSourceWorldPos();
             enemyPlayedSlot.gameObject.SetActive(true);
+            
+            enemyPlayedSlot.anchoredPosition = enemyPlayedSlotOriginalAnchoredPos;
+            Vector3 targetEnemyWorldPos = enemyPlayedSlot.position;
             enemyPlayedSlot.position = enemySourcePos;
+
             SetupEnemyPlayedCardVisuals(false); // Start face down
+
+            Vector3 enemyRotation = rotateEnemyPlayedCardUpsideDown ? new Vector3(0, 0, 180f) : Vector3.zero;
+
+            // Play card slide SFX for enemy card throw
+            PlaySFX(cardSlideSFX);
 
             yield return TCGCardAnimator.Instance.ThrowAndFlipCard(
                 enemyPlayedSlot,
                 enemySourcePos,
-                enemyPlayedSlotOriginalWorldPos,
+                targetEnemyWorldPos,
                 0.85f,
                 cardFrontSprite,
                 enemyPlayedSlotOriginalScale,
@@ -478,7 +589,8 @@ namespace Luminang.UI.Minigames
                 () => {
                     // Reveal inner situation image and text on flip
                     SetupEnemyPlayedCardVisuals(true);
-                }
+                },
+                enemyRotation
             );
 
             // Unlock interactions
@@ -511,43 +623,40 @@ namespace Luminang.UI.Minigames
                 mainCardImg.sprite = faceUp ? cardFrontSprite : cardBackSprite;
             }
 
-            // Inner situation image child
-            Image innerImg = enemyPlayedInnerImage;
-            if (innerImg == null)
+            // Update all inner images (to catch the SituationImage wherever it is nested)
+            Image[] allImgs = enemyPlayedSlot.GetComponentsInChildren<Image>(true);
+            foreach (var img in allImgs)
             {
-                Image[] allImgs = enemyPlayedSlot.GetComponentsInChildren<Image>(true);
-                foreach (var img in allImgs)
+                if (img.gameObject != enemyPlayedSlot.gameObject && 
+                   (img.gameObject.name.Contains("Situation") || img.gameObject.name.Contains("Image") || enemyPlayedInnerImage == img))
                 {
-                    if (img.gameObject != enemyPlayedSlot.gameObject)
+                    if (currentEnemySituationSprite != null)
                     {
-                        innerImg = img;
-                        break;
+                        img.sprite = currentEnemySituationSprite;
+                        img.color = Color.white;
                     }
+                    img.gameObject.SetActive(faceUp);
                 }
             }
 
-            if (innerImg != null)
-            {
-                if (currentEnemySituationSprite != null)
-                {
-                    innerImg.sprite = currentEnemySituationSprite;
-                    innerImg.color = Color.white;
-                }
-                innerImg.gameObject.SetActive(faceUp);
-            }
-
-            // Situation text child (support both TextMeshProUGUI and UnityEngine.UI.Text)
             string textToDisplay = currentRoundData != null ? currentRoundData.enemyCard.situationText : "";
 
-            TextMeshProUGUI sitTMP = enemyPlayedSituationText != null ? enemyPlayedSituationText : enemyPlayedSlot.GetComponentInChildren<TextMeshProUGUI>(true);
-            if (sitTMP != null)
+            // Update all child TMP texts with auto-sizing so long phrases shrink to fit
+            TextMeshProUGUI[] allTMPs = enemyPlayedSlot.GetComponentsInChildren<TextMeshProUGUI>(true);
+            foreach (var sitTMP in allTMPs)
             {
+                sitTMP.enableAutoSizing = true;
+                sitTMP.fontSizeMin = 8f;
+                sitTMP.fontSizeMax = 18f;
+                sitTMP.textWrappingMode = TextWrappingModes.Normal;
+                sitTMP.overflowMode = TextOverflowModes.Ellipsis;
                 sitTMP.text = textToDisplay;
                 sitTMP.gameObject.SetActive(faceUp);
             }
 
-            UnityEngine.UI.Text legacyText = enemyPlayedSlot.GetComponentInChildren<UnityEngine.UI.Text>(true);
-            if (legacyText != null)
+            // Update all legacy child texts
+            UnityEngine.UI.Text[] allLegacyTexts = enemyPlayedSlot.GetComponentsInChildren<UnityEngine.UI.Text>(true);
+            foreach (var legacyText in allLegacyTexts)
             {
                 legacyText.text = textToDisplay;
                 legacyText.gameObject.SetActive(faceUp);
@@ -564,7 +673,7 @@ namespace Luminang.UI.Minigames
             // Setup preview
             if (playerViewWordText != null)
             {
-                playerViewWordText.text = roundOptions[slotIndex].GetPhrase(FishingGameConfig.TargetLanguage);
+                FormatCardTextAndUnderline(playerViewWordText, roundOptions[slotIndex].GetPhrase(FishingGameConfig.TargetLanguage), 20f, 48f);
             }
 
             // Open panels
@@ -575,6 +684,43 @@ namespace Luminang.UI.Minigames
 
             // Position underline based on word wrap height
             StartCoroutine(UpdateUnderlinePosition());
+        }
+
+        private void FormatCardTextAndUnderline(TextMeshProUGUI tmp, string text, float minFont = 14f, float maxFont = 32f)
+        {
+            if (tmp == null) return;
+            tmp.enableAutoSizing = true;
+            tmp.fontSizeMin = minFont;
+            tmp.fontSizeMax = maxFont;
+            tmp.textWrappingMode = TextWrappingModes.Normal;
+            tmp.overflowMode = TextOverflowModes.Overflow;
+            tmp.text = text;
+            tmp.ForceMeshUpdate();
+
+            // Find child underline
+            Transform underline = tmp.transform.Find("Underline") ?? tmp.transform.Find("Image");
+            if (underline == null)
+            {
+                for (int i = 0; i < tmp.transform.childCount; i++)
+                {
+                    Transform child = tmp.transform.GetChild(i);
+                    if (child.GetComponent<Image>() != null)
+                    {
+                        underline = child;
+                        break;
+                    }
+                }
+            }
+
+            if (underline != null)
+            {
+                RectTransform uRect = underline as RectTransform;
+                if (uRect != null)
+                {
+                    float textHeight = tmp.preferredHeight;
+                    uRect.anchoredPosition = new Vector2(uRect.anchoredPosition.x, -(textHeight * 0.5f + 14f));
+                }
+            }
         }
 
         private IEnumerator UpdateUnderlinePosition()
@@ -594,9 +740,14 @@ namespace Luminang.UI.Minigames
             if (isInteractionLocked) return;
             PlaySFX(buttonClickSFX);
 
-            // Setup enemy card preview
+            // Setup enemy card preview (PlayerViewEnemyCard) with auto-sizing
             if (enemyViewSituationText != null)
             {
+                enemyViewSituationText.enableAutoSizing = true;
+                enemyViewSituationText.fontSizeMin = 8f;
+                enemyViewSituationText.fontSizeMax = 24f;
+                enemyViewSituationText.textWrappingMode = TextWrappingModes.Normal;
+                enemyViewSituationText.overflowMode = TextOverflowModes.Ellipsis;
                 enemyViewSituationText.text = currentRoundData.enemyCard.situationText;
             }
             if (enemyViewImage != null)
@@ -645,22 +796,38 @@ namespace Luminang.UI.Minigames
             TextMeshProUGUI playedTmp = playerPlayedSlot.GetComponentInChildren<TextMeshProUGUI>(true);
             if (playedTmp != null)
             {
-                playedTmp.text = roundOptions[currentlySelectedSlotIndex].GetPhrase(FishingGameConfig.TargetLanguage);
+                FormatCardTextAndUnderline(playedTmp, roundOptions[currentlySelectedSlotIndex].GetPhrase(FishingGameConfig.TargetLanguage), 16f, 38f);
                 playedTmp.gameObject.SetActive(true);
             }
 
             // Animate card to Played position
+            playerPlayedSlot.anchoredPosition = playerPlayedSlotOriginalAnchoredPos;
+            Vector3 targetPlayedWorldPos = playerPlayedSlot.position;
+            playerPlayedSlot.position = cardSlot.position;
+
+            // Play card slide SFX at the start of the throw
+            PlaySFX(cardSlideSFX);
+
             StartCoroutine(TCGCardAnimator.Instance.MoveCard(
                 playerPlayedSlot,
                 cardSlot.position,
-                playerPlayedSlotOriginalWorldPos,
+                targetPlayedWorldPos,
                 0.5f,
-                () => EvaluateSelectedCard()
+                () => StartCoroutine(EvaluateWithDelay(1.5f))
             ));
+        }
+
+        private IEnumerator EvaluateWithDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            EvaluateSelectedCard();
         }
 
         private void EvaluateSelectedCard()
         {
+            cardsLeft--;
+            UpdateHUD();
+
             bool isCorrect = (currentlySelectedSlotIndex == correctOptionIndex);
 
             if (isCorrect)
@@ -677,13 +844,28 @@ namespace Luminang.UI.Minigames
         {
             PlaySFX(correctSFX);
 
+            // Activate parent group if disabled
+            if (correctBanner != null && correctBanner.transform.parent != null)
+            {
+                correctBanner.transform.parent.gameObject.SetActive(true);
+            }
+
+            // Show Correct Banner instantly
+            if (correctBanner != null) correctBanner.SetActive(true);
+
             // Glow Green
             yield return TCGCardAnimator.Instance.GlowOutline(playerPlayedSlot, Color.green, 1.0f);
 
-            // Show Correct Banner
-            if (correctBanner != null) correctBanner.SetActive(true);
-            yield return new WaitForSeconds(bannerDuration);
-            if (correctBanner != null) correctBanner.SetActive(false);
+            yield return new WaitForSeconds(bannerDuration - 1.0f > 0 ? bannerDuration - 1.0f : 0);
+            
+            if (correctBanner != null) 
+            {
+                correctBanner.SetActive(false);
+                if (correctBanner.transform.parent != null)
+                {
+                    correctBanner.transform.parent.gameObject.SetActive(false);
+                }
+            }
 
             // Start STT mode
             if (TCGSTTManager.Instance != null)
@@ -705,6 +887,15 @@ namespace Luminang.UI.Minigames
         {
             PlaySFX(wrongSFX);
 
+            // Activate parent group if disabled
+            if (wrongBanner != null && wrongBanner.transform.parent != null)
+            {
+                wrongBanner.transform.parent.gameObject.SetActive(true);
+            }
+
+            // Show Wrong Banner instantly
+            if (wrongBanner != null) wrongBanner.SetActive(true);
+
             // Screen vibrate/shake target (optional - mobile)
             #if UNITY_ANDROID || UNITY_IOS
             Handheld.Vibrate();
@@ -712,16 +903,18 @@ namespace Luminang.UI.Minigames
 
             // Shake Played Card & Glow Red
             StartCoroutine(TCGCardAnimator.Instance.GlowOutline(playerPlayedSlot, Color.red, 1.0f));
-            yield return TCGCardAnimator.Instance.ShakeCard(playerPlayedSlot, 0.4f, 15f);
+            yield return TCGCardAnimator.Instance.ShakeCard(playerPlayedSlot, 0.4f, 0.8f); // Reduced intensity to 0.8f
 
-            // Show Wrong Banner
-            if (wrongBanner != null) wrongBanner.SetActive(true);
-            yield return new WaitForSeconds(bannerDuration);
-            if (wrongBanner != null) wrongBanner.SetActive(false);
-
-            // Lose health
-            cardsLeft--;
-            UpdateHUD();
+            yield return new WaitForSeconds(bannerDuration - 0.4f > 0 ? bannerDuration - 0.4f : 0);
+            
+            if (wrongBanner != null) 
+            {
+                wrongBanner.SetActive(false);
+                if (wrongBanner.transform.parent != null)
+                {
+                    wrongBanner.transform.parent.gameObject.SetActive(false);
+                }
+            }
 
             if (cardsLeft <= 0)
             {
@@ -729,22 +922,34 @@ namespace Luminang.UI.Minigames
                 yield break;
             }
 
-            // Throw card back to its original hand slot
-            RectTransform cardSlot = playerCardSlots[currentlySelectedSlotIndex];
-            cardSlot.position = playerPlayedSlot.position;
-            cardSlot.gameObject.SetActive(true);
-            playerPlayedSlot.gameObject.SetActive(false);
+            // Reshuffle/replace the enemy card by swapping current round data with a future one
+            if (currentRoundIndex < roundPool.Count - 1)
+            {
+                int swapIdx = UnityEngine.Random.Range(currentRoundIndex + 1, roundPool.Count);
+                TCGRoundData temp = roundPool[currentRoundIndex];
+                roundPool[currentRoundIndex] = roundPool[swapIdx];
+                roundPool[swapIdx] = temp;
+            }
 
-            yield return TCGCardAnimator.Instance.MoveCard(
-                cardSlot,
-                cardSlot.position,
-                playerCardOriginalWorldPositions[currentlySelectedSlotIndex],
-                0.45f
-            );
+            // Smooth Outro for table cards
+            Coroutine lastPopOut = null;
+            if (playerPlayedSlot.gameObject.activeSelf)
+                lastPopOut = StartCoroutine(TCGCardAnimator.Instance.PopOut(playerPlayedSlot, 0.3f));
+            
+            if (enemyPlayedSlot.gameObject.activeSelf)
+                lastPopOut = StartCoroutine(TCGCardAnimator.Instance.PopOut(enemyPlayedSlot, 0.3f));
 
-            // Reset selected slot
+            for (int i = 0; i < playerCardSlots.Length; i++)
+            {
+                if (playerCardSlots[i].gameObject.activeSelf)
+                    lastPopOut = StartCoroutine(TCGCardAnimator.Instance.PopOut(playerCardSlots[i], 0.3f));
+            }
+
+            if (lastPopOut != null) yield return lastPopOut;
+
+            // Reset selected slot and restart the same round number
             currentlySelectedSlotIndex = -1;
-            isInteractionLocked = false;
+            SetupNextRound();
         }
 
         private void OnSTTSuccess()
@@ -756,8 +961,28 @@ namespace Luminang.UI.Minigames
             }
             else
             {
-                SetupNextRound();
+                StartCoroutine(STTSuccessNextRoundSequence());
             }
+        }
+
+        private IEnumerator STTSuccessNextRoundSequence()
+        {
+            Coroutine lastPopOut = null;
+            if (playerPlayedSlot.gameObject.activeSelf)
+                lastPopOut = StartCoroutine(TCGCardAnimator.Instance.PopOut(playerPlayedSlot, 0.3f));
+            
+            if (enemyPlayedSlot.gameObject.activeSelf)
+                lastPopOut = StartCoroutine(TCGCardAnimator.Instance.PopOut(enemyPlayedSlot, 0.3f));
+
+            for (int i = 0; i < playerCardSlots.Length; i++)
+            {
+                if (playerCardSlots[i].gameObject.activeSelf)
+                    lastPopOut = StartCoroutine(TCGCardAnimator.Instance.PopOut(playerCardSlots[i], 0.3f));
+            }
+
+            if (lastPopOut != null) yield return lastPopOut;
+
+            SetupNextRound();
         }
 
         private void OnSTTFail()
@@ -779,6 +1004,9 @@ namespace Luminang.UI.Minigames
         private IEnumerator STTFailResetSequence()
         {
             RectTransform cardSlot = playerCardSlots[currentlySelectedSlotIndex];
+            cardSlot.anchoredPosition = playerCardOriginalAnchoredPositions[currentlySelectedSlotIndex];
+            Vector3 targetHandWorldPos = cardSlot.position;
+
             cardSlot.position = playerPlayedSlot.position;
             cardSlot.gameObject.SetActive(true);
             playerPlayedSlot.gameObject.SetActive(false);
@@ -786,7 +1014,7 @@ namespace Luminang.UI.Minigames
             yield return TCGCardAnimator.Instance.MoveCard(
                 cardSlot,
                 cardSlot.position,
-                playerCardOriginalWorldPositions[currentlySelectedSlotIndex],
+                targetHandWorldPos,
                 0.45f
             );
 
@@ -824,12 +1052,48 @@ namespace Luminang.UI.Minigames
             else if (cardsLeft == 2) { stars = 2; coinsEarned = 20; }
             else { stars = 1; coinsEarned = 10; }
 
-            // Assign Star UI elements
-            for (int i = 0; i < winStars.Length; i++)
+            // Auto-recover winStars if unassigned in Inspector
+            if (winStars == null || winStars.Length == 0 || winStars[0] == null)
             {
-                if (winStars[i] != null)
+                if (winPanel != null)
                 {
-                    winStars[i].sprite = (i < stars) ? activeStarSprite : inactiveStarSprite;
+                    var foundList = new List<Image>();
+                    for (int s = 1; s <= 5; s++)
+                    {
+                        foreach (Transform t in winPanel.GetComponentsInChildren<Transform>(true))
+                        {
+                            if (t.name.Equals($"Star{s}", System.StringComparison.OrdinalIgnoreCase) && t.TryGetComponent<Image>(out var img))
+                            {
+                                foundList.Add(img);
+                                break;
+                            }
+                        }
+                    }
+                    if (foundList.Count > 0) winStars = foundList.ToArray();
+                }
+            }
+
+            // Auto-recover star sprites if unassigned in Inspector
+            if (activeStarSprite == null || inactiveStarSprite == null)
+            {
+                Sprite[] allSprites = UnityEngine.Resources.FindObjectsOfTypeAll<Sprite>();
+                foreach (var sp in allSprites)
+                {
+                    if (activeStarSprite == null && sp.name == "star_active") activeStarSprite = sp;
+                    if (inactiveStarSprite == null && sp.name == "star_inactive") inactiveStarSprite = sp;
+                }
+            }
+
+            // Assign Star UI elements
+            if (winStars != null)
+            {
+                for (int i = 0; i < winStars.Length; i++)
+                {
+                    if (winStars[i] != null)
+                    {
+                        winStars[i].sprite = (i < stars) ? activeStarSprite : inactiveStarSprite;
+                        winStars[i].gameObject.SetActive(true);
+                    }
                 }
             }
 
@@ -839,6 +1103,8 @@ namespace Luminang.UI.Minigames
             int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0);
             PlayerPrefs.SetInt("PlayerCoins", currentCoins + coinsEarned);
             PlayerPrefs.SetInt("TCGMinigameWon", 1);
+            PlayerPrefs.SetInt("FishingMinigameWon", 1);
+            PlayerPrefs.SetInt("MinigameWon", 1);
             PlayerPrefs.Save();
 
             if (winPanel != null)
@@ -862,6 +1128,8 @@ namespace Luminang.UI.Minigames
             int currentCoins = PlayerPrefs.GetInt("PlayerCoins", 0);
             PlayerPrefs.SetInt("PlayerCoins", currentCoins + coinsEarned);
             PlayerPrefs.SetInt("TCGMinigameWon", 0);
+            PlayerPrefs.SetInt("FishingMinigameWon", 0);
+            PlayerPrefs.SetInt("MinigameWon", 0);
             PlayerPrefs.Save();
 
             if (losePanel != null)
@@ -923,6 +1191,7 @@ namespace Luminang.UI.Minigames
             string cleanPath = spritePath.Replace(".png", "").Replace(".jpg", "");
             string fileName = Path.GetFileName(cleanPath);
 
+            #if UNITY_EDITOR
             // Windows-normalized absolute paths to search
             string[] possibleDiskPaths = new string[]
             {
@@ -955,6 +1224,7 @@ namespace Luminang.UI.Minigames
                     }
                 }
             }
+            #endif
 
             // Direct Resources load fallback
             string resPath = cleanPath;
