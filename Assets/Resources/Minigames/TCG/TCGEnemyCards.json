@@ -84,7 +84,7 @@
       "id": "tcg_enemy_greetings_006_01",
       "phraseId": "greetings_006",
       "spriteName": "ImFine",
-      "spritePath": "Sprites/Mini Games/TCG/Greetings_Images/ImFine",
+      "spritePath": "Sprites/Mini Games/TCG/Greetings_Images/ImFine2",
       "situationText": "A friend asks how are you.",
       "category": "Greetings"
     },
@@ -92,7 +92,7 @@
       "id": "tcg_enemy_greetings_006_02",
       "phraseId": "greetings_006",
       "spriteName": "ImFine2",
-      "spritePath": "Sprites/Mini Games/TCG/Greetings_Images/ImFine2",
+      "spritePath": "Sprites/Mini Games/TCG/Greetings_Images/ImFine",
       "situationText": "Someone asks if you're struggling but you can do it!",
       "category": "Greetings"
     },
@@ -243,7 +243,7 @@
     {
       "id": "tcg_enemy_responses_016_01",
       "phraseId": "responses_016",
-      "spriteName": "Okay",
+      "spriteName": "Okay2",
       "spritePath": "Sprites/Mini Games/TCG/Responses_Images/Okay",
       "situationText": "Your friend asks you to wait.",
       "category": "Responses"
@@ -251,7 +251,7 @@
     {
       "id": "tcg_enemy_responses_016_02",
       "phraseId": "responses_016",
-      "spriteName": "Okay2",
+      "spriteName": "Okay",
       "spritePath": "Sprites/Mini Games/TCG/Responses_Images/Okay2",
       "situationText": "Your friend suggests eating lunch together.",
       "category": "Responses"
@@ -355,16 +355,16 @@
     {
       "id": "tcg_enemy_requests_023_01",
       "phraseId": "requests_023",
-      "spriteName": "HelpMe",
-      "spritePath": "Sprites/Mini Games/TCG/Request_Images/HelpMe",
+      "spriteName": "HelpMe2",
+      "spritePath": "Sprites/Mini Games/TCG/Request_Images/HelpMe2",
       "situationText": "You are carrying a tall stack of books that is about to wobble and fall.",
       "category": "Requests"
     },
     {
       "id": "tcg_enemy_requests_023_02",
       "phraseId": "requests_023",
-      "spriteName": "HelpMe2",
-      "spritePath": "Sprites/Mini Games/TCG/Request_Images/HelpMe2",
+      "spriteName": "HelpMe",
+      "spritePath": "Sprites/Mini Games/TCG/Request_Images/HelpMe",
       "situationText": "You need help carrying a heavy box immediately!",
       "category": "Requests"
     },

@@ -18,14 +18,14 @@ namespace Luminang.UI.Minigames
         /// Moves a card from deck to slot and flips it face up while preserving custom scale and following an arc trajectory.
         /// Uses World Position to ensure perfect positioning across different Canvas parents and anchors.
         /// </summary>
-        public IEnumerator ThrowAndFlipCard(RectTransform card, Vector3 fromWorldPos, Vector3 toWorldPos, float duration, Sprite frontSprite, Vector3 targetScale = default, float arcHeight = 35f, System.Action onComplete = null)
+        public IEnumerator ThrowAndFlipCard(RectTransform card, Vector3 fromWorldPos, Vector3 toWorldPos, float duration, Sprite frontSprite, Vector3 targetScale = default, float arcHeight = 35f, System.Action onComplete = null, Vector3 targetEulerAngles = default)
         {
             Vector3 finalScale = targetScale == Vector3.zero ? card.localScale : targetScale;
             if (finalScale == Vector3.zero) finalScale = Vector3.one;
 
             card.position = fromWorldPos;
             card.localScale = finalScale;
-            card.localEulerAngles = Vector3.zero;
+            card.localEulerAngles = targetEulerAngles;
 
             float elapsed = 0f;
             Image cardImage = card.GetComponent<Image>();
