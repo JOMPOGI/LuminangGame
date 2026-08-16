@@ -19,11 +19,11 @@ MonoBehaviour:
     truly experience the beauty of Vigan, you've got to explore Calle Crisologo and
     speak with the locals in their native tongue.\n\nAs you practice and learn how
     Ilocanos talk in their daily lives, you will earn their trust and friendship.\n\nSo,
-    let's begin with something simple.\n\nBefore you can truly connect
-    with the people of Ilocos, you must first learn how to greet them."
+    let's begin with something simple.\n\nBefore you can truly connect with the people
+    of Ilocos, you must first learn how to greet them."
   translatedText: 
   animationTrigger: 
-  triggerEventName: 
+  triggerEventName: SetObjective_Learn greetings with Kalaw
   endEventName: 
   choices:
   - choiceText: 
@@ -31,3 +31,5 @@ MonoBehaviour:
     isWrong: 0
     choiceEvent: ShowPopup:welcome_level1
     expectedSTTWord: 
+  isYesNoChoice: 0
+  ambientOnly: 0

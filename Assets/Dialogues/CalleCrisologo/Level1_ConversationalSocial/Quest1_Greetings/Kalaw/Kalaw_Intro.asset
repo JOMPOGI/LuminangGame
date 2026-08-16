@@ -18,7 +18,7 @@ MonoBehaviour:
     under this hot Vigan sun has completely worn me out...
   translatedText: 
   animationTrigger: 
-  triggerEventName: SetObjective_Learn greetings with Kalaw
+  triggerEventName: 
   endEventName: 
   choices:
   - choiceText: Wen
@@ -31,3 +31,5 @@ MonoBehaviour:
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 
+  isYesNoChoice: 0
+  ambientOnly: 0

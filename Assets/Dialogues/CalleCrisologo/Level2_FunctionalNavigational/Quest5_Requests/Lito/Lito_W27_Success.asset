@@ -27,7 +27,9 @@ MonoBehaviour:
     choiceEvent: ShowPopup:requests
     expectedSTTWord: 
   - choiceText: Play Fishing Game!
-    nextNode: {fileID: 11400000, guid: f0658711a3afa104a8289586a0e52cce, type: 2}
+    nextNode: {fileID: 11400000, guid: 65d3f7604ae5f1f40bc4aad36ee1ebc6, type: 2}
     isWrong: 0
-    choiceEvent: StartMinigame:FishingGame
+    choiceEvent: 
     expectedSTTWord: 
+  isYesNoChoice: 0
+  ambientOnly: 0

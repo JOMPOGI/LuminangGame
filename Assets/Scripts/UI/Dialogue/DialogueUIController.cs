@@ -242,8 +242,6 @@ public class DialogueUIController : MonoBehaviour
             }
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         DisplayCurrentPage();
     }
 
@@ -269,20 +267,6 @@ public class DialogueUIController : MonoBehaviour
                 // Temporarily bypassing STT requirement to allow skipping.
                 nextButton.gameObject.SetActive(visibleChoices == 0);
             }
-=======
-        // We ALWAYS keep the next button active initially so the player can click it to skip the typing animation.
-        // It will be disabled at the very end of the TypeText coroutine if this node has choices or requires STT.
-        if (nextButton != null)
-        {
-            nextButton.gameObject.SetActive(true);
->>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
-=======
-        // We ALWAYS keep the next button active initially so the player can click it to skip the typing animation.
-        // It will be disabled at the very end of the TypeText coroutine if this node has choices or requires STT.
-        if (nextButton != null)
-        {
-            nextButton.gameObject.SetActive(true);
->>>>>>> upstream/irah-version
         }
 
         // If not last page, hide choices so they don't block
@@ -420,6 +404,33 @@ public class DialogueUIController : MonoBehaviour
     }
 
     /// <summary>
+    /// Hides the entire dialogue UI (panel, portrait, choices) but intentionally
+    /// keeps the movement UI hidden because a minigame is taking over.
+    /// </summary>
+    public void HideDialogueForMinigame()
+    {
+        if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
+        if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
+        _showSequenceCoroutine = null;
+        _typeTextCoroutine = null;
+        _isTyping   = false;
+        _skipTyping = false;
+
+        dialoguePanel.SetActive(false);
+
+        if (choicesGroup != null)
+        {
+            choicesGroup.SetActive(false);
+            choicesGroup.transform.localScale = Vector3.one;
+        }
+
+        SetPortraitVisibility(false, false);
+        _lastPortrait = null;
+        
+        ClearChoices();
+    }
+
+    /// <summary>
     /// Hides only the choices area and dialogue panel visuals WITHOUT
     /// showing the movement UI. Used during wrong-answer animations
     /// where the player is still considered to be "in dialogue".
@@ -438,38 +449,6 @@ public class DialogueUIController : MonoBehaviour
 
         // NOTE: We intentionally do NOT call movementUI.SetActive(true) here.
         // The player is still in dialogue — UI should stay hidden.
-        ClearChoices();
-    }
-
-    /// <summary>
-    /// Hides the entire dialogue UI (panel, portrait, choices) but intentionally
-    /// keeps the movement UI hidden because a minigame is taking over.
-    /// </summary>
-    public void HideDialogueForMinigame()
-    {
-        if (_showSequenceCoroutine != null) StopCoroutine(_showSequenceCoroutine);
-        if (_typeTextCoroutine != null) StopCoroutine(_typeTextCoroutine);
-        _showSequenceCoroutine = null;
-        _typeTextCoroutine = null;
-        _isTyping   = false;
-        _skipTyping = false;
-
-        dialoguePanel.SetActive(false);
-        if (_isDialoguePosCaptured)
-        {
-            RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
-            rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, _dialogueOriginalY);
-        }
-
-        if (choicesGroup != null)
-        {
-            choicesGroup.SetActive(false);
-            choicesGroup.transform.localScale = Vector3.one;
-        }
-
-        SetPortraitVisibility(false, false);
-        _lastPortrait = null;
-        
         ClearChoices();
     }
 
@@ -585,214 +564,18 @@ public class DialogueUIController : MonoBehaviour
         bool isLastPage = _currentPageIndex >= _pages.Count - 1;
         if (_activeChoiceButtons.Count > 0 && choicesGroup != null && isLastPage)
         {
-<<<<<<< HEAD
             choicesGroup.SetActive(true);
             
             // Re-enforce scale BEFORE layout rebuild to prevent "squish"
             choicesGroup.transform.localScale = new Vector3(1, 0, 1);
             
-            RectTransform containerRT = choicesContainer.GetComponent<RectTransform>();
-            
-            if (containerRT != null)
-            {
-                SetupChoicesLayout(containerRT);
-            }
+            RectTransform choicesRT = choicesGroup.GetComponent<RectTransform>();
+            if (choicesRT != null) LayoutRebuilder.ForceRebuildLayoutImmediate(choicesRT);
 
-            // Calculate rows mathematically based on string length and number of choices
-            int maxLen = 0;
-            foreach (var choice in _currentChoices)
-            {
-                if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
-                    maxLen = choice.choiceText.Length;
-            }
-            bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
-            
-            int numChoices = _activeChoiceButtons.Count;
-            int rows = useGrid ? Mathf.CeilToInt((float)numChoices / 2f) : numChoices;
-            
-            // The user requested we just calculate the height of the rows directly!
-            float dynamicDistance = (rows * 75f) + (Mathf.Max(0, rows - 1) * 9f) + 15f;
-
-<<<<<<< HEAD
             if (curtainDelay > 0 && !skipAnimation) yield return new WaitForSeconds(curtainDelay);
             yield return StartCoroutine(CurtainDrop());
-=======
-            choicesGroup.SetActive(true);
-=======
-            // Ensure choices are normal scale
-            choicesGroup.transform.localScale = Vector3.one;
-            
-            RectTransform containerRT = choicesContainer.GetComponent<RectTransform>();
-            
-            if (containerRT != null)
-            {
-                SetupChoicesLayout(containerRT);
-            }
-
-            // Calculate rows mathematically based on string length and number of choices
-            int maxLen = 0;
-            foreach (var choice in _currentChoices)
-            {
-                if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
-                    maxLen = choice.choiceText.Length;
-            }
-            bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
-            
-            int numChoices = _activeChoiceButtons.Count;
-            int rows = useGrid ? Mathf.CeilToInt((float)numChoices / 2f) : numChoices;
-            
-            // The user requested we just calculate the height of the rows directly!
-            float dynamicDistance = (rows * 75f) + (Mathf.Max(0, rows - 1) * 9f) + 15f;
-
-            choicesGroup.SetActive(true);
->>>>>>> upstream/irah-version
-            Canvas.ForceUpdateCanvases();
-
-            if (!skipAnimation)
-            {
-                yield return StartCoroutine(MoveDialoguePanelUp(dynamicDistance));
-            }
-            else
-            {
-                dialogRT.anchoredPosition = new Vector2(dialogRT.anchoredPosition.x, _dialogueOriginalY + dynamicDistance);
-<<<<<<< HEAD
-            }
->>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
         }
     }
-
-    private void SetupChoicesLayout(RectTransform choicesRT)
-    {
-        if (choicesContainer == null) return;
-        
-        UnityEngine.UI.VerticalLayoutGroup vLayout = choicesContainer.GetComponent<UnityEngine.UI.VerticalLayoutGroup>();
-        UnityEngine.UI.GridLayoutGroup grid = choicesContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
-        
-        // Save layout settings so we don't lose them when switching
-        RectOffset padding = null;
-        float spacing = 9f; // default spacing
-        
-        if (vLayout != null) { padding = vLayout.padding; spacing = vLayout.spacing; }
-        else if (grid != null) { padding = grid.padding; spacing = grid.spacing.y; }
-
-        int maxLen = 0;
-        foreach (var choice in _currentChoices)
-        {
-            if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
-                maxLen = choice.choiceText.Length;
-        }
-
-        // If all texts are short (<=15 chars) and we have multiple choices, use 2-column Grid
-        bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
-
-        if (useGrid)
-        {
-            if (vLayout != null) UnityEngine.Object.DestroyImmediate(vLayout);
-            if (grid == null) grid = choicesContainer.gameObject.AddComponent<UnityEngine.UI.GridLayoutGroup>();
-            
-            grid.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
-            grid.constraintCount = 2;
-            grid.startAxis = UnityEngine.UI.GridLayoutGroup.Axis.Horizontal;
-            grid.startCorner = UnityEngine.UI.GridLayoutGroup.Corner.UpperLeft;
-            grid.childAlignment = TextAnchor.LowerCenter; // Place from bottom
-            
-            if (padding != null)
-            {
-                grid.padding = padding;
-                grid.spacing = new Vector2(spacing, spacing);
-            }
-            
-            float totalWidth = choicesRT.rect.width - grid.padding.left - grid.padding.right;
-            float cellWidth = (totalWidth - grid.spacing.x) / 2f;
-            grid.cellSize = new Vector2(cellWidth, 75f); // Use the default button height
-        }
-        else
-        {
-            if (grid != null) UnityEngine.Object.DestroyImmediate(grid);
-            if (vLayout == null) vLayout = choicesContainer.gameObject.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
-            
-            vLayout.childAlignment = TextAnchor.LowerCenter; // Group everything at the bottom
-            vLayout.childControlHeight = false;
-            vLayout.childControlWidth = true;
-            vLayout.childForceExpandHeight = false;
-
-            if (padding != null)
-            {
-                vLayout.padding = padding;
-                vLayout.spacing = spacing;
-=======
->>>>>>> upstream/irah-version
-            }
-        }
-    }
-
-<<<<<<< HEAD
-=======
-    private void SetupChoicesLayout(RectTransform choicesRT)
-    {
-        if (choicesContainer == null) return;
-        
-        UnityEngine.UI.VerticalLayoutGroup vLayout = choicesContainer.GetComponent<UnityEngine.UI.VerticalLayoutGroup>();
-        UnityEngine.UI.GridLayoutGroup grid = choicesContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
-        
-        // Save layout settings so we don't lose them when switching
-        RectOffset padding = null;
-        float spacing = 9f; // default spacing
-        
-        if (vLayout != null) { padding = vLayout.padding; spacing = vLayout.spacing; }
-        else if (grid != null) { padding = grid.padding; spacing = grid.spacing.y; }
-
-        int maxLen = 0;
-        foreach (var choice in _currentChoices)
-        {
-            if (!string.IsNullOrEmpty(choice.choiceText) && choice.choiceText.Length > maxLen)
-                maxLen = choice.choiceText.Length;
-        }
-
-        // If all texts are short (<=15 chars) and we have multiple choices, use 2-column Grid
-        bool useGrid = maxLen <= 15 && _activeChoiceButtons.Count > 1;
-
-        if (useGrid)
-        {
-            if (vLayout != null) UnityEngine.Object.DestroyImmediate(vLayout);
-            if (grid == null) grid = choicesContainer.gameObject.AddComponent<UnityEngine.UI.GridLayoutGroup>();
-            
-            grid.constraint = UnityEngine.UI.GridLayoutGroup.Constraint.FixedColumnCount;
-            grid.constraintCount = 2;
-            grid.startAxis = UnityEngine.UI.GridLayoutGroup.Axis.Horizontal;
-            grid.startCorner = UnityEngine.UI.GridLayoutGroup.Corner.UpperLeft;
-            grid.childAlignment = TextAnchor.LowerCenter; // Place from bottom
-            
-            if (padding != null)
-            {
-                grid.padding = padding;
-                grid.spacing = new Vector2(spacing, spacing);
-            }
-            
-            float totalWidth = choicesRT.rect.width - grid.padding.left - grid.padding.right;
-            float cellWidth = (totalWidth - grid.spacing.x) / 2f;
-            grid.cellSize = new Vector2(cellWidth, 75f); // Use the default button height
-        }
-        else
-        {
-            if (grid != null) UnityEngine.Object.DestroyImmediate(grid);
-            if (vLayout == null) vLayout = choicesContainer.gameObject.AddComponent<UnityEngine.UI.VerticalLayoutGroup>();
-            
-            vLayout.childAlignment = TextAnchor.LowerCenter; // Group everything at the bottom
-            vLayout.childControlHeight = false;
-            vLayout.childControlWidth = true;
-            vLayout.childForceExpandHeight = false;
-
-            if (padding != null)
-            {
-                vLayout.padding = padding;
-                vLayout.spacing = spacing;
-            }
-        }
-    }
-
->>>>>>> upstream/irah-version
-    // Removed CalculateTargetDialogueY as we are using direct mathematical row height
 
     private IEnumerator PopInPanel()
     {
@@ -841,18 +624,8 @@ public class DialogueUIController : MonoBehaviour
 
         _isTyping   = false;
         _skipTyping = false;
-        
-        // Now that typing is finished, hide the next button if there are choices or STT required.
-        if (nextButton != null)
-        {
-            bool requiresSTT = DialogueManager.Instance != null && DialogueManager.Instance.PendingSTTChoice != null;
-            bool hasChoices = _activeChoiceButtons != null && _activeChoiceButtons.Count > 0;
-            nextButton.gameObject.SetActive(!hasChoices && !requiresSTT);
-        }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     private IEnumerator CurtainDrop()
     {
         if (choicesGroup == null) yield break; // Safety Check
@@ -860,27 +633,6 @@ public class DialogueUIController : MonoBehaviour
         Vector3 start = new Vector3(1f, 0f, 1f);
         Vector3 end   = Vector3.one;
         choicesGroup.transform.localScale = start;
-=======
-=======
->>>>>>> upstream/irah-version
-    private IEnumerator MoveDialoguePanelUp(float distance)
-    {
-        RectTransform rt = dialoguePanel.GetComponent<RectTransform>();
-        Vector2 startPos = rt.anchoredPosition;
-        Vector2 endPos = new Vector2(startPos.x, _dialogueOriginalY + distance);
-        
-        float elapsed = 0f;
-        while (elapsed < dialogueMoveDuration)
-        {
-            elapsed += Time.unscaledDeltaTime;
-            float t = Mathf.Clamp01(elapsed / dialogueMoveDuration);
-            float eased = 1f - Mathf.Pow(1f - t, 3f); // Ease out cubic
-            rt.anchoredPosition = Vector2.LerpUnclamped(startPos, endPos, eased);
-            yield return null;
-        }
-        rt.anchoredPosition = endPos;
-    }
->>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
 
         float elapsed = 0f;
         while (elapsed < curtainDropDuration)
@@ -1042,15 +794,7 @@ public class DialogueUIController : MonoBehaviour
     private void ClearChoices()
     {
         foreach (var btn in _activeChoiceButtons)
-        {
-            if (btn != null) 
-            {
-                // Unparent immediately so it doesn't affect the layout group calculation in the same frame
-                btn.transform.SetParent(null);
-                btn.SetActive(false);
-                Destroy(btn);
-            }
-        }
+            if (btn != null) Destroy(btn);
         _activeChoiceButtons.Clear();
     }
 

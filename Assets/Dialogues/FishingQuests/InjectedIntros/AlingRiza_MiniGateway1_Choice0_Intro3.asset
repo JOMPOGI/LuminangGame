@@ -22,7 +22,7 @@ MonoBehaviour:
   endEventName: 
   choices:
   - choiceText: Wen
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: 1e95fdff843c9e44c9c81371daa377f3, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

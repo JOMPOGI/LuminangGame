@@ -21,7 +21,9 @@ MonoBehaviour:
   endEventName: 
   choices:
   - choiceText: Play Fishing Game!
-    nextNode: {fileID: 11400000, guid: c14227f05357245408443f13c10f8e9f, type: 2}
+    nextNode: {fileID: 11400000, guid: dc01985886d12114c92a1d58e079ea45, type: 2}
     isWrong: 0
-    choiceEvent: StartMinigame:FishingGame
+    choiceEvent: 
     expectedSTTWord: 
+  isYesNoChoice: 0
+  ambientOnly: 0

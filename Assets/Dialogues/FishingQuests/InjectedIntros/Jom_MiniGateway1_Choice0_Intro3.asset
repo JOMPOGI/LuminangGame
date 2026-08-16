@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jom_MiniGateway1_Choice0_Intro3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   speakerName: Jom
-  speakerPortrait: {fileID: 21300000, guid: d01af24494056374182e13118c0585e2, type: 3}
+  speakerPortrait: {fileID: 0}
   dialogueText: I'm helping neighbors gather food for a community feast later. Could
     you catch a few more fish for us?
   translatedText: 
@@ -22,7 +22,7 @@ MonoBehaviour:
   endEventName: 
   choices:
   - choiceText: Wen
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: 1a146fcfeb775294c8331a7583fbb8dc, type: 2}
     isWrong: 0
     choiceEvent: 
     expectedSTTWord: 

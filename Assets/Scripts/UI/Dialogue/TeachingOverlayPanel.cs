@@ -152,33 +152,10 @@ public class TeachingOverlayPanel : MonoBehaviour
 
         EnsureSpeechEngineDependencies();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         // The user requested to disable the background image for now.
         if (backgroundImage != null)
         {
             backgroundImage.gameObject.SetActive(false);
-=======
-=======
->>>>>>> upstream/irah-version
-        // Match STT_TestScene behavior: always set region to Cebuano for Magellan scene lessons
-        if (PhraseEvaluator.Instance != null)
-            PhraseEvaluator.Instance.SetRegion(RegionMode.Cebuano);
-
-        if (backgroundImage != null)
-        {
-            if (!string.IsNullOrEmpty(backgroundName))
-            {
-                Sprite found = FindBackground(backgroundName);
-                if (found != null) 
-                {
-                    backgroundImage.gameObject.SetActive(true);
-                    ChangeBackground(found);
-                }
-            }
-            // If backgroundName is empty, DO NOT hide the background.
-            // This allows the background to persist across multiple STT nodes!
->>>>>>> 8b2d5a45bf39c6000f4e66ab15743a7dab84d6b7
         }
 
         ResetPromptText();
