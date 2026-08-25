@@ -28,7 +28,7 @@ class ControlledDataset:
             print(f"Dataset JSON not found at {json_path}!")
 
 
-    def get_all_targets(self, region_mode):
+    def get_all_targets(self, region_mode, category=None):
         """
         Returns all valid phrases for evaluation under a specific region mode.
         """
